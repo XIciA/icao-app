@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-640",
-  "name": "CSN6306 weather&dump fuel, etc.",
+  "name": "CSN6306 · 天气与放油",
   "declaredCardCount": 19,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111745",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-1",
+      "taskTitle": "12. CSN6306 · 天气与放油-1",
       "audioText": "You are the pilot of CSN6306 which is bound for Dalian. You are going to depart from Shanghai airport at Gate 23. Now call Delivery, and request your ATC clearance.",
       "audioTextZh": "你是航班CSN6306的飞行员，飞机飞往大连。你正在上海机场23号停机位准备出发，现在联系放行并请求放行许可。",
       "referenceText": "Shanghai Delivery, CSN6306, destination Dalian, Gate 23, request ATC clearance.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111746",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-2",
+      "taskTitle": "12. CSN6306 · 天气与放油-2",
       "audioText": "CSN6306, Shanghai Delivery, copy clearance, cleared to Dalian, via flight planned route, D2 Departure, initial climb to 900m. Request level change en route, squawk 4736.",
       "audioTextZh": "南航6306，上海放行，抄收放行许可，可以按计划航路飞往大连，按D2离场，起始高度900米。在航路上申请改变高度，应答机4736。",
       "referenceText": "Cleared to Dalian, via flight planned route, D2 Departure, initial climb to 900m. Request level change en route, squawk 4736, CSN6306.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111747",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-3",
+      "taskTitle": "12. CSN6306 · 天气与放油-3",
       "audioText": "You are ready for push back.",
       "audioTextZh": "【你已准备好推出。】",
       "referenceText": "Shanghai Ground, CSN6306, ready for push back.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111748",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-4",
+      "taskTitle": "12. CSN6306 · 天气与放油-4",
       "audioText": "CSN6306, Shanghai Ground, expect delay 20 minutes due weather on your route. I will call you back.[After 30 minutes, you want to change route through COL to save time.]",
       "audioTextZh": "南航6306，上海地面，由于航路上天气，预计延误20分钟，稍后叫你。【30分钟后，你想要改变航线过COL节省时间。】",
       "referenceText": "Shanghai Ground, CSN6306, can we change route through COL to avoid delay?",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111749",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-5",
+      "taskTitle": "12. CSN6306 · 天气与放油-5",
       "audioText": "Negative, CSN6306, you must fly via planned route.",
       "audioTextZh": "不可以，南航6306，必须按计划航路飞行。",
       "referenceText": "Roger, via planned route, CSN6306.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111750",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-6",
+      "taskTitle": "12. CSN6306 · 天气与放油-6",
       "audioText": "You have finished pushback and start-up, ready for taxi, contact Shanghai Ground.",
       "audioTextZh": "你已推出开车，准备滑行，联系上海地面。",
       "referenceText": "Shanghai Ground, CSN6306, request taxi.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111751",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-7",
+      "taskTitle": "12. CSN6306 · 天气与放油-7",
       "audioText": "CSN6306, Shanghai Ground, the weather is deteriorating, confirm you will depart on schedule under this condition?[You say yes, the weather is not below your company minima.]",
       "audioTextZh": "南航6306，上海地面，天气情况恶劣，确认在这种情况按时离场？【回答管制员确认，天气情况没有低于公司最低标准。】",
       "referenceText": "Affirm, the weather is not below our company minima, CSN6306.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111752",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-8",
+      "taskTitle": "12. CSN6306 · 天气与放油-8",
       "audioText": "Roger, CSN6306, runway 31 via taxiway D1 B1 and A12.",
       "audioTextZh": "收到，南航6306，经滑行道D1，B1和A12滑到跑道31。",
       "referenceText": "Roger, runway 31, taxiway D1 B1 and A12, CSN6306.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111753",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-9",
+      "taskTitle": "12. CSN6306 · 天气与放油-9",
       "audioText": "Now you are en route, the No.2 engine failed, call Shanghai Control to request descent.",
       "audioTextZh": "现在你在航路上，2号发动机故障，联系上海区调并请求下降。",
       "referenceText": "Panpan, Panpan, Panpan, Shanghai Control, CSN6306, engine failure on No.2, request descent.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111754",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-10",
+      "taskTitle": "12. CSN6306 · 天气与放油-10",
       "audioText": "Roger, CSN6306, descend to 5400m initially.",
       "audioTextZh": "收到，南航6306，初步下降到5400米。",
       "referenceText": "Descend to 5400m initially, CSN6306.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111755",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-11",
+      "taskTitle": "12. CSN6306 · 天气与放油-11",
       "audioText": "At 5400m, you are unable to maintain the present level, request descent to 4500m.",
       "audioTextZh": "到达5400米，飞机无法保持当前高度，请求下降到4500米。",
       "referenceText": "Shanghai Control, CSN6306. unable to maintain present level, request descent to 4500m.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111756",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-12",
+      "taskTitle": "12. CSN6306 · 天气与放油-12",
       "audioText": "CSN6306, descend to 4500m.[Request return to Shanghai airport and fuel dumping.]",
       "audioTextZh": "南航6306，下降到4500米。【请求返回上海机场并在返回前放油。】",
       "referenceText": "Descend to 4500m, and request return to Shanghai airport and fuel dumping, CSN6306.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111757",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-13",
+      "taskTitle": "12. CSN6306 · 天气与放油-13",
       "audioText": "Roger, CSN6306. Turn right heading 230, radar vector for fuel dumping.",
       "audioTextZh": "收到，南航6306，右转航向230，雷达引导放油。",
       "referenceText": "Turn right heading 230, radar vector for fuel dumping, CSN6306.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111758",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-14",
+      "taskTitle": "12. CSN6306 · 天气与放油-14",
       "audioText": "Fuel dumping completed, request priority landing.",
       "audioTextZh": "【飞机完成放油，请求优先着陆。】",
       "referenceText": "Shanghai Control, CSN6306, dump completed, request priority landing.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111759",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-15",
+      "taskTitle": "12. CSN6306 · 天气与放油-15",
       "audioText": "Roger, CSN6306, direct to CG, descend to 3600m. Contact Shanghai Approach 123.45.",
       "audioTextZh": "收到，南航6306，直飞CG，下降到3600米，联系上海进近123.45。",
       "referenceText": "Direct to CG, descend to 3600m, 123.45, CSN6306.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111760",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-16",
+      "taskTitle": "12. CSN6306 · 天气与放油-16",
       "audioText": "Establish initial contact with Shanghai Approach, maintaining 3600m.",
       "audioTextZh": "与上海进近建立起始联系，3600米保持。",
       "referenceText": "Shanghai Approach, CSN6306, maintaining 3600m.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111761",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-17",
+      "taskTitle": "12. CSN6306 · 天气与放油-17",
       "audioText": "CSN6306, Shanghai Approach, radar contact. Descend to 2700m on QNH 1010, information K, you are number one.",
       "audioTextZh": "南航6306，上海进近，雷达看到。下降到修正海压2700米，修正海压1010，通播K，你是第一个。",
       "referenceText": "Descend to 2700m on QNH 1010, information K, number one, CSN6306.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111762",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-18",
+      "taskTitle": "12. CSN6306 · 天气与放油-18",
       "audioText": "CSN6306, do you require any other assistance?[You need fire and medical services.]",
       "audioTextZh": "南航6306，你需要其它援助吗？【你需要消防和医疗服务。】",
       "referenceText": "Affirm, request fire and medical services, CSN6306.",
@@ -169,7 +169,7 @@
     },
     {
       "id": "radiotelephony-fzy-111763",
-      "taskTitle": "12. CSN6306 weather&dump fuel, etc.-19",
+      "taskTitle": "12. CSN6306 · 天气与放油-19",
       "audioText": "CSN6306, a fire engine and ambulance will be ready on landing.",
       "audioTextZh": "南航6306，消防车和救护车将在着陆时就位。",
       "referenceText": "Roger, thanks, CSN6306.",

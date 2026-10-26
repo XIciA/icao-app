@@ -367,9 +367,9 @@ export type ResolvedResource = {
   expiresIn: number;
 };
 
-export type FeedbackCategory = 'feature_suggestion' | 'content_correction' | 'other';
+export type FeedbackCategory = 'feature_suggestion' | 'content_correction' | 'other' | 'listening' | 'sentences900' | 'radiotelephony' | 'storytelling' | 'opi';
 export type FeedbackStatus = 'received' | 'in_progress' | 'resolved' | 'cannot_reproduce';
-export type FeedbackSource = 'profile' | 'study';
+export type FeedbackSource = 'profile' | 'study' | 'exam_report' | 'opi_hotspot';
 
 export type FeedbackQuestionContext = {
   bankId: string;
@@ -620,7 +620,7 @@ export type SyncCardState = {
   recordingDurationMillis?: number;
   tagIds?: string[];
   highlights?: Array<{
-    blockId: 'question' | 'reference';
+    blockId: 'question' | 'reference' | `choice-${number}`;
     wordIndex: number;
     colorId: string;
     quote: string;

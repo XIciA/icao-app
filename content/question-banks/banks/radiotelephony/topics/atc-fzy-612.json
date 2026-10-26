@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-612",
-  "name": "CSN351 pages missing, etc.",
+  "name": "CSN351 · 手册缺页",
   "declaredCardCount": 17,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111210",
-      "taskTitle": "29. CSN351 pages missing, etc.-1",
+      "taskTitle": "29. CSN351 · 手册缺页-1",
       "audioText": "You are CSN351, from Wuhan to Moscow, Gate 224, with information C, request ATC clearance.",
       "audioTextZh": "你是南航351，从武汉飞往莫斯科，224号机位，通播C，请求ATC放行。",
       "referenceText": "Wuhan Delivery, CSN351, Parking bay 224, information C, destination Moscow, request ATC clearance.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111211",
-      "taskTitle": "29. CSN351 pages missing, etc.-2",
+      "taskTitle": "29. CSN351 · 手册缺页-2",
       "audioText": "CSN351, Wuhan Delivery, cleared to Moscow via flight planned route, follow ZF-01D departure, cruising level 8900m, initial altitude 1500m, departure frequency 119.45, squawk 3223.[Read Back]",
       "audioTextZh": "南航351，武汉放行，可以按计划航路飞往莫斯科，ZF-01D离场，巡航高度8900米，起始高度1500米，离场频率119.45，应答机3223。【复诵】",
       "referenceText": "Cleared to Moscow, via flight planned route, ZF-01D departure, cruising level 8900m, initial climb 1500m, departure frequency 119.45, squawk 3223, CSN351.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111212",
-      "taskTitle": "29. CSN351 pages missing, etc.-3",
+      "taskTitle": "29. CSN351 · 手册缺页-3",
       "audioText": "The maintenance stuff has deferred an MEL item regarding APU. Contact Ground that you will be ready for start-up one engine at Gate in 5min.",
       "audioTextZh": "维修人员根据MEL中APU的项目进行保留，告诉地面5分钟内你就可以在机位启动发动机。",
       "referenceText": "Wuhan Ground, CSN351, we'll be ready to start-up one engine at Gate in 5min.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111213",
-      "taskTitle": "29. CSN351 pages missing, etc.-4",
+      "taskTitle": "29. CSN351 · 手册缺页-4",
       "audioText": "CSN351, Wuhan Ground, roger, report ready.[Read Back]",
       "audioTextZh": "南航351，武汉地面，收到，准备好报告。【复诵】",
       "referenceText": "Report ready, CSN351.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111214",
-      "taskTitle": "29. CSN351 pages missing, etc.-5",
+      "taskTitle": "29. CSN351 · 手册缺页-5",
       "audioText": "You are ready for push, tell controller you can pushback and start-up.",
       "audioTextZh": "你已准备好推出，告诉管制员你已准备好推出开车。",
       "referenceText": "Wuhan Ground, CSN351, request pushback and start-up.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111215",
-      "taskTitle": "29. CSN351 pages missing, etc.-6",
+      "taskTitle": "29. CSN351 · 手册缺页-6",
       "audioText": "CSN351, pushback and start-up approved, pushback onto taxiway F, facing south. Report taxi.[Read Back]",
       "audioTextZh": "南航351，可以推出开车，推出至滑行道F，头朝南，滑行后报告。【复诵】",
       "referenceText": "Pushback and start-up approved, pushback onto taxiway F, facing south, report taxi, CSN351.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111216",
-      "taskTitle": "29. CSN351 pages missing, etc.-7",
+      "taskTitle": "29. CSN351 · 手册缺页-7",
       "audioText": "You have pushed back and started-up already, call Ground.",
       "audioTextZh": "【你已经推出开车完毕，呼叫地面。】",
       "referenceText": "Wuhan Ground, CSN351, request taxi.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111217",
-      "taskTitle": "29. CSN351 pages missing, etc.-8",
+      "taskTitle": "29. CSN351 · 手册缺页-8",
       "audioText": "CSN351, taxi to holding point runway 04 via F, A9, hold short of A.[Read Back]",
       "audioTextZh": "南航351，沿滑行道F，A9滑至跑道04等待点，在滑行道A外等待。【复诵】",
       "referenceText": "Taxi to Holding point runway 04 via F, A9, hold short of A. CSN351.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111218",
-      "taskTitle": "29. CSN351 pages missing, etc.-9",
+      "taskTitle": "29. CSN351 · 手册缺页-9",
       "audioText": "While taxiing, an auto brake caution message is displayed on aircraft's warning system, so you stopped taxiing, advise Ground.",
       "audioTextZh": "滑行时，警告系统显示自动刹车信息，因此你停止滑行，告诉地面。",
       "referenceText": "Wuhan Ground, CSN351, we stopped taxiing due a caution message.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111219",
-      "taskTitle": "29. CSN351 pages missing, etc.-10",
+      "taskTitle": "29. CSN351 · 手册缺页-10",
       "audioText": "CSN351, roger, hold at present position, advise intentions when able. [Tell the controller that you are still able to taxi but you need 5min to solve the problem, ask to hold at convenient position on taxiway.]",
       "audioTextZh": "南航351，收到，原地等待，可以时报告意图。【告诉管制员你仍能滑行，但是需要5分钟解决问题，请求在滑行道上方便的位置等待。】",
       "referenceText": "Wuhan Ground, CSN351, request 5min and hold at convenient position to solve the problem.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111220",
-      "taskTitle": "29. CSN351 pages missing, etc.-11",
+      "taskTitle": "29. CSN351 · 手册缺页-11",
       "audioText": "CSN351, roger, hold present position.[While communicating with mechanic and dispatcher, you discovered that some pages of onboard flight manual were missing, it is against regulation to continue the flight, report to ATC and ask for returning to the gate.]",
       "audioTextZh": "南航351，收到，原地等待。【和机械师及签派员沟通时，你发现机载飞行手册少了几页，按规定不能继续飞行，报告ATC并请求返回停机位。】",
       "referenceText": "Wuhan Ground, CSN351, request return to apron due to flight manuals missing.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111221",
-      "taskTitle": "29. CSN351 pages missing, etc.-12",
+      "taskTitle": "29. CSN351 · 手册缺页-12",
       "audioText": "CSN351, taxi to Gate 224 via A8, A, A5.[Read Back]",
       "audioTextZh": "南航351，沿滑行道A8，A，A5滑至224号机位。【复诵】",
       "referenceText": "A8, A, A5, Parking bay 224, CSN351.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111222",
-      "taskTitle": "29. CSN351 pages missing, etc.-13",
+      "taskTitle": "29. CSN351 · 手册缺页-13",
       "audioText": "Two hours later, you are now cruising at 9500m, you are ETA WXI at 04, your squawk code is 3223, call Beijing Control.",
       "audioTextZh": "两小时后，你在9500米巡航，预计到达WXI时间04分，应答机编码3223，呼叫北京区调。",
       "referenceText": "Beijing Control, CSN351, maintaining 9500m, ETA WXI 04, squawk 3223.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111223",
-      "taskTitle": "29. CSN351 pages missing, etc.-14",
+      "taskTitle": "29. CSN351 · 手册缺页-14",
       "audioText": "CSN351, Beijing Control radar contact, maintain 9500m.[There is CB ahead of your route, request climb a higher level.]",
       "audioTextZh": "南航351，北京区调，雷达已识别，9500米保持。【飞机航路前方有积雨云，请求爬升至更高高度。】",
       "referenceText": "Beijing Control, CSN351, request a higher level due weather.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111224",
-      "taskTitle": "29. CSN351 pages missing, etc.-15",
+      "taskTitle": "29. CSN351 · 手册缺页-15",
       "audioText": "CSN351, climb and maintain 10700m.[Tell Beijing control you're too heavy, request a step climb to 10700m in about 10 minutes.]",
       "audioTextZh": "南航351，上升保持10700米。【告诉管制员机身太重，请求在10分钟内阶梯爬升至10700米。】",
       "referenceText": "Negative due weight, request a step climb to 10700m in about 10 minutes, CSN351.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111225",
-      "taskTitle": "29. CSN351 pages missing, etc.-16",
+      "taskTitle": "29. CSN351 · 手册缺页-16",
       "audioText": "CSN351 Roger.[There is a restriction ahead, controller tells you maintain a low speed. Ask controller which speed is available.]",
       "audioTextZh": "南航351，收到。【前方有限制，管制员告诉你保持低速。告诉管制员可以接受的速度。】",
       "referenceText": "Beijing Control, CSN351, confirm which speed is suitable over fly the restriction area.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111226",
-      "taskTitle": "29. CSN351 pages missing, etc.-17",
+      "taskTitle": "29. CSN351 · 手册缺页-17",
       "audioText": "CSN351, due separation, maintain Mach number not greater than .77.[Read Back]",
       "audioTextZh": "由于间隔，保持马赫数不超过点77。【复诵】",
       "referenceText": "Maintain Mach number not greater than .77, CSN351.",

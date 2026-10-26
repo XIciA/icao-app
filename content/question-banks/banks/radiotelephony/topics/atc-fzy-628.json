@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-628",
-  "name": "SIA786 gear problem, etc.",
+  "name": "SIA786 · 起落架故障",
   "declaredCardCount": 15,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111513",
-      "taskTitle": "45. SIA786 gear problem, etc.-1",
+      "taskTitle": "45. SIA786 · 起落架故障-1",
       "audioText": "Your call sign is SIA786, you are parking at Gate 217, you have got information P, call Wuhan Delivery and request ATC clearance to Singapore.",
       "audioTextZh": "你的呼号是新航786，停在217号机位，已收到通播P，呼叫武汉放行，向ATC申请放行至新加坡。",
       "referenceText": "Wuhan Delivery. SIA786, Gate 217, information P, destination Singapore, request ATC clearance.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111514",
-      "taskTitle": "45. SIA786 gear problem, etc.-2",
+      "taskTitle": "45. SIA786 · 起落架故障-2",
       "audioText": "SIA786 Wuhan Delivery, cleared to Singapore via flight planned route. LKO-01 departure, initial climb 1800m, cruising level 10700m. Departure frequency 124.35, squawk 2067.[Read Back]",
       "audioTextZh": "新航786，武汉放行，可以按计划航路放行至新加坡。LKO-01离场，起始高度1800米，巡航高度10700米。离场频率124.35，应答机2067。【复诵】",
       "referenceText": "Cleared to Singapore via flight planned route. LKO-01 departure, initial climb 1800m, cruising level 10700m. Departure frequency 124.35, squawk 2067, SIA786.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111515",
-      "taskTitle": "45. SIA786 gear problem, etc.-3",
+      "taskTitle": "45. SIA786 · 起落架故障-3",
       "audioText": "Tell ATC because heavy weight, can't accept 10700m, request 9500m.",
       "audioTextZh": "告诉ATC由于机身过重，10700米不可用，请求9500米。",
       "referenceText": "Wuhan Delivery, SIA786, negative 10700m due weight, request 9500m.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111516",
-      "taskTitle": "45. SIA786 gear problem, etc.-4",
+      "taskTitle": "45. SIA786 · 起落架故障-4",
       "audioText": "You are on the taxiway A, with engine start completed, contact Ground.",
       "audioTextZh": "你在滑行道A上，发动机已全部启动，联系地面。",
       "referenceText": "Wuhan Ground, SIA786 start-up completed, taxiway A, request taxi.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111517",
-      "taskTitle": "45. SIA786 gear problem, etc.-5",
+      "taskTitle": "45. SIA786 · 起落架故障-5",
       "audioText": "SIA786, Wuhan Ground, taxi to holding point runway 36 via Z4 and A, hold short of E7.[Read Back]",
       "audioTextZh": "新航786，武汉地面，沿滑行道Z4，A滑行至跑道36等待点，在E7外等待。【复诵】",
       "referenceText": "Taxi to holding point runway 36 via Z4 and A hold short of E7, SIA786.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111518",
-      "taskTitle": "45. SIA786 gear problem, etc.-6",
+      "taskTitle": "45. SIA786 · 起落架故障-6",
       "audioText": "Request E7 intersection departure runway 36.",
       "audioTextZh": "【请求从滑行道E7进跑道36起飞。】",
       "referenceText": "Wuhan Tower, SIA786, request E7 intersection departure runway 36.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111519",
-      "taskTitle": "45. SIA786 gear problem, etc.-7",
+      "taskTitle": "45. SIA786 · 起落架故障-7",
       "audioText": "Negative due sequencing.[A few minutes later.]SIA786, cleared for takeoff, runway 36, surface wind 350, 5 knots.[Read Back]",
       "audioTextZh": "不可以需要排序。【几分钟后。】新航786，可以起飞，跑道36，地面风350，5节。【复诵】",
       "referenceText": "Cleared for takeoff, runway 36, SIA786.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111520",
-      "taskTitle": "45. SIA786 gear problem, etc.-8",
+      "taskTitle": "45. SIA786 · 起落架故障-8",
       "audioText": "SIA786, contact Departure on 118.98.",
       "audioTextZh": "新航786，联系离场118.98。",
       "referenceText": "118.98, SIA786.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111521",
-      "taskTitle": "45. SIA786 gear problem, etc.-9",
+      "taskTitle": "45. SIA786 · 起落架故障-9",
       "audioText": "After 5 hours. You are approaching Singapore airport, your landing gear can't be extended, report this to Singapore Approach.",
       "audioTextZh": "5小时后。你正在接近新加坡机场，飞机起落架无法放下，向新加坡进近报告该情况。",
       "referenceText": "Singapore Approach, SIA786, our landing gear can't be extended.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111522",
-      "taskTitle": "45. SIA786 gear problem, etc.-10",
+      "taskTitle": "45. SIA786 · 起落架故障-10",
       "audioText": "SIA786, say intention?[Tell ATC you want to terminate the approach, maintain 3000ft runway heading, complete the abnormal procedure.]",
       "audioTextZh": "新航786，请示意图？【告诉管制员你想中止进近，保持3000英尺，保持跑道航向，完成非正常程序。】",
       "referenceText": "Singapore Approach, SIA786, go around, request maintain runway heading and climb to 3000ft to complete abnormal procedure.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111525",
-      "taskTitle": "45. SIA786 gear problem, etc.-11",
+      "taskTitle": "45. SIA786 · 起落架故障-11",
       "audioText": "After finishing the checklist, you find your landing gear still can't be down, inform ATC and request low pass for visual check.",
       "audioTextZh": "完成检查单后，飞机起落架无法放下，向ATC请求低空通场以目视检查。",
       "referenceText": "Singapore Approach, SIA786, our landing gear jammed, request low pass for visual check.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111526",
-      "taskTitle": "45. SIA786 gear problem, etc.-12",
+      "taskTitle": "45. SIA786 · 起落架故障-12",
       "audioText": "SIA786, low pass approved.[You are flying low pass the runway, ask Tower whether they saw the gear down normally.]",
       "audioTextZh": "新航786，可以低空通场。【飞机在跑道上低空通场，询问塔台，起落架是否可以正常放下。】",
       "referenceText": "Singapore Tower, SIA786, confirm gears down normally?",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111527",
-      "taskTitle": "45. SIA786 gear problem, etc.-13",
+      "taskTitle": "45. SIA786 · 起落架故障-13",
       "audioText": "SIA786, your landing gear didn't down.[Tell Tower you decided to land without part of landing gears, ask for foam runway and fire engines. In case of the land without gears, the medical assistance is necessary. ]",
       "audioTextZh": "新航786，起落架没放下。【告诉塔台你打算进行无部分起落架降落，请求提供跑道和消防车。假如无起落架降落，医疗援助是很必要的。】",
       "referenceText": "Singapore Tower, SIA786, request fire engines and medical assistance due land part gears up. The foam runway is necessary.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111528",
-      "taskTitle": "45. SIA786 gear problem, etc.-14",
+      "taskTitle": "45. SIA786 · 起落架故障-14",
       "audioText": "SIA786, roger, the association assistance will be ready in second.[You are inbound of approach, call Tower and ask land instruction.]",
       "audioTextZh": "新航786，收到，援助组织马上准备好。【你正在向台进近，呼叫塔台，请求着陆指令。】",
       "referenceText": "Singapore Tower, SIA786, established the localizer, request land.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111529",
-      "taskTitle": "45. SIA786 gear problem, etc.-15",
+      "taskTitle": "45. SIA786 · 起落架故障-15",
       "audioText": "SIA786, cleared to land, wind calm.",
       "audioTextZh": "新航786，可以着陆，静风。",
       "referenceText": "Cleared to land, SIA786.",

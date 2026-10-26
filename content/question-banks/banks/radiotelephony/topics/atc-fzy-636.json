@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-636",
-  "name": "QFA029 towbar problem, etc.",
+  "name": "QFA029 · 拖把故障",
   "declaredCardCount": 22,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111663",
-      "taskTitle": "8. QFA029 towbar problem, etc.-1",
+      "taskTitle": "8. QFA029 · 拖把故障-1",
       "audioText": "Your call sign is QFA029, your destination is Dubai, you are going to depart from Beijing airport at Gate 302. Now call Beijing Delivery, and request ATC clearance.",
       "audioTextZh": "你的呼号是澳航029，目的地是迪拜，你正准备从北京机场302机位出发。现在联系北京放行并请求ATC许可。",
       "referenceText": "Beijing Delivery, QFA029, Gate 302, request ATC clearance to Dubai.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111664",
-      "taskTitle": "8. QFA029 towbar problem, etc.-2",
+      "taskTitle": "8. QFA029 · 拖把故障-2",
       "audioText": "QFA029, Beijing Delivery, cleared to Dubai, via flight planned route, initially climb to 6600m, RENOB 32 departure, request level change for 11000m en route, squawk 1725, runway 36R, departure frequency 127.75.",
       "audioTextZh": "澳航029，北京放行，可以按计划航路飞往迪拜，起始高度6600米，RENOB 32离场，更改巡航高度11000米在航路上申请，应答机1725，跑道36R，离场频率127.75。",
       "referenceText": "Cleared to Dubai, via flight planned route, initially climb to 6600m, RENOB 32 departure, request level change for 11000m en route, squawk 1725, runway 36R, departure frequency 127.75. QFA029.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111665",
-      "taskTitle": "8. QFA029 towbar problem, etc.-3",
+      "taskTitle": "8. QFA029 · 拖把故障-3",
       "audioText": "QFA029 read back correct, contact Ground 121.9, good day.",
       "audioTextZh": "澳航029，复诵正确，联系地面121.9，再见。",
       "referenceText": "121.9, QFA029.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111666",
-      "taskTitle": "8. QFA029 towbar problem, etc.-4",
+      "taskTitle": "8. QFA029 · 拖把故障-4",
       "audioText": "You are ready to start up engines, call Ground.",
       "audioTextZh": "【你已准备开车，呼叫地面。】",
       "referenceText": "Beijing Ground, QFA029, ready to start up.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111667",
-      "taskTitle": "8. QFA029 towbar problem, etc.-5",
+      "taskTitle": "8. QFA029 · 拖把故障-5",
       "audioText": "QFA029, standby for start-up.",
       "audioTextZh": "澳航029，稍等开车。",
       "referenceText": "Standing by, QFA029.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111668",
-      "taskTitle": "8. QFA029 towbar problem, etc.-6",
+      "taskTitle": "8. QFA029 · 拖把故障-6",
       "audioText": "QFA029, start-up approved.",
       "audioTextZh": "澳航029，同意开车。",
       "referenceText": "Start up approved, QFA029.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111669",
-      "taskTitle": "8. QFA029 towbar problem, etc.-7",
+      "taskTitle": "8. QFA029 · 拖把故障-7",
       "audioText": "You are ready for push back now, call Ground.",
       "audioTextZh": "【现在你已准备推出，联系地面。】",
       "referenceText": "Beijing Ground, QFA029, request push back.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111670",
-      "taskTitle": "8. QFA029 towbar problem, etc.-8",
+      "taskTitle": "8. QFA029 · 拖把故障-8",
       "audioText": "QFA029, push back approved.",
       "audioTextZh": "澳航029，同意推出。",
       "referenceText": "Push back approved, QFA029.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111671",
-      "taskTitle": "8. QFA029 towbar problem, etc.-9",
+      "taskTitle": "8. QFA029 · 拖把故障-9",
       "audioText": "You have a problem: during pushback, the tow-bar is bent and you have to wait for another one. Tell the controller.",
       "audioTextZh": "你遇到了问题，飞机推出时，拖车杆弯曲了，你必须要等待新的拖车杆，将情况告诉管制员。",
       "referenceText": "Beijing Ground, QFA029, the tow bar bent and we are waiting for another one.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111672",
-      "taskTitle": "8. QFA029 towbar problem, etc.-10",
+      "taskTitle": "8. QFA029 · 拖把故障-10",
       "audioText": "QFA029 roger, call me back when ready to taxi.[You are ready for taxiing, call Ground.]",
       "audioTextZh": "澳航029，收到，准备滑出时报告。【你已准备滑行，联系地面。】",
       "referenceText": "Beijing Ground, QFA029, ready for taxi.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111673",
-      "taskTitle": "8. QFA029 towbar problem, etc.-11",
+      "taskTitle": "8. QFA029 · 拖把故障-11",
       "audioText": "QFA029, taxi via taxiway A4 and B1 to holding point 36R.",
       "audioTextZh": "澳航029，经滑行道A4和B1滑到跑道36右等待点。",
       "referenceText": "Taxi via taxiway A4 and B1 to holding point 36R, QFA029.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111674",
-      "taskTitle": "8. QFA029 towbar problem, etc.-12",
+      "taskTitle": "8. QFA029 · 拖把故障-12",
       "audioText": "QFA029 taxi slower, give way to the Airbus coming from your right.",
       "audioTextZh": "澳航029，减速滑行，给右侧的空中客车让路。",
       "referenceText": "Give way to the Airbus coming from right, QFA029.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111675",
-      "taskTitle": "8. QFA029 towbar problem, etc.-13",
+      "taskTitle": "8. QFA029 · 拖把故障-13",
       "audioText": "QFA029, taxi with caution, work in progress on right side of the taxiway.",
       "audioTextZh": "澳航029，滑行时注意，滑行道右侧正在施工。",
       "referenceText": "Roger, QFA029.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111676",
-      "taskTitle": "8. QFA029 towbar problem, etc.-14",
+      "taskTitle": "8. QFA029 · 拖把故障-14",
       "audioText": "QFA029 follow the B737 in front of you.",
       "audioTextZh": "澳航029，跟随你前方的波音737。",
       "referenceText": "Following the B737, QFA029.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111677",
-      "taskTitle": "8. QFA029 towbar problem, etc.-15",
+      "taskTitle": "8. QFA029 · 拖把故障-15",
       "audioText": "You now find your nose wheel steering seems to be jammed, tell the controller.",
       "audioTextZh": "你发现前机轮转弯卡住了，将情况告诉管制员。",
       "referenceText": "Beijing Ground, QFA029, our nose wheel steering seems to be jammed.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111678",
-      "taskTitle": "8. QFA029 towbar problem, etc.-16",
+      "taskTitle": "8. QFA029 · 拖把故障-16",
       "audioText": "QFA029, do you require a tug?[Say yes, you need towing assistance.]",
       "audioTextZh": "澳航029，你需要拖车吗？【回答管制员你需要拖车援助。】",
       "referenceText": "Affirm, request towing assistance, QFA029.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111679",
-      "taskTitle": "8. QFA029 towbar problem, etc.-17",
+      "taskTitle": "8. QFA029 · 拖把故障-17",
       "audioText": "QFA029, roger, hold and standby for a few minutes while I'll get a tug for you.",
       "audioTextZh": "澳航029，收到，原地等待几分钟，我会找拖车援助。",
       "referenceText": "Holding and standby, thank you, QFA029.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111680",
-      "taskTitle": "8. QFA029 towbar problem, etc.-18",
+      "taskTitle": "8. QFA029 · 拖把故障-18",
       "audioText": "You are now airborne, time 32, you are passing 1200m and climbing to 1800m, contact Beijing Departure.",
       "audioTextZh": "飞机已起飞，时间32，通过1200米上升到1800米，联系北京离场。",
       "referenceText": "Beijing Departure, QFA029, airborne 32, passing 1200m climbing to 1800m.",
@@ -169,7 +169,7 @@
     },
     {
       "id": "radiotelephony-fzy-111681",
-      "taskTitle": "8. QFA029 towbar problem, etc.-19",
+      "taskTitle": "8. QFA029 · 拖把故障-19",
       "audioText": "QFA029, cancel SID, turn left direct to CD, climb to and maintain 6600m.",
       "audioTextZh": "澳航029，取消标准仪表离场，左转直飞CD，上升保持6600米。",
       "referenceText": "Cancel SID, turn left direct to CD, climb to and maintain 6600m, QFA029.",
@@ -178,7 +178,7 @@
     },
     {
       "id": "radiotelephony-fzy-111682",
-      "taskTitle": "8. QFA029 towbar problem, etc.-20",
+      "taskTitle": "8. QFA029 · 拖把故障-20",
       "audioText": "Your primary display system has a fault, request return to Beijing.",
       "audioTextZh": "【主显示系统出现故障，请求返回北京。】",
       "referenceText": "Beijing Departure, QFA029 request return to Beijing due primary display system malfunction.",
@@ -187,7 +187,7 @@
     },
     {
       "id": "radiotelephony-fzy-111683",
-      "taskTitle": "8. QFA029 towbar problem, etc.-21",
+      "taskTitle": "8. QFA029 · 拖把故障-21",
       "audioText": "QFA029, say again please, I read you 2.[Tell the controller that the primary display system of yours broke down, only the co-pilot's display is working. For safety's sake, you want to return to Beijing.]",
       "audioTextZh": "澳航029，请再说一遍，我听你两个。【告诉管制员主显示系统出现故障，只有副驾驶的显示系统可工作，安全起见你需要返回北京。】",
       "referenceText": "My primary display system failed, we have only one working on the co-pilot side, request return to Beijing for safety, QFA029.",
@@ -196,7 +196,7 @@
     },
     {
       "id": "radiotelephony-fzy-111684",
-      "taskTitle": "8. QFA029 towbar problem, etc.-22",
+      "taskTitle": "8. QFA029 · 拖把故障-22",
       "audioText": "QFA029, roger, turn left heading 180, radar vector to land.[Readback]",
       "audioTextZh": "澳航029，收到，左转航向180，雷达引导着陆。【复诵】",
       "referenceText": "Turn left heading 180, radar vector to land, QFA029.",

@@ -153,3 +153,15 @@ describe('<ChoiceList />', () => {
   });
 
 });
+
+it('blocks answer changes in highlight mode and restores normal choices on exit', async () => {
+ const onSelect=jest.fn();
+ const view=await render(<ChoiceList choices={['Alpha Bravo','Charlie']} selectedChoiceIndex={1} onSelect={onSelect} highlightMode />);
+ await fireEvent.press(view.getByLabelText('选项 A：Alpha Bravo'));
+ await fireEvent.press(view.getByTestId('choice-letter-0'));
+ await fireEvent.press(view.getByText('Alpha'));
+ expect(onSelect).not.toHaveBeenCalled();
+ await view.rerender(<ChoiceList choices={['Alpha Bravo','Charlie']} selectedChoiceIndex={1} onSelect={onSelect} />);
+ await fireEvent.press(view.getByLabelText('选项 A：Alpha Bravo'));
+ expect(onSelect).toHaveBeenCalledWith(0);
+});

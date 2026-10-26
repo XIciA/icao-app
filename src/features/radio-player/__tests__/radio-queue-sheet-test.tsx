@@ -2,7 +2,8 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RadioQueueSheet } from '../RadioQueueSheet';
 import { emptyRadioQueueFilter } from '../queue-filter';
-import type { RadioPlayerContextValue } from '../types';
+import type { RadioTrack, RadioPlayerContextValue } from '../types';
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ account: { accountId: 'radio-scenario-test' } }) }));
 jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ hydrated: true, tagDefinitions: [{ id: 'custom-tag', color: 'blue', label: '复习' }], highlightDefinitions: [{ id: 'custom-highlight', color: 'blue', label: '关键句' }] }) }));
 it('edits a draft, uses separate definition IDs and only applies on completion', async () => {
   const setQueueFilter = jest.fn();
@@ -21,4 +22,23 @@ it('edits a draft, uses separate definition IDs and only applies on completion',
   await fireEvent.press(tree.getByRole('checkbox', { name: '笔记' }));
   await fireEvent.press(tree.getByLabelText('关闭筛选'));
   expect(setQueueFilter).toHaveBeenCalledTimes(1);
+});
+
+it('regroups the filtered sentence directory without selecting or rebuilding playback', async () => {
+  const tracks = [{ id: 'sentence900-main-001', title: '语句1', categoryId: 'sentence900-3级', categoryTitle: '3级', topicId: 'level3', topicTitle: '3级', bankId: 'sentences900', durationSeconds: 5 }, { id: 'sentence900-main-086', title: '语句86', categoryId: 'sentence900-4级', categoryTitle: '4级', topicId: 'level4', topicTitle: '4级', bankId: 'sentences900', durationSeconds: 7 }] as RadioTrack[];
+  const catalog = { bankId: 'sentences900', tracks };
+  const selectTrack = jest.fn(); const setQueueFilter = jest.fn(); const onClose = jest.fn();
+  const radio = { catalogs: [catalog], currentCatalog: catalog, currentTrack: tracks[0], selectTrack, setQueueFilter, queueFilter: emptyRadioQueueFilter } as unknown as RadioPlayerContextValue;
+  const tree = await render(<SafeAreaProvider initialMetrics={{ frame: { width: 390, height: 844, x: 0, y: 0 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } }}><RadioQueueSheet radio={radio} visible onClose={onClose} /></SafeAreaProvider>);
+  await fireEvent.press(tree.getByLabelText('900句浏览方式'));
+  await fireEvent.press(tree.getByText('按场景'));
+  expect(tree.getByText('基本通话术语')).toBeTruthy();
+  expect(tree.getByText('机场通话术语')).toBeTruthy();
+  expect(selectTrack).not.toHaveBeenCalled(); expect(setQueueFilter).not.toHaveBeenCalled();
+  await fireEvent.press(tree.getByLabelText('从机场通话术语开始播放'));
+  expect(selectTrack).toHaveBeenCalledWith('sentence900-main-086', true);
+  expect(onClose).toHaveBeenCalledTimes(1);
+  await tree.rerender(<SafeAreaProvider initialMetrics={{ frame: { width: 390, height: 844, x: 0, y: 0 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } }}><RadioQueueSheet radio={{ ...radio, currentCatalog: { ...radio.currentCatalog!, tracks: [tracks[0]] } }} visible onClose={onClose} /></SafeAreaProvider>);
+  expect(tree.queryByText('机场通话术语')).toBeNull();
+  expect(tree.getByText('基本通话术语')).toBeTruthy();
 });

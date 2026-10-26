@@ -27,9 +27,6 @@ export function resolveHotspotTopics(
     if (!sourceTopic) {
       throw new Error(`热点话题不存在：${hotspotTopic.topicId}`);
     }
-    if (sourceTopic.name !== hotspotTopic.topicTitle) {
-      throw new Error(`热点话题标题与 OPI 题库不一致：${hotspotTopic.topicId}`);
-    }
 
     const cardsById = new Map(sourceTopic.cards.map((card) => [card.id, card]));
     const cards = hotspotTopic.cardIds.map((cardId) => {
@@ -44,7 +41,7 @@ export function resolveHotspotTopics(
     });
 
     if (cards.length === 0) throw new Error(`热点话题没有可学习题目：${hotspotTopic.topicId}`);
-    return { ...hotspotTopic, cards };
+    return { ...hotspotTopic, topicTitle: sourceTopic.name, cards };
   });
 }
 

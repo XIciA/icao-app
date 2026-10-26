@@ -1,21 +1,21 @@
 {
   "id": "opi-fzy-848",
-  "name": "Tail strike",
+  "name": "起飞擦尾",
   "cards": [
     {
       "id": "opi-fzy-848-image-1",
       "kind": "image",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-848.png",
-      "imageAlt": "Tail strike，用于本话题的看图描述和问答",
+      "imageAlt": "起飞擦尾，用于本话题的看图描述和问答",
       "studyTier": 1,
-      "taskTitle": "Tail strike · 看图材料"
+      "taskTitle": "起飞擦尾 · 看图材料"
     },
     {
       "id": "opi-fzy-152396",
       "audio": "/question-bank-assets/revisions/opi/04daa6963b716c3c2954db9185e4c9a1a3e57dbf20f21b6a09351ce70491aabf/audio/opi/opi-fzy-152396.mp3",
       "audioText": "Can you describe the picture?",
       "studyTier": 1,
-      "taskTitle": "Tail strike-1",
+      "taskTitle": "起飞擦尾-1",
       "audioTextZh": "你可以描述一下这张图片吗？",
       "referenceText": "Yes. The picture shows there is a China Eastern plane encountering tail strike during take-off. Sparks are coming out from the empennage.",
       "referenceTextZh": "好的。图中显示一架东航的飞机在起飞时遭遇擦机尾。机尾处在冒火花。",
@@ -26,7 +26,7 @@
       "audio": "/question-bank-assets/revisions/opi/187d100d5ab9539501796ef60336066246fb825d43c2b1cb04a4eb429b5dd47f/audio/opi/opi-fzy-152397.mp3",
       "audioText": "What are the consequences of tail strike?",
       "studyTier": 1,
-      "taskTitle": "Tail strike-2",
+      "taskTitle": "起飞擦尾-2",
       "audioTextZh": "飞机擦尾的后果是什么？",
       "referenceText": "Usually speaking, the most common result of tail strike is aircraft structural damage.\nIt will influence the airworthiness of the aircraft.\nWhat's more, it may cause passenger injuries if the situation gets worse.",
       "referenceTextZh": "一般而言，擦机尾的后果是飞机的结构损坏。\n这会影响飞机的适航。\n并且，如果情形更坏的话，可能会造成乘客受伤。",
@@ -37,7 +37,7 @@
       "audio": "/question-bank-assets/revisions/opi/1583f0050a9d819ea372201c357cdd488c1189f57649b8c24ed518fee6ef4150/audio/opi/opi-fzy-152398.mp3",
       "audioText": "Do you think tail strike only occurs on big aircraft?",
       "studyTier": 1,
-      "taskTitle": "Tail strike-3",
+      "taskTitle": "起飞擦尾-3",
       "audioTextZh": "你认为只有大飞机才会遭遇擦机尾吗？",
       "referenceText": "No, actually, any aircraft might encounter tail strike.\nAlthough there are many reasons for tail strike, most of them can always be avoided.",
       "referenceTextZh": "不是的，事实上，任何飞机都有可能遭遇擦机尾。\n虽然造成擦机尾的原因有很多，但大部分都是可以避免的。",
@@ -48,7 +48,7 @@
       "audio": "/question-bank-assets/revisions/opi/5ba4737b217d9f5c7d8ed6298832fa94acaddecdf0d7f595b5a480b4c0b0fc28/audio/opi/opi-fzy-152399.mp3",
       "audioText": "What is the pitch angle beyond which will lead to tail strike on your plane?",
       "studyTier": 1,
-      "taskTitle": "Tail strike-4",
+      "taskTitle": "起飞擦尾-4",
       "audioTextZh": "在你所飞的飞机上，俯仰角度超过多少会导致擦机尾？",
       "referenceText": "I fly Airbus 320, when the pitch angle is over 13.5 degrees, tail strike will happen.",
       "referenceTextZh": "我飞的是空客A320，当俯仰角度超过13.5度时，就会擦机尾。",

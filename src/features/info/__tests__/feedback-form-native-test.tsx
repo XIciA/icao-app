@@ -89,3 +89,19 @@ it('shows one discard confirmation for repeated swipes and permits retry after c
   expect(view.getByDisplayValue('保留这条反馈')).toBeTruthy();
   alert.mockRestore();
 });
+
+it.each([
+ {source:'exam_report',category:'listening',placeholder:'请描述相关题型的考情。'},
+ {source:'opi_hotspot',category:'opi',placeholder:'请描述你收集到的 OPI 热点题目或线索。'},
+])('reuses the form with the correct $source identity and history',async({source,category,placeholder})=>{
+ mockParams={slug:'feedback',source,compose:'1'};mockSubmit.mockResolvedValue({ticketNumber:'FB-new'});
+ const view=await render(screen());
+ expect(view.queryByText('功能建议')).toBeNull();
+ if(source==='exam_report') for(const label of ['听力','900句','陆空通话','故事复述','OPI']) expect(view.getByText(label)).toBeTruthy();
+ else expect(view.queryByText('反馈类型')).toBeNull();
+ await fireEvent.changeText(view.getByPlaceholderText(placeholder),'这是本次考情线索');
+ await fireEvent.press(view.getByTestId('feedback-submit'));
+ await waitFor(()=>expect(mockSubmit).toHaveBeenCalledWith(expect.objectContaining({source,category})));
+ await fireEvent.press(view.getByText('查看反馈记录'));
+ expect(mockDismissTo).toHaveBeenCalledWith({pathname:'/info/[slug]',params:{slug:'feedback',source}});
+});

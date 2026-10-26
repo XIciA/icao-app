@@ -1,21 +1,21 @@
 {
   "id": "opi-fzy-851",
-  "name": "Bird strike",
+  "name": "鸟击风险",
   "cards": [
     {
       "id": "opi-fzy-851-image-1",
       "kind": "image",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-851.png",
-      "imageAlt": "Bird strike，用于本话题的看图描述和问答",
+      "imageAlt": "鸟击风险，用于本话题的看图描述和问答",
       "studyTier": 2,
-      "taskTitle": "Bird strike · 看图材料"
+      "taskTitle": "鸟击风险 · 看图材料"
     },
     {
       "id": "opi-fzy-152406",
       "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152406.mp3",
       "audioText": "What can you see from this picture?",
       "studyTier": 2,
-      "taskTitle": "Bird strike-1",
+      "taskTitle": "鸟击风险-1",
       "audioTextZh": "你从这张图片中看到了什么？",
       "referenceText": "I can see a flock of birds are flying around Spring Airlines' aircraft during the flight.\nThese birds pose a threat to flight safety.",
       "referenceTextZh": "我可以看到图中，在飞行时有一群鸟在春秋航空的飞机周围。\n这些鸟对飞机的安全飞行造成了威胁。",
@@ -26,7 +26,7 @@
       "audio": "/question-bank-assets/revisions/opi/791215fc2f824f1d78f5d1d2a652bed78b5682aa2de353ce468bdfe46ce65ace/audio/opi/opi-fzy-152407.mp3",
       "audioText": "If the engine ingested bird during initial climb, what should you do?",
       "studyTier": 1,
-      "taskTitle": "Bird strike-2",
+      "taskTitle": "鸟击风险-2",
       "audioTextZh": "如果发动机在初始爬升阶段吸入鸟，你会怎么办？",
       "referenceText": "I will keep clam and keep good control of the aircraft.\nThen I will report to ATC and request emergency landing.",
       "referenceTextZh": "我会保持冷静，控制好飞机。\n然后我会报告给管制员，申请紧急着陆。",
@@ -37,7 +37,7 @@
       "audio": "/question-bank-assets/revisions/opi/cff6292713c60e11c2e718862a150cd1421a6ef9fe30aaccecb1d6bf13ca82ef/audio/opi/opi-fzy-152408.mp3",
       "audioText": "How does bird strike threaten flight safety?",
       "studyTier": 1,
-      "taskTitle": "Bird strike-3",
+      "taskTitle": "鸟击风险-3",
       "audioTextZh": "鸟击是如何威胁飞行安全的？",
       "referenceText": "If the birds are ingested into the engine, it may cause engine problems.\nSuch as engine flame-out, engine failure and engine fire.\nBesides, bird strike may cause structural damage to the aircraft.\nSuch as the nose and the windshields cracked.",
       "referenceTextZh": "如果发动机吸入鸟，会造成发动机故障。比如：发动机熄火，发动机失效，发动机失火等。\n此外，鸟击还会给飞机造成结构损坏。比如，飞机的机鼻和风挡玻璃破损。",
@@ -48,7 +48,7 @@
       "audio": "/question-bank-assets/revisions/opi/953410197aae207d8ba77d0fcfb23aa60db685a40b2707756c111260781effa5/audio/opi/opi-fzy-152409.mp3",
       "audioText": "What measure can be taken to avoid bird strike?",
       "studyTier": 1,
-      "taskTitle": "Bird strike-4",
+      "taskTitle": "鸟击风险-4",
       "audioTextZh": "可采取什么措施防止鸟击发生？",
       "referenceText": "Well, there are many ways.\nFor example, airports can cut grass regularly, install devices to drive birds away.\nPilots should turn on the landing lights and monitor the information about bird activities.",
       "referenceTextZh": "有很多方法。例如，机场可以定期割草，安装驱赶鸟类的装置。\n飞行员应打开着陆灯，并监视有关鸟类活动的信息。",

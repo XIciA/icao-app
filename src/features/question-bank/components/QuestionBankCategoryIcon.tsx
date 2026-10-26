@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { AppText } from '@/components/ui';
-import { BookOpenText, CaseUpper, CloudSun, Cog, Headphones, ImageIcon, Layers, ListChecks, Plane, RadioTower, Route, TriangleAlert, UserRound } from '@/components/ui/icons';
+import { Radar, PlaneLanding, MessageCircle, BookOpenText, CaseUpper, CloudSun, Cog, Headphones, ImageIcon, Layers, ListChecks, Plane, RadioTower, Route, TriangleAlert, UserRound } from '@/components/ui/icons';
 import { colors, fonts } from '@/theme';
 import type { QuestionBankId } from '../types';
 import { AirlineMark, hasAirlineMark } from './AirlineMark';
 
-const symbols = { plane: Plane, tower: RadioTower, weather: CloudSun, emergency: TriangleAlert, abbreviations: CaseUpper, human: UserRound, operations: Route, systems: Cog, other: Layers, image: ImageIcon, training: ListChecks, listening: Headphones, book: BookOpenText };
+const symbols = { radar: Radar, approach: PlaneLanding, phrase: MessageCircle, plane: Plane, tower: RadioTower, weather: CloudSun, emergency: TriangleAlert, abbreviations: CaseUpper, human: UserRound, operations: Route, systems: Cog, other: Layers, image: ImageIcon, training: ListChecks, listening: Headphones, book: BookOpenText };
 type SymbolName = keyof typeof symbols;
 type CategoryGlyph = { symbol: SymbolName; duration?: '10s' | '20s' } | { level: '3' | '4' | '5' };
 
@@ -18,7 +18,12 @@ const glyphs: Partial<Record<QuestionBankId, Record<string, CategoryGlyph>>> = {
     'listening-category-03': { symbol: 'plane', duration: '20s' },
     'listening-category-04': { symbol: 'tower', duration: '10s' },
   },
-  sentences900: { 'sentence900-3级': { level: '3' }, 'sentence900-4级': { level: '4' }, 'sentence900-5级': { level: '5' } },
+  sentences900: { 'sentence900-3级': { level: '3' }, 'sentence900-4级': { level: '4' }, 'sentence900-5级': { level: '5' },
+    'scenario-basic': { symbol: 'phrase' }, 'scenario-aerodrome': { symbol: 'tower' },
+    'scenario-radar': { symbol: 'radar' }, 'scenario-approach': { symbol: 'approach' },
+    'scenario-area': { symbol: 'operations' }, 'scenario-emergency': { symbol: 'emergency' },
+    'scenario-weather': { symbol: 'weather' }, 'scenario-other': { symbol: 'other' },
+  },
   radiotelephony: { 'atc-scoring-points': { symbol: 'training' } },
   opi: {
     'opi-category-01': { symbol: 'weather' }, 'opi-category-02': { symbol: 'emergency' },

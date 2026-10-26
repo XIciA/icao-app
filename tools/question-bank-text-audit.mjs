@@ -26,6 +26,8 @@ function isAcceptedFormat(record) {
   const field = /^\d+$/u.test(record.field) ? record.pointer.split('/').at(-2) : record.field;
   return Boolean(acceptedFormat[`${record.cardId ?? record.topicId}#${field}`]?.includes(sha256(record.text)));
 }
+const acceptedDisplayTitles = JSON.parse(readFileSync(join(root, 'docs/workstreams/next-round-2026-10/accepted-display-titles.json'), 'utf8')).fields;
+function isAcceptedDisplayTitle(record) { return ['name', 'taskTitle', 'imageAlt'].includes(record.field) && acceptedDisplayTitles[`${record.cardId ?? record.topicId}#${record.field}`] === sha256(record.text); }
 function isAccepted900(record) {
   return record.bankId === 'sentences900' && accepted900[`${record.cardId}#${record.field}`] === sha256(record.text);
 }
@@ -2239,7 +2241,7 @@ function check() {
       if (path[1] < 0) fail(`missing_corrected_card:${entry.cardId}`);
     }
     const current = valueAtPath(fileValue.json, path);
-    if (current !== entry.after && !isAccepted900({ ...entry, text: current }) && !isAcceptedFormat({ ...entry, text: current })) fail(`correction_not_applied:${correctionLocatorKey(entry)}`);
+    if (current !== entry.after && !isAccepted900({ ...entry, text: current }) && !isAcceptedFormat({ ...entry, text: current }) && !isAcceptedDisplayTitle({ ...entry, text: current })) fail(`correction_not_applied:${correctionLocatorKey(entry)}`);
   }
   console.log(`question_bank_text_check_ok texts=${sources.records.length} files=${sources.files.size} candidates=${candidates.length} reviewed=${decisions.size} corrections=${ledger.corrections.length}`);
 }

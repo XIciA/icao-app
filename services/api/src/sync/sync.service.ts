@@ -43,7 +43,7 @@ const stateSchema = z.object({
   recordingDurationMillis: z.number().int().nonnegative().optional(),
   tagIds: z.array(z.string()).optional(),
   highlights: z.array(z.object({
-    blockId: z.enum(['question', 'reference']),
+    blockId: z.union([z.enum(['question', 'reference']), z.string().regex(/^choice-\d+$/)]),
     wordIndex: z.number().int().nonnegative(),
     colorId: z.string(),
     quote: z.string(),

@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-608",
-  "name": "CCA987 baggage problem, etc.",
+  "name": "CCA987 · 行李问题",
   "declaredCardCount": 20,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111132",
-      "taskTitle": "25. CCA987 baggage problem, etc.-1",
+      "taskTitle": "25. CCA987 · 行李问题-1",
       "audioText": "You are at G213, receive information N, call Wuhan Delivery and request ATC clearance to Amsterdam.",
       "audioTextZh": "你在213号机位，收到通播N，呼叫武汉放行，请求ATC放行至阿姆斯特丹。",
       "referenceText": "Wuhan Delivery, CCA987. Gate 213, Information N, destination Amsterdam, request ATC clearance.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111133",
-      "taskTitle": "25. CCA987 baggage problem, etc.-2",
+      "taskTitle": "25. CCA987 · 行李问题-2",
       "audioText": "CCA987, Wuhan Delivery, cleared to Amsterdam via flight planned route. Follow ZF-12D departure, initial climb 1500m, cruising level 9500m, after departure contact 125.65, squawk 3251, runway 18L.",
       "audioTextZh": "国航987，武汉放行，可以按计划航路飞往阿姆斯特丹。ZF-12D离场，起始高度1500米，巡航高度9500米，离场后联系125.65，应答机3251，跑道18左。",
       "referenceText": "Cleared to Amsterdam via flight planned route, ZF-12D departure, initial climb 1500m, cruising level 9500m, departure 125.65, squawk 3251, runway 18L, CCA987.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111134",
-      "taskTitle": "25. CCA987 baggage problem, etc.-3",
+      "taskTitle": "25. CCA987 · 行李问题-3",
       "audioText": "CCA987, read back correct, expect slot time 20 due to temporary departure restriction. Report when ready for pushback and start-up.",
       "audioTextZh": "国航987，复诵正确，根据临时离场限制，预计离场时间20分。准备好推出开车时报告。",
       "referenceText": "Slot time 20, report ready for pushback and start-up, CCA987.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111135",
-      "taskTitle": "25. CCA987 baggage problem, etc.-4",
+      "taskTitle": "25. CCA987 · 行李问题-4",
       "audioText": "Tell the controller that there are two passengers missing, and the bags have already removed from the aircraft. The load sheet is amended. Contact the controller to report the situation and state you are ready for push.",
       "audioTextZh": "告诉管制员机上两名乘客没来，他们的行李已卸下。舱单已经修订。联系管制员报告该情况，并说明你已准备好推出。",
       "referenceText": "WuhanDelivery, CCA987, two passengers missing and bags are removed, request pushback and start-up.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111136",
-      "taskTitle": "25. CCA987 baggage problem, etc.-5",
+      "taskTitle": "25. CCA987 · 行李问题-5",
       "audioText": "CCA987, Delivery, the slot time restriction cancelled. Contact Ground on 121.75 for pushback and start-up.",
       "audioTextZh": "国航987，放行，离场限制取消。联系地面121.75，请求推出开车。",
       "referenceText": "Contact Ground 121.75, CCA987.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111137",
-      "taskTitle": "25. CCA987 baggage problem, etc.-6",
+      "taskTitle": "25. CCA987 · 行李问题-6",
       "audioText": "Tell the controller you can start the engines and request taxi instructions.",
       "audioTextZh": "告诉管制员你可以启动发动机，请求滑行指令。",
       "referenceText": "Wuhan Ground, CCA987, request start-up and taxi instruction.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111138",
-      "taskTitle": "25. CCA987 baggage problem, etc.-7",
+      "taskTitle": "25. CCA987 · 行李问题-7",
       "audioText": "CCA987, Wuhan Ground, pushback and start-up approved, report ready taxi.",
       "audioTextZh": "国航987，武汉地面，同意推出开车，准备好滑行时报告。",
       "referenceText": "Pushback and start-up approved, report ready taxi, CCA987.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111139",
-      "taskTitle": "25. CCA987 baggage problem, etc.-8",
+      "taskTitle": "25. CCA987 · 行李问题-8",
       "audioText": "You are ready for taxi, call Ground you can taxi.",
       "audioTextZh": "【你准备好滑行，告诉地面你可以滑行。】",
       "referenceText": "Wuhan Ground, CCA987, request taxi.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111140",
-      "taskTitle": "25. CCA987 baggage problem, etc.-9",
+      "taskTitle": "25. CCA987 · 行李问题-9",
       "audioText": "CCA987, taxi to the holding point of runway 18L via Z4, A2, A, hold short of E1.",
       "audioTextZh": "国航987，沿滑行道Z4，A2，A滑行至跑道18左等待点，在E1外等待。",
       "referenceText": "Taxi via Z4, A2, A to runway 18L, hold short of E1, CCA987.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111141",
-      "taskTitle": "25. CCA987 baggage problem, etc.-10",
+      "taskTitle": "25. CCA987 · 行李问题-10",
       "audioText": "CCA987, hold position. Your company operation asks you to contact them on frequency 133.9. Advise when you are ready taxi.",
       "audioTextZh": "国航987，原地等候。你公司的运行部门要求你联系他们133.9。准备好滑出报告。",
       "referenceText": "Holding. Contact company operation on 133.9. Report when ready for taxi, CCA987.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111142",
-      "taskTitle": "25. CCA987 baggage problem, etc.-11",
+      "taskTitle": "25. CCA987 · 行李问题-11",
       "audioText": "Company tells you that the ground staff made a mistake during the baggage removal procedure. You want to taxi back to the gate.",
       "audioTextZh": "公司告诉你，地面工作人在行李拆卸程序中犯了一个错误。你想要滑回停机位。",
       "referenceText": "Wuhan Ground, CCA987, request taxi back due baggage problem.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111143",
-      "taskTitle": "25. CCA987 baggage problem, etc.-12",
+      "taskTitle": "25. CCA987 · 行李问题-12",
       "audioText": "CCA987, taxi to Gate 213 via M, M3, Z4.",
       "audioTextZh": "国航987，沿滑行道M，M3，Z4滑回213号机位。",
       "referenceText": "Taxi to Gate 213 via M, M3, Z4, CCA987.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111144",
-      "taskTitle": "25. CCA987 baggage problem, etc.-13",
+      "taskTitle": "25. CCA987 · 行李问题-13",
       "audioText": "Now the baggage problem has been fixed. You ask for pushback and start up again.",
       "audioTextZh": "现在行李问题解决了。重新请求推出开车。",
       "referenceText": "Wuhan Ground, CCA987, request pushback and start-up.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111145",
-      "taskTitle": "25. CCA987 baggage problem, etc.-14",
+      "taskTitle": "25. CCA987 · 行李问题-14",
       "audioText": "CCA987, a cold front is advancing to the airport. Expect change runway 04. Standby for the new departure clearance. Pushback and start-up approved.",
       "audioTextZh": "国航987，机场现在有冷锋临近。预计更换跑道04。稍等新的离场许可。同意推出开车。",
       "referenceText": "Pushback and start-up approved. Runway 04. Standby for new departure clearance due weather, CCA987.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111146",
-      "taskTitle": "25. CCA987 baggage problem, etc.-15",
+      "taskTitle": "25. CCA987 · 行李问题-15",
       "audioText": "CCA987, recleared to Amsterdam, follow ZF-01D departure, runway 04, initial climb 1500m, rest unchanged.[Read back the instructions and advise when you are ready for taxi.]",
       "audioTextZh": "国航987，重新许可放行至阿姆斯特丹，ZF-01D离场，跑道04，起始高度1500米，其余不变。【复诵指令，准备好滑行时报告。】",
       "referenceText": "Recleared to Amsterdam, follow ZF-01D departure, runway 04, initial climb 1500m, rest unchanged. Request taxi, CCA987.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111147",
-      "taskTitle": "25. CCA987 baggage problem, etc.-16",
+      "taskTitle": "25. CCA987 · 行李问题-16",
       "audioText": "You are rotate normally. Report you are airborne, passing 900m, climbing for 1500m, request cancel SID.",
       "audioTextZh": "飞机抬轮正常。离地时报告，通过900米，上升1500米，请求取消SID。",
       "referenceText": "Wuhan Departure, CCA987, airborne, passing 900m, climbing to 1500m, request cancel SID.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111148",
-      "taskTitle": "25. CCA987 baggage problem, etc.-17",
+      "taskTitle": "25. CCA987 · 行李问题-17",
       "audioText": "CCA987, Wuhan Departure, radar contact. Cancel SID, Direct to ZF, climb and maintain 4500m on standard.",
       "audioTextZh": "国航987，武汉离场，雷达已识别。取消SID，直飞ZF，上升保持标压4500米。",
       "referenceText": "Cancel SID, direct to ZF, climb and maintain 4500m on standard, CCA987.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111149",
-      "taskTitle": "25. CCA987 baggage problem, etc.-18",
+      "taskTitle": "25. CCA987 · 行李问题-18",
       "audioText": "The No. 2 engine produced intermittent noises, as a precaution, you want to terminate the flight and return. Notify the Wuhan Departure and request level off at 2700m.",
       "audioTextZh": "2号发动机产生间歇性噪音，为了预警，你想要中止飞行，返回机场。通知武汉离场，请求在2700米平飞。",
       "referenceText": "Wuhan Departure, CCA987, request level off at 2700m and return to Wuhan airport due to engine No.2 problem.",
@@ -169,7 +169,7 @@
     },
     {
       "id": "radiotelephony-fzy-111150",
-      "taskTitle": "25. CCA987 baggage problem, etc.-19",
+      "taskTitle": "25. CCA987 · 行李问题-19",
       "audioText": "CCA987, climb and maintain 2700m, turn left heading 220. Radar vector for runway 04.",
       "audioTextZh": "国航987，上升保持2700米，左转航向220。雷达引导至跑道04。",
       "referenceText": "Climb and maintain 2700m, turn left heading 220. Radar vector for runway 04, CCA987.",
@@ -178,7 +178,7 @@
     },
     {
       "id": "radiotelephony-fzy-111151",
-      "taskTitle": "25. CCA987 baggage problem, etc.-20",
+      "taskTitle": "25. CCA987 · 行李问题-20",
       "audioText": "To avoid overweight landing. You request a 15min fuel dumping.",
       "audioTextZh": "为了防止飞机超重着陆。请求放油15分钟。",
       "referenceText": "Wuhan Departure, CCA987, Request fuel dumping for 15min to reduce the landing weight.",

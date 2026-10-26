@@ -31,6 +31,7 @@ export function InteractiveStudyText({
   onHighlight,
   onHighlightRange,
   onLookup,
+  onWordPress,
   text,
 }: {
   activeHighlightId: string;
@@ -45,8 +46,10 @@ export function InteractiveStudyText({
   onHighlight: (value: { blockId: AnnotationTextBlockId; wordIndex: number; quote: string; sentence: string; sourceText: string }) => void;
   onHighlightRange: (value: { action: 'apply' | 'remove'; blockId: AnnotationTextBlockId; endWordIndex: number; sourceText: string; startWordIndex: number }) => void;
   onLookup: (word: string) => void;
+  onWordPress?: () => void;
   text: string;
 }) {
+  const lookupHandled = useRef(false);
   const tokens = useMemo(() => tokenizeStudyText(text), [text]);
   const definitionMap = useMemo(() => new Map(definitions.map((definition) => [definition.id, definition])), [definitions]);
   const highlightMap = useMemo(() => new Map(highlights.filter((item) => item.blockId === blockId).map((item) => [item.wordIndex, item])), [blockId, highlights]);
@@ -188,14 +191,15 @@ export function InteractiveStudyText({
                 selectable={false}
                 accessibilityLabel={highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupByLongPress ? `长按查词：${token.text}` : undefined}
                 onLayout={(event) => boxes.set(index, event.nativeEvent.layout)}
-                onLongPress={highlightMode ? () => undefined : lookupByLongPress ? () => onLookup(lookupWord!) : undefined}
+                onPressIn={() => { lookupHandled.current = false; }}
+                onLongPress={highlightMode ? () => undefined : lookupByLongPress ? () => { lookupHandled.current = true; onLookup(lookupWord!); } : undefined}
                 onPress={highlightMode ? () => !suppressTapRef.current && onHighlight({
                   blockId,
                   wordIndex: index,
                   quote: token.text,
                   sentence: sentenceAround(text, token.start),
                   sourceText: text,
-                }) : undefined}
+                }) : onWordPress ? (event) => { event.stopPropagation(); if (!lookupHandled.current) onWordPress(); } : undefined}
                 style={[styles.word, wordSpacingStyle, backgroundColor ? { backgroundColor } : null]}
               >
                 {token.text}
