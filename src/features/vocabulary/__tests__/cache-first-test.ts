@@ -36,3 +36,13 @@ it('rejects late results from another source and does not import any legacy-only
   const gate=deferred<Response>(),refreshed=jest.fn();jest.mocked(apiFetch).mockReturnValue(gate.promise);await loadVocabulary({preferCache:true,onRefresh:refreshed});mockBase+='other';gate.resolve(response(updated));await flush();expect(refreshed).not.toHaveBeenCalled();expect(Storage.setItem).not.toHaveBeenCalled();
   jest.mocked(Storage.getItem).mockImplementation(async key=>key==='icao.content.v1.vocabulary'?JSON.stringify(cached):null);jest.mocked(apiFetch).mockRejectedValue(new Error('offline'));await expect(loadVocabulary()).rejects.toThrow('offline');
 });
+it('keeps the prior catalog and policy together if saving the newer pair fails',async()=>{
+  jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk full'));
+  jest.mocked(apiFetch).mockResolvedValue(response(updated));
+  const loaded=await loadVocabulary();
+  expect(loaded).toMatchObject({source:'cache',warning:'vocabulary_remote_unavailable',dataset:{version:4}});
+  expect(currentVocabularyPolicy()?.version).toBe(4);
+  // A later successful retry is the first time either side of the pair upgrades.
+  jest.mocked(Storage.setItem).mockResolvedValue();
+  expect((await loadVocabulary()).dataset.version).toBe(5);expect(currentVocabularyPolicy()?.version).toBe(5);
+});

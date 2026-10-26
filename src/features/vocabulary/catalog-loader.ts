@@ -3,7 +3,7 @@ import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, VocabularyDataset } from '@icao/contracts';
 import type { VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
 import { apiFetch, getApiBaseUrl } from '@/platform/api-client';
-import { currentVocabularyRelease, installVocabularyRelease, liveVocabularyCacheKey, readLiveVocabularyCache, validateLiveVocabularyRelease } from './live-catalog';
+import { assertVocabularyRelease, currentVocabularyRelease, installVocabularyRelease, liveVocabularyCacheKey, readLiveVocabularyCache, validateLiveVocabularyRelease } from './live-catalog';
 
 export type VocabularyLoadResult={dataset:VocabularyDataset;release?:VocabularyLiveRelease;source:'remote'|'cache';warning?:'vocabulary_remote_unavailable'};
 export type VocabularyLoadOptions={preferCache?:boolean;onRefresh?:(result:VocabularyLoadResult)=>void};
@@ -22,10 +22,18 @@ function refreshVocabulary(base:string,cached?:VocabularyLiveRelease):Promise<Vo
       if(!response.ok)throw new Error(`vocabulary_http_${response.status}`);
       const body=await response.json() as ApiSuccessEnvelope<VocabularyLiveRelease>;
       const release=await validateLiveVocabularyRelease(body.data);assertSource();
-      // Data and cumulative migration rules are one validated, monotonic snapshot.
-      installVocabularyRelease(base,release);
-      await Storage.setItem(liveVocabularyCacheKey(base),JSON.stringify(release)).catch(()=>undefined);
-      assertSource();return result(release,'remote');
+      // Persist the entire verified pair before a policy can migrate user records.
+      // If an older valid pair exists, a failed save must keep that pair installed:
+      // otherwise the next restart would load the old catalog after migrating data.
+      assertVocabularyRelease(base,release);
+      try { await Storage.setItem(liveVocabularyCacheKey(base),JSON.stringify(release)); }
+      catch {
+        assertSource();
+        const previous=currentVocabularyRelease()??cached;
+        if(previous&&previous.version<release.version)return result(previous,'cache','vocabulary_remote_unavailable');
+      }
+      assertSource();installVocabularyRelease(base,release);
+      return result(release,'remote');
     }catch(error){
       assertSource();const fallback=currentVocabularyRelease()??cached;
       if(fallback)return result(fallback,'cache','vocabulary_remote_unavailable');throw error;
