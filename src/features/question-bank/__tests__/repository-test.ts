@@ -659,8 +659,15 @@ describe('embeddedQuestionBankRepository', () => {
       bankId: 'listening', categoryId: 'listening-category-01', version: 12, checksum: 'ab'.repeat(32), topic,
       access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: false, membershipExpiresAt: null },
     } }) } as Response);
-    await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'))
-      .resolves.toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-950' })]) });
+    const results = await Promise.all([
+      questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'),
+      questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'),
+    ]);
+    for (const result of results) {
+      expect(result).toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-950' })]) });
+    }
+    expect(results[0]).not.toBe(results[1]);
+    expect(globalThis.fetch).toHaveBeenCalledTimes(1);
   });
 
   it('returns authorized online audio before optional offline download completes, then retains the verified offline copy', async () => {
