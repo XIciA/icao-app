@@ -585,6 +585,14 @@ describe('embeddedQuestionBankRepository', () => {
     await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).rejects.toMatchObject({ code: 'membership_required', status: 403 });
   });
 
+  it('returns authorized Web member text without requesting native offline credentials', async () => {
+    const { request } = await authenticatedContentApi({ credentialStatus: 503 });
+    Platform.OS = 'web';
+    const topic = await remoteQuestionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    expect(topic?.cards.length).toBeGreaterThan(0);
+    expect(request.mock.calls.some(([url]) => String(url).endsWith('/v1/content-access/credentials'))).toBe(false);
+  });
+
   it('rejects a late authorized topic when its account changes during optional credential loading', async () => {
     const { accountId, request } = await authenticatedContentApi();
     const route = request.getMockImplementation()!;

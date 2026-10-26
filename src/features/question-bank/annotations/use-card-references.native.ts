@@ -16,7 +16,10 @@ export function useCardReferences(targets: readonly QuestionBankCardTarget[]) {
   useEffect(() => {
     let active = true;
     const requested: QuestionBankCardTarget[] = JSON.parse(identities);
-    void resolveCardReferences(requested).then(values => { if (active) setLoaded({ key, values }); }).catch(() => {
+    void resolveCardReferences(requested, {
+      isCurrent: () => active,
+      onProgress: values => { if (active) setLoaded({ key, values }); },
+    }).then(values => { if (active) setLoaded({ key, values }); }).catch(() => {
       if (active) setLoaded({ key, values: new Map(requested.map(t => [cardIdentityKey(t), { status: 'unavailable', message: '原题加载未完成，请重试。' }])) });
     });
     return () => { active = false; };

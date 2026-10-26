@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { orderQuestionBanks } from '../lib/bank-order';
 import { commerceContentAccessSnapshot } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { naturalDatasetTitles, naturalTopicTitles } from '../lib/question-titles';
@@ -152,7 +153,7 @@ export const remoteQuestionBankRepository = {
       if (accountId && release.access.membershipActive === false) {
         await clearQuestionBankMemberContent(accountId).catch(() => undefined);
       }
-      if (accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
+      if (Platform.OS !== 'web' && accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
         try {
           const credential = await apiRequest<ContentAccessCredential>('/v1/content-access/credentials', {
             method: 'POST',
