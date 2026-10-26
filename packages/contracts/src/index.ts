@@ -545,6 +545,7 @@ export type VocabularyWord = {
   example: string;
   exampleTranslation: string;
   pronunciationText?: string;
+  relatedExpressions?: string[];
   frequency?: VocabularyFrequency;
   source: {
     name: string;

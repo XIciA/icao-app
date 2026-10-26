@@ -22,7 +22,7 @@ function fixture(selections: unknown[][]) {
     insert: vi.fn((table: unknown) => ({ values: (values: Record<string, unknown>) => { inserts.push({ table, values }); return { onConflictDoNothing: async () => undefined, onConflictDoUpdate: () => ({ returning: async () => [values] }) }; } })),
   };
   const database = { db: { transaction: async (operation: (transaction: typeof tx) => Promise<unknown>) => operation(tx), select: () => ({ from: () => ({ where: () => ({ orderBy: () => ({ limit: async () => [{ sequence: 0 }] }) }) }) }) } };
-  const service = new SyncService(database as unknown as DatabaseService);
+  const service = new SyncService(database as unknown as DatabaseService, {} as never);
   const internals = service as unknown as {
     applyDocument: (transaction: unknown, user: string, entry: DocumentMutation) => Promise<SyncPushResult>;
     applyLearningRecord: (transaction: unknown, user: string, entry: LearningRecordMutation, generation: number) => Promise<SyncPushResult>;

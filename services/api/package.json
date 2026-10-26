@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-ai-assets.mjs && node scripts/copy-vocabulary-assets.mjs",
-    "build:ops": "tsc -p tsconfig.ops.build.json",
+    "build:ops": "tsc -p tsconfig.ops.build.json && node scripts/copy-vocabulary-assets.mjs",
     "asr:eval": "tsx scripts/asr-postprocessing-eval.ts",
     "asr:optimization": "tsx scripts/aviation-asr-optimization.ts",
     "apple:iap:server": "tsx --env-file-if-exists=.env src/apple-iap-server-cli.ts",

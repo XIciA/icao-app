@@ -13,7 +13,9 @@
     "./app-content": "./src/app-content.ts",
     "./wechat-pay": "./src/wechat-pay.ts",
     "./content-workflow": "./src/content-workflow.ts",
-    "./ops-stability": "./src/ops-stability.ts"
+    "./ops-stability": "./src/ops-stability.ts",
+    "./vocabulary-live": "./src/vocabulary-live.ts",
+    "./vocabulary-edit": "./src/vocabulary-edit.ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

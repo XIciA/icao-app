@@ -89,3 +89,5 @@ Ops 的 HTTPS、HSTS、页面、健康接口和旧 `x-icao-api-version` 标识�
 schema 在部署前已经正确进入当前状态。
 
 线上入口使用账号、密码及动态验证码登录，无注册入口。现有本地后台继续在根路径工作，页面、权限和正式数据来源不变。可选配置 `OPS_FEEDBACK_STORAGE_URL` 与 `OPS_FEEDBACK_STORAGE_READ_TOKEN` 用于反馈附件读取，秘密只保存在服务器。
+
+词库管理使用 `vocabulary_releases`（迁移0056），与App API读取同一活跃版本。Ops镜像必须包含 `content/vocabulary` 及内嵌live基线。启用MP3上传还需可选 `OPS_VOCABULARY_STORAGE_WRITE_TOKEN`，仅授予词库资源存储写入权限；不配置时仍可查看/编辑已具备录音的词条，但不能上传。`OPS_FEEDBACK_STORAGE_URL` 是同一存储API地址，`OPS_FEEDBACK_STORAGE_READ_TOKEN` 负责试听读取。凭据仅存服务器私有环境文件，本机连接配置也须显式配置上传密钥，不从只读token推断写权限。上传不覆盖原对象，验证成功后才登记新资源；词库发布在同一事务提交文本与累计退役关系。新增/修改英文时会重新统计已发布五个题库的频次，缺语料或缺录音拒绝发布。生产配置、迁移及发布须遵守本轮明确授权。

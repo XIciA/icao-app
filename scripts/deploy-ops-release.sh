@@ -148,7 +148,7 @@ trap 'exit 1' HUP INT TERM
   git archive --format=tar HEAD -- \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
     modules/icao-distribution-environment modules/icao-wechat-auth \
-    apps/ops packages/contracts services/api infra/ops infra/gateway \
+    apps/ops packages/contracts services/api content/vocabulary infra/ops infra/gateway \
     | gzip -n > "$archive"
 )
 archive_sha=$(shasum -a 256 "$archive" | awk '{ print $1 }')
@@ -505,6 +505,7 @@ if ! awk '
     for (key_index in keys) allowed[keys[key_index]] = 1
     optional["OPS_FEEDBACK_STORAGE_URL"] = 1
     optional["OPS_FEEDBACK_STORAGE_READ_TOKEN"] = 1
+    optional["OPS_VOCABULARY_STORAGE_WRITE_TOKEN"] = 1
   }
   /^[[:space:]]*($|#)/ { next }
   !/^[A-Z0-9_]+=/ { exit 1 }

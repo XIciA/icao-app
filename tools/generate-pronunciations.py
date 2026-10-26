@@ -19,6 +19,10 @@ def collect():
     if unified.exists():
         for word in json.loads(unified.read_text())['entries']:
             texts.update(normalize(text) for text in (word['word'], word.get('pronunciationText', word['word']), word['example']))
+    live = ROOT/'content/vocabulary/live/source.json'
+    if live.exists():
+        for word in json.loads(live.read_text())['entries']:
+            texts.update(normalize(text) for text in (word['word'], word.get('pronunciationText', word['word']), word['example']))
     core = ROOT/'content/vocabulary/question-bank-core/source.json'
     if core.exists():
         for word in json.loads(core.read_text())['entries']:

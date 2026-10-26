@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-not-published",
+  "version": 4,
+  "words": 1652,
+  "books": {
+    "preview": 389,
+    "icao4": 810,
+    "icao5": 453
+  },
+  "retirement": {
+    "removedOrSplit": 358,
+    "merged": 174
+  },
+  "canonicalChecksum": "8149b563a5933b28ed4c46673c7ea6d6a4c68374a3d9768699fcfe11d37347a0",
+  "fileChecksum": "9e1eb5c1e8f9f125871307ab3513b2c476b5f3f10fb6df4510e8e49d9b7efa87",
+  "migrationFiles": {
+    "services/api/drizzle/0055_feedback_submission_sources.sql": "b45e81f5b64e6b2cb262cd80c1cb52b3de0f602c1956128217740192460a7913",
+    "services/api/drizzle/0056_vocabulary_live_releases.sql": "1d141f4aa6b59b741fa992824054aa6c90f61f0f38b738d18f1ad1e09a3557be"
+  },
+  "audio": {
+    "schemaVersion": 1,
+    "baseRef": "2bb5df48",
+    "baseCommit": "2bb5df48d909939c894fdc255ebf880b81a8ccf8",
+    "preservedFiles": 11093,
+    "newFiles": 126,
+    "newBytes": 2270952,
+    "manifestChecksum": "6585f6b00649963baac7082ef75e8b8baf1ef1490456c163fc99b67dbb2807b7",
+    "catalogChecksum": "9e1eb5c1e8f9f125871307ab3513b2c476b5f3f10fb6df4510e8e49d9b7efa87",
+    "sourceChecksum": "4e757e3da6862d75f654439f861db93e6a42b2c2b50fea292d52c94aea20f8a0"
+  },
+  "readOnlyResourcePreflight": {
+    "checkedAt": "2026-10-26T17:18:44.609Z",
+    "readOnly": true,
+    "candidate": {
+      "version": 4,
+      "checksum": "8149b563a5933b28ed4c46673c7ea6d6a4c68374a3d9768699fcfe11d37347a0",
+      "words": 1652,
+      "books": {
+        "preview": 389,
+        "icao4": 810,
+        "icao5": 453
+      },
+      "retiredIds": 532,
+      "audioPaths": 3233
+    },
+    "required": 3233,
+    "ready": 3150,
+    "missing": 83,
+    "missingOutsidePreparedDelta": [],
+    "existingChecksumDifferences": []
+  },
+  "validation": {
+    "fullCommand": "QUESTION_BANK_AUDIO_ROOT=/Users/zhouyide/Desktop/icao-app/.generated/study-scopes-baseline-assets/audio pnpm check",
+    "fullPassed": true,
+    "frontendSuites": 250,
+    "frontendTests": 1720,
+    "apiSuites": 74,
+    "apiTests": 724,
+    "contractsRuntimeTests": 10,
+    "newVocabularyContractAndContentTests": 12,
+    "opsUiTests": 5,
+    "isolatedVocabularyDatabaseTests": 5,
+    "lintErrors": 0,
+    "existingLintWarnings": 45
+  },
+  "productionWrites": false,
+  "requiresUnifiedIntegrationAndAuthorization": true
+}

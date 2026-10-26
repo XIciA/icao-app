@@ -1,0 +1,58 @@
+{
+  "reviewed": 1826,
+  "total": 1833,
+  "counts": {
+    "delete": 91,
+    "icao5": 501,
+    "icao4": 887,
+    "preview": 346,
+    "pending": 1
+  },
+  "notes": 0,
+  "missing": [
+    {
+      "id": "qbcore-b7d64a922100",
+      "word": "configuration",
+      "meaning": "构型；系统配置状态"
+    },
+    {
+      "id": "v3-f513df9dfa526e13",
+      "word": "CVR",
+      "meaning": "驾驶舱语音记录器；英文全称：cockpit voice recorder"
+    },
+    {
+      "id": "icao4-0390",
+      "word": "fuselage",
+      "meaning": "机身"
+    },
+    {
+      "id": "qbcore-573eb51169cc",
+      "word": "refuel",
+      "meaning": "加油；补充燃油"
+    },
+    {
+      "id": "qbcore-fe41df78b212",
+      "word": "rejected takeoff",
+      "meaning": "短语 中断起飞"
+    },
+    {
+      "id": "icao4-0815",
+      "word": "tail strike",
+      "meaning": "短语 擦尾；尾部触地"
+    },
+    {
+      "id": "preview-0893",
+      "word": "vertical",
+      "meaning": "垂直方向的"
+    }
+  ],
+  "pending": [
+    {
+      "id": "preview-0646",
+      "word": "pound",
+      "meaning": "磅"
+    }
+  ],
+  "backup": "/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-review-20261026/backups/completed-review-20261026-235639.json",
+  "checksum": "95b1ec5d839c7b97053a446c4a64a13fcd1b406683152fe9eeae155aa34d162a"
+}

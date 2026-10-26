@@ -49,6 +49,7 @@ export function VocabularyStudyView({
   const speechRequest = useRef(0), speechPending = useRef(false);
   const progress = progressFor(word.id, state);
   const markedWrong = savedStatus === 'wrong';
+  const learned = words.filter(item => (state.words[item.id]?.status ?? 'new') !== 'new').length;
   const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
 
   useEffect(() => {
@@ -80,12 +81,12 @@ export function VocabularyStudyView({
     <Screen contentStyle={styles.zero}>
       <View style={styles.topBar}>
         <Pressable accessibilityLabel="返回上一页" hitSlop={8} disabled={busy} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
-        <AppText variant="button">{index + 1} / {words.length}</AppText>
+        <AppText variant="button">已学 {learned} / {words.length}</AppText>
         <Pressable disabled={busy} accessibilityState={{ busy }} accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
           <GuideAnchor id="vocab-favorite" /><Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
         </Pressable>
       </View>
-      <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>
+      <View style={styles.progressWrap}><VocabularyProgress value={learned / words.length} /></View>
       <View style={styles.frequencyRow}><VocabularyFrequency compact key={word.id} word={word} /></View>
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
@@ -94,6 +95,7 @@ export function VocabularyStudyView({
           {revealed ? (
             <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />
               <AppText style={styles.meaning} variant="sectionTitle">{word.meaning}</AppText>
+              {word.relatedExpressions?.length ? <AppText color={colors.mutedForeground} variant="caption">相关表达：{word.relatedExpressions.join('、')}</AppText> : null}
               <Card style={styles.exampleCard}>
                 <AppText style={styles.exampleEnglish}>{word.example}</AppText>
                 <AppText variant="caption">{word.exampleTranslation}</AppText>

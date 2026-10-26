@@ -24,6 +24,7 @@ export async function createOpsApp(config: OpsApiConfig = loadOpsConfig()) {
   // Only the authenticated structured-draft route accepts complete bank payloads.
   app.getHttpAdapter().getInstance().addHook('onRoute', options => {
     if (options.method === 'POST' && (options.url === '/v1/admin/content-orders' || options.url === '/v1/admin/content-orders/:id/append')) options.bodyLimit = 12_000_000;
+    if (options.method === 'POST' && options.url === '/v1/admin/vocabulary/audio') options.bodyLimit = 7_000_000;
     if (options.method === 'POST' && options.url === '/v1/admin/content-orders/:id/prepare') {
       options.bodyLimit = 20_000_000;
     }

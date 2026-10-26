@@ -1,14 +1,19 @@
 import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds, vocabularyTestWordUpdates, vocabularyLegacyIds, vocabularyLegacyFavorites } from './vocabulary-migration-data.ts';
+import type { VocabularyMigrationPolicy } from './vocabulary-live.ts';
 
 type Progress = { status: 'new' | 'known' | 'vague' | 'forgot' | 'wrong'; favorite: boolean; updatedAt: string };
-type Document = { words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
+type StudySession = {answers?:Record<string,Exclude<Progress['status'],'new'>>;wordIds:string[];nextWordId:string|null;order:'frequency'|'random';startedAt:string;updatedAt:string};
+type Document = { studySession?:StudySession; words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
 const rank: Record<Progress['status'], number> = { new: -1, known: 0, vague: 2, forgot: 3, wrong: 4 };
 
 /** Only explicitly retired resource IDs/keys are touched. Unrelated lookup favorites survive. */
-export function migrateVocabularyDocument<T extends Document>(document: T): T {
+export function migrateVocabularyDocument<T extends Document>(document: T, policy?: VocabularyMigrationPolicy): T {
+  const retiredIds = policy?.retiredIds ?? vocabularyRetiredIds;
+  const retiredFavoriteKeys = policy?.retiredFavoriteKeys ?? vocabularyRetiredFavoriteKeys;
+  const testWordUpdates = policy?.testWords ?? vocabularyTestWordUpdates;
   let changed = false;
   const words = { ...document.words };
-  for (const mapping of [vocabularyRetiredIds, vocabularyRetiredFavoriteKeys]) {
+  for (const mapping of [retiredIds, retiredFavoriteKeys]) {
     const groups = new Map<string, Progress[]>();
     for (const [oldKey, target] of Object.entries(mapping)) {
       const old = words[oldKey];
@@ -28,21 +33,40 @@ export function migrateVocabularyDocument<T extends Document>(document: T): T {
   }
   let lastTest = document.lastTest;
   // Deleted/split cards invalidate the snapshot. Merged cards retain their historical score and dates.
-  if (lastTest?.answers.some(answer => answer && typeof answer === 'object' && 'wordId' in answer && vocabularyRetiredIds[String(answer.wordId)] === null)) {
+  if (lastTest?.answers.some(answer => answer && typeof answer === 'object' && 'wordId' in answer && retiredIds[String(answer.wordId)] === null)) {
     lastTest = undefined; changed = true;
   } else if (lastTest) {
     const answers = lastTest.answers.map(answer => {
       if (!answer || typeof answer !== 'object' || !('wordId' in answer)) return answer;
-      const target = vocabularyRetiredIds[String(answer.wordId)];
-      const text = vocabularyTestWordUpdates[String(answer.wordId)];
+      const target = retiredIds[String(answer.wordId)];
+      const text = testWordUpdates[policy ? target ?? String(answer.wordId) : String(answer.wordId)];
       if (!target && (!text || ('word' in answer && answer.word === text.word && 'meaning' in answer && answer.meaning === text.meaning))) return answer;
       changed = true;
       return { ...answer, ...(target ? {wordId:target} : {}), ...text };
     });
     if (changed) lastTest = { ...lastTest, answers };
   }
+  let studySession = document.studySession;
+  if (studySession && policy) {
+    const resolve = (id: string):string|null => Object.hasOwn(retiredIds,id) ? retiredIds[id] ?? null : Object.hasOwn(policy.testWords,id) ? id : null;
+    const wordIds = [...new Set(studySession.wordIds.map(resolve).filter((id):id is string=>typeof id==='string'))];
+    const answers: NonNullable<StudySession['answers']> = {};
+    for (const [id,status] of Object.entries(studySession.answers ?? {})) {
+      const target=resolve(id); if(!target)continue;
+      if(!answers[target] || rank[status]>rank[answers[target]!])answers[target]=status;
+    }
+    const originalNext=studySession.nextWordId;
+    const resolvedNext=originalNext===null?null:resolve(originalNext);
+    const retiredNext=originalNext!==null&&Object.hasOwn(retiredIds,originalNext);
+    const nextWordId=originalNext===null?null:retiredNext
+      ? resolvedNext && !answers[resolvedNext] ? resolvedNext : wordIds.find(id=>!answers[id]) ?? null
+      : resolvedNext;
+    if (JSON.stringify(wordIds)!==JSON.stringify(studySession.wordIds) || nextWordId!==studySession.nextWordId || JSON.stringify(answers)!==JSON.stringify(studySession.answers??{})) {
+      studySession={...studySession,wordIds,nextWordId,...(studySession.answers?{answers}:{})}; changed=true;
+    }
+  }
   if (!changed) return document;
-  const result = { ...document, words };
+  const result = { ...document, words, ...(studySession ? {studySession} : {}) };
   if (lastTest) result.lastTest = lastTest;
   else delete result.lastTest;
   return result;

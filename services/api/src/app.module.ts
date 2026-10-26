@@ -64,6 +64,7 @@ import { TencentAsrService } from './ai/tencent-asr.service';
 import { AiService } from './ai/ai.service';
 import { VocabularyController } from './vocabulary/vocabulary.controller';
 import { VocabularyService } from './vocabulary/vocabulary.service';
+import { VocabularyLiveService } from './vocabulary/vocabulary-live.service';
 import { EditorialController } from './editorial/editorial.controller';
 import { EditorialService } from './editorial/editorial.service';
 import { FeedbackAttachmentStorage } from './feedback/feedback-attachment-storage';
@@ -143,6 +144,7 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     TencentAsrService,
     AiService,
     VocabularyService,
+    VocabularyLiveService,
     FeedbackAttachmentStorage,
     FeedbackCleanupService,
     FeedbackService,

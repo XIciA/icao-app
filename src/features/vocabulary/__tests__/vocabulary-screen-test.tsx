@@ -63,6 +63,7 @@ jest.mock('../progress-store', () => ({
     ready: true,
     state: { schemaVersion: 1, words: {}, updatedAt: new Date(0).toISOString() },
     statsByBook: Object.fromEntries(mockBooks.map((book) => [book.id, { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 }])),
+    saveStudySession: jest.fn(async () => undefined),
     setStatus: mockSetStatus,
     toggleFavorite: jest.fn(async () => undefined),
     resetBook: jest.fn(async () => undefined),

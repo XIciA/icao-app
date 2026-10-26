@@ -1,0 +1,56 @@
+# 低频且没有额外独立词义的普通组合/整句，拆出有用组成词；保留专业固定概念
+a bolt of|量词组合；bolt按独立词覆盖
+a bunch of|普通量词组合
+behavior of birds|普通组合
+both engines out|整句状态描述
+cabin altitude rising|整句状态描述
+fully loaded|普通状态组合
+gear appears down|整句状态描述
+gear appears up|整句状态描述
+gear locked|普通状态组合
+get struck|普通动词组合
+identification lost|普通状态组合
+increase thrust|动词与宾语分别覆盖
+main switch|普通组合
+medical advice|普通组合
+medical specialist|普通组合
+met department|部门名称组合
+onboard camera|普通组合
+operational staff|普通组合
+outbreak of fire|普通组合
+pools of water|普通组合
+prohibited dangerous item|普通组合
+radio communication failure procedure|多个已覆盖概念拼接
+radio contact lost|整句状态描述
+reliability of radio aids|普通组合
+response to control|普通组合
+resume position reports|完整指令，按词拆解
+runway stop end|普通组合
+same direction traffic|普通组合
+service at night|普通组合
+sky clear|普通状态组合
+sky obscured|普通状态组合
+ssr response|普通组合；保留SSR缩写
+stuck in mud|普通状态组合
+threatening behavior|普通组合
+violent behavior|普通组合
+weather station|普通组合
+wheel door|普通组合
+water service truck|普通组合
+engine runs roughly|整句状态描述
+engine runs smoothly|整句状态描述
+full flaps position|普通状态组合
+traffic no longer a factor|完整状态报告
+unable to deploy flaps|完整状态报告
+unable to lower flaps|完整状态报告
+unable to retract flaps|完整状态报告
+windshield iced over|整句状态描述
+effects on traffic|普通组合
+dispersing traffic|普通组合
+external part of aircraft|普通组合
+first half of runway|普通组合
+fuel flow indicators|普通组合
+expired passport|普通组合
+fake passport|普通组合
+blow pipe|零频、原释义不可靠的组合，不保留未经核实的“喷油嘴”译法
+survival, first-aid and polar kits|三类不同装备不合在一个英文主词目，拆为独立装备词条
