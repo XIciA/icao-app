@@ -38,7 +38,7 @@ AudioSessionOrchestrator 在原生模式切换失败后尝试恢复 idle；若�
 | 音频失败后恢复 | PR #274 | 6e6e3498 已同步 main 2bb5df48，195项录音测试和类型检查通过；未合并 |
 | 标注/文章渐进加载、请求去重、词书缓存先显示 | PR #275 | 最终实现 bf0e296f，负责人交接前端251套/1728项、类型、合同8项、API710项及build通过；旧46664325缓存回归已修复，不采用旧head。未合并，最终发布环境仍需完整媒体校验 |
 | 随身听目录及筛选队列 | PR #276 | 已合 main 2bb5df48；未构建上传 |
-| 900句场景、中文题名、Replay、选项高亮、反馈及后台 | PR #277 | 原head ee773fd6，负责人同步main中；需迁移0055_feedback_submission_sources、API/运营后台及标题内容发布 |
+| 900句场景、中文题名、Replay、选项高亮、反馈及后台 | PR #277 | 最新候选 f3b022ec，含共享按等级/场景入口及随身听目录联动；负责人报告同步main后完整check:ci App1717/API711通过，最新增量类型/lint及145项相关测试通过，随身听共享入口浏览器验证尚在进行；需迁移0055_feedback_submission_sources、API/运营后台及标题内容发布 |
 | 完整词库、素材、后台管理、App同步及学习记录迁移 | codex/vocabulary-server-lifecycle | 开发中，尚无最终PR；需 vocabulary_releases 表、词条素材和累计迁移规则；旧#271不是本轮完成证据 |
 
 词库迁移须避让已由277使用的0055，并协调275的cache-first loader与新版目录合同。277内容发布须以线上版本为基线仅应用本轮字段，不把维护源releaseVersion27覆盖线上后续内容。
