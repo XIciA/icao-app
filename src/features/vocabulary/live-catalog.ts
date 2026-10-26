@@ -29,15 +29,21 @@ export async function validateLiveVocabularyRelease(value:unknown):Promise<Vocab
   if(typeof checksum!=='string'||!/^[a-f0-9]{64}$/.test(checksum)||await digestStringAsync(CryptoDigestAlgorithm.SHA256,canonicalVocabularyJson(payload))!==checksum)throw new Error('vocabulary_live_checksum_mismatch');
   return {...payload,checksum};
 }
-/** Installs the already verified pair atomically. It never writes a user's workspace. */
-export function installVocabularyRelease(base:string,release:VocabularyLiveRelease) {
+/** Validate the transition before optional storage, without exposing a partial upgrade. */
+export function assertVocabularyRelease(base:string,release:VocabularyLiveRelease) {
   if(base!==(getApiBaseUrl()??''))throw new Error('vocabulary_source_changed');
   const previous=current()?.release;
   if(previous){
     if(release.version<previous.version)throw new Error('vocabulary_version_regressed');
-    if(release.version===previous.version){if(release.checksum!==previous.checksum)throw new Error('vocabulary_version_rewritten');return previous;}
+    if(release.version===previous.version){if(release.checksum!==previous.checksum)throw new Error('vocabulary_version_rewritten');return;}
     validateVocabularyPolicyTransition(previous,release);
   }
+}
+/** Installs an already verified pair atomically. It never writes a user's workspace. */
+export function installVocabularyRelease(base:string,release:VocabularyLiveRelease) {
+  assertVocabularyRelease(base,release);
+  const previous=current()?.release;
+  if(previous?.version===release.version&&previous.checksum===release.checksum)return previous;
   const owners=new Map<string,string>();
   for(const word of release.dataset.books.flatMap(book=>book.words))for(const term of [word.word,...vocabularyTerms(word)])owners.set(vocabularyFavoriteKey(term),word.id);
   installed={base,release,owners};listeners.forEach(listener=>listener());return release;
