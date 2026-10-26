@@ -1,7 +1,7 @@
 import { orderVocabularySession } from './study-order';
 import { useStudyOrder } from './use-study-order';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
@@ -23,7 +23,7 @@ import {
   VocabularyTestRunner,
 } from './components/VocabularyTestViews';
 import { useVocabularyProgress } from './progress-store';
-import { loadVocabulary, type VocabularyLoadResult } from './repository';
+import { useVocabularyCatalog } from './use-vocabulary-catalog';
 import type {
   VocabularyBookId,
   VocabularyTestResult,
@@ -39,13 +39,11 @@ type SessionStatus = Exclude<VocabularyWordStatus, 'new'>;
 const emptySummary: VocabularySessionSummary = { known: 0, vague: 0, forgot: 0, wrong: 0 };
 
 export function VocabularyScreen() {
-  const [loadAttempt, setLoadAttempt] = useState(0);
-  const [loadResult, setLoadResult] = useState<VocabularyLoadResult>();
-  const [loadError, setLoadError] = useState(false);
+  const [view, setView] = useState<ViewName>('books');
+  const { loadResult, loadError, retry } = useVocabularyCatalog(view === 'books');
   const books = useMemo(() => loadResult?.dataset.books ?? [], [loadResult]);
   const progress = useVocabularyProgress(books);
   const { order, chooseOrder } = useStudyOrder();
-  const [view, setView] = useState<ViewName>('books');
   const [returnView, setReturnView] = useState<ReturnView>('books');
   const [activeBookId, setActiveBookId] = useState<VocabularyBookId>('preview');
   const [selected, setSelected] = useState<Set<VocabularyBookId>>(new Set());
@@ -56,13 +54,6 @@ export function VocabularyScreen() {
   const [sessionSummary, setSessionSummary] = useState<VocabularySessionSummary>(emptySummary);
   const [testRunKey, setTestRunKey] = useState(0);
   const [currentTestResult, setCurrentTestResult] = useState<VocabularyTestResult>();
-
-  useEffect(() => {
-    let active = true;
-    setLoadError(false);
-    void loadVocabulary().then((result) => { if (active) setLoadResult(result); }).catch(() => { if (active) setLoadError(true); });
-    return () => { active = false; };
-  }, [loadAttempt]);
 
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
   const startStudy = useCallback((words: VocabularyWord[], from: ReturnView) => {
@@ -82,7 +73,7 @@ export function VocabularyScreen() {
       <Screen contentStyle={{ paddingHorizontal: 0 }}>
         <TopBar title="单词学习" />
         {loadError ? (
-          <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={() => setLoadAttempt((value) => value + 1)} tone="destructive" />
+          <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={retry} tone="destructive" />
         ) : (
           <CenteredState icon={BookOpen} title="正在准备词汇资源" description="正在读取 ICAO 词书和你的学习进度。" />
         )}

@@ -104,7 +104,7 @@ export const embeddedQuestionBankRepository: QuestionBankRepository = {
   },
 };
 
-export const remoteQuestionBankRepository = {
+const remoteQuestionBankSource = {
   async getDataset(id: QuestionBankId, signal?: AbortSignal) {
     await ensureLegacyFullCacheRemoved();
     const context = contentContext();
@@ -202,18 +202,73 @@ export const remoteQuestionBankRepository = {
   },
 } satisfies QuestionBankRepository;
 
+// Only in-flight work is shared. Completed content still belongs to the existing
+// repository/cache, and each caller receives its own JSON payload to project.
+const pendingCatalogs = new Map<string, Promise<QuestionBankDataset | undefined>>();
+const pendingTopics = new Map<string, Promise<QuestionBankTopic | undefined>>();
+
+async function sharedContentRequest<T>(
+  pending: Map<string, Promise<T>>,
+  identity: readonly unknown[],
+  load: () => Promise<T>,
+  isolated = false,
+): Promise<T> {
+  const context = contentContext();
+  const base = getApiBaseUrl();
+  const assertCurrent = () => {
+    assertContentContextCurrent(context);
+    if (getApiBaseUrl() !== base) throw new ApiClientError('content_account_changed', 409);
+  };
+  const key = JSON.stringify([base, context, ...identity]);
+  let request = isolated ? undefined : pending.get(key);
+  if (!request) {
+    request = Promise.resolve().then(() => { assertCurrent(); return load(); });
+    if (!isolated) {
+      request = request.finally(() => { if (pending.get(key) === request) pending.delete(key); });
+      // Store the settled-cleanup promise so a retry never joins failed work.
+      pending.set(key, request);
+    }
+  }
+  const value = await request;
+  assertCurrent();
+  return value === undefined ? value : JSON.parse(JSON.stringify(value)) as T;
+}
+
+export const remoteQuestionBankRepository = {
+  getDataset(id: QuestionBankId, signal?: AbortSignal) {
+    // A caller-owned abort must not cancel requests used by another screen.
+    return sharedContentRequest(pendingCatalogs, [id], () => remoteQuestionBankSource.getDataset(id, signal), Boolean(signal));
+  },
+  getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected?: ContentReleaseReference) {
+    const release = expected ? { ...expected } : undefined;
+    return sharedContentRequest(pendingTopics,
+      [bankId, categoryId, topicId, release?.bankId, release?.version, release?.checksum],
+      () => remoteQuestionBankSource.getTopic(bankId, categoryId, topicId, release));
+  },
+} satisfies QuestionBankRepository;
+
 export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBankLoadResult | undefined> {
+  const context = contentContext();
+  const base = getApiBaseUrl();
+  const assertCurrent = () => {
+    assertContentContextCurrent(context);
+    if (getApiBaseUrl() !== base) throw new ApiClientError('content_account_changed', 409);
+  };
   await ensureLegacyFullCacheRemoved();
-  if (getApiBaseUrl()) {
+  assertCurrent();
+  if (base) {
     try {
       const remote = await remoteQuestionBankRepository.getDataset(id);
+      assertCurrent();
       if (remote) return { dataset: naturalDatasetTitles(remote), source: 'remote' };
     } catch {
+      assertCurrent();
       const cached = await readCachedCatalog(
-        currentQuestionBankContentAccountId(),
-        getNativeCommerceEnvironment(),
+        context.accountId,
+        context.environment,
         id,
       );
+      assertCurrent();
       if (cached) return { dataset: naturalDatasetTitles(cached.dataset), source: 'cache', warning: 'question_bank_remote_unavailable' };
       const embedded = await embeddedQuestionBankRepository.getDataset(id);
       return embedded ? { dataset: embedded, source: 'embedded', warning: 'question_bank_remote_unavailable' } : undefined;
