@@ -43,7 +43,7 @@ it('discards an already buffered catalog when the API source changes and reloads
   await waitFor(() => expect(result.current.loadResult).toBe(initial));
   await rerender({ allowed: false });
   await act(() => refresh(updated));
-  const other = { ...initial, dataset: { ...catalog, version: 9 } };
+  const other: VocabularyLoadResult = { ...initial, dataset: { ...initial.dataset, version: 9 } };
   jest.mocked(loadVocabulary).mockResolvedValue(other);
   mockBase = 'https://second.invalid';
   await rerender({ allowed: true });
