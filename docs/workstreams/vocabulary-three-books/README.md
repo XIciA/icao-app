@@ -287,3 +287,9 @@ RESOURCE_MANIFEST=/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-three-book
 - 最终完整命令：`QUESTION_BANK_AUDIO_ROOT=/Users/zhouyide/Desktop/icao-app/.generated/study-scopes-baseline-assets/audio pnpm check`，通过；前端250套1720项、API74套723项、contracts10项及类型检查/lint/构建/内容/媒体/发布合同通过。45项既有lint警告，无错误。
 - 此前缺省设计稿媒体路径失效；真实历史媒体仍在上述generated目录，修订音频位于桌面主工作区resources/files/revisions。本任务仅建立被忽略的只读用途symlink以完成校验，未改其媒体源，不应再写为媒体遗失。
 - 仍需完成：最终PR与发布/回滚核对、统一集成后最终来源检查、生产依赖授权及实际后台/API/移动端测试交付。统一发布聊天明确尚无本轮API、0055/0056、资源上传和词库切换授权；准备具体可审核候选后由其统一申请，禁止先发依赖live接口的新App。
+
+### 25 · 最终语义一致性与初始发布制品（2026-10-27）
+
+检查点24之后，已完成一次有限的同释义审查：仅将5组真正同义的既有词合并（stand/bay、adverse/unfavorable、baggage compartment/hold、breaking up/cut in and out、supplemental/supplementary），保留词性不同或专业范围不同的词；补齐deploy/inspect/combust/compress/disperse等派生词族归书一致性，航向陀螺仪与泛指陀螺仪释义区分。最终冻结1652词：预习389、四级810、五级453；532个累计退役ID、445项编辑决定、11组归书调整。此前1659/1657为检查点数量，后续交付以1652制品为准。
+
+新增录音最终126项、2270952字节，当前必需11208项检查通过，原11093项不变。补充了可校验/只读计划/精确摘要发布的初始导入脚本，并在临时PostgreSQL验证缺资源拒绝、版本原子切换、旧离线同步清理、新词频率、初始导入幂等和审计。完整发布/验证/回滚方案见[本轮联动发布计划](live-release-plan.md)。界面证据为当前Ops源码在隔离只读fixture上的实际渲染，不冒充线上后台验收。

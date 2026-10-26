@@ -20,6 +20,7 @@ import { vocabularyDocumentForPolicy } from '../src/sync/vocabulary-document';
 const root = mkdtempSync(join(tmpdir(), 'icao-vocabulary-live-test-'));
 const data = join(root, 'data');
 let started = false;
+let testDatabaseUrl: string;
 let client: ReturnType<typeof postgres>;
 let database: ReturnType<typeof drizzle<typeof schema>>;
 beforeAll(async () => {
@@ -35,6 +36,7 @@ beforeAll(async () => {
   execFileSync('initdb', ['-D', data, '-A', 'trust', '-U', 'postgres', '--no-locale'], { stdio: 'ignore' });
   execFileSync('pg_ctl', ['-D', data, '-o', `-F -h 127.0.0.1 -k ${root} -p ${port}`, '-w', 'start'], { stdio: 'ignore' });
   started = true;
+  testDatabaseUrl=`postgresql://postgres@127.0.0.1:${port}/postgres`;
   client = postgres({ host: '127.0.0.1', port, username: 'postgres', database: 'postgres', max: 3, onnotice: () => undefined });
   await client.unsafe(`
     CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role; CREATE ROLE supabase_admin;
@@ -105,4 +107,22 @@ it('adds a complete new card from the backend and derives frequency from all fiv
 it('a history with no active row fails closed instead of reverting to the bundled content',async()=>{
   const f=fixture();await database.update(schema.vocabularyReleases).set({active:false});
   await expect(f.live.get()).rejects.toThrow('vocabulary_live_active_release_missing');
+});
+
+it('imports the reviewed immutable baseline idempotently with exact hash, complete media and an audit record',async()=>{
+  const {importVocabulary,readVocabularyImport}=await import('../scripts/import-vocabulary-live.mjs');
+  await database.delete(schema.vocabularyReleases);
+  const path=join(process.cwd(),'../../content/vocabulary/live/release.json'),candidate=readVocabularyImport(path);
+  const environment={DATABASE_URL:testDatabaseUrl,NODE_ENV:'test',VOCABULARY_PUBLISH_CONFIRM:candidate.checksum,VOCABULARY_EXPECTED_BASE:'empty',VOCABULARY_PUBLISH_REASON:'isolated vocabulary import test'};
+  const plan=await importVocabulary('plan',path,environment);expect(plan.baseVersion).toBeNull();expect(plan.missingAudio).toEqual([]);
+  await expect(importVocabulary('publish',path,{...environment,VOCABULARY_PUBLISH_CONFIRM:'incorrect'})).rejects.toThrow('vocabulary_publish_checksum_confirmation_required');
+  const firstPath=candidate.audioPaths[0]!;
+  await database.update(schema.resourceObjects).set({status:'superseded'}).where(eq(schema.resourceObjects.sourcePath,firstPath));
+  await expect(importVocabulary('publish',path,environment)).rejects.toThrow('vocabulary_audio_incomplete');
+  await database.update(schema.resourceObjects).set({status:'ready'}).where(eq(schema.resourceObjects.sourcePath,firstPath));
+  await expect(importVocabulary('publish',path,{...environment,NODE_ENV:'production',API_RELEASE_ID:'tested-main',VOCABULARY_PUBLISH_RELEASE_ID:'other'})).rejects.toThrow('vocabulary_publish_runtime_release_mismatch');
+  const published=await importVocabulary('publish',path,environment);expect(published.published).toBe(true);
+  const retried=await importVocabulary('publish',path,environment);expect(retried.alreadyPublished).toBe(true);
+  expect(await database.select().from(schema.vocabularyReleases)).toHaveLength(1);
+  expect(await database.select().from(schema.opsAuditEvents).where(eq(schema.opsAuditEvents.action,'ops.vocabulary.import'))).toHaveLength(1);
 });

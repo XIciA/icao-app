@@ -100,6 +100,8 @@ synonyms = {
     'rapid decompression': ['rapid depressurization', 'quick depressurization'],
     'fire extinguisher': ['extinguisher'], 'engine cowling': ['cowl', 'cowling', 'engine cowl'],
     'fuel truck': ['refueler', 'refueller'], 'flight attendant': ['steward', 'stewardess'], 'cockpit': ["pilot's cabin"],
+    'stand': ['bay'], 'adverse': ['unfavorable'], 'baggage compartment': ['baggage hold'],
+    'breaking up': ['cut in and out'], 'supplemental': ['supplementary'],
 }
 abbreviations = {}
 for row in old_entries:
@@ -294,6 +296,9 @@ groups = [
     ['port', 'starboard'], ['HF', 'VHF', 'UHF'], ['IFR', 'VFR'], ['IMC', 'VMC'], ['CVR', 'FDR'],
     ['updraft', 'downdraft'], ['headwind', 'tailwind', 'crosswind'], ['increase', 'decrease'],
     ['extend', 'retract'], ['extension', 'retraction'], ['climb', 'descend'],
+    ['deploy', 'deployment'], ['inspect', 'inspection'], ['ascend', 'ascent'],
+    ['combust', 'combustion'], ['compress', 'compression'], ['disperse', 'dispersal'],
+    ['condense', 'condensation'], ['deform', 'deformation'], ['lubricate', 'lubrication'], ['penetrate', 'penetration'],
 ]
 consistency = []
 rank = {'preview': 0, 'icao4': 1, 'icao5': 2}

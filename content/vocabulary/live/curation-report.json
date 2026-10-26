@@ -1,9 +1,9 @@
 {
-  "words": 1657,
+  "words": 1652,
   "books": {
-    "icao4": 811,
-    "preview": 388,
-    "icao5": 458
+    "icao4": 810,
+    "preview": 389,
+    "icao5": 453
   },
   "decisions": [
     {
@@ -1745,6 +1745,36 @@
       "target": "preview-0148"
     },
     {
+      "id": "preview-0077",
+      "word": "bay",
+      "action": "merge-exact-synonym",
+      "target": "qbcore-d37a24b801c6"
+    },
+    {
+      "id": "v3-ded9ebef2c733617",
+      "word": "unfavorable",
+      "action": "merge-exact-synonym",
+      "target": "qbcore-39f4bf4ed1ac"
+    },
+    {
+      "id": "icao5-0068",
+      "word": "baggage hold",
+      "action": "merge-exact-synonym",
+      "target": "icao5-0067"
+    },
+    {
+      "id": "preview-0187",
+      "word": "cut in and out",
+      "action": "merge-exact-synonym",
+      "target": "preview-0111"
+    },
+    {
+      "id": "v3-f6c48b6b20435f3d",
+      "word": "supplementary",
+      "action": "merge-exact-synonym",
+      "target": "v3-dfa766f701341d27"
+    },
+    {
       "id": "v4-ff2e963ff6d0c33a",
       "word": "radar",
       "action": "covered-by-user-selected-phrase",
@@ -3185,6 +3215,66 @@
         "retraction": "icao4"
       },
       "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "deploy",
+        "deployment"
+      ],
+      "before": {
+        "deploy": "preview",
+        "deployment": "icao4"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "inspect",
+        "inspection"
+      ],
+      "before": {
+        "inspect": "icao4",
+        "inspection": "preview"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "combust",
+        "combustion"
+      ],
+      "before": {
+        "combust": "icao5",
+        "combustion": "icao4"
+      },
+      "target": "icao4",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "compress",
+        "compression"
+      ],
+      "before": {
+        "compress": "icao4",
+        "compression": "icao5"
+      },
+      "target": "icao4",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "disperse",
+        "dispersal"
+      ],
+      "before": {
+        "dispersal": "icao5",
+        "disperse": "icao4"
+      },
+      "target": "icao4",
       "reason": "same-level-paired-family; majority, tie to foundational grade"
     }
   ],

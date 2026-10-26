@@ -1,6 +1,6 @@
 # 人工复审后的动态词库
 
-固定输入为`../reviewed-20261026/decisions.json`（1826个原始决定）及`../three-books/source.json`（1833词旧版基线）。旧v3目录不改写，供已安装的旧App兼容。当前动态候选1657词：预习388、四级811、五级458。
+固定输入为`../reviewed-20261026/decisions.json`（1826个原始决定）及`../three-books/source.json`（1833词旧版基线）。旧v3目录不改写，供已安装的旧App兼容。当前动态候选1652词：预习389、四级810、五级453。
 
 `editorial.tsv`保存新增词和例句/译文修订，`meanings.tsv`保存中文精简/纠错，`decompositions.tsv`保存明确拆解的低价值组合。`source.json`是这些输入的汇总产物；`release.json`是语料统计后可整体校验的发布候选；`curation-report.json`留存拆词、删除、合并、空选补齐及等级一致性判断。不手改生成JSON。
 
@@ -16,7 +16,7 @@ python3 tools/generate-pronunciations.py --check
 
 本轮中文标签/标点/格式及同义表达已按用户口述处理。可独立学习的相关表达存`relatedExpressions`，由App有意分行展示；同义表达在英文区使用` / `连接。保留专业固定概念，普通组合按用户规则去重，必须新增的独立词/表达配齐例句和两种朗读。
 
-同类等级检查对6组进行了调整，详细原等级/目标及理由见curation-report。原始人工决定不覆盖，所有编辑调整另留痕。原先例句只出现反义否定词形（如non-conductive、de-escalate、un-inflated）的情况已换成对应本词的独立例句。
+同类等级检查对11组进行了调整，详细原等级/目标及理由见curation-report。原始人工决定不覆盖，所有编辑调整另留痕。原先例句只出现反义否定词形（如non-conductive、de-escalate、un-inflated）的情况已换成对应本词的独立例句。
 
 语义复核的主要参考：
 
@@ -27,4 +27,4 @@ python3 tools/generate-pronunciations.py --check
 
 这些是词义及语境参考，不向用户新增具体机型的操作程序。
 
-配套录音仍由现有Mac Samantha流程生成并通过同一不可变资源登记机制交付。当前总清单11209项，原11093项不变，新增116项（2147632字节）；可恢复交接包在`/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-live-20261027`。尚未上传/登记新增音频，候选未正式发布。
+配套录音仍由现有Mac Samantha流程生成并通过同一不可变资源登记机制交付。当前总清单11219项，原11093项不变，新增126项（2270952字节）；可恢复交接包在`/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-live-20261027`。尚未上传/登记新增音频，候选未正式发布。

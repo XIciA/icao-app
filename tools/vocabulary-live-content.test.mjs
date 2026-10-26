@@ -24,6 +24,7 @@ test('dictated splits retain useful standalone words instead of redundant combin
  assert.equal(find('aircraft').bookId,'preview');
  assert.equal(find('radar'),undefined);assert.ok(find('radar vector'));
  assert.equal(find('cockpit').word,"cockpit / pilot's cabin");
+ for(const pair of [['stand','bay'],['adverse','unfavorable'],['baggage compartment','baggage hold'],['breaking up','cut in and out'],['supplemental','supplementary']])assert.equal(find(pair[0]).id,find(pair[1]).id,pair.join('/'));
 });
 
 test('abbreviations, synonyms and related forms use the approved presentation',()=>{
@@ -36,7 +37,7 @@ test('abbreviations, synonyms and related forms use the approved presentation',(
 });
 
 test('explicit same-level families and their logical peers remain consistent',()=>{
- for(const group of [['VOR','NDB','DME','ILS'],['V1','V2','VR','VREF','VAPP'],['inbound','outbound'],['CVR','FDR'],['port','starboard'],['updraft','downdraft'],['extend','retract'],['extension','retraction']]){
+ for(const group of [['VOR','NDB','DME','ILS'],['V1','V2','VR','VREF','VAPP'],['inbound','outbound'],['CVR','FDR'],['port','starboard'],['updraft','downdraft'],['extend','retract'],['extension','retraction'],['deploy','deployment'],['inspect','inspection'],['ascend','ascent'],['combust','combustion'],['compress','compression'],['disperse','dispersal']]){
   const levels=new Set(group.map(term=>{assert.ok(find(term),term);return find(term).bookId}));assert.equal(levels.size,1,group.join('/'));
  }
 });

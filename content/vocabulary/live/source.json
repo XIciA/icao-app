@@ -4,7 +4,7 @@
   "reviewChecksum": "95b1ec5d839c7b97053a446c4a64a13fcd1b406683152fe9eeae155aa34d162a",
   "editorialChecksums": {
     "editorial.tsv": "2173d6260da1a45567899ad3d975f026df799f0d384c9cfe2c465998131c3159",
-    "meanings.tsv": "3b38b50e996150dad3a5fafebdfba821fc6c043bdf1484c7e5fda26ab224b83e",
+    "meanings.tsv": "02eaf6d1313dc9c99aa8e694231a62f1d2a7937903ab6f611faa87cbc04539ab",
     "decompositions.tsv": "14cd516bc1b2739a2930dafb61c73d9def09340f7f8e07664774d8f71093aa46"
   },
   "books": [
@@ -1165,32 +1165,6 @@
         }
       ],
       "legacyIds": [],
-      "level": 1
-    },
-    {
-      "id": "preview-0077",
-      "bookId": "preview",
-      "word": "bay",
-      "meaning": "停机位",
-      "example": "The aircraft was assigned to bay twelve after landing.",
-      "exampleTranslation": "飞机落地后被分配到十二号停机位。",
-      "pronunciationText": "bay",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "bay"
-        ]
-      },
-      "origins": [
-        {
-          "type": "manual",
-          "id": "preview-0077"
-        }
-      ],
-      "legacyIds": [
-        "preview-0077"
-      ],
-      "relatedExpressions": [],
       "level": 1
     },
     {
@@ -2748,6 +2722,35 @@
       "legacyIds": [
         "qbcore-b7bd55c11b78"
       ],
+      "relatedExpressions": [],
+      "level": 1
+    },
+    {
+      "id": "v3-aee50b18a03c89e4",
+      "bookId": "preview",
+      "word": "deployment",
+      "meaning": "展开；放出；部署",
+      "example": "At cruising altitude, cabin pressure dropped rapidly, triggering oxygen mask deployment automatically.",
+      "exampleTranslation": "飞机在巡航高度时客舱压力迅速下降，氧气面罩自动释放。",
+      "pronunciationText": "deployment",
+      "aliases": [],
+      "frequencyRules": {
+        "forms": [
+          "deployment"
+        ]
+      },
+      "origins": [
+        {
+          "type": "supplement",
+          "term": "deployment"
+        }
+      ],
+      "legacyIds": [],
+      "exampleSource": {
+        "bankId": "storytelling",
+        "cardId": "story-pepec-0146",
+        "field": "audioText"
+      },
       "relatedExpressions": [],
       "level": 1
     },
@@ -6073,6 +6076,34 @@
       ],
       "legacyIds": [
         "preview-0483"
+      ],
+      "relatedExpressions": [],
+      "level": 1
+    },
+    {
+      "id": "preview-0488",
+      "bookId": "preview",
+      "word": "inspect",
+      "meaning": "检查",
+      "example": "Maintenance inspected the landing gear after the hard landing.",
+      "exampleTranslation": "重着陆后，维修人员检查了起落架。",
+      "pronunciationText": "inspect",
+      "aliases": [],
+      "frequencyRules": {
+        "forms": [
+          "inspect",
+          "inspected",
+          "inspecting"
+        ]
+      },
+      "origins": [
+        {
+          "type": "manual",
+          "id": "preview-0488"
+        }
+      ],
+      "legacyIds": [
+        "preview-0488"
       ],
       "relatedExpressions": [],
       "level": 1
@@ -9579,14 +9610,15 @@
     {
       "id": "qbcore-d37a24b801c6",
       "bookId": "preview",
-      "word": "stand",
+      "word": "stand / bay",
       "meaning": "停机位",
       "example": "The tug returned the aircraft to its stand.",
       "exampleTranslation": "牵引车把航空器送回了停机位。",
-      "pronunciationText": "stand",
+      "pronunciationText": "stand. bay",
       "aliases": [],
       "frequencyRules": {
         "forms": [
+          "bay",
           "stand",
           "standing",
           "stands",
@@ -11941,15 +11973,16 @@
     {
       "id": "qbcore-39f4bf4ed1ac",
       "bookId": "icao4",
-      "word": "adverse",
+      "word": "adverse / unfavorable",
       "meaning": "不利的",
       "example": "The crew reviewed the effects of adverse weather.",
       "exampleTranslation": "机组评估了不利天气的影响。",
-      "pronunciationText": "adverse",
+      "pronunciationText": "adverse. unfavorable",
       "aliases": [],
       "frequencyRules": {
         "forms": [
-          "adverse"
+          "adverse",
+          "unfavorable"
         ]
       },
       "origins": [
@@ -13458,16 +13491,17 @@
     {
       "id": "icao5-0067",
       "bookId": "icao4",
-      "word": "baggage compartment",
+      "word": "baggage compartment / baggage hold",
       "meaning": "行李舱",
       "example": "Smoke was detected in the forward baggage compartment.",
       "exampleTranslation": "前行李舱探测到烟雾。",
-      "pronunciationText": "baggage compartment",
+      "pronunciationText": "baggage compartment. baggage hold",
       "aliases": [],
       "frequencyRules": {
         "forms": [
           "baggage compartment",
-          "baggage compartments"
+          "baggage compartments",
+          "baggage hold"
         ]
       },
       "origins": [
@@ -13996,15 +14030,16 @@
     {
       "id": "preview-0111",
       "bookId": "icao4",
-      "word": "breaking up",
+      "word": "breaking up / cut in and out",
       "meaning": "断断续续",
       "example": "The radio transmission was breaking up during final approach.",
       "exampleTranslation": "最后进近期间，无线电通话断断续续。",
-      "pronunciationText": "breaking up",
+      "pronunciationText": "breaking up. cut in and out",
       "aliases": [],
       "frequencyRules": {
         "forms": [
-          "breaking up"
+          "breaking up",
+          "cut in and out"
         ]
       },
       "origins": [
@@ -15391,6 +15426,31 @@
       "level": 2
     },
     {
+      "id": "v3-aa2c18f05450fefd",
+      "bookId": "icao4",
+      "word": "combust",
+      "meaning": "燃烧",
+      "example": "Fuel can combust when mixed with air and exposed to an ignition source.",
+      "exampleTranslation": "燃油与空气混合并接触点火源时可能燃烧。",
+      "pronunciationText": "combust",
+      "aliases": [],
+      "frequencyRules": {
+        "forms": [
+          "combust",
+          "combusted"
+        ]
+      },
+      "origins": [
+        {
+          "type": "supplement",
+          "term": "combust"
+        }
+      ],
+      "legacyIds": [],
+      "relatedExpressions": [],
+      "level": 2
+    },
+    {
       "id": "v3-93a4dca2fb2ebdfb",
       "bookId": "icao4",
       "word": "combustion",
@@ -15672,6 +15732,35 @@
         "bankId": "listening",
         "cardId": "listening-main-882",
         "field": "choices[1]"
+      },
+      "relatedExpressions": [],
+      "level": 2
+    },
+    {
+      "id": "v3-d18f849bb8c5ffef",
+      "bookId": "icao4",
+      "word": "compression",
+      "meaning": "压缩",
+      "example": "B: Air density is easily changed by compression and expansion due to the influence of temperature, pressure and humidity.",
+      "exampleTranslation": "说话人:由于温度、压力和湿度的影响，空气密度很容易随压缩和膨胀而发生变化。",
+      "pronunciationText": "compression",
+      "aliases": [],
+      "frequencyRules": {
+        "forms": [
+          "compression"
+        ]
+      },
+      "origins": [
+        {
+          "type": "supplement",
+          "term": "compression"
+        }
+      ],
+      "legacyIds": [],
+      "exampleSource": {
+        "bankId": "listening",
+        "cardId": "listening-main-455",
+        "field": "audioText"
       },
       "relatedExpressions": [],
       "level": 2
@@ -16701,37 +16790,6 @@
       "level": 2
     },
     {
-      "id": "preview-0187",
-      "bookId": "icao4",
-      "word": "cut in and out",
-      "meaning": "断断续续",
-      "example": "Various disturbances can make communication unsmooth, and even radio broadcasting sometimes cut in and out.",
-      "exampleTranslation": "各种干扰会让沟通不顺畅，有时无线电广播的声音甚至会时有时无地出现。",
-      "pronunciationText": "cut in and out",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "cut in and out"
-        ]
-      },
-      "origins": [
-        {
-          "type": "manual",
-          "id": "preview-0187"
-        }
-      ],
-      "legacyIds": [
-        "preview-0187"
-      ],
-      "exampleSource": {
-        "bankId": "listening",
-        "cardId": "listening-fzy-110803",
-        "field": "audioText"
-      },
-      "relatedExpressions": [],
-      "level": 2
-    },
-    {
       "id": "v3-1b0cf192c14f7e5c",
       "bookId": "icao4",
       "word": "damp",
@@ -17338,35 +17396,6 @@
       "level": 2
     },
     {
-      "id": "v3-aee50b18a03c89e4",
-      "bookId": "icao4",
-      "word": "deployment",
-      "meaning": "展开；放出；部署",
-      "example": "At cruising altitude, cabin pressure dropped rapidly, triggering oxygen mask deployment automatically.",
-      "exampleTranslation": "飞机在巡航高度时客舱压力迅速下降，氧气面罩自动释放。",
-      "pronunciationText": "deployment",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "deployment"
-        ]
-      },
-      "origins": [
-        {
-          "type": "supplement",
-          "term": "deployment"
-        }
-      ],
-      "legacyIds": [],
-      "exampleSource": {
-        "bankId": "storytelling",
-        "cardId": "story-pepec-0146",
-        "field": "audioText"
-      },
-      "relatedExpressions": [],
-      "level": 2
-    },
-    {
       "id": "icao4-0530",
       "bookId": "icao4",
       "word": "depressurization",
@@ -17723,7 +17752,7 @@
       "id": "icao5-0214",
       "bookId": "icao4",
       "word": "directional gyro",
-      "meaning": "陀螺仪",
+      "meaning": "航向陀螺仪",
       "example": "The directional gyro drifted during the long holding pattern.",
       "exampleTranslation": "长时间等待航线中，方向陀螺发生漂移。",
       "pronunciationText": "directional gyro",
@@ -17971,6 +18000,30 @@
       "legacyIds": [
         "qbcore-ff7fce673d2f"
       ],
+      "relatedExpressions": [],
+      "level": 2
+    },
+    {
+      "id": "v3-1f7e46957e055014",
+      "bookId": "icao4",
+      "word": "dispersal",
+      "meaning": "驱散；分散",
+      "example": "The airport used bird dispersal measures near the runway.",
+      "exampleTranslation": "机场在跑道附近采取了驱鸟措施。",
+      "pronunciationText": "dispersal",
+      "aliases": [],
+      "frequencyRules": {
+        "forms": [
+          "dispersal"
+        ]
+      },
+      "origins": [
+        {
+          "type": "supplement",
+          "term": "dispersal"
+        }
+      ],
+      "legacyIds": [],
       "relatedExpressions": [],
       "level": 2
     },
@@ -23320,34 +23373,6 @@
       ],
       "legacyIds": [
         "qbcore-c1cc5e045796"
-      ],
-      "relatedExpressions": [],
-      "level": 2
-    },
-    {
-      "id": "preview-0488",
-      "bookId": "icao4",
-      "word": "inspect",
-      "meaning": "检查",
-      "example": "Maintenance inspected the landing gear after the hard landing.",
-      "exampleTranslation": "重着陆后，维修人员检查了起落架。",
-      "pronunciationText": "inspect",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "inspect",
-          "inspected",
-          "inspecting"
-        ]
-      },
-      "origins": [
-        {
-          "type": "manual",
-          "id": "preview-0488"
-        }
-      ],
-      "legacyIds": [
-        "preview-0488"
       ],
       "relatedExpressions": [],
       "level": 2
@@ -32164,15 +32189,16 @@
     {
       "id": "v3-dfa766f701341d27",
       "bookId": "icao4",
-      "word": "supplemental",
+      "word": "supplemental / supplementary",
       "meaning": "补充的；附加的",
       "example": "Federal regulations specify when you must use supplemental oxygen.",
       "exampleTranslation": "联邦法规规定了必须使用补充氧气的时机。",
-      "pronunciationText": "supplemental",
+      "pronunciationText": "supplemental. supplementary",
       "aliases": [],
       "frequencyRules": {
         "forms": [
-          "supplemental"
+          "supplemental",
+          "supplementary"
         ]
       },
       "origins": [
@@ -33622,35 +33648,6 @@
         "bankId": "listening",
         "cardId": "listening-main-955",
         "field": "audioText"
-      },
-      "relatedExpressions": [],
-      "level": 2
-    },
-    {
-      "id": "v3-ded9ebef2c733617",
-      "bookId": "icao4",
-      "word": "unfavorable",
-      "meaning": "不利的",
-      "example": "In CB, we may encounter some unfavorable conditions, for example, severe turbulence, low visibility, lightning strike, heavy rain and wind shear.",
-      "exampleTranslation": "在积雨云内，我们可能会遇到严重颠簸、低能见度、雷击、暴雨、风切变等不利情况。",
-      "pronunciationText": "unfavorable",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "unfavorable"
-        ]
-      },
-      "origins": [
-        {
-          "type": "supplement",
-          "term": "unfavorable"
-        }
-      ],
-      "legacyIds": [],
-      "exampleSource": {
-        "bankId": "opi",
-        "cardId": "opi-fzy-152134",
-        "field": "referenceText"
       },
       "relatedExpressions": [],
       "level": 2
@@ -35891,32 +35888,6 @@
       "level": 3
     },
     {
-      "id": "icao5-0068",
-      "bookId": "icao5",
-      "word": "baggage hold",
-      "meaning": "行李舱",
-      "example": "The baggage hold was inspected after the smoke warning.",
-      "exampleTranslation": "烟雾警告后，行李舱接受了检查。",
-      "pronunciationText": "baggage hold",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "baggage hold"
-        ]
-      },
-      "origins": [
-        {
-          "type": "manual",
-          "id": "icao5-0068"
-        }
-      ],
-      "legacyIds": [
-        "icao5-0068"
-      ],
-      "relatedExpressions": [],
-      "level": 3
-    },
-    {
       "id": "icao4-0069",
       "bookId": "icao5",
       "word": "baggage identification",
@@ -37202,31 +37173,6 @@
       "level": 3
     },
     {
-      "id": "v3-aa2c18f05450fefd",
-      "bookId": "icao5",
-      "word": "combust",
-      "meaning": "燃烧",
-      "example": "Fuel can combust when mixed with air and exposed to an ignition source.",
-      "exampleTranslation": "燃油与空气混合并接触点火源时可能燃烧。",
-      "pronunciationText": "combust",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "combust",
-          "combusted"
-        ]
-      },
-      "origins": [
-        {
-          "type": "supplement",
-          "term": "combust"
-        }
-      ],
-      "legacyIds": [],
-      "relatedExpressions": [],
-      "level": 3
-    },
-    {
       "id": "qbcore-7804094bd2ce",
       "bookId": "icao5",
       "word": "combustible",
@@ -37523,35 +37469,6 @@
       "exampleSource": {
         "bankId": "storytelling",
         "cardId": "story-pepec-0137",
-        "field": "audioText"
-      },
-      "relatedExpressions": [],
-      "level": 3
-    },
-    {
-      "id": "v3-d18f849bb8c5ffef",
-      "bookId": "icao5",
-      "word": "compression",
-      "meaning": "压缩",
-      "example": "B: Air density is easily changed by compression and expansion due to the influence of temperature, pressure and humidity.",
-      "exampleTranslation": "说话人:由于温度、压力和湿度的影响，空气密度很容易随压缩和膨胀而发生变化。",
-      "pronunciationText": "compression",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "compression"
-        ]
-      },
-      "origins": [
-        {
-          "type": "supplement",
-          "term": "compression"
-        }
-      ],
-      "legacyIds": [],
-      "exampleSource": {
-        "bankId": "listening",
-        "cardId": "listening-main-455",
         "field": "audioText"
       },
       "relatedExpressions": [],
@@ -38947,30 +38864,6 @@
         {
           "type": "supplement",
           "term": "disintegration"
-        }
-      ],
-      "legacyIds": [],
-      "relatedExpressions": [],
-      "level": 3
-    },
-    {
-      "id": "v3-1f7e46957e055014",
-      "bookId": "icao5",
-      "word": "dispersal",
-      "meaning": "驱散；分散",
-      "example": "The airport used bird dispersal measures near the runway.",
-      "exampleTranslation": "机场在跑道附近采取了驱鸟措施。",
-      "pronunciationText": "dispersal",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "dispersal"
-        ]
-      },
-      "origins": [
-        {
-          "type": "supplement",
-          "term": "dispersal"
         }
       ],
       "legacyIds": [],
@@ -46125,35 +46018,6 @@
       "level": 3
     },
     {
-      "id": "v3-f6c48b6b20435f3d",
-      "bookId": "icao5",
-      "word": "supplementary",
-      "meaning": "补充的；附加的",
-      "example": "The flight log provides supplementary flight information that is accurate and up-to-date.",
-      "exampleTranslation": "飞行日志提供一些补充的飞行信息，这些信息是准确和最新的。",
-      "pronunciationText": "supplementary",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "supplementary"
-        ]
-      },
-      "origins": [
-        {
-          "type": "supplement",
-          "term": "supplementary"
-        }
-      ],
-      "legacyIds": [],
-      "exampleSource": {
-        "bankId": "opi",
-        "cardId": "opi-fzy-152982",
-        "field": "referenceText"
-      },
-      "relatedExpressions": [],
-      "level": 3
-    },
-    {
       "id": "v3-83b27bf85945230d",
       "bookId": "icao5",
       "word": "suppression",
@@ -47950,6 +47814,11 @@
     "qbcore-bc9612473e80": "icao4-0576",
     "v4-0288efc148fb5820": "v4-014ecc040a2cfd44",
     "preview-0632": "preview-0148",
+    "preview-0077": "qbcore-d37a24b801c6",
+    "v3-ded9ebef2c733617": "qbcore-39f4bf4ed1ac",
+    "icao5-0068": "icao5-0067",
+    "preview-0187": "preview-0111",
+    "v3-f6c48b6b20435f3d": "v3-dfa766f701341d27",
     "v4-ff2e963ff6d0c33a": "preview-0889",
     "qbcore-acac13b5ccc0": null,
     "qbcore-302b9de5c0d5": null,
@@ -48344,7 +48213,7 @@
     "__word_favorite__:v1:assistance": "preview-0057",
     "__word_favorite__:v1:backpack": "preview-0066",
     "__word_favorite__:v1:bat": null,
-    "__word_favorite__:v1:bay": "preview-0077",
+    "__word_favorite__:v1:bay": "qbcore-d37a24b801c6",
     "__word_favorite__:v1:behavior%20of%20birds": null,
     "__word_favorite__:v1:below%20cloud": null,
     "__word_favorite__:v1:bird%20flu": "preview-0084",
@@ -48399,7 +48268,7 @@
     "__word_favorite__:v1:cross%20windshear": null,
     "__word_favorite__:v1:crow": "preview-0183",
     "__word_favorite__:v1:current": "preview-0186",
-    "__word_favorite__:v1:cut%20in%20and%20out": "preview-0187",
+    "__word_favorite__:v1:cut%20in%20and%20out": "preview-0111",
     "__word_favorite__:v1:damage%20to%20aircraft": null,
     "__word_favorite__:v1:danger%20area": null,
     "__word_favorite__:v1:de-icing": "preview-0191",
@@ -49078,7 +48947,7 @@
     "__word_favorite__:v1:asthma": "icao5-0058",
     "__word_favorite__:v1:aviation-grade%20petrol": "icao5-0063",
     "__word_favorite__:v1:baggage%20compartment": "icao5-0067",
-    "__word_favorite__:v1:baggage%20hold": "icao5-0068",
+    "__word_favorite__:v1:baggage%20hold": "icao5-0067",
     "__word_favorite__:v1:barometric": "icao5-0073",
     "__word_favorite__:v1:blown%20out%20fuse": null,
     "__word_favorite__:v1:bomb%20disposal%20squad": "icao5-0098",
@@ -49720,7 +49589,7 @@
     "__word_favorite__:v1:toxic%20substances": "icao4-0845",
     "__word_favorite__:v1:transition": "v3-70dd37c11434d9c5",
     "__word_favorite__:v1:tremble": "v3-a0a2a7470c13ca4c",
-    "__word_favorite__:v1:unfavorable": "v3-ded9ebef2c733617",
+    "__word_favorite__:v1:unfavorable": "qbcore-39f4bf4ed1ac",
     "__word_favorite__:v1:unintelligible": "v3-e531127f005936fb",
     "__word_favorite__:v1:unobstructed": "v3-56b111eae9842796",
     "__word_favorite__:v1:unpredictable": "v3-294df4604811abd6",
@@ -50245,7 +50114,7 @@
     "__word_favorite__:v1:supersede": "v3-ba11bd90a30b7ae3",
     "__word_favorite__:v1:supersonic": "v3-40a13b748ecc27b3",
     "__word_favorite__:v1:supplemental": "v3-dfa766f701341d27",
-    "__word_favorite__:v1:supplementary": "v3-f6c48b6b20435f3d",
+    "__word_favorite__:v1:supplementary": "v3-dfa766f701341d27",
     "__word_favorite__:v1:suppression": "v3-83b27bf85945230d",
     "__word_favorite__:v1:surge": "v3-41ef29df4a53ab2d",
     "__word_favorite__:v1:surrender": "v3-e75eb6e2d3fb49fb",
@@ -50364,6 +50233,7 @@
     "__word_favorite__:v1:unfasten": "v3-55383585d7537641",
     "__word_favorite__:v1:window%20heat": "preview-0515",
     "__word_favorite__:v1:wxr": "preview-0936",
+    "__word_favorite__:v1:adverse%20%2F%20unfavorable": "qbcore-39f4bf4ed1ac",
     "__word_favorite__:v1:air%20inlet%20%2F%20air%20intake": "icao4-0016",
     "__word_favorite__:v1:air%20intake": "icao4-0016",
     "__word_favorite__:v1:downdraft%20%2F%20downdraught": "icao4-0231",
@@ -50385,14 +50255,18 @@
     "__word_favorite__:v1:rapid%20decompression%20%2F%20rapid%20depressurization%20%2F%20quick%20depressurization": "icao4-0673",
     "__word_favorite__:v1:rapid%20depressurization": "icao4-0673",
     "__word_favorite__:v1:quick%20depressurization": "icao4-0673",
+    "__word_favorite__:v1:stand%20%2F%20bay": "qbcore-d37a24b801c6",
     "__word_favorite__:v1:windshield%20%2F%20windscreen": "icao4-0930",
     "__word_favorite__:v1:windscreen": "icao4-0930",
+    "__word_favorite__:v1:baggage%20compartment%20%2F%20baggage%20hold": "icao5-0067",
     "__word_favorite__:v1:gasoline%20%2F%20petrol": "icao5-0394",
     "__word_favorite__:v1:petrol": "icao5-0394",
+    "__word_favorite__:v1:supplemental%20%2F%20supplementary": "v3-dfa766f701341d27",
     "__word_favorite__:v1:airport%20shuttle%20bus%20%2F%20airport%20passenger%20bus%20%2F%20ferry%20bus": "preview-0027",
     "__word_favorite__:v1:airport%20passenger%20bus": "preview-0027",
     "__word_favorite__:v1:ferry%20bus": "preview-0027",
     "__word_favorite__:v1:apron%20%2F%20ramp": "icao4-0050",
+    "__word_favorite__:v1:breaking%20up%20%2F%20cut%20in%20and%20out": "preview-0111",
     "__word_favorite__:v1:buildup%20%2F%20build-up": "qbcore-05240902edf8",
     "__word_favorite__:v1:cockpit%20%2F%20pilot's%20cabin": "preview-0148",
     "__word_favorite__:v1:deicing%20%2F%20de-icing": "preview-0191",

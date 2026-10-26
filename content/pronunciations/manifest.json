@@ -37071,6 +37071,25 @@
       }
     },
     {
+      "text": "breaking up. cut in and out",
+      "objectKey": "pronunciations/7246c4bbf9f1731e023a72909f59d118f890a963c638e9d4ca7c790d074cb1fe.mp3",
+      "publicPath": "/pronunciation-assets/2c5d5d748f42adc5ff4646af782fe65b4c9ec143903b071ed68dd9fae5bd7519.mp3",
+      "bankId": "vocabulary",
+      "checksum": "32f3d532c0bc0add44e33127596573159a746c2faba4d12e108e71418d686cf0",
+      "sizeBytes": 11564,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.416,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "differential",
       "objectKey": "pronunciations/4880569e837d8ce7eb4ddef3e5145eefc61f1e4859b3d3cd14d8628b00aabf17.mp3",
       "publicPath": "/pronunciation-assets/2c61ce10527af51cd9f83f9e859c64c0e9123767be22ea0211099dceedc6eb44.mp3",
@@ -82690,6 +82709,25 @@
       }
     },
     {
+      "text": "baggage compartment or baggage hold",
+      "objectKey": "pronunciations/4993dd0324d88ea27a112d89fca480ceabfa7bcad63958f67d68cff88987d0bb.mp3",
+      "publicPath": "/pronunciation-assets/6239fcb634fa17a00ca1a4ca83a92cc392a77905ab3601211d62c96e0c2b4405.mp3",
+      "bankId": "vocabulary",
+      "checksum": "145ab9fb83154fd2cba6063ca001f38dee1dc5a763b04e060d1cc0af5d2020be",
+      "sizeBytes": 16364,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.016,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "hold short of",
       "objectKey": "pronunciations/fa64af7f586fd4d310cfd71488b7c2696bce6f7ba8198f88ecf9338db4d3e3c7.mp3",
       "publicPath": "/pronunciation-assets/623ba1e95be6773e43dffae37b680f16d86038b9c1c49e95d166cd77be038958.mp3",
@@ -98004,6 +98042,25 @@
       }
     },
     {
+      "text": "supplemental. supplementary",
+      "objectKey": "pronunciations/730b6a74bccaaf693d958bf28d15e5e1a9f5a2abb36499146e45e8974d7e7791.mp3",
+      "publicPath": "/pronunciation-assets/757a7d1bf8e250f22ee13a41a814a69813a399b068ea9e2c4b6573c28d5e6b10.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f0236ecaa5d867d8ef515fecba3e410a5b50f8c9fe8428e76f75ca1dc9efbacc",
+      "sizeBytes": 14252,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.752,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "promotional",
       "objectKey": "pronunciations/f8d513a458fcb228f8c3667942805baf08d9fe4967fcd598cc2bcc5f428d2a5b.mp3",
       "publicPath": "/pronunciation-assets/7583c8caa81355ff8888740b4f0ebc247cdf481109ecaf355510d554f590eac9.mp3",
@@ -111788,6 +111845,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.936,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "supplemental or supplementary",
+      "objectKey": "pronunciations/ad79b85dca16e9084aea344a526bc0c0f007aee52c460464e82257e326f42f6c.mp3",
+      "publicPath": "/pronunciation-assets/86a20fa9c72fe125e0c888503bdf269b0c2a4a3255d4b672c014ab9e09f2a8f7.mp3",
+      "bankId": "vocabulary",
+      "checksum": "168529fdcf69d96ded2f47d2f38d8e506c31f62fc07a2b27729face926bd2826",
+      "sizeBytes": 15404,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.896,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -125649,6 +125725,25 @@
       }
     },
     {
+      "text": "stand. bay",
+      "objectKey": "pronunciations/5b33a602f62ab53d2248b422dea00d4c3c51a0cf76bb164d6e852264e1915e7d.mp3",
+      "publicPath": "/pronunciation-assets/97659406aaf8beb29c9317e991302e117757f49a472a8fcd188d2f92bf60b2f9.mp3",
+      "bankId": "vocabulary",
+      "checksum": "1527251e3fc9e04d664bab0b6ae3f7a03dff7c15e23f0b4e40885be349971cb4",
+      "sizeBytes": 7148,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.864,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "rotor",
       "objectKey": "pronunciations/3da2d28762e73df3e26970011b1ee22f88be46d3bec7c2e41eb27023ce5e6b9f.mp3",
       "publicPath": "/pronunciation-assets/977c168f01a5385167407b46bae68d0e413cd81d259d371d5936cc9426d0a0c2.mp3",
@@ -127007,6 +127102,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.76,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "adverse or unfavorable",
+      "objectKey": "pronunciations/0cbdb6cf4a67897af415f2f48c3180615eca1499325778d4e54159366f043ada.mp3",
+      "publicPath": "/pronunciation-assets/99846830ab7c9464810f24534ae602bd2ed52baf63c9ad4a96d5751f3f2b933a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "fcbeab5d9c21f3714fcf525591e31f235bc3c8ab526f0a668a0035e4b53d5e8d",
+      "sizeBytes": 11948,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.464,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -128432,6 +128546,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.768,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "baggage compartment. baggage hold",
+      "objectKey": "pronunciations/143eb9526998bb4599f4cb57b9672feea69dd0965d6506c9565888d945223051.mp3",
+      "publicPath": "/pronunciation-assets/9b2ef2869df45f737d2c8c58773e0c47a214e53e7935eaa9967c28828d84b2bf.mp3",
+      "bankId": "vocabulary",
+      "checksum": "28bc9ee6ada23a9cfc7f6091bbaaa6455db04106c33f4cd9cbab1d082942e8f4",
+      "sizeBytes": 15020,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.848,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -139965,6 +140098,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.144,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "stand or bay",
+      "objectKey": "pronunciations/fe1b7feca45ae471d003e79b606b4e86c008a2b5c5f496fdaf1ea3ee6c0c1d10.mp3",
+      "publicPath": "/pronunciation-assets/a9a3bc29217a7a6fc05c840c235f7c0ac7e7cbf0d0e15da3f4cdfb5b0ebdda40.mp3",
+      "bankId": "vocabulary",
+      "checksum": "210804cb8f71609774a0afc0670b996089b1c8d3c8b4ba508b70ea47cec30cff",
+      "sizeBytes": 8108,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.984,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -181167,6 +181319,25 @@
       }
     },
     {
+      "text": "adverse. unfavorable",
+      "objectKey": "pronunciations/4769bd67fe1742302305ab258d0b23ec1e26848721becbc37816c5d95866259f.mp3",
+      "publicPath": "/pronunciation-assets/dad5e66dd72e6d658093cba09b55300f64597300d336ade0e3e2d546d786e2b0.mp3",
+      "bankId": "vocabulary",
+      "checksum": "2c928e5ee68eb7722365c77288b419bf3f04971b8beb913968bf43141fdca951",
+      "sizeBytes": 10796,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.32,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "detection",
       "objectKey": "pronunciations/22e158809b2750d22a5b0daa406357d5425882424dcddfacfe41dd8b37fb0985.mp3",
       "publicPath": "/pronunciation-assets/dad9a79bf7094d4e4604288b20606bf0c332ad493b99c12f1d458912c5ab4bdc.mp3",
@@ -182487,6 +182658,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.744,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "breaking up or cut in and out",
+      "objectKey": "pronunciations/9f53e6e665138cc7185a9428c4a946733b4820d46e10a864843215ce86468db3.mp3",
+      "publicPath": "/pronunciation-assets/dc483b8726add87483f9bb060459bf4973b1a30615c947306969275dbb06e171.mp3",
+      "bankId": "vocabulary",
+      "checksum": "07e4132a3078ec3c66969670b308ba6f6ef472e416a40b361fca9a5b3eecfab9",
+      "sizeBytes": 12716,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.56,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
