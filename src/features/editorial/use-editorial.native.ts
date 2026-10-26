@@ -24,14 +24,23 @@ export function useResourceEditorial() {
     setState({ status: 'loading' });
     void loadResourceEditorial()
       .then(async (result) => {
-        const items = await Promise.all(result.data.items.map(async (item) => ({
-          ...item,
-          coverUrl: await resolveEditorialCover(item).catch(() => undefined),
-        })));
         if (!active) return;
+        const items = result.data.items;
         setState(items.length === 0
           ? { status: 'empty' }
           : { status: 'ready', value: items, source: result.source, warning: Boolean(result.warning) });
+        // Text is usable immediately; slow cover signing must not gate the list.
+        let next = 0;
+        await Promise.all(Array.from({ length: Math.min(4, items.length) }, async () => {
+          while (active && next < items.length) {
+            const index = next++;
+            const coverUrl = await resolveEditorialCover(items[index]).catch(() => undefined);
+            if (!active || !coverUrl) continue;
+            setState(current => current.status === 'ready'
+              ? { ...current, value: current.value.map((item, i) => i === index ? { ...item, coverUrl } : item) }
+              : current);
+          }
+        }));
       })
       .catch(() => {
         if (active) setState({ status: 'error', retry });
@@ -59,14 +68,14 @@ export function useEditorialArticle(slug: string) {
           setState({ status: 'empty' });
           return;
         }
+        setState({
+          status: 'ready', value: result.data.article,
+          source: result.source, warning: Boolean(result.warning),
+        });
         const coverUrl = await resolveEditorialCover(result.data.article).catch(() => undefined);
-        if (active) {
-          setState({
-            status: 'ready',
-            value: { ...result.data.article, coverUrl },
-            source: result.source,
-            warning: Boolean(result.warning),
-          });
+        if (active && coverUrl) {
+          setState(current => current.status === 'ready'
+            ? { ...current, value: { ...current.value, coverUrl } } : current);
         }
       })
       .catch(() => {

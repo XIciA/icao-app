@@ -585,6 +585,14 @@ describe('embeddedQuestionBankRepository', () => {
     await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).rejects.toMatchObject({ code: 'membership_required', status: 403 });
   });
 
+  it('returns authorized Web member text without requesting native offline credentials', async () => {
+    const { request } = await authenticatedContentApi({ credentialStatus: 503 });
+    Platform.OS = 'web';
+    const topic = await remoteQuestionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    expect(topic?.cards.length).toBeGreaterThan(0);
+    expect(request.mock.calls.some(([url]) => String(url).endsWith('/v1/content-access/credentials'))).toBe(false);
+  });
+
   it('rejects a late authorized topic when its account changes during optional credential loading', async () => {
     const { accountId, request } = await authenticatedContentApi();
     const route = request.getMockImplementation()!;
@@ -651,8 +659,15 @@ describe('embeddedQuestionBankRepository', () => {
       bankId: 'listening', categoryId: 'listening-category-01', version: 12, checksum: 'ab'.repeat(32), topic,
       access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: false, membershipExpiresAt: null },
     } }) } as Response);
-    await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'))
-      .resolves.toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-950' })]) });
+    const results = await Promise.all([
+      questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'),
+      questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'),
+    ]);
+    for (const result of results) {
+      expect(result).toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-950' })]) });
+    }
+    expect(results[0]).not.toBe(results[1]);
+    expect(globalThis.fetch).toHaveBeenCalledTimes(1);
   });
 
   it('returns authorized online audio before optional offline download completes, then retains the verified offline copy', async () => {
