@@ -1,0 +1,24 @@
+import { fireEvent, render } from '@testing-library/react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RadioQueueSheet } from '../RadioQueueSheet';
+import { emptyRadioQueueFilter } from '../queue-filter';
+import type { RadioPlayerContextValue } from '../types';
+jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ hydrated: true, tagDefinitions: [{ id: 'custom-tag', color: 'blue', label: '复习' }], highlightDefinitions: [{ id: 'custom-highlight', color: 'blue', label: '关键句' }] }) }));
+it('edits a draft, uses separate definition IDs and only applies on completion', async () => {
+  const setQueueFilter = jest.fn();
+  const radio = { catalogs: [], queueFilter: emptyRadioQueueFilter, setQueueFilter } as unknown as RadioPlayerContextValue;
+  const tree = await render(<SafeAreaProvider initialMetrics={{ frame: { width: 390, height: 844, x: 0, y: 0 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } }}><RadioQueueSheet radio={radio} visible onClose={jest.fn()} /></SafeAreaProvider>);
+  await fireEvent.press(tree.getByLabelText('筛选播放队列'));
+  await fireEvent.press(tree.getByRole('checkbox', { name: '标签' }));
+  await fireEvent.press(tree.getByLabelText('标签：复习'));
+  await fireEvent.press(tree.getByRole('checkbox', { name: '高亮' }));
+  await fireEvent.press(tree.getByLabelText('高亮：关键句'));
+  await fireEvent.press(tree.getByRole('checkbox', { name: '笔记' }));
+  expect(setQueueFilter).not.toHaveBeenCalled();
+  await fireEvent.press(tree.getByText('完成'));
+  expect(setQueueFilter).toHaveBeenCalledWith({ tags: true, tagIds: ['custom-tag'], highlights: true, highlightIds: ['custom-highlight'], notes: true });
+  await fireEvent.press(tree.getByLabelText('筛选播放队列'));
+  await fireEvent.press(tree.getByRole('checkbox', { name: '笔记' }));
+  await fireEvent.press(tree.getByLabelText('关闭筛选'));
+  expect(setQueueFilter).toHaveBeenCalledTimes(1);
+});

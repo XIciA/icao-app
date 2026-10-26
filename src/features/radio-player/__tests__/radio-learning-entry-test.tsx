@@ -150,13 +150,18 @@ it('keeps presets and completion inside the interval tutorial target', async () 
 });
 
 
-it('shows the full total and selects an unloaded late question by its position', async () => {
-  mockDirectoryTracks = Array.from({ length: 100 }, (_, index) => ({ ...mockTrack, id: `entry-${index}`, title: `Topic item ${index}`, stableIndex: index, bankId: 'listening', contentLoaded: false, audioPath: '', audioText: '' }));
+it('uses the existing hierarchy to select an unloaded question without search', async () => {
+  mockDirectoryTracks = [
+    { ...mockTrack, id: 'entry-0', title: 'First question', bankId: 'listening', contentLoaded: false, audioPath: '', audioText: '' },
+    { ...mockTrack, id: 'entry-99', title: 'Late question', categoryId: 'late-category', categoryTitle: '后续分类', topicId: 'late-topic', topicTitle: '后续分组', stableIndex: 99, bankId: 'listening', contentLoaded: false, audioPath: '', audioText: '' },
+  ];
   const screen = await render(<SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}><RadioPlayerScreen /></SafeAreaProvider>);
-  expect(screen.getByText('1/100')).toBeTruthy();
+  expect(screen.getByText('1/2')).toBeTruthy();
   await fireEvent.press(screen.getByLabelText('打开播放队列'));
-  await fireEvent.changeText(screen.getByLabelText('搜索播放队列'), '100');
-  await fireEvent.press(screen.getByLabelText('播放 Topic item 99'));
+  expect(screen.queryByLabelText('搜索播放队列')).toBeNull();
+  expect(screen.queryByText('播放全部')).toBeNull();
+  await fireEvent.press(screen.getByLabelText('展开后续分类'));
+  await fireEvent.press(screen.getByLabelText('播放 Late question'));
   expect(mockSelectTrack).toHaveBeenCalledWith('entry-99', true);
   await screen.unmount();
   mockDirectoryTracks = [mockTrack as RadioTrack];
