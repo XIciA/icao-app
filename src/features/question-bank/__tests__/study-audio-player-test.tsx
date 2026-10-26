@@ -211,6 +211,20 @@ describe('StudyAudioPlayer', () => {
     await screen.unmount();
   });
 
+  it.each(['ios', 'android'] as const)('shows a native session failure and recovers on another %s play tap', async platform => {
+    setTestPlatform(platform);
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(<StudyAudioPlayer label="Sentence584" playbackKey="native-recovery" uri="https://example.test/584.mp3" variant="integrated-recording" />);
+    mockSetAudioModeAsync.mockRejectedValueOnce(new Error('mode')).mockRejectedValueOnce(new Error('idle'));
+    await act(async () => { fireEvent.press(screen.getByLabelText('播放')); });
+    await waitFor(() => expect(screen.getByText('音频暂时无法启动，请再次点击播放重试。')).toBeTruthy());
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+    await act(async () => { fireEvent.press(screen.getByLabelText('播放')); });
+    await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+    expect(screen.queryByText('音频暂时无法启动，请再次点击播放重试。')).toBeNull();
+    await screen.unmount();
+  });
+
   it('turns a Web first-frame stall into a recoverable state instead of spinning forever', async () => {
     setTestPlatform('web');
     mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };

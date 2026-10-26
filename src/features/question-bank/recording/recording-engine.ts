@@ -544,6 +544,15 @@ export class RecordingEngine {
       );
     } catch (error) {
       const code = codeForError(error, fallback);
+      const sessionCode = (error as AudioSessionError | undefined)?.diagnosticCode;
+      if (sessionCode && [
+        'session_mode_configuration_failed', 'session_activation_failed', 'session_deactivation_failed',
+        'session_recovery_pending', 'session_recovery_failed',
+      ].includes(sessionCode)) {
+        // Stable stage codes survive feedback sanitization; native messages may
+        // contain device details and are deliberately not uploaded.
+        this.report(sessionCode, 'audio_mode', operation, 'error');
+      }
       if (!operation.timedOut) {
         await this.cleanupOperation(operation);
         this.rebuildPreparedRuntime(operation);

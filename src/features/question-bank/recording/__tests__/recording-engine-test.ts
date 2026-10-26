@@ -158,6 +158,21 @@ describe('RecordingEngine lifecycle contract', () => {
     expect(engine.getSnapshot().runtimeEpoch).toBe(1);
   });
 
+  it('records the safe audio-session failure stage before any recorder preparation', async () => {
+    const { audioSession, engine, runtime } = setup();
+    audioSession.acquire.mockRejectedValueOnce(Object.assign(new Error('private native details'), {
+      code: 'mode_switch_failed', diagnosticCode: 'session_recovery_pending',
+    }));
+    engine.pressIn();
+    await flush();
+    expect(runtime.prepare).not.toHaveBeenCalled();
+    expect(engine.getSnapshot().error?.code).toBe('recording_audio_mode_failed');
+    expect(mockEmitAudioDiagnostic).toHaveBeenCalledWith(expect.objectContaining({
+      code: 'session_recovery_pending', phase: 'audio_mode', level: 'error',
+    }));
+    expect(JSON.stringify(mockEmitAudioDiagnostic.mock.calls)).not.toContain('private native details');
+  });
+
   it('releases the audio session and reports only the sanitized native prepare reason', async () => {
     const nativeFailure = Object.assign(new Error('recording_native_prepare_failed'), {
       code: 'recording_native_prepare_failed',
