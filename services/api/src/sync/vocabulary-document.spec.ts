@@ -60,3 +60,12 @@ describe('vocabulary document merge', () => {
     expect(mergeVocabularyDocuments(current,reset).words[target]?.status).toBe('new');
   });
 });
+
+it('round-trips rated session answers while retiring a merged cursor without repeating its survivor',()=>{
+  const updatedAt='2026-10-27T00:00:00.000Z';
+  const policy={schemaVersion:1 as const,version:5,retiredIds:{old:'survivor'},retiredFavoriteKeys:{},testWords:{survivor:{word:'survivor',meaning:'保留词'}}};
+  const value={schemaVersion:1,words:{old:{status:'known',favorite:false,updatedAt}},updatedAt,studySession:{wordIds:['old','survivor'],nextWordId:'old',order:'random',startedAt:updatedAt,updatedAt,answers:{old:'known'}}};
+  const result=mergeVocabularyDocuments(value,value,policy);
+  expect(result.studySession).toMatchObject({wordIds:['survivor'],nextWordId:null,answers:{survivor:'known'}});
+  expect(result.words.old).toBeUndefined();expect(result.words.survivor?.status).toBe('known');
+});

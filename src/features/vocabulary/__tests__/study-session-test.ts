@@ -23,3 +23,10 @@ it('removes retired session IDs, resolves merged IDs and finds the next actual u
   const migrated=migrateVocabularyDocument(state,policy);
   expect(migrated.studySession?.wordIds).toEqual([a,b,c]);expect(migrated.studySession?.nextWordId).toBe(a);
 });
+
+it('does not treat a favorite timestamp as a learning answer when resuming',()=>{
+  const empty=createEmptyVocabularyState(),first=prepareVocabularySession(words,empty,'frequency'),id=first.queue[0]!.id;
+  const state={...empty,words:{[id]:{status:'known' as const,favorite:true,updatedAt:'2030-01-01T00:00:00.000Z'}},studySession:{...first.session,answers:{}}};
+  expect(prepareVocabularySession(words,state,'frequency').revealed).toBe(false);
+  expect(prepareVocabularySession(words,{...state,studySession:{...state.studySession,answers:{[id]:'known'}}},'frequency').revealed).toBe(true);
+});

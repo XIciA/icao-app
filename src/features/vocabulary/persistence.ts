@@ -48,11 +48,12 @@ export function normalizeVocabularyState(value: unknown, migrate = true): Vocabu
   const lastTest = normalizeTestResult(candidate.lastTest);
   const session = candidate.studySession;
   const studySession = session && Array.isArray(session.wordIds) && session.wordIds.length<=10000 && session.wordIds.every(id=>typeof id==='string') && (session.nextWordId===null || typeof session.nextWordId==='string') && ['frequency','random'].includes(session.order) && Number.isFinite(Date.parse(session.startedAt)) && Number.isFinite(Date.parse(session.updatedAt)) ? session : undefined;
+  const sessionAnswers=studySession?.answers && typeof studySession.answers==='object' && !Array.isArray(studySession.answers) ? Object.fromEntries(Object.entries(studySession.answers).filter(([,status])=>String(status)!=='new'&&statuses.has(status as VocabularyWordStatus))) : {};
   const state: VocabularyState = {
     schemaVersion: 1,
     words,
     ...(lastTest ? { lastTest } : {}),
-    ...(studySession ? {studySession} : {}),
+    ...(studySession ? {studySession:{...studySession,answers:sessionAnswers}} : {}),
     updatedAt: validDate(candidate.updatedAt),
   };
   return migrate ? migrateCurrentVocabulary(state) : state;

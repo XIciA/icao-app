@@ -76,3 +76,9 @@ test('a deleted spelling may be added as a fresh word without resurrecting its o
   const migrated=migrateVocabularyDocument({words:{[word.id]:progress('known',true),[vocabularyFavoriteKey(word.word)]:progress('new',true)},updatedAt:'2026-10-26T00:00:00.000Z'},restored.policy);
   assert.deepEqual(migrated.words,{});
 });
+
+test('a publication never hashes or persists the prior transport checksum inside its content',()=>{
+  const previous=release(),decorated={...previous,checksum:'f'.repeat(64),cachedAt:'2026-10-27'};
+  const next=applyVocabularyEdits(decorated,[{type:'upsert',word:{...previous.dataset.books[0].words[0],meaning:'更新中文'}}]);
+  assert.equal(Object.hasOwn(next,'checksum'),false);assert.equal(Object.hasOwn(next,'cachedAt'),false);
+});

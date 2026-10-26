@@ -20,7 +20,7 @@ const rawVocabularyDocumentSchema = z.object({
   schemaVersion: z.literal(1),
   words: z.record(z.string(), progressSchema),
   lastTest: testResultSchema.optional(),
-  studySession: z.object({wordIds:z.array(z.string().max(160)).max(10000),nextWordId:z.string().max(160).nullable(),order:z.enum(['frequency','random']),startedAt:z.string().datetime(),updatedAt:z.string().datetime()}).optional(),
+  studySession: z.object({answers:z.record(z.string(),z.enum(['known','vague','forgot','wrong'])).optional(),wordIds:z.array(z.string().max(160)).max(10000),nextWordId:z.string().max(160).nullable(),order:z.enum(['frequency','random']),startedAt:z.string().datetime(),updatedAt:z.string().datetime()}).optional(),
   updatedAt: z.string().datetime(),
 });
 export const vocabularyDocumentSchema = rawVocabularyDocumentSchema.transform(value => migrateVocabularyDocument(value));
@@ -64,6 +64,9 @@ export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: u
         ? incomingTest
         : currentTest;
   const updatedAt = Date.parse(incoming.updatedAt) > Date.parse(current.updatedAt) ? incoming.updatedAt : current.updatedAt;
-  const studySession=newer(current.studySession,incoming.studySession);
+  let studySession=newer(current.studySession,incoming.studySession);
+  if(studySession && current.studySession?.startedAt===incoming.studySession?.startedAt){
+    studySession={...studySession,answers:{...current.studySession?.answers,...incoming.studySession?.answers}};
+  }
   return { schemaVersion: 1, words, ...(lastTest ? { lastTest } : {}), ...(studySession ? {studySession} : {}), updatedAt };
 }

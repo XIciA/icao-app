@@ -1,5 +1,5 @@
 import type { VocabularyWord } from './index.ts';
-import { validateVocabularyLiveContent, validateVocabularyPolicyTransition, vocabularyFavoriteKey, vocabularyTerms, type VocabularyLiveContent } from './vocabulary-live.ts';
+import { validateVocabularyLiveContent, validateVocabularyPolicyTransition, vocabularyLivePayload, vocabularyFavoriteKey, vocabularyTerms, type VocabularyLiveContent } from './vocabulary-live.ts';
 
 export type VocabularyEdit =
   | { type: 'upsert'; word: VocabularyWord }
@@ -9,7 +9,7 @@ export type VocabularyEdit =
 
 /** Pure publication planner used by the admin API, imports and deterministic tests. */
 export function applyVocabularyEdits(previous: VocabularyLiveContent, edits: VocabularyEdit[], version = previous.version + 1): VocabularyLiveContent {
-  const next = JSON.parse(JSON.stringify(previous)) as VocabularyLiveContent;
+  const next = JSON.parse(JSON.stringify(vocabularyLivePayload(previous))) as VocabularyLiveContent;
   next.version = version; next.dataset.version = version; next.policy.version = version;
   const words = new Map(next.dataset.books.flatMap(book => book.words.map(word => [word.id, word] as const)));
   const get = (id: string) => { const word = words.get(id); if (!word) throw new Error(`vocabulary_word_missing:${id}`); return word; };
