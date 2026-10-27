@@ -54,7 +54,7 @@ for (const contract of [
   'rehearse-production-migrations.sh',
   'parse-rehearsal',
   'characters unsafe for remote argument transport',
-  'git archive --format=tar "$SOURCE_SHA"',
+  'git archive --format=tar "$PAYLOAD_SOURCE_SHA"',
   '/opt/icao/runtime/production-migrations',
   '# BEGIN production-migration-upload-name-validation',
   '# END production-migration-upload-name-validation',
