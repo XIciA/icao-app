@@ -2,6 +2,8 @@
 
 交付日期：2026-10-27（北京时间）。当前状态：代码检查通过、配套生产上线完成、TestFlight可访问；用户真机验收待完成。
 
+最新交付为 **1.3.17 / 3586475**，见文末「2026-10-27 界面与反馈迭代」。以下原表保留1.3.16基线事实。
+
 ## 已交付版本与来源
 
 | 目标 | 版本 / 身份 | 精确来源与证据 |
@@ -72,3 +74,61 @@ iOS正式脚本保留音频、类型、发布合同、生产配置、微信SDK/A
 唯一构建目录：`/Users/zhouyide/Desktop/icao-app/.generated/testflight-release-20261026`。最终包及candidate/audit在`.generated/testflight/`；Apple、渠道、兼容、音频上传和迁移回执在`.generated/oct27-delivery/`；真实AI在`.generated/critical-capabilities/`；Ops回执在`.generated/ops-release/unified-20261027-3586474/`。旧过程记录备份在`oct27-delivery/release-record-before-consolidation.md`。
 
 用户真机重点验收：900句播放→录音→停止→回放及后台恢复；等级/场景切换和721/900范围；随身听筛选与播放；1652词最新版、发音与旧学习进度；模考重听、反馈和听力高亮。当前仅900句设计成果获得用户确认，TestFlight真机结果待用户提供。
+
+
+## 2026-10-27 界面与反馈迭代：1.3.17 / 3586475
+
+本轮已获用户统一实施及上传TestFlight授权，功能由PR #285进入主干；实际构建、API和Web源码均为
+`5fe05c123eb8d12668c0a3edcf6d00cf4f536e36`。该提交在功能合并后只补充了网页支付交付记录。
+
+| 目标 | 实际结果 |
+| --- | --- |
+| TestFlight | 1.3.17 / 3586475；Apple buildId `d1e01570-065f-42f6-8c02-2f8f6eb739f8`，VALID、IN_BETA_TESTING、未过期；1个现有内部组可访问，16:17:56核对 |
+| IPA | `.generated/testflight/export-3586475-20261027T074026Z/app.ipa`；SHA256 `5b4593885d6f7efb1e4ebeb861fb4a2efe93aff6b362ed110210afc5d4e7e6d3` |
+| API | `production-migration-5fe05c123eb8`；镜像 `e481475b6c9e39e68605079c9c54ee34d45bb8d3afd189eb6ac8a446263456c2`；0058已应用，账本59项、0 pending、0 drift |
+| EdgeOne | deployment `dp6w1a57s6uj`；公网脚本 `index-d89216f036b9eab8275a388e464dc231.js` 与本地逐字节一致，SHA256 `669e57146844dd303287267878743aec6d91a587a0f3d791bd5195c6ea50f815` |
+| 运营后台 | `ui-followup-20261027-3586475`，16:35:43部署核验完成；来源5fe05c12，TLS/健康、管理员只读预检及普通API隔离通过；公网资源已确认包含排序及考试字段 |
+| 更新渠道 | `ios-testflight`已切换1.3.17 / 3586475；App Store及两个Android渠道与切换前逐项一致；未提交App Store审核 |
+
+Annotated tags：`release/ios-testflight/v1.3.17-b3586475`、`release/api-production/20261027-5fe05c12`、
+`release/web-edgeone/20261027-5fe05c12`、`release/ops-production/20261027-5fe05c12`，均绑定上述实际源码。
+
+### 功能与验证
+
+- 900句场景目录复用等级目录的卡片尺寸和原有学习组件；恢复Sentence加原编号，模考重听前缀改为`say again`。
+- 同页按等级或场景选择导出范围，场景支持多选/全选；四级721句、五级900句。PDF保留原编号、标注及已有保存/分享能力。
+- 随身听分类与漏斗按钮等大且可区分，分类菜单两项完整显示；课程底部品牌署名和登录辅助标语已删除。
+- 考情反馈使用火苗图标并默认OPI；考试日期/考点名称选填、初始空，贯通提交、历史和后台；意见/考情标签统一字号和尺寸。
+- 后台词库新增字母/词频排序；沿用人工确认v4/1652词及既有学习记录，不发布新词表。
+- 完整本地媒体、前端1793项、API740项、合同10项及最终主干云端检查通过；实际900句场景PDF和独立PG17反馈迁移/幂等/跨时区/旧记录兼容验证通过。
+- 16:04:20真实生产转写、语法、润色、航空实体保护及临时数据清理通过。微信配置与本轮切换前一致，Native支付开关保持开启。
+
+0058只新增两个可空列。隔离恢复、原有表指纹、schema及客户端权限验证通过；演练凭据为
+`/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-5fe05c123eb8-20261027T075422Z.txt`。
+正式停写后的权威备份为`icao-20261027T080123Z-2121643.dump`，SHA256
+`0adadc3a4e0822c084b67e2a831fbf033dc3db5dcf131bd600e0da5c9d6db3de`；成功凭据为
+`/opt/icao/runtime/production-migrations/evidence/apply-5fe05c123eb8-20261027T080254Z-a53e30a93b1c-succeeded.txt`。
+演练备份072806仅用于隔离验证，不冒充切换时的权威备份。
+
+首次迁移准备被磁盘保护停止，尚未改动生产数据。未使用的旧API镜像7ef7188先完整归档并验证全部内容块，再移除服务器副本，当前服务和近期恢复镜像保留，迁移后的异常按既有向前修复策略处理。
+恢复归档`~/.config/icao-app/recovery-images/20261027-api-coordinated/historical-coordinated-api-20261026-compressed-transfer.tar.gz`，
+448196352字节，SHA256 `cac4b29f29d58cd4b935ec3e84d8ef71c5b4fc7f9afdb5fadec91ce170c458b4`，不得删除。
+包审计另曾拦截缓存工程残留的旧版本元数据；使用现有配置插件刷新生成工程并重新归档后通过身份、签名、权限和生产地址核对，失败候选未上传且已清理。
+
+本轮Apple、渠道、Web、迁移及缓存复用回执位于唯一构建目录下的`.generated/followup-delivery/`；
+候选审计保存在`.generated/testflight/`，真实AI回执保存在`.generated/critical-capabilities/`；后台正式回执在`.generated/ops-release/ui-followup-20261027-3586475/deployment-evidence.json`，公网JS SHA256为`44ba2d8546ca1d70495efff89d134bf95091cab670f9ad7c1dcbe1701111e090`。
+本轮临时服务器编译缓存标签已清理，正式包、直接前序版本和私有恢复归档保留。
+
+### 用户逐项验收清单
+
+以下均待用户在新版真机或对应后台确认，自动检查和上传成功不等同验收通过。
+
+- [ ] 新账号登录题库首页：选择ICAO 4/5、初考/复考、精选/最全题库并保存。老账号可从「我的」打开同一备考设置；教学重置不会重置首次账号设置。
+- [ ] 900句等级/场景切换：卡片宽度、字号及学习界面一致；四级721句、五级900句；Sentence原编号和学习进度保持。
+- [ ] 900句播放→录音→停止→回放，连续切题和后台返回后再试。
+- [ ] 模考重听显示`say again`，原有本组次数限制正常。
+- [ ] 导出同页先选等级/场景，再选范围；场景多选/全选及生成PDF、标注、保存分享正常。
+- [ ] 随身听两个图标等大且不同；分类菜单完整，标签/高亮/笔记筛选有效，切换分组保持当前播放。
+- [ ] 考情反馈默认OPI；日期/考点可空、日期可清空；提交后历史和后台能查看；左右标签字号一致，意见反馈无考试字段。
+- [ ] 后台词库切换字母/词频排序，搜索与词书筛选正常，编辑草稿保持。
+- [ ] 课程底部多余品牌署名及登录辅助标语已移除，咨询和登录流程正常。
