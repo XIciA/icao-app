@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "version": 6,
-  "publishedAt": "2026-10-21T15:00:00.000Z",
+  "publishedAt": "2026-10-27T05:30:00.000Z",
   "help": [
     {
       "id": "bank-selection",
@@ -28,7 +28,7 @@
     "agreement": {
       "id": "agreement",
       "version": "v5.2",
-      "effectiveAt": "2026-10-21",
+      "effectiveAt": "2026-10-27",
       "title": "用户服务协议",
       "intro": "欢迎使用由云启航科（成都）科技有限公司提供的听你五个。在登录或使用本应用前，请仔细阅读并充分理解本协议。",
       "sections": [
@@ -84,7 +84,7 @@
     "privacy": {
       "id": "privacy",
       "version": "v5.4",
-      "effectiveAt": "2026-10-21",
+      "effectiveAt": "2026-10-27",
       "title": "隐私政策",
       "intro": "云启航科（成都）科技有限公司重视您的个人信息与隐私。本政策按听你五个当前实际功能说明数据的收集、使用、存储、共享和删除方式。",
       "sections": [
@@ -136,7 +136,7 @@
     "thirdPartyServices": {
       "id": "thirdPartyServices",
       "version": "v5.3",
-      "effectiveAt": "2026-10-21",
+      "effectiveAt": "2026-10-27",
       "title": "第三方服务清单",
       "intro": "仅在提供相应功能所需范围内使用以下服务；具体处理规则见隐私政策。",
       "sections": [
