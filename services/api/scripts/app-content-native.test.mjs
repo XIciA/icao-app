@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import ts from 'typescript';
 import { describe, expect, it, vi } from 'vitest';
 import { assertImmutableRelease, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
-import { assertLegalDocumentVersions, prepareAppContent } from './import-app-content.mjs';
+import { assertHotspotSourcesPreserved, assertLegalDocumentVersions, prepareAppContent } from './import-app-content.mjs';
 const root = new URL('../../../', import.meta.url);
 const json = (name) => JSON.parse(readFileSync(new URL(name, root), 'utf8'));
 function evaluate(path, modules, extras = {}) {
@@ -194,4 +194,11 @@ describe('native legal receipts offline', () => {
     api.mockRejectedValueOnce(new ApiError('invalid_token', 401));
     await expect(module.getLegalConsentStatus('account-a')).rejects.toThrow('invalid_token');
   });
+});
+
+it('blocks loss of published center/question provenance in an unrelated content update', () => {
+  const source = { id: 'source', centers: ['北京'], topics: [{ topicId: 'weather', cardIds: ['one'] }] };
+  const prior = { hotspots: { briefs: [{ sources: [source] }] } };
+  expect(() => assertHotspotSourcesPreserved(prior, { hotspots: { briefs: [{}] } })).toThrow('hotspot_source_relations_must_be_preserved');
+  expect(() => assertHotspotSourcesPreserved(prior, structuredClone(prior))).not.toThrow();
 });

@@ -9,6 +9,7 @@ const root = new URL('../', import.meta.url);
 const read = path => JSON.parse(readFileSync(new URL(path, root), 'utf8'));
 const proofPath = 'docs/records/workstreams/question-bank-standardization-20261022/identity-proofs.json';
 const displayChanges = read('docs/workstreams/next-round-2026-10/display-field-changes.json');
+const finalPolishChanges = read('docs/workstreams/next-round-2026-10/final-polish-card-changes.json');
 const resources = read('content/question-banks/resources/manifest.source.json');
 const sourceBanks = read('src/features/question-bank/data/question-bank.json');
 const release = prepareNativeContentRelease(
@@ -33,6 +34,8 @@ function proof(bank) {
     // Compare approved display-only changes against the original lexical proof.
     // Any unrecorded edit still fails the exact checksum.
     for (const field of ['taskTitle', 'imageAlt']) {
+      const latest = finalPolishChanges[`${card.id}#${field}`];
+      if (latest && content[field] === latest.after) content[field] = latest.before;
       const change = displayChanges[`${card.id}#${field}`];
       if (change && content[field] === change.after) content[field] = change.before;
     }

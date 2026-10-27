@@ -27,6 +27,18 @@ export function assertLegalDocumentVersions(previousPayloads, nextPayload) {
   }
 }
 
+/** A legal/help update must not silently flatten already published provenance. */
+export function assertHotspotSourcesPreserved(previous, next) {
+  const sources = next.hotspots.briefs.flatMap(b => b.sources ?? []);
+  for (const brief of previous.hotspots.briefs) for (const old of brief.sources ?? []) {
+    const found = sources.find(s => s.id === old.id);
+    if (!found || !old.centers.every(c => found.centers.includes(c))
+      || !old.topics.every(t => t.cardIds.every(id => found.topics.some(n => n.topicId === t.topicId && n.cardIds.includes(id))))) {
+      throw new Error('hotspot_source_relations_must_be_preserved');
+    }
+  }
+}
+
 export async function publishAppContent(database, release, { beforeActivation, preserveActive = false } = {}) {
   return await database.begin(async (sql) => {
     await sql`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
@@ -39,6 +51,10 @@ export async function publishAppContent(database, release, { beforeActivation, p
     assertHotspotReferences(release.payload.hotspots, opi?.payload);
     const published = await sql`select payload from app_content_releases`;
     assertLegalDocumentVersions(published.map((row) => row.payload), release.payload);
+    if (previous) {
+      const prior = await sql`select payload from app_content_releases where version = ${previous.version}`;
+      assertHotspotSourcesPreserved(prior[0].payload, release.payload);
+    }
     const [existing] = await sql`select checksum from app_content_releases where version = ${release.version}`;
     if (existing && existing.checksum !== release.checksum) throw new Error('app_content_version_immutable');
     // Persist only immutable release identities before committing the activation.

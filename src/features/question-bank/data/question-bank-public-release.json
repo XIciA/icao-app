@@ -21,7 +21,7 @@
     {
       "bankId": "opi",
       "version": 27,
-      "checksum": "ae04603cffff3dff8b0ecd18d6da645d0cbee2092381cca05710773baaea946b"
+      "checksum": "5c881b29741ec044a100565b12cd18ac3a1626d4bef7d12d164a06414d55ef19"
     },
     {
       "bankId": "storytelling",
@@ -29,5 +29,5 @@
       "checksum": "cde4b45c5e2bfd4f67fd0325c60daba4a38a816e51e9d24212bc181871bc2d7e"
     }
   ],
-  "checksum": "e8c3cf7de7f14d12e8c5b03b5ce3e15536bd7b00990c532883b095f3bfb1241e"
+  "checksum": "9341213a203eedf7f53804be7a148e74be5980c6b51728de49b72dc4cf910217"
 }

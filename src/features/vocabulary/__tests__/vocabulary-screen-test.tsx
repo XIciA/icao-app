@@ -72,6 +72,7 @@ jest.mock('../progress-store', () => ({
 }));
 
 import { VocabularyScreen } from '../VocabularyScreen';
+import { VocabularyTestRunner } from '../components/VocabularyTestViews';
 
 function withSafeArea(node: React.ReactNode) {
   return <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>{node}</SafeAreaProvider>;
@@ -213,4 +214,19 @@ it('keeps compact-card details separate from multi-selection and guide confirmat
   await fireEvent.press(screen.getByLabelText('取消选择ICAO 4 必会'));
   expect(confirm).toHaveBeenLastCalledWith('vocab-book', false);
   expect(event).not.toHaveBeenCalledWith('vocab-book');
+});
+
+it('shows a correction button and keeps the running test stable when the catalog refreshes', async () => {
+  const finish = jest.fn(); const exit = jest.fn();
+  const books = [createBook('icao4', '当前词书', 35)];
+  const screen = await render(withSafeArea(<VocabularyTestRunner books={books} onExit={exit} onFinish={finish} />));
+  await fireEvent.press(screen.getByText('认识'));
+  expect(screen.getByRole('button', { name: '改为不认识' })).toBeTruthy();
+  await fireEvent.press(screen.getByRole('button', { name: '改为不认识' }));
+  expect(screen.queryByText('改为不认识')).toBeNull();
+  expect(screen.getByText('不认识')).toBeTruthy();
+  await screen.rerender(withSafeArea(<VocabularyTestRunner books={[]} onExit={exit} onFinish={finish} />));
+  await fireEvent.press(screen.getByText('下一题'));
+  expect(screen.getByText('2 / 30')).toBeTruthy();
+  expect(finish).not.toHaveBeenCalled();
 });

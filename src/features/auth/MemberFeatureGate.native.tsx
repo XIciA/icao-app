@@ -6,6 +6,7 @@ import { Button, Screen } from '@/components/ui';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { CenteredState } from '@/components/states/CenteredState';
 import { TopBar } from '@/components/navigation/TopBar';
+import { useLoginEntry } from './use-login-entry';
 import { useAuth } from './AuthProvider';
 import { destinationWithQuery } from './guest-access';
 import { useCommerceRuntime } from '@/features/native-commercial-testflight/CommerceRuntimeProvider';
@@ -13,6 +14,7 @@ import { useCommerceRuntime } from '@/features/native-commercial-testflight/Comm
 /** Protect the destination too: deep links and alternate entries use the same gate. */
 export function MemberFeatureGate({ children }: PropsWithChildren) {
   const auth = useAuth();
+  const login = useLoginEntry();
   const commerce = useCommerceRuntime();
   const router = useAppRouter();
   const pathname = usePathname();
@@ -33,7 +35,7 @@ export function MemberFeatureGate({ children }: PropsWithChildren) {
   useEffect(() => {
     if (!focused) { redirected.current = false; return; }
     if (redirected.current) return;
-    if (!auth.canAccessApp) { redirected.current = true; router.replace(`/account/membership?next=${encodeURIComponent(destination)}` as Href); return; }
+    if (!auth.canAccessApp) { redirected.current = true; login(destination, undefined, { replace: true }); return; }
     // Missing or failed entitlement reads are not evidence of a non-member.
     if (commerce.entitlement && !active && !['loading', 'reconciling', 'error'].includes(commerce.phase)) {
       redirected.current = true;

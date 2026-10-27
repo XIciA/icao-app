@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
   "releaseVersion": 27,
-  "generatedAt": "2026-10-26T14:23:06.402Z",
+  "generatedAt": "2026-10-27T09:33:15.623Z",
   "totals": {
     "files": 603,
     "textValues": 62836
@@ -119,7 +119,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-1677.json",
       "textValues": 266,
-      "textProjectionSha256": "57f59161055ec372038adc58e79a11d1086ca02ecfdce7e98238bcc02ad2082b",
+      "textProjectionSha256": "f11ea54bcc24451238322de4de9a3f931b1def0f80a16f44288e0e892ba15092",
       "status": "reviewed"
     },
     {
@@ -227,7 +227,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-544.json",
       "textValues": 91,
-      "textProjectionSha256": "9a2f15c8d0f8f7175f315019c4039a815bae25e0d86315c7b45b22ab3231ee5a",
+      "textProjectionSha256": "168d9c2f838d69d944cae18cd49615a74a99e4c17f32895a8de53593d88ab22f",
       "status": "reviewed"
     },
     {
