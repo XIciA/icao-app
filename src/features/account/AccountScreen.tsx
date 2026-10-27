@@ -1,9 +1,9 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { AlertTriangle, ChevronRight, Cloud, FileText, Info, LogOut, Shield, Trash2, UserRound } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { AuthField, CodeField, PasswordField } from '@/components/auth/auth-ui';
@@ -47,7 +47,7 @@ function AccountContent() {
 }
 
 function Page({ title, children, scroll = true }: { title: string; children: React.ReactNode; scroll?: boolean }) {
-  return <Screen contentStyle={styles.screen} scroll={scroll}><TopBar title={title} />{children}</Screen>;
+  return <Screen contentStyle={styles.screen} scroll={scroll} header={<TopBar title={title} />}>{children}</Screen>;
 }
 
 function SettingsPage() {
@@ -84,7 +84,7 @@ function SettingsPage() {
     try {
       await auth.signOut();
       setConfirm(false);
-      router.replace('/auth/login');
+      router.replace('/(tabs)');
     } catch { setSignOutError('退出失败，请稍后重试。'); }
     finally { setSigningOut(false); }
   }
@@ -395,7 +395,7 @@ function BindPhonePage() {
     setError('');
     try {
       await auth.verifyPhoneBindingOtp(challenge, code);
-      if (activeRef.current) router.replace('/account/security');
+      if (activeRef.current) router.dismissTo('/account/security');
     } catch (cause) {
       if (!activeRef.current) return;
       const code = cause instanceof Error ? cause.message : '';
@@ -441,7 +441,7 @@ function BindPhonePage() {
         if (!activeRef.current) return;
         grantRef.current = grantId;
         await requestCode();
-        if (activeRef.current) setShowVerification(false);
+        // The verification sheet closes after its own exit transition.
       }} /> : null}
       <View style={styles.form}>
         <View style={styles.passwordIntro}>
@@ -500,7 +500,7 @@ function PasswordPage() {
 
   useEffect(() => {
     if (((mode === 'setup' || mode === 'recovery') && !setup && !recovery && !saving) || !auth.account?.phoneBound) {
-      router.replace('/account/security');
+      router.dismissTo('/account/security');
     }
   }, [auth.account?.phoneBound, mode, recovery, router, saving, setup]);
   useEffect(() => {
@@ -544,7 +544,7 @@ function PasswordPage() {
     const returnPath = recovery ? auth.passwordChangeReturnPath ?? '/account/security' : '/account/security';
     try {
       await auth.updatePassword(newPassword, requiresCurrentPassword ? currentPassword : undefined);
-      if (activeRef.current) router.replace(returnPath);
+      if (activeRef.current) router.dismissTo(returnPath);
     } catch (cause) {
       if (activeRef.current) { setError(getPasswordUpdateError(cause)); if (recovery) setSmsMode(true); }
     } finally { actionRef.current = false; if (activeRef.current) setSaving(false); }
@@ -667,7 +667,7 @@ function DeleteAccountPage() {
           { text: '永久注销', style: 'destructive', onPress: () => resolve(true) },
         ], { cancelable: true, onDismiss: () => resolve(false) });
       }));
-      router.replace('/auth/login');
+      router.replace('/(tabs)');
     } catch (cause) {
       const code = cause instanceof Error ? cause.message : '';
       if (code === 'invalid_phone_or_password' || code === 'invalid_credentials') setError('登录密码不正确，请重新输入');
@@ -709,7 +709,7 @@ function DeleteAccountPage() {
         ) : null}
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
         <Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在处理…' : '验证身份并继续'}</Button>
-        <Button disabled={deleting} onPress={() => router.canGoBack() ? router.back() : router.replace('/account/security')} size="lg" variant="outline">返回</Button>
+        <Button disabled={deleting} onPress={() => router.canGoBack() ? router.back() : router.dismissTo('/account/security')} size="lg" variant="outline">返回</Button>
       </View>
     </Page>
   );

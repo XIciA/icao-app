@@ -26,10 +26,6 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v7
-        with:
-          # The Web-freeze gate verifies an immutable reviewed ancestor and
-          # must not silently fall back when the default shallow clone omits it.
-          fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@v6
         with:

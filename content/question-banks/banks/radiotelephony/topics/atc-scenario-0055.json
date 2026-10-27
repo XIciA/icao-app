@@ -7,7 +7,7 @@
       "id": "atc-scenario-0055-card-main-937",
       "taskTitle": "CCA 878-1",
       "audioText": "B: Tell the Tower you are ready to taxi.",
-      "audioTextZh": "B: 告诉 塔台 你准备滑行。",
+      "audioTextZh": "B: 告诉塔台你准备滑行。",
       "referenceText": "Sanya Tower, CCA 878, ready to taxi.",
       "referenceTextZh": "三亚塔台，CCA 878，准备滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/937.mp3"
@@ -52,7 +52,7 @@
       "id": "atc-scenario-0055-card-main-942",
       "taskTitle": "CCA 878-6",
       "audioText": "B: It is now thirty minutes later in the day, the sick passenger has disembarked and you were at the holding point for Runway 08, tell the Tower you are ready for takeoff.",
-      "audioTextZh": "B: 现在是当天 30 分钟后，患病旅客已下机，你在跑道 08 等待点，告诉 塔台 你准备起飞。",
+      "audioTextZh": "B: 现在是当天 30 分钟后，患病旅客已下机，你在跑道 08 等待点，告诉塔台你准备起飞。",
       "referenceText": "Sanya Tower, CCA 878, hold at holding point Runway 08, ready for departure.",
       "referenceTextZh": "三亚塔台，CCA 878，在跑道 08 等待点等待，准备离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/942.mp3"

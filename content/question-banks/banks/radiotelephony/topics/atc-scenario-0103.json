@@ -7,7 +7,7 @@
       "id": "atc-scenario-0103-card-main-1768",
       "taskTitle": "CCA 102-1",
       "audioText": "B: Your call sign is CCA 102, now call Wuhan Approach and report you are 10 miles north of Hekou, you are continuing approaching.",
-      "audioTextZh": "B: 你的呼号是 CCA 102，现在呼叫 武汉进近，报告你在 Hekou 以北 10 miles，继续进近。",
+      "audioTextZh": "B: 你的呼号是 CCA 102，现在呼叫武汉进近，报告你在 Hekou 以北 10 miles，继续进近。",
       "referenceText": "Wuhan Approach, CCA 102, we are 10 miles north of Hekou.",
       "referenceTextZh": "武汉进近，CCA 102，我们在 Hekou 以北 10 miles。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1768.mp3"
@@ -16,7 +16,7 @@
       "id": "atc-scenario-0103-card-main-1769",
       "taskTitle": "CCA 102-2",
       "audioText": "C: CCA 102, Wuhan Approach is with you. Have you got the current ATIS?\nB: You give an affirmative reply and report that you have received information L.",
-      "audioTextZh": "C: CCA 102，武汉进近 收到。你们收到当前 ATIS 了吗？\nB: 你肯定回答并报告已收到信息 L。",
+      "audioTextZh": "C: CCA 102，武汉进近收到。你们收到当前 ATIS 了吗？\nB: 你肯定回答并报告已收到信息 L。",
       "referenceText": "Affirm, information L, CCA 102.",
       "referenceTextZh": "肯定，信息 L，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1769.mp3"

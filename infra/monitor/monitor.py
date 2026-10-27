@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 import time
 import urllib.request
+from dashboard_export import write_dashboard
 
 STATE = Path('/var/lib/icao-monitor')
 REQUIRED = {'icao-api', 'icao-gateway', 'icao-ops-api', 'icao-ops-web',
@@ -17,6 +18,16 @@ REQUIRED = {'icao-api', 'icao-gateway', 'icao-ops-api', 'icao-ops-web',
 API_GROUPS = {'sync', 'question-banks', 'ai', 'resources', 'commerce',
               'product-clicks', 'account', 'legal-consent', 'content-access',
               'app-content', 'auth', 'hooks', 'feedback', 'vocabulary', 'editorial'}
+
+
+def balance_due(balance, now=None):
+    """Node emits UTC Z; Python 3.10 needs an explicit +00:00 offset."""
+    now = time.time() if now is None else now
+    try:
+        at = datetime.datetime.fromisoformat(balance['at'].replace('Z', '+00:00')).timestamp()
+        return now - at >= 3600 or at > now + 300
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return True
 
 
 def run(*args):
@@ -28,6 +39,7 @@ def summarize_logs(lines):
     routes = collections.defaultdict(list)
     requests = {}
     request_bytes = []
+    route_statuses = collections.defaultdict(collections.Counter)
     for line in lines:
         try:
             item = json.loads(line)
@@ -50,6 +62,7 @@ def summarize_logs(lines):
                 continue
             code = item.get('res', {}).get('statusCode')
             statuses[str(code)] += 1
+            route_statuses[route][str(code)] += 1
             elapsed = item.get('responseTime')
             if isinstance(elapsed, (int, float)) and math.isfinite(elapsed):
                 routes[route].append(elapsed)
@@ -59,7 +72,7 @@ def summarize_logs(lines):
                 request_bytes.append(size)
     return {
         'completed': sum(statuses.values()), 'statuses': dict(statuses),
-        'routes': {key: {'count': len(values), 'p95_ms': round(sorted(values)[math.ceil(len(values) * .95) - 1], 1)}
+        'routes': {key: {'count': len(values), 'statuses': dict(route_statuses[key]), 'p95_ms': round(sorted(values)[math.ceil(len(values) * .95) - 1], 1)}
                    for key, values in routes.items()},
         'max_sync_upload_bytes': max(request_bytes, default=None),
     }
@@ -101,7 +114,8 @@ def alerts_for(snapshot, previous):
     return sorted(alerts)
 
 
-def collect():
+def collect(previous=None):
+    previous = previous or {}
     disk = os.statvfs('/')
     usable = disk.f_blocks - disk.f_bfree + disk.f_bavail
     memory = {line.split(':')[0]: int(line.split()[1]) * 1024
@@ -128,10 +142,18 @@ def collect():
     latest = max((f.stat().st_mtime for f in dumps if f.stat().st_size > 0), default=None)
     # A strict tail bounds memory even during request floods.
     logs = run('docker', 'logs', '--since', '5m', '--tail', '20000', 'icao-api')
+    cpu = [int(v) for v in Path('/proc/stat').read_text().splitlines()[0].split()[1:9]]
+    counters = {'total': sum(cpu), 'idle': cpu[3] + cpu[4]}
+    old = previous.get('cpu_counters', {})
+    delta = counters['total'] - old.get('total', counters['total'])
+    idle_delta = counters['idle'] - old.get('idle', counters['idle'])
+    cpu_percent = round(100 * (1 - idle_delta / delta), 1) if delta > 0 and 0 <= idle_delta <= delta else None
     return {'at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'cpu_counters': counters, 'cpu_percent': cpu_percent,
             'disk': {'used_percent': round((disk.f_blocks - disk.f_bfree) / usable * 100, 1),
                      'available_bytes': disk.f_bavail * disk.f_frsize},
             'memory_available_bytes': memory['MemAvailable'],
+            'memory_total_bytes': memory['MemTotal'],
             'load_per_cpu': round(os.getloadavg()[0] / (os.cpu_count() or 1), 2),
             'containers': containers, 'probes': probes,
             'backup_age_hours': round((time.time() - latest) / 3600, 2) if latest else None,
@@ -148,7 +170,16 @@ def main():
     except (OSError, ValueError):
         previous = {}
     try:
-        snapshot = collect()
+        snapshot = collect(previous)
+        snapshot['deepseek_balance'] = previous.get('deepseek_balance')
+        # Balance is read inside the existing API container; the key never leaves it.
+        balance = snapshot['deepseek_balance']
+        if balance_due(balance):
+            try:
+                code = """(async()=>{const k=process.env.DEEPSEEK_API_KEY;if(!k)process.exit(1);const r=await fetch('https://api.deepseek.com/user/balance',{headers:{Authorization:'Bearer '+k},signal:AbortSignal.timeout(5000)});if(!r.ok)process.exit(1);const d=await r.json();process.stdout.write(JSON.stringify({at:new Date().toISOString(),available:d.is_available===true,balances:(d.balance_infos||[]).filter(b=>['CNY','USD'].includes(b.currency)&&Number.isFinite(Number(b.total_balance))).map(b=>({currency:b.currency,total:Number(b.total_balance)}))}));})().catch(()=>process.exit(1))"""
+                snapshot['deepseek_balance'] = json.loads(run('docker', 'exec', 'icao-api', 'node', '-e', code))
+            except (subprocess.SubprocessError, ValueError):
+                pass  # Keep the last good balance and its original timestamp.
         snapshot['alerts'] = alerts_for(snapshot, previous)
     except Exception:
         # Keep failures visible without exposing environment or exception payloads.
@@ -171,6 +202,7 @@ def main():
             old.unlink()
     with (STATE / ('history-' + today.isoformat() + '.ndjson')).open('a') as output:
         output.write(json.dumps(snapshot) + '\n')
+    write_dashboard(STATE)
     print(json.dumps({'at': snapshot['at'], 'alerts': snapshot['alerts'],
                       'disk': snapshot['disk'], 'api_requests_5m': snapshot['api_last_5m']['completed']}), flush=True)
 

@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-015",
   "name": "强侧风着陆",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-015-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-015.jpg",
       "imageAlt": "强侧风着陆航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-015-q01",
-      "taskTitle": "图片题-015-01",
+      "audio": "/question-bank-assets/revisions/opi/04d05a4392b865840ffec02a0ba6b54cbc16d37d1dc5b72f40621e6f4c2c5bf0/audio/opi/opi-image-015-q01.mp3",
       "audioText": "What types of aircraft damage can result from a poorly controlled landing in a strong crosswind?",
+      "taskTitle": "图片题-015-01",
       "audioTextZh": "在强侧风中着陆控制不当可能对航空器造成哪些损伤？",
       "referenceText": "A poorly controlled crosswind landing can place excessive side loads on the landing gear and damage tyres, wheels, or gear components. A hard or sideways touchdown may also damage the wing, engine nacelle, tail, or fuselage if any part strikes the runway. Severe loads can cause structural damage that requires a detailed inspection.",
       "referenceTextZh": "侧风着陆操纵不当会使起落架承受过大的侧向载荷，并损坏轮胎、机轮或起落架部件。重着陆或带侧滑接地还可能使机翼、发动机短舱、机尾或机身撞击跑道而受损。严重载荷可能造成需要详细检查的结构损伤。",
-      "audio": "/question-bank-assets/revisions/opi/04d05a4392b865840ffec02a0ba6b54cbc16d37d1dc5b72f40621e6f4c2c5bf0/audio/opi/opi-image-015-q01.mp3",
       "audioDurationSeconds": 5.064
     },
     {
       "id": "opi-image-015-q02",
-      "taskTitle": "图片题-015-02",
+      "audio": "/question-bank-assets/revisions/opi/ee1250030152b918340fff7b60f2affb018ca3f5c5c71c94c51c4e80ccdce173/audio/opi/opi-image-015-q02.mp3",
       "audioText": "As captain, how would you prepare for an approach when strong crosswinds are reported?",
+      "taskTitle": "图片题-015-02",
       "audioTextZh": "作为机长，接到强侧风报告后，你会如何为进近做准备？",
       "referenceText": "Before the approach, I would brief the crosswind threat, check the relevant aircraft performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay the approach or divert as appropriate.",
       "referenceTextZh": "进近前，我会对侧风威胁进行简令，检查相关飞机性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟进近或视情况改航。",
-      "audio": "/question-bank-assets/revisions/opi/ee1250030152b918340fff7b60f2affb018ca3f5c5c71c94c51c4e80ccdce173/audio/opi/opi-image-015-q02.mp3",
       "audioDurationSeconds": 4.512
     },
     {
       "id": "opi-image-015-q03",
-      "taskTitle": "图片题-015-03",
+      "audio": "/question-bank-assets/revisions/opi/acca13ae9e9725959d8d745a61b616258ab471fd453558fc41e11aad54ef424d/audio/opi/opi-image-015-q03.mp3",
       "audioText": "As captain, how would you manage an approach if you encountered stronger-than-expected crosswinds?",
+      "taskTitle": "图片题-015-03",
       "audioTextZh": "作为机长，如果进近中遇到比预期更强的侧风，你会如何处置？",
       "referenceText": "I would check the relevant aircraft performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured in the stronger crosswind, I would go around or divert as appropriate.",
       "referenceTextZh": "我会检查相关飞机性能，与机组及空中交通管制协调，并执行检查单。如果更强的侧风下无法确保安全，我会复飞或视情况改航。",
-      "audio": "/question-bank-assets/revisions/opi/acca13ae9e9725959d8d745a61b616258ab471fd453558fc41e11aad54ef424d/audio/opi/opi-image-015-q03.mp3",
       "audioDurationSeconds": 5.304
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

@@ -133,7 +133,7 @@
       "id": "atc-scenario-0152-card-main-2637",
       "taskTitle": "CCA 572-15",
       "audioText": "C: CCA 572, continue approach, surface wind 200 degrees, 10 meters per second.\nB: Because of the strong tailwind, you want to change landing runway to Runway 18.",
-      "audioTextZh": "C： CCA 572，继续进近，地面风向 200 度，风速 10 米/秒。\nB： 因为顺风较强，你想将落地跑道更换为 Runway 18。",
+      "audioTextZh": "C：CCA 572，继续进近，地面风向 200 度，风速 10 米/秒。\nB：因为顺风较强，你想将落地跑道更换为 Runway 18。",
       "referenceText": "request change to Runway 18due strong tailwind, CCA 572.",
       "referenceTextZh": "因强顺风请求更换至 Runway 18，CCA 572。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q15.mp3"

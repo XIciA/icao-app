@@ -6,8 +6,8 @@
     {
       "id": "atc-scenario-0104-card-main-1783",
       "taskTitle": "CSN 303-1",
-      "audioText": "B: Your call sign is CSN 303, now call Guangzhou Control and tell him you’ve just passed 3600 meters.",
-      "audioTextZh": "B: 你的呼号是 CSN 303，现在呼叫 广州管制，告诉他你刚通过 3600 meters。",
+      "audioText": "B: Your call sign is CSN 303, now call Guangzhou Control and tell him you've just passed 3600 meters.",
+      "audioTextZh": "B: 你的呼号是 CSN 303，现在呼叫广州管制，告诉他你刚通过 3600 meters。",
       "referenceText": "Guangzhou Control, CSN 303, passing 3600 meters.",
       "referenceTextZh": "广州管制，CSN 303，正在通过 3600 meters。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1783.mp3"
@@ -78,9 +78,9 @@
     {
       "id": "atc-scenario-0104-card-main-1791",
       "taskTitle": "CSN 303-9",
-      "audioText": "C: CSN 303, orbit left from your present position, you may have wide orbits, fuel dumping approved, report on completion.\nB: Read-back and tell the controller you’re commencing the fuel dumping.",
+      "audioText": "C: CSN 303, orbit left from your present position, you may have wide orbits, fuel dumping approved, report on completion.\nB: Read-back and tell the controller you're commencing the fuel dumping.",
       "audioTextZh": "C: CSN 303，从当前位置左盘旋，可以大范围盘旋，批准放油，完成后报告。\nB: 复诵并告诉管制员你们正在开始放油。",
-      "referenceText": "Left hand orbits, we’re commencing the fuel dump this time, CSN 303.",
+      "referenceText": "Left hand orbits, we're commencing the fuel dump this time, CSN 303.",
       "referenceTextZh": "左盘旋，我们现在开始放油，CSN 303。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1791.mp3"
     },
@@ -89,7 +89,7 @@
       "taskTitle": "CSN 303-10",
       "audioText": "B: Tell the controller fuel dumping completed, and request a further clearance.",
       "audioTextZh": "B: 告诉管制员放油完成，并请求进一步许可。",
-      "referenceText": "Guangzhou Control, CSN 303, we’ve completed the fuel dump and request a further clearance.",
+      "referenceText": "Guangzhou Control, CSN 303, we've completed the fuel dump and request a further clearance.",
       "referenceTextZh": "广州管制，CSN 303，我们已完成放油，请求进一步许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1792.mp3"
     },

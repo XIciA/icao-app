@@ -1,3 +1,5 @@
+jest.mock('@/features/auth/GuestLearningBoundary.native', () => ({ GuestLearningBoundary: ({children}: {children: React.ReactNode}) => children }));
+jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockPush }));
 import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -9,22 +11,23 @@ import NativeQuestionBankStudyRoute from '../question-bank/[bankId]/study/[categ
 
 const mockBack = jest.fn();
 const mockReplace = jest.fn();
+const mockDismissTo = jest.fn();
 const mockPush = jest.fn();
 const mockBankRetry = jest.fn();
 const mockTopicRetry = jest.fn();
 let mockCanGoBack = true;
-let mockParams: { bankId: string; categoryId: string; topicId: string; cardId?: string; returnTo?: 'radio' | 'annotations' };
+let mockParams: { bankId: string; categoryId: string; topicId: string; cardId?: string; guide?: string; returnTo?: 'radio' | 'annotations' };
 let mockBankState: Omit<Extract<ReturnType<typeof useQuestionBank>, { status: 'ready' }>, 'catalog'> & { catalog?: QuestionBankDataset } | Exclude<ReturnType<typeof useQuestionBank>, { status: 'ready' }>;
 let mockTopicState: ReturnType<typeof useQuestionBankTopic>;
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: mockBack, replace: mockReplace, push: mockPush, canGoBack: () => mockCanGoBack }),
+  useRouter: () => ({ back: mockBack, replace: mockReplace, dismissTo: mockDismissTo, push: mockPush, canGoBack: () => mockCanGoBack }),
 }));
 jest.mock('@/features/question-bank/hooks/useQuestionBank.native', () => ({ useQuestionBank: () => mockBankState }));
 jest.mock('@/features/question-bank/hooks/useQuestionBankTopic.native', () => ({ useQuestionBankTopic: () => mockTopicState }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ studyScope: 'selected' }) }));
-jest.mock('@/features/question-bank/components/QuestionBankStudyScreen', () => ({
+jest.mock('@/features/question-bank/components/QuestionBankStudyScreen.native', () => ({
   QuestionBankStudyScreen: () => {
     const { View } = jest.requireActual<typeof import('react-native')>('react-native');
     return <View testID="existing-study-screen" />;
@@ -57,6 +60,17 @@ describe('Native study route recovery', () => {
     mockParams = { bankId: 'opi', categoryId: 'category', topicId: 'topic' };
     mockBankState = { status: 'ready', data: dataset, catalog: dataset, source: 'remote', retry: mockBankRetry };
     mockTopicState = { status: 'ready', topic, retry: mockTopicRetry };
+  });
+
+  it('opens explicit Sentence1 teaching from the raw catalog without changing the daily exam scope', async () => {
+    const first = {...topic, cards:[{...topic.cards[0],id:'sentence900-main-001'}]};
+    const raw = {...dataset,id:'sentences900',categories:[{...dataset.categories[0],topics:[first]}]} as QuestionBankDataset;
+    mockParams = {bankId:'sentences900',categoryId:'category',topicId:'topic',cardId:'sentence900-main-001',guide:'study'};
+    mockBankState = {status:'ready',data:{...raw,categories:[]},catalog:raw,source:'remote',retry:mockBankRetry};
+    mockTopicState = {status:'ready',topic:first,retry:mockTopicRetry};
+    const screen=await render(<Page/>);
+    expect(screen.getByTestId('existing-study-screen')).toBeTruthy();
+    expect(screen.queryByText('不在当前学习范围')).toBeNull();
   });
 
   it('keeps the existing study screen for available questions', async () => {
@@ -93,7 +107,7 @@ describe('Native study route recovery', () => {
     }
     const screen = await render(<Page />);
     await fireEvent.press(screen.getByText('查看会员方案'));
-    expect(mockPush).toHaveBeenCalledWith('/account/membership');
+    expect(mockPush).toHaveBeenCalledWith(`/account/membership?next=${encodeURIComponent('/question-bank/opi/study/category/topic' + (state === 'locked-card' ? '?cardId=unavailable' : ''))}`, '登录后查看会员题库');
     await fireEvent.press(screen.getByRole('button', { name: '返回' }));
     expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'opi' } });
   });
@@ -129,7 +143,7 @@ describe('Native study route recovery', () => {
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();
     expect(screen.queryByText('查看会员方案')).toBeNull();
     await fireEvent.press(screen.getByText('返回题库首页'));
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockDismissTo).toHaveBeenCalledWith('/(tabs)');
   });
 
   it('does not suggest paying for a deleted question when the topic itself is protected', async () => {

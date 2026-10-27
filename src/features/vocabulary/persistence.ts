@@ -1,3 +1,4 @@
+import { migrateCurrentVocabulary, readLiveVocabularyCache } from './live-catalog';
 import Storage from '@/platform/storage';
 
 import type { VocabularyState, VocabularyTestResult, VocabularyWordProgress, VocabularyWordStatus } from './types';
@@ -34,7 +35,7 @@ function normalizeTestResult(value: unknown): VocabularyTestResult | undefined {
   return { ...result, completedAt: validDate(result.completedAt) };
 }
 
-export function normalizeVocabularyState(value: unknown): VocabularyState {
+export function normalizeVocabularyState(value: unknown, migrate = true): VocabularyState {
   if (!value || typeof value !== 'object') return createEmptyVocabularyState();
   const candidate = value as Partial<VocabularyState>;
   const words: Record<string, VocabularyWordProgress> = {};
@@ -45,18 +46,24 @@ export function normalizeVocabularyState(value: unknown): VocabularyState {
     }
   }
   const lastTest = normalizeTestResult(candidate.lastTest);
-  return {
+  const session = candidate.studySession;
+  const studySession = session && Array.isArray(session.wordIds) && session.wordIds.length<=10000 && session.wordIds.every(id=>typeof id==='string') && (session.nextWordId===null || typeof session.nextWordId==='string') && ['frequency','random'].includes(session.order) && Number.isFinite(Date.parse(session.startedAt)) && Number.isFinite(Date.parse(session.updatedAt)) ? session : undefined;
+  const sessionAnswers=studySession?.answers && typeof studySession.answers==='object' && !Array.isArray(studySession.answers) ? Object.fromEntries(Object.entries(studySession.answers).filter(([,status])=>String(status)!=='new'&&statuses.has(status as VocabularyWordStatus))) : {};
+  const state: VocabularyState = {
     schemaVersion: 1,
     words,
     ...(lastTest ? { lastTest } : {}),
+    ...(studySession ? {studySession:{...studySession,answers:sessionAnswers}} : {}),
     updatedAt: validDate(candidate.updatedAt),
   };
+  return migrate ? migrateCurrentVocabulary(state) : state;
 }
 
-export async function readVocabularyState() {
+export async function readVocabularyState({ migrate = true }: { migrate?: boolean } = {}) {
+  await readLiveVocabularyCache();
   const raw = await Storage.getItem(VOCABULARY_STORAGE_KEY);
   if (!raw) return createEmptyVocabularyState();
-  try { return normalizeVocabularyState(JSON.parse(raw)); } catch { return createEmptyVocabularyState(); }
+  try { return normalizeVocabularyState(JSON.parse(raw), migrate); } catch { return createEmptyVocabularyState(); }
 }
 
 export async function replaceVocabularyStateFromSync(value: unknown) {
@@ -74,7 +81,7 @@ export async function writeVocabularyState(state: VocabularyState) {
 }
 
 export function hasVocabularyData(state: VocabularyState) {
-  return Object.keys(state.words).length > 0 || Boolean(state.lastTest);
+  return Object.keys(state.words).length > 0 || Boolean(state.lastTest) || Boolean(state.studySession);
 }
 
 export function subscribeVocabularyState(listener: (state: VocabularyState) => void) {

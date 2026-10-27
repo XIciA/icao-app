@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-1714",
-  "name": "CSN6682 hydraulic failure",
+  "name": "CSN6682 · 液压失效",
   "declaredCardCount": 14,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-226635",
-      "taskTitle": "50. CSN6682 hydraulic failure-1",
+      "taskTitle": "50. CSN6682 · 液压失效-1",
       "audioText": "Your call sign is CSN6682, from Wuhan to Guangzhou, you are at stand 215, make initial contact with Wuhan Ground and make a radio check.",
       "audioTextZh": "你的呼号是南方6682，从武汉飞往广州，你现在在215号停机位，与广州地面进行初始报话，并进行无线电检查。",
       "referenceText": "Wuhan Ground, CSN6682, stand 215, 1, 2, 3, 4, 5, how do you read?",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-226636",
-      "taskTitle": "50. CSN6682 hydraulic failure-2",
+      "taskTitle": "50. CSN6682 · 液压失效-2",
       "audioText": "CSN6682, Wuhan Ground, I read you five. Here is your ATC clearance.",
       "audioTextZh": "南方6682，武汉地面，我听你5个，以下是你的放行许可。",
       "referenceText": "Roger, ready to copy, CSN6682.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-226637",
-      "taskTitle": "50. CSN6682 hydraulic failure-3",
+      "taskTitle": "50. CSN6682 · 液压失效-3",
       "audioText": "CSN6682, cleared to Guangzhou via flight planned route, runway in use 36R, follow LKO-01 departure, initially climb to 1,200m, cruising level 9,800m, after departure contact 119.7, squawk 2515.",
       "audioTextZh": "南方6682，可以经由计划航路飞往广州，使用跑道36右，按照LKO-01离场，初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515。",
       "referenceText": "Cleared to Guangzhou, via flight planned route, runway in use 36R, follow LKO01 departure, initially climb to 1200m, cruising level 9800m, after departure contact 119.7, squawk 2515, CSN6682.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-226638",
-      "taskTitle": "50. CSN6682 hydraulic failure-4",
+      "taskTitle": "50. CSN6682 · 液压失效-4",
       "audioText": "Now you are ready for push back and start up, contact Ground.",
       "audioTextZh": "现在你准备好推出开车了，联系地面。",
       "referenceText": "Wuhan Ground, CSN6682, request push-back and start up.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-226639",
-      "taskTitle": "50. CSN6682 hydraulic failure-5",
+      "taskTitle": "50. CSN6682 · 液压失效-5",
       "audioText": "CSN6682, push back and start up approved, facing east.",
       "audioTextZh": "南方6682，同意推出开车，面朝东。",
       "referenceText": "Push back and start up approved, facing east, CSN6682.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-226640",
-      "taskTitle": "50. CSN6682 hydraulic failure-6",
+      "taskTitle": "50. CSN6682 · 液压失效-6",
       "audioText": "You have completed push back and start up, request taxi.",
       "audioTextZh": "你现在完成了推出开车，请求滑行。",
       "referenceText": "Wuhan Ground, CSN6682, request taxi.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-226641",
-      "taskTitle": "50. CSN6682 hydraulic failure-7",
+      "taskTitle": "50. CSN6682 · 液压失效-7",
       "audioText": "CSN6682, taxi via A4, A3, C, hold short of runway 36R.",
       "audioTextZh": "南方6682，经由滑行道A4，A3, C，在跑道36右外等待。",
       "referenceText": "Taxi via A4, A3, C, hold short of runway 36R, CSN6682.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-226642",
-      "taskTitle": "50. CSN6682 hydraulic failure-8",
+      "taskTitle": "50. CSN6682 · 液压失效-8",
       "audioText": "Now you are ready for takeoff.",
       "audioTextZh": "现在你准备好起飞了。",
       "referenceText": "Wuhan Tower, CSN6682, ready for departure.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-226643",
-      "taskTitle": "50. CSN6682 hydraulic failure-9",
+      "taskTitle": "50. CSN6682 · 液压失效-9",
       "audioText": "CSN6682, climb to 3900m, expedite until passing 2100m.",
       "audioTextZh": "南方6682，爬升至3900米，加速直到通过2100米。",
       "referenceText": "Climb to 3900m, expedite until passing 2100m, CSN6682.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-226644",
-      "taskTitle": "50. CSN6682 hydraulic failure-10",
+      "taskTitle": "50. CSN6682 · 液压失效-10",
       "audioText": "CSN6682, stop climbing due converging traffic, level off at 2,700m.",
       "audioTextZh": "南方6682，由于汇聚航空器，停止爬升，在2700米改平。",
       "referenceText": "Level off at 2700m, CSN6682.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-226645",
-      "taskTitle": "50. CSN6682 hydraulic failure-11",
+      "taskTitle": "50. CSN6682 · 液压失效-11",
       "audioText": "You found one of your hydraulic systems failed, make an urgency call and tell ATC this situation and ask to level off at 3900m and then return to Wuhan airport.",
       "audioTextZh": "你发现你的一个液压系统失效了，做紧急呼叫，并将此情况告诉管制员，请求在3900米改平，然后返回武汉机场。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, CSN6682, we have one hydraulic system failure, request level off at 3900m and then return to Wuhan airport.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-226646",
-      "taskTitle": "50. CSN6682 hydraulic failure-12",
+      "taskTitle": "50. CSN6682 · 液压失效-12",
       "audioText": "CSN6682, roger PAN, maintain 3900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.",
       "audioTextZh": "南方6682，收到PAN，保持3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右。",
       "referenceText": "Maintain 3900m, Turn left direct to LKO, expect LKO-02 arrival, ILS approach, runway 36R, CSN6682.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-226647",
-      "taskTitle": "50. CSN6682 hydraulic failure-13",
+      "taskTitle": "50. CSN6682 · 液压失效-13",
       "audioText": "Report that you have intercepted the localizer for RWY 36R.",
       "audioTextZh": "报告你已经截获跑道36右的航向道。",
       "referenceText": "Wuhan Approach, CSN6682, established localizer for runway 36R.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-226648",
-      "taskTitle": "50. CSN6682 hydraulic failure-14",
+      "taskTitle": "50. CSN6682 · 液压失效-14",
       "audioText": "CSN6682, contact Tower 124.35.",
       "audioTextZh": "南方6682，联系塔台124.35。",
       "referenceText": "124.35, CSN6682.",

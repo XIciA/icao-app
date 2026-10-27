@@ -3,346 +3,274 @@
   "ruleVersion": "question-bank-text-audit-v1.0.0",
   "decisions": [
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-01.json#/cards/25/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-01.json#/cards/444/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2"
+      "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2",
+      "bankId": "listening",
+      "cardId": "listening-main-129",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/83/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/120/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "46e46055fdd4a02ef52e772205075efa7ebb95c036b97f2ff125295938733248"
+      "textSha256": "88af21db634aa38e88daf70b7748f129579be7118e0b9ff53e96a7d9703ee2f8",
+      "bankId": "listening",
+      "cardId": "listening-main-1066",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/84/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/248/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "e45b985743a5da63b1305f4914e0091bacbb8c5b57bda033b7ce28678c9db4ee"
+      "textSha256": "46e46055fdd4a02ef52e772205075efa7ebb95c036b97f2ff125295938733248",
+      "bankId": "listening",
+      "cardId": "listening-main-1165",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/90/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/270/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "d3bbd413869e480330204281609873f103aba74fe186596e7c3a6ff739d0f6a9"
+      "textSha256": "d3bbd413869e480330204281609873f103aba74fe186596e7c3a6ff739d0f6a9",
+      "bankId": "listening",
+      "cardId": "listening-main-1175",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/125/audioText#DUPLICATED_COMPLETE_SENTENCE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/37/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "e45b985743a5da63b1305f4914e0091bacbb8c5b57bda033b7ce28678c9db4ee",
+      "bankId": "listening",
+      "cardId": "listening-main-1168",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/55/audioText#DUPLICATED_COMPLETE_SENTENCE",
       "rule": "DUPLICATED_COMPLETE_SENTENCE",
       "textSha256": "c647bbad74415f82ac4898e1f9f48bfda7bb0cb6451659f8a15c9ea4e2d75b23",
-      "status": "manual-review",
-      "reason": "管制员重复航路指令是为了纠正飞行员漏读HUR；英文及中文的重复均承载题意，应保留。"
+      "bankId": "listening",
+      "cardId": "listening-fzy-110847",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/125/audioTextZh#DUPLICATED_COMPLETE_SENTENCE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/55/audioTextZh#DUPLICATED_COMPLETE_SENTENCE",
       "rule": "DUPLICATED_COMPLETE_SENTENCE",
-      "textSha256": "ab86a35e998162c2e7cb136079fa7edc79eb95c98ecaf9415e8d32924459f2dd",
-      "status": "manual-review",
-      "reason": "管制员重复航路指令是为了纠正飞行员漏读HUR；英文及中文的重复均承载题意，应保留。"
+      "textSha256": "e6a61909a83fe2c1b42430820474b5acd3db7d29cefd64f0eea7573b81778345",
+      "bankId": "listening",
+      "cardId": "listening-fzy-110847",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/251/choicesZh/2#DUPLICATE_CHOICE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/92/choicesZh/2#DUPLICATE_CHOICE",
       "rule": "DUPLICATE_CHOICE",
       "textSha256": "8bd7fc4b504c3b930baced5dcf897497be344fc23684dd015c00ee176de10af7",
-      "status": "manual-review",
-      "reason": "英文Lack of fuel与Fuel shortage为同义干扰项，中文都译燃油不足；正确项为Fuel leak，保留选项对应关系。"
+      "bankId": "listening",
+      "cardId": "listening-fzy-116624",
+      "field": "choicesZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/62/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
-      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "88af21db634aa38e88daf70b7748f129579be7118e0b9ff53e96a7d9703ee2f8"
-    },
-    {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/163/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
-      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "44e25e613331b44e457b84acdc08d0d6a18acc4183d6410d22b47f494842f2ea"
-    },
-    {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/164/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
-      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "ffcd11a4a73a037484f3439cf3f4f37df8f9841863b3ca892a4d2f94ff98ac2b"
-    },
-    {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/168/audioText#AUDIO_DEPENDENT_ELLIPSIS",
-      "status": "manual-review",
-      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "a361c36daea1f939e50bff19323933147219b3cef3ce24824ac1b895fa78633f"
-    },
-    {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/271/choicesZh/3#DUPLICATE_CHOICE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/206/choicesZh/3#DUPLICATE_CHOICE",
       "rule": "DUPLICATE_CHOICE",
-      "textSha256": "10eaee8d71f403f925e3356f09e195e9bc1e35a448dea293ee9221bea3ee0a59",
-      "status": "manual-review",
-      "reason": "Sea miles和Nautical miles均为海里；题目问未提及的Mach number，重复中文不是重复英文选项错误。"
+      "textSha256": "7d99c90b81d8f858239a00883da4ac46bf8e4ae6f58ca1ddb84b339c8dde5bfb",
+      "bankId": "listening",
+      "cardId": "listening-fzy-116554",
+      "field": "choicesZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-04.json#/cards/289/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/297/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
-      "textSha256": "8929a40a0ed5f0d5cf09430e356291e77b02e5ac27b13de850cafd92ff626497",
-      "status": "manual-review",
-      "reason": "来源第二位说话人句尾以省略号结束；相似旧题不是完全相同文本，不据此补写或合并。保留来源音频和原文；尚未进行逐字听音校正。"
+      "textSha256": "756e243f9bd69fa5cbd1ec41f8b08b2db5912614eb8649d005f84822dc11aedf",
+      "bankId": "listening",
+      "cardId": "listening-main-1017",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/opi/topics/opi-fzy-651.json#/cards/0/referenceText#ADJACENT_DUPLICATE_WORD",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/4/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "2afb4682aefdb338e1eab9059689d45e80196cadcef400a309bf28debcf6f828",
+      "bankId": "listening",
+      "cardId": "listening-main-1016",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/47/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "4b7a8b86562afac734026f49c4e0d68ec11712895ea0cc55c0cfb499dcca862b",
+      "bankId": "listening",
+      "cardId": "listening-main-1026",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-04.json#/cards/60/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "e6dd0274449b5cf4bc75278c5686b9187872e88de744bfef2296f5ecc6865dec",
+      "bankId": "listening",
+      "cardId": "listening-fzy-226981",
+      "field": "audioText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
+    },
+    {
+      "key": "content/question-banks/banks/opi/topics/opi-fzy-651.json#/cards/12/referenceText#ADJACENT_DUPLICATE_WORD",
       "rule": "ADJACENT_DUPLICATE_WORD",
       "textSha256": "a3dbcdbc7e999dfcde97424868e509b016846fefd2e799abea635e8a03ba3772",
-      "status": "manual-review",
-      "reason": "so so表达一般、还行，是完整回答，不删除重复词。"
+      "bankId": "opi",
+      "cardId": "opi-fzy-118165",
+      "field": "referenceText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/opi/topics/opi-fzy-849.json#/cards/2/referenceTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
       "textSha256": "36c97167a54b637526217d4411d9bdeca2053a46e2e58b4031a33cf8d600ba44",
-      "status": "manual-review",
-      "reason": "附近进行跨词出现近进，原文没有进近术语误拼。"
+      "bankId": "opi",
+      "cardId": "opi-fzy-152401",
+      "field": "referenceTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1446.json#/cards/43/referenceText#DUPLICATED_SENTENCE_FRAGMENT",
       "rule": "DUPLICATED_SENTENCE_FRAGMENT",
       "textSha256": "315f35ac99463b2be700277d0891c9141c4829873bfa80748dca44abdbc69e60",
-      "status": "manual-review",
-      "reason": "PAN PAN重复三次是紧急通信呼叫格式，非误拼接；双语均保留。"
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-224930",
+      "field": "referenceText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1446.json#/cards/43/referenceTextZh#DUPLICATED_SENTENCE_FRAGMENT",
       "rule": "DUPLICATED_SENTENCE_FRAGMENT",
       "textSha256": "ae1e2555ce21a2eecf6fb5261bd1fef86349cdb5c068e34795f9ba451e50a645",
-      "status": "manual-review",
-      "reason": "PAN PAN重复三次是紧急通信呼叫格式，非误拼接；双语均保留。"
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-224930",
+      "field": "referenceTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1449.json#/cards/29/audioTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
-      "textSha256": "b2c7c6ea0e009f8f45af565217821a6530369f003ce0d495709acef9c34847e2",
-      "status": "manual-review",
-      "reason": "进近进行跨词出现近进；原文语义和术语正确。"
+      "textSha256": "30b94879b7ff6e6cfc73404bd347e83b2602e4954159fa495cb2fccf6dc57fba",
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-224830",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1449.json#/cards/5/audioTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
-      "textSha256": "951e5e0d8467eeb0299c7f50e121c58cb314233d4dd94e9564ef94cf342db991",
-      "status": "manual-review",
-      "reason": "进近进行跨词出现近进；原文语义和术语正确。"
+      "textSha256": "3b4e134bc86b93a8b32b5201103ea0576a74ab313b8cf8808857b08597790e91",
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-210102",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1615.json#/cards/0/audioTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
-      "textSha256": "b2c7c6ea0e009f8f45af565217821a6530369f003ce0d495709acef9c34847e2",
-      "status": "manual-review",
-      "reason": "进近进行跨词出现近进；原文语义和术语正确。"
+      "textSha256": "30b94879b7ff6e6cfc73404bd347e83b2602e4954159fa495cb2fccf6dc57fba",
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-219665",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1676.json#/cards/4/referenceText#DUPLICATED_SENTENCE_FRAGMENT",
       "rule": "DUPLICATED_SENTENCE_FRAGMENT",
       "textSha256": "315f35ac99463b2be700277d0891c9141c4829873bfa80748dca44abdbc69e60",
-      "status": "manual-review",
-      "reason": "PAN PAN重复三次是紧急通信呼叫格式，非误拼接；双语均保留。"
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-224108",
+      "field": "referenceText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1676.json#/cards/4/referenceTextZh#DUPLICATED_SENTENCE_FRAGMENT",
       "rule": "DUPLICATED_SENTENCE_FRAGMENT",
       "textSha256": "ae1e2555ce21a2eecf6fb5261bd1fef86349cdb5c068e34795f9ba451e50a645",
-      "status": "manual-review",
-      "reason": "PAN PAN重复三次是紧急通信呼叫格式，非误拼接；双语均保留。"
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-224108",
+      "field": "referenceTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1707.json#/cards/6/audioTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
       "textSha256": "d34e4dec9db4127fa0988231c047df578f72f91e4afce0b5c4c868a2af2fb92a",
-      "status": "manual-review",
-      "reason": "进近进行跨词出现近进；原文语义和术语正确。"
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-224979",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-621.json#/cards/9/audioTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
-      "textSha256": "39991346dc8e0f2e628b3f8a142c683246aabab74bfd5c15c4244e6e06d0ed6b",
-      "status": "manual-review",
-      "reason": "进近进行跨词出现近进；原文语义和术语正确。"
+      "textSha256": "999ce19c10c7544339b77fcc49d2a7539fbbbfc72c5847ffc85c82f2affadef6",
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-111382",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-627.json#/cards/11/audioTextZh#CHINESE_APPROACH_TYPO",
       "rule": "CHINESE_APPROACH_TYPO",
-      "textSha256": "951e5e0d8467eeb0299c7f50e121c58cb314233d4dd94e9564ef94cf342db991",
-      "status": "manual-review",
-      "reason": "进近进行跨词出现近进；原文语义和术语正确。"
+      "textSha256": "3b4e134bc86b93a8b32b5201103ea0576a74ab313b8cf8808857b08597790e91",
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-111505",
+      "field": "audioTextZh",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
       "key": "content/question-banks/banks/radiotelephony/topics/atc-fzy-749.json#/cards/16/referenceText#DUPLICATED_SENTENCE_FRAGMENT",
       "rule": "DUPLICATED_SENTENCE_FRAGMENT",
       "textSha256": "91a5b4bf35e78fc3711718e1dd6c36f1a2a758cf4de23474344d4110bab1b251",
-      "status": "manual-review",
-      "reason": "中文教学注释引用英文答案片段，非重复正文；保留该说明。"
+      "bankId": "radiotelephony",
+      "cardId": "radiotelephony-fzy-151809",
+      "field": "referenceText",
+      "status": "out-of-scope",
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/203/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
+      "key": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0098.json#/cards/14/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
       "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "e7a9056a23bef0cf753dfce09214f8a34cfefbe4cafc503672273d5383481310",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/252/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "4a5752d8e1f1103d8dbcc81e6f89258ec2f63f6176f1ad8d54a9bfe611c99208",
+      "bankId": "radiotelephony",
+      "cardId": "atc-scenario-0098-card-main-1701",
+      "field": "audioText",
       "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "52839d0625df8ecf7890f776ba973a5c51273f51b127f2f2968880820cc9336b",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/257/audioText#LABEL_NUMBER_GLUE",
-      "status": "out-of-scope",
-      "rule": "LABEL_NUMBER_GLUE",
-      "textSha256": "38c5aec2ce139ae3dba7027c7f772486c56f833d8d36969bff9f0c75085c99c0",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/257/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "38c5aec2ce139ae3dba7027c7f772486c56f833d8d36969bff9f0c75085c99c0",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/398/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "faca25253e2cc8ddc792a0eca667c427914bd05ed803cdefd4869255d8dfecf2",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/4/audioText#FULLWIDTH_PUNCTUATION_IN_ENGLISH",
-      "status": "out-of-scope",
-      "rule": "FULLWIDTH_PUNCTUATION_IN_ENGLISH",
-      "textSha256": "34467582a6e819e5f27a353e38a738e961eb3e623edbbef724b284e14c47a175",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/51/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "e942cc1d663d4d3c99ca057e6dd88571fba43c6abf86790302ad58e3aa6d35f6",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/71/audioText#LABEL_NUMBER_GLUE",
-      "status": "out-of-scope",
-      "rule": "LABEL_NUMBER_GLUE",
-      "textSha256": "e393ca6b2b8446e3ecaa166a3b126af8aa300b51a00911fa6a4eafc9d6b0a407",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/13/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "364f8db3ded65250867bbb40af995757f88a5899f11c2111ce68db3814d13185",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/17/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "b536f3a2445d349cbbd374103f9361665ef8b70c4a3e0c5665d68370cf40f16d",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/20/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "d052ef85615e6e8a9a4f0dd0eaba1bae9c0a0f56fd8ffd8c8d978f0ef1438aae",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/22/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "a3af223dd6ec5002e3eb21041dd66cd26082002b7ba52aebc2e5d13a266906a1",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/23/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "e35dfcb82e339436f66d171571ff0975e208cf04c587532586ca8c53bf070cbb",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/3/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "263d3081295cfd933cc307eb0215de368b6dd35db1d56cc9ef09d06565585670",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/4/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "e7e4607dfb67f0cc3a559bb979dfcd031a788ed148362392f710274d8ed7b826",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/6/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "c975755393a776aaa6f3ff6557a1b7ef9621d5606984d6135b5d27d4b6dee00c",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/9/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "882ec7d49da3ff0589d804579dea6a55506aabdbaf81ca3955e597de20114386",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/94/audioText#FULLWIDTH_PUNCTUATION_IN_ENGLISH",
-      "status": "out-of-scope",
-      "rule": "FULLWIDTH_PUNCTUATION_IN_ENGLISH",
-      "textSha256": "6de67a8e5c21febad09c2e58ed00568fd8ef7f668aebd3b77610fb27f0e73696",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/1/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "c36096f9c7c01a552ee766d682968d2f37d7242e64c07339b72a38d2f00b3a1a",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/13/audioText#FULLWIDTH_PUNCTUATION_IN_ENGLISH",
-      "status": "out-of-scope",
-      "rule": "FULLWIDTH_PUNCTUATION_IN_ENGLISH",
-      "textSha256": "dfa45eccb678040c247d76b4378e07d7478900ca51f92ad5a857add655fb060b",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/13/audioTextZh#ASCII_PUNCTUATION_IN_CHINESE",
-      "status": "out-of-scope",
-      "rule": "ASCII_PUNCTUATION_IN_CHINESE",
-      "textSha256": "9b0576f3038e1430050d8a0a684f1b6010bed652676b5a276e1b5520f22bef88",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/3/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "6f557182e66ecadfdf3d4321e0f89641c60a1fbf1c722d43f3f4a705685a73df",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/37/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "e7a78324c98993ce02ec61251af74d676d1214102fdfb9d5fe27b1cd0aca97fa",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
-    },
-    {
-      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/7/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
-      "status": "out-of-scope",
-      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
-      "textSha256": "d0e68c11523ac9d4f26998bf0e8efa6896a9c78f4a2fa6c86cb0e5a9f49a1be0",
-      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+      "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     }
   ]
 }

@@ -7,6 +7,7 @@ import {
   StudyAudioPlayer,
   WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS,
 } from '../components/StudyAudioPlayer';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 const mockSetAudioModeAsync = jest.fn(async (_mode: unknown): Promise<void> => undefined);
 const mockSetIsAudioActiveAsync = jest.fn(async (_active: boolean): Promise<void> => undefined);
@@ -207,6 +208,20 @@ describe('StudyAudioPlayer', () => {
     expect(mockPlayer.pause).toHaveBeenCalled();
     expect(screen.getByLabelText('重试音频')).toBeTruthy();
     expect(audioSessionOrchestrator.getActiveLeaseForTests()).toBeUndefined();
+    await screen.unmount();
+  });
+
+  it.each(['ios', 'android'] as const)('shows a native session failure and recovers on another %s play tap', async platform => {
+    setTestPlatform(platform);
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(<StudyAudioPlayer label="Sentence584" playbackKey="native-recovery" uri="https://example.test/584.mp3" variant="integrated-recording" />);
+    mockSetAudioModeAsync.mockRejectedValueOnce(new Error('mode')).mockRejectedValueOnce(new Error('idle'));
+    await act(async () => { fireEvent.press(screen.getByLabelText('播放')); });
+    await waitFor(() => expect(screen.getByText('音频暂时无法启动，请再次点击播放重试。')).toBeTruthy());
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+    await act(async () => { fireEvent.press(screen.getByLabelText('播放')); });
+    await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+    expect(screen.queryByText('音频暂时无法启动，请再次点击播放重试。')).toBeNull();
     await screen.unmount();
   });
 

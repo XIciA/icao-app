@@ -43,10 +43,10 @@ const feedbackDiagnosticBundleSchema = z.object({
 
 export const feedbackSubmissionSchema = z.object({
   clientSubmissionId: z.string().uuid(),
-  category: z.enum(['feature_suggestion', 'content_correction', 'other']),
+  category: z.enum(['feature_suggestion', 'content_correction', 'other', 'listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi']),
   description: z.string().trim().min(5).max(500),
   contact: z.string().trim().max(100).optional().transform((value) => value || undefined),
-  source: z.enum(['profile', 'study']),
+  source: z.enum(['profile', 'study', 'exam_report', 'opi_hotspot']),
   sourceRoute: z.string().trim().min(1).max(500).transform((value) => value.split(/[?#]/u, 1)[0] || '/'),
   appDisplayVersion,
   platform: z.enum(['web', 'ios', 'android']),
@@ -66,6 +66,8 @@ export const feedbackSubmissionSchema = z.object({
   }).optional(),
   diagnostics: feedbackDiagnosticBundleSchema.optional(),
 }).strict().superRefine((value, context) => {
+  const bankCategory = ['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'].includes(value.category);
+  if ((value.source === 'exam_report' && !bankCategory) || (value.source === 'opi_hotspot' && value.category !== 'opi') || (['profile', 'study'].includes(value.source) && bankCategory)) context.addIssue({ code: 'custom', message: 'feedback_category_source_mismatch', path: ['category'] });
   if (value.source === 'study' && !value.question) {
     context.addIssue({ code: 'custom', message: 'study_feedback_requires_question', path: ['question'] });
   }

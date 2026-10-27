@@ -120,7 +120,7 @@ export function AnnotationToolbar({
           onPress={() => { trackProductClick('highlight'); toggleHighlightMode(); }}
           style={[styles.tool, highlightMode ? styles.toolActive : null]}
         >
-          <GuideAnchor id="sentence-highlight-tool" /><Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
+          {!highlightMode ? <GuideAnchor id="sentence-highlight-tool" /> : null}<Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
           <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">高亮</AppText>
         </Pressable>
       ) : null}
@@ -131,7 +131,7 @@ export function AnnotationToolbar({
           onPress={() => { trackProductClick('tag'); toggleTags(); }}
           style={[styles.tool, tagMode ? styles.toolActive : null]}
         >
-          <GuideAnchor id="sentence-tag-tool" /><Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />
+          {!tagMode ? <GuideAnchor id="sentence-tag-tool" /> : null}<Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />
           <AppText color={tagMode ? colors.primary : colors.mutedForeground} variant="caption">标签</AppText>
         </Pressable>
       ) : null}
@@ -269,7 +269,7 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelec
               onPress={() => onSelect(definition.id)}
               style={[styles.pill, selected ? styles.pillSelected : null]}
             >
-              <View style={[styles.dot, { backgroundColor: annotationToneColors[definition.color] }]} />
+              <View style={[singleSelection ? styles.line : styles.dot, { backgroundColor: annotationToneColors[definition.color] }]} />
               <AppText color={selected ? colors.foreground : colors.mutedForeground} variant="micro">{definition.label}</AppText>
               {selected ? <Check color={colors.primary} size={12} /> : null}
             </Pressable>
@@ -294,6 +294,7 @@ const styles = StyleSheet.create({
   options: { flexDirection: 'row', gap: spacing[2], paddingRight: spacing[1] },
   pill: { alignItems: 'center', flexShrink: 0, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 32, paddingHorizontal: spacing[2.5] },
   pillSelected: { backgroundColor: colors.primary06, borderColor: colors.primary },
+  line: { borderRadius: radii.full, height: 6, width: 16 },
   dot: { borderRadius: radii.full, height: 8, width: 8 },
   addButton: { alignItems: 'center', flexShrink: 0, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 32, justifyContent: 'center', width: 32 },
   creator: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.lg, borderWidth: 1, gap: spacing[2], padding: spacing[2.5] },

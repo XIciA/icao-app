@@ -108,7 +108,7 @@
       "id": "radiotelephony-fzy-225613",
       "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-12",
       "audioText": "12N: During take off rolling, your right engine suddenly got fire. You have to abort takeoff, contact ATC.",
-      "audioTextZh": "在滑跑期间，你右发突然着火。 你必须中断起飞，联系管制员。",
+      "audioTextZh": "在滑跑期间，你右发突然着火。你必须中断起飞，联系管制员。",
       "referenceText": "Wuhan Tower, BAW931, abort takeoff due to right engine fire.",
       "referenceTextZh": "武汉塔台，英航931，右发起火，中断起飞了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/247f78b3d16cfce09aba.mp3"
@@ -118,7 +118,7 @@
       "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-13",
       "audioText": "13N: The fire can not be extinguished. Inform this to ATC. Also you want to carry out evacuation, and request emergency equipment.",
       "audioTextZh": "火无法熄灭，告知管制员此情况。同时，你想执行应急撤离，请求应急设备。",
-      "referenceText": "Wuhan Tower, BAW931, We can’t extinguish the fire, request emergency evacuation and emergency equipment.",
+      "referenceText": "Wuhan Tower, BAW931, We can't extinguish the fire, request emergency evacuation and emergency equipment.",
       "referenceTextZh": "武汉塔台，英航931，火无法熄灭，请求应急撤离和应急设备。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f0da85d3fe29645e146.mp3"
     }

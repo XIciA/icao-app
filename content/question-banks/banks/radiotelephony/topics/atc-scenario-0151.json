@@ -70,7 +70,7 @@
       "id": "atc-scenario-0151-card-main-2614",
       "taskTitle": "CCA 1368-8",
       "audioText": "B: Now you are over PEK, maintaining 4200 meters, you have received information S, tell Beijing Approach you are ready for approach.",
-      "audioTextZh": "B: 现在你在 PEK 上空，保持 4200 米，已收到信息 S，告诉 北京进近 你准备进近。",
+      "audioTextZh": "B: 现在你在 PEK 上空，保持 4200 米，已收到信息 S，告诉北京进近你准备进近。",
       "referenceText": "Beijing Approach, CCA 1368, over PEK, maintaining 4200 meters, information S, ready for approach.",
       "referenceTextZh": "北京进近，CCA 1368，过 PEK，保持 4200 米，信息 S，准备进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q08.mp3"

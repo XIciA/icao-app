@@ -18,7 +18,7 @@ jest.mock('../android-update.native', () => ({ downloadAndroidUpdate: jest.fn(),
 jest.mock('../app-updates.native',()=>({checkAppUpdate:jest.fn(async()=>undefined),dismissAppUpdate:jest.fn(async()=>{}),openAppUpdate:jest.fn(async()=>{})}));
 jest.mock('@/components/ui',()=>{
  const {Text,View,Pressable}=jest.requireActual('react-native');
- return {AppText:({children}:any)=><Text>{children}</Text>,BottomSheet:({children}:any)=><View>{children}</View>,Button:({children,onPress}:any)=><Pressable onPress={onPress}><Text>{children}</Text></Pressable>};
+ return {AppText:({children}:any)=><Text>{children}</Text>,BottomSheet:({children,visible}:any)=>visible?<View>{children}</View>:null,Button:({children,onPress}:any)=><Pressable onPress={onPress}><Text>{children}</Text></Pressable>};
 });
 beforeEach(()=>{jest.clearAllMocks();mockStorage.clear();mockPath='/';mockOwner=undefined;mockExpiry=new Date(Date.now()+86400000).toISOString();});
 it('shows a membership reminder once per expiry and gives it priority over app updates',async()=>{

@@ -1,84 +1,84 @@
 {
   "id": "opi-topic-0049",
   "name": "着陆重量",
-  "declaredCardCount": 7,
   "cards": [
     {
-      "id": "opi-core-583",
-      "taskTitle": "运行-着陆重量-1",
-      "audioText": "What consequences can result from an overweight landing?",
-      "audioTextZh": "超重着陆可能造成哪些后果？",
-      "referenceText": "An overweight landing may cause the aircraft to run off the runway. It can also lead to structural damage or injuries to passengers.",
-      "referenceTextZh": "超重着陆可能导致飞机冲出跑道，也可能造成结构损伤或旅客受伤。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/7cb8153f381613fb80d2ebf77789359ba111b4de54055f43521048d47dea7e60/audio/opi/opi-core-583.mp3",
-      "audioDurationSeconds": 3.024
-    },
-    {
       "id": "opi-core-584",
-      "taskTitle": "运行-着陆重量-2",
-      "audioText": "How would you explain a hard landing to your company?",
-      "audioTextZh": "你会如何向公司说明一次重着陆？",
-      "referenceText": "I would submit a written report to the relevant company department. I would describe the aircraft’s condition, the measures taken to protect flight safety, and the factors that led to the hard landing, such as weather, a runway change, or an aircraft-system response. I would take responsibility and explain any improvement measures, such as additional landing training or better preflight risk assessment.",
-      "referenceTextZh": "我会向公司相关部门提交书面报告，说明飞机状况、为保障飞行安全采取的措施，以及导致重着陆的因素，例如天气、跑道变更或飞机系统响应。我会承担责任，并说明改进措施，例如增加着陆训练或改进飞行前风险评估。",
-      "studyTier": 2,
       "audio": "/question-bank-assets/revisions/opi/97034557c7ae4134d3d9981b8bd78fe25e8c44ca53553f782d1a112c60a49662/audio/opi/opi-core-584.mp3",
+      "audioText": "How would you explain a hard landing to your company?",
+      "studyTier": 2,
+      "taskTitle": "运行-着陆重量-2",
+      "audioTextZh": "你会如何向公司说明一次重着陆？",
+      "referenceText": "I would submit a written report to the relevant company department. I would describe the aircraft's condition, the measures taken to protect flight safety, and the factors that led to the hard landing, such as weather, a runway change, or an aircraft-system response. I would take responsibility and explain any improvement measures, such as additional landing training or better preflight risk assessment.",
+      "referenceTextZh": "我会向公司相关部门提交书面报告，说明飞机状况、为保障飞行安全采取的措施，以及导致重着陆的因素，例如天气、跑道变更或飞机系统响应。我会承担责任，并说明改进措施，例如增加着陆训练或改进飞行前风险评估。",
       "audioDurationSeconds": 2.616
     },
     {
-      "id": "opi-core-585",
-      "taskTitle": "运行-着陆重量-3",
-      "audioText": "Under what circumstances might a pilot decide to make an overweight landing?",
-      "audioTextZh": "飞行员在什么情况下可能决定实施超重着陆？",
-      "referenceText": "A pilot might decide to make an overweight landing after an engine fire shortly after takeoff when the aircraft must land as soon as possible. If there is no time to burn fuel or use any available fuel-dumping system, the aircraft may still be above its normal landing weight.",
-      "referenceTextZh": "飞机起飞后不久发动机起火，需要尽快着陆时，飞行员可能决定超重着陆。如果没有时间消耗燃油或使用可用的放油系统，飞机重量可能仍高于正常着陆重量。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/969b77685c80628759912fcca5accd0cc289d67769e5346a2b109faa5c0b0f96/audio/opi/opi-core-585.mp3",
-      "audioDurationSeconds": 4.104
-    },
-    {
-      "id": "opi-core-586",
-      "taskTitle": "运行-着陆重量-4",
-      "audioText": "How do you determine the maximum landing weight applicable to your aircraft?",
-      "audioTextZh": "你如何确定适用于所飞航空器的最大着陆重量？",
-      "referenceText": "I first check the structural maximum landing weight in the approved flight manual. I then calculate the performance-limited landing weight for the runway, weather, aircraft configuration, and any system failure. The lower of the structural and performance limits is the maximum landing weight applicable to that landing.",
-      "referenceTextZh": "我首先查阅批准的飞行手册，确认结构最大着陆重量。随后根据跑道、天气、飞机构型和任何系统故障计算性能限制着陆重量。结构限制和性能限制中较低的数值，就是本次着陆适用的最大着陆重量。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/d5bb828d2fdfa318f405c15ce801414dd21a0c2b04fa96047dc82260dba72f7b/audio/opi/opi-core-586.mp3",
-      "audioDurationSeconds": 3.912
-    },
-    {
-      "id": "opi-core-587",
-      "taskTitle": "运行-着陆重量-5",
-      "audioText": "How can pilots reduce an aircraft's landing weight while airborne?",
-      "audioTextZh": "飞行员如何在空中降低航空器的着陆重量？",
-      "referenceText": "Pilots can remain airborne, for example in a holding pattern, to burn fuel and reduce the aircraft’s weight. If the aircraft has a fuel-jettison system, they can also dump fuel to reduce the landing weight.",
-      "referenceTextZh": "飞行员可以继续留空，例如进行等待，以消耗燃油并降低飞机重量。如果飞机有放油系统，也可以通过空中放油降低着陆重量。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/82be3bf49cf6051dc18f286dd457bdd7aa2ef71daebe8e49f0c422f59896a6df/audio/opi/opi-core-587.mp3",
-      "audioDurationSeconds": 3.432
-    },
-    {
       "id": "opi-core-588",
-      "taskTitle": "运行-着陆重量-6",
+      "audio": "/question-bank-assets/revisions/opi/910ebc225bba44e1dcd943b693920748ae888a01719c6b5993e351950c7a4bbb/audio/opi/opi-core-588.mp3",
       "audioText": "What information should a pilot include in a company report after an overweight landing?",
+      "studyTier": 2,
+      "taskTitle": "运行-着陆重量-6",
       "audioTextZh": "超重着陆后，飞行员向公司提交的报告应包含哪些信息？",
       "referenceText": "The written report should explain why the overweight landing was necessary and describe the actions the crew took to protect flight safety.",
       "referenceTextZh": "书面报告应说明为何必须超重着陆，并描述机组为保障飞行安全采取的措施。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/910ebc225bba44e1dcd943b693920748ae888a01719c6b5993e351950c7a4bbb/audio/opi/opi-core-588.mp3",
       "audioDurationSeconds": 4.536
     },
     {
+      "id": "opi-core-587",
+      "audio": "/question-bank-assets/revisions/opi/82be3bf49cf6051dc18f286dd457bdd7aa2ef71daebe8e49f0c422f59896a6df/audio/opi/opi-core-587.mp3",
+      "audioText": "How can pilots reduce an aircraft's landing weight while airborne?",
+      "studyTier": 2,
+      "taskTitle": "运行-着陆重量-5",
+      "audioTextZh": "飞行员如何在空中降低航空器的着陆重量？",
+      "referenceText": "Pilots can remain airborne, for example in a holding pattern, to burn fuel and reduce the aircraft's weight. If the aircraft has a fuel-jettison system, they can also dump fuel to reduce the landing weight.",
+      "referenceTextZh": "飞行员可以继续留空，例如进行等待，以消耗燃油并降低飞机重量。如果飞机有放油系统，也可以通过空中放油降低着陆重量。",
+      "audioDurationSeconds": 3.432
+    },
+    {
+      "id": "opi-core-585",
+      "audio": "/question-bank-assets/revisions/opi/969b77685c80628759912fcca5accd0cc289d67769e5346a2b109faa5c0b0f96/audio/opi/opi-core-585.mp3",
+      "audioText": "Under what circumstances might a pilot decide to make an overweight landing?",
+      "studyTier": 2,
+      "taskTitle": "运行-着陆重量-3",
+      "audioTextZh": "飞行员在什么情况下可能决定实施超重着陆？",
+      "referenceText": "A pilot might decide to make an overweight landing after an engine fire shortly after takeoff when the aircraft must land as soon as possible. If there is no time to burn fuel or use any available fuel-dumping system, the aircraft may still be above its normal landing weight.",
+      "referenceTextZh": "飞机起飞后不久发动机起火，需要尽快着陆时，飞行员可能决定超重着陆。如果没有时间消耗燃油或使用可用的放油系统，飞机重量可能仍高于正常着陆重量。",
+      "audioDurationSeconds": 4.104
+    },
+    {
       "id": "opi-core-589",
-      "taskTitle": "运行-着陆重量-7",
+      "audio": "/question-bank-assets/revisions/opi/07b94d7fed769804a32210a0fb52e2f8883cd9dff92a98ec57759f7766d371e5/audio/opi/opi-core-589.mp3",
       "audioText": "What factors can lead to a hard landing?",
+      "taskTitle": "运行-着陆重量-7",
       "audioTextZh": "哪些因素可能导致重着陆？",
       "referenceText": "A hard landing can result from an unstable approach, excessive landing speed, an improper flare, a tailwind, poor runway braking action, an overweight aircraft, or incorrect handling of a crosswind.",
       "referenceTextZh": "重着陆可能由进近不稳定、着陆速度过大、拉平不当、顺风、跑道制动作用不良、飞机超重或侧风操纵错误造成。",
-      "audio": "/question-bank-assets/revisions/opi/07b94d7fed769804a32210a0fb52e2f8883cd9dff92a98ec57759f7766d371e5/audio/opi/opi-core-589.mp3",
       "audioDurationSeconds": 2.184
+    },
+    {
+      "id": "opi-core-586",
+      "audio": "/question-bank-assets/revisions/opi/d5bb828d2fdfa318f405c15ce801414dd21a0c2b04fa96047dc82260dba72f7b/audio/opi/opi-core-586.mp3",
+      "audioText": "How do you determine the maximum landing weight applicable to your aircraft?",
+      "studyTier": 2,
+      "taskTitle": "运行-着陆重量-4",
+      "audioTextZh": "你如何确定适用于所飞航空器的最大着陆重量？",
+      "referenceText": "I first check the structural maximum landing weight in the approved flight manual. I then calculate the performance-limited landing weight for the runway, weather, aircraft configuration, and any system failure. The lower of the structural and performance limits is the maximum landing weight applicable to that landing.",
+      "referenceTextZh": "我首先查阅批准的飞行手册，确认结构最大着陆重量。随后根据跑道、天气、飞机构型和任何系统故障计算性能限制着陆重量。结构限制和性能限制中较低的数值，就是本次着陆适用的最大着陆重量。",
+      "audioDurationSeconds": 3.912
+    },
+    {
+      "id": "opi-core-583",
+      "audio": "/question-bank-assets/revisions/opi/7cb8153f381613fb80d2ebf77789359ba111b4de54055f43521048d47dea7e60/audio/opi/opi-core-583.mp3",
+      "audioText": "What consequences can result from an overweight landing?",
+      "studyTier": 2,
+      "taskTitle": "运行-着陆重量-1",
+      "audioTextZh": "超重着陆可能造成哪些后果？",
+      "referenceText": "An overweight landing may cause the aircraft to run off the runway. It can also lead to structural damage or injuries to passengers.",
+      "referenceTextZh": "超重着陆可能导致飞机冲出跑道，也可能造成结构损伤或旅客受伤。",
+      "audioDurationSeconds": 3.024
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-05"
 }

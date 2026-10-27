@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { MyAnnotationsScreen } from '../components/MyAnnotationsScreen';
@@ -7,8 +8,14 @@ let mockHighlightDeleted = false;
 const mockPush = jest.fn();
 const mockRefresh = jest.fn(async () => undefined);
 
+jest.mock('../annotations/card-index.native', () => {
+  const actual = jest.requireActual('../annotations/card-index.native');
+  const { createCardDirectory } = jest.requireActual('../data/card-directory');
+  const directory = createCardDirectory(require('../data/question-bank.json'));
+  return { ...actual, getQuestionBankCardReference: (target: object) => directory.get(target) };
+});
 jest.mock('../annotations/use-card-references.native', () => ({ useCardReferences: (targets: { bankId: string; cardId: string }[]) => {
-  const { getQuestionBankCardReference } = jest.requireActual('../annotations/card-index.native');
+  const { getQuestionBankCardReference } = jest.requireMock('../annotations/card-index.native');
   return { values: new Map(targets.map(target => [`${target.bankId}:${target.cardId}`, { status: 'ready', location: getQuestionBankCardReference(target) }])), retry: jest.fn() };
 } }));
 
@@ -17,7 +24,7 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({ back: jest.fn(), push: mockPush }),
 }));
 
-jest.mock('react-native-safe-area-context', () => ({
+jest.mock('react-native-safe-area-context', () => ({ ...jest.requireActual('react-native-safe-area-context/jest/mock').default,
   SafeAreaView: ({ children }: { children: React.ReactNode }) => children,
   useSafeAreaInsets: () => ({ bottom: 0, left: 0, right: 0, top: 0 }),
 }));
@@ -64,7 +71,7 @@ jest.mock('../annotations/use-question-annotations', () => ({
           topicId: 'listening-topic-01',
           cardId: 'listening-main-001',
           tagIds: ['memory'],
-          highlights: mockHighlightDeleted ? [] : [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: jest.requireActual('../annotations/text').contentFingerprint(jest.requireActual('../annotations/card-index.native').getQuestionBankCardReference({ bankId: 'listening', cardId: 'listening-main-001' }).card.audioText) }],
+          highlights: mockHighlightDeleted ? [] : [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: jest.requireActual('../annotations/text').contentFingerprint(jest.requireMock('../annotations/card-index.native').getQuestionBankCardReference({ bankId: 'listening', cardId: 'listening-main-001' }).card.audioText) }],
           note: '复习雷击通话',
           updatedAt: '2026-07-12T00:00:00.000Z',
         },
@@ -94,7 +101,7 @@ describe('<MyAnnotationsScreen />', () => {
 
   it('separates annotation kinds, filters by color, and routes to the exact card', async () => {
     const screen = await render(<MyAnnotationsScreen />);
-    expect(screen.getByText('我的标注')).toBeTruthy();
+    expect(screen.queryByText('我的标注')).toBeNull();
     expect(screen.getByText('全部题库')).toBeTruthy();
     await waitFor(() => expect(screen.getByText(/UAL\s?919/)).toBeTruthy());
     expect(screen.getByText('Maintaining FL310.')).toBeTruthy();
@@ -123,7 +130,7 @@ describe('<MyAnnotationsScreen />', () => {
 
     expect(screen.queryByText('Maintaining FL310.')).toBeNull();
     await waitFor(() => expect(screen.getByText(/UAL\s?919/)).toBeTruthy());
-    expect(screen.getByText('本机数据 · 当前题库')).toBeTruthy();
+    expect(screen.queryByText('本机数据 · 当前题库')).toBeNull();
   });
 });
 
@@ -141,4 +148,18 @@ it('keeps a filter attached to its stable class ID after renaming, and clears de
   expect(screen.queryByLabelText('高亮词：UAL919,')).toBeNull();
   await fireEvent.press(screen.getByText('笔记'));
   expect(screen.getByText('复习雷击通话')).toBeTruthy();
+});
+
+it('uses short lines for highlights while tags retain round dots', async () => {
+  mockHighlightName = undefined; mockHighlightDeleted = false;
+  const screen = await render(<MyAnnotationsScreen />);
+  await fireEvent.press(screen.getByText('高亮'));
+  const stack = screen.getByLabelText('高亮颜色：记忆');
+  const line = stack.props.children[0];
+  expect(StyleSheet.flatten(line.props.style)).toMatchObject({ height: 6, borderWidth: 1 });
+  await fireEvent.press(screen.getByText('标签'));
+  const tags = screen.getAllByLabelText(/已添加.*个标签/);
+  expect(tags.length).toBeGreaterThan(0);
+  const dot = tags[0].props.children[0];
+  expect(StyleSheet.flatten(dot.props.style)).toMatchObject({ height: 13 });
 });

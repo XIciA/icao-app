@@ -1,5 +1,6 @@
 import type {
   StudyTier,
+  QuestionBankRadioEntry,
   StudyScopeCardIds,
   GrammarCorrectionIssue,
   QuestionBankAccessSummary,
@@ -89,6 +90,7 @@ export type QuestionBankTopic = {
   cards: QuestionBankCard[];
   studyTier?: StudyTier;
   scopeCardIds?: StudyScopeCardIds;
+  radioEntries?: QuestionBankRadioEntry[];
   practiceKind?: 'scenario' | 'scoring-points';
   access?: QuestionBankContentAccess;
 };
@@ -142,7 +144,7 @@ export type CardLearningState = {
   recordingDurationMillis?: number;
   tagIds?: string[];
   highlights?: {
-    blockId: 'question' | 'reference';
+    blockId: 'question' | 'reference' | `choice-${number}`;
     wordIndex: number;
     colorId: string;
     quote: string;
@@ -182,6 +184,8 @@ export type StudyReviewSnapshot = {
 };
 
 export type QuestionBankStudyPackage = {
+  sentenceReplay?: import('../mock-exam/sentence-replay').SentenceReplayLedger;
+  initialItemId?: string;
   id: string;
   startedAt: string;
   items: QuestionBankStudyItem[];

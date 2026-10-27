@@ -11,10 +11,10 @@ const mockRefresh = jest.fn(async () => undefined);
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ accountReady: Boolean(mockAccount), account: { accountId: mockAccount }, session: { user: { id: mockUser } } }) }));
 jest.mock('@/features/auth/auth-service', () => ({ getAuthService: () => ({ getSession: async () => ({ user: { id: mockUser }, accessToken: `token:${mockUser}` }) }) }));
 jest.mock('@/platform/api-client', () => ({ ...jest.requireActual('@/platform/api-client'), apiRequestWithAccessToken: (...args: unknown[]) => mockApi(...args) }));
-jest.mock('../CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({ refresh: mockRefresh }) }));
+jest.mock('../CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({ refresh: mockRefresh, entitlement: undefined }) }));
 jest.mock('@/components/ui', () => {
   const { Text, View, Pressable } = require('react-native');
-  return { AppText: ({ children, ...props }: any) => <Text {...props}>{children}</Text>, Card: View,
+  return { AppText: ({ children, ...props }: any) => <Text {...props}>{children}</Text>, Card: View, BottomSheet: ({ visible, children }: any) => visible ? <View>{children}</View> : null,
     Button: ({ children, ...props }: any) => <Pressable accessibilityRole="button" {...props}><Text>{children}</Text></Pressable> };
 });
 const product = { productKey: 'membership_7d_v1', title: '7天会员', amountFen: 6800, durationDays: 7, currency: 'CNY' };
@@ -35,9 +35,9 @@ beforeEach(() => {
 
 it('never creates an order on page load and pins a Native purchase to the captured user token', async () => {
   const view = await render(<WebWechatCheckout />);
-  await waitFor(() => expect(view.getByText('7天会员 · ¥68.00')).toBeTruthy());
+  await waitFor(() => expect(view.getByText('开通7天会员 · ¥68.00')).toBeTruthy());
   expect(mockApi.mock.calls.every(([, , options]) => !options)).toBe(true);
-  await fireEvent.press(view.getByText('7天会员 · ¥68.00'));
+  await fireEvent.press(view.getByText('开通7天会员 · ¥68.00'));
   await waitFor(() => expect(view.getByLabelText('微信支付二维码，请使用另一台设备的微信扫一扫')).toBeTruthy());
   const call = mockApi.mock.calls.find(([, , options]) => options?.method === 'POST')!;
   expect(call[1]).toBe('token:user-a');
@@ -81,12 +81,12 @@ it('keeps an uncertain creation key stable and requires reconciliation before re
     return normal(...args);
   });
   const view = await render(<WebWechatCheckout />);
-  await waitFor(() => expect(view.getByText('7天会员 · ¥68.00')).toBeTruthy());
-  await fireEvent.press(view.getByText('7天会员 · ¥68.00'));
+  await waitFor(() => expect(view.getByText('开通7天会员 · ¥68.00')).toBeTruthy());
+  await fireEvent.press(view.getByText('开通7天会员 · ¥68.00'));
   await waitFor(() => expect(view.getByText('订单结果尚未确认，请先重新检查；请勿重复付款。')).toBeTruthy());
   await fireEvent.press(view.getByText('重新检查订单'));
   await waitFor(() => expect(view.queryByText('订单结果尚未确认，请先重新检查；请勿重复付款。')).toBeNull());
-  await fireEvent.press(view.getByText('7天会员 · ¥68.00'));
+  await fireEvent.press(view.getByText('开通7天会员 · ¥68.00'));
   await waitFor(() => expect(view.getByLabelText('微信支付二维码，请使用另一台设备的微信扫一扫')).toBeTruthy());
   const writes = mockApi.mock.calls.filter(([, , options]) => options?.method === 'POST');
   expect(JSON.parse(writes[1]![2].body)).toEqual(input);
@@ -99,8 +99,8 @@ it('discards a delayed QR from a previous account and does not refresh the new a
   mockApi.mockImplementation((path, token, options) => path.endsWith('/checkouts') && options?.method === 'POST'
     ? new Promise((done) => { resolve = done; }) : normal(path, token, options));
   const view = await render(<WebWechatCheckout />);
-  await waitFor(() => expect(view.getByText('7天会员 · ¥68.00')).toBeTruthy());
-  await fireEvent.press(view.getByText('7天会员 · ¥68.00'));
+  await waitFor(() => expect(view.getByText('开通7天会员 · ¥68.00')).toBeTruthy());
+  await fireEvent.press(view.getByText('开通7天会员 · ¥68.00'));
   await waitFor(() => expect(resolve).toBeDefined());
   mockAccount = 'account-b'; mockUser = 'user-b'; await view.rerender(<WebWechatCheckout />);
   await act(async () => resolve(checkout()));

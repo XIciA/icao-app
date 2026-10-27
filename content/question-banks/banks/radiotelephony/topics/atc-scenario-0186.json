@@ -25,7 +25,7 @@
       "id": "atc-scenario-0186-card-main-3204",
       "taskTitle": "SIA 223-3",
       "audioText": "C: SIA 223, confirm you want to make another approach or join holding pattern?\nB: Tell the controller you will have to hold for a while to sort out the problem.",
-      "audioTextZh": "C： SIA 223，确认你希望再次进近还是加入等待航线？\nB： 告诉管制员，你必须等待一段时间以排除故障。",
+      "audioTextZh": "C：SIA 223，确认你希望再次进近还是加入等待航线？\nB：告诉管制员，你必须等待一段时间以排除故障。",
       "referenceText": "request hold, sort out the problem, SIA 223.",
       "referenceTextZh": "请求等待以排除故障，SIA 223。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q03.mp3"
@@ -52,7 +52,7 @@
       "id": "atc-scenario-0186-card-main-3207",
       "taskTitle": "SIA 223-6",
       "audioText": "C: SIA 223, roger, fly heading 080.\nB: read back the instructions and tell the controller you would like to make a low pass for visual check.",
-      "audioTextZh": "C： SIA 223，收到，飞航向 080。\nB： 复诵指令，并告诉管制员你希望实施低空通场，以便进行目视检查。",
+      "audioTextZh": "C：SIA 223，收到，飞航向 080。\nB：复诵指令，并告诉管制员你希望实施低空通场，以便进行目视检查。",
       "referenceText": "heading 080, request low pass for visual check, SIA 223.",
       "referenceTextZh": "航向 080，请求低空通场进行目视检查，SIA 223。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q06.mp3"
@@ -106,7 +106,7 @@
       "id": "atc-scenario-0186-card-main-3213",
       "taskTitle": "SIA 223-12",
       "audioText": "C: SIA 223, the nose wheel doesn't appear to be down, say your intention.\nB: Tell the controller you ask for touch and go and you intend to jar the wheel down.",
-      "audioTextZh": "C： SIA 223，前轮看起来没有放下，报告你的意图。\nB： 告诉管制员你请求接地复飞，并打算通过震动将机轮放下。",
+      "audioTextZh": "C：SIA 223，前轮看起来没有放下，报告你的意图。\nB：告诉管制员你请求接地复飞，并打算通过震动将机轮放下。",
       "referenceText": "SIA 223, request touch and go, jar down.",
       "referenceTextZh": "SIA 223，请求接地复飞，尝试通过震动将机轮放下。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q12.mp3"

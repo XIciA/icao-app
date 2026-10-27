@@ -1,6 +1,6 @@
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
-import { useEffect } from 'react';
+import { Check, CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -12,11 +12,14 @@ import { isWordFavorite } from '../favorites';
 import { progressFor } from '../progress-store';
 import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech';
 import type { VocabularyState, VocabularyWord, VocabularyWordStatus } from '../types';
+import { VocabularyFrequency } from './VocabularyFrequency';
 import { VocabularyProgress } from './VocabularyProgress';
 
 export type VocabularySessionSummary = Record<'known' | 'vague' | 'forgot' | 'wrong', number>;
 
 export function VocabularyStudyView({
+  busy = false,
+  savedStatus,
   words,
   index,
   revealed,
@@ -27,6 +30,8 @@ export function VocabularyStudyView({
   onNext,
   onToggleFavorite,
 }: {
+  busy?: boolean;
+  savedStatus?: VocabularyWordStatus;
   words: VocabularyWord[];
   index: number;
   revealed: boolean;
@@ -40,36 +45,57 @@ export function VocabularyStudyView({
   const insets = useSafeAreaInsets();
   const guide = useGuide();
   const word = words[index]!;
+  const [speechLoading, setSpeechLoading] = useState(false);
+  const speechRequest = useRef(0), speechPending = useRef(false);
   const progress = progressFor(word.id, state);
+  const markedWrong = savedStatus === 'wrong';
+  const learned = words.filter(item => (state.words[item.id]?.status ?? 'new') !== 'new').length;
   const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
 
   useEffect(() => {
-    void speakVocabulary(word.word);
-    return () => { void stopVocabularySpeech(); };
-  }, [word.id, word.word]);
+    const requests = speechRequest;
+    requests.current++; speechPending.current = false; setSpeechLoading(false);
+    void speakVocabulary(word.pronunciationText ?? word.word);
+    return () => { requests.current++; speechPending.current = false; void stopVocabularySpeech(); };
+  }, [word.id, word.word, word.pronunciationText]);
+
+  const playWord = () => {
+    if (speechPending.current) return;
+    const request = ++speechRequest.current;
+    speechPending.current = true; setSpeechLoading(true);
+    const release = () => {
+      if (request !== speechRequest.current) return false;
+      speechPending.current = false; setSpeechLoading(false); return true;
+    };
+    void speakVocabularyWithFeedback(word.pronunciationText ?? word.word, undefined, () => {
+      if (release()) guide?.event('vocab-speech');
+    }).finally(release);
+  };
 
   const choose = (status: Exclude<VocabularyWordStatus, 'new' | 'wrong'>) => {
     void onChoose(status);
-    void speakVocabulary(word.word, word.example);
+    void speakVocabulary(word.pronunciationText ?? word.word, word.example);
   };
 
   return (
     <Screen contentStyle={styles.zero}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel="返回上一页" hitSlop={8} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
-        <AppText variant="button">{index + 1} / {words.length}</AppText>
-        <Pressable accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
+        <Pressable accessibilityLabel="返回上一页" hitSlop={8} disabled={busy} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
+        <AppText variant="button">已学 {learned} / {words.length}</AppText>
+        <Pressable disabled={busy} accessibilityState={{ busy }} accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
           <GuideAnchor id="vocab-favorite" /><Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
         </Pressable>
       </View>
-      <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>
+      <View style={styles.progressWrap}><VocabularyProgress value={learned / words.length} /></View>
+      <View style={styles.frequencyRow}><VocabularyFrequency compact key={word.id} word={word} /></View>
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
           <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
-          <Pressable accessibilityLabel={`播放${word.word}发音`} onPress={() => { void speakVocabularyWithFeedback(word.word).then(success => { if (success) guide?.event('vocab-speech'); }); }} style={styles.sound}><GuideAnchor id="vocab-speech" /><Volume2 color={colors.primary} size={20} /></Pressable>
+          <Pressable accessibilityLabel={`播放${word.word}发音`} accessibilityState={{ busy: speechLoading }} disabled={speechLoading} onPress={playWord} style={styles.sound}><GuideAnchor id="vocab-speech" />{speechLoading ? <AppText variant="micro">加载中</AppText> : <Volume2 color={colors.primary} size={20} />}</Pressable>
           {revealed ? (
             <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />
               <AppText style={styles.meaning} variant="sectionTitle">{word.meaning}</AppText>
+              {word.relatedExpressions?.length ? <AppText color={colors.mutedForeground} variant="caption">相关表达：{word.relatedExpressions.join('、')}</AppText> : null}
               <Card style={styles.exampleCard}>
                 <AppText style={styles.exampleEnglish}>{word.example}</AppText>
                 <AppText variant="caption">{word.exampleTranslation}</AppText>
@@ -83,15 +109,15 @@ export function VocabularyStudyView({
       </ScrollView>
       <View style={[styles.actions, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         {revealed ? (
-          <View style={styles.actionRow}>
-            <Button onPress={() => { void onWrong(); }} size="lg" style={styles.flexButton} variant="outline">记错了</Button>
-            <Button onPress={onNext} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
+          <View key={`${word.id}:revealed`} style={styles.actionRow}><GuideAnchor id="vocab-next" />
+            <Button accessibilityLabel={markedWrong ? '已标记记错' : '记错了'} accessibilityState={{ busy, disabled: busy || markedWrong }} disabled={busy || markedWrong} leading={markedWrong ? <Check size={16} color={colors.primary} /> : undefined} onPress={() => { void onWrong(); }} size="lg" style={[styles.flexButton, markedWrong ? styles.markedWrong : null]} variant="outline">{markedWrong ? '已标记记错' : '记错了'}</Button>
+            <Button disabled={busy} onPress={() => { guide?.event('vocab-next'); onNext(); }} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
           </View>
         ) : (
-          <View style={styles.actionRow}><GuideAnchor id="vocab-rating" />
-            <Button onPress={() => choose('forgot')} size="lg" style={styles.flexButton} variant="outline">忘记</Button>
-            <Button onPress={() => choose('vague')} size="lg" style={styles.flexButton} variant="secondary">模糊</Button>
-            <Button onPress={() => choose('known')} size="lg" style={styles.flexButton}>认识</Button>
+          <View key={`${word.id}:rating`} style={styles.actionRow}><GuideAnchor id="vocab-rating" />
+            <Button disabled={busy} onPress={() => choose('forgot')} size="lg" style={styles.flexButton} variant="outline">忘记</Button>
+            <Button disabled={busy} onPress={() => choose('vague')} size="lg" style={styles.flexButton} variant="secondary">模糊</Button>
+            <Button disabled={busy} onPress={() => choose('known')} size="lg" style={styles.flexButton}>认识</Button>
           </View>
         )}
       </View>
@@ -102,6 +128,7 @@ export function VocabularyStudyView({
 const statusText: Record<VocabularyWordStatus, string> = { new: '未学', known: '认识', vague: '模糊', forgot: '忘记', wrong: '记错' };
 
 export function VocabularyCompletionView({
+  returnLabel = '返回词书',
   total,
   summary,
   onBack,
@@ -111,6 +138,7 @@ export function VocabularyCompletionView({
 }: {
   total: number;
   summary: VocabularySessionSummary;
+  returnLabel?: string;
   onBack: () => void;
   onRestart: () => void;
   onReview: () => void;
@@ -118,8 +146,7 @@ export function VocabularyCompletionView({
 }) {
   const needsReview = summary.vague + summary.forgot + summary.wrong;
   return (
-    <Screen scroll contentStyle={styles.zero}>
-      <TopBar title="本轮完成" onBack={onBack} />
+    <Screen scroll contentStyle={styles.zero} header={<TopBar title="本轮完成" onBack={onBack} />}>
       <View style={styles.completionPage}>
         <View style={styles.completionHero}><CheckCircle2 color={colors.primary} size={36} /></View>
         <View style={styles.completionHeading}><AppText variant="pageTitle">完成 {total} 词</AppText><AppText style={styles.center}>学习状态已经保存。优先回看不稳定词汇，效果会更好。</AppText></View>
@@ -133,7 +160,7 @@ export function VocabularyCompletionView({
         <Button disabled={!needsReview} onPress={onReview} size="lg">复习本轮薄弱词</Button>
         <Button onPress={onViewWords} size="lg" variant="outline">查看本轮单词</Button>
         <Button leading={<RotateCcw color={colors.foreground} size={17} />} onPress={onRestart} size="lg" variant="outline">再学一遍</Button>
-        <Button onPress={onBack} size="lg" variant="ghost">返回词书</Button>
+        <Button onPress={onBack} size="lg" variant="ghost">{returnLabel}</Button>
       </View>
     </Screen>
   );
@@ -144,13 +171,15 @@ function SummaryCard({ label, value, color }: { label: string; value: number; co
 }
 
 const styles = StyleSheet.create({
+  markedWrong: { backgroundColor: colors.primary06, borderColor: colors.primary20, opacity: 1 },
   zero: { paddingHorizontal: 0 },
   topBar: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[3] },
   iconButton: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },
   progressWrap: { paddingHorizontal: spacing[5], paddingTop: spacing[3] },
   studyContent: { flexGrow: 1, padding: spacing[5] },
   wordCenter: { alignItems: 'center', flex: 1, gap: spacing[4], justifyContent: 'center', minHeight: 430 },
-  studyWord: { fontSize: 36, lineHeight: 46, textAlign: 'center' },
+  studyWord: { flexShrink: 1, fontSize: 36, lineHeight: 46, textAlign: 'center' },
+  frequencyRow: { alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end', paddingHorizontal: spacing[5], paddingTop: spacing[3], minHeight: 40 },
   sound: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   reveal: { alignItems: 'center', gap: spacing[5], width: '100%' },
   meaning: { fontSize: 20, lineHeight: 30, textAlign: 'center' },

@@ -55,7 +55,7 @@
       "taskTitle": "36-CSN557 [液压油泄漏]-6",
       "audioText": "6N: After performing the checklist, you still cannot verify the landing gear position. Tell the Approach you want to return to Wuhan airport and fly a low pass over airfield for visual inspection.",
       "audioTextZh": "执行完检查单后，你依旧无法证实起落架位置。告知进近，你希望返航武汉机场，进行低空目视通场。",
-      "referenceText": "Wuhan Approach, CSN557, we can’t confirm the landing gear position, request return to Wuhan airport and make a low pass for visual check.",
+      "referenceText": "Wuhan Approach, CSN557, we can't confirm the landing gear position, request return to Wuhan airport and make a low pass for visual check.",
       "referenceTextZh": "武汉进近，南方557，我们无法确定起落架的位置，请求返航武汉机场，并执行低空目视通场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/793cf6d09b748906a472.mp3"
     },
@@ -109,7 +109,7 @@
       "taskTitle": "36-CSN557 [液压油泄漏]-12",
       "audioText": "12C: CSN557, after low pass maintain runway heading and climb to 900m.",
       "audioTextZh": "南方557，低空通场后，保持报道航向，上到900米。",
-      "referenceText": "Maintain runway heading and climb to 900m.,CSN557.",
+      "referenceText": "Maintain runway heading and climb to 900m., CSN557.",
       "referenceTextZh": "保持跑道航向，上900米，南方557。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/dcfbbb7d0dd779263401.mp3"
     },

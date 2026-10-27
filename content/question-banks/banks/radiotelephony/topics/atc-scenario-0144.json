@@ -34,7 +34,7 @@
       "id": "atc-scenario-0144-card-main-2482",
       "taskTitle": "CCA 985-4",
       "audioText": "B: During push back, you have a small avionics problem, you wish to remain on taxiway Z4 for approximately 5 minutes, inform Wuhan Ground.",
-      "audioTextZh": "B: 推出期间，你有一个小的航电问题，希望在滑行道 Z4 上停留约 5 分钟，通知 武汉地面。",
+      "audioTextZh": "B: 推出期间，你有一个小的航电问题，希望在滑行道 Z4 上停留约 5 分钟，通知武汉地面。",
       "referenceText": "Wuhan Ground, CCA 985, request remain on taxiway Z4 due small avionics problem.",
       "referenceTextZh": "武汉地面，CCA 985，因小的航电问题，请求停留在滑行道 Z4。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q04.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0144-card-main-2483",
       "taskTitle": "CCA 985-5",
       "audioText": "C: roger, CCA 985, advise when you are ready.\nB: you decide the maintenance are needed before departure, tell Wuhan Ground you want to return to Gate 221 to have plane checked by engineers.",
-      "audioTextZh": "C： 收到，CCA 985，准备好时报告。\nB： 你认为离场前需要维修，告诉武汉地面你想返回 221 登机口，让工程师检查航空器。",
+      "audioTextZh": "C：收到，CCA 985，准备好时报告。\nB：你认为离场前需要维修，告诉武汉地面你想返回 221 登机口，让工程师检查航空器。",
       "referenceText": "Wuhan Ground, CCA 985, request taxi back to Gate 221 for a maintenance check.",
       "referenceTextZh": "武汉地面，CCA 985，请求滑回 221 登机口进行维修检查。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q05.mp3"
@@ -79,7 +79,7 @@
       "id": "atc-scenario-0144-card-main-2487",
       "taskTitle": "CCA 985-9",
       "audioText": "B: Now you have completed the engine start up procedures, call Wuhan Ground for taxi instructions.",
-      "audioTextZh": "B: 现在你已完成发动机开车程序，呼叫 武汉地面请求滑行指令。",
+      "audioTextZh": "B: 现在你已完成发动机开车程序，呼叫武汉地面请求滑行指令。",
       "referenceText": "Wuhan Ground, CCA 985, start up completed, request taxi.",
       "referenceTextZh": "武汉地面，CCA 985，开车完成，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q09.mp3"
@@ -97,7 +97,7 @@
       "id": "atc-scenario-0144-card-main-2489",
       "taskTitle": "CCA 985-11",
       "audioText": "B: You are now at holding point Runway 04, you are ready for takeoff, call Wuhan Tower.",
-      "audioTextZh": "B: 现在你在跑道 04 等待点，准备起飞，呼叫 武汉塔台。",
+      "audioTextZh": "B: 现在你在跑道 04 等待点，准备起飞，呼叫武汉塔台。",
       "referenceText": "Wuhan Tower, CCA 985, holding point Runway 04, ready for departure.",
       "referenceTextZh": "武汉塔台，CCA 985，跑道 04 等待点，准备离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q11.mp3"
@@ -124,7 +124,7 @@
       "id": "atc-scenario-0144-card-main-2492",
       "taskTitle": "CCA 985-14",
       "audioText": "B: Tell Wuhan Tower you want to level off at 600 meters and remain on the tower frequency.",
-      "audioTextZh": "B: 告诉 武汉塔台 你想在 600 米改平，并保持在塔台频率。",
+      "audioTextZh": "B: 告诉武汉塔台你想在 600 米改平，并保持在塔台频率。",
       "referenceText": "Wuhan Tower, CCA 985, request level off at 600 meters and remain this frequency.",
       "referenceTextZh": "武汉塔台，CCA 985，请求在 600 米改平并保持本频率。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q14.mp3"
@@ -133,7 +133,7 @@
       "id": "atc-scenario-0144-card-main-2493",
       "taskTitle": "CCA 985-15",
       "audioText": "B: Tell Wuhan Tower you want to fly a right-hand circuit for immediate landing Runway 04.",
-      "audioTextZh": "B: 告诉 武汉塔台 你想加入右起落航线，立即在跑道 04 着陆。",
+      "audioTextZh": "B: 告诉武汉塔台你想加入右起落航线，立即在跑道 04 着陆。",
       "referenceText": "Wuhan Tower, CCA 985, request join right-hand circuit for immediate landing Runway 04.",
       "referenceTextZh": "武汉塔台，CCA 985，请求加入右起落航线，立即在跑道 04 着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q15.mp3"

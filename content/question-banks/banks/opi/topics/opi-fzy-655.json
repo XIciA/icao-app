@@ -1,74 +1,74 @@
 {
   "id": "opi-fzy-655",
-  "name": "Season",
-  "declaredCardCount": 6,
+  "name": "季节",
   "cards": [
     {
-      "id": "opi-fzy-118193",
-      "taskTitle": "Weather/Season-1",
-      "audioText": "What's the weather like today? How do you think today's weather?",
-      "audioTextZh": "今天天气如何？/你觉得今天天气怎么样？",
-      "studyTier": 0,
-      "referenceText": "It's a sunny/ rainy/ snowy/ foggy day.",
-      "referenceTextZh": "今天晴天/下雨/下雪/起雾了。",
-      "audio": "/question-bank-assets/revisions/opi/8f85a61e99974f3817b2614b81e960982a273712f37a47bf42752fbb209afe21/audio/opi/opi-fzy-118193.mp3",
-      "audioDurationSeconds": 3.36
-    },
-    {
-      "id": "opi-fzy-118194",
-      "taskTitle": "Weather/Season-2",
-      "audioText": "Do you think today's weather is good for flight?",
-      "audioTextZh": "你觉得今天的天气是否利于飞行？",
-      "studyTier": 0,
-      "referenceText": "Yes, I think so. It's a sunny day, with calm wind and good visibility, so it's a good day for flight.\nNo, I don't think so, because the wind is strong, so there might be turbulence. / It's rainy, and the visibility is bad, so I don't think it's a good day for flight.",
-      "referenceTextZh": "嗯，是的。今天天气晴朗，静风，能见度很好，所以今天是飞行的好天气。\n\n今天天气不利于飞行。因为风很大，可能会有颠簸。/今天下雨了，能见度很差，所以我觉得今天不适合飞行。",
-      "audio": "/question-bank-assets/revisions/opi/01779d3a7ba555af6c60eb659c42921b015d8ee43e0f11ff53780eea9227a186/audio/opi/opi-fzy-118194.mp3",
-      "audioDurationSeconds": 2.4
-    },
-    {
       "id": "opi-fzy-118195",
-      "taskTitle": "Weather/Season-3",
+      "audio": "/question-bank-assets/revisions/opi/be37b368a7bda49bdc226d8161ad7ddcc14391fc1c27a7252537e8df2c7fe67c/audio/opi/opi-fzy-118195.mp3",
       "audioText": "What weather conditions do you think are good/favorable for flight?",
-      "audioTextZh": "你觉得什么天气条件比较适合飞行？",
       "studyTier": 0,
+      "taskTitle": "Weather/季节-3",
+      "audioTextZh": "你觉得什么天气条件比较适合飞行？",
       "referenceText": "I think sunny day is good for flight. Because in sunny day, both the visibility and braking action are good, there is low risk/possibility of accidents.",
       "referenceTextZh": "我觉得晴天适合飞行。因为晴天能见度好，刹车效应好，事故发生率因而会比较低。",
-      "audio": "/question-bank-assets/revisions/opi/be37b368a7bda49bdc226d8161ad7ddcc14391fc1c27a7252537e8df2c7fe67c/audio/opi/opi-fzy-118195.mp3",
       "audioDurationSeconds": 3.36
-    },
-    {
-      "id": "opi-fzy-118196",
-      "taskTitle": "Weather/Season-4",
-      "audioText": "Which season do you like best? Why?",
-      "audioTextZh": "你最喜欢哪个季节？为什么？",
-      "studyTier": 0,
-      "referenceText": "I like spring/ autumn most, because it's neither too cold nor too hot in spring/ autumn.",
-      "referenceTextZh": "我最喜欢春天/秋天，因为这个季节既不太冷也不太热。",
-      "audio": "/question-bank-assets/revisions/opi/865449806a2682941ff57d9b9febdba45c6e626cfb419109bae279e8d5054954/audio/opi/opi-fzy-118196.mp3",
-      "audioDurationSeconds": 2.4
     },
     {
       "id": "opi-fzy-118197",
-      "taskTitle": "Weather/Season-5",
+      "audio": "/question-bank-assets/revisions/opi/1d9777258b6884e011573326a67ad4b22741e8e7b00642152e19e78660d60db6/audio/opi/opi-fzy-118197.mp3",
       "audioText": "Which is your least favorite season?",
-      "audioTextZh": "哪个季节是你最不喜欢的？",
       "studyTier": 0,
+      "taskTitle": "Weather/季节-5",
+      "audioTextZh": "哪个季节是你最不喜欢的？",
       "referenceText": "Well, I don't like winter, because I have to wear a lot to keep my body warm. And I don't want to go out or do anything in the cold weather.",
       "referenceTextZh": "嗯，我不喜欢冬天，因为冬天我得穿很厚的衣服来保暖。并且冬天我不想出去，不想做任何事情。",
-      "audio": "/question-bank-assets/revisions/opi/1d9777258b6884e011573326a67ad4b22741e8e7b00642152e19e78660d60db6/audio/opi/opi-fzy-118197.mp3",
       "audioDurationSeconds": 1.848
     },
     {
-      "id": "opi-fzy-118198",
-      "taskTitle": "Weather/Season-6",
-      "audioText": "Which season is best for flying in northern china?",
-      "audioTextZh": "在中国北方，你认为哪个季节更适合飞行呢？",
+      "id": "opi-fzy-118194",
+      "audio": "/question-bank-assets/revisions/opi/01779d3a7ba555af6c60eb659c42921b015d8ee43e0f11ff53780eea9227a186/audio/opi/opi-fzy-118194.mp3",
+      "audioText": "Do you think today's weather is good for flight?",
       "studyTier": 0,
+      "taskTitle": "Weather/季节-2",
+      "audioTextZh": "你觉得今天的天气是否利于飞行？",
+      "referenceText": "Yes, I think so. It's a sunny day, with calm wind and good visibility, so it's a good day for flight.\nNo, I don't think so, because the wind is strong, so there might be turbulence. / It's rainy, and the visibility is bad, so I don't think it's a good day for flight.",
+      "referenceTextZh": "嗯，是的。今天天气晴朗，静风，能见度很好，所以今天是飞行的好天气。\n\n今天天气不利于飞行。因为风很大，可能会有颠簸。/今天下雨了，能见度很差，所以我觉得今天不适合飞行。",
+      "audioDurationSeconds": 2.4
+    },
+    {
+      "id": "opi-fzy-118198",
+      "audio": "/question-bank-assets/revisions/opi/a44d5b5e61f3c9e71abc16676fcc586e4b54927afec91fe6c3b822d624049077/audio/opi/opi-fzy-118198.mp3",
+      "audioText": "Which season is best for flying in northern china?",
+      "studyTier": 0,
+      "taskTitle": "Weather/季节-6",
+      "audioTextZh": "在中国北方，你认为哪个季节更适合飞行呢？",
       "referenceText": "In my opinion, spring is best for flying in northern china, because the weather is warm, and there is no strong wind or heavy rain either.",
       "referenceTextZh": "我认为在北方春季更适合飞行，天气暖和，也没有大风或大雨天气。",
-      "audio": "/question-bank-assets/revisions/opi/a44d5b5e61f3c9e71abc16676fcc586e4b54927afec91fe6c3b822d624049077/audio/opi/opi-fzy-118198.mp3",
       "audioDurationSeconds": 2.664
+    },
+    {
+      "id": "opi-fzy-118196",
+      "audio": "/question-bank-assets/revisions/opi/865449806a2682941ff57d9b9febdba45c6e626cfb419109bae279e8d5054954/audio/opi/opi-fzy-118196.mp3",
+      "audioText": "Which season do you like best? Why?",
+      "studyTier": 0,
+      "taskTitle": "Weather/季节-4",
+      "audioTextZh": "你最喜欢哪个季节？为什么？",
+      "referenceText": "I like spring/ autumn most, because it's neither too cold nor too hot in spring/ autumn.",
+      "referenceTextZh": "我最喜欢春天/秋天，因为这个季节既不太冷也不太热。",
+      "audioDurationSeconds": 2.4
+    },
+    {
+      "id": "opi-fzy-118193",
+      "audio": "/question-bank-assets/revisions/opi/8f85a61e99974f3817b2614b81e960982a273712f37a47bf42752fbb209afe21/audio/opi/opi-fzy-118193.mp3",
+      "audioText": "What's the weather like today? How do you think today's weather?",
+      "studyTier": 0,
+      "taskTitle": "Weather/季节-1",
+      "audioTextZh": "今天天气如何？/你觉得今天天气怎么样？",
+      "referenceText": "It's a sunny/ rainy/ snowy/ foggy day.",
+      "referenceTextZh": "今天晴天/下雨/下雪/起雾了。",
+      "audioDurationSeconds": 3.36
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-01"
 }

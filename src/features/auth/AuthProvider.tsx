@@ -15,7 +15,6 @@ import type { PersistedPhoneOtpChallenge } from './phone-otp-challenge-store';
 import { UI_ACCEPTANCE_MODE_AVAILABLE } from './ui-acceptance-mode';
 import { acceptLegalDocuments, getLegalConsentStatus } from '@/features/app-content/legal-consent.native';
 import { LegalConsentGate } from '@/features/app-content/LegalConsentGate.native';
-import { AccountRestoreState } from './AccountRestoreState.native';
 
 export type LoginLegalDocuments = { agreement: AppContentLegalDocument; privacy: AppContentLegalDocument };
 
@@ -37,7 +36,7 @@ type AuthContextValue = {
   account?: NativeAccountSummary;
   session?: AppSession;
   passwordChangePurpose?: 'recovery' | 'setup';
-  passwordChangeReturnPath?: '/(tabs)' | '/account/security';
+  passwordChangeReturnPath?: '/(tabs)/profile' | '/account/security';
   uiAcceptanceAvailable: boolean;
   uiAcceptanceMode: boolean;
   consumePendingPath(): string | undefined;
@@ -343,7 +342,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const deletionState = await inspectPendingAccountDeletion();
       if (deletionState !== 'none') return deletionState === 'unavailable' ? false : undefined;
-      const next = sessionRef.current ?? await service.getSession();
+      // A failed bootstrap may leave an in-memory session whose token expires
+      // before retry. Re-read through the auth service so refresh/invalidation
+      // runs instead of replaying that stale token indefinitely.
+      const next = await service.getSession();
       if (sessionMutationRef.current !== expectedMutation) return;
       if (!next) {
         setSessionSnapshot(undefined, true);
@@ -509,7 +511,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       && passwordAuthorization.expiresAt > Date.now()
       ? passwordAuthorization.purpose
       : undefined,
-    passwordChangeReturnPath: passwordAuthorization?.origin === 'security' ? '/account/security' : '/(tabs)',
+    passwordChangeReturnPath: passwordAuthorization?.origin === 'security' ? '/account/security' : '/(tabs)/profile',
     uiAcceptanceAvailable: UI_ACCEPTANCE_MODE_AVAILABLE,
     uiAcceptanceMode,
     consumePendingPath() { const value = pendingPath; setPendingPath(undefined); return value; },
@@ -865,8 +867,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return <AuthContext.Provider value={value}>
-    {accountRestoreUnavailable && session && !accountDeletionPending
-      ? <AccountRestoreState retry={value.retryAccountRestore} signOut={value.signOut} /> : children}
+    {children}
     <LegalConsentGate accountId={accountReady && !restoring && !uiAcceptanceMode ? account?.accountId : undefined}
       onSignOut={value.signOut} onStatus={applyLegalStatus} status={legalStatus} />
   </AuthContext.Provider>;

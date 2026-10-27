@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-152509",
       "taskTitle": "11-CES243 [火警告警，乘客受伤]-1",
-      "audioText": "[Your callsign is CES243, an A320 is on T22 A arrival for runway 18L. You have been told to contact Wuhan Approach. You are 5 miles south of T VOR. You have a fire warning in the cockpit. You notice that the left engine is on fire.]",
+      "audioText": "Your callsign is CES243, an A320 is on T22 A arrival for runway 18L. You have been told to contact Wuhan Approach. You are 5 miles south of T VOR. You have a fire warning in the cockpit. You notice that the left engine is on fire.",
       "audioTextZh": "你的呼号是东方243，一架A320以T22-A进场，跑道18左。你被告知联系武汉进近。你在TVOR以南5海里。你的驾驶舱内部出现火警告警。你注意到你的左侧发动机失火了。",
       "referenceText": "MAYDAY, MAYDAY, MAYDAY, Wuhan Approach, CES243, 5 miles south of T VOR, left engine on fire.",
       "referenceTextZh": "MAYDAY, MAYDAY, MAYDAY，武汉进近，东方243，T VOR以南5海里，左发动机失火。",
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-152516",
       "taskTitle": "11-CES243 [火警告警，乘客受伤]-8",
-      "audioText": "[During the descent to the airport, your flight attendant informs you that a passenger in the cabin is very ill, possibly have a heart attack. Inform ATC of your additional medical emergency.]",
+      "audioText": "During the descent to the airport, your flight attendant informs you that a passenger in the cabin is very ill, possibly have a heart attack. Inform ATC of your additional medical emergency.",
       "audioTextZh": "在向机场下降过程中，你的客舱乘务员告知你客舱中有一名乘客病得很严重，可能是有心脏病，告知管制员额外的医疗紧急情况。",
       "referenceText": "Wuhan Tower, CES243, we have a sick passenger on board, possibly heart attack, request medical assistance after landing.",
       "referenceTextZh": "武汉塔台，东方243，我们机上有一名病重乘客，可能是心脏病，请求着陆后医疗协助。",
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-152518",
       "taskTitle": "11-CES243 [火警告警，乘客受伤]-10",
-      "audioText": "[You have done the engine fire checklist and have successfully extinguished the engine fire. Tell the controller you are going to stop on the taxiway first and have emergency equipment approach the aircraft.]",
-      "audioTextZh": "[你完成了发动机起火检查单，并且成功扑灭了发动机起火。告诉管制员，你会首先在滑行道上停下，然后需要紧急救援设备接近飞机]",
+      "audioText": "You have done the engine fire checklist and have successfully extinguished the engine fire. Tell the controller you are going to stop on the taxiway first and have emergency equipment approach the aircraft.",
+      "audioTextZh": "你完成了发动机起火检查单，并且成功扑灭了发动机起火。告诉管制员，你会首先在滑行道上停下，然后需要紧急救援设备接近飞机",
       "referenceText": "Wuhan Tower, CES243, we are stopping on the taxiway, request emergency equipment approach us.",
       "referenceTextZh": "武汉塔台，东方243，我们正在滑行道上停下，请求紧急设备接应。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0596eabebc56d8b605a6.mp3"
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-152519",
       "taskTitle": "11-CES243 [火警告警，乘客受伤]-11",
-      "audioText": "[After landing, tower confirms that there isn’t any smoke or fire visible from your left engine. Tell the ground controller to have the fire equipment follow you to the gate. Medical personnel ready to board the aircraft.]",
-      "audioTextZh": "[着陆之后，塔台确认从你的左引擎没有看到任何烟或明火。告诉地面管制让消防设备跟着你到机位。医务人员准备登机]",
+      "audioText": "After landing, tower confirms that there isn't any smoke or fire visible from your left engine. Tell the ground controller to have the fire equipment follow you to the gate. Medical personnel ready to board the aircraft.",
+      "audioTextZh": "着陆之后，塔台确认从你的左引擎没有看到任何烟或明火。告诉地面管制让消防设备跟着你到机位。医务人员准备登机",
       "referenceText": "Wuhan Ground, CES243, request fire service follow us to the gate, we hope medical personnel can wait us there.",
       "referenceTextZh": "武汉地面，东方243，请求消防设备跟着我们到机位，我们希望医务人员可以在那里等我们。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3f290366f3e69a5df728.mp3"

@@ -1,3 +1,5 @@
+import { feedbackKind, feedbackTitle, examFeedbackOptions } from '@/features/feedback/feedback-config';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { UserGuideScreen } from '@/features/usage-guide/UserGuideScreen';
 import { FeedbackHistory } from '@/features/feedback/FeedbackHistory.native';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
@@ -10,7 +12,7 @@ import type {
 } from '@icao/contracts';
 import { useNavigation, usePreventRemove } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import {
   CheckCircle2,
   ImagePlus,
@@ -71,7 +73,7 @@ function Page({
   children: React.ReactNode;
   scroll?: boolean;
 }) {
-  return <Screen scroll={scroll} keyboard contentStyle={styles.screen}><TopBar title={title} />{children}</Screen>;
+  return <Screen scroll={scroll} keyboard contentStyle={styles.screen} header={<TopBar title={title} />}>{children}</Screen>;
 }
 
 type FeedbackParams = {
@@ -91,7 +93,8 @@ function FeedbackPage() {
   const router = useRouter();
   const navigation = useNavigation();
   const params = useLocalSearchParams<FeedbackParams>();
-  const source: FeedbackSource = params.source === 'study' ? 'study' : 'profile';
+  const kind = feedbackKind(params.source);
+  const source: FeedbackSource = kind !== 'opinion' ? kind : params.source === 'study' ? 'study' : 'profile';
   const diagnosticCorrelationId = typeof params.correlationId === 'string' && params.correlationId.length > 0
     ? params.correlationId
     : undefined;
@@ -100,7 +103,7 @@ function FeedbackPage() {
     : undefined;
   const initialCategory: FeedbackCategory = diagnosticFeature
     ? 'other'
-    : source === 'study' ? 'content_correction' : 'feature_suggestion';
+    : kind === 'exam_report' ? 'listening' : kind === 'opi_hotspot' ? 'opi' : source === 'study' ? 'content_correction' : 'feature_suggestion';
   const initialDescription = diagnosticFeature === 'recording'
     ? '录音功能出现异常，请协助排查。'
     : diagnosticFeature === 'ai'
@@ -129,6 +132,7 @@ function FeedbackPage() {
   const [ticketNumber, setTicketNumber] = useState('');
   const mounted = useRef(true);
   const submission = useRef<AbortController | undefined>(undefined);
+  const confirmingExit = useRef(false);
   const dirty = description.length > 0 || contact.length > 0 || images.length > 0;
 
   useEffect(() => {
@@ -147,10 +151,12 @@ function FeedbackPage() {
   }, [diagnosticCorrelationId, initialCategory, initialDescription, params.bankId, params.cardId, params.categoryId, params.topicId, source]);
 
   usePreventRemove(dirty && !ticketNumber, ({ data }) => {
+    if (confirmingExit.current) return;
+    confirmingExit.current = true;
     Alert.alert('放弃本次反馈？', submitting ? '提交结果尚未确认。离开后将停止等待，服务端可能已经收到本次反馈。' : '未提交的文字和图片不会保存。', [
-      { text: '继续填写', style: 'cancel' },
-      { text: '放弃', style: 'destructive', onPress: () => { submission.current?.abort(); navigation.dispatch(data.action); } },
-    ]);
+      { text: '继续填写', style: 'cancel', onPress: () => { confirmingExit.current = false; } },
+      { text: '放弃', style: 'destructive', onPress: () => { confirmingExit.current = false; submission.current?.abort(); navigation.dispatch(data.action); } },
+    ], { onDismiss: () => { confirmingExit.current = false; } });
   });
 
   async function chooseImages() {
@@ -220,7 +226,7 @@ function FeedbackPage() {
         description,
         contact,
         source,
-        sourceRoute: params.sourceRoute ?? (source === 'study' ? '/question-bank/study' : '/(tabs)/profile'),
+        sourceRoute: params.sourceRoute ?? (source === 'study' ? '/question-bank/study' : kind === 'opi_hotspot' ? '/content/hotspot' : '/(tabs)/profile'),
         question,
         images,
         diagnosticFeature,
@@ -248,7 +254,7 @@ function FeedbackPage() {
 
   if (ticketNumber) {
     return (
-      <Page title="提交反馈" scroll={false}>
+      <Page title={kind === 'opinion' ? '提交反馈' : feedbackTitle(kind)} scroll={false}>
         <View style={styles.result}>
           <View style={styles.resultIcon}><CheckCircle2 color={colors.primary} size={38} /></View>
           <AppText variant="sectionTitle">反馈已收到</AppText>
@@ -259,7 +265,8 @@ function FeedbackPage() {
               if (source === 'study' && router.canGoBack()) { router.back(); return; }
               const routeBank = /^\/question-bank\/(listening|sentences900|radiotelephony|opi|storytelling)(?:\/|$)/.exec(params.sourceRoute ?? '')?.[1];
               if (source === 'study' && routeBank) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: routeBank } });
-              else router.replace({pathname:'/info/[slug]',params:{slug:'feedback'}});
+              else if (kind === 'opinion') router.dismissTo('/info/feedback');
+              else router.dismissTo({ pathname: '/info/[slug]', params: { slug: 'feedback', source: kind } });
             }} size="lg">{source === 'study' ? '返回学习' : '查看反馈记录'}</Button>
             <Button onPress={reset} size="lg" variant="outline">再提一条</Button>
           </View>
@@ -269,7 +276,7 @@ function FeedbackPage() {
   }
 
   return (
-    <Page title="提交反馈">
+    <Page title={kind === 'opinion' ? '提交反馈' : feedbackTitle(kind)}>
       <View style={styles.feedback}>
         {question ? (
           <View style={styles.context}>
@@ -288,7 +295,7 @@ function FeedbackPage() {
             </View>
           </View>
         ) : null}
-        <Choice disabled={submitting} options={CATEGORY_OPTIONS} value={category} onChange={setCategory} />
+        {kind === 'opi_hotspot' ? <AppText variant="caption">OPI 热点 · 提交后由团队整理审核</AppText> : <Choice disabled={submitting} options={kind === 'exam_report' ? examFeedbackOptions : CATEGORY_OPTIONS} value={category} onChange={setCategory} />}
         <TextField
           editable={!submitting}
           error={description.length > 0 && description.trim().length < 5 ? '请至少输入 5 个字' : undefined}
@@ -296,7 +303,7 @@ function FeedbackPage() {
           maxLength={500}
           multiline
           onChangeText={setDescription}
-          placeholder={source === 'study' ? '请描述题目中需要纠正的内容。' : '请详细描述你的建议或遇到的问题。'}
+          placeholder={kind === 'opi_hotspot' ? '请描述你收集到的 OPI 热点题目或线索。' : kind === 'exam_report' ? '请描述相关题型的考情。' : source === 'study' ? '请描述题目中需要纠正的内容。' : '请详细描述你的建议或遇到的问题。'}
           style={styles.textarea}
           value={description}
         />
@@ -331,7 +338,7 @@ function FeedbackPage() {
         </View>
         <TextField
           editable={!submitting}
-          label="联系方式（选填）"
+          label="联系方式（选填）" style={{ fontSize: 16 }}
           maxLength={100}
           onChangeText={setContact}
           placeholder="手机号、邮箱或其他方便联系你的方式"
@@ -433,7 +440,7 @@ const styles = StyleSheet.create({
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   chip: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, paddingHorizontal: spacing[3], paddingVertical: spacing[2] },
   chipSelected: { backgroundColor: colors.primary10, borderColor: colors.primary },
-  textarea: { minHeight: 112, textAlignVertical: 'top' },
+  textarea: { fontSize: 16, lineHeight: 24, minHeight: 112, textAlignVertical: 'top' },
   count: { marginTop: -spacing[3], textAlign: 'right' },
   uploadGroup: { gap: spacing[2] },
   imageHeader: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },

@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-215388",
       "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-1",
       "audioText": "N: [You are from Paris to Wuhan. You are flying at 11300m, approaching SIA. Call Xi'an Control.]",
-      "audioTextZh": "【你从巴黎飞往武汉。你现在在11300米巡航，接近SIA，呼叫西安区调。】",
+      "audioTextZh": "你从巴黎飞往武汉。你现在在11300米巡航，接近SIA，呼叫西安区调。",
       "referenceText": "Xi'an Control, AFR896, 11300m maintaining, approaching SIA.",
       "referenceTextZh": "西安区调，法航896，在11300米保持。接近SIA。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6fa6d9ebbbc12470e596.mp3"
@@ -18,7 +18,7 @@
       "id": "radiotelephony-fzy-215389",
       "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-2",
       "audioText": "N: [You are experiencing moderate turbulence. You want to know the turbulence report at other level.]",
-      "audioTextZh": "【你正在经历中度颠簸，你想知道其他高度层上的颠簸报告。】",
+      "audioTextZh": "你正在经历中度颠簸，你想知道其他高度层上的颠簸报告。",
       "referenceText": "Xi'an Control, AFR896, encountering moderate turbulence at present level, confirm if there is any turbulence report at other levels.",
       "referenceTextZh": "西安区调，法航896，当前高度正遇到中度颠簸，证实其他高度上是否有颠簸报告",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bb71f33858249c77a28b.mp3"
@@ -45,7 +45,7 @@
       "id": "radiotelephony-fzy-215392",
       "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-5",
       "audioText": "N: [You are experiencing severe turbulence at 10700m. The pitot static heating feature has malfunctioned. You want to fly back to 11300m to avoid turbulence and ice. This is an urgent call.]",
-      "audioTextZh": "【你在10700米遇到了强颠簸，你的皮托管静态加热功能发生故障，你想回到11300米来躲避颠簸和积冰，这是紧急通话。】",
+      "audioTextZh": "你在10700米遇到了强颠簸，你的皮托管静态加热功能发生故障，你想回到11300米来躲避颠簸和积冰，这是紧急通话。",
       "referenceText": "PANPAN PANPAN PANPAN, Xi'an Control, AFR896, request fly back to 11300m due turbulence and ice area. The pitot heating feature has malfunctioned.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，西安区调，法航896，由于颠簸和积冰区域，请求飞回11300米，皮托管静态加热功能发生故障。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/95d5b9b225e52006094c.mp3"
@@ -99,7 +99,7 @@
       "id": "radiotelephony-fzy-215398",
       "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-11",
       "audioText": "N: [You are established contact, initiated descend for runway 36R. During descending, airspeed and altitude readings are abnormal, possibly due to ice blockage. advice Wuhan Control this situation. this is an urgent call.]",
-      "audioTextZh": "【你已经建立联系，初始下降到跑道36右，在下降过程中，你的空速和高度读数异常，大概是由于积冰堵塞。告知武汉区调，这是一个紧急通话。】",
+      "audioTextZh": "你已经建立联系，初始下降到跑道36右，在下降过程中，你的空速和高度读数异常，大概是由于积冰堵塞。告知武汉区调，这是一个紧急通话。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR896, airspeed and altitude readings are abnormal due to the ice blockage during descend.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，武汉区调，法航896，在下降过程中，由于积冰堵塞，空速和高度读数异常。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1da9fe467a43f58e91a8.mp3"
@@ -153,7 +153,7 @@
       "id": "radiotelephony-fzy-215404",
       "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-17",
       "audioText": "N: [You left the icing area and your instruments have returned to normal. Report to Wuhan Tower. You have established on the ILS 36R.]",
-      "audioTextZh": "【你离开了积冰区域，你的仪表恢复正常，告知武汉塔台，你已经建立跑道36右的航向道。】",
+      "audioTextZh": "你离开了积冰区域，你的仪表恢复正常，告知武汉塔台，你已经建立跑道36右的航向道。",
       "referenceText": "Wuhan Tower, AFR896, established on ILS approach Runway 36R, the instrument readings are normal.",
       "referenceTextZh": "武汉塔台，法航896，预计盲降进近跑道36右，仪表读数正常了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/aa03b15ef1f0fa0cb724.mp3"

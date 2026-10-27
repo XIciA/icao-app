@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-153141",
       "taskTitle": "40-AFR941 [右发失效]-7",
-      "audioText": "AFR941, they’re having a runway inspection at the moment, expect to delay more than 15 mins.\nRead back the ATC instruction and report that you are entering the hold.",
+      "audioText": "AFR941, they're having a runway inspection at the moment, expect to delay more than 15 mins.\nRead back the ATC instruction and report that you are entering the hold.",
       "audioTextZh": "法航941，他们目前正在进行跑道检查，预计延误超过15分钟。\n[复诵管制指令，并报告你正在进入等待。]",
       "referenceText": "More than15 mins delay, entering the hold. AFR941.",
       "referenceTextZh": "延误超过15分钟，正进入等待，法航941。",
@@ -89,7 +89,7 @@
     {
       "id": "radiotelephony-fzy-153144",
       "taskTitle": "40-AFR941 [右发失效]-10",
-      "audioText": "AFR941, standby, traffic at your 3 o’clock position is maintaining 1800m crossing from your right to left, report visual.\nTell the controller you have seen the conflicting aircraft.",
+      "audioText": "AFR941, standby, traffic at your 3 o'clock position is maintaining 1800m crossing from your right to left, report visual.\nTell the controller you have seen the conflicting aircraft.",
       "audioTextZh": "法航941，稍等，你3点钟位置有航空器，高度1800米，正从你的右侧向左侧穿越，看到后报。\n[告诉管制员，你已经看到冲突航空器了。]",
       "referenceText": "Traffic in sight. AFR941.",
       "referenceTextZh": "看到航空器了，法航941。",

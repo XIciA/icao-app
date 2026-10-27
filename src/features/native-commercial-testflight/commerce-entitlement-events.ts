@@ -58,6 +58,17 @@ export function commerceEntitlementSnapshotVersion() {
     : `none:${activeGeneration}:${revision}`;
 }
 
+/** Reload protected content only when its access changes, not on every balance
+ * or heartbeat refresh. Ownership remains part of the identity. */
+export function commerceContentAccessSnapshot() {
+  const current = snapshot;
+  return current ? JSON.stringify([
+    current.accountId, current.environment, current.generation,
+    current.snapshot?.membership.active ?? null,
+    current.snapshot?.membership.expiresAt ?? null,
+  ]) : 'none';
+}
+
 export function subscribeCommerceEntitlementChanges(
   listener: CommerceEntitlementChangeListener,
 ) {
@@ -72,6 +83,11 @@ export function subscribeCommerceEntitlementChanges(
  */
 export function publishCommerceEntitlementChange(change: EntitlementPublication) {
   if (change.generation !== activeGeneration) return snapshot;
+  // A response requested before a purchase can finish after server verification.
+  // The shared owner must not replace the verified membership with older data.
+  if (snapshot?.generation === change.generation && snapshot.environment === change.environment
+    && snapshot.snapshot && change.snapshot
+    && Date.parse(change.snapshot.serverTime) < Date.parse(snapshot.snapshot.serverTime)) return snapshot;
   return commit(change);
 }
 

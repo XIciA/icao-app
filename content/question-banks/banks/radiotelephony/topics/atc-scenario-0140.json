@@ -88,7 +88,7 @@
       "id": "atc-scenario-0140-card-main-2423",
       "taskTitle": "CES 209-10",
       "audioText": "C: CES 209, divert to Hangzhou approved, what assistance do you need?\nB: Tell the controller you need ambulances on arrival.",
-      "audioTextZh": "C： CES 209，批准备降杭州，你需要什么协助？\nB： 告诉管制员你需要在到达时安排救护车。",
+      "audioTextZh": "C：CES 209，批准备降杭州，你需要什么协助？\nB：告诉管制员你需要在到达时安排救护车。",
       "referenceText": "divert to Hangzhou approved, request ambulances on arrival, CES 209.",
       "referenceTextZh": "批准备降杭州，请求在到达时安排救护车，CES 209。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-038-ces209-q10.mp3"

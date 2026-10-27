@@ -17,8 +17,9 @@ import {
   verifyOpsTotp,
 } from '../src/admin/admin-crypto';
 import { AdminAuthService } from '../src/admin/admin-auth.service';
-import type { AdminAuditService } from '../src/admin/admin-audit.service';
+import { AdminStabilityService } from '../src/admin/admin-stability.service';
 import { AdminRoleGuard } from '../src/admin/admin-role.guard';
+import { AdminAuditService } from '../src/admin/admin-audit.service';
 import { OpsLoginRateLimiter, opsLoginSource } from '../src/admin/admin-login-rate-limiter';
 import { assertOpsStaffDisableAllowed } from '../src/admin/admin-staff.service';
 import {
@@ -244,6 +245,20 @@ describe('ops login anti-abuse boundary', () => {
       expect(response.statusCode).toBe(200);
       expect(response.headers['x-icao-api-version']).toBe('ops-test');
       expect(response.json().data.service).toBe('icao-ops-api');
+      const stability = await app.inject({ method: 'GET', url: '/v1/admin/stability' });
+      expect(stability.statusCode).toBe(401);
+      const auth = vi.spyOn(app.get(AdminAuthService), 'authenticate').mockResolvedValue({ id: '00000000-0000-4000-8000-000000000001', sessionId: 'diagnostic', role: 'support', email: 'support@example.test' });
+      try {
+        expect((await app.inject({ method: 'GET', url: '/v1/admin/stability', headers: { authorization: 'Bearer diagnostic' } })).statusCode).toBe(403);
+      } finally { auth.mockRestore(); }
+      const admin = vi.spyOn(app.get(AdminAuthService), 'authenticate').mockResolvedValue({ id: '00000000-0000-4000-8000-000000000001', sessionId: 'diagnostic', role: 'admin', email: 'admin@example.test' });
+      const snapshot = vi.spyOn(app.get(AdminStabilityService), 'snapshot').mockResolvedValue({ generatedAt: '2026-10-22T00:00:00Z', from: '2026-10-16T00:00:00Z', to: '2026-10-22T00:00:00Z', monitor: null, ai: [], activity: [], sources: { monitor: 'unavailable', ai: 'ok', activity: 'ok' } });
+      const audit = vi.spyOn(app.get(AdminAuditService), 'record').mockResolvedValue(undefined);
+      try {
+        const allowed = await app.inject({ method: 'GET', url: '/v1/admin/stability', headers: { authorization: 'Bearer diagnostic' } });
+        expect(allowed.statusCode).toBe(200); expect(allowed.headers['cache-control']).toBe('no-store');
+        expect(audit).toHaveBeenCalledTimes(1);
+      } finally { admin.mockRestore(); snapshot.mockRestore(); audit.mockRestore(); }
       const payload = { revision: 1, draft: { notes: 'x'.repeat(2_600_000) } };
       const draftResponse = await app.inject({ method: 'POST',
         url: '/v1/admin/content-orders/00000000-0000-4000-8000-000000000001/prepare', payload });

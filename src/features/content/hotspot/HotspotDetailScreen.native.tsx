@@ -1,10 +1,9 @@
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useState } from 'react';
 import { hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { Sparkles } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
@@ -12,7 +11,8 @@ import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
-import { useHotspotAccess } from './use-hotspot-access.native';
+import { useHotspotOverview } from './use-hotspot-overview.native';
+import { useMemberAction } from '@/features/auth/use-member-action';
 
 export function HotspotDetailScreen({ briefId }: { briefId: string }) {
   return <NativeScreenBoundary title="OPI 热点" fallbackHref="/content/hotspot" resetKey={briefId}><HotspotDetailContent briefId={briefId} /></NativeScreenBoundary>;
@@ -20,20 +20,20 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
 
 function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
-  const guide = useGuide();
+  const openMember = useMemberAction();
   const params=useLocalSearchParams<{center?:string}>();
   const [selection,setSelection]=useState(params.center??'all');
-  const { retry, state } = useHotspotAccess(briefId);
+  const { retry, state } = useHotspotOverview(briefId);
+
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
-  if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen} header={<TopBar onBack={goBack} title="OPI 热点" />}><GlobalLoadingScreen /></Screen>;
 
   const selectedBrief=state.brief?selectHotspotSource(state.brief,selection):undefined;
   const selectedIds=new Set(selectedBrief?.topics.flatMap(t=>t.cardIds));
   const topics=state.status==='ready'?state.topics.map(t=>({...t,cards:t.cards.filter(c=>selectedIds.has(c.id))})).filter(t=>t.cards.length):[];
   const totalQuestions = selectedBrief?.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0) ?? 0;
   return (
-    <Screen contentStyle={styles.screen} scroll>
-      <TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />
+    <Screen contentStyle={styles.screen} scroll header={<TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />}>
       <View style={styles.body}>
         {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
 
@@ -45,7 +45,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
               {hotspotSources(state.brief).some(s=>s.kind==='general')?<Button size="sm" variant={selection==='general'?'primary':'outline'} onPress={()=>setSelection('general')}>本日综合反馈</Button>:null}
             </View>
             {hotspotSources(state.brief).some(s=>s.kind==='general')?<AppText variant="caption">历史综合反馈未逐题确认考点归属，单独保留供查看。</AppText>:null}
-            <View style={styles.topicsSection}><GuideAnchor id="hotspot-article" />
+            <View style={styles.topicsSection}>
               <AppText variant="sectionTitle">涵盖话题与问题（{topics.length}）</AppText>
               {topics.map((topic, topicIndex) => (
                 <Card key={topic.topicId} style={styles.topicCard}>
@@ -63,18 +63,15 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
                         <AppText color={colors.primary} style={styles.questionIndex} variant="micro">
                           {String(cardIndex + 1).padStart(2, '0')}
                         </AppText>
-                        <View style={styles.questionContent}><AppText>{card.kind !== 'image' && hotspotReportedPrompts(selectedBrief!,card).join('\n') || card.audioText}</AppText><View style={styles.filters}>{hotspotQuestionOrigins(selectedBrief!,card.id).map(origin=><Tag key={origin} tone="muted">{origin}</Tag>)}</View></View>
+                        <View style={styles.questionContent}><AppText>{hotspotReportedPrompts(selectedBrief!,card).join('\n') || card.prompt}</AppText><View style={styles.filters}>{hotspotQuestionOrigins(selectedBrief!,card.id).map(origin=><Tag key={origin} tone="muted">{origin}</Tag>)}</View></View>
                       </View>
                     ))}
                   </View>
                 </Card>
               ))}
             </View>
-            <Button guideId="hotspot-study"
-              onPress={() => { guide?.event('hotspot-study'); router.push({
-                pathname: '/content/hotspot/[briefId]/study',
-                params: { briefId: state.brief.id, ...(selection!=='all'?{center:selection}:{}) },
-              }); }}
+            <Button
+              onPress={() => openMember(`/content/hotspot/${encodeURIComponent(state.brief.id)}/study${selection !== 'all' ? `?center=${encodeURIComponent(selection)}` : ''}`)}
               disabled={!totalQuestions}
               size="lg"
               style={styles.cta}

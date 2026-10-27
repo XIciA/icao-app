@@ -1,28 +1,28 @@
 {
   "id": "opi-topic-0131",
   "name": "客航与货航",
-  "declaredCardCount": 2,
   "cards": [
     {
-      "id": "opi-extra-273",
-      "taskTitle": "运行-客航与货航-1",
-      "audioText": "What are the main operational differences between passenger and cargo flights?",
-      "audioTextZh": "客运航班与货运航班在运行方面有哪些主要区别？",
-      "referenceText": "Passenger flights carry people and their baggage and normally include passenger seating, cabin services, and cabin crew. Cargo flights mainly carry goods and may require special handling and documentation, particularly for dangerous goods. Cargo operations often use night schedules, while passenger flights operate more frequently during the day.",
-      "referenceTextZh": "客运航班运送旅客及其行李，通常设有旅客座位、客舱服务和客舱机组。货运航班主要运输货物，可能需要特殊的处理和文件，尤其是在运输危险品时。货运运行经常采用夜间时刻，而客运航班更多在日间运行。",
-      "audio": "/question-bank-assets/revisions/opi/efd115ffa06b70e3582954f059057894726ff9df6f10a4f9e80e0138e64c3f08/audio/opi/opi-extra-273.mp3",
-      "audioDurationSeconds": 4.272
-    },
-    {
       "id": "opi-extra-274",
-      "taskTitle": "运行-客航与货航-2",
+      "audio": "/question-bank-assets/revisions/opi/4c59ab8cee24937f6cd8a402c9d28230c22ab8b359a2954c6fa29a4625fc8d60/audio/opi/opi-extra-274.mp3",
       "audioText": "What are the main duties of pilots on a passenger flight?",
+      "taskTitle": "运行-客航与货航-2",
       "audioTextZh": "飞行员在客运航班上的主要职责有哪些？",
       "referenceText": "The pilots are responsible for the safe operation of the aircraft and for the safety of the people and their belongings on board.",
       "referenceTextZh": "飞行员负责飞机的安全运行，并保障机上人员及其物品的安全。",
-      "audio": "/question-bank-assets/revisions/opi/4c59ab8cee24937f6cd8a402c9d28230c22ab8b359a2954c6fa29a4625fc8d60/audio/opi/opi-extra-274.mp3",
-      "audioDurationSeconds": 3.0
+      "audioDurationSeconds": 3
+    },
+    {
+      "id": "opi-extra-273",
+      "audio": "/question-bank-assets/revisions/opi/efd115ffa06b70e3582954f059057894726ff9df6f10a4f9e80e0138e64c3f08/audio/opi/opi-extra-273.mp3",
+      "audioText": "What are the main operational differences between passenger and cargo flights?",
+      "taskTitle": "运行-客航与货航-1",
+      "audioTextZh": "客运航班与货运航班在运行方面有哪些主要区别？",
+      "referenceText": "Passenger flights carry people and their baggage and normally include passenger seating, cabin services, and cabin crew. Cargo flights mainly carry goods and may require special handling and documentation, particularly for dangerous goods. Cargo operations often use night schedules, while passenger flights operate more frequently during the day.",
+      "referenceTextZh": "客运航班运送旅客及其行李，通常设有旅客座位、客舱服务和客舱机组。货运航班主要运输货物，可能需要特殊的处理和文件，尤其是在运输危险品时。货运运行经常采用夜间时刻，而客运航班更多在日间运行。",
+      "audioDurationSeconds": 4.272
     }
   ],
+  "declaredCardCount": 2,
   "categoryId": "opi-category-05"
 }

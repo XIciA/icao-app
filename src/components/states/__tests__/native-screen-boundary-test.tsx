@@ -1,8 +1,12 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import { LocalBackLoadingScreen } from '../LocalBackLoadingScreen.native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 import { useEffect } from 'react';
 import { Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeScreenBoundary } from '../NativeScreenBoundary.native';
+
+let mockSystemBack: (() => void) | undefined;
+jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: (enabled: boolean, callback: () => void) => { mockSystemBack = enabled ? callback : undefined; } }));
 
 const mockBack = jest.fn();
 const mockReplace = jest.fn();
@@ -47,6 +51,7 @@ it('returns a deep-linked failed screen to its safe parent when no back stack ex
 it('prefers the existing inline history return callback and can retry the original screen', async () => {
   fail = true; const onExit = jest.fn();
   const view = await render(screen({ onExit }));
+  await act(async () => mockSystemBack?.());
   await fireEvent.press(view.getByText('返回'));
   expect(onExit).toHaveBeenCalledTimes(1); expect(mockBack).not.toHaveBeenCalled();
   fail = false;
@@ -72,4 +77,14 @@ it('never offers an exit that bypasses required login', async () => {
   await fireEvent.press(view.getByText('重新加载'));
   expect(view.getByText('原页面')).toBeTruthy();
   expect(mockBack).not.toHaveBeenCalled(); expect(mockReplace).not.toHaveBeenCalled();
+});
+
+
+it('keeps a loading nested view on its local return target for swipe and button', async () => {
+  const onBack = jest.fn();
+  const view = await render(<LocalBackLoadingScreen title="学习记录" onBack={onBack} />);
+  await act(async () => mockSystemBack?.());
+  await fireEvent.press(view.getByLabelText('返回'));
+  expect(onBack).toHaveBeenCalledTimes(1);
+  expect(mockBack).not.toHaveBeenCalled();
 });

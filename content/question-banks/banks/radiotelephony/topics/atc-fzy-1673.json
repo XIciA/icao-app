@@ -35,7 +35,7 @@
     {
       "id": "radiotelephony-fzy-224049",
       "taskTitle": "71-CSN3112 [飑线，燃油紧急]-4",
-      "audioText": "C: CSN3112, the preceding aircraft reported severe turbulence of 10400m, 11000m is available, what’s your intention?\nB: [Acknowledge the transmission and tell the controller you’d like to climb to 11000m.]",
+      "audioText": "C: CSN3112, the preceding aircraft reported severe turbulence of 10400m, 11000m is available, what's your intention?\nB: [Acknowledge the transmission and tell the controller you'd like to climb to 11000m.]",
       "audioTextZh": "C: 南方3112，前机报告在10400米有严重颠簸，11000米可用，你的意图是什么？\nB: 【收到此通话，告知管制员，你想上到11000米。】",
       "referenceText": "Roger, request climb to 11000m, CSN3112.",
       "referenceTextZh": "收到，请求爬升至11000米，南方3112。",
@@ -71,9 +71,9 @@
     {
       "id": "radiotelephony-fzy-224053",
       "taskTitle": "71-CSN3112 [飑线，燃油紧急]-8",
-      "audioText": "B: [After several orbits, you find you don’t have enough fuel to hold any further. Report this situation to Beijing Control.]",
+      "audioText": "B: [After several orbits, you find you don't have enough fuel to hold any further. Report this situation to Beijing Control.]",
       "audioTextZh": "B：【经过多次盘旋，你发现你没有足够的燃油继续等待。将情况报告给北京区调。】",
-      "referenceText": "Beijing Control, CSN3112, we don’t have enough fuel to hold any further.",
+      "referenceText": "Beijing Control, CSN3112, we don't have enough fuel to hold any further.",
       "referenceTextZh": "北京区调，南方3001，我们没有足够的燃油继续等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e20948a4449912172c82.mp3"
     },
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-224061",
       "taskTitle": "71-CSN3112 [飑线，燃油紧急]-16",
-      "audioText": "C: CSN3112, are you declaring fuel emergency?\nB: [Tell the controller that you’re declaring fuel emergency and request priority landing runway 36R.]",
+      "audioText": "C: CSN3112, are you declaring fuel emergency?\nB: [Tell the controller that you're declaring fuel emergency and request priority landing runway 36R.]",
       "audioTextZh": "C: 南方3112，你需要宣布紧急情况吗？\nB：【告知管制员你将宣布燃油紧急情况，请求优先着陆跑道36右。】",
       "referenceText": "Affirm, we are declaring fuel emergency and request priority landing runway 36R, CSN3112.",
       "referenceTextZh": "是的，我们将宣布燃油紧急情况，请求优先着陆跑道36右，南方3112。",
@@ -161,7 +161,7 @@
     {
       "id": "radiotelephony-fzy-224063",
       "taskTitle": "71-CSN3112 [飑线，燃油紧急]-18",
-      "audioText": "B: [Now you’ve established on ILS approach runway 36R, contact Beijing Tower.]",
+      "audioText": "B: [Now you've established on ILS approach runway 36R, contact Beijing Tower.]",
       "audioTextZh": "B:【现在你已经建立跑道36右的盲降，联系北京塔台。】",
       "referenceText": "Beijing Tower, CSN3112, established on ILS approach runway 36R.",
       "referenceTextZh": "北京塔台，南方3112，已经建立跑道36右的盲降。",

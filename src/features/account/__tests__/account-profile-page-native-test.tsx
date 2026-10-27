@@ -3,6 +3,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { prepareProfileAvatar } from '../../../../modules/icao-profile-avatar/src';
 import { AccountProfilePage } from '../AccountProfilePage.native';
 import { updateProfile } from '../profile-store.native';
+jest.mock('@/features/profile/AiAllowanceCard.native', () => ({ AiAllowanceCard: () => null }));
+jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({phase:'ready', entitlement: {serverTime:'2026-10-22T00:00:00Z',membership:{active:true,expiresAt:'2026-11-14T00:00:00Z'}}}) }));
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 let mockFocused = true;
 let mockAccountId = 'account-a';
@@ -29,6 +32,7 @@ jest.mock('../ProfileAvatar', () => ({ ProfileAvatar: ({ uri }: { uri?: string }
 jest.mock('@/components/ui', () => {
   const { View, Text, TextInput, Pressable } = jest.requireActual('react-native');
   return {
+    BottomSheet: ({visible,children}: {visible:boolean;children:React.ReactNode}) => visible ? <View>{children}</View> : null,
     Screen: ({ children }: { children: React.ReactNode }) => <View>{children}</View>,
     AppText: Text,
     TextField: ({ label, ...props }: { label: string }) => <TextInput accessibilityLabel={label} {...props} />,
@@ -55,7 +59,7 @@ beforeEach(() => {
 
 it('prepares the selected full-size image without loading its base64 into JS, then uses existing profile saving', async () => {
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('更换头像'));
+  await fireEvent.press(screen.getByLabelText('头像'));
   expect(ImagePicker.launchImageLibraryAsync).toHaveBeenCalledWith(expect.objectContaining({ base64: false, quality: 1 }));
   expect(prepareProfileAvatar).toHaveBeenCalledWith('file:///camera/photo.png');
   expect(screen.getByTestId('avatar').props.children).toBe(jpeg);
@@ -68,13 +72,13 @@ it('ignores a late picker result after leaving the page and allows another selec
   const selection = deferred<ImagePicker.ImagePickerResult>();
   jest.mocked(ImagePicker.launchImageLibraryAsync).mockReturnValueOnce(selection.promise);
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('更换头像'));
+  await fireEvent.press(screen.getByLabelText('头像'));
   mockFocused = false; await screen.rerender(<AccountProfilePage />);
   await act(async () => { selection.resolve(chosen); });
   expect(prepareProfileAvatar).not.toHaveBeenCalled();
   expect(screen.getByTestId('avatar').props.children).toBe('default-avatar');
   mockFocused = true; await screen.rerender(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('更换头像'));
+  await fireEvent.press(screen.getByLabelText('头像'));
   expect(screen.getByTestId('avatar').props.children).toBe(jpeg);
 });
 
@@ -82,12 +86,12 @@ it('does not put account A photo preparation into account B draft', async () => 
   const prepared = deferred<string>();
   jest.mocked(prepareProfileAvatar).mockReturnValueOnce(prepared.promise);
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('更换头像'));
+  await fireEvent.press(screen.getByLabelText('头像'));
   mockAccountId = 'account-b'; mockProfile = { displayName: '学员 B', target: 'icao4-first', avatarUri: undefined };
   await screen.rerender(<AccountProfilePage />);
   await act(async () => { prepared.resolve(jpeg); });
   expect(screen.getByTestId('avatar').props.children).toBe('default-avatar');
-  expect(screen.getByLabelText('昵称').props.value).toBe('学员 B');
+  expect(screen.getByText('学员 B')).toBeTruthy();
   expect(updateProfile).not.toHaveBeenCalled();
 });
 
@@ -95,7 +99,9 @@ it.each(['blur', 'account', 'unmount'])('does not navigate when saving completes
   const saved = deferred<Awaited<ReturnType<typeof updateProfile>>>();
   jest.mocked(updateProfile).mockReturnValueOnce(saved.promise);
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.changeText(screen.getByLabelText('昵称'), '新昵称');
+  await fireEvent.press(screen.getByLabelText('昵称'));
+  await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新昵称');
+  await fireEvent.press(screen.getByText('完成'));
   await fireEvent.press(screen.getByText('保存修改'));
   if (leave === 'unmount') await screen.unmount();
   else {
@@ -106,21 +112,18 @@ it.each(['blur', 'account', 'unmount'])('does not navigate when saving completes
   expect(mockBack).not.toHaveBeenCalled(); expect(mockReplace).not.toHaveBeenCalled();
 });
 
-it.each([
-  {level: 'ICAO 4', type: '复考', target: 'icao4-recert'},
-  {level: 'ICAO 5', type: '初考', target: 'icao5-first'},
-  {level: 'ICAO 5', type: '复考', target: 'icao5-recert'},
-])('saves the existing target identity $target from the two selectors', async ({level, type, target}) => {
+it('keeps the profile editor focused on identity without duplicate exam selectors', async () => {
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText(level));
-  await fireEvent.press(screen.getByLabelText(type));
-  await fireEvent.press(screen.getByText('保存修改'));
-  expect(updateProfile).toHaveBeenCalledWith({target});
+  expect(screen.queryByText('备考目标')).toBeNull();
+  expect(screen.queryByLabelText('目标等级')).toBeNull();
+  expect(screen.queryByLabelText('考试类型')).toBeNull();
 });
 
 it('does not save a stale goal when cloud profile arrives during nickname editing', async () => {
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.changeText(screen.getByLabelText('昵称'), '新的昵称');
+  await fireEvent.press(screen.getByLabelText('昵称'));
+  await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新的昵称');
+  await fireEvent.press(screen.getByText('完成'));
   mockProfile = { ...mockProfile, target: 'icao5-first' };
   await screen.rerender(<AccountProfilePage />);
   await fireEvent.press(screen.getByText('保存修改'));
@@ -129,22 +132,13 @@ it('does not save a stale goal when cloud profile arrives during nickname editin
 
 it('refreshes untouched fields while retaining the edited nickname', async () => {
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.changeText(screen.getByLabelText('昵称'), '新的昵称');
+  await fireEvent.press(screen.getByLabelText('昵称'));
+  await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新的昵称');
+  await fireEvent.press(screen.getByText('完成'));
   mockProfile = { displayName: '云端昵称', target: 'icao5-first', avatarUri: jpeg };
   await screen.rerender(<AccountProfilePage />);
-  expect(screen.getByLabelText('昵称').props.value).toBe('新的昵称');
-  expect(screen.getByLabelText('ICAO 5').props.accessibilityState.checked).toBe(true);
+  expect(screen.getByText('新的昵称')).toBeTruthy();
   expect(screen.getByTestId('avatar').props.children).toBe(jpeg);
   await fireEvent.press(screen.getByText('保存修改'));
   expect(updateProfile).toHaveBeenCalledWith({ displayName: '新的昵称' });
-});
-
-it('saves only the chosen goal when unrelated cloud fields change', async () => {
-  const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('ICAO 5'));
-  mockProfile = { displayName: '云端昵称', target: 'icao4-first', avatarUri: jpeg };
-  await screen.rerender(<AccountProfilePage />);
-  expect(screen.getByLabelText('昵称').props.value).toBe('云端昵称');
-  await fireEvent.press(screen.getByText('保存修改'));
-  expect(updateProfile).toHaveBeenCalledWith({ target: 'icao5-first' });
 });

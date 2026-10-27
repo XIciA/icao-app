@@ -4,6 +4,19 @@ import { Platform } from 'react-native';
 import type { QuestionBankDataset } from '../types';
 import { loadCatalogProgress } from '../lib/catalog-progress';
 
+// Exercise the historical implementation explicitly, independently of the formal Web default.
+jest.mock('@/config/web-runtime', () => {
+  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+  try {
+    return jest.requireActual('@/config/web-runtime');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
+  }
+});
+
+
 const { QuestionBankCatalog } = jest.requireActual('../components/QuestionBankCatalog.tsx') as typeof import('../components/QuestionBankCatalog');
 
 let focusCallback: (() => void | (() => void)) | undefined;

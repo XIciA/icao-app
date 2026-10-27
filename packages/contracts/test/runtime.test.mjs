@@ -5,7 +5,7 @@ import { test } from 'node:test';
 // The production API loads these source exports with plain Node, without tsx
 // or a bundler's extension resolution. Exercise that actual package boundary.
 const require = createRequire(import.meta.url);
-for (const subpath of ['', '/native-auth', '/commerce-rules', '/feedback-ops', '/app-content', '/wechat-pay']) {
+for (const subpath of ['', '/native-auth', '/commerce-rules', '/feedback-ops', '/app-content', '/wechat-pay', '/vocabulary-live', '/vocabulary-edit']) {
   test(`plain Node can require @icao/contracts${subpath}`, () => {
     assert.equal(typeof require(`@icao/contracts${subpath}`), 'object');
   });

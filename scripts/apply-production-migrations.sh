@@ -104,7 +104,7 @@ cleanup_local_resources() (
     *) cleanup_failed=1 ;;
   esac
   if [ "$REMOTE_CLEANUP_ARMED" = 1 ]; then
-    ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" \
+    ssh -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 "$ECS_USER@$ECS_HOST" \
       "rm -f '$REMOTE_UPLOAD' '$REMOTE_CHECKSUM'" >/dev/null 2>&1 || cleanup_failed=1
   fi
   exit "$cleanup_failed"
@@ -136,6 +136,41 @@ cleanup_local_on_exit() {
 trap cleanup_local_on_exit EXIT
 trap 'exit 1' HUP INT TERM
 
+# The reuse branch is limited to the one approved immutable Oct27 payload.
+# It does not relabel the old successful rehearsal as a new runner/source.
+PAYLOAD_SOURCE_SHA=$SOURCE_SHA
+REHEARSAL_REUSED=0
+PAYLOAD_TREE_SHA=not_applicable
+REUSED_EVIDENCE_SHA=not_applicable
+REUSE_EVIDENCE=${ICAO_PRODUCTION_MIGRATION_REUSE_REHEARSAL_EVIDENCE:-}
+if [ -n "$REUSE_EVIDENCE" ]; then
+  LOCAL_STAGE=reuse_rehearsal_evidence
+  node "$CONTRACT_TOOL" reuse-path "$REUSE_EVIDENCE" >/dev/null
+  REHEARSAL_EVIDENCE=$REUSE_EVIDENCE
+  ssh -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 "$ECS_USER@$ECS_HOST" sh -s -- \
+    "$REHEARSAL_EVIDENCE" > "$REHEARSAL_LOG" <<'READ_REUSE'
+set -eu
+root=/opt/icao/runtime/migration-rehearsals
+test "$1" = "$root/evidence/rehearsal-64678f357635-20261027T034722Z.txt"
+for directory in "$root" "$root/evidence"; do
+  test -d "$directory" && test ! -L "$directory"
+  test "$(stat -c '%u:%a' -- "$directory")" = '0:700'
+done
+test -f "$1" && test ! -L "$1"
+test "$(stat -c '%u:%a' -- "$1")" = '0:600'
+cat "$1"
+READ_REUSE
+  REUSE_CONTRACT=$(node "$CONTRACT_TOOL" reuse-rehearsal "$SOURCE_SHA" \
+    "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN" "$REHEARSAL_EVIDENCE" "$REHEARSAL_LOG" "$SOURCE_ROOT")
+  PAYLOAD_SOURCE_SHA=${REUSE_CONTRACT%%|*}
+  reuse_tail=${REUSE_CONTRACT#*|}
+  BACKUP_NAME=${reuse_tail%%|*}
+  reuse_tail=${reuse_tail#*|}
+  PAYLOAD_TREE_SHA=${reuse_tail%%|*}
+  REUSED_EVIDENCE_SHA=${reuse_tail#*|}
+  REUSED_ARCHIVE_SHA=$(sed -n 's/^archive_sha256=//p' "$REHEARSAL_LOG")
+  REHEARSAL_REUSED=1
+else
 # This creates a fresh production backup, verifies its checksum, restores it to
 # an isolated database, applies the exact candidate suffix there, proves data
 # preservation, and removes every temporary rehearsal resource before success.
@@ -151,11 +186,12 @@ if [ "$BACKUP_NAME|$REHEARSAL_EVIDENCE" != "$REHEARSAL_CONTRACT" ]; then
   echo 'The migration rehearsal contract is malformed.' >&2
   exit 1
 fi
+fi
 
 LOCAL_STAGE=prepare_source
 (
   cd "$SOURCE_ROOT"
-  git archive --format=tar "$SOURCE_SHA" \
+  git archive --format=tar "$PAYLOAD_SOURCE_SHA" \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
     modules/icao-distribution-environment modules/icao-wechat-auth \
     packages/contracts services/api \
@@ -165,10 +201,11 @@ LOCAL_STAGE=prepare_source
 node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 test "$(git -C "$SOURCE_ROOT" rev-parse HEAD)" = "$SOURCE_SHA"
 ARCHIVE_SHA=$(shasum -a 256 "$ARCHIVE" | awk '{ print $1 }')
+if [ "$REHEARSAL_REUSED" = 1 ]; then test "$ARCHIVE_SHA" = "$REUSED_ARCHIVE_SHA"; fi
 printf '%s  %s\n' "$ARCHIVE_SHA" "$(basename "$REMOTE_UPLOAD")" > "$ARCHIVE.sha256"
 chmod 600 "$ARCHIVE" "$ARCHIVE.sha256" "$REHEARSAL_LOG"
 
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
+ssh -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 "$ECS_USER@$ECS_HOST" sh -s -- \
   "$REMOTE_UPLOAD" "$REMOTE_CHECKSUM" <<'REMOTE_PREPARE'
 # BEGIN production-migration-remote-prepare
 set -eu
@@ -248,15 +285,15 @@ trap - EXIT HUP INT TERM
 # END production-migration-remote-prepare
 REMOTE_PREPARE
 REMOTE_CLEANUP_ARMED=1
-scp -i "$SSH_KEY" -q "$ARCHIVE" "$ECS_USER@$ECS_HOST:$REMOTE_UPLOAD"
-scp -i "$SSH_KEY" -q "$ARCHIVE.sha256" "$ECS_USER@$ECS_HOST:$REMOTE_CHECKSUM"
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" \
+scp -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -q "$ARCHIVE" "$ECS_USER@$ECS_HOST:$REMOTE_UPLOAD"
+scp -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -q "$ARCHIVE.sha256" "$ECS_USER@$ECS_HOST:$REMOTE_CHECKSUM"
+ssh -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 "$ECS_USER@$ECS_HOST" \
   "chmod 600 '$REMOTE_UPLOAD' '$REMOTE_CHECKSUM'"
 
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
+ssh -i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 "$ECS_USER@$ECS_HOST" sh -s -- \
   "$SOURCE_SHA" "$ARCHIVE_SHA" "$UPLOAD_TOKEN" "$BUILD_NPM_REGISTRY" \
   "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN" "$BACKUP_NAME" "$REHEARSAL_EVIDENCE" \
-  "$CONFIRMATION" <<'REMOTE'
+  "$CONFIRMATION" "$PAYLOAD_SOURCE_SHA" "$REHEARSAL_REUSED" "$PAYLOAD_TREE_SHA" "$REUSED_EVIDENCE_SHA" <<'REMOTE'
 set -eu
 umask 077
 
@@ -269,6 +306,12 @@ expected_post_plan=$6
 backup_name=$7
 rehearsal_evidence=$8
 confirmation=$9
+payload_source_sha=${10}
+rehearsal_reused=${11}
+payload_tree_sha=${12}
+reused_evidence_sha=${13}
+reuse_pre_plan_verified_at=not_applicable
+reuse_state_proof=not_applicable
 source_id=$(printf '%.12s' "$source_sha")
 token_id=$(printf '%.12s' "$upload_token")
 root=/opt/icao/runtime/production-migrations
@@ -397,13 +440,23 @@ if ! run_trusted_python -I -c \
 fi
 # END production-migration-trusted-python-guard
 
-case "$source_sha:$archive_sha:$upload_token" in
+case "$source_sha:$payload_source_sha:$archive_sha:$upload_token" in
   *[!A-Fa-f0-9:]*) echo 'remote production migration identity is invalid' >&2; exit 1 ;;
 esac
 case "$expected_pre_plan:$expected_post_plan" in
   *[!0-9:]*) echo 'remote expected migration plan is invalid' >&2; exit 1 ;;
 esac
 test "$confirmation" = "APPLY_PRODUCTION_MIGRATIONS:$source_sha:$expected_pre_plan:$expected_post_plan"
+case "$rehearsal_reused" in
+  0) test "$payload_source_sha" = "$source_sha" ;;
+  1)
+    test "$payload_source_sha" = 64678f357635f277090abe7c0f4e1c9adf8eb67f
+    for digest in "$payload_tree_sha" "$reused_evidence_sha"; do
+      printf '%s\n' "$digest" | grep -Eq '^[a-f0-9]{64}$'
+    done
+    ;;
+  *) echo 'invalid rehearsal reuse mode' >&2; exit 1 ;;
+esac
 printf '%s\n' "$backup_name" \
   | grep -Eq '^icao-[0-9]{8}T[0-9]{6}Z-[0-9]+\.dump$' \
   || { echo 'remote production backup name is invalid' >&2; exit 1; }
@@ -707,6 +760,14 @@ publish_evidence() (
     "status=$evidence_status" \
     "stage=$stage" \
     "source_sha=$source_sha" \
+    "runner_source_sha=$source_sha" \
+    "payload_source_sha=$payload_source_sha" \
+    "running_api_source_sha=$payload_source_sha" \
+    "payload_tree_sha256=$payload_tree_sha" \
+    "rehearsal_reused=$rehearsal_reused" \
+    "reused_evidence_sha256=$reused_evidence_sha" \
+    "reuse_pre_plan_verified_at=$reuse_pre_plan_verified_at" \
+    "reuse_state_proof=$reuse_state_proof" \
     "archive_sha256=$archive_sha" \
     "confirmation_sha256=$confirmation_sha" \
     "backup_name=$backup_name" \
@@ -912,7 +973,10 @@ evidence_value() {
 }
 
 stage=rehearsal_evidence_verification
-test "$(evidence_value source_sha)" = "$source_sha"
+test "$(evidence_value source_sha)" = "$payload_source_sha"
+if [ "$rehearsal_reused" = 1 ]; then
+  test "$(sha256sum "$rehearsal_evidence" | awk '{ print $1 }')" = "$reused_evidence_sha"
+fi
 test "$(evidence_value backup_name)" = "$backup_name"
 test "$(evidence_value pre_plan)" = "$expected_pre_plan"
 test "$(evidence_value post_plan)" = "$expected_post_plan"
@@ -937,9 +1001,11 @@ printf '%s\n' "$rehearsal_completed_at" \
   | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$'
 rehearsal_completed_epoch=$(date -d "$rehearsal_completed_at" +%s)
 now_epoch=$(date +%s)
+# BEGIN production-migration-rehearsal-completion-window
 rehearsal_age=$((now_epoch - rehearsal_completed_epoch))
 test "$rehearsal_age" -ge 0
-test "$rehearsal_age" -le 1800
+if [ "$rehearsal_reused" = 0 ]; then test "$rehearsal_age" -le 1800; fi
+# END production-migration-rehearsal-completion-window
 
 stage=backup_verification
 actual_backup_checksum_line=$(cat "$backup.sha256")
@@ -949,9 +1015,18 @@ test "$actual_backup_checksum_line" = "$backup_sha  $backup_name"
   sha256sum -c "$backup_name.sha256"
 )
 backup_mtime=$(stat -c %Y "$backup")
+# BEGIN production-migration-rehearsal-backup-window
+# This backup anchors the isolated rehearsal, not the cutover recovery point.
+# A valid restore may take longer than 30 minutes; bound its duration to six
+# hours, while retaining the 30-minute completed-rehearsal freshness gate above.
+# The authoritative post-drain backup below must still be created after drain.
 backup_age=$((now_epoch - backup_mtime))
 test "$backup_age" -ge 0
-test "$backup_age" -le 1800
+test "$backup_age" -le 23400
+backup_to_rehearsal_seconds=$((rehearsal_completed_epoch - backup_mtime))
+test "$backup_to_rehearsal_seconds" -ge 0
+test "$backup_to_rehearsal_seconds" -le 21600
+# END production-migration-rehearsal-backup-window
 
 stage=source_extraction
 test ! -e "$work_dir"
@@ -1084,6 +1159,32 @@ pre_summary=$(docker run --rm \
 # END production-migration-evidence-parser-pre-plan
 test "$pre_summary" = "$expected_pre_plan"
 
+# BEGIN production-migration-reuse-state-proof
+if [ "$rehearsal_reused" = 1 ]; then
+  # The release/migration locks are held. This is a fresh read-only ledger
+  # confirmation, not a new restore rehearsal or a new fingerprint claim.
+  test "$pre_summary" = "$expected_pre_plan"
+  reuse_pre_plan_epoch=$(date +%s)
+  test "$((reuse_pre_plan_epoch - backup_mtime))" -ge 0
+  test "$((reuse_pre_plan_epoch - backup_mtime))" -le 23400
+  reuse_pre_plan_verified_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  reuse_state_proof=$evidence_dir/reuse-$source_id-$upload_token.txt
+  test ! -e "$reuse_state_proof" && test ! -L "$reuse_state_proof"
+  (set -C; printf '%s\n' \
+    'authority=locked_readonly_ledger_reconfirmation' \
+    "runner_source_sha=$source_sha" "payload_source_sha=$payload_source_sha" \
+    "archive_sha256=$archive_sha" "payload_tree_sha256=$payload_tree_sha" \
+    "original_rehearsal_evidence=$rehearsal_evidence" \
+    "original_rehearsal_completed_at=$rehearsal_completed_at" \
+    "original_rehearsal_evidence_sha256=$reused_evidence_sha" \
+    "rehearsal_schema_contract_sha256=$rehearsal_schema_contract_sha" \
+    "backup_sha256=$backup_sha" "verified_pre_plan=$pre_summary" \
+    "verified_at=$reuse_pre_plan_verified_at" > "$reuse_state_proof")
+  chmod 600 "$reuse_state_proof"
+  require_root_owned_path file "$reuse_state_proof" 600
+fi
+# END production-migration-reuse-state-proof
+
 before_card_states=$(query_scalar 'select count(*) from public.user_card_states')
 before_learning_records=$(query_scalar 'select count(*) from public.learning_records')
 before_documents=$(query_scalar 'select count(*) from public.user_documents')
@@ -1128,6 +1229,12 @@ cp "$runtime_compose" "$cutover_record_dir/docker-compose-before.yml"
 chmod 600 "$cutover_record_dir"/*
 
 stage=old_api_drain
+# BEGIN production-migration-reuse-freshness
+if [ "$rehearsal_reused" = 1 ]; then
+  reuse_state_age=$(( $(date +%s) - reuse_pre_plan_epoch ))
+  test "$reuse_state_age" -ge 0 && test "$reuse_state_age" -le 1800
+fi
+# END production-migration-reuse-freshness
 old_api_drain_started=1
 docker stop --time 60 icao-api >/dev/null
 test "$(docker inspect -f '{{.State.Running}}' icao-api)" = false

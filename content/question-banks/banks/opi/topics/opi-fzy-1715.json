@@ -1,82 +1,82 @@
 {
   "id": "opi-fzy-1715",
-  "name": "Drone activity",
-  "declaredCardCount": 7,
+  "name": "无人机活动",
   "cards": [
     {
       "id": "opi-fzy-1715-image-1",
       "kind": "image",
-      "taskTitle": "Drone activity · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-1715.png",
-      "imageAlt": "Drone activity，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "imageAlt": "无人机活动，用于本话题的看图描述和问答",
+      "studyTier": 1,
+      "taskTitle": "无人机活动 · 看图材料"
     },
     {
       "id": "opi-fzy-226650",
-      "taskTitle": "UAV/Drone activity-1",
+      "audio": "/question-bank-assets/revisions/opi/652541b4b75466a0b8bb4acd18fcfb429d3fd8f952c0cadf43ec3a37113cf679/audio/opi/opi-fzy-226650.mp3",
       "audioText": "Can you please briefly describe this picture?",
-      "audioTextZh": "你可以简单地描述下这张图片吗？",
       "studyTier": 1,
+      "taskTitle": "UAV/无人机活动-1",
+      "audioTextZh": "你可以简单地描述下这张图片吗？",
       "referenceText": "From this picture, I can see that a British Airways passenger plane is preparing to land and its landing gear has been extended. At the same time, there is also a drone in the air, which is very dangerous.",
       "referenceTextZh": "从这张图片中，我可以看到一架英国航空的客机正在准备着陆，飞机的起落架已经放下。同时，有一架无人机也在空中，这是很危险的。",
-      "audio": "/question-bank-assets/revisions/opi/652541b4b75466a0b8bb4acd18fcfb429d3fd8f952c0cadf43ec3a37113cf679/audio/opi/opi-fzy-226650.mp3",
       "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-fzy-226651",
-      "taskTitle": "UAV/Drone activity-2",
+      "audio": "/question-bank-assets/revisions/opi/c4281a0d832c2feb11cc5a693c9f0f3751d86f5c660d39c9f94d903f4eacb048/audio/opi/opi-fzy-226651.mp3",
       "audioText": "What does UAV stand for?",
-      "audioTextZh": "UAV指的是什么？",
       "studyTier": 1,
+      "taskTitle": "UAV/无人机活动-2",
+      "audioTextZh": "UAV指的是什么？",
       "referenceText": "UAV stands for Unmanned Aerial Vehicle, commonly known as a drone. It is an aircraft without a human pilot on board, controlled remotely or autonomously. UAVs are widely used in military, delivery, surveying, and search-rescue operations. However, they also bring challenges to civil aviation, such as collision risks and airspace integration. Pilots need to be aware of UAV activities near airports and report any sightings to ATC promptly to ensure flight safety.",
       "referenceTextZh": "UAV代表无人驾驶飞行器，通常被称为无人机。这是一架没有人类飞行员的飞机，可以远程或自主控制。无人机广泛应用于军事、运输、测量和搜救行动。然而，它们也给民用航空带来了碰撞风险和空域整合等挑战。飞行员需要了解机场附近的无人机活动，并及时向空中交通管制中心报告任何目击事件，以确保飞行安全。",
-      "audio": "/question-bank-assets/revisions/opi/c4281a0d832c2feb11cc5a693c9f0f3751d86f5c660d39c9f94d903f4eacb048/audio/opi/opi-fzy-226651.mp3",
       "audioDurationSeconds": 1.584
     },
     {
       "id": "opi-fzy-226652",
-      "taskTitle": "UAV/Drone activity-3",
+      "audio": "/question-bank-assets/revisions/opi/ff3cc1812828f3551453572feea15d6b84ff8c8c3a1b5ddaf6afe1dd155b7089/audio/opi/opi-fzy-226652.mp3",
       "audioText": "What are the functions of the UAV or drones?",
-      "audioTextZh": "无人机的作用有哪些？",
       "studyTier": 1,
+      "taskTitle": "UAV/无人机活动-3",
+      "audioTextZh": "无人机的作用有哪些？",
       "referenceText": "Drones have many useful functions. In the military, they are used for surveillance, and even combat missions. In civilian life, they are widely used for aerial photography, crop monitoring in agriculture, and inspecting power lines or pipelines. They also play a vital role in search and rescue operations, delivering medical supplies to remote areas, and surveying disaster zones. However, despite these benefits, we must always remember that drones can be a threat to civil aviation if not properly controlled, especially near airports.",
       "referenceTextZh": "无人机有许多有用的功能。在军事领域，它们被用于监视，甚至作战任务。在民用生活中，它们被广泛用于航空摄影、农业作物监测和检查电力线或管道。它们还在搜索和救援行动、向偏远地区运送医疗用品和调查灾区方面发挥着至关重要的作用。然而，尽管有这些好处，我们必须永远记住，如果管控不当，无人机可能对民用航空构成威胁，尤其是在机场附近。",
-      "audio": "/question-bank-assets/revisions/opi/ff3cc1812828f3551453572feea15d6b84ff8c8c3a1b5ddaf6afe1dd155b7089/audio/opi/opi-fzy-226652.mp3",
       "audioDurationSeconds": 2.28
     },
     {
       "id": "opi-fzy-226653",
-      "taskTitle": "UAV/Drone activity-4",
+      "audio": "/question-bank-assets/revisions/opi/1012c5801cf79e0e2aa705aada0b21a8d3da8ee7897879d27f728b765b776ec3/audio/opi/opi-fzy-226653.mp3",
       "audioText": "What possible hazards are associated with drone activities if they are operated in the vicinity of the airport?",
-      "audioTextZh": "如果无人机在机场附近活动，可能会有哪些危险？",
       "studyTier": 1,
+      "taskTitle": "UAV/无人机活动-4",
+      "audioTextZh": "如果无人机在机场附近活动，可能会有哪些危险？",
       "referenceText": "Drones near the airport have several serious hazards. First, they can collide with aircraft during takeoff or landing, which may cause critical damage to engines or windshields. Second, they distract pilots and ATC, reducing situational awareness. Third, drones may interfere with radio or navigation signals. Finally, if a drone falls, it can injure people or damage property on the ground. Therefore, all drone operations near airports must be strictly regulated and reported to ATC immediately.",
       "referenceTextZh": "机场附近的无人机有几个严重的危险。首先，它们会在起飞或降落时与飞机相撞，这可能会对发动机或挡风玻璃造成严重损害。其次，它们分散了飞行员和空管的注意力，降低了态势感知能力。第三，无人机可能会干扰无线电或导航信号。最后，如果无人机坠落，它可能会伤害到地面上的人员或财产。因此，机场附近的所有无人机操作都必须严格监管，并立即向空中交通管制中心报告。",
-      "audio": "/question-bank-assets/revisions/opi/1012c5801cf79e0e2aa705aada0b21a8d3da8ee7897879d27f728b765b776ec3/audio/opi/opi-fzy-226653.mp3",
       "audioDurationSeconds": 5.88
     },
     {
       "id": "opi-fzy-226654",
-      "taskTitle": "UAV/Drone activity-5",
+      "audio": "/question-bank-assets/revisions/opi/f46aecce4b13d4ee5b320d45911325915d2c83466b443a4415c6b2a1bfb340a9/audio/opi/opi-fzy-226654.mp3",
       "audioText": "What would you do if there were relevant reports of drone activities in your airspace?",
-      "audioTextZh": "如果在你的空域内有相关的无人机活动报告，你会怎么做？",
       "studyTier": 1,
+      "taskTitle": "UAV/无人机活动-5",
+      "audioTextZh": "如果在你的空域内有相关的无人机活动报告，你会怎么做？",
       "referenceText": "If I receive reports of drone activities in my airspace, I would immediately notify ATC and provide all available details, such as the drone's location, altitude, color, size, and movement direction. I would also follow ATC instructions, which might include changing altitude, altering my flight path, or even diverting to an alternate airport. Meanwhile, I would keep monitoring the situation visually and on radar if available, and report any changes promptly to ensure the safety of my flight and other traffic.",
       "referenceTextZh": "如果我收到无人机在我的空域活动的报告，我会立即通知ATC并提供所有可用的细节，如无人机的位置，高度，颜色，大小和移动方向。我也会遵照空中交通管制的指示，这可能包括改变高度，改变我的飞行路线，甚至转移到备用机场。与此同时，如果有可能的话，我会继续通过视觉和雷达监测情况，并及时报告任何变化，以确保我的航班和其他交通的安全。",
-      "audio": "/question-bank-assets/revisions/opi/f46aecce4b13d4ee5b320d45911325915d2c83466b443a4415c6b2a1bfb340a9/audio/opi/opi-fzy-226654.mp3",
       "audioDurationSeconds": 4.2
     },
     {
       "id": "opi-fzy-226655",
-      "taskTitle": "UAV/Drone activity-6",
+      "audio": "/question-bank-assets/revisions/opi/d13bc9baa2b2865d8d52d255dad766b805413fe65b0929f3c74e63e589acd4ba/audio/opi/opi-fzy-226655.mp3",
       "audioText": "Do you have any good opinions or suggestions for regulating drone activities?",
-      "audioTextZh": "对于规范无人机活动，你有什么好的意见或建议吗？",
       "studyTier": 1,
+      "taskTitle": "UAV/无人机活动-6",
+      "audioTextZh": "对于规范无人机活动，你有什么好的意见或建议吗？",
       "referenceText": "Yes, I have several suggestions. First, all drones should be registered and equipped with remote identification systems so authorities can track them in real time. Second, we should set up no-fly zones near airports and use geo-fencing technology to prevent drones from entering these areas. Third, drone operators must pass safety training and obtain proper licenses. Finally, we need stricter penalties for those who violate the rules, including heavy fines or even criminal charges. Public education about drone risks is also important.",
       "referenceTextZh": "是的，我有几个建议。首先，所有无人机都应该注册并配备远程识别系统，这样局方就可以实时跟踪它们。第二，在机场附近设立禁飞区，利用地理围栏技术防止无人机进入禁飞区。第三，无人机操作员必须通过安全培训并获得相应的许可证。最后，我们需要对违反规定的人进行更严厉的惩罚，包括高额罚款甚至刑事指控。关于无人机风险的公众教育也很重要。",
-      "audio": "/question-bank-assets/revisions/opi/d13bc9baa2b2865d8d52d255dad766b805413fe65b0929f3c74e63e589acd4ba/audio/opi/opi-fzy-226655.mp3",
       "audioDurationSeconds": 4.32
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-08"
 }

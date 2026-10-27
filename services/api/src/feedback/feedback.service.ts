@@ -10,6 +10,12 @@ import { feedbackAttachments, feedbackReplies, feedbackTickets, questionBankRele
 import { FeedbackAttachmentStorage } from './feedback-attachment-storage';
 import type { FeedbackImage } from './feedback-image';
 
+function feedbackKindFilter(kind = 'opinion') {
+  if (kind === 'exam_report' || kind === 'opi_hotspot') return eq(feedbackTickets.source, kind);
+  if (kind !== 'opinion') throw new BadRequestException('invalid_feedback_kind');
+  return or(eq(feedbackTickets.source, 'profile'), eq(feedbackTickets.source, 'study'));
+}
+
 const RETENTION_MILLISECONDS = 365 * 24 * 60 * 60 * 1_000;
 const RATE_LIMIT_WINDOW_MILLISECONDS = 60 * 60 * 1_000;
 const RATE_LIMIT_MAX = 10;
@@ -170,13 +176,13 @@ export class FeedbackService {
   private async publicItem(ticket: typeof feedbackTickets.$inferSelect) {
     const replies = await this.database.db.select({ id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt })
       .from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id)).orderBy(feedbackReplies.createdAt, feedbackReplies.id);
-    return { ticketNumber: ticket.ticketNumber, category: ticket.category, description: ticket.description,
+    return { ticketNumber: ticket.ticketNumber, source: ticket.source, category: ticket.category, description: ticket.description,
       status: feedbackStatusForClient(ticket.status), createdAt: ticket.createdAt.toISOString(),
       unread: replies.some(reply => !ticket.repliesReadAt || reply.createdAt > ticket.repliesReadAt),
       replies: replies.map(reply => ({ ...reply, createdAt: reply.createdAt.toISOString() })) };
   }
 
-  async list(userId: string, cursor?: string) {
+  async list(userId: string, cursor?: string, kind = 'opinion') {
     let before: { time: Date; id: string } | undefined;
     if (cursor) {
       try {
@@ -186,20 +192,20 @@ export class FeedbackService {
       } catch { throw new BadRequestException('invalid_feedback_cursor'); }
     }
     const rows = await this.database.db.select().from(feedbackTickets).where(and(
-      eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
+      feedbackKindFilter(kind), eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
       before ? or(lt(feedbackTickets.createdAt, before.time), and(eq(feedbackTickets.createdAt, before.time), lt(feedbackTickets.id, before.id))) : undefined,
     )).orderBy(desc(feedbackTickets.createdAt), desc(feedbackTickets.id)).limit(31);
     const items = await Promise.all(rows.slice(0, 30).map(ticket => this.publicItem(ticket)));
     const last = rows[29];
-    const { unread } = await this.unread(userId);
+    const { unread } = await this.unread(userId, kind);
     return { items, unread, nextCursor: rows.length > 30 && last
       ? Buffer.from(JSON.stringify({ time: last.createdAt.toISOString(), id: last.id })).toString('base64url') : null };
   }
 
-  async unread(userId: string) {
+  async unread(userId: string, kind = 'opinion') {
     const unread = await this.database.db.select({ id: feedbackReplies.id }).from(feedbackReplies)
       .innerJoin(feedbackTickets, eq(feedbackReplies.ticketId, feedbackTickets.id)).where(and(
-        eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
+        feedbackKindFilter(kind), eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
         or(isNull(feedbackTickets.repliesReadAt), gt(feedbackReplies.createdAt, feedbackTickets.repliesReadAt)),
       )).limit(1);
     return { unread: unread.length > 0 };

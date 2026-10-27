@@ -1,3 +1,4 @@
+import { consumeSentenceReplay, type SentenceReplayLedger } from '@/features/mock-exam/sentence-replay';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { useAudioPlayerStatus } from 'expo-audio';
@@ -10,10 +11,15 @@ import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { observeAudioInterruption } from '../../../../modules/icao-audio-interruption/src';
 
 type Phase = 'loading' | 'playing' | 'paused' | 'ended' | 'error';
-type Props = { exam?: boolean; autoPlay?: boolean; questionId?: string; uri?: string; text?: string; label: string; resolving?: boolean; onRetry?: () => void; pauseRequest: number; onPlaybackStart?: () => void; practiceControls?: ReactNode };
+type Props = { replay?: { ledger: SentenceReplayLedger; group: string; item: string; blocked: boolean }; exam?: boolean; autoPlay?: boolean; questionId?: string; uri?: string; text?: string; label: string; resolving?: boolean; onRetry?: () => void; pauseRequest: number; onPlaybackStart?: () => void; practiceControls?: ReactNode };
 
 /** Exam presentation of the shared study audio owner. No user transport controls. */
-export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, uri: providedUri, text, label, resolving: providedResolving, onRetry: retryProvided, pauseRequest, onPlaybackStart, practiceControls }: Props) {
+export function ExamQuestionAudio({ replay, exam = true, autoPlay = true, questionId, uri: providedUri, text, label, resolving: providedResolving, onRetry: retryProvided, pauseRequest, onPlaybackStart, practiceControls }: Props) {
+  const replayRef = useRef(replay); replayRef.current = replay;
+  const replayPending = useRef(false);
+  const replayStarting = useRef(false);
+  const initialCompleted = Boolean(replay?.ledger.completedItems[replay.item]);
+  autoPlay = autoPlay && !initialCompleted;
   const recording = useQuestionRecording(providedUri ? undefined : questionId, text);
   const uri = providedUri ?? recording.uri;
   const resolving = providedResolving || recording.resolving;
@@ -21,7 +27,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
   const player = useSessionManagedAudioPlayer(null, { updateInterval: 200, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
   const [awaitingAudioGesture, setAwaitingAudioGesture] = useState(() => Boolean(autoPlay && text?.trim() && Platform.OS === 'web'));
-  const [phase, setPhase] = useState<Phase>(autoPlay && !awaitingAudioGesture ? 'loading' : 'paused');
+  const [phase, setPhase] = useState<Phase>(initialCompleted ? 'ended' : autoPlay && !awaitingAudioGesture ? 'loading' : 'paused');
   const [interruptionReplay, setInterruptionReplay] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const lease = useRef<AudioLease | undefined>(undefined);
@@ -47,7 +53,9 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
   const fail = useCallback((code: string) => {
     setAwaitingAudioGesture(false);
     emitAudioDiagnostic({ scope: 'playback', owner: 'study', level: 'error', code, reason: 'exam-question', phase: phaseRef.current });
-    update('error');
+    const failedReplay = replayPending.current && replayRef.current?.ledger.completedItems[replayRef.current.item];
+    replayPending.current = false; replayStarting.current = false;
+    update(failedReplay ? 'ended' : 'error');
   }, [update]);
   const releaseSpecific = useCallback((current: AudioLease | undefined) => {
     if (!current) return;
@@ -63,7 +71,11 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
     if (phaseRef.current !== 'ended') update('paused');
   }
   async function play(restart = false) {
-    if (callbacks.current.resolving || appState.current !== 'active' || (systemInterrupted.current || (awaitingReplay.current && !restart))) return;
+    if (replayPending.current && replayRef.current?.blocked) { replayPending.current = false; replayStarting.current = false; return; }
+    if (callbacks.current.resolving || appState.current !== 'active' || (systemInterrupted.current || (awaitingReplay.current && !restart))) {
+      if (phaseRef.current === 'ended') { replayPending.current = false; replayStarting.current = false; }
+      return;
+    }
     if (Platform.OS !== 'web' && callbacks.current.uri && !latestStatus.current.isLoaded) { wantPlay.current = true; update('loading'); return; }
     wantPlay.current = false;
     setAwaitingAudioGesture(false);
@@ -73,7 +85,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
       acquired = await audioSessionOrchestrator.acquire('study', 'exam-question');
       if (!mounted.current || request !== generation.current || appState.current !== 'active') { await audioSessionOrchestrator.release(acquired); return; }
       lease.current = acquired;
-      if (restart) {
+      if (restart || replayPending.current) {
         playbackPosition.current = 0;
       }
       if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
@@ -82,9 +94,10 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
       if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
       callbacks.current.onPlaybackStart?.();
       if (callbacks.current.uri) {
-        if (restart || playbackPosition.current > 0) await player.seekTo(playbackPosition.current);
+        if (restart || replayPending.current || playbackPosition.current > 0) await player.seekTo(playbackPosition.current);
         if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
         player.setPlaybackRate(1);
+        if (replayPending.current && replayRef.current?.blocked) { replayPending.current = false; replayStarting.current = false; releaseSpecific(acquired); return; }
         player.play();
         update(Platform.OS === 'web' ? 'loading' : 'playing');
       } else { update('error'); release(); }
@@ -138,7 +151,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
     try {
       wantPlay.current = wantPlay.current || phaseRef.current === 'playing';
       player.replace(uri);
-      update(wantPlay.current ? 'loading' : 'paused');
+      update(wantPlay.current ? 'loading' : initialCompleted ? 'ended' : 'paused');
     } catch { fail('exam_source_replace_failed'); }
   // Source updates refresh the same immutable question, preserving elapsed time.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -147,9 +160,14 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
     if (resolving || !uri || status === sourceReplacedStatus.current) return;
     if (uri && wantPlay.current && status !== sourceReplacedStatus.current && status.isLoaded && status.playbackState !== 'error') operations.current.play();
     if (Platform.OS === 'web' && status.playing && phaseRef.current === 'loading') update('playing');
+    if ((status.playing || status.didJustFinish) && replayPending.current && replayRef.current) {
+      const current = replayRef.current;
+      consumeSentenceReplay(current.ledger, current.group, current.item);
+      replayPending.current = false; replayStarting.current = false;
+    }
     if (status.currentTime > 0) { audible.current = true; playbackPosition.current = status.currentTime; }
     if (awaitingReplay.current && status.playing) { try { player.pause(); } catch { /* Interruption is already paused. */ } }
-    if (uri && status.didJustFinish && phaseRef.current === 'playing') { eligibleForInterruption.current = false; update('ended'); release(); }
+    if (uri && status.didJustFinish && phaseRef.current === 'playing') { eligibleForInterruption.current = false; if (replayRef.current) replayRef.current.ledger.completedItems[replayRef.current.item] = true; update('ended'); release(); }
     if (uri && status.playbackState === 'error' && phaseRef.current !== 'error') { operations.current.pause(); eligibleForInterruption.current = false; fail('exam_media_load_failed'); }
   // The player status drives readiness; transports are stable per item.
    
@@ -166,16 +184,21 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
   useEffect(() => {
     if (pauseRequest === previousPauseRequest.current) return;
     previousPauseRequest.current = pauseRequest;
+    replayPending.current = false; replayStarting.current = false;
     operations.current.pause(); eligibleForInterruption.current = false; interrupted.current = false; awaitingReplay.current = false; setInterruptionReplay(false);
   }, [pauseRequest]);
 
   const canRetry = phase === 'error' && (!exam || !audible.current);
-  const labelText = awaitingAudioGesture ? (resolving ? '正在准备音频…' : '点击播放题目') : phase === 'loading' ? '正在准备音频…' : phase === 'playing' ? '音频播放中' : phase === 'ended' ? '音频已播放' : interruptionReplay ? '音频已中断，可重播本题音频' : phase === 'error' ? '音频暂不可用，可继续作答或进入下一题' : '音频已中断，可继续作答或进入下一题';
+  const labelText = awaitingAudioGesture ? (resolving ? '正在准备音频…' : '点击播放题目') : phase === 'loading' ? '正在准备音频…' : phase === 'playing' ? '音频播放中' : phase === 'ended' ? '音频已播放' : interruptionReplay ? (replay ? '音频已中断，可继续播放' : '音频已中断，可重播本题音频') : phase === 'error' ? '音频暂不可用，可继续作答或进入下一题' : '音频已中断，可继续作答或进入下一题';
   return <View style={styles.root}><View style={styles.row}><Headphones color={colors.mutedForeground} size={17} /><AppText variant="caption">{label}</AppText></View>
     <AppText accessibilityLiveRegion="polite" variant="caption">{labelText}</AppText>
     {!exam ? <Button size="sm" variant="outline" disabled={Platform.OS === 'web' && resolving} onPress={() => { if (phase === 'playing') { eligibleForInterruption.current = false; operations.current.pause(); } else { awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(phase === 'ended' || phase === 'error' || interruptionReplay); } }}>{phase === 'playing' ? '暂停' : phase === 'ended' ? '重新播放' : '播放题目'}</Button> : null}
-    {exam && awaitingAudioGesture ? <Button size="sm" variant="outline" disabled={resolving} onPress={() => operations.current.play()}>播放题目</Button> : null}
-    {interruptionReplay && exam ? <Button size="sm" variant="outline" onPress={() => { if (appState.current !== 'active' || systemInterrupted.current) return; awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(true); }}>重播本题音频</Button> : null}
+    {exam && awaitingAudioGesture ? <Button size="sm" variant="outline" disabled={resolving || replay?.blocked} onPress={() => operations.current.play()}>播放题目</Button> : null}
+    {exam && replay ? <Button size="sm" variant="outline" disabled={replay.blocked || resolving || phase !== 'ended' || Boolean(replay.ledger.usedGroups[replay.group])} onPress={() => {
+      if (replayStarting.current || replay.blocked || phaseRef.current !== 'ended' || replay.ledger.usedGroups[replay.group]) return;
+      replayStarting.current = true; replayPending.current = true; operations.current.play(true);
+    }}>{replay.ledger.usedGroups[replay.group] ? '本组重听已使用' : '重听（Replay）· 本组剩余 1 次'}</Button> : null}
+    {interruptionReplay && exam ? <Button size="sm" variant="outline" disabled={replay?.blocked} onPress={() => { if (appState.current !== 'active' || systemInterrupted.current) return; awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(!replayRef.current); }}>{replay ? '继续播放题目音频' : '重播本题音频'}</Button> : null}
     {canRetry ? <Button size="sm" variant="outline" onPress={() => { onRetry?.(); wantPlay.current = true; update('loading'); setLoadAttempt(value => value + 1); }}>重新加载音频</Button> : null}
     {practiceControls}
   </View>;

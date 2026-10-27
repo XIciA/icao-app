@@ -135802,6 +135802,466 @@
       "checksum": "fffd6a1d60ff6fe90d74c0f3100c5ae3c31a670ae7125bc1e518a00c905cda55",
       "status": "ready",
       "durationSeconds": 2.496
+    },
+    {
+      "objectKey": "revisions/opi/073f879d4c7116f24624627201b1e929173cbe24e11f489f48138ec2196166bb/audio/opi/opi-intake-20261019-navigation-lights.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/073f879d4c7116f24624627201b1e929173cbe24e11f489f48138ec2196166bb/audio/opi/opi-intake-20261019-navigation-lights.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/073f879d4c7116f24624627201b1e929173cbe24e11f489f48138ec2196166bb/audio/opi/opi-intake-20261019-navigation-lights.mp3",
+      "sizeBytes": 23468,
+      "mimeType": "audio/mpeg",
+      "checksum": "073f879d4c7116f24624627201b1e929173cbe24e11f489f48138ec2196166bb",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/0ac6360b4153127cf4281c437c0622f6b15b7d26b9780f32c2add85192d3d4e1/audio/opi/opi-intake-20261019-contaminated-runway.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/0ac6360b4153127cf4281c437c0622f6b15b7d26b9780f32c2add85192d3d4e1/audio/opi/opi-intake-20261019-contaminated-runway.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/0ac6360b4153127cf4281c437c0622f6b15b7d26b9780f32c2add85192d3d4e1/audio/opi/opi-intake-20261019-contaminated-runway.mp3",
+      "sizeBytes": 32108,
+      "mimeType": "audio/mpeg",
+      "checksum": "0ac6360b4153127cf4281c437c0622f6b15b7d26b9780f32c2add85192d3d4e1",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/0e491ac29d1090be6a5ed825c7c7347c1e8777226702d38d5f16e385ed4a75fb/audio/opi/opi-intake-20261019-packs-takeoff.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/0e491ac29d1090be6a5ed825c7c7347c1e8777226702d38d5f16e385ed4a75fb/audio/opi/opi-intake-20261019-packs-takeoff.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/0e491ac29d1090be6a5ed825c7c7347c1e8777226702d38d5f16e385ed4a75fb/audio/opi/opi-intake-20261019-packs-takeoff.mp3",
+      "sizeBytes": 25772,
+      "mimeType": "audio/mpeg",
+      "checksum": "0e491ac29d1090be6a5ed825c7c7347c1e8777226702d38d5f16e385ed4a75fb",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/15954da1d32b620db7eec2045f70a9816027cacb24890c0d1e67cb6725415a4d/audio/opi/opi-intake-20261019-engine-warmup.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/15954da1d32b620db7eec2045f70a9816027cacb24890c0d1e67cb6725415a4d/audio/opi/opi-intake-20261019-engine-warmup.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/15954da1d32b620db7eec2045f70a9816027cacb24890c0d1e67cb6725415a4d/audio/opi/opi-intake-20261019-engine-warmup.mp3",
+      "sizeBytes": 22508,
+      "mimeType": "audio/mpeg",
+      "checksum": "15954da1d32b620db7eec2045f70a9816027cacb24890c0d1e67cb6725415a4d",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/1850e62c1e86892f1f0342abbfb50a6d0e51cc7c18b384dc9f3043ae89ebe23a/audio/opi/opi-intake-20261019-automation-degradation.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/1850e62c1e86892f1f0342abbfb50a6d0e51cc7c18b384dc9f3043ae89ebe23a/audio/opi/opi-intake-20261019-automation-degradation.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/1850e62c1e86892f1f0342abbfb50a6d0e51cc7c18b384dc9f3043ae89ebe23a/audio/opi/opi-intake-20261019-automation-degradation.mp3",
+      "sizeBytes": 34988,
+      "mimeType": "audio/mpeg",
+      "checksum": "1850e62c1e86892f1f0342abbfb50a6d0e51cc7c18b384dc9f3043ae89ebe23a",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/1b4f8c47f616be5ead7b8a6f0795b7e6038c23ff632a4b9157f5326f52a80d8a/audio/opi/opi-intake-20261019-cat2-equipment.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/1b4f8c47f616be5ead7b8a6f0795b7e6038c23ff632a4b9157f5326f52a80d8a/audio/opi/opi-intake-20261019-cat2-equipment.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/1b4f8c47f616be5ead7b8a6f0795b7e6038c23ff632a4b9157f5326f52a80d8a/audio/opi/opi-intake-20261019-cat2-equipment.mp3",
+      "sizeBytes": 35564,
+      "mimeType": "audio/mpeg",
+      "checksum": "1b4f8c47f616be5ead7b8a6f0795b7e6038c23ff632a4b9157f5326f52a80d8a",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/1e8a84e50d3eb1aecd4246d1522e357bcfa0fc24994226c0f3cc17302b2710f3/audio/opi/opi-intake-20261019-snowstorm.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/1e8a84e50d3eb1aecd4246d1522e357bcfa0fc24994226c0f3cc17302b2710f3/audio/opi/opi-intake-20261019-snowstorm.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/1e8a84e50d3eb1aecd4246d1522e357bcfa0fc24994226c0f3cc17302b2710f3/audio/opi/opi-intake-20261019-snowstorm.mp3",
+      "sizeBytes": 27116,
+      "mimeType": "audio/mpeg",
+      "checksum": "1e8a84e50d3eb1aecd4246d1522e357bcfa0fc24994226c0f3cc17302b2710f3",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/22473891a4209b32fa3230482936f4727a02a1d7b70b74628a46522a2506d470/audio/opi/opi-intake-20261019-parallel-runways.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/22473891a4209b32fa3230482936f4727a02a1d7b70b74628a46522a2506d470/audio/opi/opi-intake-20261019-parallel-runways.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/22473891a4209b32fa3230482936f4727a02a1d7b70b74628a46522a2506d470/audio/opi/opi-intake-20261019-parallel-runways.mp3",
+      "sizeBytes": 40364,
+      "mimeType": "audio/mpeg",
+      "checksum": "22473891a4209b32fa3230482936f4727a02a1d7b70b74628a46522a2506d470",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/26949a0e885d5b1a446d571d5282113fb3d88fa57e9a84aab47617493996ed74/audio/opi/opi-intake-20261019-portable-extinguisher.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/26949a0e885d5b1a446d571d5282113fb3d88fa57e9a84aab47617493996ed74/audio/opi/opi-intake-20261019-portable-extinguisher.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/26949a0e885d5b1a446d571d5282113fb3d88fa57e9a84aab47617493996ed74/audio/opi/opi-intake-20261019-portable-extinguisher.mp3",
+      "sizeBytes": 32108,
+      "mimeType": "audio/mpeg",
+      "checksum": "26949a0e885d5b1a446d571d5282113fb3d88fa57e9a84aab47617493996ed74",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/270b439d8556b2c74b36c92ad5ba11b0aff0ae8fd08e12cb3762960efc7567d7/audio/opi/opi-intake-20261019-radar-failure.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/270b439d8556b2c74b36c92ad5ba11b0aff0ae8fd08e12cb3762960efc7567d7/audio/opi/opi-intake-20261019-radar-failure.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/270b439d8556b2c74b36c92ad5ba11b0aff0ae8fd08e12cb3762960efc7567d7/audio/opi/opi-intake-20261019-radar-failure.mp3",
+      "sizeBytes": 28268,
+      "mimeType": "audio/mpeg",
+      "checksum": "270b439d8556b2c74b36c92ad5ba11b0aff0ae8fd08e12cb3762960efc7567d7",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/2b85266cade173f7f769aacc896c8111d99db84d1bf1dead9650a22cf71bed4d/audio/opi/opi-intake-20261019-cat3-requirements.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/2b85266cade173f7f769aacc896c8111d99db84d1bf1dead9650a22cf71bed4d/audio/opi/opi-intake-20261019-cat3-requirements.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/2b85266cade173f7f769aacc896c8111d99db84d1bf1dead9650a22cf71bed4d/audio/opi/opi-intake-20261019-cat3-requirements.mp3",
+      "sizeBytes": 33644,
+      "mimeType": "audio/mpeg",
+      "checksum": "2b85266cade173f7f769aacc896c8111d99db84d1bf1dead9650a22cf71bed4d",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/2d91ecff82084035fb04f2a4b654eb07eddf599e48f4c80faf9281f56c0db6eb/audio/opi/opi-intake-20261019-crm-benefits.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/2d91ecff82084035fb04f2a4b654eb07eddf599e48f4c80faf9281f56c0db6eb/audio/opi/opi-intake-20261019-crm-benefits.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/2d91ecff82084035fb04f2a4b654eb07eddf599e48f4c80faf9281f56c0db6eb/audio/opi/opi-intake-20261019-crm-benefits.mp3",
+      "sizeBytes": 28460,
+      "mimeType": "audio/mpeg",
+      "checksum": "2d91ecff82084035fb04f2a4b654eb07eddf599e48f4c80faf9281f56c0db6eb",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/2f5fb21d59fa5469052e69b4bba140e5f2b96b7c8a9e0bd05ffb40878770de1d/audio/opi/opi-intake-20261019-deicing-fluid.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/2f5fb21d59fa5469052e69b4bba140e5f2b96b7c8a9e0bd05ffb40878770de1d/audio/opi/opi-intake-20261019-deicing-fluid.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/2f5fb21d59fa5469052e69b4bba140e5f2b96b7c8a9e0bd05ffb40878770de1d/audio/opi/opi-intake-20261019-deicing-fluid.mp3",
+      "sizeBytes": 38060,
+      "mimeType": "audio/mpeg",
+      "checksum": "2f5fb21d59fa5469052e69b4bba140e5f2b96b7c8a9e0bd05ffb40878770de1d",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/30843626959c4b7aae3f95779e3a4e722d8d20bbd644173e1c3e19fb56696508/audio/opi/opi-intake-20261019-radar-precautions.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/30843626959c4b7aae3f95779e3a4e722d8d20bbd644173e1c3e19fb56696508/audio/opi/opi-intake-20261019-radar-precautions.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/30843626959c4b7aae3f95779e3a4e722d8d20bbd644173e1c3e19fb56696508/audio/opi/opi-intake-20261019-radar-precautions.mp3",
+      "sizeBytes": 29612,
+      "mimeType": "audio/mpeg",
+      "checksum": "30843626959c4b7aae3f95779e3a4e722d8d20bbd644173e1c3e19fb56696508",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/367f1c774dadca35e21e2a61bc286b1da6703ad5b95372ec91afc040e7ae8000/audio/opi/opi-intake-20261019-gps-interference.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/367f1c774dadca35e21e2a61bc286b1da6703ad5b95372ec91afc040e7ae8000/audio/opi/opi-intake-20261019-gps-interference.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/367f1c774dadca35e21e2a61bc286b1da6703ad5b95372ec91afc040e7ae8000/audio/opi/opi-intake-20261019-gps-interference.mp3",
+      "sizeBytes": 28268,
+      "mimeType": "audio/mpeg",
+      "checksum": "367f1c774dadca35e21e2a61bc286b1da6703ad5b95372ec91afc040e7ae8000",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/38a5812c508a877518806431e5aee378358dbfaeea93739edc9c01f36e9189b7/audio/opi/opi-intake-20261019-emergency-training-benefits.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/38a5812c508a877518806431e5aee378358dbfaeea93739edc9c01f36e9189b7/audio/opi/opi-intake-20261019-emergency-training-benefits.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/38a5812c508a877518806431e5aee378358dbfaeea93739edc9c01f36e9189b7/audio/opi/opi-intake-20261019-emergency-training-benefits.mp3",
+      "sizeBytes": 22700,
+      "mimeType": "audio/mpeg",
+      "checksum": "38a5812c508a877518806431e5aee378358dbfaeea93739edc9c01f36e9189b7",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/3b4e7495ca2afc8216c3ce6a5c96bdb280811a55d31048a27800d319a9e3d014/audio/opi/opi-report-202610-advanced-navigation.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/3b4e7495ca2afc8216c3ce6a5c96bdb280811a55d31048a27800d319a9e3d014/audio/opi/opi-report-202610-advanced-navigation.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/3b4e7495ca2afc8216c3ce6a5c96bdb280811a55d31048a27800d319a9e3d014/audio/opi/opi-report-202610-advanced-navigation.mp3",
+      "sizeBytes": 27692,
+      "mimeType": "audio/mpeg",
+      "checksum": "3b4e7495ca2afc8216c3ce6a5c96bdb280811a55d31048a27800d319a9e3d014",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/3b7a10293174a9a6d12c57156d4c4ac958a3c98c00fc7d0660e9595fc6180473/audio/opi/opi-intake-20261019-tyre-speed.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/3b7a10293174a9a6d12c57156d4c4ac958a3c98c00fc7d0660e9595fc6180473/audio/opi/opi-intake-20261019-tyre-speed.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/3b7a10293174a9a6d12c57156d4c4ac958a3c98c00fc7d0660e9595fc6180473/audio/opi/opi-intake-20261019-tyre-speed.mp3",
+      "sizeBytes": 34988,
+      "mimeType": "audio/mpeg",
+      "checksum": "3b7a10293174a9a6d12c57156d4c4ac958a3c98c00fc7d0660e9595fc6180473",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/3d6fe0acda46db007e2086f7f657f24042d665d56086c61caa889a1a2e310715/audio/opi/opi-intake-20261019-rest-policy.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/3d6fe0acda46db007e2086f7f657f24042d665d56086c61caa889a1a2e310715/audio/opi/opi-intake-20261019-rest-policy.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/3d6fe0acda46db007e2086f7f657f24042d665d56086c61caa889a1a2e310715/audio/opi/opi-intake-20261019-rest-policy.mp3",
+      "sizeBytes": 34028,
+      "mimeType": "audio/mpeg",
+      "checksum": "3d6fe0acda46db007e2086f7f657f24042d665d56086c61caa889a1a2e310715",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/4520a577b52ab85bc4bcec1fdf0b029d7fba82bbd9420b9e490476122e5d8576/audio/opi/opi-intake-20261019-duty-calculation.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/4520a577b52ab85bc4bcec1fdf0b029d7fba82bbd9420b9e490476122e5d8576/audio/opi/opi-intake-20261019-duty-calculation.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/4520a577b52ab85bc4bcec1fdf0b029d7fba82bbd9420b9e490476122e5d8576/audio/opi/opi-intake-20261019-duty-calculation.mp3",
+      "sizeBytes": 32876,
+      "mimeType": "audio/mpeg",
+      "checksum": "4520a577b52ab85bc4bcec1fdf0b029d7fba82bbd9420b9e490476122e5d8576",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/4e3b62eade53131799d6641347ec1ed409ea08f77a10aa88566b1080b5eb5df6/audio/opi/opi-intake-20261019-notoc.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/4e3b62eade53131799d6641347ec1ed409ea08f77a10aa88566b1080b5eb5df6/audio/opi/opi-intake-20261019-notoc.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/4e3b62eade53131799d6641347ec1ed409ea08f77a10aa88566b1080b5eb5df6/audio/opi/opi-intake-20261019-notoc.mp3",
+      "sizeBytes": 37676,
+      "mimeType": "audio/mpeg",
+      "checksum": "4e3b62eade53131799d6641347ec1ed409ea08f77a10aa88566b1080b5eb5df6",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/503f400822efc6db27c67028415ff5f1748e7c7dcbe728f0681b8991d20cd0e7/audio/opi/opi-intake-20261019-tcas-types.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/503f400822efc6db27c67028415ff5f1748e7c7dcbe728f0681b8991d20cd0e7/audio/opi/opi-intake-20261019-tcas-types.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/503f400822efc6db27c67028415ff5f1748e7c7dcbe728f0681b8991d20cd0e7/audio/opi/opi-intake-20261019-tcas-types.mp3",
+      "sizeBytes": 29420,
+      "mimeType": "audio/mpeg",
+      "checksum": "503f400822efc6db27c67028415ff5f1748e7c7dcbe728f0681b8991d20cd0e7",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/50979d832e801629efb68a6ae5d736f531139b2f9ea26f8c3116425cd14f542a/audio/opi/opi-intake-20261019-technology-interest.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/50979d832e801629efb68a6ae5d736f531139b2f9ea26f8c3116425cd14f542a/audio/opi/opi-intake-20261019-technology-interest.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/50979d832e801629efb68a6ae5d736f531139b2f9ea26f8c3116425cd14f542a/audio/opi/opi-intake-20261019-technology-interest.mp3",
+      "sizeBytes": 37100,
+      "mimeType": "audio/mpeg",
+      "checksum": "50979d832e801629efb68a6ae5d736f531139b2f9ea26f8c3116425cd14f542a",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/5861157f08da299824a7aa237897644e95771f2c801627f5d051a9c5e494f085/audio/opi/opi-intake-20261019-forced-landing.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/5861157f08da299824a7aa237897644e95771f2c801627f5d051a9c5e494f085/audio/opi/opi-intake-20261019-forced-landing.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/5861157f08da299824a7aa237897644e95771f2c801627f5d051a9c5e494f085/audio/opi/opi-intake-20261019-forced-landing.mp3",
+      "sizeBytes": 31148,
+      "mimeType": "audio/mpeg",
+      "checksum": "5861157f08da299824a7aa237897644e95771f2c801627f5d051a9c5e494f085",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/5d72b6bd3f4d9765b525d0f696ee07cc2d4f5202320821822a08cb80bb6e13c5/audio/opi/opi-intake-20261019-runway-condition-report.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/5d72b6bd3f4d9765b525d0f696ee07cc2d4f5202320821822a08cb80bb6e13c5/audio/opi/opi-intake-20261019-runway-condition-report.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/5d72b6bd3f4d9765b525d0f696ee07cc2d4f5202320821822a08cb80bb6e13c5/audio/opi/opi-intake-20261019-runway-condition-report.mp3",
+      "sizeBytes": 34796,
+      "mimeType": "audio/mpeg",
+      "checksum": "5d72b6bd3f4d9765b525d0f696ee07cc2d4f5202320821822a08cb80bb6e13c5",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/68a4111ef8818e5d9f03c5b235cbde232e865b3c20c082779bd14ee811d0e7c3/audio/opi/opi-fzy-110438.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/68a4111ef8818e5d9f03c5b235cbde232e865b3c20c082779bd14ee811d0e7c3/audio/opi/opi-fzy-110438.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/68a4111ef8818e5d9f03c5b235cbde232e865b3c20c082779bd14ee811d0e7c3/audio/opi/opi-fzy-110438.mp3",
+      "sizeBytes": 30572,
+      "mimeType": "audio/mpeg",
+      "checksum": "68a4111ef8818e5d9f03c5b235cbde232e865b3c20c082779bd14ee811d0e7c3",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/6edb94f023f9f496c28ba46b044b78c92d992c365c446529fe35ba955e7a40bb/audio/opi/opi-intake-20261019-automation-definition.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/6edb94f023f9f496c28ba46b044b78c92d992c365c446529fe35ba955e7a40bb/audio/opi/opi-intake-20261019-automation-definition.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/6edb94f023f9f496c28ba46b044b78c92d992c365c446529fe35ba955e7a40bb/audio/opi/opi-intake-20261019-automation-definition.mp3",
+      "sizeBytes": 23468,
+      "mimeType": "audio/mpeg",
+      "checksum": "6edb94f023f9f496c28ba46b044b78c92d992c365c446529fe35ba955e7a40bb",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/6ef09dd22e5c57a08e6fe6e3e1b991020d680111a93ff1625947a79ed3a302bc/audio/opi/opi-intake-20261019-atc-handover.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/6ef09dd22e5c57a08e6fe6e3e1b991020d680111a93ff1625947a79ed3a302bc/audio/opi/opi-intake-20261019-atc-handover.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/6ef09dd22e5c57a08e6fe6e3e1b991020d680111a93ff1625947a79ed3a302bc/audio/opi/opi-intake-20261019-atc-handover.mp3",
+      "sizeBytes": 40940,
+      "mimeType": "audio/mpeg",
+      "checksum": "6ef09dd22e5c57a08e6fe6e3e1b991020d680111a93ff1625947a79ed3a302bc",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/6f2b0f990ffd07188fba7553a97185e1d05d490346b247882e244348a5aa8fb1/audio/opi/opi-report-202610-high-oil-pressure.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/6f2b0f990ffd07188fba7553a97185e1d05d490346b247882e244348a5aa8fb1/audio/opi/opi-report-202610-high-oil-pressure.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/6f2b0f990ffd07188fba7553a97185e1d05d490346b247882e244348a5aa8fb1/audio/opi/opi-report-202610-high-oil-pressure.mp3",
+      "sizeBytes": 25004,
+      "mimeType": "audio/mpeg",
+      "checksum": "6f2b0f990ffd07188fba7553a97185e1d05d490346b247882e244348a5aa8fb1",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/7ca4ccdce1d14e0a4d5b2e1f61d92a3eb2515028faa54d4a21584efba21122d8/audio/opi/opi-fzy-224773.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/7ca4ccdce1d14e0a4d5b2e1f61d92a3eb2515028faa54d4a21584efba21122d8/audio/opi/opi-fzy-224773.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/7ca4ccdce1d14e0a4d5b2e1f61d92a3eb2515028faa54d4a21584efba21122d8/audio/opi/opi-fzy-224773.mp3",
+      "sizeBytes": 30956,
+      "mimeType": "audio/mpeg",
+      "checksum": "7ca4ccdce1d14e0a4d5b2e1f61d92a3eb2515028faa54d4a21584efba21122d8",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/8129faccb5b36c31cde06b37c1e4d41adb43372f9b131a1af7578c2ae024c541/audio/opi/opi-intake-20261019-cat2-minima.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/8129faccb5b36c31cde06b37c1e4d41adb43372f9b131a1af7578c2ae024c541/audio/opi/opi-intake-20261019-cat2-minima.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/8129faccb5b36c31cde06b37c1e4d41adb43372f9b131a1af7578c2ae024c541/audio/opi/opi-intake-20261019-cat2-minima.mp3",
+      "sizeBytes": 41900,
+      "mimeType": "audio/mpeg",
+      "checksum": "8129faccb5b36c31cde06b37c1e4d41adb43372f9b131a1af7578c2ae024c541",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/8a670f42eafe9bb70df50afd5b14fe81beede71d492175d6fefc1ac85277e6b7/audio/opi/opi-intake-20261019-ditching-cooperation.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/8a670f42eafe9bb70df50afd5b14fe81beede71d492175d6fefc1ac85277e6b7/audio/opi/opi-intake-20261019-ditching-cooperation.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/8a670f42eafe9bb70df50afd5b14fe81beede71d492175d6fefc1ac85277e6b7/audio/opi/opi-intake-20261019-ditching-cooperation.mp3",
+      "sizeBytes": 25388,
+      "mimeType": "audio/mpeg",
+      "checksum": "8a670f42eafe9bb70df50afd5b14fe81beede71d492175d6fefc1ac85277e6b7",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/93488816fe85548090885102076df59eca7092596caeb0790431ec03612a42aa/audio/opi/opi-report-202610-door-open-takeoff.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/93488816fe85548090885102076df59eca7092596caeb0790431ec03612a42aa/audio/opi/opi-report-202610-door-open-takeoff.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/93488816fe85548090885102076df59eca7092596caeb0790431ec03612a42aa/audio/opi/opi-report-202610-door-open-takeoff.mp3",
+      "sizeBytes": 24044,
+      "mimeType": "audio/mpeg",
+      "checksum": "93488816fe85548090885102076df59eca7092596caeb0790431ec03612a42aa",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/9384b567287d4f24b5337351748e2d4ade8af9e5c807ad8293770450f1bbf7ae/audio/opi/opi-intake-20261019-engine-runup.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/9384b567287d4f24b5337351748e2d4ade8af9e5c807ad8293770450f1bbf7ae/audio/opi/opi-intake-20261019-engine-runup.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/9384b567287d4f24b5337351748e2d4ade8af9e5c807ad8293770450f1bbf7ae/audio/opi/opi-intake-20261019-engine-runup.mp3",
+      "sizeBytes": 21740,
+      "mimeType": "audio/mpeg",
+      "checksum": "9384b567287d4f24b5337351748e2d4ade8af9e5c807ad8293770450f1bbf7ae",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/991f1fef002f191ef6996dc4e866689eb2f9ab22c40be69d1cae3736dc5663e4/audio/opi/opi-intake-20261019-dg-classification.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/991f1fef002f191ef6996dc4e866689eb2f9ab22c40be69d1cae3736dc5663e4/audio/opi/opi-intake-20261019-dg-classification.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/991f1fef002f191ef6996dc4e866689eb2f9ab22c40be69d1cae3736dc5663e4/audio/opi/opi-intake-20261019-dg-classification.mp3",
+      "sizeBytes": 25772,
+      "mimeType": "audio/mpeg",
+      "checksum": "991f1fef002f191ef6996dc4e866689eb2f9ab22c40be69d1cae3736dc5663e4",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/9a02985ff0da4f98e4db83c0f4856d13ef7b954e1c11239925fff700c67ae4de/audio/opi/opi-report-202610-deicing-procedure.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/9a02985ff0da4f98e4db83c0f4856d13ef7b954e1c11239925fff700c67ae4de/audio/opi/opi-report-202610-deicing-procedure.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/9a02985ff0da4f98e4db83c0f4856d13ef7b954e1c11239925fff700c67ae4de/audio/opi/opi-report-202610-deicing-procedure.mp3",
+      "sizeBytes": 26540,
+      "mimeType": "audio/mpeg",
+      "checksum": "9a02985ff0da4f98e4db83c0f4856d13ef7b954e1c11239925fff700c67ae4de",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/a620948f398799092808a0e4ad69089c608b76b269b485f264fd66f13c784270/audio/opi/opi-intake-20261019-hot-ground.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/a620948f398799092808a0e4ad69089c608b76b269b485f264fd66f13c784270/audio/opi/opi-intake-20261019-hot-ground.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/a620948f398799092808a0e4ad69089c608b76b269b485f264fd66f13c784270/audio/opi/opi-intake-20261019-hot-ground.mp3",
+      "sizeBytes": 34988,
+      "mimeType": "audio/mpeg",
+      "checksum": "a620948f398799092808a0e4ad69089c608b76b269b485f264fd66f13c784270",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/b7c45dda740f02c784cf0f8151b96e1130112de407c9a839fcb3e740198dd474/audio/opi/opi-report-202610-preferred-aircraft.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/b7c45dda740f02c784cf0f8151b96e1130112de407c9a839fcb3e740198dd474/audio/opi/opi-report-202610-preferred-aircraft.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/b7c45dda740f02c784cf0f8151b96e1130112de407c9a839fcb3e740198dd474/audio/opi/opi-report-202610-preferred-aircraft.mp3",
+      "sizeBytes": 25388,
+      "mimeType": "audio/mpeg",
+      "checksum": "b7c45dda740f02c784cf0f8151b96e1130112de407c9a839fcb3e740198dd474",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/ba29ae228a07ada165646215f71a2fd3fe4be67b7cb7ad88c0f10308d22356c7/audio/opi/opi-intake-20261019-delay-rest.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/ba29ae228a07ada165646215f71a2fd3fe4be67b7cb7ad88c0f10308d22356c7/audio/opi/opi-intake-20261019-delay-rest.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/ba29ae228a07ada165646215f71a2fd3fe4be67b7cb7ad88c0f10308d22356c7/audio/opi/opi-intake-20261019-delay-rest.mp3",
+      "sizeBytes": 27116,
+      "mimeType": "audio/mpeg",
+      "checksum": "ba29ae228a07ada165646215f71a2fd3fe4be67b7cb7ad88c0f10308d22356c7",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/bb9f5207f350231b91a31480746f6d83c9524d58cf7c8be21d43aac27d77cb74/audio/opi/opi-intake-20261019-recent-development.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/bb9f5207f350231b91a31480746f6d83c9524d58cf7c8be21d43aac27d77cb74/audio/opi/opi-intake-20261019-recent-development.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/bb9f5207f350231b91a31480746f6d83c9524d58cf7c8be21d43aac27d77cb74/audio/opi/opi-intake-20261019-recent-development.mp3",
+      "sizeBytes": 26540,
+      "mimeType": "audio/mpeg",
+      "checksum": "bb9f5207f350231b91a31480746f6d83c9524d58cf7c8be21d43aac27d77cb74",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e/audio/opi/opi-intake-20261019-snow-protection.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e/audio/opi/opi-intake-20261019-snow-protection.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e/audio/opi/opi-intake-20261019-snow-protection.mp3",
+      "sizeBytes": 36908,
+      "mimeType": "audio/mpeg",
+      "checksum": "be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/becf624ecc6398715676ec33a20c5252e6d4faa30811a5e8b9c41bff93ab8b36/audio/opi/opi-intake-20261019-slide-risks.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/becf624ecc6398715676ec33a20c5252e6d4faa30811a5e8b9c41bff93ab8b36/audio/opi/opi-intake-20261019-slide-risks.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/becf624ecc6398715676ec33a20c5252e6d4faa30811a5e8b9c41bff93ab8b36/audio/opi/opi-intake-20261019-slide-risks.mp3",
+      "sizeBytes": 31532,
+      "mimeType": "audio/mpeg",
+      "checksum": "becf624ecc6398715676ec33a20c5252e6d4faa30811a5e8b9c41bff93ab8b36",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/d1583daab731a0a4e8d5583fd3c28a132971269f22ed74527310a1751b802d09/audio/opi/opi-intake-20261019-approach-threats.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/d1583daab731a0a4e8d5583fd3c28a132971269f22ed74527310a1751b802d09/audio/opi/opi-intake-20261019-approach-threats.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/d1583daab731a0a4e8d5583fd3c28a132971269f22ed74527310a1751b802d09/audio/opi/opi-intake-20261019-approach-threats.mp3",
+      "sizeBytes": 25772,
+      "mimeType": "audio/mpeg",
+      "checksum": "d1583daab731a0a4e8d5583fd3c28a132971269f22ed74527310a1751b802d09",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/e0131ce2ca7591e607f298dcb68ead03b5704d05f5af39a0389c190ee855a9d4/audio/opi/opi-intake-20261019-lowvis-goaround.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/e0131ce2ca7591e607f298dcb68ead03b5704d05f5af39a0389c190ee855a9d4/audio/opi/opi-intake-20261019-lowvis-goaround.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/e0131ce2ca7591e607f298dcb68ead03b5704d05f5af39a0389c190ee855a9d4/audio/opi/opi-intake-20261019-lowvis-goaround.mp3",
+      "sizeBytes": 34796,
+      "mimeType": "audio/mpeg",
+      "checksum": "e0131ce2ca7591e607f298dcb68ead03b5704d05f5af39a0389c190ee855a9d4",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/ec75361a0d07e8e2e8ad3dbce12c456540c122c82c5572de3469a5a69c60aaa9/audio/opi/opi-intake-20261019-captain-sa.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/ec75361a0d07e8e2e8ad3dbce12c456540c122c82c5572de3469a5a69c60aaa9/audio/opi/opi-intake-20261019-captain-sa.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/ec75361a0d07e8e2e8ad3dbce12c456540c122c82c5572de3469a5a69c60aaa9/audio/opi/opi-intake-20261019-captain-sa.mp3",
+      "sizeBytes": 31532,
+      "mimeType": "audio/mpeg",
+      "checksum": "ec75361a0d07e8e2e8ad3dbce12c456540c122c82c5572de3469a5a69c60aaa9",
+      "status": "ready"
+    },
+    {
+      "objectKey": "revisions/opi/ed6fd163569177ac9d2bcd12e61b7d6d4a510540f5f82bf37b08d506fa3da0bf/audio/opi/opi-report-202610-deicing-configuration.mp3",
+      "bankId": "opi",
+      "sourceRelativePath": "revisions/opi/ed6fd163569177ac9d2bcd12e61b7d6d4a510540f5f82bf37b08d506fa3da0bf/audio/opi/opi-report-202610-deicing-configuration.mp3",
+      "publicPath": "/question-bank-assets/revisions/opi/ed6fd163569177ac9d2bcd12e61b7d6d4a510540f5f82bf37b08d506fa3da0bf/audio/opi/opi-report-202610-deicing-configuration.mp3",
+      "sizeBytes": 25964,
+      "mimeType": "audio/mpeg",
+      "checksum": "ed6fd163569177ac9d2bcd12e61b7d6d4a510540f5f82bf37b08d506fa3da0bf",
+      "status": "ready"
     }
   ]
 }

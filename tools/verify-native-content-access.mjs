@@ -52,7 +52,7 @@ assert.match(nativeRadioCatalog, /loadRadioCatalogDatasets/u);
 // Directory text expands through the existing authorized repository only after
 // the radio session opens; app startup still retrieves public metadata only.
 assert.match(nativeRadioCatalog, /if \(!options\.complete\) return scoped/u);
-assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(scoped, assertOwner\)/u);
+assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(scoped, assertOwner, publish, options\.getPriorityBankId \?\? options\.bankId\)/u);
 assert.match(nativeRadioProvider, /complete: sessionVisible/u);
 assert.match(nativeRadioHydration, /membershipActive === true/u);
 assert.match(nativeRadioHydration, /Math\.min\(3, work\.length\)/u);
@@ -62,8 +62,27 @@ assert.match(nativeRadioHydration, /nextRadioCatalogTopic/u);
 assert.doesNotMatch(nativeRadioHydration, /Promise\.all\(datasets|Promise\.all\(category\.topics/u);
 assert.match(nativeRadioProvider, /hydrateTrackTopic/u);
 assert.match(nativeRadioProvider, /hydrateFollowingTrackTopic/u);
-assert.equal(countCards(publicBanks), 1_044);
-assert.equal(countCards(sourceBanks), 10_856);
-assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 1_000_000);
+const expectedFreeCounts = sourceBanks.map(bank => {
+  const topics = bank.categories.flatMap(category => category.topics);
+  const live = topic => topic.cards.filter(card => !card.retired);
+  if (bank.id === 'sentences900') return topics.flatMap(live).length;
+  if (bank.id === 'listening') return bank.categories.reduce((sum, category) => sum + Math.min(10, category.topics.flatMap(live).length), 0);
+  if (bank.id === 'radiotelephony') return topics.filter(topic => live(topic).length).slice(0, 1).flatMap(live).length;
+  if (bank.id === 'opi') return topics.filter(topic => live(topic).length).slice(0, 3).flatMap(live).length;
+  return bank.id === 'storytelling' ? Math.min(3, topics.flatMap(live).length) : 0;
+});
+assert.deepEqual(publicBanks.map(bank => countCards([bank])), expectedFreeCounts);
+assert.equal(countCards(sourceBanks), 10_899);
+// Full navigation metadata adds labels/durations for all playable positions,
+// while protected text and media remain absent. Keep the expanded bundle bounded.
+for (const bank of publicBanks) {
+  const source = sourceBanks.find(item => item.id === bank.id);
+  for (const category of bank.categories) for (const topic of category.topics) {
+    const original = source.categories.find(item => item.id === category.id).topics.find(item => item.id === topic.id);
+    assert.deepEqual(topic.radioEntries, original.cards.filter(card => !card.retired && card.kind !== 'image' && card.audio).map(card => ({ id: card.id, title: card.taskTitle ?? '', durationSeconds: card.audioDurationSeconds ?? 0 })));
+    for (const entry of topic.radioEntries) assert.deepEqual(Object.keys(entry).sort(), ['durationSeconds', 'id', 'title']);
+  }
+}
+assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 2_000_000);
 
 console.log('native_content_access_boundary_ok');

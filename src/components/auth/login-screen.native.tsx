@@ -1,10 +1,12 @@
+import { cancelStudyLogin } from '@/features/question-bank/recording/login-continuation.native';
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, type Href } from 'expo-router';
+import { useAppRouter } from '@/components/navigation/useAppRouter';
+import { publicLoginReturn } from '@/features/auth/guest-access';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
-import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, Button, Screen, TextField } from '@/components/ui';
 import { useAuth, type LoginLegalDocuments } from '@/features/auth/AuthProvider';
@@ -25,7 +27,7 @@ import {
   type PersistedPhoneOtpChallenge,
   writePhoneOtpChallenge,
 } from '@/features/auth/phone-otp-challenge-store';
-import { colors, radii, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 
 import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, PasswordField, TextLink } from './auth-ui-native';
 
@@ -77,11 +79,12 @@ export function loginErrorMessage(code: string) {
 }
 
 export function LoginScreen() {
-  return <NativeScreenBoundary title="登录 / 注册" allowExit={false}><LoginContent /></NativeScreenBoundary>;
+  return <NativeScreenBoundary title="登录 / 注册" fallbackHref="/(tabs)"><LoginContent /></NativeScreenBoundary>;
 }
 
 function LoginContent() {
-  const { mode } = useLocalSearchParams<{ mode?: string }>();
+  const { mode, returnTo } = useLocalSearchParams<{ mode?: string; returnTo?: string; reason?: string }>();
+  const router = useAppRouter();
   const auth = useAuth();
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
   const [wechatInstalled, setWechatInstalled] = useState(false);
@@ -374,6 +377,13 @@ function LoginContent() {
     }
   }
 
+  function cancelLogin() {
+    if (submitting) return;
+    cancelStudyLogin();
+    auth.consumePendingPath();
+    router.dismissTo(publicLoginReturn(returnTo) as Href);
+  }
+
   function changePhone() {
     challengeRequestRef.current += 1;
     const purpose = challenge?.purpose;
@@ -385,7 +395,7 @@ function LoginContent() {
   }
 
   if (challengeRestoring) {
-    return <AuthShell showBack={false}><AuthHeading title="正在恢复验证" /></AuthShell>;
+    return <AuthShell onBack={cancelLogin}><AuthHeading title="正在恢复验证" /></AuthShell>;
   }
 
   if (codePurpose === 'recovery') {
@@ -427,13 +437,12 @@ function LoginContent() {
   }
 
   return (
-    <AuthShell showBack={false}>
+    <AuthShell onBack={cancelLogin}>
       <View style={styles.brandRow}>
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
         <AuthHeading title="登录 / 注册" />
-        <WebAppDownloadLink />
       </View>
-      <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
+      <AppText variant="caption">继续你的 ICAO 学习之旅。</AppText>
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
         {loginMethod === 'otp' ? (
@@ -447,7 +456,7 @@ function LoginContent() {
               label="验证码"
               maxLength={6}
               onChangeText={(value) => setCode(value.replace(/\D/gu, '').slice(0, 6))}
-              placeholder={challenge ? '请输入6位验证码' : '请先获取验证码'}
+              placeholder="请输入验证码"
               textContentType={Platform.OS === 'ios' ? 'oneTimeCode' : undefined}
               trailing={(
                 <Pressable
@@ -465,24 +474,25 @@ function LoginContent() {
             />
             {challengeExpired ? <AppText color={colors.destructive} variant="caption">验证码已过期，请重新获取。</AppText> : null}
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            <Button disabled={submitting || !challenge || challengeExpired || code.length !== 6} loading={submitting} onPress={() => void verifyCode()} size="lg">登录 / 注册</Button>
           </>
         ) : (
           <>
             <PasswordField label="登录密码" onChangeText={setPassword} placeholder="请输入登录密码" value={password} />
             <View style={styles.endLink}><TextLink label="忘记密码" onPress={() => { setEntryView('recovery'); setError(''); }} /></View>
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            <Button disabled={submitting} loading={submitting} onPress={() => void submitPasswordLogin()} size="lg">密码登录</Button>
           </>
         )}
-        <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => {
+        <View style={styles.endLink}><TextLink label={loginMethod === 'otp' ? '密码登录' : '验证码登录'} onPress={() => {
+          if (!submitting) { setLoginMethod(loginMethod === 'otp' ? 'password' : 'otp'); setPassword(''); setError(''); }
+        }} /></View>
+        <LegalLinks documents={legalDocuments} checked={accepted} label={loginAgeCopy.consentLabel} onToggle={() => {
           if (!submitting) {
             acceptedRef.current = !acceptedRef.current;
             setAccepted(acceptedRef.current);
             auth.rememberLoginConsent(acceptedRef.current ? legalDocuments : undefined);
           }
         }} />
-        <LegalLinks documents={legalDocuments} />
+        <Button disabled={submitting || !accepted || !normalizeChinaMobile(phone) || (loginMethod === 'otp' ? !challenge || challengeExpired || code.length !== 6 : !password)} loading={submitting} onPress={() => void (loginMethod === 'otp' ? verifyCode() : submitPasswordLogin())} size="lg">登录 / 注册</Button>
       </View>
 {thirdPartyLoginAvailable ? (
         <>
@@ -497,6 +507,7 @@ function LoginContent() {
           </View>
         </>
       ) : null}
+      <Button disabled={submitting} onPress={cancelLogin} variant="ghost">暂不登录，继续浏览</Button>
     </AuthShell>
   );
 }
@@ -512,59 +523,41 @@ function SocialButton({ accessibilityLabel, kind, onPress }: { accessibilityLabe
 }
 
 function PhoneField({ value, onChangeText }: { value: string; onChangeText: (value: string) => void }) {
-  return <AuthField autoCapitalize="none" keyboardType="phone-pad" label="中国大陆手机号" maxLength={14} onChangeText={onChangeText} placeholder="请输入11位手机号" prefix="+86" value={value} />;
+  return <AuthField autoCapitalize="none" keyboardType="phone-pad" label="手机号" maxLength={14} onChangeText={onChangeText} placeholder="请输入11位手机号" prefix="+86" value={value} />;
 }
 
-function LoginMethodTabs({ disabled, method, onChange }: { disabled: boolean; method: LoginMethod; onChange: (method: LoginMethod) => void }) {
-  return (
-    <View accessibilityRole="tablist" style={styles.methodTabs}>
-      {(['otp', 'password'] as const).map((item) => {
-        const selected = item === method;
-        return (
-          <Pressable
-            accessibilityRole="tab"
-            accessibilityState={{ selected }}
-            disabled={disabled}
-            key={item}
-            onPress={() => onChange(item)}
-            style={[styles.methodTab, selected && styles.methodTabSelected]}
-          >
-            <AppText color={selected ? colors.primary : colors.mutedForeground} variant="button">{item === 'otp' ? '验证码登录' : '密码登录'}</AppText>
-          </Pressable>
-        );
-      })}
-    </View>
-  );
-}
-
-function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
+function LegalLinks({ documents, checked, label, onToggle }: { documents: LoginLegalDocuments; checked: boolean; label: string; onToggle: () => void }) {
   const [openDocument, setOpenDocument] = useState<'agreement' | 'privacy'>();
   return (
     <>
-    <View style={styles.legalLinks}>
-      <TextLink label="查看用户协议" onPress={() => setOpenDocument('agreement')} />
-      <AppText variant="micro">·</AppText>
-      <TextLink label="查看隐私政策" onPress={() => setOpenDocument('privacy')} />
+    <View style={styles.consent}>
+      <Checkbox checked={checked} accessibilityLabel={label} label="" onPress={onToggle} />
+      <AppText style={styles.consentText} variant="caption">
+        <AppText onPress={onToggle} variant="caption">{label.split('用户协议')[0]}</AppText>
+        <AppText accessibilityRole="link" color={colors.primary} onPress={() => setOpenDocument('agreement')} variant="caption">用户协议</AppText>
+        <AppText onPress={onToggle} variant="caption">与</AppText>
+        <AppText accessibilityRole="link" color={colors.primary} onPress={() => setOpenDocument('privacy')} variant="caption">隐私政策</AppText>
+      </AppText>
     </View>
-    {openDocument ? <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible>
-      <Screen contentStyle={{ paddingHorizontal: 0 }} scroll>
-        <TopBar onBack={() => setOpenDocument(undefined)} title={documents[openDocument].title} />
+    <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible={Boolean(openDocument)}>
+      {openDocument ? <>
+      <Screen contentStyle={{ paddingHorizontal: 0 }} scroll header={<TopBar onBack={() => setOpenDocument(undefined)} title={documents[openDocument].title} />}>
         <LegalDocumentBody document={documents[openDocument]} />
       </Screen>
-    </AppModal> : null}
+      </> : null}
+    </AppModal>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  consent: { flexDirection: 'row', alignItems: 'center', gap: spacing[2] },
+  consentText: { flex: 1, lineHeight: 20 },
   brandRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], marginTop: spacing[1] },
   socialSection: { alignItems: 'center', flexDirection: 'row', gap: spacing[4], justifyContent: 'center' },
   socialButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: 28, borderWidth: 1, height: 56, justifyContent: 'center', width: 56 },
   appleSocialButton: { backgroundColor: colors.foreground, borderColor: colors.foreground },
-  methodTabs: { backgroundColor: colors.secondary, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
-  methodTab: { alignItems: 'center', borderRadius: radii.md, flex: 1, minHeight: 42, justifyContent: 'center' },
-  methodTabSelected: { backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1 },
-  form: { gap: spacing[4], marginTop: spacing[5] },
+  form: { gap: spacing[3], marginTop: spacing[5] },
   inlineLinks: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'center' },
   endLink: { alignItems: 'flex-end' },
   legalLinks: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },

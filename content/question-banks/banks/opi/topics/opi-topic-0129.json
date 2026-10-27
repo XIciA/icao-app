@@ -1,68 +1,86 @@
 {
   "id": "opi-topic-0129",
   "name": "导航",
-  "declaredCardCount": 6,
   "cards": [
     {
-      "id": "opi-extra-226",
-      "taskTitle": "飞机系统-导航-1",
-      "audioText": "What navigation systems or aids are available on the aircraft you fly, and which ones do you normally use?",
-      "audioTextZh": "你所飞的航空器配有哪些导航系统或设备？你通常使用哪些？",
-      "referenceText": "The example DA-40 at my flight school has a GPS navigation display, VOR and ILS receivers, and a magnetic compass. I normally use GPS for route guidance and situational awareness, while cross-checking it with charts, radio aids, and visual landmarks when available. I confirm the actual installed and serviceable equipment before each flight.",
-      "referenceTextZh": "我所在航校的示例 DA-40 配有 GPS 导航显示器、VOR 和 ILS 接收机，以及磁罗盘。我通常使用 GPS 进行航路引导和保持情景意识，同时在条件允许时用航图、无线电导航设施和目视地标进行交叉核对。每次飞行前，我都会确认飞机实际安装且可以正常使用的设备。",
-      "audio": "/question-bank-assets/revisions/opi/8f92d3082ecc222892ffe3a2320b92613c049b3d2e2c2c55a001af2d6a175975/audio/opi/opi-extra-226.mp3",
-      "audioDurationSeconds": 6.168
+      "id": "opi-extra-229-part-2",
+      "audio": "/question-bank-assets/revisions/opi/c26614efaa198088dddff850debefc69b2425fde33368c63bf174710529b63dd/audio/opi/opi-extra-229-part-2.mp3",
+      "audioText": "Which type of approach do you prefer, an ILS approach or a VOR approach, and why?",
+      "taskTitle": "飞机系统-导航-4",
+      "audioTextZh": "ILS 进近和 VOR 进近相比，你更喜欢哪一种？为什么？",
+      "referenceText": "I prefer an ILS approach because it provides both lateral and vertical guidance. This gives me more precise approach guidance than a VOR approach.",
+      "referenceTextZh": "我更喜欢 ILS 进近，因为它同时提供横向和垂直引导。与 VOR 进近相比，它能为我提供更精确的进近引导。",
+      "audioDurationSeconds": 5.4
+    },
+    {
+      "id": "opi-extra-233",
+      "audio": "/question-bank-assets/revisions/opi/2e85291294376cb1dc36e89ab075a884e03fad0bf2f9e2cec8ce71d3db25abc0/audio/opi/opi-extra-233.mp3",
+      "audioText": "What can cause spatial disorientation in flight?",
+      "taskTitle": "飞机系统-导航-6",
+      "audioTextZh": "哪些因素可能导致飞行中的空间定向障碍？",
+      "referenceText": "Poor visibility in bad weather can cause spatial disorientation.",
+      "referenceTextZh": "恶劣天气中的低能见度可能导致空间定向障碍。",
+      "audioDurationSeconds": 2.856
+    },
+    {
+      "id": "opi-report-202610-advanced-navigation",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/3b4e7495ca2afc8216c3ce6a5c96bdb280811a55d31048a27800d319a9e3d014/audio/opi/opi-report-202610-advanced-navigation.mp3",
+      "audioText": "What advanced navigation equipment could be added to a cockpit?",
+      "studyTier": 0,
+      "taskTitle": "驾驶舱可以增加哪些先进导航设备？",
+      "audioTextZh": "驾驶舱可以增加哪些先进导航设备？",
+      "examReported": true,
+      "referenceText": "Satellite navigation equipment and an integrated flight management system can help pilots plan and monitor a route. Clear navigation displays can also improve situational awareness. Any installation and its operational use must be approved, and pilots still need training and cross-checks rather than relying blindly on the equipment.",
+      "referenceTextZh": "卫星导航设备和集成的飞行管理系统可以帮助飞行员规划和监控航路。清晰的导航显示也有助于提高情景意识。设备安装和运行使用必须获得相应批准，飞行员仍需接受训练并进行交叉检查，不能盲目信赖设备。",
+      "reportedPrompts": {
+        "hotspot-2026-10-16-4235b14d8b8d": [
+          "What advanced navigation equipment could be added to a cockpit?"
+        ]
+      },
+      "audioDurationSeconds": 3.432
     },
     {
       "id": "opi-extra-227",
-      "taskTitle": "飞机系统-导航-2",
+      "audio": "/question-bank-assets/revisions/opi/13418bc01ef5e8f95b3fc3ca73b4aa8fa4cc2dc78612c021bb2a262268e4869d/audio/opi/opi-extra-227.mp3",
       "audioText": "What should a pilot do if they become unsure of their position during a flight?",
+      "taskTitle": "飞机系统-导航-2",
       "audioTextZh": "飞行中无法确定自身位置时，飞行员应怎么做？",
       "referenceText": "The pilot should use the available navigation system and, if possible, compare the position with visible landmarks. The pilot should also inform ATC and request radar vectors.",
       "referenceTextZh": "飞行员应使用可用的导航系统，并尽可能将飞机位置与目视地标进行比较。飞行员还应通知空中交通管制并请求雷达引导。",
-      "audio": "/question-bank-assets/revisions/opi/13418bc01ef5e8f95b3fc3ca73b4aa8fa4cc2dc78612c021bb2a262268e4869d/audio/opi/opi-extra-227.mp3",
       "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-extra-229",
-      "taskTitle": "飞机系统-导航-3",
+      "audio": "/question-bank-assets/revisions/opi/17e3c98c888ee2463319f9133aa36fc60095c4a90a69a62a917fcd7c6bc6bb26/audio/opi/opi-extra-229.mp3",
       "audioText": "What are the main differences between an ILS approach and a VOR approach?",
+      "taskTitle": "飞机系统-导航-3",
       "audioTextZh": "ILS 进近与 VOR 进近的主要区别是什么？",
       "referenceText": "An ILS is a precision approach that provides both lateral and vertical guidance. A VOR approach is a non-precision approach that normally provides lateral course guidance only.",
       "referenceTextZh": "ILS 是一种同时提供横向和垂直引导的精密进近。VOR 进近属于非精密进近，通常只提供横向航迹引导。",
-      "audio": "/question-bank-assets/revisions/opi/17e3c98c888ee2463319f9133aa36fc60095c4a90a69a62a917fcd7c6bc6bb26/audio/opi/opi-extra-229.mp3",
       "audioDurationSeconds": 4.128
     },
     {
-      "id": "opi-extra-229-part-2",
-      "taskTitle": "飞机系统-导航-4",
-      "audioText": "Which type of approach do you prefer, an ILS approach or a VOR approach, and why?",
-      "audioTextZh": "ILS 进近和 VOR 进近相比，你更喜欢哪一种？为什么？",
-      "referenceText": "I prefer an ILS approach because it provides both lateral and vertical guidance. This gives me more precise approach guidance than a VOR approach.",
-      "referenceTextZh": "我更喜欢 ILS 进近，因为它同时提供横向和垂直引导。与 VOR 进近相比，它能为我提供更精确的进近引导。",
-      "audio": "/question-bank-assets/revisions/opi/c26614efaa198088dddff850debefc69b2425fde33368c63bf174710529b63dd/audio/opi/opi-extra-229-part-2.mp3",
-      "audioDurationSeconds": 5.4
-    },
-    {
       "id": "opi-extra-231",
-      "taskTitle": "飞机系统-导航-5",
+      "audio": "/question-bank-assets/revisions/opi/bc30563392184301feb3635aa830181903ce0fcd9f6018253f246cec08d4411d/audio/opi/opi-extra-231.mp3",
       "audioText": "How should a flight crew respond if the aircraft's navigation equipment fails in flight?",
+      "taskTitle": "飞机系统-导航-5",
       "audioTextZh": "飞行中航空器导航设备失效时，飞行机组应如何处置？",
       "referenceText": "The crew should first maintain the current heading and altitude and use any available backup navigation aids. If possible, they can cross-check their position with visible landmarks. They should inform ATC and request radar vectors.",
       "referenceTextZh": "机组首先应保持当前航向和高度，并使用任何可用的备用导航设备。如果可能，可以用目视地标交叉核对飞机位置。他们还应通知空中交通管制并请求雷达引导。",
-      "audio": "/question-bank-assets/revisions/opi/bc30563392184301feb3635aa830181903ce0fcd9f6018253f246cec08d4411d/audio/opi/opi-extra-231.mp3",
       "audioDurationSeconds": 4.608
     },
     {
-      "id": "opi-extra-233",
-      "taskTitle": "飞机系统-导航-6",
-      "audioText": "What can cause spatial disorientation in flight?",
-      "audioTextZh": "哪些因素可能导致飞行中的空间定向障碍？",
-      "referenceText": "Poor visibility in bad weather can cause spatial disorientation.",
-      "referenceTextZh": "恶劣天气中的低能见度可能导致空间定向障碍。",
-      "audio": "/question-bank-assets/revisions/opi/2e85291294376cb1dc36e89ab075a884e03fad0bf2f9e2cec8ce71d3db25abc0/audio/opi/opi-extra-233.mp3",
-      "audioDurationSeconds": 2.856
+      "id": "opi-extra-226",
+      "audio": "/question-bank-assets/revisions/opi/8f92d3082ecc222892ffe3a2320b92613c049b3d2e2c2c55a001af2d6a175975/audio/opi/opi-extra-226.mp3",
+      "audioText": "What navigation systems or aids are available on the aircraft you fly, and which ones do you normally use?",
+      "taskTitle": "飞机系统-导航-1",
+      "audioTextZh": "你所飞的航空器配有哪些导航系统或设备？你通常使用哪些？",
+      "referenceText": "The example DA-40 at my flight school has a GPS navigation display, VOR and ILS receivers, and a magnetic compass. I normally use GPS for route guidance and situational awareness, while cross-checking it with charts, radio aids, and visual landmarks when available. I confirm the actual installed and serviceable equipment before each flight.",
+      "referenceTextZh": "我所在航校的示例 DA-40 配有 GPS 导航显示器、VOR 和 ILS 接收机，以及磁罗盘。我通常使用 GPS 进行航路引导和保持情景意识，同时在条件允许时用航图、无线电导航设施和目视地标进行交叉核对。每次飞行前，我都会确认飞机实际安装且可以正常使用的设备。",
+      "audioDurationSeconds": 6.168
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-06"
 }

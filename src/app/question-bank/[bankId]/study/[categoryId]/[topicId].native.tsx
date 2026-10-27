@@ -1,58 +1,77 @@
+import { useRef } from 'react';
+import { peekStudyLogin } from '@/features/question-bank/recording/login-continuation.native';
+import { GuestLearningBoundary } from '@/features/auth/GuestLearningBoundary.native';
+import { useLoginEntry } from '@/features/auth/use-login-entry';
+import { STUDY_GUIDE_CARD } from '@/features/usage-guide/tutorial-model';
+import { useGuideAvailability } from '@/features/usage-guide/GuideBindings';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import type { ReactNode } from 'react';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
 import { BookX, Shield } from '@/components/ui/icons';
-import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
+import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen.native';
 import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.native';
 import { useQuestionBankTopic } from '@/features/question-bank/hooks/useQuestionBankTopic.native';
 import type { QuestionBankId } from '@/features/question-bank/types';
 
-export default function NativeQuestionBankStudyRoute() {
+export default function NativeQuestionBankStudyRoute() { return <GuestLearningBoundary><NativeQuestionBankStudyRouteBody /></GuestLearningBoundary>; }
+
+function NativeQuestionBankStudyRouteBody() {
   const router = useRouter();
+  const login = useLoginEntry();
+  const openMembership = () => {
+    const next = `/question-bank/${bankId}/study/${categoryId}/${topicId}${cardId ? `?cardId=${encodeURIComponent(cardId)}` : ''}`;
+    login(`/account/membership?next=${encodeURIComponent(next)}`, '登录后查看会员题库');
+  };
   const scope = normalizeStudyScope(useProfile().studyScope);
-  const { bankId, categoryId, topicId, cardId, returnTo } = useLocalSearchParams<{
+  const { bankId, categoryId, topicId, cardId, returnTo, guide, loginResume } = useLocalSearchParams<{
     bankId: QuestionBankId;
     categoryId: string;
     topicId: string;
     cardId?: string;
+    loginResume?: string;
+    guide?: string;
     returnTo?: 'annotations' | 'radio';
   }>();
+  const resuming = useRef(Boolean(peekStudyLogin(loginResume, `${bankId}/${topicId}`))).current;
+  const manualTeaching = guide === 'study' && bankId === 'sentences900' && cardId === STUDY_GUIDE_CARD;
   const bankState = useQuestionBank(bankId);
   const rawCatalog = bankState.status === 'ready' ? (bankState.catalog ?? bankState.data) : undefined;
   const location = rawCatalog && cardId ? createCardDirectory([rawCatalog]).get({ bankId, cardId }) : undefined;
   const effectiveCategoryId = location?.categoryId ?? categoryId;
   const effectiveTopicId = location?.topicId ?? topicId;
-  const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading');
+  const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading', resuming ? 'all' : undefined);
+  useGuideAvailability('study', topicState.status === 'membership-required' ? '这部分题目需要会员，可查看会员方案或返回选择免费内容。'
+    : bankState.status === 'error' || topicState.status === 'error' ? '题目暂时无法加载，请在页面重试或返回选择其他内容。'
+      : topicState.status === 'ready' && !topicState.topic.cards.length ? '当前没有可学习的题目，请返回选择其他内容或跳过教学。' : undefined);
   const returnFromRadio = returnTo === 'radio';
   const returnLabel = returnFromRadio ? '返回随身听'
     : returnTo === 'annotations' ? '返回我的标注'
       : router.canGoBack() ? '返回上一页'
         : bankState.status === 'ready' ? '返回题库' : '返回首页';
   const returnToSource = () => {
-    if (returnFromRadio) router.replace('/content/radio');
+    if (router.canGoBack()) router.back();
+    else if (returnFromRadio) router.replace('/content/radio');
     else if (returnTo === 'annotations') router.replace('/annotations');
-    else if (router.canGoBack()) router.back();
     else if (bankState.status === 'ready') router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: bankState.data.id } });
     else router.replace('/(tabs)');
   };
   const stateScreen = (children: ReactNode) => (
-    <Screen>
-      <TopBar title="题库学习" onBack={returnToSource} />
+    <Screen header={<TopBar title="题库学习" onBack={returnToSource} />}>
       {children}
     </Screen>
   );
 
   if (bankState.status === 'loading' || topicState.status === 'loading') return stateScreen(<GlobalLoadingScreen />);
   const category = bankState.status === 'ready'
-    ? bankState.data.categories.find((item) => item.id === effectiveCategoryId)
+    ? ((manualTeaching || resuming) ? rawCatalog : bankState.data)?.categories.find((item) => item.id === effectiveCategoryId)
     : undefined;
   const catalogTopic = category?.topics.find((item) => item.id === effectiveTopicId);
   const removedCard = bankState.status === 'ready' && bankState.source === 'remote' && rawCatalog
@@ -66,12 +85,12 @@ export default function NativeQuestionBankStudyRoute() {
   const outsideCatalogScope = cardId && catalogTopic?.scopeCardIds
     && !catalogTopic.scopeCardIds[scope].includes(cardId);
   const rawTopicExists = rawCatalog?.categories.some(category => category.topics.some(topic => topic.id === effectiveTopicId));
-  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (rawTopicExists && !catalogTopic || outsideCatalogScope
+  const outsideSelection = !resuming && !manualTeaching && bankState.status === 'ready' && topicState.status !== 'error' && (rawTopicExists && !catalogTopic || outsideCatalogScope
     || (topicState.status === 'ready' && ((cardId && topicState.scopeExcludedCardIds?.includes(cardId))
       || topicState.topic.declaredCardCount === 0)));
   if (outsideSelection) {
     return stateScreen(<CenteredState actionLabel="返回题库首页" description="这部分内容不在当前考试目标或题库范围内。可回到首页调整题库范围，或在个人资料中查看考试目标。" icon={BookX}
-      onAction={() => router.replace('/(tabs)')} title="不在当前学习范围" />);
+      onAction={() => router.dismissTo('/(tabs)')} title="不在当前学习范围" />);
   }
   if (topicState.status === 'membership-required') {
     return stateScreen(
@@ -79,7 +98,7 @@ export default function NativeQuestionBankStudyRoute() {
         actionLabel="查看会员方案"
         description="这部分内容属于会员权益。开通后即可在线学习，并可按需保存到本机离线使用。"
         icon={Shield}
-        onAction={() => router.push('/account/membership')}
+        onAction={openMembership}
         title="会员内容"
       />
     );
@@ -94,7 +113,7 @@ export default function NativeQuestionBankStudyRoute() {
         actionLabel="查看会员方案"
         description="这道题属于会员权益，开通会员后即可继续学习。"
         icon={Shield}
-        onAction={() => router.push('/account/membership')}
+        onAction={openMembership}
         title="会员内容"
       />
     );
@@ -122,5 +141,5 @@ export default function NativeQuestionBankStudyRoute() {
       />
     );
   }
-  return <QuestionBankStudyScreen category={category} dataset={bankState.data} initialCardId={cardId} returnTo={returnTo} topic={topic} />;
+  return <QuestionBankStudyScreen category={category} dataset={(manualTeaching || resuming) ? rawCatalog! : bankState.data} initialCardId={cardId} loginResume={loginResume} returnTo={returnTo} topic={topic} />;
 }

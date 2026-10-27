@@ -1,49 +1,49 @@
 {
   "id": "opi-fzy-850",
-  "name": "Runway incursion",
-  "declaredCardCount": 4,
+  "name": "跑道侵入",
   "cards": [
     {
       "id": "opi-fzy-850-image-1",
       "kind": "image",
-      "taskTitle": "Runway incursion · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-850.png",
-      "imageAlt": "Runway incursion，用于本话题的看图描述和问答",
-      "studyTier": 2
+      "imageAlt": "跑道侵入，用于本话题的看图描述和问答",
+      "studyTier": 2,
+      "taskTitle": "跑道侵入 · 看图材料"
     },
     {
       "id": "opi-fzy-152403",
-      "taskTitle": "Runway incursion-1",
+      "audio": "/question-bank-assets/revisions/opi/7751525244249ebfd66bda8e8e12912db1dfe5005add2a02c1c73c15601d4b04/audio/opi/opi-fzy-152403.mp3",
       "audioText": "Can you describe this picture?",
-      "audioTextZh": "你能描述一下这张图吗？",
       "studyTier": 2,
+      "taskTitle": "跑道侵入-1",
+      "audioTextZh": "你能描述一下这张图吗？",
       "referenceText": "OK. The picture shows there is a green car passing on the runway during the airplane approach.\nIt affects the aircraft landing safely.",
       "referenceTextZh": "好的。从这张图上看出一辆绿色的车辆在飞机进近时在跑道上活动，影响了飞机安全着陆。",
-      "audio": "/question-bank-assets/revisions/opi/7751525244249ebfd66bda8e8e12912db1dfe5005add2a02c1c73c15601d4b04/audio/opi/opi-fzy-152403.mp3",
       "audioDurationSeconds": 1.608
     },
     {
       "id": "opi-fzy-152404",
-      "taskTitle": "Runway incursion-2",
+      "audio": "/question-bank-assets/revisions/opi/3c62ca6a60454734e9220d37d382e257b6f96cd9da612078f48bb7955f155170/audio/opi/opi-fzy-152404.mp3",
       "audioText": "Have you ever heard any accidents caused by runway incursion?",
-      "audioTextZh": "你知道哪些由于跑道入侵导致的事故吗？",
       "studyTier": 1,
+      "taskTitle": "跑道侵入-2",
+      "audioTextZh": "你知道哪些由于跑道入侵导致的事故吗？",
       "referenceText": "Yes, once a China Eastern Airlines A320 was taking off from Shanghai Hongqiao International Airport, it was found that another A330, also belonging to China Eastern Airlines, was about to cross the runway. Luckily, the captain made a decisive decision to continue taking off, avoiding an accident.",
       "referenceTextZh": "是的，我记得一架东航的A320飞机在上海虹桥机场起飞过程中，发现另一架同样也是东航的A330飞机准备穿越跑道，很幸运的是机长短暂判断后果断决定继续起飞，避免了撞机事故。",
-      "audio": "/question-bank-assets/revisions/opi/3c62ca6a60454734e9220d37d382e257b6f96cd9da612078f48bb7955f155170/audio/opi/opi-fzy-152404.mp3",
       "audioDurationSeconds": 3.216
     },
     {
       "id": "opi-fzy-152405",
-      "taskTitle": "Runway incursion-3",
+      "audio": "/question-bank-assets/revisions/opi/10bde9efc85932e69efd3c2adcdde3c1521a2c9ab229098c77da022e2a856285/audio/opi/opi-fzy-152405.mp3",
       "audioText": "What can we do to prevent runway incursion from happening again?",
-      "audioTextZh": "我们可以采取什么措施来防止跑道入侵再次发生？",
       "studyTier": 1,
+      "taskTitle": "跑道侵入-3",
+      "audioTextZh": "我们可以采取什么措施来防止跑道入侵再次发生？",
       "referenceText": "We should use standard words in communication, speak slowly and clearly, follow ATC instructions.\nBefore taxiing, we should be familiar with taxi routes.\nIf we are not sure of our position, we should stop the aircraft and confirm with ATC.\nIf we are unsure of ATC's instructions, we should confirm with ATC.\nWe should have good situation awareness.\nAlso we should strengthen airport management.\nIn these ways, we can avoid runway incursion.",
       "referenceTextZh": "我们应该使用标准的词语进行交流，语速慢而清晰，遵守ATC的指令。\n在滑行之前，我们应该熟悉滑行路线。\n如果我们不能确定我们的位置，我们应该停下飞机并与空管确认。\n如果我们不确定空管的指令，我们应该和空管确认。\n我们应有良好的情景意识。\n我们还应该加强机场管理。\n通过这些方式，我们可以避免跑道入侵。",
-      "audio": "/question-bank-assets/revisions/opi/10bde9efc85932e69efd3c2adcdde3c1521a2c9ab229098c77da022e2a856285/audio/opi/opi-fzy-152405.mp3",
       "audioDurationSeconds": 3.408
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

@@ -30,6 +30,8 @@ export type NativeAuthenticatedUser = Omit<AuthenticatedUser, 'providers'> & {
 };
 
 export type NativeAccountSummary = Omit<AccountSummary, 'providers'> & {
+  /** Stable business-account registration time; absent on older API deployments. */
+  createdAt?: string;
   /** Whether the bound phone principal has a usable password credential. */
   hasPassword?: boolean;
   providers: NativeAuthIdentityProvider[];

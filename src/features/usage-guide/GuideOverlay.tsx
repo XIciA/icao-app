@@ -1,77 +1,138 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Keyboard, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useEffect, useId, useRef, useState, type RefObject } from 'react';
+import { AppState, Keyboard, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Svg, { Circle, Line } from 'react-native-svg';
+import Svg, { Circle, Defs, Line, Mask, Rect } from 'react-native-svg';
 import { AppText } from '@/components/ui';
-import { colors, radii, shadows, spacing } from '@/theme';
-import { guidePlacement, type Box } from './guide-placement';
+import { colors, radii, spacing } from '@/theme';
+import { guidePlacement, guideSkipPlacement, type Box } from './guide-placement';
 import type { GuidePrompt } from './GuideBindings';
 
 export type GuideNode = { id: string; layer: string; node: View };
-export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: GuidePrompt | null; nodes: Map<string, GuideNode>; layer: string; topLayer: string }) {
-  const insets = useSafeAreaInsets();
-  const [rootY, setRootY] = useState(0);
+const same = (a?: Box, b?: Box) => !!a && !!b && (['x', 'y', 'width', 'height'] as const).every(key => Math.abs(a[key] - b[key]) < 1);
+/** Session visibility owns the backdrop; target readiness only owns the hole and callout. */
+export function GuideOverlay({ prompt, nodes, layer, topLayer, backdrop, backdropOnly = false }: { backdropOnly?: boolean; backdrop?: RefObject<View | null>; prompt: GuidePrompt | null; nodes: Map<string, GuideNode>; layer: string; topLayer: string }) {
+  const insets = useSafeAreaInsets(), maskId = useId().replace(/:/g, '');
+  const root = useRef<View>(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [focus, setFocus] = useState<{ key: string; box: Box }>();
   const [keyboardTop, setKeyboardTop] = useState<number>();
-  const [hidden, setHidden] = useState(false);
-  const measuredFor = useRef('');
-  const [targetFor, setTargetFor] = useState('');
-  useEffect(() => { setHidden(false); }, [prompt?.target, prompt?.completed]);
+  const [rootY, setRootY] = useState(0);
+  const [textHeight, setTextHeight] = useState(110);
+  const [foreground, setForeground] = useState(true);
+  const [waiting, setWaiting] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  const skipPosition = useRef<Box | undefined>(undefined);
+  // A transparent native sheet never owns the underlying page's backdrop.
+  // Keep that backdrop mounted through presentation/dismissal; the modal draws
+  // only over its opaque sheet, avoiding both white gaps and double dimming.
+  const foregroundSurface = layer === topLayer;
+  const active = !!prompt && foreground && (foregroundSurface || Platform.OS !== 'web' && layer === 'root');
+  const drawBackdrop = backdropOnly || !backdrop || Platform.OS === 'web';
+  const targetId = prompt?.target;
+  const key = `${layer}:${prompt?.identity ?? targetId}:${targetId}`;
+  const hasFocus = focus?.key === key;
+  const interrupted = !!prompt?.activity;
+  const transitioning = !!prompt?.transitioning;
   useEffect(() => {
-    const show = Keyboard.addListener('keyboardDidShow', event => setKeyboardTop(event.endCoordinates.screenY));
-    const hide = Keyboard.addListener('keyboardDidHide', () => setKeyboardTop(undefined));
-    return () => { show.remove(); hide.remove(); };
-  }, []);
-  const root = useRef<View>(null); const [size, setSize] = useState({ width: 0, height: 0 }); const [target, setTarget] = useState<Box>(); const [bubbleHeight, setBubbleHeight] = useState(120);
-  const measure = useCallback(() => {
-    const token = `${layer}:${prompt?.target}`; measuredFor.current = token;
-    const candidates = [...nodes.values()].filter(item => item.id === prompt?.target && item.layer === layer);
-    const update = (next?: Box) => { if (measuredFor.current !== token) return; setTargetFor(token); setTarget(old => !next ? undefined : old && Object.keys(next).every(key => Math.abs(old[key as keyof Box] - next[key as keyof Box]) < 1) ? old : next); };
-    root.current?.measureInWindow((rx, ry) => {
-      setRootY(ry);
-      const check = (index: number) => {
-        const item = candidates[index]; if (!item) { update(); return; }
-        item.node.measureInWindow((x, y, width, height) => {
-          const left = Math.max(0, x - rx), top = Math.max(0, y - ry);
-          const right = Math.min(size.width, x - rx + width), bottom = Math.min(Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - ry), y - ry + height);
-          if (width <= 0 || height <= 0 || right <= left || bottom <= top) { check(index + 1); return; }
-          update({ x: left, y: top, width: right - left, height: bottom - top });
-        });
-      };
-      check(0);
+    setWaiting(false);
+    if (!active || !foregroundSurface || hasFocus || transitioning) return;
+    const timer = setTimeout(() => setWaiting(true), 8000);
+    return () => clearTimeout(timer);
+  }, [key, active, foregroundSurface, hasFocus, attempt, transitioning]);
+  useEffect(() => {
+    const shown = Keyboard.addListener('keyboardDidShow', e => setKeyboardTop(e.endCoordinates.screenY));
+    const moved = Keyboard.addListener('keyboardWillChangeFrame', e => setKeyboardTop(e.endCoordinates.screenY));
+    const hidden = Keyboard.addListener('keyboardDidHide', () => setKeyboardTop(undefined));
+    const app = AppState.addEventListener('change', value => {
+      setForeground(value === 'active');
+      if (value === 'active') setKeyboardTop(Keyboard.metrics()?.screenY);
     });
-  }, [layer, nodes, prompt?.target, size, keyboardTop]);
-  useEffect(() => { if (!prompt || layer !== topLayer) return; measure(); const timer = setInterval(measure, 180); return () => clearInterval(timer); }, [layer, measure, prompt, topLayer]);
-  if (!prompt || layer !== topLayer) return null;
-  const focus = targetFor === `${layer}:${prompt.target}` ? target : undefined;
-  const availableHeight = keyboardTop === undefined ? size.height : Math.min(size.height, keyboardTop - rootY);
-  const position = guidePlacement(focus, size.width, availableHeight, bubbleHeight, { top: layer === 'root' ? insets.top : 0, bottom: insets.bottom });
-  const tip = focus ? Math.max(14, Math.min(position.width - 22, focus.x + focus.width / 2 - position.x - 4)) : 24;
-  return <View pointerEvents="box-none" collapsable={false} ref={root} onLayout={event => setSize(event.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
-    {focus && !prompt.completed ? <View testID="guide-focus" pointerEvents="none" style={[styles.focus, { left: focus.x - 4, top: focus.y - 4, width: focus.width + 8, height: focus.height + 8 }]} /> : null}
-    {position.line && focus ? <Svg pointerEvents="none" style={StyleSheet.absoluteFill}><Line x1={focus.x + focus.width / 2} y1={focus.y + focus.height / 2} x2={position.x + position.width / 2} y2={position.y} stroke={colors.mutedForeground} strokeOpacity={0.45} strokeWidth={1} /><Circle cx={focus.x + focus.width / 2} cy={focus.y + focus.height / 2} r={2.5} fill={colors.mutedForeground} /></Svg> : null}
-    {size.width > 0 && !hidden && (!prompt.completed || !prompt.target || focus) ? <View onLayout={event => setBubbleHeight(event.nativeEvent.layout.height)} style={[styles.bubble, { left: position.x, top: position.y, width: position.width, maxHeight: Math.max(48, availableHeight - position.y - insets.bottom - 16) }]} testID="guide-bubble">
-      {focus && !position.line && !position.compact ? <View pointerEvents="none" style={[styles.tip, { left: tip }, position.above ? styles.tipBottom : styles.tipTop]} /> : null}
-      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.bubbleContent}>
-      <View style={styles.heading}><AppText variant="micro">{prompt.completed ? '已完成' : `${prompt.index + 1} / ${prompt.total}`}</AppText><Pressable accessibilityLabel="退出教程" hitSlop={8} onPress={prompt.exit} style={styles.smallAction}><AppText variant="body">×</AppText></Pressable></View>
-      <AppText accessibilityLiveRegion="polite" variant="caption">{prompt.text}</AppText>
-      {!focus && prompt.target && !prompt.completed ? <AppText color={colors.mutedForeground} variant="micro">目标暂未显示，页面加载后可滚动查找。</AppText> : null}
-      {position.compact ? <Pressable accessibilityRole="button" onPress={() => setHidden(true)}><AppText color={colors.primary} variant="micro">收起提示，操作页面</AppText></Pressable> : null}
-      {prompt.error ? <AppText color={colors.destructive} variant="micro">{prompt.error}</AppText> : null}
-      <View style={styles.actions}><Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.skip} style={styles.smallAction}><AppText variant="micro">{prompt.completed ? '重新体验' : prompt.skipLabel ?? '跳过'}</AppText></Pressable>{prompt.next ? <Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.next} style={styles.smallAction}><AppText color={colors.primary} variant="micro">{prompt.completed ? '返回使用指南' : prompt.index + 1 === prompt.total ? '完成引导' : '继续'}</AppText></Pressable> : null}</View>
-      </ScrollView>
+    return () => { shown.remove(); moved.remove(); hidden.remove(); app.remove(); };
+  }, []);
+  useEffect(() => {
+    if (!active || !foregroundSurface || transitioning || !targetId) { setFocus(undefined); return; }
+    let alive = true, frame = 0, busy = false, started = 0, serial = 0;
+    let previous: Box | undefined, stable = 0;
+    const tick = () => {
+      if (!alive) return;
+      frame = requestAnimationFrame(tick);
+      if (busy && Date.now() - started > 150) { busy = false; serial++; }
+      if (busy || !root.current) return;
+      busy = true; started = Date.now(); const sample = ++serial;
+      root.current.measureInWindow((rx, ry) => {
+        if (!alive || sample !== serial) return;
+        setRootY(ry);
+        const candidates = [...nodes.values()].filter(value => value.id === targetId && value.layer === layer);
+        const check = (index: number) => {
+          if (!alive || sample !== serial) return;
+          const candidate = candidates[index];
+          if (!candidate) { busy = false; previous = undefined; stable = 0; setFocus(undefined); return; }
+          candidate.node.measureInWindow((x, y, width, height) => {
+            if (!alive || sample !== serial) return;
+            if (width <= 0 || height <= 0 || x + width <= rx || x >= rx + size.width || y + height <= ry || y >= ry + size.height) { check(index + 1); return; }
+            const left = Math.max(0, x - rx - 5), top = Math.max(0, y - ry - 5);
+            const box = { x: left, y: top, width: Math.min(size.width, x - rx + width + 5) - left, height: Math.min(size.height, y - ry + height + 5) - top };
+            busy = false;
+            stable = same(previous, box) ? stable + 1 : 0;
+            previous = box;
+            setFocus(old => old?.key === key ? same(old.box, box) ? old : { key, box } : stable >= 2 ? { key, box } : undefined);
+          });
+        };
+        check(0);
+      });
+    };
+    tick();
+    return () => { alive = false; cancelAnimationFrame(frame); };
+  }, [active, foregroundSurface, transitioning, key, layer, nodes, targetId, size.height, size.width, attempt]);
+  // Keyboard bounds affect callout placement, never the full-screen backdrop.
+  const availableHeight = Math.max(0, Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - rootY));
+  const target = foregroundSurface && !transitioning && hasFocus ? focus.box : undefined;
+  // All surfaces use physical safe-area coordinates, including native full-screen modals.
+  const skipTop = Math.max(0, insets.top - rootY);
+  if (target || !skipPosition.current || skipPosition.current.width !== Math.min(112, Math.max(0, size.width - 32))) skipPosition.current = guideSkipPlacement(target, size.width, skipTop);
+  const skipBox = skipPosition.current;
+  const position = guidePlacement(target, size.width, availableHeight, textHeight, { top: Math.max(skipTop + 44, skipBox.y + skipBox.height + 8), bottom: insets.bottom + 160 });
+  const show = !!target && (backdropOnly || !position.compact);
+
+  // A measured target may temporarily leave the viewport. That never ends teaching.
+  const constrained = !!target && position.compact;
+  const status = foregroundSurface && !show && !transitioning && (interrupted || waiting || constrained);
+  const statusPosition = guidePlacement(target, size.width, availableHeight, textHeight, { top: skipBox.y + skipBox.height + 8, bottom: insets.bottom + 160 });
+  const hintPosition = show ? position : statusPosition;
+  const showHint = !backdropOnly && (show || status);
+  const lineX = target ? Math.max(position.x + 12, Math.min(position.x + position.width - 12, target.x + target.width / 2)) : 0;
+  const lineStart = target ? position.above ? target.y - 3 : target.y + target.height + 3 : 0;
+  const lineEnd = position.above ? position.y + textHeight + 4 : position.y - 4;
+  if (!active || !prompt) return null;
+  const blocks = target ? [
+    { left: 0, top: layer === 'root' ? skipTop + 48 : 0, width: size.width, height: Math.max(0, target.y - (layer === 'root' ? skipTop + 48 : 0)) },
+    { left: 0, top: target.y + target.height, width: size.width, height: Math.max(0, size.height - target.y - target.height) },
+    { left: 0, top: target.y, width: target.x, height: target.height },
+    { left: target.x + target.width, top: target.y, width: Math.max(0, size.width - target.x - target.width), height: target.height },
+  ] : [{ left: 0, top: skipTop + 44, width: size.width, height: Math.max(0, size.height - skipTop - 44) }];
+  return <View ref={root} collapsable={false} pointerEvents="box-none" onLayout={e => setSize(e.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
+    {drawBackdrop ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, !size.height && { backgroundColor: colors.foreground, opacity: 0.68 }]} testID="guide-backdrop"><Svg testID="guide-mask" pointerEvents="none" width={size.width} height={size.height} style={StyleSheet.absoluteFill}>
+      <Defs><Mask id={maskId}><Rect width={size.width} height={size.height} fill="white" />{show ? <Rect x={target.x} y={target.y} width={target.width} height={target.height} rx={radii.md} fill="black" /> : null}</Mask></Defs>
+      <Rect width={size.width} height={size.height} fill={colors.foreground} fillOpacity={0.68} mask={`url(#${maskId})`} />
+      {show && !backdropOnly ? <><Line x1={lineX} y1={lineStart} x2={lineX} y2={lineEnd} stroke={colors.card} strokeWidth={1} /><Circle cx={lineX} cy={lineStart} r={2} fill={colors.card} /></> : null}
+    </Svg></View> : null}
+    {!backdropOnly && foregroundSurface && blocks.map((block, index) => <View key={index} accessible={false} pointerEvents={layer !== 'root' || target && (prompt.reading || prompt.interactive) ? 'none' : 'auto'} style={[styles.block, block]} />)}
+    {!drawBackdrop && show ? <Svg pointerEvents="none" width={size.width} height={size.height} style={StyleSheet.absoluteFill}><Line x1={lineX} y1={lineStart} x2={lineX} y2={lineEnd} stroke={colors.card} strokeWidth={1} /><Circle cx={lineX} cy={lineStart} r={2} fill={colors.card} /></Svg> : null}
+    {showHint ? <View onLayout={e => setTextHeight(e.nativeEvent.layout.height)} style={[styles.hint, { left: hintPosition.x, top: hintPosition.y, width: hintPosition.width }]} testID="guide-hint" accessibilityState={{ busy: prompt.activity === 'waiting' }}>
+      <AppText color={colors.card} variant="button" style={styles.center}>{prompt.title}</AppText>
+      <AppText accessibilityLiveRegion="polite" color={colors.card} variant="body" style={styles.center}>{status && !interrupted && !constrained ? '当前目标尚未就绪，可返回重试或跳过教学。' : prompt.text}</AppText>
+      {prompt.error ? <AppText color={colors.card} variant="caption">{prompt.error}</AppText> : null}
+      {waiting && !interrupted ? <Pressable accessibilityRole="button" onPress={() => setAttempt(value => value + 1)} style={styles.action}><AppText color={colors.card}>重新定位</AppText></Pressable> : null}
+      {prompt.next && (!status || interrupted || constrained) ? <Pressable accessibilityRole="button" onPress={prompt.next} style={styles.action}><AppText color={colors.card} variant="button">{prompt.nextLabel ?? '继续'}</AppText></Pressable> : null}
     </View> : null}
-    {hidden ? <Pressable accessibilityRole="button" accessibilityLabel="展开教程提示" onPress={() => setHidden(false)} style={[styles.restore, { top: (layer === 'root' ? insets.top : 0) + 16 }]}><AppText color={colors.primary} variant="micro">{prompt.completed ? '教程已完成' : `教程 ${prompt.index + 1}/${prompt.total}`}</AppText></Pressable> : null}
+    {!backdropOnly && foregroundSurface ? <Pressable accessibilityRole="button" accessibilityLabel="跳过教学" onPress={prompt.skip} style={[styles.skip, { left: skipBox.x, top: skipBox.y, width: skipBox.width }]}><AppText color={colors.card} variant="caption">跳过教学</AppText></Pressable> : null}
   </View>;
 }
 const styles = StyleSheet.create({
   root: { ...StyleSheet.absoluteFillObject, zIndex: 10000 },
-  focus: { position: 'absolute', borderRadius: radii.lg, borderColor: colors.primary, borderWidth: 2 },
-  restore: { position: 'absolute', right: 16, padding: spacing[2], borderRadius: radii.md, borderWidth: 1, borderColor: colors.primary, backgroundColor: colors.card },
-  bubble: { position: 'absolute', backgroundColor: colors.card, borderColor: colors.border, borderWidth: StyleSheet.hairlineWidth, borderRadius: radii.lg, ...shadows.floating },
-  bubbleContent: { padding: spacing[3], gap: spacing[2] },
-  smallAction: { minWidth: 44, minHeight: 36, justifyContent: 'center', alignItems: 'center' },
-  heading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  actions: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: spacing[1] },
-  tip: { position: 'absolute', width: 9, height: 9, backgroundColor: colors.card, transform: [{ rotate: '45deg' }], borderColor: colors.border },
-  tipTop: { top: -5, borderTopWidth: StyleSheet.hairlineWidth, borderLeftWidth: StyleSheet.hairlineWidth }, tipBottom: { bottom: -5, borderBottomWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth },
+  block: { position: 'absolute' },
+  hint: { position: 'absolute', gap: spacing[2] },
+  center: { textAlign: 'center' },
+  action: { minHeight: 44, alignSelf: 'center', justifyContent: 'center', paddingHorizontal: spacing[4], borderRadius: radii.md, borderWidth: 1, borderColor: colors.card, backgroundColor: 'rgba(255,255,255,0.12)' },
+  skip: { position: 'absolute', minHeight: 44, alignItems: 'center', paddingHorizontal: spacing[3], borderRadius: radii.full, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.card, justifyContent: 'center' },
 });

@@ -1,4 +1,6 @@
-import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import { MemberFeatureGate } from '@/features/auth/MemberFeatureGate.native';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 import { FileQuestion } from '@/components/ui/icons';
 import { Platform } from 'react-native';
 
@@ -25,18 +27,24 @@ const KNOWN_CONTENT_SLUGS = new Set([
 ]);
 
 export default function ContentRoute() {
+  const { slug } = useLocalSearchParams<{ slug?: string | string[] }>();
+  const contentSlug = Array.isArray(slug) ? slug[0] : slug;
+  if (contentSlug !== 'mock-exam' && contentSlug !== 'ai-report') return <ContentRouteBody />;
+  return <MemberFeatureGate><ContentRouteBody /></MemberFeatureGate>;
+}
+
+function ContentRouteBody() {
   const router = useRouter();
   const { slug: rawSlug } = useLocalSearchParams<{ slug?: string | string[] }>();
   const slug = Array.isArray(rawSlug) ? rawSlug[0] ?? '' : rawSlug ?? '';
   if (!KNOWN_CONTENT_SLUGS.has(slug)) {
     return (
-      <Screen>
-        <TopBar title="发现" />
+      <Screen header={<TopBar title="发现" />}>
         <CenteredState
           actionLabel="返回发现"
           description="这个功能入口不存在、已更新或暂时不可用。"
           icon={FileQuestion}
-          onAction={() => router.replace('/(tabs)/discover')}
+          onAction={() => router.dismissTo('/(tabs)/discover')}
           title="无法打开此内容"
         />
       </Screen>

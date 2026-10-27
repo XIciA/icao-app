@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AppState, StyleSheet, View } from 'react-native';
+import { AppState, Pressable, StyleSheet, View } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { qrcodegen } from '@/vendor/qrcodegen';
 import { randomUUID } from 'expo-crypto';
 import type { WechatCheckout, WechatPayCatalog } from '@icao/contracts/wechat-pay';
-import { AppText, Button, Card } from '@/components/ui';
+import { AppText, BottomSheet, Button } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { getAuthService } from '@/features/auth/auth-service';
 import { ApiClientError, apiRequestWithAccessToken } from '@/platform/api-client';
-import { spacing } from '@/theme';
+import { colors, radii, spacing } from '@/theme';
+import { listMembershipProducts } from './membership-products.native';
 import { useCommerceRuntime } from './CommerceRuntimeProvider';
 
 type Product = WechatPayCatalog['products'][number];
@@ -38,6 +39,8 @@ function AccountCheckout({ userId }: { userId: string }) {
   const busy = useRef(false);
   const pending = useRef<WechatCheckout | null>(null);
   const retry = useRef<{ productKey: string; idempotencyKey: string } | undefined>(undefined);
+  const [selectedKey, setSelectedKey] = useState('membership_31d_v1');
+  const [showTerms, setShowTerms] = useState(false);
   const [catalog, setCatalog] = useState<WechatPayCatalog>();
   const [order, setOrder] = useState<WechatCheckout | null>(null);
   const [working, setWorking] = useState(false);
@@ -73,6 +76,7 @@ function AccountCheckout({ userId }: { userId: string }) {
         const available = await apiRequestWithAccessToken<WechatPayCatalog>(`${root}/catalog?channel=NATIVE`, token);
         if (!mounted.current) return;
         setCatalog(available);
+        setSelectedKey((key) => available.products.some((p) => p.productKey === key) ? key : available.products[0]?.productKey ?? key);
       }
       const current = pending.current ?? await apiRequestWithAccessToken<WechatCheckout | null>(`${root}/pending`, token);
       const result = current ? await apiRequestWithAccessToken<WechatCheckout>(`${root}/checkouts/${encodeURIComponent(current.id)}`, token) : null;
@@ -137,13 +141,33 @@ function AccountCheckout({ userId }: { userId: string }) {
     finally { busy.current = false; if (mounted.current) setWorking(false); }
   };
   const live = order?.state === 'pending' && order.channel === 'NATIVE' && order.codeUrl && Date.parse(order.expiresAt) > clock;
-  return <Card style={styles.card} testID="web-wechat-checkout">
-    <AppText variant="cardTitle">微信扫码购买会员</AppText>
-    <AppText variant="caption">会员有效期与 AI 点数跟随当前账号，网页和 APP 同步。套餐为单次购买，不自动续费。</AppText>
-    {catalog?.available ? catalog.products.map((product) => <Button key={product.productKey}
-      variant="secondary" disabled={working || !loaded || Boolean(pending.current) || Boolean(retry.current && retry.current.productKey !== product.productKey)} onPress={() => { void purchase(product); }}>
-      {`${product.title} · ¥${(product.amountFen / 100).toFixed(2)}`}
-    </Button>) : <AppText variant="caption">{catalog ? '网页微信支付暂未开放，可在 APP 购买后同步权益。' : '正在读取支付服务…'}</AppText>}
+  const selected = catalog?.products.find((p) => p.productKey === selectedKey);
+  const blocked = working || !loaded || Boolean(pending.current);
+  const active = commerce.entitlement?.membership.active === true;
+  const expiry = commerce.entitlement?.membership.expiresAt;
+  const renewal = active && selected && expiry ? new Date(Date.parse(expiry) + selected.durationDays * 86_400_000) : undefined;
+  return <View style={styles.card} testID="web-wechat-checkout">
+    {catalog?.available ? <>
+      <View accessibilityRole="radiogroup" style={styles.plans}>
+        {catalog.products.map((product) => {
+          const chosen = product.productKey === selectedKey;
+          const original = listMembershipProducts().find((p) => p.key === product.productKey)?.originalPriceCny;
+          return <Pressable key={product.productKey} accessibilityRole="radio" accessibilityLabel={product.title}
+            accessibilityState={{ selected: chosen, disabled: blocked }} disabled={blocked || Boolean(retry.current && retry.current.productKey !== product.productKey)}
+            onPress={() => setSelectedKey(product.productKey)} style={[styles.plan, chosen && styles.selectedPlan]}>
+            <AppText color={chosen ? colors.primary : colors.foreground} variant="button">{product.durationDays}天</AppText>
+            <AppText color={chosen ? colors.primary : colors.foreground} variant="cardTitle">¥{(product.amountFen / 100).toFixed(2)}</AppText>
+            {original != null && original * 100 > product.amountFen ? <AppText variant="caption" color={colors.mutedForeground} style={styles.originalPrice}>¥{original}</AppText> : null}
+          </Pressable>;
+        })}
+      </View>
+      {renewal && Number.isFinite(renewal.getTime()) ? <AppText variant="caption" style={styles.center}>续费后预计至 {renewal.toLocaleString('zh-CN')}</AppText> : null}
+      <Button size="lg" testID="membership-purchase" disabled={blocked || !selected || Boolean(retry.current && retry.current.productKey !== selected.productKey)}
+        onPress={() => { if (selected) void purchase(selected); }}>
+        {working ? '正在核对…' : pending.current ? '等待购买确认' : selected ? `${active ? '续费' : '开通'}${selected.durationDays}天会员 · ¥${(selected.amountFen / 100).toFixed(2)}` : '暂时没有可购买的套餐'}
+      </Button>
+      <AppText variant="caption" style={styles.center}>使用另一台设备的微信扫一扫付款；网页与 APP 共享当前账号的会员权益。</AppText>
+    </> : <AppText variant="caption">{catalog ? '网页微信支付暂未开放，可在 APP 购买后同步权益。' : '正在读取支付服务…'}</AppText>}
     {live ? <>
       <AppText variant="sectionTitle">待支付 ¥{(order.amountFen / 100).toFixed(2)}</AppText>
       <WechatPaymentQr value={order.codeUrl!} />
@@ -153,7 +177,18 @@ function AccountCheckout({ userId }: { userId: string }) {
     {message ? <AppText accessibilityRole="alert" variant="caption">{message}</AppText> : null}
     <Button disabled={working} variant="outline" onPress={() => { void check(true); }}>{working ? '正在核对…' : '重新检查订单'}</Button>
     {pending.current?.state === 'pending' ? <Button disabled={working} variant="ghost" onPress={() => { void cancel(); }}>取消未支付订单</Button> : null}
-  </Card>;
+    <Button variant="ghost" onPress={() => setShowTerms(true)}>购买须知</Button>
+    <BottomSheet visible={showTerms} onClose={() => setShowTerms(false)} accessibilityLabel="购买须知">
+      <View style={styles.card}>
+        <AppText variant="sectionTitle">购买须知</AppText>
+        <AppText>一次购买，到期不自动续费。</AppText>
+        <AppText>价格以微信收银台显示为准。有效期内续费将顺延会员时间，不会立即补充 AI 额度；每周额度按原周期恢复。</AppText>
+        <AppText>权益归属当前购买账号。若购买结果尚未确认，请先检查订单，避免重复付款。</AppText>
+        <AppText>会员到期后保留学习数据；会员题面、参考答案和音频按当前权限开放。退款请通过意见反馈联系处理。</AppText>
+        <Button variant="outline" onPress={() => setShowTerms(false)}>关闭</Button>
+      </View>
+    </BottomSheet>
+  </View>;
 }
 
 export function WebWechatCheckout() {
@@ -162,4 +197,9 @@ export function WebWechatCheckout() {
   const userId = auth.session?.user.id;
   return accountId && userId ? <AccountCheckout key={`${accountId}:${userId}`} userId={userId} /> : null;
 }
-const styles = StyleSheet.create({ card: { gap: spacing[3] }, qr: { alignSelf: 'center' } });
+const styles = StyleSheet.create({
+  card: { gap: spacing[4] }, qr: { alignSelf: 'center' }, center: { textAlign: 'center' },
+  plans: { flexDirection: 'row', gap: spacing[2] },
+  plan: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing[2], paddingHorizontal: spacing[1], paddingVertical: spacing[4], borderRadius: radii.lg, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.card },
+  selectedPlan: { backgroundColor: colors.primary08, borderColor: colors.primary }, originalPrice: { textDecorationLine: 'line-through' },
+});

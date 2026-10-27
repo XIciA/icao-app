@@ -1,60 +1,60 @@
 {
   "id": "opi-fzy-839",
-  "name": "Engine problems",
-  "declaredCardCount": 5,
+  "name": "发动机损伤",
   "cards": [
     {
       "id": "opi-fzy-839-image-1",
       "kind": "image",
-      "taskTitle": "Engine problems · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-839.png",
-      "imageAlt": "Engine problems，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "imageAlt": "发动机损伤，用于本话题的看图描述和问答",
+      "studyTier": 1,
+      "taskTitle": "发动机损伤 · 看图材料"
     },
     {
       "id": "opi-fzy-152375",
-      "taskTitle": "Engine problems-1",
+      "audio": "/question-bank-assets/revisions/opi/21138eedc2b311cf86c3d95b999c8ceb18ab577ef91e82fb87c3b67535baaea9/audio/opi/opi-fzy-152375.mp3",
       "audioText": "What can we know from this picture?",
-      "audioTextZh": "从图中可以了解到什么？",
       "studyTier": 1,
+      "taskTitle": "发动机损伤-1",
+      "audioTextZh": "从图中可以了解到什么？",
       "referenceText": "There's structural damage to the engine. The engine cowling has separated from the engine.",
       "referenceTextZh": "发动机有结构损坏，发动机整流罩脱落。",
-      "audio": "/question-bank-assets/revisions/opi/21138eedc2b311cf86c3d95b999c8ceb18ab577ef91e82fb87c3b67535baaea9/audio/opi/opi-fzy-152375.mp3",
       "audioDurationSeconds": 1.728
     },
     {
       "id": "opi-fzy-152376",
-      "taskTitle": "Engine problems-2",
-      "audioText": "What kind of pilot’s operating errors can cause engine problems?",
-      "audioTextZh": "飞行员的什么操作失误会导致发动机问题？",
-      "studyTier": 1,
-      "referenceText": "Well, as far as I know, most engine problems are caused by environmental factor, for example foreign objects and bird strike.\nWhile pilot’s operation errors, for example, using the contaminated fuel or careless walk around check can also cause engine problems.",
-      "referenceTextZh": "据我所知，大部分的发动机问题是由于环境因素导致的，比如：外物吸入和鸟击。\n但是，飞行员的操作失误也会引起发动机问题，比如，使用受污染的燃油或者在绕机检查时不仔细等。",
       "audio": "/question-bank-assets/revisions/opi/39d43da22815839d30b7c70c41b436512c0c0a4de16dcfe48b92cfa9fb692c4e/audio/opi/opi-fzy-152376.mp3",
+      "audioText": "What kind of pilot's operating errors can cause engine problems?",
+      "studyTier": 1,
+      "taskTitle": "发动机损伤-2",
+      "audioTextZh": "飞行员的什么操作失误会导致发动机问题？",
+      "referenceText": "Well, as far as I know, most engine problems are caused by environmental factor, for example foreign objects and bird strike.\nWhile pilot's operation errors, for example, using the contaminated fuel or careless walk around check can also cause engine problems.",
+      "referenceTextZh": "据我所知，大部分的发动机问题是由于环境因素导致的，比如：外物吸入和鸟击。\n但是，飞行员的操作失误也会引起发动机问题，比如，使用受污染的燃油或者在绕机检查时不仔细等。",
       "audioDurationSeconds": 3.672
     },
     {
       "id": "opi-fzy-152377",
-      "taskTitle": "Engine problems-3",
+      "audio": "/question-bank-assets/revisions/opi/746ec7977fe2c850f6ab770c1c893c395beab84aebec5c34c87bedda9f7243da/audio/opi/opi-fzy-152377.mp3",
       "audioText": "What do you know about turbofan engine?",
-      "audioTextZh": "你知道涡扇发动机吗？",
       "studyTier": 1,
+      "taskTitle": "发动机损伤-3",
+      "audioTextZh": "你知道涡扇发动机吗？",
       "referenceText": "Turbofan engines are commonly used in large passenger aircraft.\nTurbofan engines have the advantages of high thrust, high fuel efficiency and low noise.\nThe disadvantages of turbofan engines are complex structure and difficult design.",
       "referenceTextZh": "涡扇发动机是目前大型客机上普遍使用的一种发动机。\n涡扇发动机的优点是：推力大，燃油效率高，噪音低。\n涡扇发动机的缺点是：结构复杂，设计难度大。",
-      "audio": "/question-bank-assets/revisions/opi/746ec7977fe2c850f6ab770c1c893c395beab84aebec5c34c87bedda9f7243da/audio/opi/opi-fzy-152377.mp3",
       "audioDurationSeconds": 2.208
     },
     {
       "id": "opi-fzy-152378",
-      "taskTitle": "Engine problems-4",
+      "audio": "/question-bank-assets/revisions/opi/5576c74a5431512294d0ab0d9fe101b544ebc432ae6870b15c29d7abf49e62a6/audio/opi/opi-fzy-152378.mp3",
       "audioText": "What do you know about engine idle, when will the engine be turned into idle conditions?",
-      "audioTextZh": "你知道发动机慢车状态吗？发动机什么时候调至慢车状态？",
       "studyTier": 1,
+      "taskTitle": "发动机损伤-4",
+      "audioTextZh": "你知道发动机慢车状态吗？发动机什么时候调至慢车状态？",
       "referenceText": "Engine idle refers to the minimum speed at which the engine can maintain stable operation.\nTypically speaking, the engine will be turned into idle during ground taxiing, final approach, and landing.",
       "referenceTextZh": "慢车是指发动机能够保持稳定工作的最小转速状态。\n在地面滑行、最后进近和着陆阶段发动机一般会使用慢车状态。",
-      "audio": "/question-bank-assets/revisions/opi/5576c74a5431512294d0ab0d9fe101b544ebc432ae6870b15c29d7abf49e62a6/audio/opi/opi-fzy-152378.mp3",
       "audioDurationSeconds": 4.584
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-08"
 }

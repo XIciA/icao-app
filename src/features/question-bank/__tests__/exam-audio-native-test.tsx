@@ -186,3 +186,27 @@ it('lets a browser gesture start a file even when mobile preload has not loaded 
   expect(screen.getByText('正在准备音频…')).toBeTruthy();
   expect(Speech.speak).not.toHaveBeenCalled();
 });
+
+it('shares one successful replay across four questions, survives remounts and blocks recording-time replay', async () => {
+ const ledger={usedGroups:{} as Record<string,string>,completedItems:{} as Record<string,true>};
+ const replay={ledger,group:'sentence-1',item:'q1',blocked:false};
+ const view=await render(<ExamQuestionAudio {...props} replay={replay}/>);
+ await act(async()=>{mockStatus={...mockStatus,isLoaded:true,playbackState:'readyToPlay'};await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);});
+ await waitFor(()=>expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+ await act(async()=>{mockStatus={...mockStatus,didJustFinish:true,currentTime:5};await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);});
+ expect(ledger.completedItems.q1).toBe(true);
+ await view.rerender(<ExamQuestionAudio {...props} replay={{...replay,blocked:true}}/>);
+ await fireEvent.press(view.getByText('重听（Replay）· 本组剩余 1 次'));
+ expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+ mockStatus={...mockStatus,didJustFinish:false,playing:false,currentTime:0};
+ await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);
+ await fireEvent.press(view.getByText('重听（Replay）· 本组剩余 1 次'));
+ await waitFor(()=>expect(mockPlayer.play).toHaveBeenCalledTimes(2));
+ expect(ledger.usedGroups['sentence-1']).toBeUndefined();
+ await act(async()=>{mockStatus={...mockStatus,playing:true,currentTime:0.1};await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);});
+ expect(ledger.usedGroups['sentence-1']).toBe('q1');
+ await view.unmount();
+ const again=await render(<ExamQuestionAudio {...props} replay={replay}/>);
+ expect(again.getByText('本组重听已使用')).toBeTruthy();
+ expect(mockPlayer.play).toHaveBeenCalledTimes(2);
+});

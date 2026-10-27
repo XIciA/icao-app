@@ -4,7 +4,7 @@ import { useStudySession } from '../hooks/useStudySession.native';
 import { toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningStore } from '../platform/learning-store.native';
 import type { LearningRecord, QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPackage } from '../types';
-jest.mock('../recording/recording-repository', () => ({ recordingRepository: { cleanupSession: jest.fn(), discard: jest.fn() } }));
+jest.mock('../recording/recording-repository', () => ({ recordingRepository: { cleanupSession: jest.fn(), discard: jest.fn(), retainSessionForLogin: jest.fn(), releaseSessionFromLogin: jest.fn() } }));
 let mockSessionNumber = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `unique-${++mockSessionNumber}` }));
 const dataset = data[0] as QuestionBankDataset;
@@ -225,4 +225,61 @@ it('preserves the best available resume position for records saved by older clie
   await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
   expect(hook.result.current.currentIndex).toBe(1);
   expect(hook.result.current.cardState?.selectedChoiceIndex).toBeUndefined();
+});
+
+it('keeps progress and recording evidence on the original card when topic order changes', async () => {
+  const persistence = store();
+  const originalCard = topic.cards[2];
+  const reordered = { ...topic, cards: [originalCard, topic.cards[0], topic.cards[1]] };
+  jest.mocked(persistence.getTopicStates).mockResolvedValue({
+    [originalCard.id]: { visited: true, completed: true, selectedChoiceIndex: 1, recorded: true, recordingDurationMillis: 3200, note: '', updatedAt: '2026-10-21T10:00:00.000Z', lastVisitedAt: '2026-10-21T10:00:00.000Z' },
+  });
+  const hook = await renderHook(() => useStudySession({ dataset, category, topic: reordered, store: persistence }));
+  await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+  expect(hook.result.current.currentIndex).toBe(0);
+  expect(hook.result.current.card.id).toBe(originalCard.id);
+  expect(hook.result.current.card.audio).toBe(originalCard.audio);
+  await waitFor(() => expect(persistence.saveCardState).toHaveBeenCalledWith(topic.id, originalCard.id, expect.objectContaining({ completed: true, selectedChoiceIndex: 1, recorded: true, recordingDurationMillis: 3200 }), dataset.id, expect.anything()));
+  await hook.unmount();
+});
+
+it('exposes cumulative learned indexes without importing earlier answers or adding them to this attempt', async () => {
+  const persistence = store();
+  jest.mocked(persistence.getTopicStates).mockResolvedValue({[topic.cards[1].id]: {visited:true,completed:true,selectedChoiceIndex:1,note:'',updatedAt:'2026-08-01T00:00:00.000Z'}});
+  const hook = await renderHook(() => useStudySession({dataset,category,topic,store:persistence,initialCardId:topic.cards[0].id}));
+  await waitFor(() => expect(hook.result.current.cardState?.visited).toBe(true));
+  expect(hook.result.current.learnedIndexes).toEqual(new Set([0,1]));
+  expect(hook.result.current.states[topic.cards[1].id]?.selectedChoiceIndex).toBeUndefined();
+  expect(hook.result.current.visitedIndexes).toEqual(new Set([0]));
+});
+
+it('opens the selected item in a complete answer-card package without marking other questions visited', async () => {
+  const persistence=store();
+  const items=topic.cards.map(card=>({id:card.id,dataset,category,topic,card}));
+  const studyPackage:QuestionBankStudyPackage={id:'answer-card-return',startedAt:new Date().toISOString(),progressMode:'persistent',initialItemId:items[2].id,items,record:{bankId:dataset.id,bankTitle:dataset.title,categoryTitle:category.name,topicTitle:topic.name,recordType:'session'}};
+  const hook=await renderHook(()=>useStudySession({studyPackage,store:persistence}));
+  await waitFor(()=>expect(hook.result.current.hydrated).toBe(true));
+  expect(hook.result.current.currentIndex).toBe(2);
+  expect(hook.result.current.items.map(item=>item.id)).toEqual(items.map(item=>item.id));
+  expect(hook.result.current.learnedIndexes.has(0)).toBe(false);
+  expect(hook.result.current.learnedIndexes.has(2)).toBe(true);
+});
+
+it('restores the actual RecordingAsset and answer after the guest study screen unmounts for login', async () => {
+  const persistence = store();
+  const first = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence }));
+  await waitFor(() => expect(first.result.current.hydrated).toBe(true));
+  const asset = { byteSize: 64044, cardId: topic.cards[0].id, createdAt: '2026-10-25T00:00:00.000Z', durationMillis: 2000,
+    format: 'wav' as const, id: 'committed-asset', mimeType: 'audio/wav', sessionId: first.result.current.sessionId,
+    storageKind: 'native-file' as const, uri: `file:///cache/icao-recordings/${first.result.current.sessionId}/committed.wav` };
+  await act(async () => { first.result.current.recordAnswer(asset); first.result.current.updateAnswer('My recorded answer'); });
+  let token = '';
+  await act(async () => { token = await first.result.current.prepareLogin(); });
+  const previousSession = first.result.current.sessionId;
+  await first.unmount();
+  const restored = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence, loginResume: token }));
+  await waitFor(() => expect(restored.result.current.hydrated).toBe(true));
+  expect(restored.result.current.recording).toEqual(asset);
+  expect(restored.result.current.answerText).toBe('My recorded answer');
+  expect(restored.result.current.sessionId).toBe(previousSession);
 });

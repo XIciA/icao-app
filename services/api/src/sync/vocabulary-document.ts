@@ -1,4 +1,6 @@
+import { migrateVocabularyDocument, vocabularyRetiredIds } from '@icao/contracts';
 import { z } from 'zod';
+import type { VocabularyMigrationPolicy } from '@icao/contracts/vocabulary-live';
 
 const progressSchema = z.object({
   status: z.enum(['new', 'known', 'vague', 'forgot', 'wrong']),
@@ -14,12 +16,17 @@ const testResultSchema = z.object({
   answers: z.array(z.unknown()),
 }).passthrough();
 
-export const vocabularyDocumentSchema = z.object({
+const rawVocabularyDocumentSchema = z.object({
   schemaVersion: z.literal(1),
   words: z.record(z.string(), progressSchema),
   lastTest: testResultSchema.optional(),
+  studySession: z.object({answers:z.record(z.string(),z.enum(['known','vague','forgot','wrong'])).optional(),wordIds:z.array(z.string().max(160)).max(10000),nextWordId:z.string().max(160).nullable(),order:z.enum(['frequency','random']),startedAt:z.string().datetime(),updatedAt:z.string().datetime()}).optional(),
   updatedAt: z.string().datetime(),
 });
+export const vocabularyDocumentSchema = rawVocabularyDocumentSchema.transform(value => migrateVocabularyDocument(value));
+export function vocabularyDocumentForPolicy(value: unknown, policy?: VocabularyMigrationPolicy) {
+  return migrateVocabularyDocument(rawVocabularyDocumentSchema.parse(value), policy);
+}
 
 export type VocabularyDocument = z.infer<typeof vocabularyDocumentSchema>;
 
@@ -29,12 +36,23 @@ function newer<T extends { updatedAt: string }>(left: T | undefined, right: T | 
   return Date.parse(right.updatedAt) > Date.parse(left.updatedAt) ? right : left;
 }
 
-export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: unknown): VocabularyDocument {
-  const current = vocabularyDocumentSchema.parse(currentValue);
-  const incoming = vocabularyDocumentSchema.parse(incomingValue);
+export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: unknown, policy?: VocabularyMigrationPolicy): VocabularyDocument {
+  const current = vocabularyDocumentForPolicy(currentValue, policy);
+  const incoming = vocabularyDocumentForPolicy(incomingValue, policy);
   const words = { ...current.words };
+  const rawWords = incomingValue && typeof incomingValue === 'object' && 'words' in incomingValue
+    ? incomingValue.words as Record<string, {status?:string}> : {};
+  const unlearnedAliasTargets = new Set(Object.entries(rawWords).flatMap(([id,p]) => {
+    const target=policy ? policy.retiredIds[id] ?? policy.retiredFavoriteKeys[id] : vocabularyRetiredIds[id];
+    return target && p?.status==='new' && !rawWords[target] ? [target] : [];
+  }));
   for (const [wordId, incomingProgress] of Object.entries(incoming.words)) {
-    words[wordId] = newer(words[wordId], incomingProgress)!;
+    const previous=words[wordId];
+    // A newly favorited but unlearned alias must not erase an existing learning fact.
+    // An explicit newer reset on the canonical ID retains the normal LWW behavior.
+    const progress = previous && previous.status!=='new' && incomingProgress.status==='new' && unlearnedAliasTargets.has(wordId)
+      ? {...incomingProgress,status:previous.status} : incomingProgress;
+    words[wordId] = newer(previous, progress)!;
   }
   const currentTest = current.lastTest;
   const incomingTest = incoming.lastTest;
@@ -46,5 +64,9 @@ export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: u
         ? incomingTest
         : currentTest;
   const updatedAt = Date.parse(incoming.updatedAt) > Date.parse(current.updatedAt) ? incoming.updatedAt : current.updatedAt;
-  return { schemaVersion: 1, words, ...(lastTest ? { lastTest } : {}), updatedAt };
+  let studySession=newer(current.studySession,incoming.studySession);
+  if(studySession && current.studySession?.startedAt===incoming.studySession?.startedAt){
+    studySession={...studySession,answers:{...current.studySession?.answers,...incoming.studySession?.answers}};
+  }
+  return { schemaVersion: 1, words, ...(lastTest ? { lastTest } : {}), ...(studySession ? {studySession} : {}), updatedAt };
 }

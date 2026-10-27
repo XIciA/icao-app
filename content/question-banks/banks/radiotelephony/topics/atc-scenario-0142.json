@@ -16,7 +16,7 @@
       "id": "atc-scenario-0142-card-main-2446",
       "taskTitle": "CCA 512-2",
       "audioText": "C: CCA 512, cleared to Changsha via flight planned route, LK Oscar02D, initial climb 1,800 meters, cruising level 8400 meters, Runway 04, departure frequency 119.7, squawk 2016.",
-      "audioTextZh": "C： CCA 512，许可按飞行计划航路飞往长沙，执行 LKO-02D 离场，初始爬升至 1,800 米，巡航高度 8400 米，Runway 04，离场频率 119.7，应答机 2016。",
+      "audioTextZh": "C：CCA 512，许可按飞行计划航路飞往长沙，执行 LKO-02D 离场，初始爬升至 1,800 米，巡航高度 8400 米，Runway 04，离场频率 119.7，应答机 2016。",
       "referenceText": "cleared to Changsha via flight planned route, LKO-02 departure, initial climb 1800 meters, cruising level 8400 meters, Runway 04, departure frequency 119.7, squawk 2016, CCA 512.",
       "referenceTextZh": "许可按飞行计划航路飞往长沙，执行 LKO-02 离场，初始爬升至 1800 米，巡航高度 8400 米，Runway 04，离场频率 119.7，应答机 2016，CCA 512。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-040-cca512-q02.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0142-card-main-2449",
       "taskTitle": "CCA 512-5",
       "audioText": "B: You are now on the taxiway Z4 with engines running, ask Ground control for taxi instructions.",
-      "audioTextZh": "B: 你现在在滑行道 Z4，发动机运转，向 地面 管制请求滑行指令。",
+      "audioTextZh": "B: 你现在在滑行道 Z4，发动机运转，向地面管制请求滑行指令。",
       "referenceText": "Wuhan Ground, CCA 512, taxiway Z4, request taxi.",
       "referenceTextZh": "武汉地面，CCA 512，滑行道 Z4，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-040-cca512-q05.mp3"

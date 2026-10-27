@@ -52,7 +52,7 @@
       "id": "atc-scenario-0185-card-main-3188",
       "taskTitle": "CCA 321-6",
       "audioText": "C: CCA 321, negative due restricted area.\nB: you ask if you can turn left heading 100 and descend to 11000m to avoid the thunderstorms.",
-      "audioTextZh": "C： CCA 321，因限制区，不能批准。\nB： 你询问是否可以左转航向 100，并下降至 11,000 米以避开雷暴。",
+      "audioTextZh": "C：CCA 321，因限制区，不能批准。\nB：你询问是否可以左转航向 100，并下降至 11,000 米以避开雷暴。",
       "referenceText": "Request turn left heading 100, descend to 11000 meters, CCA 321.",
       "referenceTextZh": "请求左转航向 100，下降至 11,000 米，CCA 321。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q06.mp3"
@@ -97,7 +97,7 @@
       "id": "atc-scenario-0185-card-main-3193",
       "taskTitle": "CCA 321-11",
       "audioText": "C: CCA 321, report your current situation and further intention.\nB: Tell Guangzhou Control that the cabin crew offered CPR procedures and first aid to revive the captain, but he has difficulty in breathing, and request priority landing and medical services.",
-      "audioTextZh": "C： CCA 321，报告你当前的情况和进一步意图。\nB： 告诉广州管制，客舱机组对机长实施了心肺复苏和急救，试图使其恢复意识，但他呼吸困难，请求优先着陆和医疗服务。",
+      "audioTextZh": "C：CCA 321，报告你当前的情况和进一步意图。\nB：告诉广州管制，客舱机组对机长实施了心肺复苏和急救，试图使其恢复意识，但他呼吸困难，请求优先着陆和医疗服务。",
       "referenceText": "the cabin crew offered CPR procedures, first aid, have difficulty in breathing, request priority landing, medical services, CCA 321.",
       "referenceTextZh": "客舱机组实施了心肺复苏和急救，机长呼吸困难，请求优先着陆和医疗服务，CCA 321。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q11.mp3"

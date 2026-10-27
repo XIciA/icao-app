@@ -1,68 +1,68 @@
 {
   "id": "opi-topic-0062",
   "name": "禁烟政策",
-  "declaredCardCount": 6,
   "cards": [
     {
-      "id": "opi-core-660",
-      "taskTitle": "人的因素-禁烟政策-1",
-      "audioText": "What is your opinion of your company's no-smoking policy?",
-      "audioTextZh": "你如何看待你所在公司的禁烟政策？",
-      "referenceText": "I am not employed by an airline, but I support a strict no-smoking policy at my flight school. Smoking creates a fire risk, harms health, and can distract people from safe operations. A clear prohibition also gives students and instructors the same standard to follow.",
-      "referenceTextZh": "我尚未受雇于航空公司，但支持航校实行严格禁烟政策。吸烟会带来火灾风险、损害健康，并使人无法专注于安全运行。明确禁止还为学员和教员提供统一标准。",
-      "audio": "/question-bank-assets/revisions/opi/c120945f58a1e2736c70289f15d9bfdeea3244bbeae27d99e02125e5ac80c2af/audio/opi/opi-core-660.mp3",
-      "audioDurationSeconds": 3.144
-    },
-    {
-      "id": "opi-core-662",
-      "taskTitle": "人的因素-禁烟政策-2",
-      "audioText": "Can you describe your company's smoking policy for flight crew?",
-      "audioTextZh": "你能否说明你所在公司对飞行机组吸烟的规定？",
-      "referenceText": "I am not employed by an airline. At my flight school, smoking is not permitted in the aircraft or during flight training, and pilots and instructors are expected to follow the school's safety rules. This reduces fire risk and keeps the cockpit environment safe and professional.",
-      "referenceTextZh": "我尚未受雇于航空公司。在我的航校，飞机内和飞行训练期间都禁止吸烟，飞行员和教员必须遵守航校安全规定。这能降低火灾风险，并保持驾驶舱环境安全、专业。",
-      "audio": "/question-bank-assets/revisions/opi/563a54796aa84b6b37f1cae9729a2865a6cdab3d858118f475a998b708a2a837/audio/opi/opi-core-662.mp3",
-      "audioDurationSeconds": 3.384
-    },
-    {
-      "id": "opi-core-663",
-      "taskTitle": "人的因素-禁烟政策-3",
-      "audioText": "Why is smoking prohibited in the cockpit?",
-      "audioTextZh": "为什么禁止在驾驶舱内吸烟？",
-      "referenceText": "Smoking can reduce visibility in the cockpit and create a fire hazard. It can also increase the risk of hypoxia and harm a pilot’s health. These effects can endanger flight safety.",
-      "referenceTextZh": "吸烟会降低驾驶舱能见度并造成火灾危险，还会增加缺氧风险并损害飞行员健康。这些影响会危及飞行安全。",
-      "audio": "/question-bank-assets/revisions/opi/c8dabf24a0d3bda6ff0007aad0c7355592070f1cca8bc4df83119b70500d23fd/audio/opi/opi-core-663.mp3",
-      "audioDurationSeconds": 2.256
-    },
-    {
       "id": "opi-core-664",
-      "taskTitle": "人的因素-禁烟政策-4",
+      "audio": "/question-bank-assets/revisions/opi/fb505ef745acf06ce7e2547a99fdf85e9b8f1a04a387c98972f9a2d546c09d1a/audio/opi/opi-core-664.mp3",
       "audioText": "Should flight instructors avoid smoking in front of trainees, and why?",
+      "taskTitle": "人的因素-禁烟政策-4",
       "audioTextZh": "飞行教员是否应避免在学员面前吸烟？为什么？",
       "referenceText": "Yes, flight instructors should avoid smoking in front of trainees. Smoking harms health and can impair reaction ability, so avoiding it supports flight safety and reinforces the importance of healthy habits for pilots.",
       "referenceTextZh": "是的，飞行教员应避免在学员面前吸烟。吸烟损害健康并会降低反应能力，因此避免吸烟有助于飞行安全，也能强化飞行员保持健康习惯的重要性。",
-      "audio": "/question-bank-assets/revisions/opi/fb505ef745acf06ce7e2547a99fdf85e9b8f1a04a387c98972f9a2d546c09d1a/audio/opi/opi-core-664.mp3",
       "audioDurationSeconds": 4.08
     },
     {
+      "id": "opi-core-663",
+      "audio": "/question-bank-assets/revisions/opi/c8dabf24a0d3bda6ff0007aad0c7355592070f1cca8bc4df83119b70500d23fd/audio/opi/opi-core-663.mp3",
+      "audioText": "Why is smoking prohibited in the cockpit?",
+      "taskTitle": "人的因素-禁烟政策-3",
+      "audioTextZh": "为什么禁止在驾驶舱内吸烟？",
+      "referenceText": "Smoking can reduce visibility in the cockpit and create a fire hazard. It can also increase the risk of hypoxia and harm a pilot's health. These effects can endanger flight safety.",
+      "referenceTextZh": "吸烟会降低驾驶舱能见度并造成火灾危险，还会增加缺氧风险并损害飞行员健康。这些影响会危及飞行安全。",
+      "audioDurationSeconds": 2.256
+    },
+    {
       "id": "opi-core-665",
-      "taskTitle": "人的因素-禁烟政策-5",
+      "audio": "/question-bank-assets/revisions/opi/ab07db0671650a7b5e78ea7e0dbb7f9773069dd9d06a071bab82062bba3f7a04/audio/opi/opi-core-665.mp3",
       "audioText": "Do you think pilots should be discouraged from smoking, and why?",
+      "taskTitle": "人的因素-禁烟政策-5",
       "audioTextZh": "你认为是否应劝阻飞行员吸烟？为什么？",
       "referenceText": "Yes, I think pilots should be discouraged from smoking. It can cause respiratory and cardiovascular disease and reduce physical fitness. It can also impair reaction speed and concentration, which may endanger flight safety.",
       "referenceTextZh": "是的，我认为应劝阻飞行员吸烟。吸烟会造成呼吸和心血管疾病并降低体能，还可能损害反应速度和注意力，危及飞行安全。",
-      "audio": "/question-bank-assets/revisions/opi/ab07db0671650a7b5e78ea7e0dbb7f9773069dd9d06a071bab82062bba3f7a04/audio/opi/opi-core-665.mp3",
       "audioDurationSeconds": 3.696
     },
     {
       "id": "opi-core-666",
-      "taskTitle": "人的因素-禁烟政策-6",
+      "audio": "/question-bank-assets/revisions/opi/03b03fb20734a05db31c671a70a30168fd85ce04c5b60a2b9e734e23c9d4838c/audio/opi/opi-core-666.mp3",
       "audioText": "What should the flight crew do if a passenger is reported to be smoking on board?",
+      "taskTitle": "人的因素-禁烟政策-6",
       "audioTextZh": "接到旅客在机上吸烟的报告后，飞行机组应怎么做？",
       "referenceText": "The flight crew should ask the cabin crew to stop the passenger and explain the fire and safety risks. If the passenger refuses to comply, the incident should be recorded and airport security can be asked to handle the matter after arrival.",
       "referenceTextZh": "飞行机组应让客舱机组制止该旅客，并说明火灾和安全风险。如果旅客拒绝遵守规定，应记录事件，并可在到达后请机场安保部门处理。",
-      "audio": "/question-bank-assets/revisions/opi/03b03fb20734a05db31c671a70a30168fd85ce04c5b60a2b9e734e23c9d4838c/audio/opi/opi-core-666.mp3",
       "audioDurationSeconds": 4.104
+    },
+    {
+      "id": "opi-core-660",
+      "audio": "/question-bank-assets/revisions/opi/c120945f58a1e2736c70289f15d9bfdeea3244bbeae27d99e02125e5ac80c2af/audio/opi/opi-core-660.mp3",
+      "audioText": "What is your opinion of your company's no-smoking policy?",
+      "taskTitle": "人的因素-禁烟政策-1",
+      "audioTextZh": "你如何看待你所在公司的禁烟政策？",
+      "referenceText": "I am not employed by an airline, but I support a strict no-smoking policy at my flight school. Smoking creates a fire risk, harms health, and can distract people from safe operations. A clear prohibition also gives students and instructors the same standard to follow.",
+      "referenceTextZh": "我尚未受雇于航空公司，但支持航校实行严格禁烟政策。吸烟会带来火灾风险、损害健康，并使人无法专注于安全运行。明确禁止还为学员和教员提供统一标准。",
+      "audioDurationSeconds": 3.144
+    },
+    {
+      "id": "opi-core-662",
+      "audio": "/question-bank-assets/revisions/opi/563a54796aa84b6b37f1cae9729a2865a6cdab3d858118f475a998b708a2a837/audio/opi/opi-core-662.mp3",
+      "audioText": "Can you describe your company's smoking policy for flight crew?",
+      "taskTitle": "人的因素-禁烟政策-2",
+      "audioTextZh": "你能否说明你所在公司对飞行机组吸烟的规定？",
+      "referenceText": "I am not employed by an airline. At my flight school, smoking is not permitted in the aircraft or during flight training, and pilots and instructors are expected to follow the school's safety rules. This reduces fire risk and keeps the cockpit environment safe and professional.",
+      "referenceTextZh": "我尚未受雇于航空公司。在我的航校，飞机内和飞行训练期间都禁止吸烟，飞行员和教员必须遵守航校安全规定。这能降低火灾风险，并保持驾驶舱环境安全、专业。",
+      "audioDurationSeconds": 3.384
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-04"
 }

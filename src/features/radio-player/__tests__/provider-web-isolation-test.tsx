@@ -1,3 +1,4 @@
+jest.mock('@/components/navigation/useAppRouter', () => ({useAppRouter:()=>({push:jest.fn()})}));
 /* eslint-disable import/first */
 import React from 'react';
 import { act, render } from '@testing-library/react-native';
@@ -16,6 +17,8 @@ const mockPlayer = {
   get currentStatus() { return mockCurrentStatus; },
   get isLoaded() { return mockCurrentStatus.isLoaded; },
 };
+const mockAnnotations = { version: 2, legacyImported: true, tagDefinitions: [{ id: 'good', label: '好题', color: 'green' }], highlightDefinitions: [], entries: { public: { bankId: 'listening', categoryId: 'c', topicId: 'topic', cardId: 'public', tagIds: ['good'], highlights: [], note: '', updatedAt: '' } } };
+jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ store: mockAnnotations }) }));
 jest.mock('@/platform/audio/browser-audio-player', () => ({ useBrowserAudioPlayer: () => mockPlayer }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => mockAuth }));
 jest.mock('@/config/web-runtime', () => ({ isEdgeOneProductionWeb: () => true }));
@@ -44,7 +47,7 @@ it('clears member A content synchronously on logout and keeps it cleared when B 
   account(); await view.rerender(tree());
   expect(mockValue.catalogs).toEqual(mockPublic); expect(mockPlayer.pause).toHaveBeenCalled(); expect(mockPlayer.replace).toHaveBeenCalledWith(null);
   mockLoad.mockRejectedValue(new Error('offline')); account('B'); await view.rerender(tree()); await flush(); await act(() => mockValue.activateSession()); await flush();
-  expect(mockValue.catalogs).toEqual(mockPublic); expect(mockValue.error).toContain('播放列表加载失败');
+  expect(mockValue.catalogs).toEqual(mockPublic); expect(mockValue.catalogError).toContain('播放列表加载失败'); expect(mockValue.error).toBeUndefined();
   await view.unmount();
 });
 
@@ -126,5 +129,33 @@ it('waits for the replacement in repeat-one mode instead of replaying the old en
   await view.rerender(tree()); await flush();
   expect(mockPlayer.play).toHaveBeenCalledTimes(2);
   expect(mockValue.position).toBe(0);
+  await view.unmount();
+});
+
+
+it('does not restart directory loading when a heartbeat refresh leaves content access unchanged', async () => {
+  const event = beginCommerceEntitlementGeneration('A');
+  const snapshot = { membership: { active: true, expiresAt: '2027-01-01T00:00:00Z' }, serverTime: '2026-10-25T00:00:00Z' } as any;
+  publishCommerceEntitlementChange({ ...event, snapshot });
+  const view = await render(tree()); await flush();
+  await act(() => mockValue.activateSession()); await flush();
+  const calls = mockLoad.mock.calls.length;
+  await act(() => { publishCommerceEntitlementChange({ ...event, snapshot: { ...snapshot, serverTime: '2026-10-25T00:00:01Z' } }); });
+  await flush();
+  expect(mockLoad).toHaveBeenCalledTimes(calls);
+  await view.unmount();
+});
+
+it('filters the browser queue and clears empty results without autoplay', async () => {
+  const view = await render(tree()); await flush();
+  await act(() => mockValue.setQueueFilter!({ tags: false, tagIds: [], highlights: false, highlightIds: [], notes: true })); await flush();
+  expect(mockValue.currentTrack).toBeUndefined();
+  expect(mockPlayer.pause).toHaveBeenCalled();
+  expect(mockPlayer.replace).toHaveBeenCalledWith(null);
+  await act(() => mockValue.next()); await flush();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  await act(() => mockValue.setQueueFilter!({ tags: false, tagIds: [], highlights: false, highlightIds: [], notes: false })); await flush();
+  expect(mockValue.currentTrack).toBeDefined();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
   await view.unmount();
 });

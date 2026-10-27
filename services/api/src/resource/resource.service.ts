@@ -29,9 +29,9 @@ export class ResourceService {
   }
 
   async resolve(
-    accountId: string,
+    accountId: string | undefined,
     publicPath: string,
-    sessionId: string,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     checksum?: string,
   ): Promise<ResolvedResource> {

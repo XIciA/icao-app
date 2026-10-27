@@ -1,17 +1,16 @@
-import { useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { ArrowLeft, Eye, EyeOff, Check } from '@/components/ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { AppText, TextField, Screen } from '@/components/ui';
-import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 // Shared implementation behind the explicit iOS and Android entry points.
 
 export function AuthShell({ children, showBack = true, onBack }: { children: React.ReactNode; showBack?: boolean; onBack?: () => void }) {
   return (
-    <Screen background={<SoftGlow intensity={0.9} size={350} style={styles.glow} />} keyboard scroll contentStyle={styles.screen}>
+    <Screen keyboard scroll contentStyle={styles.screen}>
       {showBack ? <AuthTopBar onBack={onBack} /> : null}
       {children}
     </Screen>
@@ -140,14 +139,14 @@ export function CodeField({ value, onChangeText }: { value: string; onChangeText
   );
 }
 
-export function Checkbox({ checked, label, linkLabel, onLinkPress, onPress }: { checked: boolean; label: string; linkLabel?: string; onLinkPress?: () => void; onPress: () => void; }) {
+export function Checkbox({ checked, label, accessibilityLabel, linkLabel, onLinkPress, onPress }: { checked: boolean; accessibilityLabel?: string; label: string; linkLabel?: string; onLinkPress?: () => void; onPress: () => void; }) {
   return (
     <View style={styles.checkControl}>
-      <Pressable accessibilityRole="checkbox" accessibilityState={{ checked }} onPress={onPress} style={styles.checkInner}>
+      <Pressable accessibilityLabel={accessibilityLabel ?? label} hitSlop={8} accessibilityRole="checkbox" accessibilityState={{ checked }} onPress={onPress} style={styles.checkInner}>
         <View style={[styles.checkbox, checked && styles.checkboxChecked]}>
           {checked ? <Check color={colors.primaryForeground} size={12} /> : null}
         </View>
-        <AppText variant="caption">{label}</AppText>
+        {label ? <AppText variant="caption">{label}</AppText> : null}
       </Pressable>
       {linkLabel && onLinkPress ? (
         <TextLink label={linkLabel} onPress={onLinkPress} />
@@ -175,8 +174,7 @@ export function Divider({ label }: { label: string }) {
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingHorizontal: spacing[5], position: 'relative' },
-  glow: { right: -155, top: -175 },
+  screen: { paddingHorizontal: spacing[5], position: 'relative', width: '100%', maxWidth: 520, alignSelf: 'center' },
   back: { alignItems: 'center', height: 42, justifyContent: 'center', marginLeft: -spacing[2], marginTop: spacing[1], width: 42 },
   heading: { gap: spacing[1.5], marginTop: spacing[1] },
   authField: { gap: spacing[2] },

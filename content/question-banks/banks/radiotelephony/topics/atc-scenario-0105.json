@@ -53,7 +53,7 @@
       "taskTitle": "CSN 230-6",
       "audioText": "B: You find the taxiway lighting is very dim, and ask for brightening them up.",
       "audioTextZh": "B: 你发现滑行道灯很暗，请求调亮。",
-      "referenceText": "Baiyun Ground, CSN 230, can you turn up the taxiway lighting? It’s really dim.",
+      "referenceText": "Baiyun Ground, CSN 230, can you turn up the taxiway lighting? It's really dim.",
       "referenceTextZh": "白云地面，CSN 230，能否调亮滑行道灯？灯光真的很暗。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1808.mp3"
     },
@@ -69,7 +69,7 @@
     {
       "id": "atc-scenario-0105-card-main-1810",
       "taskTitle": "CSN 230-8",
-      "audioText": "C: CSN 230, taxi straight ahead, I’ll keep you advised.",
+      "audioText": "C: CSN 230, taxi straight ahead, I'll keep you advised.",
       "audioTextZh": "C: CSN 230，直行滑行，我会持续给你提示。",
       "referenceText": "Taxi straight ahead, CSN 230.",
       "referenceTextZh": "直行滑行，CSN 230。",
@@ -114,7 +114,7 @@
     {
       "id": "atc-scenario-0105-card-main-1815",
       "taskTitle": "CSN 230-13",
-      "audioText": "C: CSN 230, you’ve taken a wrong turn. Now you are on EC.\nB: Apologize to the controller, and ask him what you should do next.",
+      "audioText": "C: CSN 230, you've taken a wrong turn. Now you are on EC.\nB: Apologize to the controller, and ask him what you should do next.",
       "audioTextZh": "C: CSN 230，你转错了。现在你在 EC 上。\nB: 向管制员道歉，并问他下一步该怎么办。",
       "referenceText": "Sorry for that. Request further instruction, CSN 230.",
       "referenceTextZh": "对此抱歉。请求进一步指令，CSN 230。",

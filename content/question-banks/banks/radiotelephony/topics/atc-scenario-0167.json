@@ -16,7 +16,7 @@
       "id": "atc-scenario-0167-card-main-2884",
       "taskTitle": "AFR 332-2",
       "audioText": "C: Station calling Wuhan Delivery, I read you 2.\nB: you find you have some problem with your transmitter, inform Wuhan Delivery of your problem and tell the controller you need maintenance check.",
-      "audioTextZh": "C： 呼叫武汉放行的电台，我听你为 2。\nB： 你发现发射机有问题，向武汉放行报告问题，并告诉管制员你需要维修检查。",
+      "audioTextZh": "C：呼叫武汉放行的电台，我听你为 2。\nB：你发现发射机有问题，向武汉放行报告问题，并告诉管制员你需要维修检查。",
       "referenceText": "Wuhan Delivery, AFR 332, we have some problem with our transmitter, request maintenance check.",
       "referenceTextZh": "武汉放行，AFR 332，我们的发射机有问题，请求维修检查。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q02.mp3"
@@ -52,7 +52,7 @@
       "id": "atc-scenario-0167-card-main-2888",
       "taskTitle": "AFR 332-6",
       "audioText": "AFR 332, Wuhan Departure, roger, turn right heading 270, climb to 2,400 meters, maintain visual separation. When able, could you describe the drone in detail?\nB: read back the ATC instructions and tell the controller it's a white drone, crossing from left to right.",
-      "audioTextZh": "AFR 332，武汉离场，收到，右转航向 270，爬升至 2,400 米，保持目视间隔。可以时，请详细描述无人机。\nB： 复诵空中交通管制指令，并告诉管制员这是一架白色无人机，正从左向右穿越。",
+      "audioTextZh": "AFR 332，武汉离场，收到，右转航向 270，爬升至 2,400 米，保持目视间隔。可以时，请详细描述无人机。\nB：复诵空中交通管制指令，并告诉管制员这是一架白色无人机，正从左向右穿越。",
       "referenceText": "turn right heading 270, climb to 2,400 meters, maintain visual separation. It's a white drone, crossing from left to right, AFR 332.",
       "referenceTextZh": "右转航向 270，爬升至 2004 百米，保持目视间隔。这是一架白色无人机，正从左向右穿越，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q06.mp3"
@@ -124,7 +124,7 @@
       "id": "atc-scenario-0167-card-main-2896",
       "taskTitle": "AFR 332-14",
       "audioText": "C: AFR 332, roger MAYDAY, turn left heading 300, radar vector to Frankfurt airport, when able, report souls on board and fuel endurance.\nB: read back and tell the controller you have 428 passengers and 12 crew members on board and fuel remaining 16000 pounds.",
-      "audioTextZh": "C： AFR 332，收到 MAYDAY，左转航向 300，雷达引导前往法兰克福机场。可以时，报告机上人数和燃油续航时间。\nB： 复诵指令，并告诉管制员机上有 428 名乘客和 12 名机组人员，剩余燃油 16,000 磅。",
+      "audioTextZh": "C：AFR 332，收到 MAYDAY，左转航向 300，雷达引导前往法兰克福机场。可以时，报告机上人数和燃油续航时间。\nB：复诵指令，并告诉管制员机上有 428 名乘客和 12 名机组人员，剩余燃油 16,000 磅。",
       "referenceText": "turn left heading tree zero zero, radar vector to Frankfurt airport, we have 400 and 28 passengers and 12 crew members on board and fuel remaining 16000 pounds, AFR 332.",
       "referenceTextZh": "左转航向 300，雷达引导前往法兰克福机场，机上有 428 名乘客和 12 名机组人员，剩余燃油 16,000 磅，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q14.mp3"

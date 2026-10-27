@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Headers, Param, Query, Req, Res, UseGuards } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Headers, Param, Query, Req, Res } from '@nestjs/common';
 import type {
   ApiSuccessEnvelope,
   EditorialChannel,
@@ -8,11 +8,9 @@ import type {
 import type { FastifyReply } from 'fastify';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
-import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { EditorialService } from './editorial.service';
 
 @Controller('v1/editorial')
-@UseGuards(RequireAuthGuard)
 export class EditorialController {
   constructor(private readonly editorial: EditorialService) {}
 

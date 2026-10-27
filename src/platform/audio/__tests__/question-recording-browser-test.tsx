@@ -4,6 +4,7 @@ import { useQuestionRecording } from '../use-question-recording.browser';
 import recordings from '../opi-recorded-audio.json';
 import source from '../../../../content/question-banks/native-audio/opi/manifest.json';
 import supplemental from '../../../../content/question-banks/web-audio/opi/manifest.json';
+import online from '../../../../content/question-banks/native-audio/opi/online-recordings.json';
 
 // Jest runs this verification against the real source manifest in Node.
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -29,6 +30,11 @@ it('never plays an outdated recording for changed question text', async () => {
   expect(hook.result.current.uri).toBeUndefined();
   expect(mockAsset.mock.calls.every(([path]) => path === undefined)).toBe(true);
 });
+it('keeps the exact existing recording for the reviewed acronym-only display', async () => {
+  const hook = await renderHook(() => useQuestionRecording('opi-core-114', 'What is CVR?'));
+  await waitFor(() => expect(hook.result.current.uri).toBe('https://private.test/signed.mp3'));
+  expect(mockAsset).toHaveBeenLastCalledWith(recordings.records['opi-core-114'].displayVariants[0].path);
+});
 it('does not request a recording for unknown or absent question IDs', async () => {
   const hook = await renderHook(() => useQuestionRecording('new-question', text));
   expect(hook.result.current.resolving).toBe(false);
@@ -45,7 +51,7 @@ it('ignores a stale hash result after changing questions', async () => {
   expect(mockAsset).toHaveBeenLastCalledWith(undefined);
 });
 it('matches every published recording to the existing source manifest by text and audio checksum', () => {
-  expect(Object.keys(recordings.records)).toHaveLength(source.rows.length + supplemental.rows.length);
+  expect(Object.keys(recordings.records)).toHaveLength(source.rows.length + supplemental.rows.length + online.rows.length);
   for (const row of source.rows) {
     const record = (recordings.records as Record<string, { textSha256: string; path: string }>)[row.id];
     expect(record.textSha256).toBe(createHash('sha256').update(row.text).digest('hex'));
@@ -64,9 +70,13 @@ it('covers every current OPI audio text with a matching private recording', () =
       if (card.kind === 'image' || !card.audioText) continue;
       expect(ids.has(card.id)).toBe(false);
       ids.add(card.id);
-      const record = (recordings.records as Record<string, { textSha256: string; path: string }>)[card.id];
+      const record = (recordings.records as Record<string, { textSha256: string; path: string; displayVariants?: { textSha256: string; path: string }[] }>)[card.id];
       expect(record).toBeDefined();
-      expect(record.textSha256).toBe(createHash('sha256').update(card.audioText).digest('hex'));
+      const matching = [record, ...(record.displayVariants ?? [])].find(version => version.textSha256 === createHash('sha256').update(card.audioText).digest('hex'));
+      expect(matching).toBeDefined();
+      // Native aliases may have a different filename, but must address exactly
+      // the same immutable recording bytes, never a recording at the new index.
+      expect(matching!.path.split('/')[4]).toBe(card.audio.split('/')[4]);
     }
   }
   expect([...ids].sort()).toEqual(Object.keys(recordings.records).sort());

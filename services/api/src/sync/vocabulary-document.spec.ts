@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { mergeVocabularyDocuments, vocabularyDocumentSchema } from './vocabulary-document';
+import { vocabularyRetiredIds } from '@icao/contracts';
 
 describe('vocabulary document merge', () => {
   it('keeps the newest state per word and newest test result', () => {
@@ -33,4 +34,38 @@ describe('vocabulary document merge', () => {
   it('rejects malformed vocabulary documents', () => {
     expect(vocabularyDocumentSchema.safeParse({ schemaVersion: 1, words: {}, updatedAt: 'invalid' }).success).toBe(false);
   });
+
+  it('does not resurrect removed cards when an older device pushes its stale full document', () => {
+    const id=Object.entries(vocabularyRetiredIds).find(([,target])=>target===null)![0];
+    const base={schemaVersion:1 as const,words:{},updatedAt:'2026-10-26T00:00:00.000Z'};
+    const stale={...base,words:{[id]:{status:'known',favorite:true,updatedAt:'2026-10-25T00:00:00.000Z'}}};
+    expect(mergeVocabularyDocuments(base,stale).words).toEqual({});
+    expect(vocabularyDocumentSchema.parse(stale).words).toEqual({});
+  });
+
+  it('keeps later edits of a merged card instead of overwriting them from a stale alias', () => {
+    const [oldId,target]=Object.entries(vocabularyRetiredIds).find(([,id])=>typeof id==='string')! as [string,string];
+    const base={schemaVersion:1 as const,updatedAt:'2026-10-26T00:00:00.000Z'};
+    const current={...base,words:{[target]:{status:'known',favorite:false,updatedAt:base.updatedAt}}};
+    const stale={...base,words:{[oldId]:{status:'wrong',favorite:true,updatedAt:'2026-10-25T00:00:00.000Z'}}};
+    expect(mergeVocabularyDocuments(current,stale).words).toEqual(current.words);
+  });
+  it('preserves learned status when an old device only favorites an unlearned alias, while allowing explicit canonical resets',()=>{
+    const [oldId,target]=Object.entries(vocabularyRetiredIds).find(([,id])=>typeof id==='string')! as [string,string];
+    const base={schemaVersion:1 as const,updatedAt:'2026-10-26T00:00:00.000Z'};
+    const current={...base,words:{[target]:{status:'known',favorite:false,updatedAt:'2026-10-25T00:00:00.000Z'}}};
+    const alias={...base,words:{[oldId]:{status:'new',favorite:true,updatedAt:base.updatedAt}}};
+    expect(mergeVocabularyDocuments(current,alias).words[target]).toMatchObject({status:'known',favorite:true});
+    const reset={...base,words:{[target]:{status:'new',favorite:false,updatedAt:base.updatedAt}}};
+    expect(mergeVocabularyDocuments(current,reset).words[target]?.status).toBe('new');
+  });
+});
+
+it('round-trips rated session answers while retiring a merged cursor without repeating its survivor',()=>{
+  const updatedAt='2026-10-27T00:00:00.000Z';
+  const policy={schemaVersion:1 as const,version:5,retiredIds:{old:'survivor'},retiredFavoriteKeys:{},testWords:{survivor:{word:'survivor',meaning:'保留词'}}};
+  const value={schemaVersion:1,words:{old:{status:'known',favorite:false,updatedAt}},updatedAt,studySession:{wordIds:['old','survivor'],nextWordId:'old',order:'random',startedAt:updatedAt,updatedAt,answers:{old:'known'}}};
+  const result=mergeVocabularyDocuments(value,value,policy);
+  expect(result.studySession).toMatchObject({wordIds:['survivor'],nextWordId:null,answers:{survivor:'known'}});
+  expect(result.words.old).toBeUndefined();expect(result.words.survivor?.status).toBe('known');
 });

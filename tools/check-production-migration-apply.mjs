@@ -38,7 +38,7 @@ const clientTableGrantRevocationSource = [
   clientTableGrantRevocationBase,
   clientTableGrantRevocationExtension,
   ...await Promise.all(['0042_weekly_ai_allowance', '0043_app_content_releases',
-    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0052_content_work_orders', '0054_bouncy_xavin']
+    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0052_content_work_orders', '0054_bouncy_xavin', '0056_vocabulary_live_releases']
     .map(tag => readFile(`services/api/drizzle/${tag}.sql`, 'utf8'))),
 ].join('\n');
 
@@ -54,7 +54,7 @@ for (const contract of [
   'rehearse-production-migrations.sh',
   'parse-rehearsal',
   'characters unsafe for remote argument transport',
-  'git archive --format=tar "$SOURCE_SHA"',
+  'git archive --format=tar "$PAYLOAD_SOURCE_SHA"',
   '/opt/icao/runtime/production-migrations',
   '# BEGIN production-migration-upload-name-validation',
   '# END production-migration-upload-name-validation',
@@ -604,7 +604,7 @@ const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'
   .map((match) => match[1])
   .sort();
 if (
-  schemaPublicTables.length !== 67
+  schemaPublicTables.length !== 68
   || JSON.stringify(schemaPublicTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
   || JSON.stringify(Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort())
     !== JSON.stringify(schemaPublicTables)

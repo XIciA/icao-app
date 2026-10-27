@@ -1,15 +1,23 @@
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
+import { createSentenceReplayLedger } from '@/features/mock-exam/sentence-replay';
+import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
+import { listeningAnswerResults } from '../lib/listening-answer-results';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { useRouter as useExitRouter } from 'expo-router';
+import { answerCardMarkers } from '../annotations/answer-card-markers.native';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
+import { GuideAnchor, useGuide, useGuideTarget } from '@/features/usage-guide/GuideBindings';
+import { TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { TUTORIAL_STEPS } from '@/features/usage-guide/tutorial-model';
 import { annotatedThisSession } from '../lib/session-recap';
 import { readAnnotationStore } from '../annotations/annotation-store.native';
 import { useSaveAction } from '@/features/vocabulary/use-save-action.native';
 import { setClickStudyContext, trackProductClick } from '@/platform/product-clicks.native';
 import { usePreventRemove } from '@react-navigation/native';
-import { type Href, useFocusEffect, useRouter } from 'expo-router';
+import { type Href, useFocusEffect } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star, WifiOff } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { Alert, Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   ReduceMotion,
@@ -56,7 +64,7 @@ import type {
 } from '../types';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar.native';
-import { AnswerCardSheet } from './AnswerCardSheet';
+import { AnswerCardSheet } from './AnswerCardSheet.native';
 import { LookupPronunciation } from './LookupPronunciation';
 import { InteractiveStudyText } from './InteractiveStudyText';
 import { ImageQuestionCard } from './ImageQuestionCard';
@@ -79,6 +87,7 @@ type Props = NavigationProps & ({
   category: QuestionBankCategory;
   topic: QuestionBankTopic;
   initialCardId?: string;
+  loginResume?: string;
   studyPackage?: never;
 } | {
   dataset?: never;
@@ -94,15 +103,14 @@ export function QuestionBankStudyScreen(props: Props) {
 }
 
 function StudyContent(props: Props) {
+  const replayLedger = props.studyPackage ? (props.studyPackage.sentenceReplay ??= createSentenceReplayLedger()) : undefined;
   const { onReturn, returnTo, returnHref, returnLabel, sourceRoute } = props;
   const router = useRouter();
+  const exitRouter = useExitRouter();
   const tutorial = useTutorial();
   const guide = useGuide();
-  const guideExitAfterSave = useRef<(() => void) | null>(null);
-  const guideLeave = useRef<() => void>(() => undefined);
-  const guideCurrent = guide?.current; const registerGuideExit = guide?.guardExit;
-  useEffect(() => { if (!guideCurrent || !registerGuideExit) return; registerGuideExit(done => { guideExitAfterSave.current = done; guideLeave.current(); }); return () => registerGuideExit(null); }, [guideCurrent, registerGuideExit]);
-  const tutorialExitRequested = useRef<'exit' | 'restart' | false>(false);
+  const pauseGuide = guide?.pause;
+  const guideCurrent = guide?.current;
   useFocusEffect(useCallback(() => { setClickStudyContext(props.dataset?.id ?? (props.studyPackage?.record.recordType === 'mock_exam' ? 'mock-exam' : 'study')); return () => setClickStudyContext('study'); }, [props.dataset?.id, props.studyPackage?.record.recordType]));
   const insets = useSafeAreaInsets();
   const { width: viewportWidth } = useAppViewportDimensions();
@@ -114,6 +122,7 @@ function StudyContent(props: Props) {
       category: props.category,
       topic: props.topic,
       initialCardId: props.initialCardId,
+      loginResume: props.loginResume,
     });
   const tutorialStep = tutorial ? TUTORIAL_STEPS[tutorial.progress.step]?.id : undefined;
   const guiding = Boolean(tutorial && !session.historyRecord);
@@ -131,6 +140,7 @@ function StudyContent(props: Props) {
   const [activeHighlightId, setActiveHighlightId] = useState('green');
   const [managingAnnotations, setManagingAnnotations] = useState(false);
   const [annotationPanelTop, setAnnotationPanelTop] = useState<number>();
+  const pendingFavoriteTeaching = useRef(false);
   const [lookup, setLookup] = useState<StaticWordLookupEntry>();
   useFocusEffect(useCallback(() => () => setLookup(undefined), []));
   const [finishing, setFinishing] = useState(false);
@@ -173,7 +183,6 @@ function StudyContent(props: Props) {
   const lookupAllowed = !examMode && historyContentAllowed;
   useEffect(() => { if (!lookupAllowed) setLookup(undefined); }, [lookupAllowed]);
   const listeningReviewActive = false;
-  const listeningSegmentNavigationActive = false;
   const navigationStartIndex = 0;
   const navigationEndIndex = totalItems - 1;
   const navigationItemCount = totalItems;
@@ -181,6 +190,18 @@ function StudyContent(props: Props) {
   const forceListeningReveal = false;
   const sessionCards = useMemo(() => session.items.map((entry) => entry.card), [session.items]);
   const imageCard = card?.kind === 'image';
+  const availableTutorialSteps = session.hydrated && card && dataset && !examMode && !session.historyRecord ? [
+    ...(card.audio ? ['study-play'] : []),
+    ...(!imageCard ? ['study-reveal'] : []),
+    ...(!imageCard && dataset.study.tools.highlights ? ['study-highlight'] : []),
+    ...(!imageCard && dataset.study.tools.tags ? ['study-tag'] : []),
+    ...(session.behavior.workbenchTabs.includes('notes') ? ['study-note'] : []),
+    ...(!imageCard && dataset.study.tools.dictionary && card.audioText ? ['study-lookup', 'study-favorite'] : []),
+    ...(session.behavior.workbenchTabs.includes('mine') ? ['study-record', 'study-review'] : []),
+    'study-finish',
+  ].join(',') : '';
+  const offerGuide = guide?.offer;
+  useEffect(() => { if (availableTutorialSteps) offerGuide?.('study', availableTutorialSteps.split(',')); }, [availableTutorialSteps, offerGuide]);
   const audioAsset = useQuestionBankAsset(historyContentAllowed ? card?.audio : undefined);
   useQuestionBankAudioPreload(
     sessionCards,
@@ -195,29 +216,38 @@ function StudyContent(props: Props) {
   } : undefined;
   const annotations = useQuestionAnnotations(target);
   useEffect(() => { if (annotations.hydrated && !annotations.loadErrorMessage && !initialAnnotations.current) initialAnnotations.current = JSON.parse(JSON.stringify(annotations.store)); }, [annotations.hydrated, annotations.loadErrorMessage, annotations.store]);
+  useGuideTarget('study-reveal', 'sentence-answer', session.revealed ? '原文和翻译已经展开，可以继续。' : undefined, session.revealed);
+  const existingHighlight = !!annotations.entry?.highlights.length;
+  const existingTag = !!annotations.entry?.tagIds.length;
+  const existingNote = !!annotations.entry?.note.trim();
+  useGuideTarget('study-highlight', existingHighlight ? 'sentence-text' : 'sentence-highlight-tool', existingHighlight ? '这里已有高亮，可保留并继续，也可以补充标记。' : session.toolMode === 'highlight' ? '选中原文中想记住的词，保存高亮。' : undefined, existingHighlight);
+  useGuideTarget('study-tag', 'sentence-tag-tool', existingTag ? '这道题已有标签，可保留并继续。' : undefined, existingTag);
+  useGuideTarget('study-note', 'sentence-workbench', existingNote ? '这里已有笔记，可保留并继续，也可以编辑后完成保存。' : '在“我的笔记”中编辑内容，再点完成保存。', existingNote && !editingWorkbenchTab);
+  useGuideTarget('study-favorite', 'sentence-favorite', lookup && wordFavorites.isFavorite({word: lookup.word}) ? '这个词已在词本中，可以继续。' : undefined, !!lookup && wordFavorites.isFavorite({word: lookup.word}));
   useEffect(() => {
-    if (!guiding || !session.hydrated || !tutorialStep || tutorialStep === 'play' || tutorialStep === 'reveal') return;
+    if (!guiding || !session.hydrated || !tutorialStep || tutorialStep === 'play' || tutorialStep === 'reveal' || tutorialStep === 'favorite') return;
     revealForTutorial(true);
-    setTutorialTool(undefined);
+    setTutorialTool(Platform.OS === 'web' && tutorialStep === 'lookup' ? 'dictionary' : undefined);
     setLookup(undefined);
     setEditingWorkbenchTab(undefined);
     Keyboard.dismiss();
     if (tutorialStep === 'note') setTutorialTab('notes');
     if (tutorialStep === 'record' || tutorialStep === 'review') setTutorialTab('mine');
-    if (tutorialStep === 'favorite') {
-      const entry = findStaticWordLookup('Maintaining');
-      if (entry) { sessionWords.current.add(entry.word); setLookup(entry); }
-    }
   }, [guiding, session.hydrated, tutorialStep, revealForTutorial, setTutorialTool, setTutorialTab]);
   useEffect(() => {
     if (tutorial && session.historyRecord && session.hydrated) revealForTutorial(true);
   }, [tutorial, session.historyRecord, session.hydrated, revealForTutorial]);
   const flushAnnotationSaves = annotations.flushPendingSaves;
   const navigateAfterStudy = useCallback(() => {
-    if (guideExitAfterSave.current) { const done = guideExitAfterSave.current; guideExitAfterSave.current = null; done(); return; }
-    if (tutorialExitRequested.current && tutorial) { if (tutorialExitRequested.current === 'restart' && tutorial.restart) tutorial.restart(); else tutorial.exit(); return; }
+    if (guideCurrent === 'study') pauseGuide?.();
     if (onReturn) {
       onReturn();
+      return;
+    }
+    if (router.canGoBack()) {
+      // This resumes a prevented swipe after saving. It must not be swallowed
+      // by the transition/tap gate; leavingStudy dispatches it only once.
+      exitRouter.back();
       return;
     }
     if (returnHref) {
@@ -234,12 +264,14 @@ function StudyContent(props: Props) {
     }
     if (dataset) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } });
     else router.replace('/(tabs)');
-  }, [dataset, onReturn, returnHref, returnTo, router, tutorial]);
+  }, [dataset, exitRouter, onReturn, returnHref, returnTo, router, guideCurrent, pauseGuide]);
 
   usePreventRemove(!leavingStudy && (!session.report || Boolean(onReturn && session.historyRecord)), () => { void leaveStudy(); });
 
+  const exitDispatched = useRef(false);
   useEffect(() => {
-    if (!leavingStudy) return;
+    if (!leavingStudy || exitDispatched.current) return;
+    exitDispatched.current = true;
     navigateAfterStudy();
   }, [leavingStudy, navigateAfterStudy]);
 
@@ -462,6 +494,8 @@ function StudyContent(props: Props) {
   const { questionSwipeGesture, recordingInteractionGesture, workbenchSwipeGesture } = useMemo(() => {
     const questionGesture = Gesture.Pan()
       .enabled(questionSwipeEnabled)
+      // Reserve the left edge for the native interactive back gesture.
+      .hitSlop({ left: -24 })
       .maxPointers(1)
       .activeOffsetX([-24, 24])
       .failOffsetY([-14, 14])
@@ -508,43 +542,12 @@ function StudyContent(props: Props) {
     const definition = annotations.tagDefinitions.find((item) => item.id === id);
     return definition ? [annotationToneColors[definition.color]] : [];
   }), [annotations.entry?.tagIds, annotations.tagDefinitions]);
-  const answerCardMarked = useMemo(() => {
-    if (session.historyReview) {
-      return new Set(session.items.flatMap((entry, index) => {
-        const state = session.states[entry.id];
-        return state?.selectedChoiceIndex !== undefined || state?.recorded || session.answers[entry.id]?.trim() ? [index] : [];
-      }));
-    }
-    if (listeningSegmentNavigationActive && listeningExamRange) {
-      return new Set(listeningExamRange.items.flatMap((entry, index) => (
-        session.states?.[entry.id]?.selectedChoiceIndex !== undefined ? [index] : []
-      )));
-    }
-    if (vercelLegacyWeb) {
-      return new Set(session.items.flatMap((entry, index) => (
-        session.states?.[entry.id]?.completed ? [index] : []
-      )));
-    }
-    return session.visitedIndexes;
-  }, [listeningExamRange, listeningSegmentNavigationActive, session.answers, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
-  const answerCardMarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '已答' : '已学';
-  const answerCardResults = useMemo(() => {
-    if (examMode) return undefined;
-    return session.items.map((entry) => {
-      const selected = session.states[entry.id]?.selectedChoiceIndex;
-      const correct = entry.card.correctChoiceIndex;
-      if (entry.dataset.id !== 'listening' || selected === undefined || correct === undefined) return undefined;
-      return selected === correct ? 'correct' as const : 'incorrect' as const;
-    });
-  }, [examMode, session.items, session.states]);
-  const answerCardTagColors = useMemo(() => session.items.map((entry) => {
-    const key = questionBankCardTargetKey({ bankId: entry.dataset.id, categoryId: entry.category.id, topicId: entry.topic.id, cardId: entry.card.id });
-    return (annotations.store.entries[key]?.tagIds ?? []).flatMap((id) => {
-      const definition = annotations.tagDefinitions.find((tag) => tag.id === id);
-      return definition ? [annotationToneColors[definition.color]] : [];
-    });
-  }), [annotations.store.entries, annotations.tagDefinitions, session.items]);
-  const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
+  const answerCardResults = useMemo(() => examMode ? undefined : listeningAnswerResults(
+    session.items, item => session.states[item.id],
+  ), [examMode, session.items, session.states]);
+  const cardMarkers = useMemo(() => answerCardMarkers(session.items, annotations.store), [session.items, annotations.store]);
+  const answerCardTagColors = cardMarkers.map(value => value.tags);
+  const answerCardHighlightColors = cardMarkers.map(value => value.highlights);
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
   const dictionaryMode = lookupInteraction === 'tap';
   const annotationMode = session.toolMode === 'highlight' || session.toolMode === 'tags'
@@ -640,7 +643,6 @@ function StudyContent(props: Props) {
     }
   }
 
-  guideLeave.current = () => { if (session.report) setLeavingStudy(true); else void leaveStudy(); };
 
   function confirmExitWithoutSave() {
     if (!canLeaveWithoutSave || finishInFlight.current || taskInteractionActive) return;
@@ -732,15 +734,15 @@ function StudyContent(props: Props) {
   }
 
   if (session.report && !session.historyRecord) {
-    return <StudyReport interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
+    return <StudyReport answerScope={!session.examMode && !session.historyRecord ? { items: session.items, current: session.currentIndex } : undefined} localReturn={Boolean(onReturn)} interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (listeningCheckpoint) return <StudyReport record={listeningCheckpoint} noteCount={0} interaction="choices" onReturn={navigateAfterStudy} busy={finishing} error={finishError} onExitWithoutSave={canLeaveWithoutSave ? confirmExitWithoutSave : undefined} onEnd={() => { void finish('abort'); }} onContinue={() => { if (!finishing && listeningExamRange) { session.goTo(listeningExamRange.endIndex + 1); setListeningCheckpoint(undefined); } }} />;
-  if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
+  if (!session.hydrated) return <SafeAreaView style={styles.state}><GlobalLoadingScreen /><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
   if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
 
-  const entry = annotations.entry ? { ...annotations.entry, highlights: annotations.entry.highlights.filter((highlight) => highlight.contentFingerprint === contentFingerprint(highlight.blockId === 'question' ? card.audioText ?? '' : card.referenceText ?? '')) } : undefined;
+  const entry = annotations.entry ? { ...annotations.entry, highlights: annotations.entry.highlights.filter((highlight) => highlight.contentFingerprint === contentFingerprint(annotationBlockText(card, highlight.blockId))) } : undefined;
   const transcript = card.kind === 'image' ? null : (
-    <TutorialTarget ids={['text', 'highlight']} scroll><View style={styles.cardContent}>{session.toolMode === 'highlight' ? <GuideAnchor id="sentence-highlight-tool" /> : null}
+    <TutorialTarget ids={['text', 'highlight']}><View style={styles.cardContent}>{session.toolMode === 'highlight' ? <GuideAnchor id="sentence-highlight-tool" /> : null}
       <View style={styles.sectionTitle}><Languages color={colors.mutedForeground} size={15} /><AppText variant="button">{session.behavior.transcriptLabel}</AppText></View>
       <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="question" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={!managingAnnotations && annotations.highlightDefinitions.some((definition) => definition.id === activeHighlightId) && session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={lookupAllowed && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.audioText} />
       {card.audioTextZh ? <AppText style={styles.translation}>{card.audioTextZh}</AppText> : null}
@@ -755,6 +757,8 @@ function StudyContent(props: Props) {
   const integratedRecordingLayout = session.behavior.taskKind === 'recording';
   const taskContent = (
     <StudyTaskRenderer
+      highlightMode={!examMode && session.toolMode === 'highlight'}
+      renderChoiceText={!examMode && (session.toolMode === 'highlight' || entry?.highlights.some(value => value.blockId.startsWith('choice-'))) ? (text, index) => (<InteractiveStudyText activeHighlightId={activeHighlightId} blockId={`choice-${index}`} definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={!managingAnnotations && annotations.highlightDefinitions.some((definition) => definition.id === activeHighlightId) && session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={lookupAllowed && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} onWordPress={() => { if (!session.examMode && !listeningReviewActive && session.toolMode !== 'highlight') session.chooseOption(index); }} text={text} />) : undefined}
       examMode={examMode}
       behavior={session.behavior}
       blockedExternalGesture={questionSwipeGesture}
@@ -797,7 +801,7 @@ function StudyContent(props: Props) {
         {!examMode && historyContentAllowed ? <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable> : null}
         <Pressable accessibilityLabel={examMode ? "当前题号" : "打开答题卡"} disabled={examMode || taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}>{!examMode ? <Grid3X3 color={colors.mutedForeground} size={15} /> : null}<AppText style={styles.counter} variant="button">{navigationCurrentIndex + 1} / {navigationItemCount}</AppText></Pressable>
       </View>
-      <TutorialCoach onRestart={() => { tutorialExitRequested.current = 'restart'; void leaveStudy(); }} onExit={() => { tutorialExitRequested.current = 'exit'; void leaveStudy(); }} ready={Boolean(guiding && ((tutorialStep === 'reveal' && session.revealed) || (tutorialStep === 'highlight' && annotations.entry?.highlights.length) || (tutorialStep === 'tag' && annotations.entry?.tagIds.length) || (tutorialStep === 'note' && annotations.entry?.note.trim()) || (tutorialStep === 'favorite' && lookup && wordFavorites.isFavorite({ word: lookup.word }))))} />
+
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
       {!imageCard && !listeningExamActive && historyContentAllowed ? <View testID="annotation-panel-anchor" onLayout={({ nativeEvent }) => setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height)} style={styles.tools}>
@@ -829,16 +833,16 @@ function StudyContent(props: Props) {
 
       <GestureDetector gesture={questionSwipeGesture}>
         <Animated.View style={[styles.bodyGesture, questionBodyAnimatedStyle]}>
-          <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.bodyContent} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled" onScrollBeginDrag={handleBodyScrollBegin} onScroll={tutorial ? event => { tutorial.scrollOffset.current = event.nativeEvent.contentOffset.y; } : undefined} scrollEventThrottle={16} ref={view => { bodyScrollRef.current = view; if (tutorial) tutorial.scroll.current = view; }} showsVerticalScrollIndicator={false} style={styles.body} testID="study-body-scroll">
+          <GuideScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.bodyContent} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled" onScrollBeginDrag={handleBodyScrollBegin} scrollEventThrottle={16} ref={bodyScrollRef} showsVerticalScrollIndicator={false} style={styles.body} testID="study-body-scroll">
             {historyContentAllowed ? item.materials?.map((material) => (
               <ImageQuestionCard key={material.id} imageAlt={material.imageAlt} imagePath={material.image} />
             )) : null}
             {!historyContentAllowed ? <View style={styles.historySummary}><AppText variant="caption">会员到期后，题目与参考内容暂不可查看；你的回答和学习资料仍保留。</AppText><StudyHistoryPersonalContent answer={session.answerText} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} recorded={session.cardState?.recorded} feedback={session.historyRecord?.studyFeedback?.[item.id]} note={entry?.note} tags={entry?.tagIds} definitions={annotations.tagDefinitions} /></View> : card.kind === 'image' ? (
               <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(item.id)} />
             ) : (
-              <StudyCardStack onCollapse={() => { if (!listeningExamActive && !listeningReviewActive && historyContentAllowed) void collapseWorkbench(); }} onReveal={() => { if (!listeningExamActive && !listeningReviewActive && historyContentAllowed) session.revealCurrent(true); }} primary={<TutorialTarget ids={['audio']} scroll><View style={styles.primaryContent}>{examMode || (session.behavior.generatedAudio && !card.audio) ? <ExamQuestionAudio exam={examMode} autoPlay={true} questionId={card.id} key={item.id} uri={audioAsset.uri} text={!card.audio && session.behavior.generatedAudio ? card.audioText : undefined} label={card.taskTitle} resolving={audioAsset.resolving} onRetry={audioAsset.retry} pauseRequest={questionAudioPauseRequest} onPlaybackStart={handleQuestionPlaybackStart} practiceControls={integratedRecordingLayout ? taskContent : undefined} /> : <StudyAudioPlayer autoPlayRequest={guiding ? 0 : session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onManualPlay={handleQuestionManualPlay} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />}{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View></TutorialTarget>} revealed={session.revealed || forceListeningReveal} transcript={transcript} workbench={examMode ? null : <TutorialTarget ids={['workbench']} scroll><StudyWorkbench newRecordingToken={newRecording?.cardKey === item.id ? newRecording.token : undefined} reviewSource={reviewRelease && (dataset.id === 'radiotelephony' || dataset.id === 'storytelling' || dataset.id === 'opi') ? { ...reviewRelease, bankId: dataset.id, categoryId: category.id, topicId: topic.id } : undefined} feedbackCacheRef={workbenchFeedbackCacheRef} initialFeedback={session.historyRecord?.studyFeedback?.[item.id]} onBeforeAiOperation={session.saveCheckpoint} ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={(tab) => { setEditingWorkbenchTab(tab); if (!tab && editingWorkbenchTab === 'notes' && guiding) void annotations.flushPendingSaves().then(saved => { if (saved && annotations.entry?.note.trim()) tutorial?.event('note'); }); }} onFeedback={() => { session.markFeedback(); if (guiding) tutorial?.event('review'); }} onNoteChange={async (note) => { const saved = Boolean(await annotations.saveNote(note)); return saved; }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} /></TutorialTarget>} />
+              <StudyCardStack onCollapse={() => { if (!listeningExamActive && !listeningReviewActive && historyContentAllowed) void collapseWorkbench(); }} onReveal={() => { if (!listeningExamActive && !listeningReviewActive && historyContentAllowed) session.revealCurrent(true); }} primary={<TutorialTarget ids={['audio']}><View style={styles.primaryContent}>{examMode || (session.behavior.generatedAudio && !card.audio) ? <ExamQuestionAudio replay={examMode && dataset.id === 'sentences900' && replayLedger && item.sectionId ? { ledger: replayLedger, group: item.sectionId, item: item.id, blocked: taskInteractionActive } : undefined} exam={examMode} autoPlay={true} questionId={card.id} key={item.id} uri={audioAsset.uri} text={!card.audio && session.behavior.generatedAudio ? card.audioText : undefined} label={card.taskTitle} resolving={audioAsset.resolving} onRetry={audioAsset.retry} pauseRequest={questionAudioPauseRequest} onPlaybackStart={handleQuestionPlaybackStart} practiceControls={integratedRecordingLayout ? taskContent : undefined} /> : <StudyAudioPlayer autoPlayRequest={guiding ? 0 : session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onManualPlay={handleQuestionManualPlay} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />}{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View></TutorialTarget>} revealed={session.revealed || forceListeningReveal} transcript={transcript} workbench={examMode ? null : <TutorialTarget ids={['workbench']}><StudyWorkbench newRecordingToken={newRecording?.cardKey === item.id ? newRecording.token : undefined} reviewSource={reviewRelease && (dataset.id === 'radiotelephony' || dataset.id === 'storytelling' || dataset.id === 'opi') ? { ...reviewRelease, bankId: dataset.id, categoryId: category.id, topicId: topic.id } : undefined} feedbackCacheRef={workbenchFeedbackCacheRef} initialFeedback={session.historyRecord?.studyFeedback?.[item.id]} onBeforeAiOperation={session.saveCheckpoint} onBeforeLogin={session.prepareLogin} ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onNoteCompleted={() => { if (guiding) tutorial?.event('note'); }} onFeedback={() => { session.markFeedback(); if (guiding) tutorial?.event('review'); }} onNoteChange={async (note) => { const saved = Boolean(await annotations.saveNote(note)); return saved; }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} /></TutorialTarget>} />
             )}
-          </ScrollView>
+          </GuideScrollView>
           {swipeBoundaryMessage ? <View accessibilityLiveRegion="polite" pointerEvents="none" style={styles.swipeBoundary}><AppText variant="micro">{swipeBoundaryMessage}</AppText></View> : null}
         </Animated.View>
       </GestureDetector>
@@ -854,8 +858,8 @@ function StudyContent(props: Props) {
       </View>
       </AppContentFrame>
 
-      <AnswerCardSheet results={answerCardResults} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={answerCardMarked} markedLabel={answerCardMarkedLabel} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} unmarkedLabel={answerCardUnmarkedLabel} visible={!examMode && answerCardVisible} />
-      <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
+      <AnswerCardSheet results={answerCardResults} highlightColors={answerCardHighlightColors} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={session.learnedIndexes} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} visible={!examMode && answerCardVisible} />
+      <BottomSheet accessibilityLabel="查词结果" onClosed={() => { if (pendingFavoriteTeaching.current) { pendingFavoriteTeaching.current = false; if (guide?.current === 'study' && guide.step === 'study-favorite') guide.event('study-favorite'); } else if (guide?.current === 'study' && guide.step === 'study-favorite') guide.rewind?.('study-lookup'); }} onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>
             <AppText style={styles.lookupTitle} variant="pageTitle">{lookup?.word}</AppText>
@@ -866,14 +870,14 @@ function StudyContent(props: Props) {
                 accessibilityRole="button"
                 hitSlop={8}
                 disabled={favoriteSave.saving || favoriteSave.failed || wordFavorites.ready === false || wordFavorites.error}
-                onPress={() => { const word = lookup.word; const wasFavorite = wordFavorites.isFavorite({word}); void favoriteSave.run(async () => { await wordFavorites.toggleFavorite({word}); if (!wasFavorite) sessionFavorites.current.add(word); }, () => { if (!wasFavorite && guiding) { tutorial?.event('favorite'); setLookup(undefined); } }); }}
+                onPress={() => { const word = lookup.word; const wasFavorite = wordFavorites.isFavorite({word}); void favoriteSave.run(async () => { await wordFavorites.toggleFavorite({word}); if (!wasFavorite) sessionFavorites.current.add(word); }, () => { if (!wasFavorite && guiding) { pendingFavoriteTeaching.current = true; setLookup(undefined); } }); }}
                 style={({ pressed }) => [styles.lookupFavorite, pressed ? styles.lookupFavoritePressed : null]}
               >
-                <Star
+                {favoriteSave.saving ? <ActivityIndicator size="small" color={colors.accent} /> : <Star
                   color={wordFavorites.isFavorite({ word: lookup.word }) ? colors.accent : colors.mutedForeground}
                   fill={wordFavorites.isFavorite({ word: lookup.word }) ? colors.accent : 'transparent'}
                   size={22}
-                />
+                />}
               </Pressable></TutorialTarget>
             ) : null}
           </View>

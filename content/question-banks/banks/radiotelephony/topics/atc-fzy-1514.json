@@ -8,9 +8,9 @@
     {
       "id": "radiotelephony-fzy-219166",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-1",
-      "audioText": "[Your call sign is BAW3532, from London to Shanghai, you are now on airway H14, 11600m maintaining, next HO, make an initial contact with Xi’an Control. ]",
-      "audioTextZh": "【你的呼号是英航3532，从伦敦飞往上海，你现在在航路H14上，正保持11600米，下一点是HO，与西安区调进行初始联系。】",
-      "referenceText": "Xi’an Control, BAW3532, now on airway H14, 11600m maintaining, next HO.",
+      "audioText": "Your call sign is BAW3532, from London to Shanghai, you are now on airway H14, 11600m maintaining, next HO, make an initial contact with Xi'an Control.",
+      "audioTextZh": "你的呼号是英航3532，从伦敦飞往上海，你现在在航路H14上，正保持11600米，下一点是HO，与西安区调进行初始联系。",
+      "referenceText": "Xi'an Control, BAW3532, now on airway H14, 11600m maintaining, next HO.",
       "referenceTextZh": "西安区调，英航3532，现在在航路H14上，正保持11600米，下一点是HO。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b60680d6285b65ddbf2e.mp3"
     },
@@ -26,16 +26,16 @@
     {
       "id": "radiotelephony-fzy-219168",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-3",
-      "audioText": "[You have a visual on a tornado at your 9 o’clock, about 3 miles, so you want to deviate 20km right of track to avoid bad weather.]",
-      "audioTextZh": "【在你9点钟方向，大约3海里处，你看到一个龙卷风，你想从当前航迹右偏20公里来避开天气。】",
-      "referenceText": "Xi’an control, BAW3532, request deviate 20km right of track to avoid the tornado.",
+      "audioText": "You have a visual on a tornado at your 9 o'clock, about 3 miles, so you want to deviate 20km right of track to avoid bad weather.",
+      "audioTextZh": "在你9点钟方向，大约3海里处，你看到一个龙卷风，你想从当前航迹右偏20公里来避开天气。",
+      "referenceText": "Xi'an control, BAW3532, request deviate 20km right of track to avoid the tornado.",
       "referenceTextZh": "西安区调，英航3532，请求右偏20公里来避开龙卷风。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/342ccd7562f76d91d23a.mp3"
     },
     {
       "id": "radiotelephony-fzy-219169",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-4",
-      "audioText": "C: BAW3532, Xi’an roger, how long do you need to maintain 20km right of track?\n[Tell the controller, you need about 5 minutes. ]",
+      "audioText": "C: BAW3532, Xi'an roger, how long do you need to maintain 20km right of track?\n[Tell the controller, you need about 5 minutes. ]",
       "audioTextZh": "C: 英航3532，西安收到，你需要向右偏置多久？\n【告知管制员，你需要大概5分钟。】",
       "referenceText": "About 5 minutes, BAW3532.",
       "referenceTextZh": "大概5分钟，英航3532。",
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-219170",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-5",
-      "audioText": "C: BAW3532, Xi’an roger, offset 20km right of track approved, descend to 10100m, report clear of weather.",
+      "audioText": "C: BAW3532, Xi'an roger, offset 20km right of track approved, descend to 10100m, report clear of weather.",
       "audioTextZh": "C: 英航3532，西安收到，可以右偏20公里，下到10100米，脱离天气后报。",
       "referenceText": "Offset 20km right of track approved, descend to 10100m, wilco, BAW3532.",
       "referenceTextZh": "可以右偏20公里，下到10100米，照办，英航3532。",
@@ -55,7 +55,7 @@
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-6",
       "audioText": "[Later]\n[You are now clear of weather, report your situation to the controller, and request turn left and rejoin airway H14.]",
       "audioTextZh": "【后来】\n【你现在脱离了天气，把你的情况报告给管制员，请求左转再次加入H14航路。】",
-      "referenceText": "Xi’an control, BAW3532, clear of weather, request turn left and rejoin airway H14.",
+      "referenceText": "Xi'an control, BAW3532, clear of weather, request turn left and rejoin airway H14.",
       "referenceTextZh": "西安区调，英航3532，脱离天气，请求左转加入H14航路。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2116157ffd55fb8c467b.mp3"
     },
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-219173",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-8",
-      "audioText": "C: BAW3532, reduce Mach number by two points due flow control.\n(注：实际飞行中存在此类表达，指的是将马赫数减小 0.02。 )",
+      "audioText": "C: BAW3532, reduce Mach number by two points due flow control.\n(注：实际飞行中存在此类表达，指的是将马赫数减小 0.02。)",
       "audioTextZh": "C：英航3532，由于流控，马赫数减小2点。",
       "referenceText": "Reduce Mach number by two points, BAW3532.",
       "referenceTextZh": "马赫数减小2点，英航3532。",
@@ -80,7 +80,7 @@
     {
       "id": "radiotelephony-fzy-219174",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-9",
-      "audioText": "C: BAW3532, descend and maintain 9800m, rate of descent 2500ft per minute due opposite traffic on your 12 o’clock.\n[Tell controller, at current flight speeds, such a high rate of descent is not acceptable, you need to increase your speed. ]",
+      "audioText": "C: BAW3532, descend and maintain 9800m, rate of descent 2500ft per minute due opposite traffic on your 12 o'clock.\n[Tell controller, at current flight speeds, such a high rate of descent is not acceptable, you need to increase your speed. ]",
       "audioTextZh": "C：英航3532，下9800米保持，由于12点方向有对向航空器，下降率每分钟2500英尺。\n【告知管制员，在当前速度，无法接受这么高的下降率，你需要增加速度。】",
       "referenceText": "Unable 2500ft per minute, request increase speed, BAW3532.",
       "referenceTextZh": "无法每分钟2500英尺，请求增速，BAW3532。",
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-219176",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-11",
-      "audioText": "[Now you are leveling at 9500m, you encountered moderate turbulence, you want to descend to 8900m and you also want to know if there is any ride report on that level, contact Shanghai control.]",
-      "audioTextZh": "【现在你保持在9500米，你遇到了中度颠簸，你想下到8900米，同时你也想知道这个高度层是否有过颠簸报告，联系上海区调。】",
+      "audioText": "Now you are leveling at 9500m, you encountered moderate turbulence, you want to descend to 8900m and you also want to know if there is any ride report on that level, contact Shanghai control.",
+      "audioTextZh": "现在你保持在9500米，你遇到了中度颠簸，你想下到8900米，同时你也想知道这个高度层是否有过颠簸报告，联系上海区调。",
       "referenceText": "Shanghai control, BAW3532, 9500m maintaining, request descend to 8900m due moderate turbulence and confirm if there is any turbulence report on that level?",
       "referenceTextZh": "上海区调，英航3532，正保持9500米，由于颠簸，请求下到8900米，证实此高度是否有颠簸报告。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a4474966143e27a3ff0.mp3"
@@ -107,7 +107,7 @@
     {
       "id": "radiotelephony-fzy-219177",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-12",
-      "audioText": "C: BAW3532, Shanghai control, negative, no traffic on that level, we’ve not received any chop information.\n[Ask to descend to 8900m.]",
+      "audioText": "C: BAW3532, Shanghai control, negative, no traffic on that level, we've not received any chop information.\n[Ask to descend to 8900m.]",
       "audioTextZh": "C: 英航3532，上海区调，没有，没有航空器在此高度层，我们没有收到任何颠簸报告。\n【请求下到8900米。】",
       "referenceText": "Request to descend to 8900m, BAW3532.",
       "referenceTextZh": "请求下到8900米，英航3532。",
@@ -125,8 +125,8 @@
     {
       "id": "radiotelephony-fzy-219179",
       "taskTitle": "59-BAW3532 [偏置，风挡破裂]-14",
-      "audioText": "[You are now 8900m maintaining, about 10 miles from P344, you had electrical arcing on the windshield and your windshield seemed to be cracked on the outside. You want to divert to Hefei airport immediately. Report this situation to Shanghai control, this is an urgency call.]",
-      "audioTextZh": "【你正保持在8900米，距离P344大概10海里，你的风挡玻璃上有电弧，风挡玻璃似乎从外面裂开了。你要立即备降合肥机场。将此情况报告上海区调，这是紧急呼叫。】",
+      "audioText": "You are now 8900m maintaining, about 10 miles from P344, you had electrical arcing on the windshield and your windshield seemed to be cracked on the outside. You want to divert to Hefei airport immediately. Report this situation to Shanghai control, this is an urgency call.",
+      "audioTextZh": "你正保持在8900米，距离P344大概10海里，你的风挡玻璃上有电弧，风挡玻璃似乎从外面裂开了。你要立即备降合肥机场。将此情况报告上海区调，这是紧急呼叫。",
       "referenceText": "Panpan Panpan Panpan, Shanghai control, BAW3532, 8900m maintaining, 10 miles from P344, our outer windshield seemed to be cracked due electrical arcing, request divert to Hefei.",
       "referenceTextZh": "Panpan Panpan Panpan，上海区调，英航3235，在8900米保持，P344 10海里，由于电弧，外侧风挡玻璃似乎破裂，请求改航合肥。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/34c54282dfe25b383d33.mp3"

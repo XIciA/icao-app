@@ -19,7 +19,7 @@ function normalizeProfile(document: unknown): UserProfile {
 const PROFILE_PREFIX = 'icao.account.profile.v2.';
 let accountId: string | undefined;
 let epoch = 0;
-let cached: UserProfile = { ...DEFAULT_PROFILE };
+let cached: UserProfile = { ...DEFAULT_PROFILE, target: 'icao5-first', studyScope: 'all' };
 let readPromise: Promise<UserProfile> | undefined;
 let writeQueue = Promise.resolve();
 const listeners = new Set<(profile: UserProfile) => void>();
@@ -34,12 +34,12 @@ export function setProfileAccount(nextAccountId?: string) {
   accountId = nextAccountId;
   epoch += 1;
   readPromise = undefined;
-  publish({ ...DEFAULT_PROFILE });
+  publish(nextAccountId ? { ...DEFAULT_PROFILE } : { ...DEFAULT_PROFILE, target: 'icao5-first', studyScope: 'all' });
   if (accountId) void readProfile().catch(() => undefined);
 }
 
 export function readProfile(): Promise<UserProfile> {
-  if (!accountId) return Promise.resolve({ ...DEFAULT_PROFILE });
+  if (!accountId) return Promise.resolve({ ...DEFAULT_PROFILE, target: 'icao5-first', studyScope: 'all' });
   if (readPromise) return readPromise;
   const owner = accountId;
   const requestEpoch = epoch;
@@ -104,7 +104,7 @@ export async function clearProfile(targetAccountId = accountId) {
     if (owner) await Storage.removeItem(`${PROFILE_PREFIX}${owner}`);
     if (epoch === requestEpoch && accountId === owner) {
       readPromise = undefined;
-      publish({ ...DEFAULT_PROFILE });
+      publish(owner ? { ...DEFAULT_PROFILE } : { ...DEFAULT_PROFILE, target: 'icao5-first', studyScope: 'all' });
     }
   });
 }

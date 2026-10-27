@@ -1,3 +1,6 @@
+import { useAuth } from '@/features/auth/AuthProvider';
+import { useLoginEntry } from '@/features/auth/use-login-entry';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import {
   AI_GENERATED_CONTENT_LABEL,
@@ -8,7 +11,7 @@ import type { AiOperationLookup } from '@icao/contracts/commerce-rules';
 import { autoTranscriptionEnabled } from '@/features/ai/auto-transcription.native';
 import { LearningAnalysisView } from './LearningAnalysisView';
 import { randomUUID } from 'expo-crypto';
-import { usePathname, useRouter } from 'expo-router';
+import { usePathname } from 'expo-router';
 import {
   Fragment,
   forwardRef,
@@ -20,10 +23,10 @@ import {
   useState,
 } from 'react';
 import { BookOpenCheck, MessageSquareText, NotebookPen } from '@/components/ui/icons';
-import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability, useGuideTarget } from '@/features/usage-guide/GuideBindings';
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
 import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeRecording, transcribeAndReviewRecording, lookupAiOperation } from '@/features/ai/ai-client.native';
@@ -140,7 +143,9 @@ type Props = {
   onNoteChange: (text: string) => void | Promise<boolean>;
   onRetrySave: () => void;
   onFeedback: () => void;
+  onNoteCompleted?: () => void;
   onBeforeAiOperation?: () => Promise<void>;
+  onBeforeLogin?: () => Promise<string>;
 };
 
 export type StudyWorkbenchHandle = {
@@ -149,6 +154,7 @@ export type StudyWorkbenchHandle = {
 
 export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function StudyWorkbench(props, ref) {
   const router = useRouter();
+  const guide = useGuide();
   const pathname = usePathname();
   const {
     activeTab,
@@ -167,6 +173,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     onEditingTabChange,
     onFeedback,
     onBeforeAiOperation,
+    onBeforeLogin,
     onNoteChange,
     onRetrySave,
     onTabChange,
@@ -428,7 +435,29 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     updateFeedback({ aiOperation: operation });
   }, [cardKey, onBeforeAiOperation, persistCurrent, updateFeedback, writeContext]);
 
+  const auth = useAuth();
+  const login = useLoginEntry();
+  const preparingLogin = useRef(false);
   async function performAi(action: AiAction, automatic = false, textOverride?: string) {
+    if (!auth.canAccessApp) {
+      if (automatic || preparingLogin.current) return;
+      preparingLogin.current = true;
+      const requestCardKey = cardKey;
+      setBusy(action); setError(undefined); setFailedAction(undefined); setFailureDiagnosticId(undefined);
+      try {
+        if (!await persistCurrent()) return;
+        const token = await onBeforeLogin?.();
+        login(`${pathname}?cardId=${encodeURIComponent(sourceCardId)}${token ? `&loginResume=${encodeURIComponent(token)}` : ''}`, '登录后使用 AI 免费体验或会员额度');
+      } catch {
+        if (currentCardKey.current !== requestCardKey) return;
+        setFailedAction(action); setFailureRetryable(true); setFailureNeedsDiagnostic(false);
+        setError('学习内容暂未保存，暂时无法登录。请重试，录音与作答仍保留在当前页面。');
+      } finally {
+        preparingLogin.current = false;
+        if (currentCardKey.current === requestCardKey) setBusy(undefined);
+      }
+      return;
+    }
     if (activeRequest.current) {
       if (action === 'review' && busy === 'transcribe') queuedReview.current = true;
       return;
@@ -568,11 +597,14 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const editing = Boolean(editableTab && editingTab === editableTab);
   const editAccessibilityLabel = editing ? `完成${title}` : `编辑${title}`;
 
-  function finishEditing() {
+  function finishEditing(completeNote = false) {
     answerInputRef.current?.blur();
     noteInputRef.current?.blur();
     Keyboard.dismiss();
     onEditingTabChange(undefined);
+    if (completeNote && activeTab === 'notes' && noteDraft.text.trim()) {
+      void Promise.resolve(onNoteChange(noteDraft.text)).then(saved => { if (saved !== false && currentCardKey.current === cardKey) props.onNoteCompleted?.(); });
+    }
     if (activeTab === 'mine') void persistCurrent();
   }
 
@@ -596,6 +628,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }
 
   const aiBusy = Boolean(busy);
+  useGuideTarget('study-review', consentKind ? 'study-ai-consent' : 'sentence-review', consentKind ? '阅读数据处理说明，自行选择是否使用本次 AI 评分。' : undefined);
+  useGuideAvailability('study', guide?.step !== 'study-review' ? undefined : busy ? '正在转写并分析，可稍候，也可暂不评分继续教学。' : error ? 'AI 暂未完成，可重试或暂不评分继续教学。已有内容会保留。' : undefined, busy ? 'waiting' : 'unavailable');
   const waitingText = busy === 'transcribe' ? '正在转写…' : !answerText.trim() && recordingUri ? '正在转写并分析…' : '正在分析回答…';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
@@ -613,6 +647,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     <Fragment>
       <GestureDetector gesture={swipeGesture}>
       <View>
+        {editing && activeTab === 'notes' ? <GuideAnchor id="sentence-note" /> : null}
         <View style={styles.header} testID="study-workbench-header">
           <View style={styles.headerTitle}>
             {activeTab === 'mine' ? <MessageSquareText color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-mine" /> : activeTab === 'reference' ? <BookOpenCheck color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-reference" /> : <NotebookPen color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-notes" />}
@@ -625,11 +660,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               accessibilityState={{ disabled: editDisabled }}
               disabled={editDisabled}
               hitSlop={4}
-              onPress={() => editing ? finishEditing() : onEditingTabChange(editableTab)}
+              onPress={() => editing ? finishEditing(true) : onEditingTabChange(editableTab)}
               style={({ pressed }) => [styles.editAction, pressed && !editDisabled ? styles.pressed : null, editDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
-              <GuideAnchor id="sentence-note" /><AppText color={editDisabled ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
+              {!editing ? <GuideAnchor id="sentence-note" /> : null}<AppText color={editDisabled ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
             {showReviewAction ? <Pressable
               accessibilityLabel={reviewLabel}
@@ -663,7 +698,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             {showAiRegion ? <View style={styles.aiRegion} testID="study-workbench-ai-region">
               {visibleRawTranscript ? <View><AppText variant="button">本次转写</AppText><AppText testID="study-workbench-raw-transcript">{visibleRawTranscript}</AppText></View> : null}
               {visibleAnalyzedTranscript ? <View><AppText variant="button">分析时的回答</AppText><AppText testID="study-workbench-analyzed-transcript">{visibleAnalyzedTranscript}</AppText></View> : null}
-              {busy === 'review' ? <AppText color={colors.mutedForeground}>{waitingText}</AppText> : reviewError ? <>
+              {busy === 'review' ? <View accessibilityLiveRegion="polite"><ActivityIndicator color={colors.primary}/><AppText color={colors.mutedForeground}>{waitingText}</AppText></View> : reviewError ? <>
                 <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
                 <View style={styles.aiErrorButtons}>
                   {failureRetryable ? <Pressable accessibilityLabel="重试 AI评分" accessibilityRole="button" onPress={() => { trackProductClick('analysis'); void reviewAnswer(); }} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
@@ -697,7 +732,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       <AppModal animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
         <View style={styles.consentOverlay}>
           <View accessibilityLabel="AI 数据处理提示" style={[styles.consentDialog, Platform.OS === 'ios' && styles.nativeConsentDialog]}>
-            <AppText variant="sectionTitle">AI 数据处理提示</AppText>
+            <GuideAnchor id="study-ai-consent" /><AppText variant="sectionTitle">AI 数据处理提示</AppText>
             <ScrollView style={styles.nativeConsentBody} contentContainerStyle={styles.nativeConsentContent}>
               <AppText>同意后，点击 AI评分时会进行必要的转写与文字分析；如果你另行开启自动转写，新录音结束后会自动上传：</AppText>
               <AppText>录音发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。</AppText>

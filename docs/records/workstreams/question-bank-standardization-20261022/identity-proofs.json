@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "proofs": {
+    "listening": {
+      "cards": 1502,
+      "checksum": "5cd2e5335f530234e85aa826a522204043c75821a54301c88e11b70960cf1c93",
+      "dependentSequenceChecksum": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "opi": {
+      "cards": 2365,
+      "checksum": "b5987491788b42f9bbf07093b797f4559b1b226fd383bd65cc9f2e2f1e685c26",
+      "dependentSequenceChecksum": "c141342208869a82a94b143e6cc73761829a15ad2128e8cdb002408a4e595ef9"
+    },
+    "radiotelephony": {
+      "cards": 5750,
+      "checksum": "4104a73c17f0f56b25d169a173d3bcf128a7c0eac9c52a2128682bfbff69445f",
+      "dependentSequenceChecksum": "f2146f876b9346ea737653f2424083e4a61e77686053433845c5d9193f776cea"
+    },
+    "sentences900": {
+      "cards": 900,
+      "checksum": "1e505b776c5b4a54cf4fb13a1a3247053b057d172940795e307154202a1a2aed",
+      "dependentSequenceChecksum": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "storytelling": {
+      "cards": 382,
+      "checksum": "bcfa1f04da1ba44e2731f1b674edf01fdcea9e72679961bc14c8988a3eea64f0",
+      "dependentSequenceChecksum": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}

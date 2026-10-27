@@ -1,31 +1,31 @@
 {
   "id": "atc-fzy-616",
-  "name": "QFA953 offload baggage, etc.",
+  "name": "QFA953 · 卸载行李",
   "declaredCardCount": 16,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111285",
-      "taskTitle": "33. QFA953 offload baggage, etc.-1",
-      "audioText": "[Your call sign is QFA953. You are close to departure time. However, one passenger is missing while his checked luggage is still onboard. For security reasons, contact company operations to offload the baggage.]",
-      "audioTextZh": "【你的呼号是澳航953，快到离场时间了；然而一名乘客未登机，他的行李还在机上。安全起见，联系公司运行部门卸下他的行李。】",
+      "taskTitle": "33. QFA953 · 卸载行李-1",
+      "audioText": "Your call sign is QFA953. You are close to departure time. However, one passenger is missing while his checked luggage is still onboard. For security reasons, contact company operations to offload the baggage.",
+      "audioTextZh": "你的呼号是澳航953，快到离场时间了；然而一名乘客未登机，他的行李还在机上。安全起见，联系公司运行部门卸下他的行李。",
       "referenceText": "Operations, QFA953, we are close to our departure time. One passenger is still missing; Request offload his checked luggage.",
       "referenceTextZh": "运控，澳航953，我们快到起飞时间了。一名乘客仍未登机，请求卸下他的托运行李。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5fd4956c959933ed5dc8.mp3"
     },
     {
       "id": "radiotelephony-fzy-111286",
-      "taskTitle": "33. QFA953 offload baggage, etc.-2",
-      "audioText": "[Now you are at Gate 51, ATIS W, request ATC clearance to Los Angels.]",
-      "audioTextZh": "【你在51号机位，通播W，请求ATC放行至洛杉矶。】",
+      "taskTitle": "33. QFA953 · 卸载行李-2",
+      "audioText": "Now you are at Gate 51, ATIS W, request ATC clearance to Los Angels.",
+      "audioTextZh": "你在51号机位，通播W，请求ATC放行至洛杉矶。",
       "referenceText": "Wuhan Delivery, QFA953, Gate 51, information W, destination Los Angeles, request ATC clearance.",
       "referenceTextZh": "武汉放行，澳航953，51号机位，通播W，目的地洛杉矶，请求ATC放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0639b069d563b0e7d6f2.mp3"
     },
     {
       "id": "radiotelephony-fzy-111287",
-      "taskTitle": "33. QFA953 offload baggage, etc.-3",
+      "taskTitle": "33. QFA953 · 卸载行李-3",
       "audioText": "QFA953, Wuhan Delivery, cleared to Los Angeles via flight planned route, runway 36R, follow LKO-01 departure, initial climb 1500m, cruising level 9800m, departure frequency 119.7, squawk 2515.",
       "audioTextZh": "澳航953，武汉放行，可以按计划航路飞往洛杉矶，跑道36右，LKO-01离场，起始高度1500米，巡航高度9800米，离场频率119.7，应答机2515。",
       "referenceText": "Cleared to Los Angeles, flight planned route, LKO-01 departure runway 36R, initial climb 1500m, cruising level 9800m, departure 119.7, squawk 2515, QFA953.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111288",
-      "taskTitle": "33. QFA953 offload baggage, etc.-4",
+      "taskTitle": "33. QFA953 · 卸载行李-4",
       "audioText": "QFA953, expect 10min delay due taxiway A3 is temporally blocked by a broken down vehicle.",
       "audioTextZh": "澳航953，滑行道A3被一辆抛瞄的车辆堵住，预计延误10分钟。",
       "referenceText": "Roger, 10min delay, QFA953.",
@@ -43,16 +43,16 @@
     },
     {
       "id": "radiotelephony-fzy-111289",
-      "taskTitle": "33. QFA953 offload baggage, etc.-5",
-      "audioText": "[The time is up for delay, call controller you can pushback and start-up.]",
-      "audioTextZh": "【延误时间快结束了，呼叫管制员你可以推出开车了。】",
+      "taskTitle": "33. QFA953 · 卸载行李-5",
+      "audioText": "The time is up for delay, call controller you can pushback and start-up.",
+      "audioTextZh": "延误时间快结束了，呼叫管制员你可以推出开车了。",
       "referenceText": "Wuhan Delivery, QFA953, request pushback and start-up.",
       "referenceTextZh": "武汉放行，澳航953，请求推出开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4e67530b1e3f12208349.mp3"
     },
     {
       "id": "radiotelephony-fzy-111290",
-      "taskTitle": "33. QFA953 offload baggage, etc.-6",
+      "taskTitle": "33. QFA953 · 卸载行李-6",
       "audioText": "QFA953, Delivery, monitor Ground on 119.35.",
       "audioTextZh": "澳航953，放行，守听地面频率119.35。",
       "referenceText": "Monitor Ground 119.35, QFA953.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111291",
-      "taskTitle": "33. QFA953 offload baggage, etc.-7",
+      "taskTitle": "33. QFA953 · 卸载行李-7",
       "audioText": "QFA953, Wuhan Ground, the B737 right hand side is pushing. After traffic is clear, pushback onto taxiway Z4, abeam Gate 213, facing east.",
       "audioTextZh": "澳航953，武汉地面，你右侧的波音737正在推出。活动清除后，推出到滑行道Z4，正切213号机位，头朝东。",
       "referenceText": "Roger, after the B737 cleared, pushback onto taxiway Z4, abeam Gate 213, facing east, QFA953.",
@@ -70,16 +70,16 @@
     },
     {
       "id": "radiotelephony-fzy-111292",
-      "taskTitle": "33. QFA953 offload baggage, etc.-8",
-      "audioText": "[As you are taxiing on taxiway A3, you noticed several baggage are scattered on A3 about 400 meters ahead of your aircraft. Tell Ground Control why you have stopped taxiing and ask ground staff to retrieve the baggage.]",
-      "audioTextZh": "【在滑行道A3上滑行时，你发现机身前方400米处散落着几件行李。告诉地面管制你为什么停止滑行，要求地面工作人员收走行李。】",
+      "taskTitle": "33. QFA953 · 卸载行李-8",
+      "audioText": "As you are taxiing on taxiway A3, you noticed several baggage are scattered on A3 about 400 meters ahead of your aircraft. Tell Ground Control why you have stopped taxiing and ask ground staff to retrieve the baggage.",
+      "audioTextZh": "在滑行道A3上滑行时，你发现机身前方400米处散落着几件行李。告诉地面管制你为什么停止滑行，要求地面工作人员收走行李。",
       "referenceText": "Wuhan Ground, QFA953, we found several baggage scattered on A3. We stop taxi and holding present position, request ground service to retrieve the baggage.",
       "referenceTextZh": "武汉地面，澳航953，我们发现滑行道A3上散落着几件行李。我们停止滑行，原地等待，请求地面工作人员收走行李。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bbe6bbe9732ce9d37822.mp3"
     },
     {
       "id": "radiotelephony-fzy-111293",
-      "taskTitle": "33. QFA953 offload baggage, etc.-9",
+      "taskTitle": "33. QFA953 · 卸载行李-9",
       "audioText": "QFA953, hold your position, I will advise Ground Operations.",
       "audioTextZh": "澳航953，原地等待，我会通知地面运行部门。",
       "referenceText": "Holding, QFA953.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111294",
-      "taskTitle": "33. QFA953 offload baggage, etc.-10",
+      "taskTitle": "33. QFA953 · 卸载行李-10",
       "audioText": "QFA953, Ground, taxiway A3 cleared, expedite taxi via A3 and A to holding point runway 36R.",
       "audioTextZh": "澳航953，地面，滑行道A3清理完成，快速沿滑行道A3，A滑至跑道36右等待点。",
       "referenceText": "Roger, expediting taxi via A3 and A to holding point runway 36R, QFA953.",
@@ -97,16 +97,16 @@
     },
     {
       "id": "radiotelephony-fzy-111295",
-      "taskTitle": "33. QFA953 offload baggage, etc.-11",
-      "audioText": "[You are now airborne, passing 1200m for 2400m. Contact Wuhan Departure and ask for further climb.]",
-      "audioTextZh": "【你已经起飞，通过1200米，上升2400米。联系武汉离场，请求爬升更高高度。】",
+      "taskTitle": "33. QFA953 · 卸载行李-11",
+      "audioText": "You are now airborne, passing 1200m for 2400m. Contact Wuhan Departure and ask for further climb.",
+      "audioTextZh": "你已经起飞，通过1200米，上升2400米。联系武汉离场，请求爬升更高高度。",
       "referenceText": "Wuhan Departure, QFA953, passing 1200m for 2400m, request further climb.",
       "referenceTextZh": "武汉离场，澳航953，通过1200米，上升2400米，请求爬升高高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c122d1978b490fd6169a.mp3"
     },
     {
       "id": "radiotelephony-fzy-111296",
-      "taskTitle": "33. QFA953 offload baggage, etc.-12",
+      "taskTitle": "33. QFA953 · 卸载行李-12",
       "audioText": "QFA953, Wuhan Departure, radar identified, expedite climb and maintain 6000m on standard due crossing traffic.",
       "audioTextZh": "澳航953，武汉离场，雷达已识别，由于交叉活动，快速上升保持标压6000米。",
       "referenceText": "Expediting climb and maintain 6000m on standard, QFA953.",
@@ -115,16 +115,16 @@
     },
     {
       "id": "radiotelephony-fzy-111297",
-      "taskTitle": "33. QFA953 offload baggage, etc.-13",
-      "audioText": "[During climbing, one of your hydraulic systems failed, make an urgency call and ask to level off at 4500m and then return to Wuhan airport.]",
-      "audioTextZh": "【爬升过程中，机上一个液压系统失效，做紧急呼叫，请求在4500米平飞，之后返回武汉机场。】",
+      "taskTitle": "33. QFA953 · 卸载行李-13",
+      "audioText": "During climbing, one of your hydraulic systems failed, make an urgency call and ask to level off at 4500m and then return to Wuhan airport.",
+      "audioTextZh": "爬升过程中，机上一个液压系统失效，做紧急呼叫，请求在4500米平飞，之后返回武汉机场。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Departure, QFA953 one hydraulic system failure, request level off at 4500m and then return to Wuhan airport.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉离场，澳航953，机上一个液压系统失效，请求在4500米平飞，之后返回武汉机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8acb4525744886d0e879.mp3"
     },
     {
       "id": "radiotelephony-fzy-111298",
-      "taskTitle": "33. QFA953 offload baggage, etc.-14",
+      "taskTitle": "33. QFA953 · 卸载行李-14",
       "audioText": "QFA953, roger PANPAN, climb and maintain 4500m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.",
       "audioTextZh": "澳航953，收到PANPAN，上升保持4500米，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右。",
       "referenceText": "Climb and maintain 4500m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R. QFA953.",
@@ -133,16 +133,16 @@
     },
     {
       "id": "radiotelephony-fzy-111299",
-      "taskTitle": "33. QFA953 offload baggage, etc.-15",
-      "audioText": "[The purser informs you that a passenger has become ill, possibly suffering from hyperventilation, ask for an ambulance to wait at the gate.]",
-      "audioTextZh": "【乘务长通知你有一名乘客生病了，可能是换气过度，请求到达机位时提供救护车。】",
+      "taskTitle": "33. QFA953 · 卸载行李-15",
+      "audioText": "The purser informs you that a passenger has become ill, possibly suffering from hyperventilation, ask for an ambulance to wait at the gate.",
+      "audioTextZh": "乘务长通知你有一名乘客生病了，可能是换气过度，请求到达机位时提供救护车。",
       "referenceText": "Wuhan Departure, QFA953, request an ambulance, we have a passenger possibly suffering from hyperventilation.",
       "referenceTextZh": "武汉离场，澳航953，请求提供救护车，机上有一名乘客好像换气过度。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e378e7e2b9c11b0c7894.mp3"
     },
     {
       "id": "radiotelephony-fzy-111300",
-      "taskTitle": "33. QFA953 offload baggage, etc.-16",
+      "taskTitle": "33. QFA953 · 卸载行李-16",
       "audioText": "QFA953, roger. Radar vector ILS runway 36R.",
       "audioTextZh": "澳航953，收到。雷达引导盲降进近跑道36右。",
       "referenceText": "Radar vector ILS runway 36R, QFA953.",

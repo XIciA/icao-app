@@ -421,7 +421,9 @@ function validateRuntimeBoundary() {
   const loadingSource = readFileSync(path.join(repositoryRoot, 'src/components/states/GlobalLoadingScreen.native.tsx'), 'utf8');
   if (loadingSource.includes('AppBrandLogo') || !loadingSource.includes('<ActivityIndicator')) violations.push('In-app data loading must remain lightweight.');
   const layoutSource = readFileSync(path.join(repositoryRoot, 'src/app/_layout.native.tsx'), 'utf8');
-  if (!layoutSource.includes('<StartupBrandScreen />') || layoutSource.includes('<GlobalLoadingScreen />')) violations.push('Startup must reuse the B surface throughout readiness.');
+  // The first startup stays branded; later account/data transitions use the
+  // shared lightweight loader. Do not forbid that loader throughout the router.
+  if (!layoutSource.includes('if (!fontsLoaded && !fontError) return <StartupBrandScreen />;')) violations.push('Initial startup must reuse the B surface throughout font readiness.');
 
   if (violations.length > 0) fail(['Native brand boundary failed:', ...violations.map((value) => `- ${value}`)].join('\n'));
 }

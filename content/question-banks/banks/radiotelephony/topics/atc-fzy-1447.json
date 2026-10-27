@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-209820",
       "taskTitle": "37-CCA321 [机长失能]-1",
       "audioText": "B: [Your call sign is CCA321, from Wuhan to Guangzhou, you are now over DAPRO at 9200m. Make an initial contact with Guangzhou Control.]",
-      "audioTextZh": "【你的呼号是国航三两幺，从武汉飞往广州，你现在飞过DAPRO，高度九千二，与广州区调建立初始联系。】",
+      "audioTextZh": "你的呼号是国航三两幺，从武汉飞往广州，你现在飞过DAPRO，高度九千二，与广州区调建立初始联系。",
       "referenceText": "Guangzhou Control, CCA321, over DAPRO, maintaining 9200m.",
       "referenceTextZh": "广州区调，国航三两幺，飞过DAPRO，保持在九千二。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8080d72d7284e992f875.mp3"
@@ -36,7 +36,7 @@
       "id": "radiotelephony-fzy-209823",
       "taskTitle": "37-CCA321 [机长失能]-4",
       "audioText": "B: [Inform the controller that the flight attendants have offered first aid to the captain, but the captain still feels so sick, so you want medical team to be ready upon landing.]",
-      "audioTextZh": "【告知管制员，乘务员已经对机长实施了急救，但是机长已经很不舒服，你希望着陆之后医疗队伍就位。】",
+      "audioTextZh": "告知管制员，乘务员已经对机长实施了急救，但是机长已经很不舒服，你希望着陆之后医疗队伍就位。",
       "referenceText": "Guangzhou Control, CCA321, the flight attendants have offered first aid to the captain, but the captain still feels so sick, request medical assistance on arrival.",
       "referenceTextZh": "广州区调，国航三两幺，乘务员已经对机长实施了急救，但是机长已经很不舒服，请求到达之后医疗队伍就位。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9530988b11eb409486bd.mp3"
@@ -72,7 +72,7 @@
       "id": "radiotelephony-fzy-209827",
       "taskTitle": "37-CCA321 [机长失能]-8",
       "audioText": "B: [Now you have flown over IKUBA, time 0755, inform controller.]",
-      "audioTextZh": "【你现在已经过IKUBA，时间0755，告知管制员。】",
+      "audioTextZh": "你现在已经过IKUBA，时间0755，告知管制员。",
       "referenceText": "Guangzhou Control, CCA321, over IKUBA at 0755.",
       "referenceTextZh": "广州区调，国航三两幺，过IKUBA，时间0755。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/53983c108dcdb4105f08.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-209832",
       "taskTitle": "37-CCA321 [机长失能]-13",
-      "audioText": "B: [You’re now handed over to Wuhan Approach, report your distress situation to the controller and request priority landing.]",
-      "audioTextZh": "【你现在被移交给了武汉进近，将你的遇险情况报告给管制员，并请求优先着陆。】",
+      "audioText": "B: [You're now handed over to Wuhan Approach, report your distress situation to the controller and request priority landing.]",
+      "audioTextZh": "你现在被移交给了武汉进近，将你的遇险情况报告给管制员，并请求优先着陆。",
       "referenceText": "Mayday Mayday Mayday, Wuhan Approach, CCA321, 5400m maintaining, our captain is suddenly incapacitated with a suspected food poisoning, he is getting better now but still unable to fly the plane. Request priority landing.",
       "referenceTextZh": "Mayday Mayday Mayday，武汉进近，国航三两幺，保持在五千四，机长疑似食物中毒突然失能，他现在感觉好多了，但是已经无法驾驶飞机。请求优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2d3dba05fb69883790de.mp3"
@@ -144,7 +144,7 @@
       "id": "radiotelephony-fzy-209835",
       "taskTitle": "37-CCA321 [机长失能]-16",
       "audioText": "B: [You are 12 miles from LKO, 3600m maintaining, suddenly, you notice that there are abnormal indications in the cockpit showing that your hydraulic system is malfunctioning, notify Wuhan Approach of this situation.]",
-      "audioTextZh": "【你现在距离LKO12海里，在三千六保持，突然，你注意到驾驶舱内有不正常的指示，表明你的液压系统出现了故障，告知武汉进近此情况。】",
+      "audioTextZh": "你现在距离LKO12海里，在三千六保持，突然，你注意到驾驶舱内有不正常的指示，表明你的液压系统出现了故障，告知武汉进近此情况。",
       "referenceText": "Wuhan Approach, CCA321, 12 miles from LKO, 3600m maintaining, abnormal indications in the cockpit showing that our hydraulic system is malfunctioning.",
       "referenceTextZh": "武汉进近，国航三两幺，距离LKO12海里，在三千六保持，驾驶舱内有不正常的指示，我们的液压系统出现了故障。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a99f90fa5e6276591df5.mp3"
@@ -171,7 +171,7 @@
       "id": "radiotelephony-fzy-209838",
       "taskTitle": "37-CCA321 [机长失能]-19",
       "audioText": "B: [After finishing the checklist, you still can not solve the problem, and you have to land with left landing gear not fully locked. Inform controller and request foaming the runway.]",
-      "audioTextZh": "【完成检查单后，你依旧无法解决问题，你必须在起落架没有完全锁死的情况下着陆。告知管制员，请求在跑道上喷洒泡沫。】",
+      "audioTextZh": "完成检查单后，你依旧无法解决问题，你必须在起落架没有完全锁死的情况下着陆。告知管制员，请求在跑道上喷洒泡沫。",
       "referenceText": "Wuhan Approach, CCA321, our hydraulic system is still malfunctioning, request foaming the runway due left landing gear not fully locked.",
       "referenceTextZh": "武汉进近，国航三两幺，我们的液压系统依旧故障，由于起落架未完全锁死，请求在跑道上喷洒泡沫。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4c30587983674a1b97b4.mp3"
@@ -198,7 +198,7 @@
       "id": "radiotelephony-fzy-209841",
       "taskTitle": "37-CCA321 [机长失能]-22",
       "audioText": "B: [During approach, you find the ILS signal of runway 18L is very unstable, and you want to know if any other pilot reports a similar situation.]",
-      "audioTextZh": "【在进近过程中，你发现跑道18左的盲降信号不稳定，你想知道其他飞行员是否报告了类似的情况。】",
+      "audioTextZh": "在进近过程中，你发现跑道18左的盲降信号不稳定，你想知道其他飞行员是否报告了类似的情况。",
       "referenceText": "Wuhan Approach, CCA321, ILS signal of runway 18L is very unstable, did any other pilot report a similar situation?",
       "referenceTextZh": "武汉进近，国航三两幺，跑道18左盲降信号不稳定，其他飞行员是否报告过类似的情况？",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a33ade6d09e52541f9f3.mp3"
@@ -206,7 +206,7 @@
     {
       "id": "radiotelephony-fzy-209842",
       "taskTitle": "37-CCA321 [机长失能]-23",
-      "audioText": "C: CCA321, negative, we’ve never received such report, do you request approach to another runway or request another type of approach?\nB: [Tell controller you want to change to runway 18R.]",
+      "audioText": "C: CCA321, negative, we've never received such report, do you request approach to another runway or request another type of approach?\nB: [Tell controller you want to change to runway 18R.]",
       "audioTextZh": "国航三两幺，没有，我们没有收到类似的报告，你是请求进近其他跑道还是请求其他进近方式？\n【告诉管制员，你想更换至跑道18右。】",
       "referenceText": "Roger, request change to runway 18R, CCA321.",
       "referenceTextZh": "收到，请求更换至跑道18右，国航三两幺。",
@@ -225,7 +225,7 @@
       "id": "radiotelephony-fzy-209844",
       "taskTitle": "37-CCA321 [机长失能]-25",
       "audioText": "B: [Due to hydraulic failure, you want a wide downwind, inform controller.]",
-      "audioTextZh": "【由于液压失效，你想要一个宽三边，告知管制员。】",
+      "audioTextZh": "由于液压失效，你想要一个宽三边，告知管制员。",
       "referenceText": "Wuhan Tower, CCA321, request a wide downwind due hydraulic system failure.",
       "referenceTextZh": "武汉塔台，国航三两幺，由于液压失效，请求一个宽三边。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ecc551a082bcf022b03.mp3"

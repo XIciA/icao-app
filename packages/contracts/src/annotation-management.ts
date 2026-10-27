@@ -32,6 +32,7 @@ export function normalizeAnnotationDefinitions(values: unknown, defaults: Manage
 export function preserveManagedAnnotations(previous: Record<string, unknown> | undefined, incoming: Record<string, unknown>) {
   if (previous?.version !== 2) return incoming;
   const oldClient = incoming.version !== 2;
+  const oldChoiceClient = incoming.choiceHighlights !== true;
   const strings = (value: unknown): string[] => Array.isArray(value) ? value.filter((v): v is string => typeof v === 'string') : [];
   const tombstones = (value: unknown) => value && typeof value === 'object' ? value as Record<string, unknown> : {};
   const previousDeleted = tombstones(previous.deletedDefinitions); const incomingDeleted = tombstones(incoming.deletedDefinitions);
@@ -39,7 +40,7 @@ export function preserveManagedAnnotations(previous: Record<string, unknown> | u
     tags: [...new Set([...strings(previousDeleted.tags), ...strings(incomingDeleted.tags)])],
     highlights: [...new Set([...strings(previousDeleted.highlights), ...strings(incomingDeleted.highlights)])],
   };
-  const merged: Record<string, unknown> = { ...incoming, version: 2, deletedDefinitions };
+  const merged: Record<string, unknown> = { ...incoming, version: 2, choiceHighlights: true, deletedDefinitions };
   for (const [key, deleted] of [['tagDefinitions', deletedDefinitions.tags], ['highlightDefinitions', deletedDefinitions.highlights]] as const) {
     const current = normalizeAnnotationDefinitions(previous[key], [], deleted);
     const next = normalizeAnnotationDefinitions(incoming[key], [], deleted);
@@ -53,12 +54,12 @@ export function preserveManagedAnnotations(previous: Record<string, unknown> | u
   const entries = incoming.entries && typeof incoming.entries === 'object' ? incoming.entries as Record<string, Record<string, unknown>> : {};
   const opaqueTags = new Set((merged.tagDefinitions as ManagedAnnotationDefinition[]).filter((d) => !['green', 'yellow', 'red', 'blue'].includes(d.color)).map((d) => d.id));
   const opaqueHighlights = new Set((merged.highlightDefinitions as ManagedAnnotationDefinition[]).filter((d) => !['green', 'yellow', 'red', 'blue'].includes(d.color)).map((d) => d.id));
-  merged.entries = Object.fromEntries([...new Set([...Object.keys(entries), ...(oldClient ? Object.keys(priorEntries) : [])])].flatMap((key) => {
+  merged.entries = Object.fromEntries([...new Set([...Object.keys(entries), ...((oldClient || oldChoiceClient) ? Object.keys(priorEntries) : [])])].flatMap((key) => {
     const value = entries[key]; const prior = priorEntries[key];
-    if (!value && !oldClient) return [];
+    if (!value && !oldClient && !oldChoiceClient) return [];
     const highlights = (data: unknown) => Array.isArray(data) ? data.filter((h): h is Record<string, unknown> => Boolean(h && typeof h === 'object' && typeof h.colorId === 'string')) : [];
     const retainedTags = oldClient ? strings(prior?.tagIds).filter((id) => opaqueTags.has(id)) : [];
-    const retainedHighlights = oldClient ? highlights(prior?.highlights).filter((h) => opaqueHighlights.has(String(h.colorId))) : [];
+    const retainedHighlights = highlights(prior?.highlights).filter((h) => (oldClient && opaqueHighlights.has(String(h.colorId))) || (oldChoiceClient && /^choice-\d+$/.test(String(h.blockId))));
     if (!value && !retainedTags.length && !retainedHighlights.length) return [];
     const combinedHighlights = new Map<string, Record<string, unknown>>();
     for (const h of [...retainedHighlights, ...highlights(value?.highlights)]) if (highlightIds.has(String(h.colorId))) combinedHighlights.set(`${h.blockId}:${h.wordIndex}`, h);

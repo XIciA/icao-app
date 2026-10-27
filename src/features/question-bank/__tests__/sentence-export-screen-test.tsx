@@ -1,8 +1,10 @@
+jest.mock('react-native-safe-area-context',()=>jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { GuideBindingContext, type GuideBinding } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from '../export/pdf-generator';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { SentenceExportScreen } from '../export/SentenceExportScreen';
+import { SentenceExportScreen } from '../export/SentenceExportScreen.native';
+jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: jest.fn() }));
 jest.mock('../annotations/card-index.native',()=>({questionBankCardTargetKey:()=> 'card'}));
 const mockPreview=jest.fn(),mockShare=jest.fn();
 jest.mock('@/features/sync/learning-sync.native',()=>({captureLearningWriteContext:()=>undefined,assertLearningWriteContext:jest.fn()}));
@@ -15,7 +17,7 @@ const dataset={id:'sentences900',categories:[{id:'main',name:'3级',topics:[{id:
 it('clears an actual preview failure when returning to options and permits another export',async()=>{
  mockPreview.mockRejectedValue(new Error('file_opening_failed'));mockShare.mockResolvedValue(undefined);
  const view=await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></SafeAreaProvider>);
- await waitFor(()=>expect(view.getByText('已选择 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
  await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());await fireEvent.press(view.getByText('预览 PDF'));
  await waitFor(()=>expect(view.getByText('PDF 预览未能打开，请重试或选择保存。')).toBeTruthy());
  await fireEvent.press(view.getByLabelText('返回'));expect(view.queryByText('PDF 预览未能打开，请重试或选择保存。')).toBeNull();
@@ -24,11 +26,13 @@ it('clears an actual preview failure when returning to options and permits anoth
 });
 
 it('advances the export tour only after a file is ready and keeps a failed attempt retryable',async()=>{
+ jest.mocked(generateSentencesPdf).mockClear();
  const event=jest.fn(); let reject!: (error:Error)=>void;
  jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>new Promise((_resolve,no)=>{reject=no;}));
  const view=await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={{event,register:jest.fn()} as unknown as GuideBinding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>);
- await waitFor(()=>expect(view.getByText('已选择 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
- expect(view.getByText('正在生成 PDF…')).toBeTruthy();expect(event).not.toHaveBeenCalledWith('export-generate');
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
+ expect(view.getByText('正在导出，请稍等…')).toBeTruthy();expect(view.getByRole('button', {name:'取消导出'})).toBeTruthy();expect(view.queryByText('正在处理 PDF，内容较多时请稍候…')).toBeNull();expect(view.getByText('导出设置')).toBeTruthy();expect(view.getByText('将导出 1 句')).toBeTruthy();expect(event).not.toHaveBeenCalledWith('export-generate');
+ expect(view.queryByRole('button', {name:'生成 PDF'})).toBeNull();expect(generateSentencesPdf).toHaveBeenCalledTimes(1);
  reject(new Error('test generation failure'));
  await waitFor(()=>expect(view.getByText('PDF 生成失败，请重试。学习笔记和进度不会受到影响。')).toBeTruthy());
  expect(event).not.toHaveBeenCalledWith('export-generate');
@@ -36,13 +40,109 @@ it('advances the export tour only after a file is ready and keeps a failed attem
  expect(event).toHaveBeenCalledTimes(1);expect(event).toHaveBeenCalledWith('export-generate');
 });
 
-it('returns to options when restarting the export guide from a generated result',async()=>{
+it('preserves the generated PDF when teaching is restarted or stopped',async()=>{
  const binding={current:'export',step:'export-generate',event:jest.fn(),register:jest.fn()} as unknown as GuideBinding;
  const tree=(value:GuideBinding)=><SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={value}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>;
  const view=await render(tree(binding));
- await waitFor(()=>expect(view.getByText('已选择 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
  await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
  await view.rerender(tree({...binding,step:'export-scope'}));
- await waitFor(()=>expect(view.getByText('生成 PDF')).toBeTruthy());
+ expect(view.getByText('PDF 已生成')).toBeTruthy();
+ await view.rerender(tree({...binding,current:undefined}));
+ expect(view.getByText('PDF 已生成')).toBeTruthy();
+});
+
+it('waits for the multi-select scope sheet to close before advancing teaching', async () => {
+ const event = jest.fn();
+ const binding = { current:'export', step:'export-levels', event, register:jest.fn(), surface:()=>null } as unknown as GuideBinding;
+ const view = await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={binding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>);
+ await waitFor(() => expect(view.getByText('将导出 1 句')).toBeTruthy());
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByRole('checkbox', { name:'3级' }));
+ expect(event).not.toHaveBeenCalled();
+ await fireEvent.press(view.getByText('全选'));
+ expect(event).not.toHaveBeenCalled();
+ await fireEvent.press(view.getByText('完成'));
+ expect(event).toHaveBeenCalledTimes(1); expect(event).toHaveBeenCalledWith('export-levels');
+ expect(view.queryByText('导出范围')).toBeNull();
+ event.mockClear();
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByRole('checkbox', { name:'3级' }));
+ await fireEvent.press(view.getByText('完成'));
+ expect(event).not.toHaveBeenCalled();
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByText('全选'));
+ await fireEvent.press(view.getByLabelText('关闭弹层'));
+ expect(event).not.toHaveBeenCalled();
+});
+
+
+it('keeps an in-flight PDF job alive when teaching exits and releases it on page unmount', async () => {
+  let complete!: (value: {bytes:Uint8Array;pageCount:number;sentenceCount:number}) => void;
+  jest.mocked(generateSentencesPdf).mockImplementationOnce(() => new Promise(resolve => { complete = resolve; }));
+  const event=jest.fn();
+  const guide={current:'export',step:'export-generate',event,register:jest.fn(),surface:()=>null} as unknown as GuideBinding;
+  const tree=(value:GuideBinding)=><SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={value}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>;
+  const view=await render(tree(guide));
+  await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());
+  await fireEvent.press(view.getByText('生成 PDF'));
+  await waitFor(()=>expect(generateSentencesPdf).toHaveBeenCalled());
+  const call=jest.mocked(generateSentencesPdf).mock.calls.at(-1)!;
+  const signal=call[5]?.signal;
+  await view.rerender(tree({...guide,current:undefined}));
+  expect(signal?.aborted).toBe(false);
+  await act(async()=>complete({bytes:new Uint8Array(),pageCount:1,sentenceCount:1}));
+  await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
+  await view.unmount();
+  expect(signal?.aborted).toBe(true);
+});
+
+function pending<T>() {
+ let resolve!: (value:T)=>void;
+ const promise=new Promise<T>(done=>{resolve=done;});
+ return {promise,resolve};
+}
+const pdfResult={bytes:new Uint8Array(),pageCount:1,sentenceCount:1};
+it('cancels without an error and ignores the old completion while a new export is running', async()=>{
+ const first=pending<typeof pdfResult>(),second=pending<typeof pdfResult>();
+ jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>first.promise).mockImplementationOnce(()=>second.promise);
+ const platform=jest.requireMock('../export/pdf-platform') as {storePdf:jest.Mock};
+ platform.storePdf.mockClear();
+ const view=await render(<SentenceExportScreen dataset={dataset} onBack={jest.fn()}/>);
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(jest.mocked(generateSentencesPdf).mock.calls.at(-1)?.[5]?.signal).toBeDefined());
+ const signal=jest.mocked(generateSentencesPdf).mock.calls.at(-1)![5]!.signal!;
+ await fireEvent.press(view.getByText('取消导出'));
+ expect(signal.aborted).toBe(true);
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await act(async()=>first.resolve(pdfResult));
  expect(view.queryByText('PDF 已生成')).toBeNull();
+ expect(view.getByText('取消导出')).toBeTruthy();
+ expect(platform.storePdf).not.toHaveBeenCalled();
+ await act(async()=>second.resolve(pdfResult));
+ expect(view.getByText('PDF 已生成')).toBeTruthy();
+ expect(platform.storePdf).toHaveBeenCalledTimes(1);
+});
+it('releases a file saved after cancellation without advancing teaching',async()=>{
+ const platform=jest.requireMock('../export/pdf-platform') as {storePdf:jest.Mock;releasePdf:jest.Mock};
+ const saved=pending<string>();platform.storePdf.mockClear();platform.storePdf.mockImplementationOnce(()=>saved.promise);
+ const event=jest.fn();
+ const view=await render(<GuideBindingContext.Provider value={{event,register:jest.fn()} as unknown as GuideBinding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider>);
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(platform.storePdf).toHaveBeenCalled());
+ await fireEvent.press(view.getByText('取消导出'));
+ await act(async()=>saved.resolve('file:///cancelled.pdf'));
+ expect(platform.releasePdf).toHaveBeenCalledWith('file:///cancelled.pdf');
+ expect(view.queryByText('PDF 已生成')).toBeNull();
+ expect(view.getByText('生成 PDF')).toBeTruthy();
+ expect(event).not.toHaveBeenCalled();
+});
+it('lets back cancel an active job and return without waiting for completion',async()=>{
+ const job=pending<typeof pdfResult>();jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>job.promise);
+ const onBack=jest.fn();const view=await render(<SentenceExportScreen dataset={dataset} onBack={onBack}/>);
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
+ await fireEvent.press(view.getByLabelText('返回'));expect(onBack).toHaveBeenCalledTimes(1);
+ await act(async()=>job.resolve(pdfResult));expect(view.queryByText('PDF 已生成')).toBeNull();
 });

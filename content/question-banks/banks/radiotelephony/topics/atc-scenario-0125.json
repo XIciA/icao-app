@@ -25,7 +25,7 @@
       "id": "atc-scenario-0125-card-main-2155",
       "taskTitle": "BAW 120-3",
       "audioText": "C: BAW 120, you can either descend now without speed restrictions or maintain 11,000 meters and fly heading 260 for 5 minutes, which do you prefer?\nB: Tell the controller you prefer to descend to 9200 meters",
-      "audioTextZh": "C： BAW 120，你可以现在不受速度限制下降，或者保持 11,000 米并以航向 260 飞行 5 分钟，你选择哪一种？\nB： 告诉管制员你选择下降至 9200 米。",
+      "audioTextZh": "C：BAW 120，你可以现在不受速度限制下降，或者保持 11,000 米并以航向 260 飞行 5 分钟，你选择哪一种？\nB：告诉管制员你选择下降至 9200 米。",
       "referenceText": "request descend to 9200 meters, BAW 120.",
       "referenceTextZh": "请求下降至 9200 米，BAW 120。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-022-baw120-q03.mp3"

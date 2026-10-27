@@ -23,6 +23,17 @@ const completeRelease = prepareNativeContentRelease(manifest, JSON.parse(resourc
 const release = process.env.CONTENT_BANK_IDS
   ? selectNativeContentBanks(completeRelease, process.env.CONTENT_BANK_IDS.split(','))
   : completeRelease;
+const expectedReleases = process.env.EXPECTED_CONTENT_RELEASES_PATH
+  ? JSON.parse(readFileSync(process.env.EXPECTED_CONTENT_RELEASES_PATH, 'utf8'))
+  : undefined;
+async function assertExpectedReleases(tx) {
+  if (!expectedReleases) return;
+  const current = await tx`select bank_id, version, checksum from question_bank_releases where active`;
+  if (current.length !== expectedReleases.length || expectedReleases.some(expected => !current.some(row =>
+    row.bank_id === expected.bankId && Number(row.version) === expected.version && row.checksum === expected.checksum))) {
+    throw new Error('active_content_changed_since_verified_baseline');
+  }
+}
 if (process.argv.includes('--validate')) {
   console.log(`native_content_valid version=${release.version} banks=${release.banks.length} resources=${release.files.length}`);
 } else {
@@ -38,6 +49,7 @@ if (process.argv.includes('--validate')) {
   try {
     if (process.env.RESET_LEARNING_HISTORY === '1') throw new Error('learning_history_reset_not_allowed');
     const resetHistory = false;
+    await assertExpectedReleases(sql);
     planNativeContentPublication(release, await sql`select bank_id, version, checksum from question_bank_releases`, resetHistory);
     const existing = new Map((await sql`select object_key, checksum from resource_objects where storage_bucket = 'question-bank-assets'`).map((row) => [row.object_key, row.checksum]));
     let checkedResources = 0;
@@ -53,6 +65,7 @@ if (process.argv.includes('--validate')) {
     }
     await sql.begin(async (tx) => {
       await tx`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
+      await assertExpectedReleases(tx);
       const publication = planNativeContentPublication(release,
         await tx`select bank_id, version, checksum from question_bank_releases`, resetHistory);
       for (const bank of publication.banks) {

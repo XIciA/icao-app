@@ -25,7 +25,7 @@
       "id": "atc-scenario-0054-card-main-928",
       "taskTitle": "CCA 425-3",
       "audioText": "B: You are now ready, contact Ground to request push back and start up.",
-      "audioTextZh": "B: 你现在准备好，联系 地面请求推出和开车。",
+      "audioTextZh": "B: 你现在准备好，联系地面请求推出和开车。",
       "referenceText": "Wuhan Ground, CCA 425, request push back and start up.",
       "referenceTextZh": "武汉地面，CCA 425，请求推出和开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/928.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0054-card-main-930",
       "taskTitle": "CCA 425-5",
       "audioText": "B: While taxiing, you noticed the wind sock shows a strong tailwind, contact Tower to check the wind.",
-      "audioTextZh": "B: 滑行时，你注意到风袋显示强顺风，联系 塔台 检查风。",
+      "audioTextZh": "B: 滑行时，你注意到风袋显示强顺风，联系塔台检查风。",
       "referenceText": "Wuhan Tower, CCA 425, request wind check.",
       "referenceTextZh": "武汉塔台，CCA 425，请求检查风。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/930.mp3"
@@ -61,7 +61,7 @@
       "id": "atc-scenario-0054-card-main-932",
       "taskTitle": "CCA 425-7",
       "audioText": "B: The tailwind exceeds your takeoff limit, contact Tower to change to Runway 18L and state the reason.",
-      "audioTextZh": "B: 顺风超过你的起飞限制，联系 塔台请求改用跑道 18L 并说明原因。",
+      "audioTextZh": "B: 顺风超过你的起飞限制，联系塔台请求改用跑道 18L 并说明原因。",
       "referenceText": "Wuhan Tower, CCA 425, the tailwind exceeds our takeoff limit, request change to Runway 18L.",
       "referenceTextZh": "武汉塔台，CCA 425，顺风超过我们的起飞限制，请求改用跑道 18L。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/932.mp3"

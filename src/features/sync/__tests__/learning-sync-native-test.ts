@@ -15,7 +15,7 @@ jest.mock('expo-sqlite/kv-store', () => ({
   },
 }));
 
-jest.mock('@/platform/api-client', () => ({ apiRequest: (...args: unknown[]) => mockApiRequest(...args) }));
+jest.mock('@/platform/api-client', () => ({ getApiBaseUrl: () => undefined, apiRequest: (...args: unknown[]) => mockApiRequest(...args) }));
 
 
 import * as repository from '@/features/question-bank/data/repository.native';
@@ -29,7 +29,7 @@ import { getLearningRecords, loadLearningRecordReview, upsertLearningRecord, res
 import { captureStudyReview } from '@/features/question-bank/lib/study-review.native';
 import data from '@/features/question-bank/data/question-bank.json';
 import type { LearningRecord, QuestionBankDataset } from '@/features/question-bank/types';
-import { bindLearningSync, mutateVocabularyInCurrentWorkspace, applyPrivacyAiResultReset, deleteLocalAiResult, applyPrivacyLearningDataReset, captureLearningWriteContext, assertLearningWriteContext, clearPersonalLearningData, deleteLearningHistory, enqueueAnnotationStore, enqueueAccountProfile, enqueueLearningRecord, getLearningSyncStatus, resetLearningSyncForTests, runLearningSync, setLearningSyncActiveUser, switchLearningSyncAccount } from '../learning-sync.native';
+import { bindLearningSync, mutateVocabularyInCurrentWorkspace, applyPrivacyAiResultReset, deleteLocalAiResult, applyPrivacyLearningDataReset, captureLearningWriteContext, assertLearningWriteContext, clearPersonalLearningData, deleteLearningHistory, enqueueAnnotationStore, enqueueAccountProfile, enqueueLearningRecord, getLearningSyncStatus, resetLearningSyncForTests, runLearningSync, setLearningSyncActiveUser, switchLearningSyncAccount, switchLearningSyncToGuest } from '../learning-sync.native';
 const bank = data[0] as QuestionBankDataset;
 const category = bank.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
 const history = (): LearningRecord => ({ id: 'history-one', sessionId: 'session-one', recordType: 'session', bankId: bank.id, bankTitle: bank.title, categoryTitle: category.name, topicTitle: topic.name, createdAt: '2026-09-09T00:00:00.000Z', durationSeconds: 1, reason: 'abort', completedCount: 0, totalCount: 1, correctCount: 0, studyReview: captureStudyReview([{ id: card.id, card, topic, category, dataset: bank }], {}, {}) });
@@ -350,4 +350,57 @@ it('binds progress for a member identity without requiring its embedded text', a
     const push = mockApiRequest.mock.calls.find(call => call[0] === '/v1/sync/push')!;
     expect(JSON.parse(push[1].body).mutations).toEqual(expect.arrayContaining([expect.objectContaining({ kind: 'card_state', payload: expect.objectContaining({ cardId, bankId: bank.id }) })]));
   } finally { load.mockRestore(); }
+});
+
+it('keeps the prior account isolated, claims guest records once, including complete review details', async () => {
+  await switchLearningSyncAccount('A');
+  await upsertLearningRecord(history()); await enqueueLearningRecord(history());
+  await switchLearningSyncToGuest();
+  expect(await getLearningRecords()).toEqual([]);
+  const guest = { ...history(), id: 'guest-record', sessionId: 'guest-session' };
+  await upsertLearningRecord(guest); await enqueueLearningRecord(guest);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+  await switchLearningSyncAccount('B');
+  expect((await getLearningRecords()).map(record => record.id)).toEqual(['guest-record']);
+  expect((await loadLearningRecordReview(guest)).studyReview?.items).toHaveLength(1);
+  await switchLearningSyncToGuest();
+  expect(await getLearningRecords()).toEqual([]);
+  await switchLearningSyncAccount('A');
+  expect((await getLearningRecords()).map(record => record.id)).toEqual(['history-one']);
+  await switchLearningSyncAccount('B');
+  expect((await getLearningRecords()).map(record => record.id)).toEqual(['guest-record']);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+});
+it('retries an interrupted guest claim after the account workspace has already been restored', async () => {
+  await switchLearningSyncToGuest();
+  const stateKey = `icao.learning.v2.topic.${topic.id}`;
+  const snapshot = { [stateKey]: JSON.stringify({ [card.id]: { visited: true, completed: false, note: '', updatedAt: '2026-10-25T00:00:00.000Z' } }) };
+  await switchLearningSyncAccount('A');
+  mockValues.set('icao.learning.v3.prebind.guest-claim.A', JSON.stringify(snapshot));
+  await switchLearningSyncAccount('A');
+  expect(JSON.parse(mockValues.get(stateKey)!)[card.id].visited).toBe(true);
+  expect(mockValues.has('icao.learning.v3.prebind.guest-claim.A')).toBe(true);
+  const count = (await getLearningSyncStatus()).pendingCount;
+  await switchLearningSyncAccount('A');
+  expect((await getLearningSyncStatus()).pendingCount).toBe(count);
+});
+it('merges guest vocabulary with the account by word timestamp and queues it once', async () => {
+  await switchLearningSyncAccount('A');
+  await writeVocabularyState({ ...createEmptyVocabularyState(), words: {
+    pilot: { status: 'known', favorite: false, updatedAt: '2026-10-25T02:00:00.000Z' },
+  } });
+  await switchLearningSyncToGuest();
+  await writeVocabularyState({ ...createEmptyVocabularyState(), words: {
+    pilot: { status: 'wrong', favorite: true, updatedAt: '2026-10-25T01:00:00.000Z' },
+    runway: { status: 'known', favorite: true, updatedAt: '2026-10-25T01:00:00.000Z' },
+  } });
+  await switchLearningSyncAccount('A');
+  expect((await readVocabularyState()).words).toEqual({
+    pilot: { status: 'known', favorite: false, updatedAt: '2026-10-25T02:00:00.000Z' },
+    runway: { status: 'known', favorite: true, updatedAt: '2026-10-25T01:00:00.000Z' },
+  });
+  const count = (await getLearningSyncStatus()).pendingCount;
+  expect(count).toBe(1);
+  await switchLearningSyncAccount('A');
+  expect((await getLearningSyncStatus()).pendingCount).toBe(count);
 });

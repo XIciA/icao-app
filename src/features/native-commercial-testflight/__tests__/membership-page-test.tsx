@@ -1,14 +1,17 @@
+jest.mock('@react-navigation/native', () => ({...jest.requireActual('@react-navigation/native'), useIsFocused:()=>true}));
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
 
 import { MembershipPage } from '../MembershipPage.native';
 
 const mockBack = jest.fn();
+const mockReplace = jest.fn();
 const mockPurchase = jest.fn();
 const mockRefresh = jest.fn();
 const mockRestore = jest.fn();
-let mockParams: { from?: string } = {};
+let mockParams: { from?: string; next?: string } = {};
 let mockCommerce: ReturnType<typeof runtimeValue>;
 function runtimeValue(overrides: Record<string, unknown> = {}) {
   return {
@@ -20,7 +23,7 @@ function runtimeValue(overrides: Record<string, unknown> = {}) {
   };
 }
 jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: mockBack, canGoBack: () => true, replace: jest.fn() }) }));
+  useRouter: () => ({ back: mockBack, canGoBack: () => true, replace: mockReplace }) }));
 jest.mock('../CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => mockCommerce }));
 
 function Page() { return <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, bottom: 34, left: 0, right: 0 } }}><MembershipPage /></SafeAreaProvider>; }
@@ -31,10 +34,37 @@ describe('Native membership purchase page', () => {
     mockPurchase.mockResolvedValue({ ok: true }); mockRefresh.mockResolvedValue(undefined); mockRestore.mockResolvedValue({ ok: true });
     mockCommerce = runtimeValue();
   });
+  afterEach(() => jest.restoreAllMocks());
 
-  it('shows seven read-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
+  it.each(['ios', 'android'] as const)('shows CNY channel prices above the struck original prices on %s', async (platform) => {
+    jest.replaceProperty(Platform, 'OS', platform);
+    mockCommerce = runtimeValue({ offerings: [
+      { productKey: 'membership_7d_v1', durationDays: 7, localizedPrice: '¥12', currencyCode: 'CNY' },
+      { productKey: 'membership_31d_v1', durationDays: 31, localizedPrice: '¥38', currencyCode: 'CNY' },
+      { productKey: 'membership_93d_v1', durationDays: 93, localizedPrice: '¥98', currencyCode: 'CNY' },
+    ] });
     const screen = await render(<Page />);
-    for (const title of ['解锁会员题库', '每周 AI 学习额度', '单词学习', '随身听', '模拟考试', 'OPI 热点', '资源分享']) expect(screen.getByText(title)).toBeTruthy();
+    for (const price of ['¥12', '¥38', '¥98']) expect(screen.getByText(price)).toBeTruthy();
+    for (const original of [68, 158, 358]) {
+      expect(screen.getByLabelText(`原价${original}元`)).toHaveStyle({ textDecorationLine: 'line-through' });
+      expect(screen.getByText(`¥${original}`)).toBeTruthy();
+    }
+    expect(screen.getByText('开通31天会员 · ¥38')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('radio', { name: '7天会员' }));
+    expect(screen.getByText('开通7天会员 · ¥12')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
+    expect(mockPurchase).toHaveBeenCalledWith('membership_7d_v1');
+  });
+
+  it('does not compare foreign currency prices with CNY original prices', async () => {
+    const screen = await render(<Page />);
+    expect(screen.getByText('HK$31.00')).toBeTruthy();
+    expect(screen.queryByLabelText(/原价/u)).toBeNull();
+  });
+
+  it('shows member-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
+    const screen = await render(<Page />);
+    for (const title of ['解锁会员题库', '每周 AI 学习额度', '会员音频', '模拟练习', 'OPI 热点']) expect(screen.getByText(title)).toBeTruthy();
     expect(screen.getByText('会员权益')).toBeTruthy();
     expect(screen.queryByText('权益相同，仅时长不同')).toBeNull();
     expect(screen.queryByText(/到期不自动续费/u)).toBeNull();
@@ -86,6 +116,7 @@ describe('Native membership purchase page', () => {
     mockCommerce = runtimeValue({ phase: 'error', offerings: [], error: { retryable: true, userMessage: '商品暂时无法读取' } });
     const screen = await render(<Page />);
     expect(screen.getAllByText('—')).toHaveLength(3);
+    expect(screen.queryByLabelText(/原价/u)).toBeNull();
     await fireEvent.press(screen.getByTestId('membership-purchase'));
     expect(mockPurchase).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('重新检查'));
@@ -110,4 +141,14 @@ describe('Native membership purchase page', () => {
     await screen.rerender(<Page />);
     await waitFor(() => expect(mockBack).toHaveBeenCalledTimes(1));
   });
+});
+
+it('resumes the chosen member activity after purchase', async () => {
+  mockParams = {next:'/content/mock-exam'};
+  mockCommerce = runtimeValue();
+  const screen = await render(<Page />);
+  expect(mockReplace).not.toHaveBeenCalled();
+  mockCommerce = runtimeValue({entitlement:{membership:{active:true}}});
+  await screen.rerender(<Page />);
+  expect(mockReplace).toHaveBeenCalledWith('/content/mock-exam');
 });

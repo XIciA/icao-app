@@ -1,132 +1,132 @@
 {
   "id": "opi-topic-0021",
-  "name": "低能见度与RVR",
-  "declaredCardCount": 12,
+  "name": "低能见度与跑道视程",
   "cards": [
     {
-      "id": "opi-core-313",
-      "taskTitle": "气象-低能见度与RVR-1",
-      "audioText": "What is runway visual range (RVR)?",
-      "audioTextZh": "什么是跑道视程（RVR）？",
-      "referenceText": "Runway visual range is the distance over which a pilot on the runway centreline can see the runway surface markings or the lights that outline the runway or identify its centreline. It is normally reported in metres or feet for a particular part of the runway.",
-      "referenceTextZh": "跑道视程是指位于跑道中线上的飞行员能够看清跑道道面标志，或跑道边界灯光及中线灯光的距离。通常以米或英尺报告，并对应跑道的特定部分。",
-      "audio": "/question-bank-assets/revisions/opi/3ccfe40492cd7f6e97da5042a2ad603bfd31fbe523abcfe8a316ed27f72efe8b/audio/opi/opi-core-313.mp3",
-      "audioDurationSeconds": 2.472
-    },
-    {
-      "id": "opi-core-314",
-      "taskTitle": "气象-低能见度与RVR-2",
-      "audioText": "When should pilots obtain current RVR information?",
-      "audioTextZh": "飞行员应在什么时候获取最新的 RVR 信息？",
-      "referenceText": "Pilots should obtain current RVR information when visibility at the airport is low.",
-      "referenceTextZh": "机场能见度较低时，飞行员应获取当前的跑道视程信息。",
-      "audio": "/question-bank-assets/revisions/opi/7cb8952a0ccd60e474bb185c653cc9d90a4928a055bff24a8b46ab9259833fff/audio/opi/opi-core-314.mp3",
-      "audioDurationSeconds": 2.952
-    },
-    {
-      "id": "opi-core-314-part-2",
-      "taskTitle": "气象-低能见度与RVR-3",
-      "audioText": "From what sources can pilots obtain RVR information?",
-      "audioTextZh": "飞行员可以从哪些来源获取 RVR 信息？",
-      "referenceText": "Pilots can obtain RVR information from ATIS or from the air traffic controller.",
-      "referenceTextZh": "飞行员可以从 ATIS 或空中交通管制员处获得跑道视程信息。",
-      "audio": "/question-bank-assets/revisions/opi/b0f84b21b13cc31bf1ff1abab281c8639b2ad065c1c0de56f5a24f546a99ce77/audio/opi/opi-core-314-part-2.mp3",
-      "audioDurationSeconds": 3.24
-    },
-    {
-      "id": "opi-core-316",
-      "taskTitle": "气象-低能见度与RVR-4",
-      "audioText": "When are low-visibility procedures required?",
-      "audioTextZh": "何时需要实施低能见度程序？",
-      "referenceText": "Low-visibility procedures are required when the reported visibility, cloud ceiling, or RVR reaches the activation criteria published for that aerodrome. ATC or the aerodrome operator activates the procedures to protect sensitive areas and control surface movements. The exact trigger is local, so pilots must check the current airport information.",
-      "referenceTextZh": "当报告能见度、云底高或跑道视程达到该机场公布的启动标准时，就需要实施低能见度程序。空中交通管制或机场运营方会启动这些程序，以保护敏感区并控制地面活动。具体启动条件由当地规定，因此飞行员必须查看最新机场信息。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/44b374b2c7e8945f555314f2c54673cfdce1135b36888f1bab5c2c7afef76bcb/audio/opi/opi-core-316.mp3",
-      "audioDurationSeconds": 2.616
-    },
-    {
-      "id": "opi-extra-192",
-      "taskTitle": "气象-低能见度与RVR-5",
-      "audioText": "What is your company's policy on takeoffs in low-visibility conditions?",
-      "audioTextZh": "贵公司对低能见度条件下起飞有什么规定？",
-      "referenceText": "At my flight school, if the visibility is below our takeoff minimum, we wait for the weather to improve.",
-      "referenceTextZh": "在我的航校，如果能见度低于我们的起飞最低标准，就等待天气好转。",
-      "audio": "/question-bank-assets/revisions/opi/79e34b30a601bdac071706fee4439324705fea31a0a286b21bc6bd8dd5cac7e7/audio/opi/opi-extra-192.mp3",
-      "audioDurationSeconds": 3.984
-    },
-    {
       "id": "opi-extra-192-part-2",
-      "taskTitle": "气象-低能见度与RVR-6",
+      "audio": "/question-bank-assets/revisions/opi/df43cbdc8b52394a69f6f0dcaa53ee9733d8ffc2884eb120cd24e02c39dbec77/audio/opi/opi-extra-192-part-2.mp3",
       "audioText": "What is your company's policy on landings in low-visibility conditions?",
+      "taskTitle": "气象-低能见度与跑道视程-6",
       "audioTextZh": "贵公司对低能见度条件下着陆有什么规定？",
       "referenceText": "At my flight school, we do not land when the reported weather is below the applicable landing minimum. The approach may be continued only when the aircraft, equipment, airport facilities, and pilot qualifications meet the requirements. If the required visual reference is not obtained at the decision point, we go around.",
       "referenceTextZh": "在我的航校，报告天气低于适用的着陆最低标准时，我们不会着陆。只有飞机、设备、机场设施和飞行员资质均满足要求时，才能继续进近。如果在决断点未获得所需目视参考，我们就复飞。",
-      "audio": "/question-bank-assets/revisions/opi/df43cbdc8b52394a69f6f0dcaa53ee9733d8ffc2884eb120cd24e02c39dbec77/audio/opi/opi-extra-192-part-2.mp3",
       "audioDurationSeconds": 3.912
-    },
-    {
-      "id": "opi-extra-193",
-      "taskTitle": "气象-低能见度与RVR-7",
-      "audioText": "How can pilots prevent runway incursions while taxiing in low visibility?",
-      "audioTextZh": "低能见度滑行时，飞行员如何防止跑道侵入？",
-      "referenceText": "Pilots should taxi slowly, use the airport chart, and obtain ATC clearance before entering a runway. They should read back instructions clearly, confirm any doubt with ATC, and maintain good situational awareness. A follow-me vehicle can be requested if necessary.",
-      "referenceTextZh": "飞行员应缓慢滑行、使用机场图，并在进入跑道前取得空中交通管制许可。他们应清楚复诵指令，对任何疑问向管制确认，并保持良好情景意识。必要时可以申请引导车。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/3ca929aa7fc8959a412f04a461c558beb1ed4c8a372b3462393ae0dd5f56d470/audio/opi/opi-extra-193.mp3",
-      "audioDurationSeconds": 4.248
-    },
-    {
-      "id": "opi-extra-194",
-      "taskTitle": "气象-低能见度与RVR-8",
-      "audioText": "What precautions should pilots take when taxiing in low visibility?",
-      "audioTextZh": "低能见度滑行时，飞行员应采取哪些预防措施？",
-      "referenceText": "Pilots should maintain good situational awareness and follow ATC instructions carefully. If visibility is extremely poor, they may request a follow-me vehicle.",
-      "referenceTextZh": "飞行员应保持良好情景意识，并认真遵循空中交通管制指令。如果能见度极低，可以申请引导车。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/160be1ecfcbc0d326040928c7e19bb8d7ef4ee284d886d4d5777056849315de7/audio/opi/opi-extra-194.mp3",
-      "audioDurationSeconds": 3.72
-    },
-    {
-      "id": "opi-extra-195",
-      "taskTitle": "气象-低能见度与RVR-9",
-      "audioText": "How can pilots prevent ground collisions in low-visibility conditions?",
-      "audioTextZh": "低能见度条件下，飞行员如何防止地面碰撞？",
-      "referenceText": "Pilots should taxi slowly and cautiously, follow ATC instructions, and read them back clearly. They should monitor the frequency and airport chart, confirm their position if in doubt, and maintain good cockpit communication and situational awareness.",
-      "referenceTextZh": "飞行员应缓慢谨慎滑行，遵循空中交通管制指令并清楚复诵。他们应守听频率、查看机场图，有疑问时确认位置，并保持良好的驾驶舱沟通和情景意识。",
-      "audio": "/question-bank-assets/revisions/opi/058962fab5ba3989b64537dd9813c0caad3895ddd8b08278e98d83985b9ff569/audio/opi/opi-extra-195.mp3",
-      "audioDurationSeconds": 3.912
-    },
-    {
-      "id": "opi-extra-196",
-      "taskTitle": "气象-低能见度与RVR-10",
-      "audioText": "What should a pilot do after missing the correct taxiway in low visibility?",
-      "audioTextZh": "低能见度下错过正确滑行道后，飞行员应如何处置？",
-      "referenceText": "The pilot should stop immediately, report the aircraft's position to ATC, and request further instructions. The aircraft should not continue taxiing without ATC clearance, and the pilot may request a follow-me vehicle if necessary.",
-      "referenceTextZh": "飞行员应立即停车，向空中交通管制报告飞机位置，并申请进一步指令。未经管制许可不得继续滑行，必要时飞行员可以申请引导车。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/a82a8c3b6ab032cc401bfaf4f698202e6653baa7ebdacfd7335c0bf3c11cd9cc/audio/opi/opi-extra-196.mp3",
-      "audioDurationSeconds": 4.056
     },
     {
       "id": "opi-extra-198",
-      "taskTitle": "气象-低能见度与RVR-11",
+      "audio": "/question-bank-assets/revisions/opi/8f02cc59e98dad058e2080b4aedb82ef019e78e8fb0a37b63b8b656bbfbdfaaf/audio/opi/opi-extra-198.mp3",
       "audioText": "What consequences can result from disorientation in low-visibility conditions?",
+      "taskTitle": "气象-低能见度与跑道视程-11",
       "audioTextZh": "低能见度条件下迷失方向可能导致哪些后果？",
       "referenceText": "Disorientation in low visibility can lead to a runway incursion, a ground collision, entry onto the wrong taxiway, or a missed approach. It may also cause an unstable landing, runway overrun or veer-off, aircraft damage, and injuries.",
       "referenceTextZh": "低能见度下的迷航可能导致跑道侵入、地面碰撞、误入错误滑行道或复飞。还可能造成着陆不稳定、冲出或偏出跑道、飞机损坏和人员受伤。",
-      "audio": "/question-bank-assets/revisions/opi/8f02cc59e98dad058e2080b4aedb82ef019e78e8fb0a37b63b8b656bbfbdfaaf/audio/opi/opi-extra-198.mp3",
       "audioDurationSeconds": 4.608
     },
     {
+      "id": "opi-extra-194",
+      "audio": "/question-bank-assets/revisions/opi/160be1ecfcbc0d326040928c7e19bb8d7ef4ee284d886d4d5777056849315de7/audio/opi/opi-extra-194.mp3",
+      "audioText": "What precautions should pilots take when taxiing in low visibility?",
+      "studyTier": 2,
+      "taskTitle": "气象-低能见度与跑道视程-8",
+      "audioTextZh": "低能见度滑行时，飞行员应采取哪些预防措施？",
+      "referenceText": "Pilots should maintain good situational awareness and follow ATC instructions carefully. If visibility is extremely poor, they may request a follow-me vehicle.",
+      "referenceTextZh": "飞行员应保持良好情景意识，并认真遵循空中交通管制指令。如果能见度极低，可以申请引导车。",
+      "audioDurationSeconds": 3.72
+    },
+    {
+      "id": "opi-extra-196",
+      "audio": "/question-bank-assets/revisions/opi/a82a8c3b6ab032cc401bfaf4f698202e6653baa7ebdacfd7335c0bf3c11cd9cc/audio/opi/opi-extra-196.mp3",
+      "audioText": "What should a pilot do after missing the correct taxiway in low visibility?",
+      "studyTier": 2,
+      "taskTitle": "气象-低能见度与跑道视程-10",
+      "audioTextZh": "低能见度下错过正确滑行道后，飞行员应如何处置？",
+      "referenceText": "The pilot should stop immediately, report the aircraft's position to ATC, and request further instructions. The aircraft should not continue taxiing without ATC clearance, and the pilot may request a follow-me vehicle if necessary.",
+      "referenceTextZh": "飞行员应立即停车，向空中交通管制报告飞机位置，并申请进一步指令。未经管制许可不得继续滑行，必要时飞行员可以申请引导车。",
+      "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-extra-195",
+      "audio": "/question-bank-assets/revisions/opi/058962fab5ba3989b64537dd9813c0caad3895ddd8b08278e98d83985b9ff569/audio/opi/opi-extra-195.mp3",
+      "audioText": "How can pilots prevent ground collisions in low-visibility conditions?",
+      "taskTitle": "气象-低能见度与跑道视程-9",
+      "audioTextZh": "低能见度条件下，飞行员如何防止地面碰撞？",
+      "referenceText": "Pilots should taxi slowly and cautiously, follow ATC instructions, and read them back clearly. They should monitor the frequency and airport chart, confirm their position if in doubt, and maintain good cockpit communication and situational awareness.",
+      "referenceTextZh": "飞行员应缓慢谨慎滑行，遵循空中交通管制指令并清楚复诵。他们应守听频率、查看机场图，有疑问时确认位置，并保持良好的驾驶舱沟通和情景意识。",
+      "audioDurationSeconds": 3.912
+    },
+    {
+      "id": "opi-core-314-part-2",
+      "audio": "/question-bank-assets/revisions/opi/b0f84b21b13cc31bf1ff1abab281c8639b2ad065c1c0de56f5a24f546a99ce77/audio/opi/opi-core-314-part-2.mp3",
+      "audioText": "From what sources can pilots obtain RVR information?",
+      "taskTitle": "气象-低能见度与跑道视程-3",
+      "audioTextZh": "飞行员可以从哪些来源获取 RVR 信息？",
+      "referenceText": "Pilots can obtain RVR information from ATIS or from the air traffic controller.",
+      "referenceTextZh": "飞行员可以从 ATIS 或空中交通管制员处获得跑道视程信息。",
+      "audioDurationSeconds": 3.24
+    },
+    {
+      "id": "opi-core-314",
+      "audio": "/question-bank-assets/revisions/opi/7cb8952a0ccd60e474bb185c653cc9d90a4928a055bff24a8b46ab9259833fff/audio/opi/opi-core-314.mp3",
+      "audioText": "When should pilots obtain current RVR information?",
+      "taskTitle": "气象-低能见度与跑道视程-2",
+      "audioTextZh": "飞行员应在什么时候获取最新的 RVR 信息？",
+      "referenceText": "Pilots should obtain current RVR information when visibility at the airport is low.",
+      "referenceTextZh": "机场能见度较低时，飞行员应获取当前的跑道视程信息。",
+      "audioDurationSeconds": 2.952
+    },
+    {
       "id": "opi-extra-200",
-      "taskTitle": "气象-低能见度与RVR-12",
+      "audio": "/question-bank-assets/revisions/opi/aa05f09a38f69d97830db240a01eeb272b11b56bbf847b0241d51a6cedc90be4/audio/opi/opi-extra-200.mp3",
       "audioText": "What hazards can arise during low-visibility operations?",
+      "taskTitle": "气象-低能见度与跑道视程-12",
       "audioTextZh": "低能见度运行中可能出现哪些危险？",
       "referenceText": "Low visibility can reduce situational awareness, increase pilot workload, and raise the risk of misjudgment. It may lead to a runway incursion, ground collision, missed taxiway or runway, unstable approach, go-around, delay, or diversion.",
       "referenceTextZh": "低能见度会降低情景意识、增加飞行员工作负荷，并提高误判风险。它可能导致跑道侵入、地面碰撞、错过滑行道或跑道、进近不稳定、复飞、延误或改航。",
-      "audio": "/question-bank-assets/revisions/opi/aa05f09a38f69d97830db240a01eeb272b11b56bbf847b0241d51a6cedc90be4/audio/opi/opi-extra-200.mp3",
       "audioDurationSeconds": 3.264
+    },
+    {
+      "id": "opi-core-316",
+      "audio": "/question-bank-assets/revisions/opi/44b374b2c7e8945f555314f2c54673cfdce1135b36888f1bab5c2c7afef76bcb/audio/opi/opi-core-316.mp3",
+      "audioText": "When are low-visibility procedures required?",
+      "studyTier": 2,
+      "taskTitle": "气象-低能见度与跑道视程-4",
+      "audioTextZh": "何时需要实施低能见度程序？",
+      "referenceText": "Low-visibility procedures are required when the reported visibility, cloud ceiling, or RVR reaches the activation criteria published for that aerodrome. ATC or the aerodrome operator activates the procedures to protect sensitive areas and control surface movements. The exact trigger is local, so pilots must check the current airport information.",
+      "referenceTextZh": "当报告能见度、云底高或跑道视程达到该机场公布的启动标准时，就需要实施低能见度程序。空中交通管制或机场运营方会启动这些程序，以保护敏感区并控制地面活动。具体启动条件由当地规定，因此飞行员必须查看最新机场信息。",
+      "audioDurationSeconds": 2.616
+    },
+    {
+      "id": "opi-extra-193",
+      "audio": "/question-bank-assets/revisions/opi/3ca929aa7fc8959a412f04a461c558beb1ed4c8a372b3462393ae0dd5f56d470/audio/opi/opi-extra-193.mp3",
+      "audioText": "How can pilots prevent runway incursions while taxiing in low visibility?",
+      "studyTier": 2,
+      "taskTitle": "气象-低能见度与跑道视程-7",
+      "audioTextZh": "低能见度滑行时，飞行员如何防止跑道侵入？",
+      "referenceText": "Pilots should taxi slowly, use the airport chart, and obtain ATC clearance before entering a runway. They should read back instructions clearly, confirm any doubt with ATC, and maintain good situational awareness. A follow-me vehicle can be requested if necessary.",
+      "referenceTextZh": "飞行员应缓慢滑行、使用机场图，并在进入跑道前取得空中交通管制许可。他们应清楚复诵指令，对任何疑问向管制确认，并保持良好情景意识。必要时可以申请引导车。",
+      "audioDurationSeconds": 4.248
+    },
+    {
+      "id": "opi-extra-192",
+      "audio": "/question-bank-assets/revisions/opi/79e34b30a601bdac071706fee4439324705fea31a0a286b21bc6bd8dd5cac7e7/audio/opi/opi-extra-192.mp3",
+      "audioText": "What is your company's policy on takeoffs in low-visibility conditions?",
+      "taskTitle": "气象-低能见度与跑道视程-5",
+      "audioTextZh": "贵公司对低能见度条件下起飞有什么规定？",
+      "referenceText": "At my flight school, if the visibility is below our takeoff minimum, we wait for the weather to improve.",
+      "referenceTextZh": "在我的航校，如果能见度低于我们的起飞最低标准，就等待天气好转。",
+      "audioDurationSeconds": 3.984
+    },
+    {
+      "id": "opi-core-313",
+      "audio": "/question-bank-assets/revisions/opi/3ccfe40492cd7f6e97da5042a2ad603bfd31fbe523abcfe8a316ed27f72efe8b/audio/opi/opi-core-313.mp3",
+      "audioText": "What is RVR?",
+      "taskTitle": "气象-低能见度与跑道视程-1",
+      "audioTextZh": "什么是RVR？",
+      "referenceText": "Runway visual range is the distance over which a pilot on the runway centreline can see the runway surface markings or the lights that outline the runway or identify its centreline. It is normally reported in metres or feet for a particular part of the runway.",
+      "referenceTextZh": "跑道视程是指位于跑道中线上的飞行员能够看清跑道道面标志，或跑道边界灯光及中线灯光的距离。通常以米或英尺报告，并对应跑道的特定部分。",
+      "audioDurationSeconds": 2.472
     }
   ],
+  "declaredCardCount": 12,
   "categoryId": "opi-category-01"
 }

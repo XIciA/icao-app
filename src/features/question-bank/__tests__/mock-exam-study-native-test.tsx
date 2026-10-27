@@ -7,15 +7,17 @@ import type { QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPacka
 import { captureStudyReview } from '../lib/study-review.native';
 const mockEntitlement: { snapshot: { membership: { active: boolean; expiresAt: string } } } = { snapshot: { membership: { active: false, expiresAt: '2020-01-01T00:00:00Z' } } };
 let mockNote = '';
+const mockRouter = { dismissTo: jest.fn(), replace: jest.fn(), canGoBack: jest.fn(() => true), back: jest.fn() };
+let mockSystemBack: (() => void) | undefined;
 const mockToggleFavorite = jest.fn();
 const mockAnnotationFlush = jest.fn(async () => true);
 const mockToggleTag = jest.fn();
 jest.mock('@/features/native-commercial-testflight/commerce-entitlement-events', () => ({ getCommerceEntitlementSnapshot: () => mockEntitlement, subscribeCommerceEntitlementChanges: () => () => {} }));
 jest.mock('../data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/platform/product-clicks.native', () => ({ trackProductClick: jest.fn(), setClickStudyContext: jest.fn() }));
-jest.mock('expo-router', () => ({ useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]), useRouter: () => ({ dismissTo: jest.fn(), replace: jest.fn(), canGoBack: () => true, back: jest.fn() }) }));
-jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: MockView, useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) }));
-jest.mock('@react-navigation/native', () => ({ usePreventRemove: jest.fn() }));
+jest.mock('expo-router', () => ({ useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]), useRouter: () => mockRouter }));
+jest.mock('react-native-safe-area-context', () => ({ ...jest.requireActual('react-native-safe-area-context/jest/mock').default, SafeAreaView: MockView, useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) }));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: jest.requireActual('react').createContext(undefined), usePreventRemove: (enabled: boolean, callback: () => void) => { if (enabled) mockSystemBack = callback; } }));
 jest.mock('react-native-reanimated', () => ({ ...jest.requireActual('react-native-reanimated/mock'), useReducedMotion: () => true }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
 jest.mock('../hooks/useQuestionBankAudioPreload', () => ({ useQuestionBankAudioPreload: jest.fn() }));
@@ -30,7 +32,7 @@ jest.mock('../components/StudyAudioPlayer', () => ({ StudyAudioPlayer: () => nul
 jest.mock('../components/ImageQuestionCard', () => ({ ImageQuestionCard: ({ imageAlt }: { imageAlt: string }) => <MockText>{imageAlt}</MockText> }));
 jest.mock('../components/SpeakingPracticePanel', () => ({ SpeakingPracticePanel: () => null }));
 jest.mock('../components/StudyWorkbench.native', () => ({ StudyWorkbench: () => <MockText>AI工作台</MockText> }));
-jest.mock('../platform/learning-store.native', () => ({ migrateLegacyCardState: (state: unknown) => state, sqliteLearningStore: { getTopicStates: jest.fn(async () => ({})), addRecord: jest.fn(async () => undefined), saveCardState: jest.fn() } }));
+jest.mock('../platform/learning-store.native', () => ({ migrateLegacyCardState: (state: unknown) => state, sqliteLearningStore: { getTopicStates: jest.fn(async () => ({})), addRecord: jest.fn(async () => undefined), saveCardState: jest.fn(async () => undefined) } }));
 jest.mock('../recording/recording-repository', () => ({ recordingRepository: { cleanupSession: jest.fn(), discard: jest.fn() } }));
 function paper(mixed = true): QuestionBankStudyPackage {
   const dataset = data[0] as QuestionBankDataset; const category = dataset.categories[0]; const topic = category.topics[0];
@@ -38,7 +40,7 @@ function paper(mixed = true): QuestionBankStudyPackage {
   if (mixed) items.push({ ...items[0], id: 'opi-item', dataset: { ...dataset, id: 'opi', study: { ...dataset.study, interaction: 'speaking' } }, card: { id: 'opi-card', taskTitle: 'OPI', audioText: 'Question' } });
   return { id: 'screen-paper', startedAt: '2026-09-09T00:00:00.000Z', progressMode: 'session-only', items, record: { id: 'screen-record', bankId: 'mock_exam', bankTitle: '模拟考试', categoryTitle: 'ICAO 4 初考', topicTitle: '听力', recordType: 'mock_exam', mockExam: { examType: 'icao4-first', mode: 'custom', moduleIds: mixed ? ['listening', 'opi'] : ['listening'], sectionCounts: [] } } };
 }
-beforeEach(() => { jest.clearAllMocks(); mockAnnotationFlush.mockResolvedValue(true); mockNote = ''; mockEntitlement.snapshot.membership = { active: false, expiresAt: '2020-01-01T00:00:00Z' }; });
+beforeEach(() => { jest.clearAllMocks(); mockRouter.canGoBack.mockReturnValue(true); mockSystemBack = undefined; mockAnnotationFlush.mockResolvedValue(true); mockNote = ''; mockEntitlement.snapshot.membership = { active: false, expiresAt: '2020-01-01T00:00:00Z' }; });
 it('preserves the exam on save failure and permits leaving only after explicit confirmation', async () => {
   const onReturn = jest.fn();
   const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
@@ -69,7 +71,7 @@ it('runs sequentially with no answer/tool/previous controls, shows listening sco
   await waitFor(() => expect(screen.getByText('口语作答')).toBeTruthy());
   await fireEvent.press(screen.getByText('结束'));
   await waitFor(() => expect(screen.getByText('本次模拟考试已结束')).toBeTruthy());
-  expect(screen.getByText('未完成')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(screen.getByText('全部学习记录')).toBeTruthy();
+  expect(screen.getByText('未完成')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(screen.getByText('本次学习记录')).toBeTruthy();
   const calls = jest.mocked(sqliteLearningStore.addRecord).mock.calls;
   expect(calls).toHaveLength(2); expect(calls[0][0].id).toBe(calls[1][0].id);
 });
@@ -79,7 +81,7 @@ it('uses the listening result itself as the final screen for a listening-only ex
   for (let index = 0; index < 19; index += 1) await act(async () => { await fireEvent.press(screen.getByLabelText('下一题')); });
   await fireEvent.press(screen.getByLabelText('提交听力'));
   await waitFor(() => expect(screen.getByText('听力成绩')).toBeTruthy());
-  expect(screen.queryByText('进入下一板块')).toBeNull(); expect(screen.getByText('全部学习记录')).toBeTruthy(); expect(screen.queryByText('已结束')).toBeNull();
+  expect(screen.queryByText('进入下一板块')).toBeNull(); expect(screen.getByText('本次学习记录')).toBeTruthy(); expect(screen.queryByText('已结束')).toBeNull();
 });
 
 it('keeps the source picture visible beside its OPI question without creating an extra exam answer', async () => {
@@ -199,4 +201,50 @@ it('opens tag and highlight management from the shared study screen on formal We
     expect(screen.getByText('管理高亮 · 修改当前颜色名称')).toBeTruthy();
     await screen.unmount();
   } finally { Object.defineProperty(Platform, 'OS', { value: originalPlatform, configurable: true }); }
+});
+
+function practiceScreen(returnTo?: 'annotations' | 'radio') {
+  const dataset = data[0] as QuestionBankDataset;
+  const category = dataset.categories[0];
+  const topic = { ...category.topics[0], cards: category.topics[0].cards.slice(0, 1) };
+  return <QuestionBankStudyScreen dataset={dataset} category={category} topic={topic} returnTo={returnTo} />;
+}
+
+it.each([undefined, 'annotations', 'radio'] as const)('pops the real source once after saving practice from %s', async returnTo => {
+  const screen = await render(practiceScreen(returnTo));
+  const label = returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录';
+  await waitFor(() => expect(screen.getByLabelText(label)).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText(label));
+  await waitFor(() => expect(mockRouter.back).toHaveBeenCalledTimes(1));
+  expect(mockRouter.replace).not.toHaveBeenCalled();
+  expect(mockRouter.dismissTo).not.toHaveBeenCalled();
+});
+
+it('uses the same save and pop path for a native back gesture', async () => {
+  const screen = await render(practiceScreen());
+  await waitFor(() => expect(screen.getByLabelText('返回题库目录')).toBeTruthy());
+  await act(async () => { mockSystemBack?.(); });
+  await waitFor(() => expect(mockRouter.back).toHaveBeenCalledTimes(1));
+  expect(mockRouter.replace).not.toHaveBeenCalled();
+});
+
+it('retains the practice screen on save failure during system back', async () => {
+  const screen = await render(practiceScreen());
+  await waitFor(() => expect(screen.getByLabelText('返回题库目录')).toBeTruthy());
+  mockAnnotationFlush.mockResolvedValue(false);
+  await act(async () => { mockSystemBack?.(); });
+  await waitFor(() => expect(screen.getByText('笔记或标注保存失败，请重试。')).toBeTruthy());
+  expect(mockRouter.back).not.toHaveBeenCalled();
+  mockAnnotationFlush.mockResolvedValue(true);
+  await fireEvent.press(screen.getByLabelText('返回题库目录'));
+  await waitFor(() => expect(mockRouter.back).toHaveBeenCalledTimes(1));
+});
+
+it('falls back to the catalog only when a deep link has no navigation history', async () => {
+  mockRouter.canGoBack.mockReturnValue(false);
+  const screen = await render(practiceScreen());
+  await waitFor(() => expect(screen.getByLabelText('返回题库目录')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('返回题库目录'));
+  await waitFor(() => expect(mockRouter.replace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'listening' } }));
+  expect(mockRouter.back).not.toHaveBeenCalled();
 });

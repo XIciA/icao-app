@@ -1,4 +1,4 @@
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import {
   AI_GENERATED_CONTENT_LABEL,
   DEEPSEEK_MODEL_FILING_DISCLOSURE,
@@ -129,6 +129,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const [failureDiagnosticId, setFailureDiagnosticId] = useState<string>();
   const [autoSaveError, setAutoSaveError] = useState<string>();
   const [consented, setConsented] = useState(false);
+  const teaching = !!useGuide()?.current;
+  const consentSurface = useRef<View>(null);
   const [consentKind, setConsentKind] = useState<AiConsentKind>();
   const [answerInputHeight, setAnswerInputHeight] = useState(92);
   const [noteInputHeight, setNoteInputHeight] = useState(92);
@@ -586,9 +588,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         </View>
       </View>
       </GestureDetector>
-      <AppModal animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
-        <View style={styles.consentOverlay}>
-          <View accessibilityLabel="AI 数据处理提示" style={styles.consentDialog}>
+      <AppModal guideBackdropRef={consentSurface} animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
+        <View style={[styles.consentOverlay, teaching && { backgroundColor: 'transparent' }]}>
+          <View ref={consentSurface} accessibilityLabel="AI 数据处理提示" style={styles.consentDialog}>
             <AppText variant="sectionTitle">AI 数据处理提示</AppText>
             <AppText>
               {consentKind === 'audio'

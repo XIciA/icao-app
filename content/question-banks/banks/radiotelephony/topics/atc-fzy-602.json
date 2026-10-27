@@ -1,22 +1,22 @@
 {
   "id": "atc-fzy-602",
-  "name": "AFR151 icing&engine failure, etc.",
+  "name": "AFR151 · 积冰与发动机失效",
   "declaredCardCount": 16,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111027",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-1",
-      "audioText": "[Your call sign is AFR151. You are at Wuhan airport, at Gate 215, information G received, request ATC clearance to Paris.]",
-      "audioTextZh": "【你的呼号是法航151，在武汉机场，215号机位，收到通播G，向ATC申请放行至巴黎。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-1",
+      "audioText": "Your call sign is AFR151. You are at Wuhan airport, at Gate 215, information G received, request ATC clearance to Paris.",
+      "audioTextZh": "你的呼号是法航151，在武汉机场，215号机位，收到通播G，向ATC申请放行至巴黎。",
       "referenceText": "Wuhan Delivery, AFR151, Gate 215, information G, destination Paris, request ATC clearance.",
       "referenceTextZh": "武汉放行，法航151，215号机位，通播G，目的地巴黎，请求管制许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/01222663fccd15cb907b.mp3"
     },
     {
       "id": "radiotelephony-fzy-111028",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-2",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-2",
       "audioText": "AFR151, Wuhan Delivery, cleared to Paris via flight planned route, LKO-01 departure, runway 04, initial climb 1800m, cruising level 10700m, contact Departure on 119.7, squawk 2521.",
       "audioTextZh": "法航151，武汉放行，可以按计划航路飞往巴黎，LKO-01号离场，跑道04，起始高度1800米，巡航高度10700米，离场频率119.7，应答机2521。",
       "referenceText": "Cleared to Paris via flight planned route, LKO-01 departure, runway 04, initial climb 1800m, cruising level 10700m, 119.7, squawk 2521, AFR151.",
@@ -25,16 +25,16 @@
     },
     {
       "id": "radiotelephony-fzy-111029",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-3",
-      "audioText": "[You decide 10700m is not acceptable due to heavy weight. Ask whether 9500m is available.]",
-      "audioTextZh": "【由于飞机过重，10700米不能接受。询问9500米是否可行。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-3",
+      "audioText": "You decide 10700m is not acceptable due to heavy weight. Ask whether 9500m is available.",
+      "audioTextZh": "由于飞机过重，10700米不能接受。询问9500米是否可行。",
       "referenceText": "Wuhan Delivery, AFR151, negative 10700m due weight, confirm 9500m is available.",
       "referenceTextZh": "武汉放行，法航151，由于重量，我们不能接受10700米，证实9500米可用。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1c1dc7c522ab203b326e.mp3"
     },
     {
       "id": "radiotelephony-fzy-111030",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-4",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-4",
       "audioText": "AFR151, recleared cruising level 9500m.",
       "audioTextZh": "法航151，重新允许巡航高度9500米。",
       "referenceText": "Cruising level 9500m, AFR151.",
@@ -43,16 +43,16 @@
     },
     {
       "id": "radiotelephony-fzy-111031",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-5",
-      "audioText": "[Now you are ready for pushback and start-up, contact Wuhan Ground.]",
-      "audioTextZh": "【现在你已准备好推出开车，联系武汉地面。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-5",
+      "audioText": "Now you are ready for pushback and start-up, contact Wuhan Ground.",
+      "audioTextZh": "现在你已准备好推出开车，联系武汉地面。",
       "referenceText": "Wuhan Ground, AFR151, gate 215, request pushback and start-up.",
       "referenceTextZh": "武汉地面，法航151，215号停机位，请求推出开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/965d28e2029afcdf561d.mp3"
     },
     {
       "id": "radiotelephony-fzy-111032",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-6",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-6",
       "audioText": "AFR151, Ground, pushback and start-up approved, facing east.",
       "audioTextZh": "法航151，地面，同意推出开车，头朝东。",
       "referenceText": "Pushback and start-up approved, facing east, AFR151.",
@@ -61,16 +61,16 @@
     },
     {
       "id": "radiotelephony-fzy-111033",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-7",
-      "audioText": "[You are now on the taxiway Z4 with your engines running. Ask Ground Control for taxi instructions.]",
-      "audioTextZh": "【你现在在滑行道Z4上，发动机已经启动。向地面指挥询问滑行指令。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-7",
+      "audioText": "You are now on the taxiway Z4 with your engines running. Ask Ground Control for taxi instructions.",
+      "audioTextZh": "你现在在滑行道Z4上，发动机已经启动。向地面指挥询问滑行指令。",
       "referenceText": "Wuhan Ground, AFR151, request taxi.",
       "referenceTextZh": "武汉地面，法航151，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e5a341647306ce6f9e10.mp3"
     },
     {
       "id": "radiotelephony-fzy-111034",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-8",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-8",
       "audioText": "AFR151, taxi to holding point runway 04 via Z4, A, hold short of A4.",
       "audioTextZh": "法航151，沿滑行道Z4，A滑至跑道04等待点，在A4外等待。",
       "referenceText": "Taxi to holding point runway 04 via Z4, A, hold short of A4, AFR151.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111035",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-9",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-9",
       "audioText": "AFR151, give way to the B737 vacating from E3, when the traffic cleared, continue taxi A, A9, hold short of runway 04.",
       "audioTextZh": "法航151，给正在从E3脱离的波音737让路，飞机没影响后，继续沿滑行道A，A9滑至跑道04外等待。",
       "referenceText": "Give way to the B737, when the traffic cleared, continue taxi A, A9, hold short of runway 04, AFR151.",
@@ -88,16 +88,16 @@
     },
     {
       "id": "radiotelephony-fzy-111036",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-10",
-      "audioText": "[Now you are airborne at 600m climbing, contact Wuhan Departure.]",
-      "audioTextZh": "【现在飞机已起飞，600米爬升，联系武汉离场。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-10",
+      "audioText": "Now you are airborne at 600m climbing, contact Wuhan Departure.",
+      "audioTextZh": "现在飞机已起飞，600米爬升，联系武汉离场。",
       "referenceText": "Wuhan Departure, AFR151 airborne, passing 600m.",
       "referenceTextZh": "武汉离场，法航151起飞，通过600米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/14d4789072e622653311.mp3"
     },
     {
       "id": "radiotelephony-fzy-111037",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-11",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-11",
       "audioText": "AFR 151, Wuhan Departure, radar contact, turn left direct to DA, climb and maintain 3000m on QNH 1015.",
       "audioTextZh": "法航151，武汉离场，雷达已识别，左转直飞DA，上升保持修正海压3000米，修正海压1015。",
       "referenceText": "Turn left direct to DA, climb and maintain 3000m on QNH 1015, AFR151.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111038",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-12",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-12",
       "audioText": "AFR151, continue climb and maintain 6000m on standard, expedite passing 3900m.",
       "audioTextZh": "法航151，继续上升保持标压6000米，快速通过3900米。",
       "referenceText": "Climb and maintain 6000m on standard, expedite passing 3900m, AFR151.",
@@ -115,16 +115,16 @@
     },
     {
       "id": "radiotelephony-fzy-111039",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-13",
-      "audioText": "[You are experiencing moderate icing while maintaining 6000m, request higher level and state the reason to Wuhan Control.]",
-      "audioTextZh": "【保持6000米时，你遇到了中度积冰，请求更高的飞行高度，并向武汉区调陈述原因。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-13",
+      "audioText": "You are experiencing moderate icing while maintaining 6000m, request higher level and state the reason to Wuhan Control.",
+      "audioTextZh": "保持6000米时，你遇到了中度积冰，请求更高的飞行高度，并向武汉区调陈述原因。",
       "referenceText": "Wuhan Control, AFR151, maintaining 6000m, request higher level due moderate icing.",
       "referenceTextZh": "武汉区调，法航151，保持6000米，由于中度积冰，申请高高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fb7492bc266177dd20ae.mp3"
     },
     {
       "id": "radiotelephony-fzy-111040",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-14",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-14",
       "audioText": "AFR 151, Wuhan Control, negative due traffic, maintain 6000m.",
       "audioTextZh": "法航151，武汉区调，高度没位置，保持6000米。",
       "referenceText": "Maintain 6000m, AFR151.",
@@ -133,16 +133,16 @@
     },
     {
       "id": "radiotelephony-fzy-111041",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-15",
-      "audioText": "[Suddenly your left engine failed at 6000m, make an urgency call ATC, and request descent and return to Wuhan airport.]",
-      "audioTextZh": "【在6000米处左侧发动机突然失效，紧急呼叫ATC，请求下降并返回武汉机场。】",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-15",
+      "audioText": "Suddenly your left engine failed at 6000m, make an urgency call ATC, and request descent and return to Wuhan airport.",
+      "audioTextZh": "在6000米处左侧发动机突然失效，紧急呼叫ATC，请求下降并返回武汉机场。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, AFR151, maintaining 6000m, left engine failure, request descent and return to Wuhan airport.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉区调，法航151，保持6000米，左侧发动机失效，请求下降并返回武汉机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e3a91667993d70b7bf74.mp3"
     },
     {
       "id": "radiotelephony-fzy-111042",
-      "taskTitle": "19. AFR151 icing&engine failure, etc.-16",
+      "taskTitle": "19. AFR151 · 积冰与发动机失效-16",
       "audioText": "AFR 151, Wuhan Control, roger PANPAN, descend and maintain 4200m, turn left heading 010, expect radar vectors for runway 04.[You successfully restart the left engine, decide to return to Wuhan. Inform ATC and cancel urgency.]",
       "audioTextZh": "法航151，武汉区调，收到PANPAN，下降保持4200米，左转航向010，预计雷达引导跑道04。【你成功地重启了左侧发动机，决定返回武汉，通知ATC取消紧急呼叫。】",
       "referenceText": "descend and maintain 4200m, turn left heading 010, expect radar vectors for runway 04, cancel PANPAN, we have successfully restarted the left engine, request return to Wuhan airport, AFR151.",

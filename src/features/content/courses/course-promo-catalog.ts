@@ -85,7 +85,7 @@ export const coursePromoCatalog = {
   hero: {
     eyebrow: 'CURRICULUM SYSTEM',
     title: '听你五个体系课程',
-    description: '团队全员由icao5在职飞行员组成，打造完整 ICAO 备考体系——以超高通过率、个性化定制与全程一对一教学，陪你稳稳拿下目标等级。',
+    description: '团队全员由ICAO 5在职飞行员组成，打造完整 ICAO 备考体系——以超高通过率、个性化定制与全程一对一教学，陪你稳稳拿下目标等级。',
     primaryAction: '查看培训模式',
     secondaryAction: '了解核心优势',
   },
@@ -130,7 +130,7 @@ export const coursePromoCatalog = {
         id: 'experience',
         icon: 'users',
         title: '超多经验分享',
-        description: '团队全员由icao5在职飞行员组成，对痛点感同身受。掌握各考点一手参考资料及 OPI 热点话题。',
+        description: '团队全员由ICAO 5在职飞行员组成，对痛点感同身受。掌握各考点一手参考资料及 OPI 热点话题。',
       },
       {
         id: 'value',
@@ -421,7 +421,7 @@ export const coursePromoCatalog = {
             price: '4500',
             unit: '元 / 12 节课',
             period: '周期约 30 天',
-            description: '适合自身英语能力过硬，已经处在icao5复习的阶段之中，或有过icao5考试经验的同学。',
+            description: '适合自身英语能力过硬，已经处在ICAO 5复习的阶段之中，或有过ICAO 5考试经验的同学。',
             outline: [
               {
                 id: 'assessment',

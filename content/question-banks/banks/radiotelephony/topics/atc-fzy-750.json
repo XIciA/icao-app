@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-151810",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-1",
-      "audioText": "[Your call sign is CES5118 from Wuhan to Beijing, parking at gate 223, now you are ready, request ATC clearance.]",
+      "audioText": "Your call sign is CES5118 from Wuhan to Beijing, parking at gate 223, now you are ready, request ATC clearance.",
       "audioTextZh": "你的呼号是东方5118，从武汉飞往北京，现在停在223号停机位，你现在准备好了，请求放行许可。",
       "referenceText": "Wuhan Delivery, CES5118, gate 223, destination Beijing, request ATC clearance.",
       "referenceTextZh": "武汉放行，东方5118，223号停机位，目的地北京，请求放行许可。",
@@ -17,7 +17,7 @@
     {
       "id": "radiotelephony-fzy-151811",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-2",
-      "audioText": "CES5118 standby one, I’ll check your flight plan.",
+      "audioText": "CES5118 standby one, I'll check your flight plan.",
       "audioTextZh": "东方5118，稍等，我检查下你的飞行计划。",
       "referenceText": "Standby, CES5118.\n注：standby指的是“本频道稍等”，可直接回复standby。",
       "referenceTextZh": "稍等，东方5118。",
@@ -26,9 +26,9 @@
     {
       "id": "radiotelephony-fzy-151812",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-3",
-      "audioText": "[The flight attendant tells you passengers have boarded. All cargo doors are closed. Now report ready for clearance.]",
-      "audioTextZh": "[乘务员告诉你，乘客已登机，所有货舱门关闭。现在，报告自己准备好，请求许可]",
-      "referenceText": "Wuhan Delivery, CES5118, we’re fully ready, request ATC clearance.",
+      "audioText": "The flight attendant tells you passengers have boarded. All cargo doors are closed. Now report ready for clearance.",
+      "audioTextZh": "乘务员告诉你，乘客已登机，所有货舱门关闭。现在，报告自己准备好，请求许可",
+      "referenceText": "Wuhan Delivery, CES5118, we're fully ready, request ATC clearance.",
       "referenceTextZh": "武汉放行，东方5118，我们完全准备好了，请求放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/11f02b064efd65b34ada.mp3"
     },
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-151815",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-6",
-      "audioText": "[5 minutes later, no call from Delivery, ask about duration and reason of the delay.]",
-      "audioTextZh": "[5分钟后，放行未呼叫，询问延误持续的时间和原因]",
+      "audioText": "5 minutes later, no call from Delivery, ask about duration and reason of the delay.",
+      "audioTextZh": "5分钟后，放行未呼叫，询问延误持续的时间和原因",
       "referenceText": "Wuhan Delivery, CES5118, confirm the duration and reason of the delay?",
       "referenceTextZh": "武汉放行，东方5118，证实延误多久，延误的原因是什么？",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/160da62aa99d1c823f13.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-151818",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-9",
-      "audioText": "[One hour later, the weather is getting better and the airport is open. Now ask for your departure sequence.]",
-      "audioTextZh": "[一小时后，天气变好，机场开放，现在，询问你的离场顺序]",
+      "audioText": "One hour later, the weather is getting better and the airport is open. Now ask for your departure sequence.",
+      "audioTextZh": "一小时后，天气变好，机场开放，现在，询问你的离场顺序",
       "referenceText": "Wuhan Delivery, CES5118, request departure sequence.",
       "referenceTextZh": "武汉放行，东方5118，请求离场顺序。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/cce478b0526c25a9f1c7.mp3"
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-151820",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-11",
-      "audioText": "[Inform ground you are ready for pushback and start.]",
+      "audioText": "Inform ground you are ready for pushback and start.",
       "audioTextZh": "[告知地面，你准备好推出开车了]",
       "referenceText": "Wuhan Ground, CES5118, request pushback and startup.",
       "referenceTextZh": "武汉地面，东方5118，请求推出开车。",
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-151822",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-13",
-      "audioText": "[You realize the tug is not in position yet. Advise ground control you need another 5 minutes to be ready.]",
-      "audioTextZh": "[你注意到拖车没有就位。告知地面管制，你需要延误5分钟准备。]",
+      "audioText": "You realize the tug is not in position yet. Advise ground control you need another 5 minutes to be ready.",
+      "audioTextZh": "你注意到拖车没有就位。告知地面管制，你需要延误5分钟准备。",
       "referenceText": "Wuhan Ground, CES5118, tug is not ready, request 5 minutes delay.",
       "referenceTextZh": "武汉地面，东方5118，拖车未就位，请求5分钟延误。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/dc9d4db02d7d7a51d7aa.mp3"
@@ -152,7 +152,7 @@
     {
       "id": "radiotelephony-fzy-151826",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-17",
-      "audioText": "[Five minutes later, catering completed, call ready.]",
+      "audioText": "Five minutes later, catering completed, call ready.",
       "audioTextZh": "[5分钟之后，配餐完成，呼叫已准备好]",
       "referenceText": "Wuhan Ground, CES5118, we are ready, request pushback.",
       "referenceTextZh": "武汉地面，东方5118，我们准备好了，请求推出。",
@@ -170,7 +170,7 @@
     {
       "id": "radiotelephony-fzy-151828",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-19",
-      "audioText": "[Engine start completed, now request for taxi.]",
+      "audioText": "Engine start completed, now request for taxi.",
       "audioTextZh": "[发动机启动完成，现在请求滑行]",
       "referenceText": "Wuhan Ground, CES5118, request taxi.",
       "referenceTextZh": "武汉地面，东方5118，请求滑行。",
@@ -206,8 +206,8 @@
     {
       "id": "radiotelephony-fzy-151832",
       "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-23",
-      "audioText": "[Report to the tower that the aircraft in front of you is blocking E1.]",
-      "audioTextZh": "[报告给管制员，前面的飞机堵塞了E1滑行道]",
+      "audioText": "Report to the tower that the aircraft in front of you is blocking E1.",
+      "audioTextZh": "报告给管制员，前面的飞机堵塞了E1滑行道",
       "referenceText": "Wuhan Tower, CES5118, an aircraft in front is blocking E1.",
       "referenceTextZh": "武汉塔台，东方5118，前面的飞机阻塞了E1滑行道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/caaac4fae96833080656.mp3"

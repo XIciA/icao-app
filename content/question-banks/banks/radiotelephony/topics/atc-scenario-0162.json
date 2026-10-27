@@ -25,7 +25,7 @@
       "id": "atc-scenario-0162-card-main-2795",
       "taskTitle": "AFR 941-3",
       "audioText": "C: AFR 941, descend and maintain 2,400 meters, reduce to minimum clean speed.\nB: Read back the instruction and tell the controller that the clean configuration speed of your aircraft is 200 knots.",
-      "audioTextZh": "C： AFR 941，下降并保持 2,400 米，将速度减至最小光洁构型速度。\nB： 复诵指令，并告诉管制员你的航空器光洁构型速度为 200 节。",
+      "audioTextZh": "C：AFR 941，下降并保持 2,400 米，将速度减至最小光洁构型速度。\nB：复诵指令，并告诉管制员你的航空器光洁构型速度为 200 节。",
       "referenceText": "descend and maintain 2400 meters, reduce to minimum clean speed, 200 knots, AFR 941.",
       "referenceTextZh": "下降并保持 2400 米，将速度减至最小光洁构型速度，200 节，AFR 941。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q03.mp3"
@@ -61,8 +61,8 @@
       "id": "atc-scenario-0162-card-main-2799",
       "taskTitle": "AFR 941-7",
       "audioText": "C: AFR 941, they are having a runway inspection at the moment, expect to delay more than 15 minutes.\nB: Read back the ATC instruction and report that you are entering the hold.",
-      "audioTextZh": "C： AFR 941，目前正在进行跑道检查，预计延误超过 15 分钟。\nB： 复诵 ATC 指令，并报告你正进入等待。",
-      "referenceText": "roger, (runway inspection, expect delay more than 15 minutes, ) entering the hold, AFR 941.",
+      "audioTextZh": "C：AFR 941，目前正在进行跑道检查，预计延误超过 15 分钟。\nB：复诵 ATC 指令，并报告你正进入等待。",
+      "referenceText": "roger, (runway inspection, expect delay more than 15 minutes,) entering the hold, AFR 941.",
       "referenceTextZh": "收到，（跑道检查，预计延误超过 15 分钟，）正在进入等待，AFR 941。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q07.mp3"
     },
@@ -79,7 +79,7 @@
       "id": "atc-scenario-0162-card-main-2801",
       "taskTitle": "AFR 941-9",
       "audioText": "C: AFR 941, roger, stand by, continue your hold, we are changing the landing sequence, expect to call you in 2 min.\nB: The oil pressure of your starboard engine is rapidly decreasing, state this situation to the controller, request immediate exit and request descent.",
-      "audioTextZh": "C： AFR 941，收到，等待，继续等待，我们正在调整落地顺序，预计 2 分钟后呼叫你。\nB： 你的右发滑油压力正在迅速下降，向管制员说明情况，请求立即退出并请求下降。",
+      "audioTextZh": "C：AFR 941，收到，等待，继续等待，我们正在调整落地顺序，预计 2 分钟后呼叫你。\nB：你的右发滑油压力正在迅速下降，向管制员说明情况，请求立即退出并请求下降。",
       "referenceText": "oil pressure, starboard engine, rapidly decreasing, request immediate exit, descent, AFR 941",
       "referenceTextZh": "右发滑油压力正在迅速下降，请求立即退出、下降，AFR 941。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q09.mp3"
@@ -88,7 +88,7 @@
       "id": "atc-scenario-0162-card-main-2802",
       "taskTitle": "AFR 941-10",
       "audioText": "C: AFR 941, standby, traffic at your 3 o'clock position is maintaining 1,800 meters crossing from your right to left, report visual.\nB: Tell the controller you have seen the conflicting aircraft.",
-      "audioTextZh": "C： AFR 941，等待，你 3 点钟方向的航空器正保持 1,800 米，从你的右侧向左侧穿越，看到后报告。\nB： 告诉管制员你已看到冲突航空器。",
+      "audioTextZh": "C：AFR 941，等待，你 3 点钟方向的航空器正保持 1,800 米，从你的右侧向左侧穿越，看到后报告。\nB：告诉管制员你已看到冲突航空器。",
       "referenceText": "traffic in sight, AFR 941.",
       "referenceTextZh": "已看到相关航空器，AFR 941。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q10.mp3"

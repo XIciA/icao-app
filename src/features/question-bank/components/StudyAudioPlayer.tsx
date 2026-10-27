@@ -1,4 +1,4 @@
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
@@ -86,6 +86,7 @@ export function StudyAudioPlayer({
   const webStartGenerationRef = useRef(0);
   const webStartTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [webStartState, setWebStartState] = useState<WebAudioStartState>('idle');
+  const [nativeStartFailed, setNativeStartFailed] = useState(false);
   const currentAppState = AppState.currentState;
   const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>(
     typeof currentAppState === 'string' ? currentAppState : 'active',
@@ -99,6 +100,8 @@ export function StudyAudioPlayer({
   const integrated = variant === 'integrated-recording';
   const webStartTimedOut = Platform.OS === 'web' && webStartState === 'timed-out';
   const audioFailed = !uri || loadTimeout.timedOut || webStartTimedOut || status.playbackState === 'error';
+  const guide = useGuide();
+  useGuideAvailability('study', guide?.step === 'study-play' && audioFailed && !resolving ? '音频暂时无法播放，可重试或暂不听音频继续教学。' : undefined);
   const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && !webStartTimedOut && status.playbackState !== 'error');
   const displayDuration = status.duration > 0 ? status.duration : durationHint ?? 0;
   const waitingForFirstFrame = Platform.OS === 'web' && webStartState === 'starting';
@@ -193,6 +196,7 @@ export function StudyAudioPlayer({
 
   useEffect(() => {
     playGeneration.current += 1;
+    setNativeStartFailed(false);
     const shouldRequestAutoPlay = autoPlayRequest > 0;
     const shouldGateWebAutoPlay = Platform.OS === 'web'
       && shouldRequestAutoPlay
@@ -254,7 +258,9 @@ export function StudyAudioPlayer({
         audioLease.current = lease;
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+        setNativeStartFailed(false);
       } catch {
+        if (Platform.OS !== 'web' && operationGeneration === playGeneration.current) setNativeStartFailed(true);
         cancelWebStartAttempt(Platform.OS === 'web' ? 'timed-out' : 'idle');
         if (lease) await releaseAudioLease(lease);
       }
@@ -392,7 +398,9 @@ export function StudyAudioPlayer({
         audioLease.current = lease;
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+        setNativeStartFailed(false);
       } catch {
+        if (operationGeneration === playGeneration.current) setNativeStartFailed(true);
         cancelWebStartAttempt();
         if (lease) await releaseAudioLease(lease);
       }
@@ -469,7 +477,9 @@ export function StudyAudioPlayer({
       audioLease.current = lease;
       onPlaybackStart?.();
       if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+      setNativeStartFailed(false);
     } catch {
+      if (Platform.OS !== 'web' && operationGeneration === playGeneration.current) setNativeStartFailed(true);
       if (lease) await releaseAudioLease(lease);
     }
   }
@@ -491,7 +501,9 @@ export function StudyAudioPlayer({
         audioLease.current = lease;
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+        setNativeStartFailed(false);
       } catch {
+        if (Platform.OS !== 'web' && operationGeneration === playGeneration.current) setNativeStartFailed(true);
         if (lease) await releaseAudioLease(lease);
       }
     })();
@@ -657,6 +669,8 @@ export function StudyAudioPlayer({
           )}
         </>
       )}
+
+      {nativeStartFailed ? <AppText accessibilityLiveRegion="polite" color={colors.destructive} variant="caption">音频暂时无法启动，请再次点击播放重试。</AppText> : null}
 
       <AppModal animationType="fade" onRequestClose={closeSpeedMenu} transparent visible={Boolean(speedMenuPosition)}>
         <View style={styles.modalLayer}>

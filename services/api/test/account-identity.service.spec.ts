@@ -146,7 +146,7 @@ describe('AccountIdentityService', () => {
     const document = fixture.mutations.find((row) => row.table === userDocuments)?.values as { payload: { displayName: string } };
     expect(document).toEqual(expect.objectContaining({
       documentKey: 'account_profile', userId: auth.authUserId, version: 1,
-      payload: { displayName: expect.stringMatching(/^飞行员(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{4}$/u), avatarUri: null, target: 'icao4-first' },
+      payload: { displayName: expect.stringMatching(/^飞行员(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{4}$/u), avatarUri: null, target: 'icao4-first', studyScope: 'selected', studySetup: 'pending' },
     }));
     expect(fixture.mutations.find((row) => row.table === syncChanges)?.values).toEqual(expect.objectContaining({
       entityKey: 'account_profile', kind: 'document', userId: auth.authUserId,

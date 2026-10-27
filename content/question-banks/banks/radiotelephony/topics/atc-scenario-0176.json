@@ -34,7 +34,7 @@
       "id": "atc-scenario-0176-card-main-3033",
       "taskTitle": "UAL 813-4",
       "audioText": "C: UAL 81311600 meters is available now, say your intention.\nB: tell the controller you are unable to accept 11600 meters because of performance.",
-      "audioTextZh": "C： UAL 813，11600 米当前可用，请说明你的意图。\nB： 告诉管制员，由于性能原因你无法接受 11600 米。",
+      "audioTextZh": "C：UAL 813，11600 米当前可用，请说明你的意图。\nB：告诉管制员，由于性能原因你无法接受 11600 米。",
       "referenceText": "negative, we are unable to accept 2600 meters due performance, UAL 813.",
       "referenceTextZh": "不行，由于性能原因，我们无法接受 2600 米，UAL 813。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-076-ual813-q04.mp3"

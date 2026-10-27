@@ -198,6 +198,7 @@ const validEnv = files['infra/ops/ops-api.env.example'].split('\n')
 for (const [name, input, accepted] of [
   ['complete', validEnv.join('\n'), true],
   ['optional_feedback', [...validEnv, 'OPS_FEEDBACK_STORAGE_URL=test', 'OPS_FEEDBACK_STORAGE_READ_TOKEN=test'].join('\n'), true],
+  ['optional_vocabulary', [...validEnv, 'OPS_VOCABULARY_STORAGE_WRITE_TOKEN=test'].join('\n'), true],
   ['missing', validEnv.slice(1).join('\n'), false],
   ['duplicate', [...validEnv, validEnv[0]].join('\n'), false],
   ['unknown', [...validEnv, 'UNREVIEWED_KEY=test'].join('\n'), false],

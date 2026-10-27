@@ -20,6 +20,7 @@ const button = (label) => Array.from(element.querySelectorAll('button')).find((v
 async function click(value) { await act(async () => { value.click(); }); }
 
 beforeEach(() => {
+  mocks.session.staff.role = 'admin';
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true);
   element = document.createElement('div'); document.body.append(element); root = createRoot(element);
   mocks.api.mockReset();
@@ -31,10 +32,31 @@ beforeEach(() => {
 afterEach(async () => { await act(async () => root.unmount()); element.remove(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 describe('minimal ops feedback experience', () => {
+  it('identifies study feedback in the list and shows the full historical question name in detail', async () => {
+    const name = '陆空通话 / QFA / QFA160 [导航问题，燃油短缺] / 9-QFA160 [导航问题，燃油短缺]-2';
+    mocks.api.mockImplementation(async path => path.includes('FB-')
+      ? { ...item, description: '高度层疑问', attachments: [], question: { bankId: 'radiotelephony', categoryId: 'qfa', topicId: 'topic', cardId: 'card', displayName: name, displayNameSource: 'submitted_release', bankVersion: 26, verified: true } }
+      : { items: [item], nextCursor: null });
+    await act(async () => root.render(createElement(App)));
+    expect(element.querySelector('.feedback-row').textContent).toContain('题目反馈');
+    await click(element.querySelector('.feedback-row'));
+    expect(element.textContent).toContain(name);
+    expect(element.textContent).toContain('反馈时题目名称');
+  });
+  it('keeps an unavailable historical title explicit instead of presenting IDs as a question name', async () => {
+    mocks.api.mockImplementation(async path => path.includes('FB-')
+      ? { ...item, description: '题目已调整', attachments: [], question: { bankId: 'opi', categoryId: 'main', topicId: 'topic1', cardId: 'removed-card', verified: false } }
+      : { items: [item], nextCursor: null });
+    await act(async () => root.render(createElement(App)));
+    await click(element.querySelector('.feedback-row'));
+    expect(element.textContent).toContain('题名暂无法核实');
+    expect(element.textContent).toContain('removed-card');
+  });
   it('allows authenticated attachment object URLs only for images and releases them on leaving detail', async () => {
     const directives = new Map(csp.split(';').map((value) => { const [name, ...sources] = value.trim().split(/\s+/); return [name, sources]; }));
     expect(directives.get('img-src')).toEqual(["'self'", 'data:', 'blob:']);
-    for (const [name, sources] of directives) if (name !== 'img-src') expect(sources).not.toContain('blob:');
+    for (const [name, sources] of directives) if (!['img-src','media-src'].includes(name)) expect(sources).not.toContain('blob:');
+    expect(directives.get('media-src')).toEqual(["'self'", 'blob:']);
     expect(directives.get('script-src')).toEqual(["'self'"]);
     const imageUrl = 'blob:https://ops.example.test/feedback-image';
     const createObjectURL = vi.fn(() => imageUrl), revokeObjectURL = vi.fn();
@@ -52,12 +74,18 @@ describe('minimal ops feedback experience', () => {
   });
   it('shows focused business entries including content publishing and opens full feedback without exposing contact on the list', async () => {
     await act(async () => { root.render(createElement(App)); });
-    expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['用户反馈', '内容发布', '点击统计', 'AI 用量与费用', 'AI 规则设置', '用户权益']);
+    expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['稳定性看板', '用户反馈', '词库管理', '内容发布', '点击统计', 'AI 用量与费用', 'AI 规则设置', '用户权益']);
     expect(element.textContent).toContain('反馈摘要'); expect(element.textContent).not.toContain('contact@example.test');
     await click(element.querySelector('.feedback-row'));
     expect(element.textContent).toContain('反馈全文与所有说明'); expect(element.textContent).toContain('contact@example.test');
     await click(button('返回反馈列表')); expect(element.textContent).toContain('反馈摘要');
     expect(element.textContent).not.toContain('反馈全文与所有说明');
+  });
+  it('does not show the stability entry to support staff', async () => {
+    mocks.session.staff.role = 'support';
+    await act(async () => { root.render(createElement(App)); });
+    expect(button('稳定性看板')).toBeUndefined();
+    expect(button('用户反馈')).toBeTruthy();
   });
   it('protects unsaved AI inputs on tab changes and routes expired sessions to login', async () => {
     await act(async () => { root.render(createElement(App, { renderAiRules: ({ onDirtyChange }) => createElement('button', { onClick: () => onDirtyChange(true) }, '编辑额度') })); });

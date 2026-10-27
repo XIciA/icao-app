@@ -1,48 +1,48 @@
 {
   "id": "opi-topic-0114",
   "name": "驾驶舱进入规则",
-  "declaredCardCount": 4,
   "cards": [
     {
-      "id": "opi-extra-081",
-      "taskTitle": "运行-驾驶舱进入规则-1",
-      "audioText": "What rules does your company apply to cockpit entry during flight?",
-      "audioTextZh": "你所在公司对飞行中进入驾驶舱有哪些规定？",
-      "referenceText": "I am not employed by an airline, and the DA-40 does not have a separate secured cockpit. In airline operations, entry during flight is limited to authorised people with a valid operational need and requires the captain's approval. The secure-door and identity-verification procedures must be followed without revealing them to unauthorised persons.",
-      "referenceTextZh": "我没有在航空公司任职，而且 DA-40 没有独立的安全驾驶舱。在航空公司运行中，飞行期间只有具备正当运行需要的获准人员才能进入驾驶舱，并且必须得到机长批准。必须遵守安全门和身份核验程序，不得向未经授权的人员透露这些程序。",
-      "audio": "/question-bank-assets/revisions/opi/62e89644509a7efaec82d8b2786875bc3370c51a77b8d9501a6a3f1235835b5c/audio/opi/opi-extra-081.mp3",
-      "audioDurationSeconds": 3.48
-    },
-    {
       "id": "opi-extra-082",
-      "taskTitle": "运行-驾驶舱进入规则-2",
+      "audio": "/question-bank-assets/revisions/opi/9393917bd3a6a187f1d3a0f7a5e00e32d411785c811b095bf9d9ead03f90923e/audio/opi/opi-extra-082.mp3",
       "audioText": "Who is authorized to enter the cockpit during flight?",
+      "taskTitle": "运行-驾驶舱进入规则-2",
       "audioTextZh": "飞行中哪些人员获准进入驾驶舱？",
       "referenceText": "Authorized people may include flight crew members, approved cabin crew members, company operations staff, and authorized inspectors or official representatives. The captain may also approve entry by a person whose presence is necessary for safe operation.",
       "referenceTextZh": "获准人员可能包括飞行机组成员、经批准的客舱机组成员、公司运行人员，以及获得授权的监察员或官方代表。机长也可以批准因保障安全运行而确有必要进入驾驶舱的人员。",
-      "audio": "/question-bank-assets/revisions/opi/9393917bd3a6a187f1d3a0f7a5e00e32d411785c811b095bf9d9ead03f90923e/audio/opi/opi-extra-082.mp3",
       "audioDurationSeconds": 2.832
     },
     {
-      "id": "opi-extra-083",
-      "taskTitle": "运行-驾驶舱进入规则-3",
-      "audioText": "When might an authorized crew member need to enter the cockpit during flight?",
-      "audioTextZh": "获得授权的机组成员在什么情况下可能需要在飞行中进入驾驶舱？",
-      "referenceText": "An authorized cabin crew member may need to enter during meal service to bring food, coffee, or other refreshments to the pilots.",
-      "referenceTextZh": "在供餐期间，经授权的客舱机组成员可能需要进入驾驶舱，为飞行员送餐、咖啡或其他饮品。",
-      "audio": "/question-bank-assets/revisions/opi/0591881ea1d606c3c97954d0349f0e41ac72c9d673c400ee88aa94168379f7b0/audio/opi/opi-extra-083.mp3",
-      "audioDurationSeconds": 3.816
-    },
-    {
       "id": "opi-extra-084",
-      "taskTitle": "运行-驾驶舱进入规则-4",
+      "audio": "/question-bank-assets/revisions/opi/a583bfc6adaece29344151301431ba91b16a47e99f467d251b1cfa8b19f77874/audio/opi/opi-extra-084.mp3",
       "audioText": "What procedure should a crew member follow to enter the cockpit during flight?",
+      "taskTitle": "运行-驾驶舱进入规则-4",
       "audioTextZh": "机组成员在飞行中进入驾驶舱时应遵循什么程序？",
       "referenceText": "In an airline operation, the crew member should first confirm that entry is necessary and use the operator's secure communication and identity-check procedure. The pilots verify the request, check that the area is safe, and control the door opening. The door should then be closed and secured immediately after the authorised person enters.",
       "referenceTextZh": "在航空公司运行中，机组成员应先确认确有进入驾驶舱的必要，并使用运营人的安全通信和身份核验程序。飞行员核实请求，确认门外区域安全，并控制驾驶舱门开启。获准人员进入后，应立即关门并重新锁闭。",
-      "audio": "/question-bank-assets/revisions/opi/a583bfc6adaece29344151301431ba91b16a47e99f467d251b1cfa8b19f77874/audio/opi/opi-extra-084.mp3",
       "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-extra-081",
+      "audio": "/question-bank-assets/revisions/opi/62e89644509a7efaec82d8b2786875bc3370c51a77b8d9501a6a3f1235835b5c/audio/opi/opi-extra-081.mp3",
+      "audioText": "What rules does your company apply to cockpit entry during flight?",
+      "taskTitle": "运行-驾驶舱进入规则-1",
+      "audioTextZh": "你所在公司对飞行中进入驾驶舱有哪些规定？",
+      "referenceText": "I am not employed by an airline, and the DA-40 does not have a separate secured cockpit. In airline operations, entry during flight is limited to authorised people with a valid operational need and requires the captain's approval. The secure-door and identity-verification procedures must be followed without revealing them to unauthorised persons.",
+      "referenceTextZh": "我没有在航空公司任职，而且 DA-40 没有独立的安全驾驶舱。在航空公司运行中，飞行期间只有具备正当运行需要的获准人员才能进入驾驶舱，并且必须得到机长批准。必须遵守安全门和身份核验程序，不得向未经授权的人员透露这些程序。",
+      "audioDurationSeconds": 3.48
+    },
+    {
+      "id": "opi-extra-083",
+      "audio": "/question-bank-assets/revisions/opi/0591881ea1d606c3c97954d0349f0e41ac72c9d673c400ee88aa94168379f7b0/audio/opi/opi-extra-083.mp3",
+      "audioText": "When might an authorized crew member need to enter the cockpit during flight?",
+      "taskTitle": "运行-驾驶舱进入规则-3",
+      "audioTextZh": "获得授权的机组成员在什么情况下可能需要在飞行中进入驾驶舱？",
+      "referenceText": "An authorized cabin crew member may need to enter during meal service to bring food, coffee, or other refreshments to the pilots.",
+      "referenceTextZh": "在供餐期间，经授权的客舱机组成员可能需要进入驾驶舱，为飞行员送餐、咖啡或其他饮品。",
+      "audioDurationSeconds": 3.816
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-05"
 }

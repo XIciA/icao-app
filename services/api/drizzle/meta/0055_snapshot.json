@@ -1,5 +1,5 @@
 {
-  "id": "ac275a17-cf3d-4921-829c-25b127bc4b68",
+  "id": "7a9c8306-11b2-497a-82c1-3c105fb4328b",
   "prevId": "60f37ba6-9d26-418b-84e5-063b75a5167d",
   "version": "7",
   "dialect": "postgresql",
@@ -8910,19 +8910,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "trade_type": {
-          "name": "trade_type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "'APP'"
-        },
-        "code_url": {
-          "name": "code_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "transaction_id": {
           "name": "transaction_id",
           "type": "text",
@@ -9059,10 +9046,6 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {
-        "wechat_payment_attempts_channel_check": {
-          "name": "wechat_payment_attempts_channel_check",
-          "value": "\"wechat_payment_attempts\".\"trade_type\" IN ('APP','NATIVE')"
-        },
         "wechat_payment_attempts_state_check": {
           "name": "wechat_payment_attempts_state_check",
           "value": "\"wechat_payment_attempts\".\"state\" IN ('pending','paid','closed','refund_pending','refunded')"

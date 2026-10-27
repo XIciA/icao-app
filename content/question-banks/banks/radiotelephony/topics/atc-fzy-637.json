@@ -1,22 +1,22 @@
 {
   "id": "atc-fzy-637",
-  "name": "JAL220 information relay, bird strike, APU failure",
+  "name": "JAL220 · 信息转达、鸟击与辅助动力装置故障",
   "declaredCardCount": 15,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111685",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-1",
-      "audioText": "[Your call sign is JAL220, from Tokyo to Wuhan, now you are cruising at 10400m, over OBLIK, you received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, inform this to Wuhan control.]",
-      "audioTextZh": "【你的呼号是日航220，从东京飞往武汉，现在你在10400米巡航，飞过OBLIK，你收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，告知武汉区调。】",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-1",
+      "audioText": "Your call sign is JAL220, from Tokyo to Wuhan, now you are cruising at 10400m, over OBLIK, you received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, inform this to Wuhan control.",
+      "audioTextZh": "你的呼号是日航220，从东京飞往武汉，现在你在10400米巡航，飞过OBLIK，你收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，告知武汉区调。",
       "referenceText": "Panpan Panpan Panpan, Wuhan Control, JAL220, cruising level 10400m, over OBLIK, we received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, request emergency assistance.",
       "referenceTextZh": "Panpan Panpan Panpan，武汉区调，日航220，在10400米巡航，飞过OBLIK，我们收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，申请紧急援助。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d26cb68f6e44de22fe26.mp3"
     },
     {
       "id": "radiotelephony-fzy-111686",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-2",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-2",
       "audioText": "JAL220, roger, thanks, advise CCA105 to maintain heading and altitude.",
       "audioTextZh": "日航220，收到，谢谢，告知国航105保持航向和高度。",
       "referenceText": "Roger, advise CCA105 to maintain heading and altitude, JAL220.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111687",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-3",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-3",
       "audioText": "JAL220, descend to and maintain 9200m, adjust speed less than 260 knots.",
       "audioTextZh": "日航220，下9200米保持，调整速度不超过260节。",
       "referenceText": "Descend to and maintain 9200m, adjust speed less than 260 knots, JAL220.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111688",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-4",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-4",
       "audioText": "JAL220, maintain present heading and descend to 5100m, contact Approach 112.5.",
       "audioTextZh": "日航220，保持当前航向，下到5100米，联系进近112.5。",
       "referenceText": "Maintain present heading and descend to 5100m, contact 112.5, JAL220.",
@@ -43,16 +43,16 @@
     },
     {
       "id": "radiotelephony-fzy-111689",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-5",
-      "audioText": "[During the descend, a flock of birds struck your aircraft and your windshield was broken. The cabin crew reported that the oxygen masks in the cabin dropped automatically. You asked for radar vectors to Wuhan airport for priority landing.]",
-      "audioTextZh": "【在下降过程中，一群鸟撞到你的飞机，你的风挡玻璃破裂了。乘务员报告称，客舱的氧气面罩自动脱落。你请求雷达引导至武汉机场，进行优先着陆。】",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-5",
+      "audioText": "During the descend, a flock of birds struck your aircraft and your windshield was broken. The cabin crew reported that the oxygen masks in the cabin dropped automatically. You asked for radar vectors to Wuhan airport for priority landing.",
+      "audioTextZh": "在下降过程中，一群鸟撞到你的飞机，你的风挡玻璃破裂了。乘务员报告称，客舱的氧气面罩自动脱落。你请求雷达引导至武汉机场，进行优先着陆。",
       "referenceText": "Mayday, Mayday, Mayday, Wuhan Approach, JAL220, we encountered bird strike during the descent. The windshield was broken. Request radar vectors and priority landing.",
       "referenceTextZh": "Mayday, Mayday, Mayday，武汉进近，日航220，我们在下降过程中遭遇鸟击。风挡玻璃破裂。请求雷达引导，优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6b998d71ef489373125e.mp3"
     },
     {
       "id": "radiotelephony-fzy-111690",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-6",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-6",
       "audioText": "JAL220, roger Mayday, descend to 5400m and contact Wuhan Approach on 115.5.",
       "audioTextZh": "日航220，收到Mayday，下降到5400米，联系武汉进近115.5。",
       "referenceText": "Descend to 5400m, contact Wuhan Approach on 115.5, JAL220.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111691",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-7",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-7",
       "audioText": "Now you are 5 miles south of LKO, state your situation to Wuhan Approach and ask for ILS approach and priority landing.",
       "audioTextZh": "现在，你在LKO以南5海里，向武汉进近陈述你的情况，请求ILS进近，优先着陆。",
       "referenceText": "Wuhan Approach, JAL220, we encountered bird strike and our windshield was cracked, request ILS approach and priority landing.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111692",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-8",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-8",
       "audioText": "JAL220, Wuhan Approach, turn right heading 240, intercept LKO 030 radio inbound, descend to 3300m.",
       "audioTextZh": "日航220，武汉进近，右转航向240，切LKO 030 无线电向台，下到3300米。",
       "referenceText": "Right heading 240, LKO 030 radio inbound, descend to 3300m, JAL220.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111693",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-9",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-9",
       "audioText": "JAL220, when able, state persons on board.\n[Tell the controller the persons on board is 188, including 4 children.]",
       "audioTextZh": "日航220，可以的时候，报机上人数。\n【告诉管制员，机上人数为188，包括4名儿童。】",
       "referenceText": "The POB is 188, 4 children included, JAL220.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111694",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-10",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-10",
       "audioText": "JAL220, roger, turn right direct to DA, descend to 2100m, QNH1015, expect runway 36L.",
       "audioTextZh": "日航220，收到，右转直飞DA，下到2100米，修正海压1015，预计跑道36左。",
       "referenceText": "Turn right direct to DA, descend to 2100m, QNH1015, expect runway 36L. JAL220.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111695",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-11",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-11",
       "audioText": "Because of strong tailwind, you want to change to runway 36R.",
       "audioTextZh": "由于强顺风，你想变更到跑道36右。",
       "referenceText": "Wuhan Approach, JAL220, request change to runway 36R due strong tailwind.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111696",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-12",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-12",
       "audioText": "JAL220, change to runway 36R is approved, maintain 600m, turn right to WHA, you are number one.",
       "audioTextZh": "日航220，同意变更到跑道36右，在600米保持，右转飞至WHA，你是第一个。",
       "referenceText": "Runway 36R, maintain 600m, turn right to WHA, number one for landing, JAL220.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111697",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-13",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-13",
       "audioText": "After landing, you find your APU has failed, tell this situation to Wuhan Tower and ask for Ground Power Unit.",
       "audioTextZh": "落地后，你发现你的APU失效了，将情况告知武汉塔台，请求地面电力设备。",
       "referenceText": "Wuhan Tower, JAL220, request ground power unit due APU failure.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111698",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-14",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-14",
       "audioText": "JAL220, Wuhan Tower, roger, do you need any other services?\n[Tell the controller you need a tow truck to tow you back to the apron.]",
       "audioTextZh": "日航220，武汉塔台，收到，你还需要别的服务吗？\n【告知管制员，你需要一辆拖车将你拖回机坪。】",
       "referenceText": "Affirm, request a tow truck, thanks, JAL220.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111699",
-      "taskTitle": "9. JAL220 information relay, bird strike, APU failure-15",
+      "taskTitle": "9. JAL220 · 信息转达、鸟击与辅助动力装置故障-15",
       "audioText": "JAL220, roger, do you need medical help at the ramp?\n[Tell the controller you need the medical help at the ramp.]",
       "audioTextZh": "日航220，收到，到达机坪需要医疗救援吗？\n【告诉管制员，在机坪你需要医疗救援。】",
       "referenceText": "Affirm, request medical help at the ramp, thanks, JAL220.",

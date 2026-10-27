@@ -1,22 +1,22 @@
 {
   "id": "atc-fzy-615",
-  "name": "QFA378 CBs&downdraft, etc.",
+  "name": "QFA378 · 积雨云与下沉气流",
   "declaredCardCount": 20,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111265",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-1",
-      "audioText": "[Your call sign is QFA378, from Singapore to Wuhan. You are maintaining 10100m estimate fly DAPRO time 45, next ZF at 56, squawk 3625, contact Wuhan Control.]",
-      "audioTextZh": "【你的呼号是澳航378，从新加坡飞往武汉。10100米保持，预计到达DAPRO时间45分，到达ZF时间56分，应答机3625，联系武汉区调。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-1",
+      "audioText": "Your call sign is QFA378, from Singapore to Wuhan. You are maintaining 10100m estimate fly DAPRO time 45, next ZF at 56, squawk 3625, contact Wuhan Control.",
+      "audioTextZh": "你的呼号是澳航378，从新加坡飞往武汉。10100米保持，预计到达DAPRO时间45分，到达ZF时间56分，应答机3625，联系武汉区调。",
       "referenceText": "Wuhan Control, QFA378, ETA DAPRO 45, maintaining 10100m, next ZF 56, squawk 3625.",
       "referenceTextZh": "武汉区调，澳航378，预计到达DAPRO时间45分，10100米保持，到达ZF时间56分，应答机3625。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/586b2977f22e2b6b26b8.mp3"
     },
     {
       "id": "radiotelephony-fzy-111266",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-2",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-2",
       "audioText": "QFA378, Wuhan Control, radar contact, descend and maintain 6300m at own discretion.[Read Back]",
       "audioTextZh": "澳航378，武汉区调，雷达已识别，自主下降保持6300米。【复诵】",
       "referenceText": "Descend and maintain 6300m at own discretion., QFA378.",
@@ -25,16 +25,16 @@
     },
     {
       "id": "radiotelephony-fzy-111267",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-3",
-      "audioText": "[Your weather radar indicates a large groups of CBs southwest of LKO, request turn right heading 050 avoid the weather.]",
-      "audioTextZh": "【机上天气雷达显示LKO西南方向有一大片积雨云，请求右转航向050躲避。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-3",
+      "audioText": "Your weather radar indicates a large groups of CBs southwest of LKO, request turn right heading 050 avoid the weather.",
+      "audioTextZh": "机上天气雷达显示LKO西南方向有一大片积雨云，请求右转航向050躲避。",
       "referenceText": "Wuhan Control, QFA378, request turn right heading 050 due weather.",
       "referenceTextZh": "武汉区调，澳航378，由于天气原因，请求右转航行050。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/abfc6eb50cbcadb8e39c.mp3"
     },
     {
       "id": "radiotelephony-fzy-111268",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-4",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-4",
       "audioText": "QFA378, Negative heading 050 due restricted area.[Tell Wuhan Control you want to fly heading 030 for at least 5 min before you can resume course.]",
       "audioTextZh": "澳航378，由于限制区，不同意航向050。【告诉武汉区调，恢复航道，你想沿航向030飞至少5分钟。】",
       "referenceText": "Request heading 030 for at least 5 min, then turn back to course, QFA378.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111269",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-5",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-5",
       "audioText": "QFA378, turn right heading 030 approved, when clear of weather, turn left direct to LKO.[Read Back]",
       "audioTextZh": "澳航378，同意右转航向030，天气好转后，左转直飞LKO。【复诵】",
       "referenceText": "Right Heading 030, after clear of weather, direct to LKO, QFA378.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111270",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-6",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-6",
       "audioText": "QFA378, descend and maintain 5100m.[Read Back]",
       "audioTextZh": "澳航378，下降保持5100米。【复诵】",
       "referenceText": "Descend and maintain 5100m, QFA378.",
@@ -61,16 +61,16 @@
     },
     {
       "id": "radiotelephony-fzy-111271",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-7",
-      "audioText": "[You are maintaining 5100m over LKO, ATIS B is received, now contact Wuhan Approach.]",
-      "audioTextZh": "【飞机飞过LKO，5100米保持，收到通播B，现在联系武汉进近。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-7",
+      "audioText": "You are maintaining 5100m over LKO, ATIS B is received, now contact Wuhan Approach.",
+      "audioTextZh": "飞机飞过LKO，5100米保持，收到通播B，现在联系武汉进近。",
       "referenceText": "Wuhan Approach, QFA378, over LKO, maintaining 5100m, information B.",
       "referenceTextZh": "武汉进近，澳航378，飞过LKO，5100米保持，通播B。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/001e07f2b2568ce321a7.mp3"
     },
     {
       "id": "radiotelephony-fzy-111272",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-8",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-8",
       "audioText": "QFA378, Wuhan Approach, cleared to LKO-2A arrival, descend and maintain 1200m on QNH1012, information C valid, you are No. 1.[Read Back]",
       "audioTextZh": "快达378，武汉进近，可以LKO-2A进场，下降保持修正海压1200米，修正海压1012，通播C有效，你第一个。【复诵】",
       "referenceText": "LKO-2A arrival, descend and maintain 1200m on QNH1012, information C, No.1. QFA378.",
@@ -79,16 +79,16 @@
     },
     {
       "id": "radiotelephony-fzy-111273",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-9",
-      "audioText": "[Your weather radar had failed during descent, contact Wuhan Approach to request weather information along your route.]",
-      "audioTextZh": "【下降时，机上天气雷达失效，联系武汉进近，请求提供航线途中天气信息。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-9",
+      "audioText": "Your weather radar had failed during descent, contact Wuhan Approach to request weather information along your route.",
+      "audioTextZh": "下降时，机上天气雷达失效，联系武汉进近，请求提供航线途中天气信息。",
       "referenceText": "Wuhan Approach, QFA378, our weather radar failed. Request weather information along route.",
       "referenceTextZh": "武汉进近，澳航378，机上天气雷达失效，请求提供航线途中天气信息。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ce904fba29ee590cfd5f.mp3"
     },
     {
       "id": "radiotelephony-fzy-111274",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-10",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-10",
       "audioText": "QFA378 our weather radar shows CBs in the vicinity of DA.[Read Back]",
       "audioTextZh": "澳航378，我们的天气雷达显示DA附近有积雨云。【复诵】",
       "referenceText": "Roger CBs near DA, thank you, QFA378,",
@@ -97,16 +97,16 @@
     },
     {
       "id": "radiotelephony-fzy-111275",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-11",
-      "audioText": "[There is a crowded cumulonimbus views from the cockpit, describe it to controller and request make a visual maneuver.]",
-      "audioTextZh": "【从座舱内可以看到大片积雨云，向管制员描述该情况，并请求目视机动。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-11",
+      "audioText": "There is a crowded cumulonimbus views from the cockpit, describe it to controller and request make a visual maneuver.",
+      "audioTextZh": "从座舱内可以看到大片积雨云，向管制员描述该情况，并请求目视机动。",
       "referenceText": "Wuhan Approach, QFA378, there are some CBs surround this area, request visual maneuver.",
       "referenceTextZh": "武汉进近，澳航378，这一区域附近有积雨云，请求目视绕飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f97b0c44e1125cc5f88c.mp3"
     },
     {
       "id": "radiotelephony-fzy-111276",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-12",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-12",
       "audioText": "QFA378, negative, military activity restriction.[Tell the controller you need assistance to avoid these weather.]",
       "audioTextZh": "快达378，不同意，军事活动限制。【告诉管制员你需要援助来躲避积雨云。】",
       "referenceText": "Request assistance (radar vector) to avoid weather, QFA378.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111277",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-13",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-13",
       "audioText": "QFA378, fly heading 030 maintain 1200m.[Read Back]",
       "audioTextZh": "澳航378，航向030，1200米保持。【复诵】",
       "referenceText": "Heading 030 maintaining 1200m. QFA378.",
@@ -124,16 +124,16 @@
     },
     {
       "id": "radiotelephony-fzy-111278",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-14",
-      "audioText": "[After a few minutes, your navigation instrument shows a traffic advisory alert, ask the controller whether he notice the activities.]",
-      "audioTextZh": "【几分钟后，机上导航仪表显示交通活动警报，询问管制员是否注意到该活动。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-14",
+      "audioText": "After a few minutes, your navigation instrument shows a traffic advisory alert, ask the controller whether he notice the activities.",
+      "audioTextZh": "几分钟后，机上导航仪表显示交通活动警报，询问管制员是否注意到该活动。",
       "referenceText": "Wuhan Approach, QFA378, TA traffic alert, do you notice the aircraft around us?",
       "referenceTextZh": "武汉进近，澳航378，交通活动警报，你是否发现我们周围有活动？",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea4effd6704417bc03ff.mp3"
     },
     {
       "id": "radiotelephony-fzy-111279",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-15",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-15",
       "audioText": "QFA378, negative show my radar, keep looking.[The aircraft is flying from your left to right at the same level, tell controller what you have seen.]",
       "audioTextZh": "澳航378，我的雷达上未显示，继续观察。【同一高度层中有一架飞机正从你左侧飞到右侧，告诉管制员你看到了什么。】",
       "referenceText": "Wuhan Approach, QFA378, traffic flying from left to right at the same level.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111280",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-16",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-16",
       "audioText": "Roger, QFA378.[After you have cleared the weather. Request Wuhan Approach for radar assistance to intercept final course of runway 36L.]",
       "audioTextZh": "收到，澳航378。【天气好转后，向武汉进近请求雷达引导切入跑道36左五边航迹。】",
       "referenceText": "Wuhan Approach, QFA378, request radar vectors to intercept final course of runway 36L.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111281",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-17",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-17",
       "audioText": "QFA378, turn right heading 090, descend and maintain 900m.[Read Back]",
       "audioTextZh": "澳航378，右转航向090，下降保持900米。【复诵】",
       "referenceText": "Turn right heading 090, descend and maintain 900m, QFA378.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111282",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-18",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-18",
       "audioText": "QFA378, turn left heading 300, descend and maintain 600m, cleared to intercept the localizer runway 36L, contact Tower 124.35.[Read Back]",
       "audioTextZh": "澳航378，左转航向300，下降保持600米，可以切入跑道36左航向道，联系塔台124.35。【复诵】",
       "referenceText": "Turn left heading 300, descend and maintain 600m, cleared to intercept the localizer runway 36L, contact Tower 124.35, QFA378.",
@@ -169,16 +169,16 @@
     },
     {
       "id": "radiotelephony-fzy-111283",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-19",
-      "audioText": "[You encounter downdrafts on short final and executed a missed approach, inform Wuhan Tower.]",
-      "audioTextZh": "【你在短五边遇到下降气流，执行复飞，通知武汉塔台。】",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-19",
+      "audioText": "You encounter downdrafts on short final and executed a missed approach, inform Wuhan Tower.",
+      "audioTextZh": "你在短五边遇到下降气流，执行复飞，通知武汉塔台。",
       "referenceText": "Wuhan Tower, QFA378, going around due wind shear on short final.",
       "referenceTextZh": "武汉塔台，澳航378，由于五边风切变，复飞了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d32524a90b6e6a7a6952.mp3"
     },
     {
       "id": "radiotelephony-fzy-111284",
-      "taskTitle": "32. QFA378 CBs&downdraft, etc.-20",
+      "taskTitle": "32. QFA378 · 积雨云与下沉气流-20",
       "audioText": "QFA378, when able, turn right heading 090, climb and maintain 1500m, contact Wuhan Approach 119.7.[Read Back]",
       "audioTextZh": "澳航378，可以时，右转航向090，上升保持1500米，联系武汉进近119.7。【复诵】",
       "referenceText": "Turn right heading 090, climb and maintain 1500m, 119.7, QFA378.",

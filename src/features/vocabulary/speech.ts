@@ -12,11 +12,11 @@ function profile(text: string) {
   return /[.!?]$/.test(text) || text.split(/\s+/).length > 5 ? sentenceProfile : wordProfile;
 }
 
-function speakOnce(text: string, signal?: AbortSignal) {
+function speakOnce(text: string, signal?: AbortSignal, onStart?: () => void) {
   const value = normalize(text);
   if (!value || signal?.aborted) return Promise.resolve(false);
   return new Promise<boolean>((resolve) => {
-    let settled = false;
+    let settled = false, started = false;
     const finish = (result: boolean) => {
       if (settled) return;
       settled = true;
@@ -28,6 +28,7 @@ function speakOnce(text: string, signal?: AbortSignal) {
     try {
       Speech.speak(value.slice(0, Speech.maxSpeechInputLength), {
         ...profile(value),
+        onStart: () => { if (!settled && !started && !signal?.aborted) { started = true; onStart?.(); } },
         onDone: () => finish(true),
         onError: () => finish(false),
         onStopped: () => finish(false),
@@ -42,16 +43,16 @@ export async function stopVocabularySpeech() {
   try { await Speech.stop(); } catch { /* Speech failure must not block learning. */ }
 }
 
-export async function speakVocabulary(word: string, example?: string, signal?: AbortSignal) {
+export async function speakVocabulary(word: string, example?: string, signal?: AbortSignal, onStart?: () => void) {
   await stopVocabularySpeech();
-  const wordPlayed = await speakOnce(word, signal);
+  const wordPlayed = await speakOnce(word, signal, onStart);
   if (!wordPlayed) return false;
   if (example?.trim()) return speakOnce(example, signal);
   return true;
 }
 
-export async function speakVocabularyWithFeedback(word: string, example?: string) {
-  const played = await speakVocabulary(word, example);
+export async function speakVocabularyWithFeedback(word: string, example?: string, onStart?: () => void) {
+  const played = await speakVocabulary(word, example, undefined, onStart);
   if (!played) Alert.alert('暂时无法播放发音', '请检查设备音量或系统语音设置。你仍然可以继续学习。');
   return played;
 }

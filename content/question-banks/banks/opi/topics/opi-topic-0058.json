@@ -1,63 +1,63 @@
 {
   "id": "opi-topic-0058",
-  "name": "CDFA",
-  "declaredCardCount": 5,
+  "name": "连续下降最后进近",
   "cards": [
     {
+      "id": "opi-core-636",
+      "audio": "/question-bank-assets/revisions/opi/4635d93483d82ccb7476f6eda3b9a3e0487a5a858afe836780b63d31e6e18503/audio/opi/opi-core-636.mp3",
+      "audioText": "What advantages does CDFA technique have over the conventional step-down method?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-连续下降最后进近-4",
+      "audioTextZh": "与传统梯级下降方式相比，CDFA技术有哪些优势？",
+      "referenceText": "CDFA avoids the repeated level-offs of a conventional step-down approach and gives the crew a steadier descent profile. This can reduce workload, improve approach stability and obstacle awareness, and reduce the risk of CFIT. Eliminating level-offs can also save time and fuel.",
+      "referenceTextZh": "CDFA 避免了传统梯级下降进近中反复改平，并为机组提供更平稳的下降剖面。这可以降低工作负荷、改善进近稳定性和障碍物意识，并降低可控飞行撞地风险。消除平飞段还可以节省时间和燃油。",
+      "audioDurationSeconds": 7.512
+    },
+    {
       "id": "opi-core-633",
-      "taskTitle": "缩略词-CDFA-1",
-      "audioText": "What is the Continuous Descent Final Approach (CDFA) technique?",
-      "audioTextZh": "什么是连续下降最后进近（CDFA）技术？",
+      "audio": "/question-bank-assets/revisions/opi/c34f1c4cff6278105716cdaa2fb128bedff282078629bfe20b6e004a932dfd2a/audio/opi/opi-core-633.mp3",
+      "audioText": "What is CDFA technique?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-连续下降最后进近-1",
+      "audioTextZh": "什么是CDFA技术？",
       "referenceText": "CDFA stands for Continuous Descent Final Approach. It is a technique for flying a non-precision approach with a continuous descent instead of level flight on the final approach. The technique can reduce workload and help reduce the risk of CFIT.",
       "referenceTextZh": "CDFA 是连续下降最后进近的缩写。它是一种实施非精密进近的技术，在最后进近阶段持续下降，而不是平飞。该技术可以降低工作负荷，并有助于减少可控飞行撞地风险。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/c34f1c4cff6278105716cdaa2fb128bedff282078629bfe20b6e004a932dfd2a/audio/opi/opi-core-633.mp3",
       "audioDurationSeconds": 4.656
     },
     {
+      "id": "opi-core-637",
+      "audio": "/question-bank-assets/revisions/opi/55cd35d348456599b67926e48e31df1a57d17fec1dbc3eac0052c26ad0bcbc41/audio/opi/opi-core-637.mp3",
+      "audioText": "Have you ever been required to use CDFA technique?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-连续下降最后进近-5",
+      "audioTextZh": "你是否曾被要求使用CDFA技术？",
+      "referenceText": "Yes. I have been required to use CDFA when flying a non-precision approach.",
+      "referenceTextZh": "是的。我曾在实施非精密进近时被要求使用 CDFA。",
+      "audioDurationSeconds": 6.048
+    },
+    {
       "id": "opi-core-634",
-      "taskTitle": "缩略词-CDFA-2",
-      "audioText": "How does a non-precision approach flown using the Continuous Descent Final Approach (CDFA) technique differ from a precision approach?",
-      "audioTextZh": "采用连续下降最后进近（CDFA）技术实施的非精密进近与精密进近有何不同？",
+      "audio": "/question-bank-assets/revisions/opi/76f472b32809a9078fda1b2183197bad62124f01cf5d0336a36f647b17cd15a3/audio/opi/opi-core-634.mp3",
+      "audioText": "How does a non-precision approach flown using CDFA technique differ from a precision approach?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-连续下降最后进近-2",
+      "audioTextZh": "采用CDFA技术实施的非精密进近与精密进近有何不同？",
       "referenceText": "CDFA is a technique for flying the final segment of a non-precision approach as a continuous, stabilised descent instead of using level segments. A precision approach provides approved lateral and vertical guidance, while CDFA does not change the underlying approach procedure into a precision approach. It improves stability but the published minima and missed-approach requirements still apply.",
       "referenceTextZh": "CDFA 是一种把非精密进近最后阶段飞成连续稳定下降，而不设置平飞段的技术。精密进近提供经批准的水平和垂直引导，而 CDFA 并不会把原有进近程序变成精密进近。它提高了稳定性，但公布的最低标准和复飞要求仍然适用。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/76f472b32809a9078fda1b2183197bad62124f01cf5d0336a36f647b17cd15a3/audio/opi/opi-core-634.mp3",
       "audioDurationSeconds": 8.28
     },
     {
       "id": "opi-core-635",
-      "taskTitle": "缩略词-CDFA-3",
-      "audioText": "How does the Continuous Descent Final Approach (CDFA) technique change the way a non-precision approach is flown?",
-      "audioTextZh": "连续下降最后进近（CDFA）技术如何改变非精密进近的实施方式？",
+      "audio": "/question-bank-assets/revisions/opi/4f9fd8dd2dbb3dfa94deca1e9e0536cda66753ea412e6447835282c69b87d793/audio/opi/opi-core-635.mp3",
+      "audioText": "How does CDFA technique change the way a non-precision approach is flown?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-连续下降最后进近-3",
+      "audioTextZh": "CDFA技术如何改变非精密进近的实施方式？",
       "referenceText": "CDFA replaces the level segments of a conventional non-precision approach with a continuous descent along a planned vertical path. The crew crosses any step-down fixes at or above their minimum altitudes and reaches the applicable decision point in a stable condition. The decision altitude, any add-on, and the point for starting a missed approach follow the published procedure and operator SOP.",
       "referenceTextZh": "CDFA 用沿计划垂直航径的连续下降取代传统非精密进近中的平飞段。机组在不低于最低高度的条件下飞越各梯级下降定位点，并以稳定状态到达适用的决断点。决断高度、任何附加值以及开始复飞的位置，都应遵循公布程序和运营人标准操作程序。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/4f9fd8dd2dbb3dfa94deca1e9e0536cda66753ea412e6447835282c69b87d793/audio/opi/opi-core-635.mp3",
       "audioDurationSeconds": 7.08
-    },
-    {
-      "id": "opi-core-636",
-      "taskTitle": "缩略词-CDFA-4",
-      "audioText": "What advantages does the Continuous Descent Final Approach (CDFA) technique have over the conventional step-down method?",
-      "audioTextZh": "与传统梯级下降方式相比，连续下降最后进近（CDFA）技术有哪些优势？",
-      "referenceText": "CDFA avoids the repeated level-offs of a conventional step-down approach and gives the crew a steadier descent profile. This can reduce workload, improve approach stability and obstacle awareness, and reduce the risk of CFIT. Eliminating level-offs can also save time and fuel.",
-      "referenceTextZh": "CDFA 避免了传统梯级下降进近中反复改平，并为机组提供更平稳的下降剖面。这可以降低工作负荷、改善进近稳定性和障碍物意识，并降低可控飞行撞地风险。消除平飞段还可以节省时间和燃油。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/4635d93483d82ccb7476f6eda3b9a3e0487a5a858afe836780b63d31e6e18503/audio/opi/opi-core-636.mp3",
-      "audioDurationSeconds": 7.512
-    },
-    {
-      "id": "opi-core-637",
-      "taskTitle": "缩略词-CDFA-5",
-      "audioText": "Have you ever been required to use the Continuous Descent Final Approach (CDFA) technique?",
-      "audioTextZh": "你是否曾被要求使用连续下降最后进近（CDFA）技术？",
-      "referenceText": "Yes. I have been required to use CDFA when flying a non-precision approach.",
-      "referenceTextZh": "是的。我曾在实施非精密进近时被要求使用 CDFA。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/55cd35d348456599b67926e48e31df1a57d17fec1dbc3eac0052c26ad0bcbc41/audio/opi/opi-core-637.mp3",
-      "audioDurationSeconds": 6.048
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-03"
 }

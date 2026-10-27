@@ -1,4 +1,5 @@
 import './migration-preservation-tests.mjs';
+import './production-migration-recovery-tests.mjs';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -181,20 +182,20 @@ test('derives the target from the immutable journal and binds 0034 through 0041 
   }), /entry_invalid/u);
 });
 
-test('binds minimumSchemaVersion to the exact required 0054 journal entry', async () => {
+test('binds minimumSchemaVersion to the exact required 0056 journal entry', async () => {
   const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
     readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
-    readFile(new URL('../services/api/drizzle/0054_bouncy_xavin.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0056_vocabulary_live_releases.sql', import.meta.url), 'utf8'),
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
   const entry = journal.entries.at(-1);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
-  assert.equal(entry.idx, 54);
-  assert.equal(entry.tag, '0054_bouncy_xavin');
-  assert.equal(entry.when, 1792341387647);
+  assert.equal(entry.idx, 56);
+  assert.equal(entry.tag, '0056_vocabulary_live_releases');
+  assert.equal(entry.when, 1793033035448);
   assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
-  assert.ok(databaseServiceSource.includes('createdAt: 1792341387647'));
+  assert.ok(databaseServiceSource.includes('createdAt: 1793033035448'));
   assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 
@@ -221,7 +222,7 @@ test('classifies every public Drizzle table as server-only with no unclassified 
   const schemaTables = [...schemaSource.matchAll(/pgTable\('([^']+)'/gu)]
     .map((match) => match[1])
     .sort();
-  assert.equal(schemaTables.length, 67);
+  assert.equal(schemaTables.length, 68);
   assert.deepEqual(SERVER_ONLY_PUBLIC_TABLES, schemaTables);
   assert.deepEqual(
     Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort(),
@@ -809,6 +810,12 @@ candidate_runtime_env="$TEST_RUNTIME_ENV"
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 image="$EXPECTED_IMAGE"
 source_sha=${sourceSha}
+payload_source_sha=${sourceSha}
+payload_tree_sha=not_applicable
+rehearsal_reused=0
+reused_evidence_sha=not_applicable
+reuse_pre_plan_verified_at=not_applicable
+reuse_state_proof=not_applicable
 expected_pre_plan=${prePlan}
 expected_post_plan=${postPlan}
 confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
@@ -1169,6 +1176,12 @@ source_id=aaaaaaaaaaaa
 token_id=bbbbbbbbbbbb
 stage=test
 source_sha=${sourceSha}
+payload_source_sha=${sourceSha}
+payload_tree_sha=not_applicable
+rehearsal_reused=0
+reused_evidence_sha=not_applicable
+reuse_pre_plan_verified_at=not_applicable
+reuse_state_proof=not_applicable
 archive_sha=${'c'.repeat(64)}
 confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
 backup_name=${backupName}
@@ -1669,6 +1682,7 @@ backup_tool="$MOCK_BACKUP_TOOL"
 backup_root="$MOCK_BACKUP_ROOT"
 old_api_drained=0
 old_api_drain_started=0
+rehearsal_reused=0
 stage=test
 ${block}
 printf 'drained=%s backup=%s sha=%s\n' "$old_api_drained" "$cutover_backup_name" "$cutover_backup_sha"

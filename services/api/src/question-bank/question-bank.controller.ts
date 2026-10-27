@@ -1,14 +1,14 @@
 import { BadRequestException, Controller, Get, Headers, Param, Query, Req, Res, UseGuards } from '@nestjs/common';
-import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, type ApiSuccessEnvelope, type QuestionBankRelease, type QuestionBankReleaseSummary, type QuestionBankTopicRelease } from '@icao/contracts';
+import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, QUESTION_BANK_CATALOG_VERSION, FREE_CONTENT_SELECTION_VERSION, type ApiSuccessEnvelope, type QuestionBankRelease, type QuestionBankReleaseSummary, type QuestionBankTopicRelease } from '@icao/contracts';
 import type { FastifyReply } from 'fastify';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
-import { RequireAuthGuard } from '../auth/require-auth.guard';
+import { OptionalAuthGuard } from '../auth/require-auth.guard';
 import { contentCommerceEnvironment } from '../content-access/content-access.environment';
 import { QuestionBankService } from './question-bank.service';
 
 @Controller('v1/question-banks')
-@UseGuards(RequireAuthGuard)
+@UseGuards(OptionalAuthGuard)
 export class QuestionBankController {
   constructor(private readonly questionBanks: QuestionBankService) {}
 
@@ -27,13 +27,13 @@ export class QuestionBankController {
   ): Promise<ApiSuccessEnvelope<QuestionBankRelease> | undefined> {
     const release = await this.questionBanks.get(
       bankId,
-      request.user!.id,
-      request.auth!.sessionId,
+      request.user?.id,
+      request.auth?.sessionId,
       contentCommerceEnvironment(environmentHeader),
     );
     const access = (release.dataset as { access?: { membershipActive?: unknown } }).access;
     const accessState = access?.membershipActive === true ? 'member' : 'free';
-    const etag = `"${release.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${accessState}"`;
+    const etag = `"${release.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${FREE_CONTENT_SELECTION_VERSION}.${QUESTION_BANK_CATALOG_VERSION}.${accessState}"`;
     reply.header('etag', etag).header('cache-control', 'private, max-age=300');
     if (ifNoneMatch === etag) {
       reply.status(304);
@@ -59,8 +59,8 @@ export class QuestionBankController {
       bankId,
       categoryId,
       topicId,
-      request.user!.id,
-      request.auth!.sessionId,
+      request.user?.id,
+      request.auth?.sessionId,
       contentCommerceEnvironment(environmentHeader),
       version ? { version: Number(version), checksum } : undefined,
     );

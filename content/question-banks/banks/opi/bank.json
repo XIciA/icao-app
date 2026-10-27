@@ -1,44 +1,44 @@
 {
   "id": "opi",
-  "title": "OPI",
-  "nameEn": "Oral Proficiency Interview",
-  "description": "发音 结构 词汇 流利度 理解能力 应对能力",
-  "summary": "238 话题 / 2321 卡",
-  "enabled": true,
-  "statusLabel": "可练习",
   "icon": "mic",
-  "declaredTopicCount": 238,
-  "declaredCardCount": 2321,
-  "categoryUnit": "分类",
-  "topicUnit": "话题",
-  "cardUnit": "卡",
   "study": {
-    "interaction": "speaking",
-    "tools": {
-      "recorder": true,
-      "choices": false,
-      "notes": true,
-      "dictionary": true,
-      "highlights": true,
-      "tags": true
+    "copy": {
+      "referenceLabel": "参考答案",
+      "transcriptLabel": "音频原文"
     },
-    "audioTitlePattern": "card-title",
+    "tools": {
+      "tags": true,
+      "notes": true,
+      "choices": false,
+      "recorder": true,
+      "dictionary": true,
+      "highlights": true
+    },
     "consoleTabs": [
       "mine",
       "reference",
       "notes"
     ],
-    "copy": {
-      "transcriptLabel": "音频原文",
-      "referenceLabel": "参考答案"
-    }
+    "interaction": "speaking",
+    "audioTitlePattern": "card-title"
   },
+  "title": "OPI",
+  "nameEn": "Oral Proficiency Interview",
+  "enabled": true,
+  "summary": "238 话题 / 2321 卡",
+  "cardUnit": "卡",
+  "topicUnit": "话题",
+  "description": "发音 结构 词汇 流利度 理解能力 应对能力",
+  "statusLabel": "可练习",
   "capabilities": {
     "audioMode": "generated",
     "reviewMode": "expression-analysis",
     "radioEligible": false,
     "mockExamEligible": true
   },
+  "categoryUnit": "分类",
+  "declaredCardCount": 2365,
+  "declaredTopicCount": 238,
   "categoryIds": [
     "opi-category-01",
     "opi-category-02",

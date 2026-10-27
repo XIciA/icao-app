@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-210819",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-1",
-      "audioText": "[Your callsign is CSN3102, a B737 from Guangzhou to Beijing, you are now at gate 127 with information F. You are ready to copy ATC clearance.]",
+      "audioText": "Your callsign is CSN3102, a B737 from Guangzhou to Beijing, you are now at gate 127 with information F. You are ready to copy ATC clearance.",
       "audioTextZh": "你的呼号是南方3102，从广州飞往北京的波音737，你现在在127停机位，收到通播F，你准备好抄收管制放行了。",
       "referenceText": "Guangzhou Delivery, CSN3102, Guangzhou to Beijing, gate 127 with information F, request ATC clearance.",
       "referenceTextZh": "广州放行，南方3102，广州飞往北京，127停机位，收到通播F，请求管制许可。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-210821",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-3",
-      "audioText": "[You want to know how long the delay will be. ]",
+      "audioText": "You want to know how long the delay will be.",
       "audioTextZh": "【你想知道要延误多久。】",
       "referenceText": "Guangzhou Delivery, CSN3102, confirm how long the delay will be.",
       "referenceTextZh": "广州放行，南方3102，证实延误时间。",
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-210823",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-5",
-      "audioText": "[A few minutes later.]\nC: CSN3102, are you ready to copy your ATC clearance?\n[Tell the controller “Yes”.]",
+      "audioText": "[A few minutes later.]\nC: CSN3102, are you ready to copy your ATC clearance?\n[Tell the controller \"Yes\".]",
       "audioTextZh": "【几分钟后】\n南方3102，你准备好抄收你的放行许可了吗？\n【告诉管制员，是的】",
       "referenceText": "Affirm, ready to copy, CSN3102.",
       "referenceTextZh": "是的，准备好抄收了，南方3102。",
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-210825",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-7",
-      "audioText": "[You are now ready for push back and start-up.]",
+      "audioText": "You are now ready for push back and start-up.",
       "audioTextZh": "【你现在准备好推出开车了。】",
       "referenceText": "Guangzhou Ground, CSN3102, request pushback and start-up.",
       "referenceTextZh": "广州地面，南方3102，请求推出开车。",
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-210828",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-10",
-      "audioText": "[You are now approaching holding point of runway 02L and you are ready for departure, contact Tower.]",
-      "audioTextZh": "【你现在到达跑道02左外等待点，你准备好起飞了，联系塔台。】",
+      "audioText": "You are now approaching holding point of runway 02L and you are ready for departure, contact Tower.",
+      "audioTextZh": "你现在到达跑道02左外等待点，你准备好起飞了，联系塔台。",
       "referenceText": "Guangzhou Tower, CSN3102, holding point of runway 02L, request departure.",
       "referenceTextZh": "广州塔台，南方3102，跑道02左外等待点，请求离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b2db19ddcb72982e53c3.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-210831",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-13",
-      "audioText": "[You are now airborne and have passed 1200m, contact Guangzhou Departure.]",
-      "audioTextZh": "【你现在离地了，过1200米，联系广州离场。】",
+      "audioText": "You are now airborne and have passed 1200m, contact Guangzhou Departure.",
+      "audioTextZh": "你现在离地了，过1200米，联系广州离场。",
       "referenceText": "Guangzhou Departure, CSN3102, airborne runway 02L, passing 1200m.",
       "referenceTextZh": "广州离场，南方3102，离地了，跑道02左，过1200米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/96eebba7a5baa5e14e7f.mp3"
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-210833",
       "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-15",
-      "audioText": "[Now you are cruising at 9800m. During the cabin service, you encountered moderate turbulence, a flight attendant accidentally spilled hot water on a female passenger. Though timely first aid has been given, the passenger's condition has not improved. Inform the controller this situation and request fly back and land at Guangzhou airport.]",
-      "audioTextZh": "【你现在在9800米巡航。在客舱服务期间，你遇到了中度颠簸，一名乘务员不小心将热水洒到一名女乘客身上。虽然已经实施了急救，但是乘客的情况并没有改善。告知管制员此情况，请求飞回广州机场。】",
+      "audioText": "Now you are cruising at 9800m. During the cabin service, you encountered moderate turbulence, a flight attendant accidentally spilled hot water on a female passenger. Though timely first aid has been given, the passenger's condition has not improved. Inform the controller this situation and request fly back and land at Guangzhou airport.",
+      "audioTextZh": "你现在在9800米巡航。在客舱服务期间，你遇到了中度颠簸，一名乘务员不小心将热水洒到一名女乘客身上。虽然已经实施了急救，但是乘客的情况并没有改善。告知管制员此情况，请求飞回广州机场。",
       "referenceText": "Guangzhou Control, CSN3102, cruising at 9800m, we encountered moderate turbulence, a flight attendant accidentally spilled hot water on a female passenger during cabin service, first aid has been given, the passenger's condition has not improved, request return to land at Guangzhou airport.",
       "referenceTextZh": "广州区调，南方3102，9800米巡航，我们遇到了中度颠簸，一名乘务员不小心将热水洒到一名女乘客身上。虽然已经实施了急救，但是乘客的情况并没有改善，请求返回广州机场着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/36885cfe76bfcfb05491.mp3"

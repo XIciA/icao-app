@@ -62,8 +62,8 @@
     {
       "id": "radiotelephony-fzy-153533",
       "taskTitle": "3-AFR332 [异常气味，烟雾]-7",
-      "audioText": "[Now you reached the holding point of runway 22, request line up instructions.]",
-      "audioTextZh": "[你现在到达跑道22外等待点，请求上跑道指令。]",
+      "audioText": "Now you reached the holding point of runway 22, request line up instructions.",
+      "audioTextZh": "你现在到达跑道22外等待点，请求上跑道指令。",
       "referenceText": "Wuhan Tower, AFR332, request line up.",
       "referenceTextZh": "武汉塔台，法航332，请求上跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/23c757e45cf72b784a98.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-153538",
       "taskTitle": "3-AFR332 [异常气味，烟雾]-12",
-      "audioText": "[You are now at 3600m, you smell something unusual in the cockpit, but you haven’t found out the source of the smell, report this situation to Wuhan Tower and request to hold for doing the checklist.]",
-      "audioTextZh": "[你现在在3600米，你在驾驶舱内闻到异常气味，但是你没有发现气味来源，将情况报告给武汉塔台，申请等待并执行检查单。]",
+      "audioText": "You are now at 3600m, you smell something unusual in the cockpit, but you haven't found out the source of the smell, report this situation to Wuhan Tower and request to hold for doing the checklist.",
+      "audioTextZh": "你现在在3600米，你在驾驶舱内闻到异常气味，但是你没有发现气味来源，将情况报告给武汉塔台，申请等待并执行检查单。",
       "referenceText": "Wuhan Tower, AFR332, 3600m, we find unusual smell in the cockpit, but we haven’t found out the source, request to hold for checklist.\n注：此处也可以简化为：Wuhan Tower, AFR332, 3600m, unusual/abnormal smell, request to hold to do the check/checklist.",
       "referenceTextZh": "武汉塔台，法航332, 3600米，我们在驾驶舱发现异常气味，但是我们还没有发现气味来源，请求等待并执行检查单。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a5237870b44b20cd5b35.mp3"

@@ -10,12 +10,17 @@ import { loadOpsConfig } from './config';
 import { AdminAuthService } from './admin/admin-auth.service';
 import { runOpsStaffProvision } from './admin/admin-provisioning';
 import { totpCodeAt } from './admin/admin-crypto';
+import { refreshLocalMonitor } from './admin/local-monitor-bridge';
 import type { OpsStaffSession } from '@icao/contracts';
 
 async function main(){
   const root=resolve(__dirname,'../../..');
   const home=join(homedir(),'.config/icao-app/local-ops');
   await mkdir(home,{recursive:true,mode:0o700});
+  let monitorRefreshing=false;
+  const refreshMonitor=async()=>{if(monitorRefreshing)return;monitorRefreshing=true;try{await refreshLocalMonitor(root,home,join(homedir(),'.ssh/icao_app_codex'));}catch{/* Timestamp preserves missing/stale state. */}finally{monitorRefreshing=false;}};
+  void refreshMonitor();
+  const monitorTimer=setInterval(()=>void refreshMonitor(),60_000);monitorTimer.unref();
   const settingsPath=join(home,'connection.json');
   let settings:Record<string,string>;
   try { const info=await stat(settingsPath);if(info.mode&0o077)throw new Error('private_file_permissions');settings=JSON.parse(await readFile(settingsPath,'utf8')); }
@@ -55,7 +60,7 @@ async function main(){
     session=await auth.login({email:settings.email!,password:settings.password!,totpCode:totpCodeAt(delivery.totpSecret),deviceName:'本地管理后台'},randomUUID(),'127.0.0.1');await writeFile(sessionPath,JSON.stringify(session),{mode:0o600});return session;}
   await authenticate();
   const cookie=randomBytes(32).toString('hex');const dist=join(root,'apps/ops/dist');
-  const allowed=/^\/v1\/admin\/(?:content-orders(?:\/[^?]*)?|feedback(?:\/[^?]*)?|ai-rules(?:\/(?:preview|publish))?|users(?:\/(?:search|operations|[\w-]+\/detail|reset-allowances\/(?:preview|[\w-]+\/execute)))?|reports\/(?:usage|clicks|accounts\/[\w-]+)|review-entitlements\/(?:preview|[\w-]+\/execute))(?:\?.*)?$/;
+  const allowed=/^\/v1\/admin\/(?:stability|vocabulary(?:\/(?:preview|publish|audio))?|content-orders(?:\/[^?]*)?|feedback(?:\/[^?]*)?|ai-rules(?:\/(?:preview|publish))?|users(?:\/(?:search|operations|[\w-]+\/detail|reset-allowances\/(?:preview|[\w-]+\/execute)))?|reports\/(?:usage|clicks|accounts\/[\w-]+)|review-entitlements\/(?:preview|[\w-]+\/execute))(?:\?.*)?$/;
   const server=createServer(async(req,res)=>{
     try{
       if(req.headers.host!=='127.0.0.1:4173'||req.headers['sec-fetch-site']==='cross-site'){res.writeHead(403).end();return;}
@@ -67,7 +72,7 @@ async function main(){
         res.setHeader('cache-control','no-store');
         if(path==='/local/session'){res.setHeader('content-type','application/json');res.end(JSON.stringify({data:{staff:current.staff}}));return;}
         if(!allowed.test(path)){res.writeHead(404).end();return;}
-        const bodyLimit=/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/prepare$/.test(path)?20_000_000:(path==='/v1/admin/content-orders'||/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/append$/.test(path))?12_000_000:1_048_576;
+        const bodyLimit=path==='/v1/admin/vocabulary/audio'?7_000_000:/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/prepare$/.test(path)?20_000_000:(path==='/v1/admin/content-orders'||/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/append$/.test(path))?12_000_000:1_048_576;
         const chunks:Buffer[]=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>bodyLimit){res.writeHead(413).end();return;}chunks.push(chunk);}
         const response=await app!.getHttpAdapter().getInstance().inject({method:(req.method ?? 'GET') as 'GET' | 'POST',url:path,headers:{authorization:`Bearer ${current.accessToken}`,'content-type':req.headers['content-type']??'application/json','x-ops-reason':'本地管理员查看与管理'},payload:size?Buffer.concat(chunks):undefined});
         res.writeHead(response.statusCode,{'content-type':response.headers['content-type']??'application/json'});res.end(response.rawPayload);return;

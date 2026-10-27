@@ -1,5 +1,6 @@
+import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { BookOpenText, Check, ChevronDown, ChevronRight, CloudLightning, Cog, Compass, Headphones, Library, MessageSquareQuote, Mic2, RadioTower, UserRound, Wrench, type LucideIcon } from '@/components/ui/icons';
+import { Check, ChevronDown, ChevronRight, CloudLightning, Cog, Compass, Library, UserRound, Wrench, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -14,14 +15,8 @@ import { loadCatalogProgress, type CatalogProgressMap } from '../lib/catalog-pro
 import type { QuestionBankCategory, QuestionBankDataset } from '../types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 
-const icons: LucideIcon[] = [CloudLightning, Cog, RadioTower, Wrench];
-const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
-  headphones: Headphones,
-  sentences: MessageSquareQuote,
-  radioTower: RadioTower,
-  mic: Mic2,
-  story: BookOpenText,
-};
+const icons: LucideIcon[] = [CloudLightning, Cog, Wrench];
+
 
 export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset }) {
   const router = useRouter();

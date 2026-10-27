@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-151835",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-1",
-      "audioText": "[Your call sign is CSN586, from Wuhan to Guangzhou, gate 213, information G received, request ATC clearance.]",
+      "audioText": "Your call sign is CSN586, from Wuhan to Guangzhou, gate 213, information G received, request ATC clearance.",
       "audioTextZh": "你的呼号是南方586，从武汉飞往广州，213号停机位，收到通播G，请求放行许可。",
       "referenceText": "Wuhan Delivery, CSN586, gate 213, information G, destination Guangzhou, request ATC clearance.",
       "referenceTextZh": "武汉放行，南方586，,213号停机位，通播G，目的地广州，请求放行许可。",
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-151837",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-3",
-      "audioText": "[Now you are pushback with the engines running, request taxi instructions.]",
-      "audioTextZh": "[现在你在发动机启动情况下推出，请求滑行指令]",
+      "audioText": "Now you are pushback with the engines running, request taxi instructions.",
+      "audioTextZh": "现在你在发动机启动情况下推出，请求滑行指令",
       "referenceText": "Wuhan Ground, CSN586, request taxi.",
       "referenceTextZh": "武汉地面，南方586，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ce4a0209988f4ecdc52.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-151840",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-6",
-      "audioText": "[You encountered the wind shear between 200m to 400m, report the situation to ATC.]",
-      "audioTextZh": "[你在200米到400米之间遇到了风切变，向管制员报告此情况]",
+      "audioText": "You encountered the wind shear between 200m to 400m, report the situation to ATC.",
+      "audioTextZh": "你在200米到400米之间遇到了风切变，向管制员报告此情况",
       "referenceText": "Wuhan Departure, CSN586, we encountered wind shear between 200m to 400m.",
       "referenceTextZh": "武汉离场，南方586，在200米到400米之间遇到了风切变。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/95e6e57eaba8d1ff6dfa.mp3"
@@ -62,8 +62,8 @@
     {
       "id": "radiotelephony-fzy-151841",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-7",
-      "audioText": "[Now you are cruising at 8000m, approaching DAPRO, make an initial contact with Guangzhou Control.]",
-      "audioTextZh": "[你现在巡航在8000米，接近DAPRO，与广州区调进行初始联系]",
+      "audioText": "Now you are cruising at 8000m, approaching DAPRO, make an initial contact with Guangzhou Control.",
+      "audioTextZh": "你现在巡航在8000米，接近DAPRO，与广州区调进行初始联系",
       "referenceText": "Guangzhou Control, CSN586, maintaining 8000m, approaching DAPRO.",
       "referenceTextZh": "广州区调，南方586，正保持在8000米，接近DAPRO。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b247a08c3ad58b1b1c4b.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-151843",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-9",
-      "audioText": "[As you were descending to 4200m, you executed TCAS RA climbing maneuver, report the situation to controller.]",
-      "audioTextZh": "[当你下降到4200米时，你执行了TCAS RA 爬升机动，将情况报告管制员]",
+      "audioText": "As you were descending to 4200m, you executed TCAS RA climbing maneuver, report the situation to controller.",
+      "audioTextZh": "当你下降到4200米时，你执行了TCAS RA 爬升机动，将情况报告管制员",
       "referenceText": "Guangzhou Control, CSN586, we executed TCAS RA climbing maneuver while descending to 4200m.",
       "referenceTextZh": "广州区调，南方586，我们在下降到4200米时，执行了TCAS RA 爬升机动。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9a30e6495efa3003e5e.mp3"
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-151844",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-10",
-      "audioText": "[Now the conflicting traffic is clear, resume descend. Report the situation to the controller.]",
-      "audioTextZh": "[现在与冲突航空器已解除冲突，恢复下降。将此情况报告给管制员]",
+      "audioText": "Now the conflicting traffic is clear, resume descend. Report the situation to the controller.",
+      "audioTextZh": "现在与冲突航空器已解除冲突，恢复下降。将此情况报告给管制员",
       "referenceText": "Guangzhou Control, CSN586, conflicted traffic clear, resume descent.",
       "referenceTextZh": "广州区调，南方586，与冲突航空器已解除冲突，恢复下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4412b571a203016a2b22.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-151846",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-12",
-      "audioText": "[Now you are established on the ILS approach runway 36R, tell the controller you cannot see PAPI light.]",
-      "audioTextZh": "[你现在建立了ILS进近，跑道36右，告诉管制员，你看不到PAPI灯]",
+      "audioText": "Now you are established on the ILS approach runway 36R, tell the controller you cannot see PAPI light.",
+      "audioTextZh": "你现在建立了ILS进近，跑道36右，告诉管制员，你看不到PAPI灯",
       "referenceText": "Guangzhou Tower, CSN586, ILS established, runway 36R, PAPI light not in sight.",
       "referenceTextZh": "广州塔台，南方586，建立ILS进近，跑道36右，看不到PAPI灯。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4bf9a2833a6a1372854b.mp3"
@@ -125,7 +125,7 @@
     {
       "id": "radiotelephony-fzy-151848",
       "taskTitle": "14-CSN586 [风切变，TCAS RA]-14",
-      "audioText": "[Ask for follow me car after landing.]",
+      "audioText": "Ask for follow me car after landing.",
       "audioTextZh": "[请求落地后引导车]",
       "referenceText": "Guangzhou Tower, CSN586, request a follow me car after landing.",
       "referenceTextZh": "广州塔台，南方586，落地后，请求引导车。",

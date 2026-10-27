@@ -1,88 +1,88 @@
 {
   "id": "opi-topic-0148",
   "name": "侧窗",
-  "declaredCardCount": 8,
   "cards": [
     {
-      "id": "opi-extra-373",
-      "taskTitle": "飞机系统-侧窗-1",
-      "audioText": "What are the main functions of a cockpit side window?",
-      "audioTextZh": "驾驶舱侧窗的主要功能有哪些？",
-      "referenceText": "On the ground, a cockpit side window can provide ventilation and allow communication with ground personnel. On aircraft with an openable window, it may also serve as an alternate emergency escape route. Some aircraft use it for limited visual inspection of the wing or engine area while taxiing.",
-      "referenceTextZh": "在地面上，驾驶舱侧窗可以用于通风，并让机组与地面人员沟通。对于配有可开启侧窗的飞机，它也可以作为备用紧急逃生通道。有些飞机在滑行时还可通过侧窗对机翼或发动机区域进行有限的目视检查。",
-      "audio": "/question-bank-assets/revisions/opi/93cf57337d4800b089acbeeafbabe5cc7b806467be96b0cfb8a2c805ec97bb5a/audio/opi/opi-extra-373.mp3",
-      "audioDurationSeconds": 2.712
-    },
-    {
-      "id": "opi-extra-373-part-2",
-      "taskTitle": "飞机系统-侧窗-2",
-      "audioText": "Under what conditions, if any, may a cockpit side window be opened in flight?",
-      "audioTextZh": "驾驶舱侧窗在飞行中是否可以打开？如果可以，需要满足哪些条件？",
-      "referenceText": "A cockpit side window should normally remain closed in flight. It may be opened only if the aircraft flight manual permits it, within the specified altitude and airspeed limits, and for a defined procedure such as smoke removal or another abnormal need. The crew must consider pressurisation, airflow, loose objects, noise, and the ability to secure the window again.",
-      "referenceTextZh": "飞行中，驾驶舱侧窗通常应保持关闭。只有在飞行手册允许、符合规定的高度和空速限制，并为执行排烟或其他非正常需要等明确程序时，才可以开启。机组必须考虑增压、气流、松散物品、噪声，以及能否再次将侧窗关紧。",
-      "audio": "/question-bank-assets/revisions/opi/6a64178c8b69dbccd37a615c3208f9290c67db6090248472ca9b16c432e96ad2/audio/opi/opi-extra-373-part-2.mp3",
-      "audioDurationSeconds": 4.68
-    },
-    {
-      "id": "opi-extra-374",
-      "taskTitle": "飞机系统-侧窗-3",
-      "audioText": "How can an openable cockpit side window serve as an emergency exit after an accident?",
-      "audioTextZh": "事故发生后，可开启的驾驶舱侧窗如何用作紧急出口？",
-      "referenceText": "If the normal cockpit exit is blocked after an accident, an openable side window may provide another escape path. Before opening it, the crew should check that there is no fire or other immediate danger outside. They should open it using the aircraft's procedure and leave one at a time, using the escape rope if the aircraft has one.",
-      "referenceTextZh": "事故发生后，如果驾驶舱正常出口受阻，可开启的侧窗可以提供另一条逃生通道。开启前，机组应确认窗外没有火灾或其他紧迫危险。他们应按照机型程序打开侧窗，依次离开；如果飞机配有逃生绳，则应使用逃生绳。",
-      "audio": "/question-bank-assets/revisions/opi/650a684693cb77269ab6b9631f910773e257ed661653f5ae41326a976ab4fc7b/audio/opi/opi-extra-374.mp3",
-      "audioDurationSeconds": 4.896
-    },
-    {
-      "id": "opi-extra-375",
-      "taskTitle": "飞机系统-侧窗-4",
-      "audioText": "Why might a flight crew keep the cockpit side windows closed while taxiing in rain?",
-      "audioTextZh": "在雨中滑行时，飞行机组为什么可能保持驾驶舱侧窗关闭？",
-      "referenceText": "The crew may keep the windows closed to prevent rainwater from entering the cockpit and damaging electronic equipment. Water on the floor or seats could also create a slipping hazard. An open window and incoming rain may distract the pilots during taxi.",
-      "referenceTextZh": "机组可能会保持侧窗关闭，防止雨水进入驾驶舱并损坏电子设备。地板或座椅上的积水也会带来滑倒风险。侧窗开启且雨水进入还可能在滑行期间分散飞行员注意力。",
-      "audio": "/question-bank-assets/revisions/opi/ab9ef00434e7e077f64b6f6fb0d9f1944f7ee81b89bb995896baaa05e119e6ae/audio/opi/opi-extra-375.mp3",
-      "audioDurationSeconds": 4.536
-    },
-    {
-      "id": "opi-extra-376",
-      "taskTitle": "飞机系统-侧窗-5",
-      "audioText": "How does a flight crew verify that a cockpit side window is properly closed and sealed?",
-      "audioTextZh": "飞行机组如何确认驾驶舱侧窗已正确关闭并密封？",
-      "referenceText": "Before flight, the crew checks that the handle or latch is fully closed and locked and that there is no visible gap or movement at the seal. During pressurization, they monitor cabin indications and listen or feel for a whistle or cold draft. Some aircraft may also display an ECAM or EICAS warning if the window is not secure.",
-      "referenceTextZh": "飞行前，机组会检查手柄或锁闩是否完全关闭并锁定，密封处是否存在可见缝隙或松动。增压期间，他们会监控座舱指示，并听察哨声或感受冷风。有些飞机在侧窗未锁好时还会显示 ECAM 或 EICAS 警告。",
-      "audio": "/question-bank-assets/revisions/opi/2c68633cbb4868a0e9f04bd11e3598fb6063275fc29f2c6a25cb80e189cba262/audio/opi/opi-extra-376.mp3",
-      "audioDurationSeconds": 4.8
-    },
-    {
       "id": "opi-extra-377",
-      "taskTitle": "飞机系统-侧窗-6",
+      "audio": "/question-bank-assets/revisions/opi/6b0412cd37e8a459227b3602126347586e6d48747941db2adcfb6a6e2b1e619c/audio/opi/opi-extra-377.mp3",
       "audioText": "How should a flight crew respond to a suspected air leak from a cockpit side window during climb?",
+      "taskTitle": "飞机系统-侧窗-6",
       "audioTextZh": "爬升中怀疑驾驶舱侧窗漏气时，飞行机组应如何处置？",
       "referenceText": "The crew should keep the window secured, maintain control, and follow the window or pressurisation checklist. They should monitor cabin altitude and pressure, use oxygen if required, stop the climb, and descend if the leak affects pressurisation. The crew should inform ATC and return or land if the window cannot be confirmed safe.",
       "referenceTextZh": "机组应保持侧窗锁闭，控制好飞机，并执行侧窗或增压检查单。他们应监控座舱高度和压力，按需使用氧气；如果泄漏影响增压，应停止爬升并下降。机组应通知空中交通管制；如果无法确认侧窗安全，应返航或着陆。",
-      "audio": "/question-bank-assets/revisions/opi/6b0412cd37e8a459227b3602126347586e6d48747941db2adcfb6a6e2b1e619c/audio/opi/opi-extra-377.mp3",
       "audioDurationSeconds": 5.184
     },
     {
-      "id": "opi-extra-378",
-      "taskTitle": "飞机系统-侧窗-7",
-      "audioText": "What hazards can result if a cockpit side window opens unexpectedly in flight?",
-      "audioTextZh": "驾驶舱侧窗在飞行中意外打开可能造成哪些危险？",
-      "referenceText": "An open cockpit side window can cause sudden loud noise and strong airflow. At high altitude, it may result in rapid decompression and a sharp temperature drop. Loose items may also be blown or pulled out of the cockpit.",
-      "referenceTextZh": "驾驶舱侧窗开启会突然产生很大的噪声和强烈气流。在高空，这可能导致快速失压和温度骤降。松散物品也可能被吹出或吸出驾驶舱。",
-      "audio": "/question-bank-assets/revisions/opi/cd84dbc7abfb6cc38026d3bce82dbf97f38e23e93398a0c587dc15820ece480f/audio/opi/opi-extra-378.mp3",
-      "audioDurationSeconds": 4.608
+      "id": "opi-extra-374",
+      "audio": "/question-bank-assets/revisions/opi/650a684693cb77269ab6b9631f910773e257ed661653f5ae41326a976ab4fc7b/audio/opi/opi-extra-374.mp3",
+      "audioText": "How can an openable cockpit side window serve as an emergency exit after an accident?",
+      "taskTitle": "飞机系统-侧窗-3",
+      "audioTextZh": "事故发生后，可开启的驾驶舱侧窗如何用作紧急出口？",
+      "referenceText": "If the normal cockpit exit is blocked after an accident, an openable side window may provide another escape path. Before opening it, the crew should check that there is no fire or other immediate danger outside. They should open it using the aircraft's procedure and leave one at a time, using the escape rope if the aircraft has one.",
+      "referenceTextZh": "事故发生后，如果驾驶舱正常出口受阻，可开启的侧窗可以提供另一条逃生通道。开启前，机组应确认窗外没有火灾或其他紧迫危险。他们应按照机型程序打开侧窗，依次离开；如果飞机配有逃生绳，则应使用逃生绳。",
+      "audioDurationSeconds": 4.896
+    },
+    {
+      "id": "opi-extra-376",
+      "audio": "/question-bank-assets/revisions/opi/2c68633cbb4868a0e9f04bd11e3598fb6063275fc29f2c6a25cb80e189cba262/audio/opi/opi-extra-376.mp3",
+      "audioText": "How does a flight crew verify that a cockpit side window is properly closed and sealed?",
+      "taskTitle": "飞机系统-侧窗-5",
+      "audioTextZh": "飞行机组如何确认驾驶舱侧窗已正确关闭并密封？",
+      "referenceText": "Before flight, the crew checks that the handle or latch is fully closed and locked and that there is no visible gap or movement at the seal. During pressurization, they monitor cabin indications and listen or feel for a whistle or cold draft. Some aircraft may also display an ECAM or EICAS warning if the window is not secure.",
+      "referenceTextZh": "飞行前，机组会检查手柄或锁闩是否完全关闭并锁定，密封处是否存在可见缝隙或松动。增压期间，他们会监控座舱指示，并听察哨声或感受冷风。有些飞机在侧窗未锁好时还会显示 ECAM 或 EICAS 警告。",
+      "audioDurationSeconds": 4.8
+    },
+    {
+      "id": "opi-extra-373",
+      "audio": "/question-bank-assets/revisions/opi/93cf57337d4800b089acbeeafbabe5cc7b806467be96b0cfb8a2c805ec97bb5a/audio/opi/opi-extra-373.mp3",
+      "audioText": "What are the main functions of a cockpit side window?",
+      "taskTitle": "飞机系统-侧窗-1",
+      "audioTextZh": "驾驶舱侧窗的主要功能有哪些？",
+      "referenceText": "On the ground, a cockpit side window can provide ventilation and allow communication with ground personnel. On aircraft with an openable window, it may also serve as an alternate emergency escape route. Some aircraft use it for limited visual inspection of the wing or engine area while taxiing.",
+      "referenceTextZh": "在地面上，驾驶舱侧窗可以用于通风，并让机组与地面人员沟通。对于配有可开启侧窗的飞机，它也可以作为备用紧急逃生通道。有些飞机在滑行时还可通过侧窗对机翼或发动机区域进行有限的目视检查。",
+      "audioDurationSeconds": 2.712
     },
     {
       "id": "opi-extra-378-part-2",
-      "taskTitle": "飞机系统-侧窗-8",
+      "audio": "/question-bank-assets/revisions/opi/409d2a1b90db6bc36b2475ae9982d052ad797ba6765ec1e52264e3ce2dd0a6fb/audio/opi/opi-extra-378-part-2.mp3",
       "audioText": "How should the flight crew respond if a cockpit side window opens unexpectedly in flight?",
+      "taskTitle": "飞机系统-侧窗-8",
       "audioTextZh": "驾驶舱侧窗在飞行中意外打开时，飞行机组应如何处置？",
       "referenceText": "The pilots should maintain control and avoid being distracted by the noise and airflow. They should use oxygen if pressurisation is lost, reduce speed or descend as directed by the checklist, secure loose items, and attempt to close the window only if the approved procedure allows it. They should inform ATC and land at a suitable airport.",
       "referenceTextZh": "飞行员应保持飞机控制，避免被噪声和气流分散注意力。如果飞机失压，应使用氧气，按检查单要求减速或下降，并固定松散物品。只有经批准的程序允许时，才可尝试关闭侧窗。他们还应通知空中交通管制，并在合适的机场着陆。",
-      "audio": "/question-bank-assets/revisions/opi/409d2a1b90db6bc36b2475ae9982d052ad797ba6765ec1e52264e3ce2dd0a6fb/audio/opi/opi-extra-378-part-2.mp3",
       "audioDurationSeconds": 4.968
+    },
+    {
+      "id": "opi-extra-378",
+      "audio": "/question-bank-assets/revisions/opi/cd84dbc7abfb6cc38026d3bce82dbf97f38e23e93398a0c587dc15820ece480f/audio/opi/opi-extra-378.mp3",
+      "audioText": "What hazards can result if a cockpit side window opens unexpectedly in flight?",
+      "taskTitle": "飞机系统-侧窗-7",
+      "audioTextZh": "驾驶舱侧窗在飞行中意外打开可能造成哪些危险？",
+      "referenceText": "An open cockpit side window can cause sudden loud noise and strong airflow. At high altitude, it may result in rapid decompression and a sharp temperature drop. Loose items may also be blown or pulled out of the cockpit.",
+      "referenceTextZh": "驾驶舱侧窗开启会突然产生很大的噪声和强烈气流。在高空，这可能导致快速失压和温度骤降。松散物品也可能被吹出或吸出驾驶舱。",
+      "audioDurationSeconds": 4.608
+    },
+    {
+      "id": "opi-extra-375",
+      "audio": "/question-bank-assets/revisions/opi/ab9ef00434e7e077f64b6f6fb0d9f1944f7ee81b89bb995896baaa05e119e6ae/audio/opi/opi-extra-375.mp3",
+      "audioText": "Why might a flight crew keep the cockpit side windows closed while taxiing in rain?",
+      "taskTitle": "飞机系统-侧窗-4",
+      "audioTextZh": "在雨中滑行时，飞行机组为什么可能保持驾驶舱侧窗关闭？",
+      "referenceText": "The crew may keep the windows closed to prevent rainwater from entering the cockpit and damaging electronic equipment. Water on the floor or seats could also create a slipping hazard. An open window and incoming rain may distract the pilots during taxi.",
+      "referenceTextZh": "机组可能会保持侧窗关闭，防止雨水进入驾驶舱并损坏电子设备。地板或座椅上的积水也会带来滑倒风险。侧窗开启且雨水进入还可能在滑行期间分散飞行员注意力。",
+      "audioDurationSeconds": 4.536
+    },
+    {
+      "id": "opi-extra-373-part-2",
+      "audio": "/question-bank-assets/revisions/opi/6a64178c8b69dbccd37a615c3208f9290c67db6090248472ca9b16c432e96ad2/audio/opi/opi-extra-373-part-2.mp3",
+      "audioText": "Under what conditions, if any, may a cockpit side window be opened in flight?",
+      "taskTitle": "飞机系统-侧窗-2",
+      "audioTextZh": "驾驶舱侧窗在飞行中是否可以打开？如果可以，需要满足哪些条件？",
+      "referenceText": "A cockpit side window should normally remain closed in flight. It may be opened only if the aircraft flight manual permits it, within the specified altitude and airspeed limits, and for a defined procedure such as smoke removal or another abnormal need. The crew must consider pressurisation, airflow, loose objects, noise, and the ability to secure the window again.",
+      "referenceTextZh": "飞行中，驾驶舱侧窗通常应保持关闭。只有在飞行手册允许、符合规定的高度和空速限制，并为执行排烟或其他非正常需要等明确程序时，才可以开启。机组必须考虑增压、气流、松散物品、噪声，以及能否再次将侧窗关紧。",
+      "audioDurationSeconds": 4.68
     }
   ],
+  "declaredCardCount": 8,
   "categoryId": "opi-category-06"
 }

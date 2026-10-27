@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-219646",
       "taskTitle": "66-ACA121 [PAPI灯，复飞，燃油短缺]-1",
       "audioText": "N: [Your call sign is ACA121, you are 6 miles from touchdown, your fuel warning light is on, call Wuhan approach for ILS approach and priority landing.]",
-      "audioTextZh": "【你的呼号是加航121，你现在距离接地点6海里，你的燃油告警灯亮了，呼叫武汉进近，请求盲降进近，优先着陆。】",
+      "audioTextZh": "你的呼号是加航121，你现在距离接地点6海里，你的燃油告警灯亮了，呼叫武汉进近，请求盲降进近，优先着陆。",
       "referenceText": "Wuhan Approach, ACA121, 6 miles from touchdown, our fuel warning light is on, request priority landing.",
       "referenceTextZh": "武汉进近，加航121，接地点6海里，我们的燃油告警灯亮了，请求优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/751c66ea4748595cc3a6.mp3"
@@ -36,7 +36,7 @@
       "id": "radiotelephony-fzy-219649",
       "taskTitle": "66-ACA121 [PAPI灯，复飞，燃油短缺]-4",
       "audioText": "N: [Contact Wuhan Tower, you are approaching AKO, level 1100 meters.]",
-      "audioTextZh": "【联系武汉塔台， 你正在接近AKO，在1100米平飞。】",
+      "audioTextZh": "联系武汉塔台，你正在接近AKO，在1100米平飞。",
       "referenceText": "Wuhan Tower, ACA121, approaching AKO, level at 1100m.",
       "referenceTextZh": "武汉塔台，加航121，接近AKO，在1100米平飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/753349ba0b080c50a7e3.mp3"
@@ -72,7 +72,7 @@
       "id": "radiotelephony-fzy-219653",
       "taskTitle": "66-ACA121 [PAPI灯，复飞，燃油短缺]-8",
       "audioText": "N: [You request to dim the approach lights to grade 3. They look too bright from your aircraft.]",
-      "audioTextZh": "【你请求将进近灯调整到3级，从你飞机上看太亮了。】",
+      "audioTextZh": "你请求将进近灯调整到3级，从你飞机上看太亮了。",
       "referenceText": "Wuhan Tower, ACA121, request to dim the approach lights to grade 3. They look too bright.",
       "referenceTextZh": "武汉塔台，加航121，请求将进近灯调暗至3级，它们太亮了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/35ef5a2d181ffbdd01fb.mp3"
@@ -90,7 +90,7 @@
       "id": "radiotelephony-fzy-219655",
       "taskTitle": "66-ACA121 [PAPI灯，复飞，燃油短缺]-10",
       "audioText": "N: [You have three green lights. The PAPI (PAPI precision approach path indicator) appears to be a little bit low but actually your aircraft is high on the glide path. Report to the Tower.]",
-      "audioTextZh": "【你看到了3个绿灯，PAPI灯（精密进近航道指示器）看起来有点低，但是实际上你的飞机在下滑道上方，告知塔台管制员。】",
+      "audioTextZh": "你看到了3个绿灯，PAPI灯（精密进近航道指示器）看起来有点低，但是实际上你的飞机在下滑道上方，告知塔台管制员。",
       "referenceText": "Wuhan Tower, ACA121, we have 3 green, the PAPI seems to be a little bit low but our aircraft is actually high on the glide path.",
       "referenceTextZh": "武汉塔台，加航121，我们看到3个绿灯，PAPI灯看起来有点低，但是实际上我们的飞机在下滑道以上。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9f7ac0ea4e667ea596e4.mp3"
@@ -108,7 +108,7 @@
       "id": "radiotelephony-fzy-219657",
       "taskTitle": "66-ACA121 [PAPI灯，复飞，燃油短缺]-12",
       "audioText": "N: [You tell controller you're overshooting, your altitude is too high.]",
-      "audioTextZh": "【告知管制员，你复飞了，你的高度太高了。】",
+      "audioTextZh": "告知管制员，你复飞了，你的高度太高了。",
       "referenceText": "Wuhan Tower, ACA121, going around, our altitude is too high.",
       "referenceTextZh": "武汉塔台，加航121，我们复飞了，我们的高度太高了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/24e398cef2c9c4f1a7f9.mp3"
@@ -161,7 +161,7 @@
     {
       "id": "radiotelephony-fzy-219663",
       "taskTitle": "66-ACA121 [PAPI灯，复飞，燃油短缺]-18",
-      "audioText": "C: ACA121, what is the status of your aircraft?\nN: [Tell the controller your aircraft is in good condition, but this time you don’t have enough fuel for another missed approach. You want a successful landing this time.]",
+      "audioText": "C: ACA121, what is the status of your aircraft?\nN: [Tell the controller your aircraft is in good condition, but this time you don't have enough fuel for another missed approach. You want a successful landing this time.]",
       "audioTextZh": "加航121，飞机目前的状态如何？\n【告知管制员，你飞机状态良好，但这次，你没有足够的燃油来再次进近，你这次想成功着陆。】",
       "referenceText": "Wuhan Departure, ACA121, unable another missed approach due fuel shortage, request to land this time.",
       "referenceTextZh": "武汉离场，加航121，由于燃油短缺，无法再次进近，请求着陆。",

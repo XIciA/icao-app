@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ForbiddenException } from '@nestjs/common';
-import { isFreeQuestionBankCard } from '@icao/contracts';
+import { freeQuestionBankCardIds } from '@icao/contracts';
 import { generateKeyPairSync } from 'node:crypto';
 
 import { ContentAccessService } from '../src/content-access/content-access.service';
@@ -30,9 +30,10 @@ const dataset = {
     topics: [{
       id: 'listening-topic-01',
       name: '10s航空英语',
-      declaredCardCount: 2,
+      declaredCardCount: 11,
       cards: [
         { id: 'listening-main-001', audio: '/question-bank-assets/audio/listening/main/001.mp3', studyTier: 2 },
+        ...Array.from({length: 9}, (_, index) => ({ id: `middle-${index}`, studyTier: 1 })),
         { id: 'listening-main-999', audio: '/question-bank-assets/audio/listening/main/999.mp3', studyTier: 1 },
       ],
     }],
@@ -91,16 +92,31 @@ function service(
 }
 
 describe('versioned content access policy', () => {
-  it('keeps the confirmed free IDs stable across every bank shape', () => {
-    expect(isFreeQuestionBankCard('sentences900', 'any-topic', 'any-card')).toBe(true);
-    expect(isFreeQuestionBankCard('listening', 'listening-topic-01', 'listening-main-001')).toBe(true);
-    expect(isFreeQuestionBankCard('listening', 'listening-topic-01', 'listening-main-999')).toBe(false);
-    expect(isFreeQuestionBankCard('radiotelephony', 'atc-scenario-0003', 'any-card')).toBe(true);
-    expect(isFreeQuestionBankCard('radiotelephony', 'atc-scenario-0004', 'any-card')).toBe(false);
-    expect(isFreeQuestionBankCard('opi', 'opi-topic-0003', 'any-card')).toBe(true);
-    expect(isFreeQuestionBankCard('opi', 'opi-topic-0004', 'any-card')).toBe(false);
-    expect(isFreeQuestionBankCard('storytelling', 'story-flight-required', 'story-wing-003')).toBe(true);
-    expect(isFreeQuestionBankCard('storytelling', 'story-flight-required', 'story-wing-004')).toBe(false);
+  it('selects release order, not numeric card IDs, independently in each listening module', () => {
+    const topics = Array.from({ length: 4 }, (_, t) => ({ id: `topic-${t}`, cards: [{ id: `retired-${t}`, retired: true }, ...Array.from({ length: 12 }, (_, c) => ({ id: `arbitrary-${t}-${11-c}` }))] }));
+    const bank = { id: 'listening', categories: topics.map(topic => ({ topics: [topic] })) };
+    const ids = freeQuestionBankCardIds(bank);
+    expect(ids.size).toBe(40);
+    for (let t = 0; t < 4; t++) {
+      expect(ids.has(`arbitrary-${t}-11`)).toBe(true);
+      expect(ids.has(`arbitrary-${t}-2`)).toBe(true);
+      expect(ids.has(`arbitrary-${t}-1`)).toBe(false);
+      expect(ids.has(`retired-${t}`)).toBe(false);
+    }
+    expect(freeQuestionBankCardIds({ ...bank, id: 'radiotelephony' }).size).toBe(12);
+    expect(freeQuestionBankCardIds({ ...bank, id: 'opi' }).size).toBe(36);
+    expect(freeQuestionBankCardIds({ ...bank, id: 'storytelling' }).size).toBe(3);
+    expect(freeQuestionBankCardIds({ ...bank, id: 'sentences900' }).size).toBe(48);
+  });
+
+  it('lets guests read only free topics and resources, and never select Sandbox', async () => {
+    const fixture = service(new Date('2026-09-25T00:00:00.000Z'));
+    const release = await fixture.service.getTopic('listening', 'listening-category-01', 'listening-topic-01', undefined, undefined, 'production', NOW);
+    expect(release.topic.cards).toHaveLength(10);
+    expect(release.access.membershipActive).toBe(false);
+    await expect(fixture.service.assertResourceAccess(undefined, 'listening', '/question-bank-assets/audio/listening/main/999.mp3', undefined, 'production', NOW)).rejects.toBeInstanceOf(ForbiddenException);
+    await expect(fixture.service.assertResourceAccess(undefined, 'listening', '/question-bank-assets/audio/listening/main/001.mp3', undefined, 'production', NOW)).resolves.toBeUndefined();
+    await expect(fixture.service.getCatalog('listening', undefined, undefined, 'sandbox', NOW)).rejects.toBeInstanceOf(ForbiddenException);
   });
 
   it('returns a full directory but never places member-only cards in the catalog payload', async () => {
@@ -114,9 +130,12 @@ describe('versioned content access policy', () => {
       membershipActive: true,
       membershipExpiresAt: '2026-09-25T00:00:00.000Z',
     });
-    expect(topic.cards.map((card) => card.id)).toEqual(['listening-main-001']);
-    expect(topic.scopeCardIds).toEqual({ all: ['listening-main-001', 'listening-main-999'], selected: ['listening-main-001', 'listening-main-999'], crash: ['listening-main-001'] });
-    expect(topic.access).toEqual({ level: 'member', availableCardCount: 1, declaredCardCount: 2 });
+    expect(topic.cards.map((card) => card.id)).toEqual(['listening-main-001', ...Array.from({length: 9}, (_, i) => `middle-${i}`)]);
+    expect(topic.radioEntries).toEqual([{ id: 'listening-main-001', title: '', durationSeconds: 0 }, { id: 'listening-main-999', title: '', durationSeconds: 0 }]);
+    expect(topic.scopeCardIds?.all).toHaveLength(11);
+    expect(topic.scopeCardIds?.crash).toEqual(['listening-main-001']);
+    expect(topic.access).toMatchObject({ level: 'member', availableCardCount: 10, declaredCardCount: 11 });
+    expect(topic.access.freeCardIds).toHaveLength(10);
   });
 
   it('returns full topic content only to an active production member', async () => {
@@ -131,7 +150,7 @@ describe('versioned content access policy', () => {
       NOW,
     );
 
-    expect(release.topic.cards).toHaveLength(2);
+    expect(release.topic.cards).toHaveLength(11);
   });
 
   it('requires a server-issued session grant before sandbox content can be selected', async () => {
@@ -174,6 +193,11 @@ describe('versioned content access policy', () => {
     )).resolves.toBeUndefined();
   });
 
+  it('keeps discovery protected for authenticated non-members', async () => {
+    await expect(service().service.assertMembership(ACCOUNT_ID, SESSION_ID, 'production')).rejects.toBeInstanceOf(ForbiddenException);
+    await expect(service(new Date('2099-01-01T00:00:00.000Z')).service.assertMembership(ACCOUNT_ID, SESSION_ID, 'production')).resolves.toBeUndefined();
+  });
+
   it('signs an account- and scope-bound credential capped by membership expiry', async () => {
     const fixture = service(new Date('2026-08-26T00:00:00.000Z'));
     const credential = await fixture.service.issueCredential(ACCOUNT_ID, {
@@ -192,6 +216,7 @@ describe('versioned content access policy', () => {
     expect(credential.token.split('.')).toHaveLength(3);
     const claims = JSON.parse(Buffer.from(credential.token.split('.')[1]!, 'base64url').toString()) as Record<string, unknown>;
     expect(claims).toMatchObject({
+      policyVersion: 'content-access-v2', // Published clients keep accepting the offline credential.
       sub: ACCOUNT_ID,
       entitlementSegmentId: '00000000-0000-4000-8000-000000000099',
       environment: 'production',

@@ -1,38 +1,38 @@
 {
   "id": "opi-topic-0093",
   "name": "医疗紧急情况",
-  "declaredCardCount": 3,
   "cards": [
     {
-      "id": "opi-extra-010",
-      "taskTitle": "特情-医疗紧急情况-1",
-      "audioText": "What medical assistance can cabin crew provide during a flight?",
-      "audioTextZh": "飞行中，客舱机组可以提供哪些医疗救助？",
-      "referenceText": "Cabin crew can provide basic first aid, including bleeding control and bandaging, and can perform CPR in a cardiac arrest. They can use the onboard emergency medical kit under professional guidance, monitor the passenger, and keep the pilots informed.",
-      "referenceTextZh": "客舱机组可以提供基本急救，包括止血和包扎，并可在心搏骤停时进行心肺复苏。他们可以在专业指导下使用机载应急医疗箱，监控旅客状况，并持续向飞行员报告。",
-      "audio": "/question-bank-assets/revisions/opi/2e0029cfad558fbb2ea75b41da3d2e81ce680d80122a2f5d39a7f0203c3b728b/audio/opi/opi-extra-010.mp3",
-      "audioDurationSeconds": 3.408
-    },
-    {
       "id": "opi-core-099",
-      "taskTitle": "特情-医疗紧急情况-2",
+      "audio": "/question-bank-assets/revisions/opi/26b188472441337f7513ff1ad8d01ab0cca1cf3d9b804787dccf53900267b85c/audio/opi/opi-core-099.mp3",
       "audioText": "Under what circumstances should a pilot declare a medical emergency?",
+      "taskTitle": "特情-医疗紧急情况-2",
       "audioTextZh": "飞行员应在什么情况下宣布医疗紧急情况？",
       "referenceText": "A pilot should declare a medical emergency when a crew member or passenger has a life-threatening condition or needs immediate medical assistance on the ground. Examples include pilot incapacitation, a heart attack, unconsciousness, severe injury, or uncontrollable bleeding. A critical assessment by a medical professional on board would also support the declaration.",
       "referenceTextZh": "当机组成员或旅客出现危及生命的情况，或需要在地面立即获得医疗帮助时，飞行员应宣布医疗紧急状态。例如飞行员失能、心脏病发作、失去意识、严重受伤或无法控制的出血。机上医疗专业人员作出的危重评估也支持宣布紧急状态。",
-      "audio": "/question-bank-assets/revisions/opi/26b188472441337f7513ff1ad8d01ab0cca1cf3d9b804787dccf53900267b85c/audio/opi/opi-core-099.mp3",
       "audioDurationSeconds": 3.792
     },
     {
       "id": "opi-core-102",
-      "taskTitle": "特情-医疗紧急情况-3",
+      "audio": "/question-bank-assets/revisions/opi/82c1b55411347729925fc2c1012c6e33c4ff5426a82c3d75d6bb2374caf73267/audio/opi/opi-core-102.mp3",
       "audioText": "How should first aid be provided to someone on board an aircraft?",
+      "taskTitle": "特情-医疗紧急情况-3",
       "audioTextZh": "应如何为飞机上的人员提供急救？",
       "referenceText": "The crew should first make sure the area is safe, assess the person's condition, and call for trained medical help. They should provide care within their training, such as controlling bleeding or performing CPR when indicated. The person should be monitored, and the pilots should be updated so that medical support or a diversion can be arranged.",
       "referenceTextZh": "机组应先确认现场安全、评估人员状况并呼叫受过训练的医疗帮助。他们应在自身训练范围内提供救护，例如按需止血或实施心肺复苏。应持续监控患者并向飞行员更新情况，以便安排医疗支援或改航。",
-      "audio": "/question-bank-assets/revisions/opi/82c1b55411347729925fc2c1012c6e33c4ff5426a82c3d75d6bb2374caf73267/audio/opi/opi-core-102.mp3",
       "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-extra-010",
+      "audio": "/question-bank-assets/revisions/opi/2e0029cfad558fbb2ea75b41da3d2e81ce680d80122a2f5d39a7f0203c3b728b/audio/opi/opi-extra-010.mp3",
+      "audioText": "What medical assistance can cabin crew provide during a flight?",
+      "taskTitle": "特情-医疗紧急情况-1",
+      "audioTextZh": "飞行中，客舱机组可以提供哪些医疗救助？",
+      "referenceText": "Cabin crew can provide basic first aid, including bleeding control and bandaging, and can perform CPR in a cardiac arrest. They can use the onboard emergency medical kit under professional guidance, monitor the passenger, and keep the pilots informed.",
+      "referenceTextZh": "客舱机组可以提供基本急救，包括止血和包扎，并可在心搏骤停时进行心肺复苏。他们可以在专业指导下使用机载应急医疗箱，监控旅客状况，并持续向飞行员报告。",
+      "audioDurationSeconds": 3.408
     }
   ],
+  "declaredCardCount": 3,
   "categoryId": "opi-category-02"
 }

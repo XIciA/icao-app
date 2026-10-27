@@ -1,14 +1,17 @@
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { useFocusEffect, useRouter } from 'expo-router';
-import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
+import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
+import { useFocusEffect } from 'expo-router';
+import { BookOpenText, ChevronRight, Highlighter, NotebookPen, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-
 import { AppText, Button, Card, Screen } from '@/components/ui';
-import { colors, fonts, radii, shadows, spacing } from '@/theme';
+import { colors, fonts, radii, spacing } from '@/theme';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
-import type { QuestionBankDataset, QuestionBankId } from '../types';
+import type { QuestionBankId } from '../types';
 import { annotationHighlightBackgrounds, annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index.native';
 import { useCardReferences } from '../annotations/use-card-references.native';
@@ -21,13 +24,7 @@ import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 type AnnotationSegment = 'tags' | 'highlights' | 'notes';
 type BankFilter = QuestionBankId | 'all';
 
-const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
-  headphones: Headphones,
-  sentences: MessageSquareQuote,
-  radioTower: RadioTower,
-  mic: Mic2,
-  story: BookOpenText,
-};
+
 
 const segments: { id: AnnotationSegment; label: string; icon: LucideIcon }[] = [
   { id: 'tags', label: '标签', icon: TagIcon },
@@ -39,6 +36,7 @@ export function MyAnnotationsScreen() {
   const router = useRouter();
   const guide = useGuide();
   const annotations = useQuestionAnnotations();
+  useGuideAvailability('recap', annotations.loadErrorMessage || undefined);
   const banks = useMemo(getEmbeddedQuestionBanks, []);
   const [bankId, setBankId] = useState<BankFilter>('all');
   const [segment, setSegment] = useState<AnnotationSegment>('tags');
@@ -118,26 +116,18 @@ export function MyAnnotationsScreen() {
   }
 
   const visibleEntries = segment === 'tags' ? visibleTagEntries : segment === 'highlights' ? visibleHighlightEntries : noteEntries;
-  useEffect(() => { if (guide?.current === 'recap' && annotations.hydrated) guide.checkpoint({ recapEmpty: visibleEntries.length === 0 }); }, [annotations.hydrated, guide, visibleEntries.length]);
+  useEffect(() => { if (guide?.current === 'recap' && guide.step !== 'recap-record' && annotations.hydrated && !annotations.loadErrorMessage) guide.checkpoint({ recapEmpty: visibleEntries.length === 0 }); }, [annotations.hydrated, annotations.loadErrorMessage, guide, visibleEntries.length]);
 
   return (
     <Screen contentStyle={styles.screen}>
-      <QuestionBankSwitcherHeader items={switcherItems} onBack={() => router.back()} onSelect={chooseBank} value={bankId} />
+      <QuestionBankSwitcherHeader items={switcherItems} onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)/profile')} onSelect={chooseBank} value={bankId} />
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.titleRow}>
-          <AppText style={styles.pageTitle} variant="pageTitle">我的标注</AppText>
-          <AppText color={colors.primary} variant="micro">本机数据 · {bankId === 'all' ? '全部题库' : '当前题库'}</AppText>
-        </View>
-        <AppText variant="caption">集中查看你在{bankId === 'all' ? '全部题库' : '当前题库'}打的标签、高亮与笔记。</AppText>
-
-        <View style={styles.segmented}>
+        <View style={styles.segmented}><GuideAnchor id="recap-filter" />
           {segments.map((item) => {
-            const Icon = item.icon;
             const active = segment === item.id;
             return (
               <Pressable accessibilityState={{ selected: active }} key={item.id} onPress={() => chooseSegment(item.id)} style={[styles.segment, active ? styles.segmentActive : null]}>
-                <Icon color={active ? colors.primary : colors.mutedForeground} size={16} />
                 <AppText color={active ? colors.primary : colors.mutedForeground} variant="button">{item.label}</AppText>
                 <View style={[styles.count, active ? styles.countActive : null]}><AppText color={active ? colors.primary : colors.mutedForeground} style={styles.countText} variant="micro">{countForSegment(item.id)}</AppText></View>
               </Pressable>
@@ -146,7 +136,7 @@ export function MyAnnotationsScreen() {
         </View>
 
         {colorOptions.length ? (
-          <View style={styles.filters}><GuideAnchor id="recap-filter" />
+          <View style={styles.filters}>
             <Pressable accessibilityState={{ selected: colorFilter.length === 0 }} onPress={() => setColorFilter([])} style={[styles.allFilter, colorFilter.length === 0 ? styles.filterActive : null]}>
               <AppText color={colorFilter.length === 0 ? colors.primary : colors.mutedForeground} variant="button">全部</AppText>
             </Pressable>
@@ -154,7 +144,7 @@ export function MyAnnotationsScreen() {
               const active = selectedColors.has(option.id);
               return (
                 <Pressable accessibilityLabel={`筛选${option.label}`} accessibilityState={{ selected: active }} key={option.id} onPress={() => toggleColor(option.id)} style={[styles.colorFilter, active ? styles.filterActive : null]}>
-                  <View style={[styles.filterDot, { backgroundColor: annotationToneColors[option.tone] }]} />
+                  <View style={[segment === 'highlights' ? styles.filterLine : styles.filterDot, { backgroundColor: annotationToneColors[option.tone] }]} />
                   <AppText color={active ? colors.primary : colors.foreground} variant="button">{option.label}</AppText>
                 </Pressable>
               );
@@ -212,13 +202,13 @@ function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: 
     return definition ? [[definition.id, definition] as const] : [];
   })).values());
   const reference = resolution?.location;
-  const sourceText = first.blockId === 'question' ? reference?.card?.audioText ?? '' : reference?.card?.referenceText ?? '';
+  const sourceText = annotationBlockText(reference?.card, first.blockId);
   const sentenceRange = sentenceWordRangeAt(sourceText, first.wordIndex);
   const shownIndexes = sentenceRange ? new Set(visible.filter((highlight) => highlight.blockId === first.blockId && highlight.wordIndex >= sentenceRange.startWordIndex && highlight.wordIndex <= sentenceRange.endWordIndex).map((highlight) => highlight.wordIndex)) : new Set<number>();
   const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
-      <View style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[definition.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
+      <View accessibilityLabel={`高亮颜色：${uniqueDefinitions.map(definition => definition.label).join('、')}`} style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackLine, { backgroundColor: annotationToneColors[definition.color], zIndex: uniqueDefinitions.length - index }, index ? styles.stackLineOverlap : null]} />)}</View>
       <View style={styles.rowCopy}>
         <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)} highlights={visible} sourceText={sourceText} target={first} />
         <AppText variant="micro">{referenceMessage(resolution)} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>
@@ -287,7 +277,7 @@ function formatRelativeTime(value: string) {
 }
 
 function LoadingState() {
-  return <StateCard description="正在读取本机标注…" icon={Search} title="正在汇总" />;
+  return <GlobalLoadingScreen />;
 }
 
 function EmptyState({ allBanks, filtered, segment }: { allBanks: boolean; filtered: boolean; segment: AnnotationSegment }) {
@@ -309,11 +299,9 @@ function StateCard({ action, description, icon: Icon, title }: { action?: React.
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   scroll: { flexGrow: 1, paddingBottom: spacing[8], paddingHorizontal: spacing[5], paddingTop: spacing[4] },
-  titleRow: { alignItems: 'baseline', flexDirection: 'row', justifyContent: 'space-between' },
-  pageTitle: { fontFamily: fonts.serifSemibold },
-  segmented: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1], marginTop: spacing[4], padding: spacing[1] },
-  segment: { alignItems: 'center', borderRadius: radii.full, flex: 1, flexDirection: 'row', gap: spacing[1.5], justifyContent: 'center', minHeight: 42, paddingHorizontal: spacing[2] },
-  segmentActive: { backgroundColor: colors.primary10 },
+  segmented: { backgroundColor: colors.muted, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], marginTop: 0, padding: spacing[1] },
+  segment: { alignItems: 'center', borderRadius: radii.md, flex: 1, flexDirection: 'row', gap: spacing[1.5], justifyContent: 'center', minHeight: 42, paddingHorizontal: spacing[2] },
+  segmentActive: { backgroundColor: colors.card },
   count: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, minWidth: 20, paddingHorizontal: 5, paddingVertical: 2 },
   countActive: { backgroundColor: colors.primary10 },
   countText: { fontFamily: fonts.monoRegular },
@@ -321,9 +309,12 @@ const styles = StyleSheet.create({
   allFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 34, paddingHorizontal: spacing[3] },
   colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] },
   filterActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
+  filterLine: { borderRadius: radii.full, height: 6, width: 16 },
+  stackLine: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 1, height: 6, width: 16 },
+  stackLineOverlap: { marginLeft: -7 },
   filterDot: { borderRadius: radii.full, height: 14, width: 14 },
-  list: { gap: spacing[2.5], marginTop: spacing[4] },
-  rowCard: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 82, padding: spacing[4], ...shadows.card },
+  list: { marginTop: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1, borderRadius: radii.xl, paddingHorizontal: spacing[4], overflow: 'hidden' },
+  rowCard: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', gap: spacing[3], minHeight: 82, paddingVertical: spacing[4] },
   rowCopy: { flex: 1, gap: spacing[2] },
   dotStack: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
   stackDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },

@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-007",
   "name": "高高原机场",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-007-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-007.jpg",
       "imageAlt": "高高原机场航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-007-q01",
-      "taskTitle": "图片题-007-01",
+      "audio": "/question-bank-assets/revisions/opi/fbc943ee2aa54e94ba4a5504d34f375f663473d3aaaeddcd576c64984940c358/audio/opi/opi-image-007-q01.mp3",
       "audioText": "What is meant by a high-altitude airport?",
+      "taskTitle": "图片题-007-01",
       "audioTextZh": "什么是高海拔机场？",
       "referenceText": "A high-altitude airport is located at a high elevation above sea level. Because the air is thinner, aircraft performance, approach planning, and landing distance must be checked carefully.",
       "referenceTextZh": "高海拔机场位于海拔较高的位置。由于空气较稀薄，必须仔细检查飞机性能、进近计划和着陆距离。",
-      "audio": "/question-bank-assets/revisions/opi/fbc943ee2aa54e94ba4a5504d34f375f663473d3aaaeddcd576c64984940c358/audio/opi/opi-image-007-q01.mp3",
       "audioDurationSeconds": 2.352
     },
     {
       "id": "opi-image-007-q02",
-      "taskTitle": "图片题-007-02",
+      "audio": "/question-bank-assets/revisions/opi/0ab797491f1020a709550c41d4e93ce6515d4521fcac667c1e87ce79a4c3d8d6/audio/opi/opi-image-007-q02.mp3",
       "audioText": "If you had to land at the high-altitude airport shown, how would you prepare for a safe arrival?",
+      "taskTitle": "图片题-007-02",
       "audioTextZh": "如果必须在图中所示的高海拔机场着陆，你会如何为安全到达做准备？",
       "referenceText": "Because the air is thinner at a high-altitude airport, I would check the aircraft performance, approach planning, and landing distance very carefully before arrival.",
       "referenceTextZh": "由于高海拔机场空气较稀薄，我会在到达前非常仔细地检查飞机性能、进近计划和着陆距离。",
-      "audio": "/question-bank-assets/revisions/opi/0ab797491f1020a709550c41d4e93ce6515d4521fcac667c1e87ce79a4c3d8d6/audio/opi/opi-image-007-q02.mp3",
       "audioDurationSeconds": 5.064
     },
     {
       "id": "opi-image-007-q03",
-      "taskTitle": "图片题-007-03",
+      "audio": "/question-bank-assets/revisions/opi/ed8c17c5460cacdf26b92734d04f7f71a428ee5a73047b18f3324ed55145de5e/audio/opi/opi-image-007-q03.mp3",
       "audioText": "What challenges do pilots face when operating at high-altitude airports?",
+      "taskTitle": "图片题-007-03",
       "audioTextZh": "在高海拔机场运行时，飞行员会面临哪些挑战？",
       "referenceText": "Pilots face thin air, longer landing distances, reduced engine performance, and terrain restrictions.",
       "referenceTextZh": "飞行员面临的挑战包括空气稀薄、着陆距离增加、发动机性能下降和地形限制。",
-      "audio": "/question-bank-assets/revisions/opi/ed8c17c5460cacdf26b92734d04f7f71a428ee5a73047b18f3324ed55145de5e/audio/opi/opi-image-007-q03.mp3",
       "audioDurationSeconds": 4.2
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-219468",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-1",
-      "audioText": "[Your call-sign is UAL221, a flight from Los Angeles to Wuhan. Now you are leveling at 10100m on airway R343 with squawk 4123, contact Shanghai Control.]",
-      "audioTextZh": "【你的呼号是美联航221，一架从洛杉矶飞往武汉的航班。你现在在航路R343上平飞，高度10100米，应答机4123，联系上海区调。】",
+      "audioText": "Your call-sign is UAL221, a flight from Los Angeles to Wuhan. Now you are leveling at 10100m on airway R343 with squawk 4123, contact Shanghai Control.",
+      "audioTextZh": "你的呼号是美联航221，一架从洛杉矶飞往武汉的航班。你现在在航路R343上平飞，高度10100米，应答机4123，联系上海区调。",
       "referenceText": "Shanghai Control, UAL221, leveling at 10100m on airway R343, squawk 4123.",
       "referenceTextZh": "上海区调，美联航221，在航路R343上平飞，高度10100米，应答机4123。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3842548e7ce9f3c2d034.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-219470",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-3",
-      "audioText": "C: UAL221, one of the BBJs operated by Air China is at your 10 O’clock, climb to 11300m, report reaching.\n[Tell controller that your aircraft is too heavy to climb to 11300m.]",
+      "audioText": "C: UAL221, one of the BBJs operated by Air China is at your 10 O'clock, climb to 11300m, report reaching.\n[Tell controller that your aircraft is too heavy to climb to 11300m.]",
       "audioTextZh": "C: 美联航221，一架国航的BBJ（波音公务机）在你10点钟方向，上到11300米，到达后报。\n【告诉管制员，你的飞机太重了，无法上到11300米。】",
       "referenceText": "Negative, unable 11300m due weight, UAL221.",
       "referenceTextZh": "不能，由于重量，无法上到11300米，美联航221。",
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-219472",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-5",
-      "audioText": "[As you are leveling at 9500m, you encounter severe turbulence. You have a rapid airspeed decay due turbulence, so you want to descend immediately to a lower level.]",
-      "audioTextZh": "【当你在9500米平飞时，你遇到了强颠簸。由于颠簸，空速快速下降，因此你想立刻下降到更低高度。】",
+      "audioText": "As you are leveling at 9500m, you encounter severe turbulence. You have a rapid airspeed decay due turbulence, so you want to descend immediately to a lower level.",
+      "audioTextZh": "当你在9500米平飞时，你遇到了强颠簸。由于颠簸，空速快速下降，因此你想立刻下降到更低高度。",
       "referenceText": "Shanghai Control, UAL221, leveling at 9500m, we encounter turbulence and our airspeed decreases rapidly, request immediate descent.",
       "referenceTextZh": "上海区调，美联航221，在9500米平飞，我们遇到了颠簸，我们的空速快速下降，请求立刻下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a52e276f8f9a4febe867.mp3"
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-219475",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-8",
-      "audioText": "[You are now leveling at 8100m, next waypoint P344. A rear cabin crew reported an old man suffers from heart attack, and he is having difficulty breathing. For safety concerns, you want to divert to Hefei airport, inform Wuhan Control.]",
-      "audioTextZh": "【你现在在8100米平飞，下一个航路点是P344，后舱一名乘务员报告说一名老年人心脏病犯了，他现在呼吸困难。出于安全考虑，你想改航到合肥机场，告知武汉区调。】",
+      "audioText": "You are now leveling at 8100m, next waypoint P344. A rear cabin crew reported an old man suffers from heart attack, and he is having difficulty breathing. For safety concerns, you want to divert to Hefei airport, inform Wuhan Control.",
+      "audioTextZh": "你现在在8100米平飞，下一个航路点是P344，后舱一名乘务员报告说一名老年人心脏病犯了，他现在呼吸困难。出于安全考虑，你想改航到合肥机场，告知武汉区调。",
       "referenceText": "Wuhan Control, UAL221, 8100m maintaining, next P344, an old man suffers from heart attack, and he is having difficulty breathing. Request divert to Hefei.",
       "referenceTextZh": "武汉区调，美联航221，正保持在8100米，下一航路点P344，一名老年人心脏病犯了，他现在呼吸困难，请求改航到合肥机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/53a66a225fa0fa307e4b.mp3"
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-219478",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-11",
-      "audioText": "[Inform Wuhan Control that after receiving the first aid by the cabin crew, the sick passenger’s condition has improved and he is now conscious. Therefore, you no longer require the diversion, you want to continue to your destination Wuhan.]",
-      "audioTextZh": "【告知武汉区调，乘务员提供了急救之后，乘客情况好多了，恢复了意识。因此，你不再需要改航，你想继续飞往你的目的地武汉。】",
+      "audioText": "Inform Wuhan Control that after receiving the first aid by the cabin crew, the sick passenger's condition has improved and he is now conscious. Therefore, you no longer require the diversion, you want to continue to your destination Wuhan.",
+      "audioTextZh": "告知武汉区调，乘务员提供了急救之后，乘客情况好多了，恢复了意识。因此，你不再需要改航，你想继续飞往你的目的地武汉。",
       "referenceText": "Wuhan Control, UAL221, the sick passenger is conscious after the first aid, request cancel diversion and continue to Wuhan Airport.",
       "referenceTextZh": "武汉区调，美联航221，经过急救，乘客现在恢复意识，请求取消调改航，继续飞往武汉机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a3da0f48b2a01c76eed.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-219480",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-13",
-      "audioText": "[You are now on long final runway 04R, about 7nm from touchdown, request your landing clearance from Wuhan Tower.]",
-      "audioTextZh": "【你现在在04右跑道长五边，距离接地点大概7海里，向武汉塔台申请着陆许可。】",
+      "audioText": "You are now on long final runway 04R, about 7nm from touchdown, request your landing clearance from Wuhan Tower.",
+      "audioTextZh": "你现在在04右跑道长五边，距离接地点大概7海里，向武汉塔台申请着陆许可。",
       "referenceText": "Wuhan Tower, UAL221, long final runway 04R, about 7nm from touchdown, request landing clearance.",
       "referenceTextZh": "武汉塔台，美联航221，跑道04右长五边，接地点大概7海里，请求着陆许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/80dbd9f0d3798bd495cb.mp3"
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-219482",
       "taskTitle": "61-UAL221 [颠簸，乘客心脏病]-15",
-      "audioText": "[Because the sick passenger is seating near the door number two on the left side (L2), you want to open that door when you arrive at the gate and let medical staff help to deplane that passenger, inform controller.]",
-      "audioTextZh": "【由于受伤乘客坐在左2门附近，你想在到达机位的时候打开此门，让医疗人员协助乘客下飞机，告知管制员。】",
+      "audioText": "Because the sick passenger is seating near the door number two on the left side (L2), you want to open that door when you arrive at the gate and let medical staff help to deplane that passenger, inform controller.",
+      "audioTextZh": "由于受伤乘客坐在左2门附近，你想在到达机位的时候打开此门，让医疗人员协助乘客下飞机，告知管制员。",
       "referenceText": "Wuhan Tower, UAL221, request open the door number two on the left side (L2) and let medical staff help to deplane that passenger.",
       "referenceTextZh": "武汉塔台，美联航221，请求打开左2门，让医疗人员协助乘客下飞机。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b83d0d52e550777e6277.mp3"

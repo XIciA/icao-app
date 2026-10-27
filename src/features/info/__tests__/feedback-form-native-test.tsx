@@ -1,3 +1,5 @@
+import { Alert } from 'react-native';
+import { usePreventRemove } from '@react-navigation/native';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
@@ -6,10 +8,11 @@ import { InfoScreen } from '../InfoScreen.native';
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({}) }));
 jest.mock('@/features/feedback/FeedbackHistory.native', () => ({ FeedbackHistory: () => null }));
 jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
+const mockDismissTo = jest.fn();
 const mockSubmit = jest.fn();
 let mockParams: Record<string, string> = { slug: 'feedback', source: 'profile', compose: '1' };
 let mockId = 0;
-jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams, useRouter: () => ({ canGoBack: () => true, back: jest.fn(), replace: jest.fn() }) }));
+jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams, useRouter: () => ({ canGoBack: () => true, back: jest.fn(), replace: jest.fn(), dismissTo: mockDismissTo }) }));
 jest.mock('@react-navigation/native', () => ({ useFocusEffect: jest.fn(), usePreventRemove: jest.fn(), useNavigation: () => ({ dispatch: jest.fn() }) }));
 jest.mock('expo-image-picker', () => ({ requestMediaLibraryPermissionsAsync: jest.fn(), launchImageLibraryAsync: jest.fn() }));
 jest.mock('@/features/feedback/feedback-client.native', () => ({ createClientSubmissionId: () => `id-${++mockId}`, submitFeedback: (...args: unknown[]) => mockSubmit(...args) }));
@@ -58,4 +61,47 @@ it('freezes editing while submitting and ignores a late result after navigating 
   await act(async () => resolve({ ticketNumber: 'FB-OLD' }));
   expect(view.queryByText('FB-OLD')).toBeNull();
   expect(view.getByPlaceholderText('请描述题目中需要纠正的内容。').props.value).toBe('');
+});
+
+it('returns to the existing feedback history after successful submission', async () => {
+  mockSubmit.mockResolvedValue({ ticketNumber: 'FB-261022-00000001' });
+  const view = await render(screen());
+  await fireEvent.changeText(view.getByPlaceholderText('请详细描述你的建议或遇到的问题。'), '这是一条测试反馈');
+  await fireEvent.press(view.getByTestId('feedback-submit'));
+  await waitFor(() => expect(view.getByText('查看反馈记录')).toBeTruthy());
+  await fireEvent.press(view.getByText('查看反馈记录'));
+  expect(mockDismissTo).toHaveBeenCalledTimes(1);
+  expect(mockDismissTo).toHaveBeenCalledWith('/info/feedback');
+});
+
+
+it('shows one discard confirmation for repeated swipes and permits retry after cancel', async () => {
+  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+  const view = await render(screen());
+  await fireEvent.changeText(view.getByPlaceholderText('请详细描述你的建议或遇到的问题。'), '保留这条反馈');
+  const back = jest.mocked(usePreventRemove).mock.calls.at(-1)![1];
+  const event = { data: { action: { type: 'GO_BACK' } } };
+  await act(async () => { back(event); back(event); });
+  expect(alert).toHaveBeenCalledTimes(1);
+  await act(async () => alert.mock.calls[0][2]![0].onPress?.());
+  await act(async () => back(event));
+  expect(alert).toHaveBeenCalledTimes(2);
+  expect(view.getByDisplayValue('保留这条反馈')).toBeTruthy();
+  alert.mockRestore();
+});
+
+it.each([
+ {source:'exam_report',category:'listening',placeholder:'请描述相关题型的考情。'},
+ {source:'opi_hotspot',category:'opi',placeholder:'请描述你收集到的 OPI 热点题目或线索。'},
+])('reuses the form with the correct $source identity and history',async({source,category,placeholder})=>{
+ mockParams={slug:'feedback',source,compose:'1'};mockSubmit.mockResolvedValue({ticketNumber:'FB-new'});
+ const view=await render(screen());
+ expect(view.queryByText('功能建议')).toBeNull();
+ if(source==='exam_report') for(const label of ['听力','900句','陆空通话','故事复述','OPI']) expect(view.getByText(label)).toBeTruthy();
+ else expect(view.queryByText('反馈类型')).toBeNull();
+ await fireEvent.changeText(view.getByPlaceholderText(placeholder),'这是本次考情线索');
+ await fireEvent.press(view.getByTestId('feedback-submit'));
+ await waitFor(()=>expect(mockSubmit).toHaveBeenCalledWith(expect.objectContaining({source,category})));
+ await fireEvent.press(view.getByText('查看反馈记录'));
+ expect(mockDismissTo).toHaveBeenCalledWith({pathname:'/info/[slug]',params:{slug:'feedback',source}});
 });

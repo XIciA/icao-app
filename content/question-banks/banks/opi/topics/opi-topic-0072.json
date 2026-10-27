@@ -1,68 +1,68 @@
 {
   "id": "opi-topic-0072",
   "name": "红眼航班",
-  "declaredCardCount": 6,
   "cards": [
     {
-      "id": "opi-core-741",
-      "taskTitle": "人的因素-红眼航班-1",
-      "audioText": "What is your opinion of red-eye flights?",
-      "audioTextZh": "你如何看待红眼航班？",
-      "referenceText": "I think red-eye flights have both advantages and disadvantages. They can reduce airspace congestion, offer cheaper fares, and improve airline operating efficiency. However, night visibility, pilot fatigue, and the risk of human error require careful rest management and operational precautions.",
-      "referenceTextZh": "我认为红眼航班既有优点也有缺点。它可以缓解空域拥堵、提供较低票价，并提高航空公司运行效率。不过，夜间能见度、飞行员疲劳和人为差错风险，需要认真管理休息并采取运行预防措施。",
-      "audio": "/question-bank-assets/revisions/opi/75108526bf7d1ca6802c946b7fbe09f3d209a272902d4c74badd2d50483d325c/audio/opi/opi-core-741.mp3",
-      "audioDurationSeconds": 2.064
+      "id": "opi-core-745",
+      "audio": "/question-bank-assets/revisions/opi/3958680fdfe6a691bb92d879ba3b8fbc6acacadfe1686d92c84c4f76a72f7de6/audio/opi/opi-core-745.mp3",
+      "audioText": "How can a pilot recover after a red-eye flight?",
+      "taskTitle": "人的因素-红眼航班-5",
+      "audioTextZh": "飞行员在执行红眼航班后如何恢复？",
+      "referenceText": "A pilot can recover by relaxing and getting more sleep after a red-eye flight.",
+      "referenceTextZh": "飞行员可以在红眼航班后放松并增加睡眠，以恢复状态。",
+      "audioDurationSeconds": 2.736
+    },
+    {
+      "id": "opi-core-744",
+      "audio": "/question-bank-assets/revisions/opi/eb0366a1a9ebd58f6c87c67b6ce634f45238ea744c9a214f62c839d043643ede/audio/opi/opi-core-744.mp3",
+      "audioText": "How can a pilot prepare for a red-eye flight to reduce fatigue?",
+      "taskTitle": "人的因素-红眼航班-4",
+      "audioTextZh": "飞行员如何为红眼航班做准备以减轻疲劳？",
+      "referenceText": "A pilot can prepare by relaxing and getting more sleep before a red-eye flight.",
+      "referenceTextZh": "飞行员可以在红眼航班前放松并增加睡眠，做好准备。",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-core-742",
-      "taskTitle": "人的因素-红眼航班-2",
+      "audio": "/question-bank-assets/revisions/opi/810027a281f3e2cf5d64cdc7de9560d9ca9b5b58f121ef84db2440b9ed264abb/audio/opi/opi-core-742.mp3",
       "audioText": "Why do airlines operate red-eye flights?",
+      "taskTitle": "人的因素-红眼航班-2",
       "audioTextZh": "航空公司为什么运营红眼航班？",
       "referenceText": "Airlines operate red-eye flights because these services can help them make a profit.",
       "referenceTextZh": "航空公司运营红眼航班，是因为这类航班可以帮助公司盈利。",
-      "audio": "/question-bank-assets/revisions/opi/810027a281f3e2cf5d64cdc7de9560d9ca9b5b58f121ef84db2440b9ed264abb/audio/opi/opi-core-742.mp3",
       "audioDurationSeconds": 2.472
     },
     {
       "id": "opi-core-743",
-      "taskTitle": "人的因素-红眼航班-3",
+      "audio": "/question-bank-assets/revisions/opi/83b12d473d44c2c3256011fea131052896280a092d5692d5405538c5f9a2b2a0/audio/opi/opi-core-743.mp3",
       "audioText": "Have you ever operated a red-eye flight? If so, what was it like?",
+      "taskTitle": "人的因素-红眼航班-3",
       "audioTextZh": "你是否曾执行过红眼航班？如果有，那次经历怎么样？",
       "referenceText": "No, I have never operated a red-eye flight. I understand that a red-eye flight departs late at night and arrives early the next morning. It requires adequate preflight rest to stay alert.",
       "referenceTextZh": "没有，我从未执行过红眼航班。我知道红眼航班通常在深夜起飞，并于次日清晨到达。执行这类航班前需要充分休息，才能保持警觉。",
-      "audio": "/question-bank-assets/revisions/opi/83b12d473d44c2c3256011fea131052896280a092d5692d5405538c5f9a2b2a0/audio/opi/opi-core-743.mp3",
       "audioDurationSeconds": 4.128
     },
     {
-      "id": "opi-core-744",
-      "taskTitle": "人的因素-红眼航班-4",
-      "audioText": "How can a pilot prepare for a red-eye flight to reduce fatigue?",
-      "audioTextZh": "飞行员如何为红眼航班做准备以减轻疲劳？",
-      "referenceText": "A pilot can prepare by relaxing and getting more sleep before a red-eye flight.",
-      "referenceTextZh": "飞行员可以在红眼航班前放松并增加睡眠，做好准备。",
-      "audio": "/question-bank-assets/revisions/opi/eb0366a1a9ebd58f6c87c67b6ce634f45238ea744c9a214f62c839d043643ede/audio/opi/opi-core-744.mp3",
-      "audioDurationSeconds": 3.48
-    },
-    {
-      "id": "opi-core-745",
-      "taskTitle": "人的因素-红眼航班-5",
-      "audioText": "How can a pilot recover after a red-eye flight?",
-      "audioTextZh": "飞行员在执行红眼航班后如何恢复？",
-      "referenceText": "A pilot can recover by relaxing and getting more sleep after a red-eye flight.",
-      "referenceTextZh": "飞行员可以在红眼航班后放松并增加睡眠，以恢复状态。",
-      "audio": "/question-bank-assets/revisions/opi/3958680fdfe6a691bb92d879ba3b8fbc6acacadfe1686d92c84c4f76a72f7de6/audio/opi/opi-core-745.mp3",
-      "audioDurationSeconds": 2.736
-    },
-    {
       "id": "opi-core-746",
-      "taskTitle": "人的因素-红眼航班-6",
+      "audio": "/question-bank-assets/revisions/opi/3c419141509dfaab24762661515e6b82e7f49544159bb104aaf6e522ec0bd5fd/audio/opi/opi-core-746.mp3",
       "audioText": "What is a red-eye flight?",
+      "taskTitle": "人的因素-红眼航班-6",
       "audioTextZh": "什么是红眼航班？",
       "referenceText": "A red-eye flight takes off late at night and arrives early the next morning.",
       "referenceTextZh": "红眼航班在深夜起飞，并于次日清晨到达。",
-      "audio": "/question-bank-assets/revisions/opi/3c419141509dfaab24762661515e6b82e7f49544159bb104aaf6e522ec0bd5fd/audio/opi/opi-core-746.mp3",
       "audioDurationSeconds": 1.296
+    },
+    {
+      "id": "opi-core-741",
+      "audio": "/question-bank-assets/revisions/opi/75108526bf7d1ca6802c946b7fbe09f3d209a272902d4c74badd2d50483d325c/audio/opi/opi-core-741.mp3",
+      "audioText": "What is your opinion of red-eye flights?",
+      "taskTitle": "人的因素-红眼航班-1",
+      "audioTextZh": "你如何看待红眼航班？",
+      "referenceText": "I think red-eye flights have both advantages and disadvantages. They can reduce airspace congestion, offer cheaper fares, and improve airline operating efficiency. However, night visibility, pilot fatigue, and the risk of human error require careful rest management and operational precautions.",
+      "referenceTextZh": "我认为红眼航班既有优点也有缺点。它可以缓解空域拥堵、提供较低票价，并提高航空公司运行效率。不过，夜间能见度、飞行员疲劳和人为差错风险，需要认真管理休息并采取运行预防措施。",
+      "audioDurationSeconds": 2.064
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-04"
 }

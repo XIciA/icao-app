@@ -265,3 +265,67 @@ describe('complete authorized radio directory', () => {
     expect(topics.every(item => item.cards.length === 0)).toBe(true);
   });
 });
+
+
+it('publishes immutable progress and marks counts incomplete until every authorized topic arrives', async () => {
+  mockGetTopic.mockReset();
+  const pending = new Map<string, (value: QuestionBankTopic) => void>();
+  const topics = ['first', 'second'].map(id => ({ ...publicTopic, id }));
+  const input = [{ ...dataset, categories: [{ ...dataset.categories[0], topics }] }];
+  mockGetTopic.mockImplementation((_bank, _category, id) => new Promise(resolve => pending.set(id, resolve)));
+  const updates: QuestionBankDataset[][] = [];
+  const loading = hydrateRadioCatalogDatasets(input, undefined, value => updates.push(value));
+  const finish = (id: string) => pending.get(id)!({ ...publicTopic, id, cards: [publicTopic.cards[0], { ...publicTopic.cards[0], id: `${id}-member` }] });
+  expect(deriveRadioCatalogs(input)[0].complete).toBe(false);
+  finish('first');
+  await Promise.resolve(); await Promise.resolve();
+  expect(updates).toHaveLength(1);
+  expect(deriveRadioCatalogs(updates[0])[0].complete).toBe(false);
+  finish('second');
+  const result = await loading;
+  expect(deriveRadioCatalogs(result)[0].complete).toBe(true);
+  expect(updates[0][0].categories[0].topics[1].cards).toHaveLength(1);
+  expect(deriveRadioCatalogs([{ ...dataset, access: { ...dataset.access, membershipActive: false } }])[0].complete).toBe(true);
+});
+
+
+it('starts OPI without waiting for hundreds of ATC topics and follows a bank switch', async () => {
+  mockGetTopic.mockReset();
+  const banks = (['listening', 'radiotelephony', 'opi'] as const).map(id => ({
+    ...dataset, id, categories: [{ ...dataset.categories[0], topics: Array.from({ length: 20 }, (_, i) => ({ ...publicTopic, id: `${id}-${i}`, cards: [] })) }],
+  }));
+  let priority: QuestionBankDataset['id'] = 'listening';
+  const pending: (() => void)[] = [];
+  mockGetTopic.mockImplementation((_bank, _category, id) => new Promise(resolve => pending.push(() => resolve({
+    ...publicTopic, id, cards: [publicTopic.cards[0], { ...publicTopic.cards[0], id: `${id}-member` }],
+  }))));
+  const loading = hydrateRadioCatalogDatasets(banks, undefined, undefined, () => priority);
+  expect(mockGetTopic.mock.calls.map(call => call[0])).toEqual(['listening', 'radiotelephony', 'opi']);
+  priority = 'opi';
+  pending.shift()!();
+  for (let i = 0; i < 5; i++) await Promise.resolve();
+  expect(mockGetTopic.mock.calls[3][0]).toBe('opi');
+  for (let i = 0; i < 100; i++) {
+    pending.splice(0).forEach(finish => finish());
+    for (let j = 0; j < 5; j++) await Promise.resolve();
+  }
+  expect((await loading).every(bank => deriveRadioCatalogs([bank])[0].complete)).toBe(true);
+});
+
+it('continues past failed topics, preserves other banks, and retries transient failures once', async () => {
+  mockGetTopic.mockReset();
+  const banks = (['radiotelephony', 'opi'] as const).map(id => ({
+    ...dataset, id, categories: [{ ...dataset.categories[0], topics: Array.from({ length: 6 }, (_, i) => ({ ...publicTopic, id: `${id}-${i}`, cards: [] })) }],
+  }));
+  const attempts = new Map<string, number>();
+  mockGetTopic.mockImplementation(async (_bank, _category, id) => {
+    const attempt = (attempts.get(id) ?? 0) + 1; attempts.set(id, attempt);
+    if (id.startsWith('radiotelephony') && attempt === 1) throw new Error('temporary network failure');
+    return { ...publicTopic, id, cards: [publicTopic.cards[0], { ...publicTopic.cards[0], id: `${id}-member` }] };
+  });
+  const updates: QuestionBankDataset[][] = [];
+  const result = await hydrateRadioCatalogDatasets(banks, undefined, value => updates.push(value));
+  expect(mockGetTopic).toHaveBeenCalledTimes(18);
+  expect(updates.some(banks => deriveRadioCatalogs(banks).find(bank => bank.bankId === 'opi')?.complete)).toBe(true);
+  expect(deriveRadioCatalogs(result).every(bank => bank.complete)).toBe(true);
+});

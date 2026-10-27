@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-153184",
       "taskTitle": "13-CSN6682 [液压系统失效]-1",
       "audioText": "B: [Your call sign is CSN6682, you are at stand K38 with information B. Your destination is Guangzhou, request ATC clearance from Wuhan Delivery.]",
-      "audioTextZh": "【你的呼号是南方6682，你在K38停机位，收到通播B。你的目的地是广州，向武汉放行请求管制许可。】",
+      "audioTextZh": "你的呼号是南方6682，你在K38停机位，收到通播B。你的目的地是广州，向武汉放行请求管制许可。",
       "referenceText": "Wuhan Delivery, CSN6682, stand K38, information B, request ATC clearance.",
       "referenceTextZh": "武汉放行，南方6682，K38机位，通播B，请求管制许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8bd8b25e4a450e6228d4.mp3"

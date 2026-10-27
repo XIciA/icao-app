@@ -8,7 +8,10 @@ config.resolver.assetExts.push('wasm');
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   const resolution = context.resolveRequest(context, moduleName, platform);
-  return edgeOneSharedModule(__dirname, resolution, platform, process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME);
+  const runtime = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME === 'vercel-legacy'
+    ? 'vercel-legacy'
+    : 'edgeone-production';
+  return edgeOneSharedModule(__dirname, resolution, platform, runtime);
 };
 
 module.exports = config;

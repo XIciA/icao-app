@@ -288,7 +288,9 @@ export type QuestionBankRelease<T = unknown> = {
   dataset: T;
 };
 
+// Offline credential format stays compatible with released clients.
 export const CONTENT_ACCESS_POLICY_VERSION = 'content-access-v2' as const;
+export const FREE_CONTENT_SELECTION_VERSION = 'release-order-v1' as const;
 export const CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 = 'BQlsdWBZzpqVcLcfGjShw1FB9ivfULrySNBj25xar/g=' as const;
 export const COMMERCE_ENVIRONMENT_HEADER = 'x-icao-commerce-environment' as const;
 
@@ -298,6 +300,8 @@ export type QuestionBankContentAccess = {
   level: ContentAccessLevel;
   availableCardCount: number;
   declaredCardCount: number;
+  /** IDs selected from the authoritative release, before user filtering. */
+  freeCardIds?: string[];
 };
 
 export type QuestionBankAccessSummary = {
@@ -335,46 +339,22 @@ export type ContentAccessCredential = {
   scopes: ContentAccessScope[];
 };
 
-const FREE_LISTENING_CARD_IDS = new Set([
-  'listening-main-001', 'listening-main-002', 'listening-main-005', 'listening-main-021',
-  'listening-main-022', 'listening-main-024', 'listening-main-025', 'listening-main-029',
-  'listening-main-041', 'listening-main-042',
-  'listening-main-003', 'listening-main-008', 'listening-main-009', 'listening-main-011',
-  'listening-main-012', 'listening-main-013', 'listening-main-018', 'listening-main-031',
-  'listening-main-032', 'listening-main-033',
-  'listening-main-004', 'listening-main-053', 'listening-main-074', 'listening-main-093',
-  'listening-main-095', 'listening-main-111', 'listening-main-112', 'listening-main-126',
-  'listening-main-127', 'listening-main-128',
-  'listening-main-006', 'listening-main-007', 'listening-main-010', 'listening-main-014',
-  'listening-main-015', 'listening-main-016', 'listening-main-017', 'listening-main-019',
-  'listening-main-020', 'listening-main-023',
-]);
-
-const FREE_RADIOTELEPHONY_TOPIC_IDS = new Set([
-  'atc-scenario-0001',
-  'atc-scenario-0002',
-  'atc-scenario-0003',
-]);
-
-const FREE_OPI_TOPIC_IDS = new Set([
-  'opi-topic-0001',
-  'opi-topic-0002',
-  'opi-topic-0003',
-]);
-
-const FREE_STORYTELLING_CARD_IDS = new Set([
-  'story-wing-001',
-  'story-wing-002',
-  'story-wing-003',
-]);
-
-export function isFreeQuestionBankCard(bankId: string, topicId: string, cardId: string) {
-  if (bankId === 'sentences900') return true;
-  if (bankId === 'listening') return FREE_LISTENING_CARD_IDS.has(cardId);
-  if (bankId === 'radiotelephony') return FREE_RADIOTELEPHONY_TOPIC_IDS.has(topicId);
-  if (bankId === 'opi') return FREE_OPI_TOPIC_IDS.has(topicId);
-  if (bankId === 'storytelling') return FREE_STORYTELLING_CARD_IDS.has(cardId);
-  return false;
+/** Release order is authoritative; filtering/search never recalculates free access. */
+export type FreeAccessBank = {
+  id: string;
+  categories: readonly { topics: readonly { id: string; cards: readonly { id: string; retired?: unknown }[] }[] }[];
+};
+export function freeQuestionBankCardIds(bank: FreeAccessBank): Set<string> {
+  const topics = bank.categories.flatMap(category => category.topics);
+  const active = (topic: typeof topics[number]) => topic.cards.filter(card => card.retired !== true);
+  if (bank.id === 'sentences900') return new Set(topics.flatMap(topic => active(topic).map(card => card.id)));
+  if (bank.id === 'listening') return new Set(bank.categories.flatMap(category =>
+    category.topics.flatMap(topic => active(topic)).slice(0, 10).map(card => card.id)));
+  if (bank.id === 'radiotelephony' || bank.id === 'opi') return new Set(
+    topics.filter(topic => active(topic).length > 0).slice(0, bank.id === 'opi' ? 3 : 1)
+      .flatMap(topic => active(topic).map(card => card.id)));
+  if (bank.id === 'storytelling') return new Set(topics.flatMap(topic => active(topic)).slice(0, 3).map(card => card.id));
+  return new Set();
 }
 
 export type ResolvedResource = {
@@ -387,9 +367,9 @@ export type ResolvedResource = {
   expiresIn: number;
 };
 
-export type FeedbackCategory = 'feature_suggestion' | 'content_correction' | 'other';
+export type FeedbackCategory = 'feature_suggestion' | 'content_correction' | 'other' | 'listening' | 'sentences900' | 'radiotelephony' | 'storytelling' | 'opi';
 export type FeedbackStatus = 'received' | 'in_progress' | 'resolved' | 'cannot_reproduce';
-export type FeedbackSource = 'profile' | 'study';
+export type FeedbackSource = 'profile' | 'study' | 'exam_report' | 'opi_hotspot';
 
 export type FeedbackQuestionContext = {
   bankId: string;
@@ -545,7 +525,16 @@ export type EditorialReleaseSnapshot = {
   articles: EditorialArticle[];
 };
 
-export type VocabularyBookId = 'preview' | 'icao4' | 'icao5';
+export type VocabularyBookId = 'preview' | 'icao4' | 'icao5' | 'question-bank-core';
+
+export type VocabularyFrequency = {
+  scope: 'question-bank-audio-text' | 'question-bank-english-content';
+  occurrences: number;
+  cardCount: number;
+  byBank: Record<string, number>;
+  corpusVersion: number;
+  corpusChecksum: string;
+};
 
 export type VocabularyWord = {
   id: string;
@@ -555,6 +544,9 @@ export type VocabularyWord = {
   meaning: string;
   example: string;
   exampleTranslation: string;
+  pronunciationText?: string;
+  relatedExpressions?: string[];
+  frequency?: VocabularyFrequency;
   source: {
     name: string;
     rowIndex: number;
@@ -567,11 +559,13 @@ export type VocabularyBook = {
   level: 1 | 2 | 3;
   name: string;
   description: string;
+  assessmentEligible?: boolean;
   words: VocabularyWord[];
 };
 
 export type VocabularyDataset = {
   schemaVersion: 1;
+  catalogId?: 'three-books-v3';
   version: number;
   source: {
     name: string;
@@ -590,6 +584,34 @@ export type VocabularyRelease = {
   dataset: VocabularyDataset;
 };
 
+/** Accept existing cached/legacy catalogs as well as the opt-in expanded catalog. */
+export function validateVocabularyCatalog(dataset: VocabularyDataset) {
+  const expected: Record<string, number> = { preview: 360, icao4: 372, icao5: 106, 'question-bank-core': 409 };
+  const unified = dataset.catalogId === 'three-books-v3';
+  if (dataset.schemaVersion !== 1 || !Array.isArray(dataset.books) || ![3, 4].includes(dataset.books.length)) throw new Error('invalid_vocabulary_dataset');
+  const books = new Set<string>(), ids = new Set<string>();
+  for (const book of dataset.books) {
+    if (books.has(book.id) || (unified ? !['preview','icao4','icao5'].includes(book.id) || !book.words?.length : expected[book.id] !== book.words?.length)) throw new Error(`invalid_vocabulary_book:${book.id}`);
+    books.add(book.id);
+    if (book.id === 'question-bank-core' && book.assessmentEligible !== false) throw new Error('invalid_vocabulary_assessment');
+    for (const word of book.words) {
+      if (ids.has(word.id) || word.bookId !== book.id || !word.word?.trim() || !word.meaning?.trim() || !word.example?.trim() || !word.exampleTranslation?.trim()) throw new Error(`invalid_vocabulary_word:${word.id}`);
+      ids.add(word.id);
+      if (unified && (word.level !== book.level || ![1,2,3].includes(book.level))) throw new Error(`invalid_vocabulary_level:${word.id}`);
+      if (unified || book.id === 'question-bank-core') {
+        const f = word.frequency;
+        if (!word.pronunciationText?.trim() || !f || f.scope !== (unified ? 'question-bank-english-content' : 'question-bank-audio-text') || !Number.isInteger(f.occurrences) || f.occurrences < 0
+          || !Number.isInteger(f.cardCount) || f.cardCount < 0 || f.cardCount > f.occurrences || !Number.isInteger(f.corpusVersion) || f.corpusVersion < 1
+          || !/^[a-f0-9]{64}$/.test(f.corpusChecksum) || !f.byBank || Object.values(f.byBank).some(n => !Number.isInteger(n) || n < 0)
+          || Object.values(f.byBank).reduce((sum,n) => sum+n,0) !== f.occurrences) throw new Error(`invalid_vocabulary_frequency:${word.id}`);
+      }
+    }
+  }
+  if (unified && (dataset.books.length !== 3 || dataset.version < 3)) throw new Error('invalid_vocabulary_dataset');
+  if (!['preview','icao4','icao5'].every(id => books.has(id)) || dataset.books.length === 3 && books.has('question-bank-core')) throw new Error('invalid_vocabulary_dataset');
+  return dataset;
+}
+
 export type SyncCardState = {
   visited: boolean;
   lastVisitedAt?: string;
@@ -599,7 +621,7 @@ export type SyncCardState = {
   recordingDurationMillis?: number;
   tagIds?: string[];
   highlights?: Array<{
-    blockId: 'question' | 'reference';
+    blockId: 'question' | 'reference' | `choice-${number}`;
     wordIndex: number;
     colorId: string;
     quote: string;
@@ -1028,3 +1050,16 @@ export function studyScopeCardIds(bankId: string, topic: { studyTier?: unknown; 
   }
   return { all: topic.cards.filter((card) => !card.retired).map((card) => card.id), selected, crash };
 }
+
+
+/** Public navigation metadata only; question/answer text and media URLs stay
+ * behind the existing authorized topic/resource endpoints. */
+export type QuestionBankRadioEntry = { id: string; title: string; durationSeconds: number };
+export const QUESTION_BANK_CATALOG_VERSION = 'radio-directory-v1';
+export function questionBankRadioEntries(topic: { cards: readonly { id: string; taskTitle?: unknown; audio?: unknown; audioDurationSeconds?: unknown; kind?: unknown; retired?: unknown }[] }): QuestionBankRadioEntry[] {
+  return topic.cards.flatMap(card => card.retired === true || card.kind === 'image' || typeof card.audio !== 'string' || !card.audio
+    ? [] : [{ id: card.id, title: typeof card.taskTitle === 'string' ? card.taskTitle : '', durationSeconds: typeof card.audioDurationSeconds === 'number' ? card.audioDurationSeconds : 0 }]);
+}
+
+export { migrateVocabularyDocument, vocabularyDocumentForLegacyClient } from './vocabulary-migration.ts';
+export { vocabularyRetiredIds, vocabularyRetiredFavoriteKeys } from './vocabulary-migration-data.ts';

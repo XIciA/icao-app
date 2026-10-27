@@ -15,6 +15,13 @@ export type RadioTrack = {
   title: string;
   audioText: string;
   audioTextZh?: string;
+  referenceText?: string;
+  referenceTextZh?: string;
+  referenceLabel?: string;
+  materials?: { image: string; imageAlt: string }[];
+  /** Directory entries are selectable before protected text/media is loaded. */
+  contentLoaded?: boolean;
+  requiresMembership?: boolean;
   audioPath: string;
   durationSeconds: number;
   stableIndex: number;
@@ -25,10 +32,14 @@ export type RadioCatalog = {
   title: string;
   nameEn: string;
   tracks: RadioTrack[];
+  /** False only when the server has not supplied a complete navigation index. */
+  complete?: boolean;
 };
 
 export type RadioPlayerContextValue = {
   catalogs: RadioCatalog[];
+  queueFilter?: import('./queue-filter').RadioQueueFilter;
+  setQueueFilter?: (filter: import('./queue-filter').RadioQueueFilter) => void;
   currentCatalog?: RadioCatalog;
   currentTrack?: RadioTrack;
   currentIndex: number;
@@ -42,6 +53,10 @@ export type RadioPlayerContextValue = {
   playing: boolean;
   loading: boolean;
   buffering: boolean;
+  /** Directory refresh never blocks the current audio controls. */
+  catalogLoading?: boolean;
+  catalogError?: string;
+  retryCatalog?: () => void;
   error?: string;
   position: number;
   duration: number;

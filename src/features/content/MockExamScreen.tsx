@@ -1,4 +1,5 @@
-import { BookOpenText, Check, Headphones, MessageSquareQuote, Mic2, RadioTower, Sparkles } from '@/components/ui/icons';
+import { studyBankIcons } from '@/features/profile/StudyBankIcon';
+import { Check, Sparkles } from '@/components/ui/icons';
 import { useEffect, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
@@ -13,8 +14,8 @@ import type { QuestionBankStudyPackage } from '@/features/question-bank/types';
 import { colors, radii, spacing } from '@/theme';
 import { isVercelLegacyWeb } from '@/config/web-runtime';
 
-const modules: { id: MockExamModuleId; title: string; icon: typeof Headphones }[] = [
-  { id: 'listening', title: '听力', icon: Headphones }, { id: 'sentences900', title: '900 句', icon: MessageSquareQuote }, { id: 'radiotelephony', title: '陆空通话', icon: RadioTower }, { id: 'storytelling', title: '故事复诵', icon: BookOpenText }, { id: 'opi', title: 'OPI', icon: Mic2 },
+const modules: { id: MockExamModuleId; title: string; icon: typeof studyBankIcons.listening }[] = [
+  { id: 'listening', title: '听力', icon: studyBankIcons.listening }, { id: 'sentences900', title: '900 句', icon: studyBankIcons.sentences900 }, { id: 'radiotelephony', title: '陆空通话', icon: studyBankIcons.radiotelephony }, { id: 'storytelling', title: '故事复诵', icon: studyBankIcons.storytelling }, { id: 'opi', title: 'OPI', icon: studyBankIcons.opi },
 ];
 
 export function MockExamScreen() {

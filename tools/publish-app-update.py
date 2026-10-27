@@ -17,8 +17,8 @@ MANIFEST = '/app-releases/updates.json'
 
 def validate(release):
     channel = release.get('channel')
-    if channel not in ('ios-app-store', 'android-apk') or release.get('available') is not True:
-        raise ValueError('Only available official releases may be published')
+    if channel not in ('ios-app-store', 'ios-testflight', 'android-apk', 'android-test') or release.get('available') is not True:
+        raise ValueError('Only available supported releases may be published')
     if not re.fullmatch(r'\d+\.\d+\.\d+', release.get('version', '')):
         raise ValueError('Invalid version')
     if type(release.get('build')) is not int or release['build'] <= 0:
@@ -29,6 +29,10 @@ def validate(release):
     if channel == 'ios-app-store':
         if release['url'] != 'https://apps.apple.com/cn/app/id6800583111':
             raise ValueError('Invalid App Store URL')
+    elif channel == 'ios-testflight':
+        if release['url'] != 'https://testflight.apple.com/' and not re.fullmatch(
+                r'https://testflight\.apple\.com/join/[A-Za-z0-9]+', release['url']):
+            raise ValueError('Invalid TestFlight URL')
     else:
         if not re.fullmatch(re.escape(BASE + '/public/app-releases/android/') + r'[A-Za-z0-9._-]+\.apk', release['url']):
             raise ValueError('Invalid APK URL')
@@ -68,7 +72,7 @@ def main():
     backup = Path(args.backup_dir) / ('updates-before-' + stamp + '.json')
     backup.parent.mkdir(parents=True, exist_ok=True)
     backup.write_bytes(previous)
-    if release['channel'] == 'android-apk':
+    if release['channel'] in ('android-apk', 'android-test'):
         if not args.apk:
             raise ValueError('APK path required')
         apk = Path(args.apk).read_bytes()

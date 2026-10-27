@@ -1,4 +1,6 @@
 import type { StaticWordLookupEntry } from '@/features/question-bank/static-word-lookup/repository';
+import { vocabularyRetiredFavoriteKeys } from '@icao/contracts';
+import { currentVocabularyFavoriteOwner, currentVocabularyPolicy } from './live-catalog';
 
 import type { VocabularyBook, VocabularyState, VocabularyWord, VocabularyWordProgress } from './types';
 
@@ -38,7 +40,12 @@ export function normalizeFavoriteWord(value: string) {
 
 export function favoriteKeyForWord(value: string) {
   const normalized = normalizeFavoriteWord(value);
-  return normalized ? `${WORD_FAVORITE_KEY_PREFIX}${encodeURIComponent(normalized)}` : undefined;
+  if (!normalized) return undefined;
+  const key = `${WORD_FAVORITE_KEY_PREFIX}${encodeURIComponent(normalized)}`;
+  const owner = currentVocabularyFavoriteOwner(value);
+  if (owner === null) return undefined;
+  if (owner) return owner;
+  return currentVocabularyPolicy() ? key : vocabularyRetiredFavoriteKeys[key] ?? key;
 }
 
 export function favoriteWordFromKey(key: string) {

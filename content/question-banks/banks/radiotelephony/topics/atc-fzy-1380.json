@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-200646",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-1",
-      "audioText": "[Your call sign is AFR9939, you are flying from Wuhan to Beijing, your position now is gate 276, information B is valid, ask ATC for your airway clearance.]",
+      "audioText": "Your call sign is AFR9939, you are flying from Wuhan to Beijing, your position now is gate 276, information B is valid, ask ATC for your airway clearance.",
       "audioTextZh": "你的呼号是法航9939，你正从武汉飞往北京，你现在在276号机位，通播B有效，向管制请求你的航路许可。",
       "referenceText": "Wuhan Delivery, AFR9939, gate 276, information B, request ATC clearance to Beijing.",
       "referenceTextZh": "武汉放行，法航9939，276号机位，通播B，请求前往北京的放行许可。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-200648",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-3",
-      "audioText": "[Now, you are on taxiway A1, request taxi instructions from Ground controller.]",
+      "audioText": "Now, you are on taxiway A1, request taxi instructions from Ground controller.",
       "audioTextZh": "你现在滑行道A1，向地面管制请求滑行许可。",
       "referenceText": "Wuhan Ground, AFR9939, taxiway A1, request to continue taxi.",
       "referenceTextZh": "武汉地面，法航9939，滑行道A1，请求继续滑行。",
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-200650",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-5",
-      "audioText": "[You are approaching the holding point M2, inform Tower that you are ready for takeoff.]",
+      "audioText": "You are approaching the holding point M2, inform Tower that you are ready for takeoff.",
       "audioTextZh": "你现在到达M2等待点，告知武汉塔台，你准备好起飞了。",
       "referenceText": "Wuhan Tower, AFR9939, approaching holding point M2, request departure.",
       "referenceTextZh": "武汉塔台，法航9939，到达M2等待点，请求起飞。",
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-200652",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-7",
-      "audioText": "[While you are accelerating for takeoff rolling, you notice a yellow ground vehicle is crossing runway 04, tell ATC you stopped immediately because of runway incursion.]",
+      "audioText": "While you are accelerating for takeoff rolling, you notice a yellow ground vehicle is crossing runway 04, tell ATC you stopped immediately because of runway incursion.",
       "audioTextZh": "你在起飞滑跑时，你看到一辆黄色的地面车辆正在穿过跑道04，由于跑道入侵，你立刻停止。",
       "referenceText": "Wuhan Tower, AFR9939, we rejected takeoff due runway incursion, vehicle crossing runway.",
       "referenceTextZh": "武汉塔台，法航9939，由于跑道入侵，我们中断起飞，跑道上有车辆。",
@@ -80,7 +80,7 @@
     {
       "id": "radiotelephony-fzy-200654",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-9",
-      "audioText": "[Later, everything is normal again, you are finally in the air, passing 600 meters for 1200 meters, tell Departure that you require further instructions.]",
+      "audioText": "Later, everything is normal again, you are finally in the air, passing 600 meters for 1200 meters, tell Departure that you require further instructions.",
       "audioTextZh": "后来，一切恢复正常，你最后升空，现在过600米，飞往1200米，告诉离场，请求进一步指令。",
       "referenceText": "Wuhan Departure, AFR9939, passing 600 meters for 1200 meters, request further instructions.",
       "referenceTextZh": "武汉离场，法航9939，过600米，飞往1200米，请求进一步指令。",
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-200656",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-11",
-      "audioText": "[Now, you are cruising at 10400 meters, suddenly the air becomes very turbulent, you suspect there is a moderate to severe clear air turbulence. Request a lower level.]",
+      "audioText": "Now, you are cruising at 10400 meters, suddenly the air becomes very turbulent, you suspect there is a moderate to severe clear air turbulence. Request a lower level.",
       "audioTextZh": "你现在巡航在10400米，忽然气流变得很颠簸，你猜测中度到重度颠簸，请求下高度。\n参考答案：",
       "referenceText": "Wuhan Control, AFR9939, at 10400 meters, request lower level due moderate to severe clear air turbulence.",
       "referenceTextZh": "武汉区调，法航9939，10400米，由于中度到重度颠簸，请求下高度。",
@@ -134,7 +134,7 @@
     {
       "id": "radiotelephony-fzy-200660",
       "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-15",
-      "audioText": "[Now you are over Beijing Capital airport, you have established ILS for runway 36R, tell Beijing Tower about your situation, request ambulance on arrival.]",
+      "audioText": "Now you are over Beijing Capital airport, you have established ILS for runway 36R, tell Beijing Tower about your situation, request ambulance on arrival.",
       "audioTextZh": "你现在到达北京首都机场上空，你已经建立跑道36右盲降，告诉北京塔台你的意图，请求到达后急救车就位。",
       "referenceText": "Beijing Tower, AFR9939, ILS established runway 36R, we have a passenger with head injury, request ambulance on arrival.",
       "referenceTextZh": "北京塔台，法航9939，建立跑道36右盲降，我们有一名乘客头部受伤，请求到达后急救车就位。",

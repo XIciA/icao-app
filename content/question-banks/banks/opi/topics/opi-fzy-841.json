@@ -1,60 +1,60 @@
 {
   "id": "opi-fzy-841",
-  "name": "Lightning strike",
-  "declaredCardCount": 5,
+  "name": "机场雷暴",
   "cards": [
     {
       "id": "opi-fzy-841-image-1",
       "kind": "image",
-      "taskTitle": "Lightning strike · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-841.png",
-      "imageAlt": "Lightning strike，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "imageAlt": "机场雷暴，用于本话题的看图描述和问答",
+      "studyTier": 1,
+      "taskTitle": "机场雷暴 · 看图材料"
     },
     {
       "id": "opi-fzy-152379",
-      "taskTitle": "Lightning strike-1",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152379.mp3",
       "audioText": "What can you see from this picture?",
-      "audioTextZh": "你能从这张图片中看到些什么？",
       "studyTier": 1,
+      "taskTitle": "机场雷暴-1",
+      "audioTextZh": "你能从这张图片中看到些什么？",
       "referenceText": "There is lightning in the vicinity of airport.\nMany aircraft are holding position for weather improvement.",
       "referenceTextZh": "机场附近有闪电。\n飞机正原地等待天气好转。",
-      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152379.mp3",
       "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-152380",
-      "taskTitle": "Lightning strike-2",
+      "audio": "/question-bank-assets/revisions/opi/d085f09c33675617e3336ea4ffc84f144f87f643d76d7ed3be7cb223b7e97b03/audio/opi/opi-fzy-152380.mp3",
       "audioText": "In what weather conditions is lightning strike most likely to occur?",
-      "audioTextZh": "在什么样的天气条件下，容易发生雷击？",
       "studyTier": 1,
+      "taskTitle": "机场雷暴-2",
+      "audioTextZh": "在什么样的天气条件下，容易发生雷击？",
       "referenceText": "Lightning strike usually occurs in Thunderstorm or CBs, in summer.",
       "referenceTextZh": "雷击多发于夏季的雷暴和积雨云天气中。",
-      "audio": "/question-bank-assets/revisions/opi/d085f09c33675617e3336ea4ffc84f144f87f643d76d7ed3be7cb223b7e97b03/audio/opi/opi-fzy-152380.mp3",
       "audioDurationSeconds": 3.576
     },
     {
       "id": "opi-fzy-152381",
-      "taskTitle": "Lightning strike-3",
-      "audioText": "How to reduce the danger of lightning strike?",
-      "audioTextZh": "如何降低雷击的危险？",
-      "studyTier": 1,
-      "referenceText": "Before takeoff or approach, we should listen ATIS to get the latest weather information;\nDuring flight, we should check the weather radar screen and monitor the cloud movement and trend.\nIf there is any indication of thunderstorms, we should request radar vectors to go round the weather.\nIn these ways, we can avoid lightning strike.",
-      "referenceTextZh": "在飞机起飞或进近前，我们应听取ATIS的最新天气信息;\n在飞行过程中，我们应关注气象雷达屏幕，监测云的移动和趋势。\n如有雷暴迹象，我们应要求雷达引导绕飞天气。\n通过这些方法，我们可以避免雷击。",
       "audio": "/question-bank-assets/revisions/opi/a703c9e109227fe796e7273af9c3ae7ef0d836213e270e92f0e9bfa84d490e28/audio/opi/opi-fzy-152381.mp3",
+      "audioText": "How to reduce the danger of lightning strike?",
+      "studyTier": 1,
+      "taskTitle": "机场雷暴-3",
+      "audioTextZh": "如何降低雷击的危险？",
+      "referenceText": "Before takeoff or approach, we should listen ATIS to get the latest weather information;\nDuring flight, we should check the weather radar screen and monitor the cloud movement and trend.\nIf there is any indication of thunderstorms, we should request radar vectors to go round the weather.\nIn these ways, we can avoid lightning strike.",
+      "referenceTextZh": "在飞机起飞或进近前，我们应听取ATIS的最新天气信息；\n在飞行过程中，我们应关注气象雷达屏幕，监测云的移动和趋势。\n如有雷暴迹象，我们应要求雷达引导绕飞天气。\n通过这些方法，我们可以避免雷击。",
       "audioDurationSeconds": 2.472
     },
     {
       "id": "opi-fzy-152382",
-      "taskTitle": "Lightning strike-4",
-      "audioText": "In which phase does lightning strike usually occur?",
-      "audioTextZh": "通常在飞行的哪个时期可能会遭到雷击？",
-      "studyTier": 1,
-      "referenceText": "More lightning strikes occur while the aircraft is in the cloud, during the climb and descent phase.\nThe reason is that lightning activity is more prevalent between 1500 to 4500 meters ‘ altitude.",
-      "referenceTextZh": "飞机在云中，飞行中的爬升和下降阶段遭受雷击的可能性更大。\n原因是，闪电活动通常发生在1500至4500米的范围内。",
       "audio": "/question-bank-assets/revisions/opi/1ae818b55cd61c7326e4496d88a9f46b2bc21a7f3d0d044b5c817811ac3b7d9b/audio/opi/opi-fzy-152382.mp3",
+      "audioText": "In which phase does lightning strike usually occur?",
+      "studyTier": 1,
+      "taskTitle": "机场雷暴-4",
+      "audioTextZh": "通常在飞行的哪个时期可能会遭到雷击？",
+      "referenceText": "More lightning strikes occur while the aircraft is in the cloud, during the climb and descent phase.\nThe reason is that lightning activity is more prevalent between 1500 to 4500 meters ' altitude.",
+      "referenceTextZh": "飞机在云中，飞行中的爬升和下降阶段遭受雷击的可能性更大。\n原因是，闪电活动通常发生在1500至4500米的范围内。",
       "audioDurationSeconds": 2.76
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-08"
 }

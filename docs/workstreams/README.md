@@ -8,6 +8,17 @@
 
 ## 现存材料
 
+- [三本词书全题库整理](vocabulary-three-books/README.md)：1833词、学习状态兼容迁移、频次/乱序及新增音频交接；待统一合并与测试交付。
+
+- [听力答题卡与维护经验文档方案](listening-answer-card/README.md)：待用户确认；听力答对绿、答错红，未答沿用已学/未学，并拟定长期规则与经验文档安排；尚未修改产品代码。
+
+- [2026-10-25 App综合修复](app-repair-2026-10-25/README.md)：个人页、登录、会员状态、教学与随身听修复；用户要求完成检查后暂缓发布，等待单词任务统一整合。
+
+- [学习与全局交互修复](learning-ui-repair-20261024/README.md)：2026-10-24全量口述需求、逐项进度与三端测试交付台账。
+
+- [会员定价与后续统一提审](membership-pricing/README.md)：2026-10-22 三档长期售价与划线价、苹果后台调价结果；本轮不构建、不提审，待其他任务完成后统一提交。
+- [使用指南与首次使用引导](guide-and-onboarding-2026-10/requirements.md)：统一教学逻辑、极简细线聚光灯；[执行记录](guide-and-onboarding-2026-10/execution.md)。
+
 - [内容发布完整链路核验](content-workflow/chain-audit-2026-10-19.md)：题库、音频、历史热点兼容能力与当前差距；执行标准统一引用内容处理规则。
 
 - [2026 年 10 月功能更新](feature-update-2026-10/requirements.md)：本轮已确认需求；[执行记录](feature-update-2026-10/execution.md)与[内容工单操作](feature-update-2026-10/content-operations.md)。
@@ -22,3 +33,7 @@
 新任务按需建立独立目录，已结束任务归入 records/workstreams；迁移前检查脚本和文档引用。
 
 返回 [项目文档入口](../README.md)。
+
+- [使用指南统一整改](guide-unification-2026-10-24/execution.md)：聚光灯、弹层、返回与按模块恢复；与学习页面修复统一交付。
+
+- [2026-10-26功能优化](next-round-2026-10/requirements.md)：已确认方案，正在实施；含反馈复用、900句场景、重听及听力高亮。

@@ -20,6 +20,7 @@ type Props = PropsWithChildren<{
   contentStyle?: ViewStyle;
   scrollProps?: ScrollViewProps;
   background?: ReactNode;
+  header?: ReactNode;
 }>;
 
 export function Screen({
@@ -30,6 +31,7 @@ export function Screen({
   contentStyle,
   scrollProps,
   background,
+  header,
 }: Props) {
   const content = scroll ? (
     <GuideScrollView
@@ -55,10 +57,10 @@ export function Screen({
           behavior={Platform.select({ ios: 'padding', android: undefined })}
           style={styles.flex}
         >
-          <AppContentFrame style={styles.flex}>{content}</AppContentFrame>
+          <AppContentFrame style={styles.flex}>{header}{content}</AppContentFrame>
         </KeyboardAvoidingView>
       ) : (
-        <AppContentFrame style={styles.flex}>{content}</AppContentFrame>
+        <AppContentFrame style={styles.flex}>{header}{content}</AppContentFrame>
       )}
     </SafeAreaView>
   );

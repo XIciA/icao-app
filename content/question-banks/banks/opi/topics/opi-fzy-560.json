@@ -1,71 +1,71 @@
 {
   "id": "opi-fzy-560",
-  "name": "Figure 3",
-  "declaredCardCount": 6,
+  "name": "雷雨中飞行",
   "cards": [
     {
       "id": "opi-fzy-560-image-1",
       "kind": "image",
-      "taskTitle": "Figure 3 · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-560.png",
-      "imageAlt": "Figure 3，用于本话题的看图描述和问答",
-      "studyTier": 0
+      "imageAlt": "雷雨中飞行，用于本话题的看图描述和问答",
+      "studyTier": 0,
+      "taskTitle": "雷雨中飞行 · 看图材料"
     },
     {
       "id": "opi-fzy-110200",
-      "taskTitle": "Figure 3-1",
+      "audio": "/question-bank-assets/revisions/opi/0bd314440795e57d8ea869777c5f2cfd774dbe7a2067586cbfc75ad11a5a0502/audio/opi/opi-fzy-110200.mp3",
       "audioText": "Please make a brief description of the picture.",
-      "audioTextZh": "请简要说明这张图片。",
       "studyTier": 0,
+      "taskTitle": "雷雨中飞行-1",
+      "audioTextZh": "请简要说明这张图片。",
       "referenceText": "In the picture, the landing aircraft is experiencing lightning strike. The sky is very dark, and the lightning is very bright. The plane is hit around the wheel well.",
       "referenceTextZh": "图中这架正在降落的飞机正在经历雷击。天空非常暗，闪电很明亮，这架飞机的起落架轮舱附近被击中。",
-      "audio": "/question-bank-assets/revisions/opi/0bd314440795e57d8ea869777c5f2cfd774dbe7a2067586cbfc75ad11a5a0502/audio/opi/opi-fzy-110200.mp3",
       "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-fzy-110202",
-      "taskTitle": "Figure 3-2",
+      "audio": "/question-bank-assets/revisions/opi/2a14be824e89eaa709d097eadb1c5e0dc46e04f4cafeef57011187f0ffc479b1/audio/opi/opi-fzy-110202.mp3",
       "audioText": "Is the lightning strike a great factor that may damage an aircraft? Why or why not?",
-      "audioTextZh": "雷击是否是造成飞机损坏的因素？为什么是/不是？",
       "studyTier": 0,
+      "taskTitle": "雷雨中飞行-2",
+      "audioTextZh": "雷击是否是造成飞机损坏的因素？为什么是/不是？",
       "referenceText": "It's hard to say, the skin of the aircraft can usually dissipate the lightning energy sufficiently to prevent problems, while it may leave a burn mark on the aircraft. In a few cases, the lightning energy has damaged electronic equipment in the aircraft, but only fewer aircraft have received enough damage to cause a major problem with flying the plane. Seldom does a lightning strike cause a crash, but the potential is there.",
       "referenceTextZh": "这不好说，飞机的外壳通常能充分消除雷击的能量，防止事故发生，但是飞机外壳仍可能会有来自雷击的烧痕。少数情况下，雷击会损坏飞机中的电子设备，但其中仅有小部分飞机出现飞行相关的问题。虽然雷击引起事故的情况极少，但是存在可能性。",
-      "audio": "/question-bank-assets/revisions/opi/2a14be824e89eaa709d097eadb1c5e0dc46e04f4cafeef57011187f0ffc479b1/audio/opi/opi-fzy-110202.mp3",
       "audioDurationSeconds": 4.8
     },
     {
       "id": "opi-fzy-110203",
-      "taskTitle": "Figure 3-3",
-      "audioText": "Does lightning strike only happen in the storm weather?",
-      "audioTextZh": "只有暴雨天气时才会发生雷击吗？",
-      "studyTier": 0,
-      "referenceText": "Not really. Most aircraft do not fly into storms and what we can see is that lightning is really a massive flood of electrons seeking equilibrium, either from cloud-cloud or from cloud-ground. In both cases, huge amounts of electric charge build up at the edges of the cloud. The electricity finds its way from one place to the other via what’s called a \"step leader\".",
-      "referenceTextZh": "并不是，大多数情况下飞机并不会飞入风暴中。我们知道，闪电实际上是大量电子在寻求平衡，会发生在云和云之间，或云和地面之间。在这两种情况下，云边缘的电荷数大量增加。电流通过所谓的“先导闪电”找到从一个地方到另一个地方的途径。",
       "audio": "/question-bank-assets/revisions/opi/c1c1943af9c77286eaabd0001d0f580833a457115c224439b0252fa6e0634cc2/audio/opi/opi-fzy-110203.mp3",
+      "audioText": "Does lightning strike only happen in the storm weather?",
+      "studyTier": 0,
+      "taskTitle": "雷雨中飞行-3",
+      "audioTextZh": "只有暴雨天气时才会发生雷击吗？",
+      "referenceText": "Not really. Most aircraft do not fly into storms and what we can see is that lightning is really a massive flood of electrons seeking equilibrium, either from cloud-cloud or from cloud-ground. In both cases, huge amounts of electric charge build up at the edges of the cloud. The electricity finds its way from one place to the other via what's called a \"step leader\".",
+      "referenceTextZh": "并不是，大多数情况下飞机并不会飞入风暴中。我们知道，闪电实际上是大量电子在寻求平衡，会发生在云和云之间，或云和地面之间。在这两种情况下，云边缘的电荷数大量增加。电流通过所谓的“先导闪电”找到从一个地方到另一个地方的途径。",
       "audioDurationSeconds": 2.808
     },
     {
       "id": "opi-fzy-110204",
-      "taskTitle": "Figure 3-4",
+      "audio": "/question-bank-assets/revisions/opi/7bb20da8ee91849dc9d82eab8a6197604fe4000afba732b0540b2d412173bbe0/audio/opi/opi-fzy-110204.mp3",
       "audioText": "In which phase does the lightning strike usually occur?",
-      "audioTextZh": "通常在飞行中的哪些时期可能会遭受雷击？",
       "studyTier": 0,
+      "taskTitle": "雷雨中飞行-4",
+      "audioTextZh": "通常在飞行中的哪些时期可能会遭受雷击？",
       "referenceText": "More jet airplane lightning strikes occur while in clouds, during the climb and descent phases of flight than any other flight phases. The reason is that lightning activity is more prevalent between 1500 to 4500 meters' altitude. Airplanes that fly short routes in areas with high incidence of lightning activity are more likely to be struck than long-haul airplanes operating in milder lightning environments.",
       "referenceTextZh": "喷气式飞机遭受雷击时通常在云中，飞行中的爬升或下降阶段遭受雷击的可能性更高。原因是闪电活动通常发生在高度1500至4500米的范围内。闪电活动频繁区域内做短途飞行比在闪电活动少的区域做长途飞行更有可能遭受雷击。",
-      "audio": "/question-bank-assets/revisions/opi/7bb20da8ee91849dc9d82eab8a6197604fe4000afba732b0540b2d412173bbe0/audio/opi/opi-fzy-110204.mp3",
       "audioDurationSeconds": 2.88
     },
     {
       "id": "opi-fzy-110206",
-      "taskTitle": "Figure 3-5",
+      "audio": "/question-bank-assets/revisions/opi/c094855c8c66b31f04f30a68d254866eb155d785764a9099207b03a2e40d33d2/audio/opi/opi-fzy-110206.mp3",
       "audioText": "How to protect the aircraft from a lightning strike during flight?",
-      "audioTextZh": "在飞行中怎样保护飞机远离雷击？",
       "studyTier": 0,
+      "taskTitle": "雷雨中飞行-5",
+      "audioTextZh": "在飞行中怎样保护飞机远离雷击？",
       "referenceText": "I would plan a route around thunderstorms and follow the aircraft weather-avoidance procedures. Static wicks reduce static-related radio interference; they do not make flying through a thunderstorm safe.",
       "referenceTextZh": "我会规划绕飞雷暴的航线，并遵循本机型的天气避让程序。放电刷用于减少静电造成的无线电干扰，不能因此认为穿越雷暴是安全的。",
-      "audio": "/question-bank-assets/revisions/opi/c094855c8c66b31f04f30a68d254866eb155d785764a9099207b03a2e40d33d2/audio/opi/opi-fzy-110206.mp3",
       "audioDurationSeconds": 3.456
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-08"
 }

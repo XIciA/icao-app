@@ -1,7 +1,9 @@
 # Web 内容同步与发布
 
-状态：当前运维手册
-更新时间：2026-07-30
+状态：旧 Vercel 站历史参考，已退役，不用于当前三端发布
+退役说明更新：2026-10-24
+
+旧 Vercel 主站与分片已于 2026-10-20 退役，冻结约束于 2026-10-24 撤销。下文只保留历史实现背景，所列 `web:deploy:export`、`web:content:sync` 发布入口已移除，不应照此执行。当前产品 Web 使用 `pnpm web:edgeone:export`，发布参考 [EdgeOne 三端 Web](edgeone-three-client-web-rollout.md)。
 
 Web 内容由 App 已确认的题库、热点、音频映射和编辑内容生成。不可变 release、manifest 和
 checksum 是发布事实；Vercel 同域文件只是经过校验的交付镜像，不能手工成为第二来源。

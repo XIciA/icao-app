@@ -64,3 +64,32 @@ describe('VocabularyStudyView', () => {
     expect(screen.getByLabelText('收藏')).toBeTruthy();
   });
 });
+
+it('advances on manual playback start, deduplicates loading taps and ignores callbacks after leaving', async () => {
+  const bindings=jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
+  const speech=jest.requireMock('../speech') as {speakVocabularyWithFeedback:jest.Mock};
+  const event=jest.fn();
+  const spy=jest.spyOn(bindings,'useGuide').mockReturnValue({current:'vocab',event,availability:jest.fn(),register:jest.fn(),modal:jest.fn(),surface:()=>null,offer:jest.fn(),exit:jest.fn(),start:jest.fn(async()=>undefined),suspend:jest.fn(),pause:jest.fn(),checkpoint:jest.fn()});
+  let started:(()=>void)|undefined, finish!: (value:boolean)=>void;
+  speech.speakVocabularyWithFeedback.mockImplementation((_word: string,_example:unknown,onStart:()=>void)=>{started=onStart;return new Promise<boolean>(resolve=>{finish=resolve;});});
+  try {
+    const {act}=jest.requireActual('@testing-library/react-native') as typeof import('@testing-library/react-native');
+    const screen=await renderStudy(390);
+    speech.speakVocabularyWithFeedback.mockClear();
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    expect(speech.speakVocabularyWithFeedback).toHaveBeenCalledTimes(1);expect(event).not.toHaveBeenCalled();
+    await act(async()=>started?.());expect(event).toHaveBeenCalledWith('vocab-speech');
+    await act(async()=>finish(true));
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    await screen.unmount();
+    await act(async()=>{started?.();finish(false);});expect(event).toHaveBeenCalledTimes(1);
+  } finally {spy.mockRestore();}
+});
+
+it('shows saved cumulative learning rather than restarting the progress bar at the first card',async()=>{
+  const queue=Array.from({length:100},(_,index)=>({...word,id:`word-${index}`}));
+  const saved={...state,words:Object.fromEntries(queue.slice(0,40).map(item=>[item.id,{status:'known' as const,favorite:false,updatedAt:'2026-10-27T00:00:00.000Z'}]))};
+  const screen=await render(<SafeAreaProvider initialMetrics={{frame:{height:812,width:390,x:0,y:0},insets:{top:47,bottom:34,left:0,right:0}}}><VocabularyStudyView words={queue} state={saved} index={40} revealed={false} onExit={jest.fn()} onChoose={jest.fn()} onWrong={jest.fn()} onNext={jest.fn()} onToggleFavorite={jest.fn()}/></SafeAreaProvider>);
+  expect(screen.getByText('已学 40 / 100')).toBeTruthy();expect(screen.getByLabelText('进度 40%')).toBeTruthy();
+});

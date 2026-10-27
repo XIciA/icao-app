@@ -18,3 +18,13 @@ it('a different audio owner cancels word playback before switching',async()=>{co
 it('does not start a file after a newer pronunciation supersedes its pending resolution',async()=>{let resolve!:(uri:string)=>void;mockResolve.mockReturnValueOnce(new Promise(r=>{resolve=r;}));const old=speakVocabulary('old');await flush();const current=speakVocabulary('new');await flush();resolve('https://signed.test/old.mp3');await expect(old).resolves.toBe(false);expect(mockPlayers).toHaveLength(1);mockPlayers[0].listener?.({didJustFinish:true});await expect(current).resolves.toBe(true);});
 it('reports a real missing resource and never substitutes runtime synthesis',async()=>{mockResolve.mockRejectedValueOnce(new Error('resource_not_found'));await expect(speakVocabularyWithFeedback('missing')).resolves.toBe(false);expect(mockPlayers).toHaveLength(0);expect(alert).toHaveBeenCalledTimes(1);});
 it('cannot overlap recording when ownership is refused',async()=>{mockAcquire.mockRejectedValueOnce(new Error('recording_exclusive'));await expect(speakVocabulary('runway')).resolves.toBe(false);expect(mockPlayers[0].play).not.toHaveBeenCalled();expect(mockPlayers[0].remove).toHaveBeenCalled();});
+
+it('notifies actual start once before completion, and never accepts a stale start',async()=>{
+ const started=jest.fn();const done=speakVocabularyWithFeedback('runway',undefined,started);await flush();
+ expect(started).not.toHaveBeenCalled();
+ mockPlayers[0].listener?.({playing:true,isLoaded:true});expect(started).toHaveBeenCalledTimes(1);
+ mockPlayers[0].listener?.({playing:true,isLoaded:true});expect(started).toHaveBeenCalledTimes(1);
+ mockPlayers[0].listener?.({didJustFinish:true});await expect(done).resolves.toBe(true);
+ const oldStart=jest.fn();const cancelled=speakVocabularyWithFeedback('old',undefined,oldStart);await flush();
+ await stopVocabularySpeech();mockPlayers[1].listener?.({playing:true});await expect(cancelled).resolves.toBe(false);expect(oldStart).not.toHaveBeenCalled();
+});

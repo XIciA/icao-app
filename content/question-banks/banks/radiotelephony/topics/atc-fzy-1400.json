@@ -72,9 +72,9 @@
       "id": "radiotelephony-fzy-202767",
       "taskTitle": "47-CES728 [积冰，进近灯暗]-8",
       "audioText": "8C: CES728, wind 010 degrees 2m/s, clear for takeoff runway 36R. Caution storm north of the airport.",
-      "audioTextZh": "东方728，地面风010度，2米每秒，可以起飞， 跑道36右，小心机场北部有风暴。",
+      "audioTextZh": "东方728，地面风010度，2米每秒，可以起飞，跑道36右，小心机场北部有风暴。",
       "referenceText": "Clear for takeoff runway 36R, CES728.",
-      "referenceTextZh": "可以起飞， 跑道36右，东方728。",
+      "referenceTextZh": "可以起飞，跑道36右，东方728。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d9c26aeaac73a0e840e.mp3"
     },
     {
@@ -154,7 +154,7 @@
       "taskTitle": "47-CES728 [积冰，进近灯暗]-17",
       "audioText": "17B: After landing, you find taxi is too difficult in poor visibility, ask ground control for a follow me car.",
       "audioTextZh": "落地后，你发现在低能见度下滑行困难，向地面管制请求一辆引导车。",
-      "referenceText": "Guangzhou Ground, CES728, It’s difficult to taxi in poor visibility, request a follow-me car.",
+      "referenceText": "Guangzhou Ground, CES728, It's difficult to taxi in poor visibility, request a follow-me car.",
       "referenceTextZh": "广州地面，东方728，低能见度下滑行困难，请求一辆引导车。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/533cb2f40ce5360650bc.mp3"
     }

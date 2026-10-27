@@ -30,11 +30,13 @@ describe('radio player queue', () => {
 
   test('embedded shared contract exposes every eligible track with duration', () => {
     const catalogs = getEmbeddedRadioCatalogs();
-    expect(catalogs.map((catalog) => [catalog.bankId, catalog.tracks.length])).toEqual([
+    expect(catalogs.map((catalog) => [catalog.bankId, catalog.tracks.filter(track => !track.requiresMembership).length])).toEqual([
       ['listening', 40],
       ['sentences900', 900],
+      ['radiotelephony', 17],
       ['storytelling', 3],
+      ['opi', 23],
     ]);
-    expect(catalogs.flatMap((catalog) => catalog.tracks).every((track) => track.durationSeconds > 0)).toBe(true);
+    expect(catalogs.flatMap((catalog) => catalog.tracks.filter(track => !track.requiresMembership)).every((track) => track.durationSeconds > 0)).toBe(true);
   });
 });

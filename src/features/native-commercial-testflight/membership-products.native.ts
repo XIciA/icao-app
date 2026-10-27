@@ -9,6 +9,8 @@ type MembershipProductDefinition = Readonly<{
   title: string;
   durationDays: 7 | 15 | 31 | 62 | 93;
   recommended: boolean;
+  /** CNY display reference only; the payment channel supplies the actual price. */
+  originalPriceCny?: number;
 }>;
 
 /** The sole Native mapping from stable business keys to permanent Apple IDs. */
@@ -19,6 +21,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     title: '7天会员',
     durationDays: 7,
     recommended: false,
+    originalPriceCny: 68,
   }),
   Object.freeze({
     key: 'membership_15d_v1',
@@ -33,6 +36,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     title: '31天会员',
     durationDays: 31,
     recommended: false,
+    originalPriceCny: 158,
   }),
   Object.freeze({
     key: 'membership_62d_v1',
@@ -47,6 +51,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     title: '93天会员',
     durationDays: 93,
     recommended: false,
+    originalPriceCny: 358,
   }),
 ]);
 

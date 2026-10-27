@@ -7,7 +7,7 @@
       "id": "atc-scenario-0063-card-main-1081",
       "taskTitle": "CCA 937-1",
       "audioText": "B: Your call sign is CCA 937, you are parking at gate 213, you have got information N, call Wuhan Delivery and request ATC clearance to Amsterdam.",
-      "audioTextZh": "B: 你的呼号是 CCA 937，停在 213 号登机口，已收到信息 N，呼叫 武汉放行请求前往 Amsterdam 的 ATC 许可。",
+      "audioTextZh": "B: 你的呼号是 CCA 937，停在 213 号登机口，已收到信息 N，呼叫武汉放行请求前往 Amsterdam 的 ATC 许可。",
       "referenceText": "Wuhan Delivery, CCA 937, gate 213, information N, request ATC clearance to Amsterdam.",
       "referenceTextZh": "武汉放行，CCA 937，213 号登机口，信息 N，请求前往 Amsterdam 的 ATC 许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1081.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0063-card-main-1085",
       "taskTitle": "CCA 937-5",
       "audioText": "C: CCA 937, the slot time restriction is cancelled, contact Ground 121.75.",
-      "audioTextZh": "C: CCA 937，放行时刻限制取消，联系 地面 121.75。",
+      "audioTextZh": "C: CCA 937，放行时刻限制取消，联系地面 121.75。",
       "referenceText": "121.75, CCA 937.",
       "referenceTextZh": "121.75，CCA 937。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1085.mp3"

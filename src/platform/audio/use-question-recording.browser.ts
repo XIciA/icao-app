@@ -3,7 +3,8 @@ import { CryptoDigestAlgorithm, digestStringAsync } from 'expo-crypto';
 import { useQuestionBankAsset } from '@/features/question-bank/hooks/useQuestionBankAsset';
 import recorded from './opi-recorded-audio.json';
 
-const records: Record<string, { textSha256: string; path: string }> = recorded.records;
+type RecordingVersion = { textSha256: string; path: string };
+const records: Record<string, RecordingVersion & { displayVariants?: RecordingVersion[] }> = recorded.records;
 
 /** Reuse the existing private resource resolver, never a public copy of OPI audio. */
 export function useQuestionRecording(id?: string, text?: string) {
@@ -13,7 +14,8 @@ export function useQuestionRecording(id?: string, text?: string) {
     let active = true;
     if (candidate && text) {
       void digestStringAsync(CryptoDigestAlgorithm.SHA256, text).then(hash => {
-        if (active) setMatch({ id, text, path: hash === candidate.textSha256 ? candidate.path : undefined });
+        const version = [candidate, ...(candidate.displayVariants ?? [])].find(version => version.textSha256 === hash);
+        if (active) setMatch({ id, text, path: version?.path });
       }).catch(() => { if (active) setMatch({ id, text }); });
     }
     return () => { active = false; };

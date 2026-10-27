@@ -42,7 +42,7 @@
     {
       "id": "atc-scenario-0107-card-main-1842",
       "taskTitle": "ACA 123-5",
-      "audioText": "C: ACA 123, your flight plan has been amended, you’ll divert to COG to pick up some cargo and transit passengers, is that right?\nB: Tell the controller Yes.",
+      "audioText": "C: ACA 123, your flight plan has been amended, you'll divert to COG to pick up some cargo and transit passengers, is that right?\nB: Tell the controller Yes.",
       "audioTextZh": "C: ACA 123，你的飞行计划已修改，你将改航到 COG 接载一些货物和中转旅客，是这样吗？\nB: 告诉管制员是。",
       "referenceText": "Affirm, that is correct, ACA 123.",
       "referenceTextZh": "肯定，正确，ACA 123。",
@@ -51,7 +51,7 @@
     {
       "id": "atc-scenario-0107-card-main-1843",
       "taskTitle": "ACA 123-6",
-      "audioText": "C: ACA 123, have you received departure information?\nB: You have got information K, but you don’t know the present information code. You ask about it.",
+      "audioText": "C: ACA 123, have you received departure information?\nB: You have got information K, but you don't know the present information code. You ask about it.",
       "audioTextZh": "C: ACA 123，你收到离场信息了吗？\nB: 你已收到信息 K，但不知道当前信息代码。你询问。",
       "referenceText": "We have received Information K. What is the current information? ACA 123.",
       "referenceTextZh": "我们已收到信息 K。当前信息是什么？ACA 123。",
@@ -78,7 +78,7 @@
     {
       "id": "atc-scenario-0107-card-main-1846",
       "taskTitle": "ACA 123-9",
-      "audioText": "C: ACA 123, you would expect a delay of 1 hour if you don’t make this slot.\nB: Tell the controller that the moving walkway has been fixed. All the passengers will be on the aircraft in a few minutes, but the luggage loading is too slow due an old fashioned loader, you request the controller to inform the ground handling and send a new loader as soon as possible.",
+      "audioText": "C: ACA 123, you would expect a delay of 1 hour if you don't make this slot.\nB: Tell the controller that the moving walkway has been fixed. All the passengers will be on the aircraft in a few minutes, but the luggage loading is too slow due an old fashioned loader, you request the controller to inform the ground handling and send a new loader as soon as possible.",
       "audioTextZh": "C: ACA 123，如果你赶不上这个时刻，预计会延误 1 小时。\nB: 告诉管制员自动步道已经修好。所有旅客几分钟内会上机，但由于一台老式装载机，行李装载太慢，你请求管制员通知地服并尽快派一台新装载机。",
       "referenceText": "Ground, ACA 123, the moving jet-way has been fixed. All the passengers will finish boarding in a couple of minutes, but luggage loading has not been completed due to a slow-moving loader. Please inform the ground handling to send another one as quickly as possible.",
       "referenceTextZh": "地面，ACA 123，自动步道已经修好。所有旅客几分钟内完成登机，但由于装载机移动慢，行李装载尚未完成，请通知地服尽快再派一台。",
@@ -116,14 +116,14 @@
       "taskTitle": "ACA 123-13",
       "audioText": "C: Is the leakage serious? What is your intention?\nB: You tell the controller that the starboard engine fuel line has been leaking slightly. You are not certain if you can continue the flight. You will contact with the company dispatcher.",
       "audioTextZh": "C: 漏油严重吗？你的意图是什么？\nB: 告诉管制员右发燃油管路轻微泄漏。你不确定是否能继续飞行。你将联系公司签派。",
-      "referenceText": "The starboard engine fuel line has been leaking slightly. I’m not sure if our flight will continue or not. I’ll consult with our company dispatcher, ACA 123.",
+      "referenceText": "The starboard engine fuel line has been leaking slightly. I'm not sure if our flight will continue or not. I'll consult with our company dispatcher, ACA 123.",
       "referenceTextZh": "右发燃油管路轻微泄漏。我不确定我们的航班是否会继续。我会咨询公司签派，ACA 123。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1850.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1851",
       "taskTitle": "ACA 123-14",
-      "audioText": "C: ACA 123, your clearance will expire then, I’ll give you a new slot when you are ready.\nB: You tell the controller that your flight has to be cancelled.",
+      "audioText": "C: ACA 123, your clearance will expire then, I'll give you a new slot when you are ready.\nB: You tell the controller that your flight has to be cancelled.",
       "audioTextZh": "C: ACA 123，你的许可届时会过期，准备好后我会给你新的时刻。\nB: 告诉管制员你的航班必须取消。",
       "referenceText": "Ground, ACA 123, we have to cancel our flight.",
       "referenceTextZh": "地面，ACA 123，我们必须取消航班。",

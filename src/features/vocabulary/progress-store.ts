@@ -1,3 +1,4 @@
+import { currentVocabularyPolicy, migrateCurrentVocabulary, subscribeVocabularyCatalog } from './live-catalog';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { enqueueVocabularyDocument } from '@/features/sync/learning-sync';
@@ -17,6 +18,7 @@ import type {
   VocabularyBook,
   VocabularyBookStats,
   VocabularyState,
+  VocabularyStudySession,
   VocabularyTestResult,
   VocabularyWordProgress,
   VocabularyWordStatus,
@@ -27,9 +29,10 @@ let mutationQueue = Promise.resolve();
 async function mutateVocabularyState(updater: (state: VocabularyState) => VocabularyState) {
   let result = createEmptyVocabularyState();
   const next = mutationQueue.catch(() => undefined).then(async () => {
-    const current = await readVocabularyState();
+    const original = await readVocabularyState({ migrate: false });
+    const current = migrateCurrentVocabulary(original);
     const updated = updater(current);
-    if (updated === current) {
+    if (updated === current && current === original) {
       result = current;
       return;
     }
@@ -63,6 +66,8 @@ export function useVocabularyState() {
   const [state, setState] = useState<VocabularyState>(createEmptyVocabularyState);
   const [ready, setReady] = useState(false);
 
+  useEffect(() => subscribeVocabularyCatalog(() => { void mutateVocabularyState(current => current).catch(() => undefined); }), []);
+
   useEffect(() => {
     let active = true;
     void readVocabularyState().then((next) => {
@@ -82,7 +87,7 @@ export async function setWordFavorite(reference: WordFavoriteReference, favorite
     if (!key) return current;
     const words = {
       ...current.words,
-      [key]: { status: 'new' as const, favorite, updatedAt },
+      [key]: { ...progressFor(key, current), favorite, updatedAt },
     };
     if (reference.wordId) {
       words[reference.wordId] = {
@@ -104,7 +109,7 @@ export async function toggleWordFavorite(reference: WordFavoriteReference) {
     if (!key) return current;
     const words = {
       ...current.words,
-      [key]: { status: 'new' as const, favorite, updatedAt },
+      [key]: { ...progressFor(key, current), favorite, updatedAt },
     };
     if (reference.wordId) {
       words[reference.wordId] = {
@@ -126,12 +131,12 @@ export async function migrateLegacyVocabularyFavorites(books: VocabularyBook[]) 
       for (const word of book.words) {
         const legacy = current.words[word.id];
         const key = favoriteKeyForWord(word.word);
-        if (!legacy || !key) continue;
+        if (!legacy || !key || key === word.id) continue;
         const canonical = words[key];
         if (!legacy.favorite && !canonical) continue;
         if (canonical && Date.parse(canonical.updatedAt) >= Date.parse(legacy.updatedAt)) continue;
         if (!changed) words = { ...current.words };
-        words[key] = { status: 'new', favorite: legacy.favorite, updatedAt: legacy.updatedAt };
+        words[key] = { ...progressFor(key, current), favorite: legacy.favorite, updatedAt: legacy.updatedAt };
         changed = true;
       }
     }
@@ -155,11 +160,17 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
 
   const setStatus = useCallback(async (wordId: string, status: VocabularyWordStatus) => {
     const updatedAt = new Date().toISOString();
-    return mutateVocabularyState((current) => ({
-      ...current,
-      words: { ...current.words, [wordId]: { ...progressFor(wordId, current), status, updatedAt } },
-      updatedAt,
-    }));
+    return mutateVocabularyState((current) => {
+      const policy=currentVocabularyPolicy(),retired=Object.hasOwn(policy?.retiredIds??{},wordId);
+      const target=retired?policy!.retiredIds[wordId]:wordId;
+      let studySession=current.studySession;
+      if(studySession&&target&&status!=='new'&&studySession.wordIds.includes(target)){
+        const answers={...studySession.answers,[target]:status};
+        const nextWordId=retired&&studySession.nextWordId===target?studySession.wordIds.find(id=>!answers[id])??null:studySession.nextWordId;
+        studySession={...studySession,answers,nextWordId,updatedAt};
+      }
+      return {...current,words:{...current.words,[wordId]:{...progressFor(wordId,current),status,updatedAt}},...(studySession?{studySession}:{}),updatedAt};
+    });
   }, []);
 
   const toggleFavorite = useCallback((word: { id: string; word: string }) => toggleWordFavorite({ word: word.word, wordId: word.id }), []);
@@ -169,7 +180,7 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
     return mutateVocabularyState((current) => {
       const words = { ...current.words };
       for (const word of book.words) words[word.id] = { ...progressFor(word.id, current), status: 'new', updatedAt };
-      return { ...current, words, updatedAt };
+      return { ...current, words, updatedAt, ...(current.studySession ? {studySession:{...current.studySession,nextWordId:null,answers:{},updatedAt}} : {}) };
     });
   }, []);
 
@@ -179,9 +190,11 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
     updatedAt: lastTest.completedAt,
   })), []);
 
+  const saveStudySession = useCallback(async (studySession:VocabularyStudySession) => mutateVocabularyState(current=>({...current,studySession:{...studySession,answers:current.studySession?.startedAt===studySession.startedAt?{...studySession.answers,...current.studySession.answers}:studySession.answers??{}},updatedAt:studySession.updatedAt})), []);
+
   const statsByBook = useMemo(() => Object.fromEntries(books.map((book) => [book.id, statsForBook(book, state)])), [books, state]);
 
-  return { ready, state, statsByBook, setStatus, toggleFavorite, resetBook, saveTestResult };
+  return { ready, state, statsByBook, setStatus, toggleFavorite, resetBook, saveTestResult, saveStudySession };
 }
 
 export function resetVocabularyMutationQueueForTests() {

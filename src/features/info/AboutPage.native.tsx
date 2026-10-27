@@ -1,9 +1,8 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { AppUpdatePrompt } from '@/features/app-updates/AppUpdatePrompt';
 import { nativeApplicationVersion } from 'expo-application';
-import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
-
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Card, Screen } from '@/components/ui';
@@ -20,8 +19,7 @@ export function AboutPage() {
     catch { setError('暂时无法打开备案查询，请稍后重试。'); }
   }
   return (
-    <Screen scroll>
-      <TopBar title="关于听你五个" onBack={() => router.canGoBack() ? router.back() : router.replace('/account/settings')} />
+    <Screen scroll header={<TopBar title="关于听你五个" onBack={() => router.canGoBack() ? router.back() : router.replace('/account/settings')} />}>
       <View style={styles.content}>
         <View style={styles.brand}>
           <AppBrandLogo size="lg" />

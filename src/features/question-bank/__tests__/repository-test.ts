@@ -58,6 +58,8 @@ jest.mock('expo-file-system', () => {
   return { Directory: MockDirectory, File: MockFile, Paths: { document: new MockDirectory('file:///document'), cache: new MockDirectory('file:///cache') } };
 });
 
+import { beginCommerceEntitlementGeneration, publishCommerceEntitlementChange, resetCommerceEntitlementEventsForTests } from '@/features/native-commercial-testflight/commerce-entitlement-events';
+import { remoteQuestionBankRepository } from '../data/repository.native';
 import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank, questionBankRepository } from '../data/repository';
 import {
   activateQuestionBankContentAccount,
@@ -191,6 +193,7 @@ describe('embeddedQuestionBankRepository', () => {
   });
 
   afterEach(async () => {
+    resetCommerceEntitlementEventsForTests();
     await activateQuestionBankContentAccount(undefined);
     mockStorageValues.clear();
     mockSecureValues.clear();
@@ -210,8 +213,8 @@ describe('embeddedQuestionBankRepository', () => {
       'listening',
       'sentences900',
       'radiotelephony',
-      'opi',
       'storytelling',
+      'opi',
     ]);
   });
 
@@ -235,64 +238,29 @@ describe('embeddedQuestionBankRepository', () => {
     )).toBe(true);
     expect(listeningCards.reduce((total, card) =>
       total + (card.kind !== 'image' && Array.isArray(card.choicesZh) ? card.choicesZh.length : 0), 0)).toBe(160);
-    expect(listening?.categories[0].topics[0].cards[0]).toMatchObject({
-      id: 'listening-main-001',
-      audio: '/question-bank-assets/audio/listening/fzy/26c34fea0b90a1cc7c64.mp3',
-      correctChoiceIndex: 1,
-    });
+    expect(listeningCards[0]).toMatchObject({ id: 'listening-main-950', taskTitle: '10秒航空英语-1' });
     expect(resourceManifest.files[0]).toMatchObject({
       publicPath: '/question-bank-assets/audio/listening/main/001.mp3',
       sizeBytes: 152876,
     });
   });
 
-  it('keeps only the 1,044 confirmed free cards and their media references in the Native fallback', () => {
-    const resources = new Map(resourceManifest.files.map((resource) => [resource.publicPath, resource]));
-
-    const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
-    return Promise.all(banks).then((datasets) => {
-      const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1502, 900, 5751, 2321, 382]);
-      expect(cards).toHaveLength(1044);
-      expect(resourceManifest.files).toHaveLength(12605);
-      expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
-
-      const imageCards = cards.filter(({ bankId, card }) => bankId === 'opi' && card.kind === 'image');
-      expect(imageCards).toHaveLength(0);
-      const opiAudio = cards.filter(({ bankId }) => bankId === 'opi');
-      expect(opiAudio).toHaveLength(44);
-      expect(opiAudio.every(({card}) => Boolean(card.audio) && resources.has(card.audio!))).toBe(true);
-
-      const expectedAudio = (bankId: string, cardId: string) => {
-        if (bankId === 'listening') return `/question-bank-assets/audio/listening/main/${cardId.slice(-3)}.mp3`;
-        if (bankId === 'sentences900') return `/question-bank-assets/audio/sentence900/main/${cardId.slice(-3)}.mp3`;
-        if (bankId === 'radiotelephony') return `/question-bank-assets/audio/radiotelephony/main/${cardId.split('-').at(-1)}.mp3`;
-        const match = cardId.match(/^story-(koala|kongguan|wing)-(\d{3})$/);
-        return match ? `/question-bank-assets/audio/storytelling/${match[1]}/${match[2]}.mp3` : undefined;
-      };
-      const legacyCards = cards.filter(({ bankId, card }) =>
-        bankId !== 'opi' && bankId !== 'sentences900' && card.audio && !card.audio.includes('/web-v5/') && !card.audio.includes('/web-v6/') && !card.audio.includes('/fzy/'));
-      expect(legacyCards.filter(({ bankId, card }) => card.audio !== expectedAudio(bankId, card.id))).toEqual([]);
-
-      const sentenceCards = cards.filter(({ bankId }) => bankId === 'sentences900');
-      expect(sentenceCards.length).toBeGreaterThan(0);
-      expect(sentenceCards.every(({ card }) =>
-        card.audio?.startsWith(`/question-bank-assets/audio/sentence900/rev13/${card.id}-`)
-        && resources.has(card.audio))).toBe(true);
-
-      const webCards = cards.filter(({ card }) => card.audio?.includes('/web-v5/') || card.audio?.includes('/web-v6/'));
-      expect(webCards).toHaveLength(0);
-      expect(webCards.every(({ bankId, card }) =>
-        new RegExp(`^/question-bank-assets/audio/${bankId}/web-v[56]/pepec-[a-z0-9_-]+\\.mp3$`).test(card.audio ?? ''))).toBe(true);
-      expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v5/'))).toHaveLength(0);
-      expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v6/'))).toHaveLength(0);
-      expect(new Set(webCards.map(({ card }) => card.audio)).size).toBe(0);
-
-      expect(resources.get('/question-bank-assets/audio/listening/main/454.mp3')).toMatchObject({ sizeBytes: 128300 });
-      expect(resources.get('/question-bank-assets/audio/listening/main/595.mp3')).toMatchObject({ sizeBytes: 404780 });
-      expect(cards.some(({ card }) => card.audio === '/question-bank-assets/audio/listening/main/454.mp3')).toBe(false);
-      expect(cards.some(({ card }) => card.audio === '/question-bank-assets/audio/listening/main/595.mp3')).toBe(false);
-    });
+  it('embeds only release-order free cards and their existing media, while retaining full directory counts', async () => {
+    const resources = new Set(resourceManifest.files.map(resource => resource.publicPath));
+    const banks = await Promise.all(getEmbeddedQuestionBankIds().map(id => embeddedQuestionBankRepository.getDataset(id)));
+    const cards = banks.flatMap(bank => bank?.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)) ?? []);
+    expect(banks.map(bank => bank?.declaredCardCount)).toEqual([1502, 900, 5750, 382, 2365]);
+    expect(banks.map(bank => bank!.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)).length)).toEqual([40, 900, 17, 3, 23]);
+    expect(cards).toHaveLength(983);
+    expect(cards.filter(card => card.audio && !resources.has(card.audio))).toEqual([]);
+    expect(cards.filter(card => card.kind === 'image' && !resources.has(card.image))).toEqual([]);
+    expect(resourceManifest.files).toHaveLength(12651);
+    const full = require('../data/question-bank.json') as QuestionBankDataset[];
+    for (const bank of banks) {
+      const source = full.find(item => item.id === bank!.id)!;
+      if (source.id === 'listening') expect(bank!.categories.map(category => category.topics.flatMap(topic => topic.cards).map(card => card.id)))
+        .toEqual(bank!.categories.map(category => source.categories.find(item => item.id === category.id)!.topics.flatMap(topic => topic.cards).filter(card => !card.retired).slice(0, 10).map(card => card.id)));
+    }
   });
 
   it('loads and caches a remote release through the unified repository', async () => {
@@ -310,7 +278,19 @@ describe('embeddedQuestionBankRepository', () => {
     const result = await loadQuestionBank('listening');
     expect(result).toMatchObject({ source: 'remote', dataset: { id: 'listening' } });
     expect(mockStorageValues.has('icao.content.v1.bank.listening')).toBe(false);
-    expect(mockStorageValues.has(`icao.content.v3.catalog.${accountId}.production.listening`)).toBe(true);
+    expect(mockStorageValues.has(`icao.content.v5.catalog.${accountId}.production.listening`)).toBe(true);
+  });
+
+  it('refetches catalogs cached from an older API rather than advertising the new directory ETag', async () => {
+    const original = (await embeddedQuestionBankRepository.getDataset('listening'))!;
+    const dataset = { ...original, categories: original.categories.map(category => ({ ...category, topics: category.topics.map(({ radioEntries: _entries, ...topic }) => topic) })) };
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'http://127.0.0.1:3101';
+    const request = jest.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: true, status: 200,
+      json: async () => ({ data: { bankId: 'listening', version: 1, checksum: 'ab'.repeat(32), dataset } }),
+    } as Response);
+    await remoteQuestionBankRepository.getDataset('listening');
+    await remoteQuestionBankRepository.getDataset('listening');
+    expect(request.mock.calls.at(-1)?.[1]?.headers).not.toHaveProperty('if-none-match');
   });
 
   it('falls back to the embedded release when the remote API fails without cache', async () => {
@@ -605,6 +585,14 @@ describe('embeddedQuestionBankRepository', () => {
     await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).rejects.toMatchObject({ code: 'membership_required', status: 403 });
   });
 
+  it('returns authorized Web member text without requesting native offline credentials', async () => {
+    const { request } = await authenticatedContentApi({ credentialStatus: 503 });
+    Platform.OS = 'web';
+    const topic = await remoteQuestionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    expect(topic?.cards.length).toBeGreaterThan(0);
+    expect(request.mock.calls.some(([url]) => String(url).endsWith('/v1/content-access/credentials'))).toBe(false);
+  });
+
   it('rejects a late authorized topic when its account changes during optional credential loading', async () => {
     const { accountId, request } = await authenticatedContentApi();
     const route = request.getMockImplementation()!;
@@ -627,6 +615,30 @@ describe('embeddedQuestionBankRepository', () => {
     expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
   });
 
+  it('rejects a late free catalog before it can overwrite the refreshed member cache', async () => {
+    const { accountId, request } = await authenticatedContentApi();
+    const owner = beginCommerceEntitlementGeneration(accountId);
+    let release!: (value: Response) => void;
+    let started!: () => void;
+    const requested = new Promise<void>(resolve => { started = resolve; });
+    request.mockImplementationOnce(async () => { started(); return new Promise<Response>(resolve => { release = resolve; }); });
+    const oldRequest = remoteQuestionBankRepository.getDataset('opi');
+    await requested;
+    publishCommerceEntitlementChange({ ...owner, reason: 'purchase', snapshot: {
+      serverTime: '2026-10-25T01:00:00Z', membership: { active: true },
+    } as never });
+    const member = await remoteQuestionBankRepository.getDataset('opi');
+    const key = `icao.content.v5.catalog.${accountId}.production.opi`;
+    const cached = mockStorageValues.get(key);
+    expect(member?.access?.membershipActive).toBe(true);
+    release({ ok: true, status: 200, json: async () => ({ data: {
+      bankId: 'opi', version: 12, checksum: 'ab'.repeat(32),
+      dataset: { ...member, access: { ...member!.access, membershipActive: false } },
+    } }) } as Response);
+    await expect(oldRequest).rejects.toMatchObject({ code: 'content_account_changed' });
+    expect(mockStorageValues.get(key)).toBe(cached);
+  });
+
   it('never writes or trusts an invalidly signed offline credential even when the authenticated online topic succeeds', async () => {
     const { request } = await authenticatedContentApi();
     const route = request.getMockImplementation()!;
@@ -647,8 +659,15 @@ describe('embeddedQuestionBankRepository', () => {
       bankId: 'listening', categoryId: 'listening-category-01', version: 12, checksum: 'ab'.repeat(32), topic,
       access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: false, membershipExpiresAt: null },
     } }) } as Response);
-    await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'))
-      .resolves.toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-001' })]) });
+    const results = await Promise.all([
+      questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'),
+      questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'),
+    ]);
+    for (const result of results) {
+      expect(result).toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-950' })]) });
+    }
+    expect(results[0]).not.toBe(results[1]);
+    expect(globalThis.fetch).toHaveBeenCalledTimes(1);
   });
 
   it('returns authorized online audio before optional offline download completes, then retains the verified offline copy', async () => {
@@ -686,7 +705,11 @@ describe('embeddedQuestionBankRepository', () => {
     const download = File.downloadFileAsync;
     let release!: () => void;
     const held = new Promise<void>((resolve) => { release = resolve; });
+    let notifyDownloadsStarted!: () => void;
+    const downloadsStarted = new Promise<void>(resolve => { notifyDownloadsStarted = resolve; });
+    let starts = 0;
     const downloading = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+      if (++starts === 2) notifyDownloadsStarted();
       await held;
       return download(...args);
     });
@@ -694,10 +717,17 @@ describe('embeddedQuestionBankRepository', () => {
     const first = cacheMemberResource(paths[0], 'https://example.test/first', metadata);
     const duplicate = cacheMemberResource(paths[0], 'https://example.test/first-refreshed', metadata);
     const second = cacheMemberResource(paths[1], 'https://example.test/second', metadata);
+    // Observe completion immediately, including failures, before account cleanup.
+    // A 1-second polling window races native hashing under full-suite load.
+    const completed = Promise.all([first, duplicate, second]);
     try {
-      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(2));
-    } finally { release(); }
-    const results = await Promise.all([first, duplicate, second]);
+      await Promise.race([downloadsStarted, completed.then(() => { throw new Error('downloads_completed_before_two_transfers_started'); })]);
+      expect(downloading).toHaveBeenCalledTimes(2);
+    } finally {
+      release();
+      await Promise.allSettled([first, duplicate, second]);
+    }
+    const results = await completed;
     expect(results[0]).toBe(results[1]);
     expect(results[0]).not.toBe(results[2]);
     expect(mockFiles.size).toBe(2);

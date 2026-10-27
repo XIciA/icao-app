@@ -22,6 +22,7 @@ const mockRequestPhoneBindingOtp = jest.fn();
 const mockResendPhoneBindingOtp = jest.fn();
 const mockVerifyPhoneBindingOtp = jest.fn();
 const mockAuthorizePhoneBinding = jest.fn();
+const mockRouterDismissTo = jest.fn();
 const mockRouterReplace = jest.fn();
 const mockRouterPush = jest.fn();
 let mockAuthSession: { user: { hasPassword: boolean; id: string; phone?: string; providers?: ('phone' | 'apple' | 'wechat')[]; registrationPending: boolean } } | undefined;
@@ -65,6 +66,7 @@ jest.mock('@/features/feedback/feedback-client', () => ({
 
 jest.mock('@/features/auth/AuthProvider', () => ({
   useAuth: () => ({
+    canAccessApp: true,
     account: mockAccount,
     session: mockAuthSession,
     passwordChangePurpose: mockPasswordChangePurpose,
@@ -95,7 +97,7 @@ jest.mock('expo-router', () => ({
   useFocusEffect: (callback: () => void) => { const React = jest.requireActual('react'); React.useEffect(callback, [callback]); },
   usePathname: () => '/info/about',
   useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, push: mockRouterPush, replace: mockRouterReplace }),
+  useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, push: mockRouterPush, replace: mockRouterReplace, dismissTo: mockRouterDismissTo }),
 }));
 
 function withSafeArea(node: React.ReactNode) {
@@ -118,6 +120,7 @@ describe('base flow parity screens', () => {
     mockSignOut.mockReset();
     mockSignOut.mockResolvedValue(undefined);
     mockRouterReplace.mockReset();
+    mockRouterDismissTo.mockReset();
     mockRouterPush.mockReset();
     mockRequestPhoneBindingOtp.mockReset();
     mockAuthorizePhoneBinding.mockReset().mockResolvedValue('verified-current-account-grant');
@@ -208,7 +211,7 @@ describe('base flow parity screens', () => {
     await fireEvent.press(screen.getByText('验证并完成绑定'));
     expect(mockVerifyPhoneBindingOtp).toHaveBeenCalledWith({ phone: '+8613900139000' }, '123456');
     expect(mockSignOut).not.toHaveBeenCalled();
-    expect(mockRouterReplace).toHaveBeenCalledWith('/account/security');
+    expect(mockRouterDismissTo).toHaveBeenCalledWith('/account/security');
   });
 
   it('cancels replacement verification without sending an OTP or changing the original binding', async () => {
@@ -242,7 +245,7 @@ describe('base flow parity screens', () => {
     await fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456');
     await fireEvent.press(screen.getByText('验证并完成绑定'));
     expect(mockVerifyPhoneBindingOtp).toHaveBeenCalledWith({ phone: '+8613800138000' }, '123456');
-    expect(mockRouterReplace).toHaveBeenCalledWith('/account/security');
+    expect(mockRouterDismissTo).toHaveBeenCalledWith('/account/security');
   });
 
   it('asks for fresh social verification without revealing phone occupancy', async () => {
@@ -338,7 +341,7 @@ describe('base flow parity screens', () => {
 
     await render(withSafeArea(<AccountScreen />));
 
-    await waitFor(() => expect(mockRouterReplace).toHaveBeenCalledWith('/account/security'));
+    await waitFor(() => expect(mockRouterDismissTo).toHaveBeenCalledWith('/account/security'));
   });
 
   it('keeps the current login while opening SMS recovery for a forgotten password', async () => {
@@ -376,7 +379,7 @@ describe('base flow parity screens', () => {
     await fireEvent.press(screen.getByTestId('password-submit'));
 
     await waitFor(() => expect(mockUpdatePassword).toHaveBeenCalledWith('flightdeck1', undefined));
-    expect(mockRouterReplace).toHaveBeenCalledWith('/account/security');
+    expect(mockRouterDismissTo).toHaveBeenCalledWith('/account/security');
     expect(screen.queryByText('我知道了')).toBeNull();
   });
 

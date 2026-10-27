@@ -217,7 +217,7 @@
     {
       "id": "radiotelephony-fzy-210230",
       "taskTitle": "【练习版】Complex instruction复杂指令-22",
-      "audioText": "ACA989, Wuhan Approach, Roger, follow ZF-1A arrival, and descend and maintain 1800m on QNH 1013. Information D.[Read back the controller’s instruction, and ask the detail of information D because you could not receive the information on the radio.]",
+      "audioText": "ACA989, Wuhan Approach, Roger, follow ZF-1A arrival, and descend and maintain 1800m on QNH 1013. Information D.[Read back the controller's instruction, and ask the detail of information D because you could not receive the information on the radio.]",
       "audioTextZh": "加航989，武汉进近，收到，ZF-1A进场，下降保持修正海压1800米，修正海压1013。通播D。【复诵管制员指令，询问通播D详细内容，因为你并未收到该消息。】",
       "studyTier": 0,
       "referenceText": "Roger, follow ZF-1A arrival; descend and maintain 1800m on QNH 1013. Request details of information D. ACA989.",
@@ -257,7 +257,7 @@
     {
       "id": "radiotelephony-fzy-224886",
       "taskTitle": "采分点练习-复杂指令-1",
-      "audioText": "B: [You’ve just followed your TCAS RA instruction. You’ve stopped your descent at nearly 6800m, and track out 9km right of the course, report to ATC.]",
+      "audioText": "B: [You've just followed your TCAS RA instruction. You've stopped your descent at nearly 6800m, and track out 9km right of the course, report to ATC.]",
       "audioTextZh": "B：【你已执行了TCAS RA指令。你已停止下降，高度维持在约6800米，并偏航右转偏离原航线9公里，现向空管报告。】",
       "studyTier": 2,
       "referenceText": "Wuhan Control, CES5325, our TCAS instructed us to stop descent at 6800m, and we are tracking out 9km right of the course.",
@@ -331,7 +331,7 @@
       "audioTextZh": "C: 东方5227，武汉塔台，离地后，跑道航向上到600米，按照标准离场程序飞往HZ，离地后，联系126.3，可以起飞，跑道04。",
       "studyTier": 2,
       "referenceText": "Runway heading to 600m, follow SID fly to HZ, 126.3, cleared for takeoff, runway 04, CES5227.",
-      "referenceTextZh": "跑道航向上到600米，按照标准离场程序飞往HZ，126.3， 可以起飞，跑道04，东方5227。",
+      "referenceTextZh": "跑道航向上到600米，按照标准离场程序飞往HZ，126.3，可以起飞，跑道04，东方5227。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d52c94cefab1acb0aa51.mp3"
     },
     {

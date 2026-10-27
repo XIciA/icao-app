@@ -1,22 +1,22 @@
 {
   "id": "atc-fzy-618",
-  "name": "SIA233 tailwind exceeds limit, etc.",
+  "name": "SIA233 · 顺风超限",
   "declaredCardCount": 19,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111319",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-1",
-      "audioText": "[Your call sign is SIA233. Stand 215, from Wuhan to Singapore, information B. Request ATC clearance to Singapore.]",
-      "audioTextZh": "【你的呼号是新航233，215号机位，从武汉飞往新加坡，通播B，向ATC申请放行至新加坡。】",
+      "taskTitle": "35. SIA233 · 顺风超限-1",
+      "audioText": "Your call sign is SIA233. Stand 215, from Wuhan to Singapore, information B. Request ATC clearance to Singapore.",
+      "audioTextZh": "你的呼号是新航233，215号机位，从武汉飞往新加坡，通播B，向ATC申请放行至新加坡。",
       "referenceText": "Wuhan Delivery, SIA233, Stand 215, information B, destination Singapore, request ATC clearance.",
       "referenceTextZh": "武汉放行，新航233，215号机位，通播B，目的地新加坡，向ATC申请放行至新加坡。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/151a32b4d62c0ccce7fa.mp3"
     },
     {
       "id": "radiotelephony-fzy-111320",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-2",
+      "taskTitle": "35. SIA233 · 顺风超限-2",
       "audioText": "SIA233, Wuhan Delivery cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325.",
       "audioTextZh": "新航233，武汉放行，可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325。",
       "referenceText": "Cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325, SIA233.",
@@ -25,16 +25,16 @@
     },
     {
       "id": "radiotelephony-fzy-111321",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-3",
-      "audioText": "[You are now ready, contact Ground to request pushback and start-up.]",
-      "audioTextZh": "[你现在准备好了，联系地面，请求推出开车]",
+      "taskTitle": "35. SIA233 · 顺风超限-3",
+      "audioText": "You are now ready, contact Ground to request pushback and start-up.",
+      "audioTextZh": "你现在准备好了，联系地面，请求推出开车",
       "referenceText": "Wuhan Ground, SIA233, request pushback and startup.",
       "referenceTextZh": "武汉地面，新航233，请求推出开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e6a1b81d3c611d19c23a.mp3"
     },
     {
       "id": "radiotelephony-fzy-111322",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-4",
+      "taskTitle": "35. SIA233 · 顺风超限-4",
       "audioText": "SIA233, Wuhan Ground, pushback and startup approved, facing east.",
       "audioTextZh": "新航233，武汉地面，同意推出开车，面朝东。",
       "referenceText": "Pushback and startup approved, facing east, SIA233.",
@@ -43,16 +43,16 @@
     },
     {
       "id": "radiotelephony-fzy-111323",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-5",
-      "audioText": "[While taxiing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.]",
-      "audioTextZh": "【滑行时，你注意到风袋显示有强烈顺风，联系塔台检查风向风速。】",
+      "taskTitle": "35. SIA233 · 顺风超限-5",
+      "audioText": "While taxiing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.",
+      "audioTextZh": "滑行时，你注意到风袋显示有强烈顺风，联系塔台检查风向风速。",
       "referenceText": "Wuhan Tower, SIA233, request wind check.",
       "referenceTextZh": "武汉塔台，新航233，证实风向风速。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fc144fb5086f5cef8a62.mp3"
     },
     {
       "id": "radiotelephony-fzy-111324",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-6",
+      "taskTitle": "35. SIA233 · 顺风超限-6",
       "audioText": "SIA233, surface wind 220 degrees, 8m/s.[The tailwind exceeds your takeoff limit. Contact Tower to change to runway 18L and state the reason.]",
       "audioTextZh": "新航233，地面风220，8米/秒。【该风速超过你的起飞限制。联系塔台更换至跑道18左并说明原因。】",
       "referenceText": "Wuhan Tower, SIA233, the tailwind exceeds our takeoff limit, request runway 18L.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111325",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-7",
+      "taskTitle": "35. SIA233 · 顺风超限-7",
       "audioText": "SIA233, contact Ground 121.6.[Read Back]",
       "audioTextZh": "新航233，联系地面121.6。【复诵】",
       "referenceText": "Contact Ground 121.6, SIA233.",
@@ -70,8 +70,8 @@
     },
     {
       "id": "radiotelephony-fzy-111326",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-8",
-      "audioText": "[Contact Ground 121.6.]",
+      "taskTitle": "35. SIA233 · 顺风超限-8",
+      "audioText": "Contact Ground 121.6.",
       "audioTextZh": "【联系地面121.6。】",
       "referenceText": "Wuhan Ground, SIA233 with you.",
       "referenceTextZh": "武汉地面，新航233，听你指挥。",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111327",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-9",
+      "taskTitle": "35. SIA233 · 顺风超限-9",
       "audioText": "SIA233, taxi to holding point runway 18L via E, D4, F.[Read Back]",
       "audioTextZh": "新航233，沿滑行道E，D4，F滑至跑道18左的等待点。【复诵】",
       "referenceText": "Taxi to holding point runway 18L via E, D4, and F, SIA233.",
@@ -88,16 +88,16 @@
     },
     {
       "id": "radiotelephony-fzy-111328",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-10",
-      "audioText": "[After you pass taxiway E, you saw a cone lying on the taxiway D4, tell the controller what you have seen.]",
-      "audioTextZh": "【滑过滑行道E后，你看到滑行道D4上有一个路障，告诉管制员你看到的情况。】",
+      "taskTitle": "35. SIA233 · 顺风超限-10",
+      "audioText": "After you pass taxiway E, you saw a cone lying on the taxiway D4, tell the controller what you have seen.",
+      "audioTextZh": "滑过滑行道E后，你看到滑行道D4上有一个路障，告诉管制员你看到的情况。",
       "referenceText": "Wuhan Ground, SIA233, there is a cone lying on the taxiway D4 and it blocks my taxiway. Request assistance.",
       "referenceTextZh": "武汉地面，新航233，滑行道D4上有一个路障，它堵住了我的滑行道。请求援助。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/042f092447d609120e5e.mp3"
     },
     {
       "id": "radiotelephony-fzy-111329",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-11",
+      "taskTitle": "35. SIA233 · 顺风超限-11",
       "audioText": "SIA233, roger that. Hold present position.[Read Back]",
       "audioTextZh": "新航233，收到。原地等待。【复诵】",
       "referenceText": "Holding, SIA233.",
@@ -106,17 +106,17 @@
     },
     {
       "id": "radiotelephony-fzy-111330",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-12",
-      "audioText": "[You have departed from runway 18L, shortly after liftoff, you encountered a bird strike, your right engine has failed, make an urgency call, request maintain runway heading.]",
-      "audioTextZh": "【你已在跑道18左起飞，起飞后不久，飞机遭到了鸟击，右侧发动机失效，做紧急呼叫，请求保持跑道航向。】",
+      "taskTitle": "35. SIA233 · 顺风超限-12",
+      "audioText": "You have departed from runway 18L, shortly after liftoff, you encountered a bird strike, your right engine has failed, make an urgency call, request maintain runway heading.",
+      "audioTextZh": "你已在跑道18左起飞，起飞后不久，飞机遭到了鸟击，右侧发动机失效，做紧急呼叫，请求保持跑道航向。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Tower, SIA233, right engine failure due bird strike, request maintain runway heading.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉塔台，新航233，由于鸟击，右侧发动机失效，请求保持跑道航向。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae03317739cbe8aec7fd.mp3"
     },
     {
       "id": "radiotelephony-fzy-111331",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-13",
-      "audioText": "[Tell the tower you want to dump fuel and return to Wuhan airport.]",
+      "taskTitle": "35. SIA233 · 顺风超限-13",
+      "audioText": "Tell the tower you want to dump fuel and return to Wuhan airport.",
       "audioTextZh": "【告诉塔台你想放油之后返回武汉机场。】",
       "referenceText": "Wuhan Tower, SIA233 request fuel dumping and return to Wuhan airport.",
       "referenceTextZh": "武汉塔台，新航233，请求放油，之后返回武汉机场。",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111332",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-14",
+      "taskTitle": "35. SIA233 · 顺风超限-14",
       "audioText": "SIA 233, Tower, roger PANPAN, turn right heading 240, intercept LKO VOR 30 radial inbound, climb and maintain 3000m.[Read Back]",
       "audioTextZh": "新航233，塔台，收到PANPAN，右转航向240，切入LKO VOR向台30度径向线，上升保持3000米。【复诵】",
       "referenceText": "Right heading 240, intercept LKO 030 radial inbound, climb and maintain 3000m, SIA233.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111333",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-15",
+      "taskTitle": "35. SIA233 · 顺风超限-15",
       "audioText": "SIA233, after passing LKO, left heading 220, maintain 3000m, report over LKO.[Read Back]",
       "audioTextZh": "新航233，飞过LKO后，左转航向220，3000米保持，过LKO报告。【复诵】",
       "referenceText": "After passing LKO, left heading 220, maintaining 3000m, report over LKO, SIA233.",
@@ -142,8 +142,8 @@
     },
     {
       "id": "radiotelephony-fzy-111334",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-16",
-      "audioText": "[You are over LKO, call Wuhan Control.]",
+      "taskTitle": "35. SIA233 · 顺风超限-16",
+      "audioText": "You are over LKO, call Wuhan Control.",
       "audioTextZh": "【你飞过LKO了，呼叫武汉区调。】",
       "referenceText": "Wuhan Control, SIA233, over LKO.",
       "referenceTextZh": "武汉区调，新航233，过LKO。",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111335",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-17",
+      "taskTitle": "35. SIA233 · 顺风超限-17",
       "audioText": "SIA233, advise the time required for fuel jettison.[Tell Wuhan Control you need approximately 25 min.]",
       "audioTextZh": "新航233，报告放油需要的时间。【告诉武汉区调你需要大约25分钟。】",
       "referenceText": "We need about 25min, SIA233.",
@@ -160,18 +160,18 @@
     },
     {
       "id": "radiotelephony-fzy-111336",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-18",
-      "audioText": "[Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.]",
-      "audioTextZh": "【告诉武汉进近放油完成，请求雷达引导至跑道22。】",
+      "taskTitle": "35. SIA233 · 顺风超限-18",
+      "audioText": "Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.",
+      "audioTextZh": "告诉武汉进近放油完成，请求雷达引导至跑道22。",
       "referenceText": "Wuhan Approach, SIA233, fuel dumping completed, request radar vector runway 22.",
       "referenceTextZh": "武汉进近，新航233，放油完成，请求雷达引导至跑道22。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0b3c320878e47ea7af7f.mp3"
     },
     {
       "id": "radiotelephony-fzy-111337",
-      "taskTitle": "35. SIA233 tailwind exceeds limit, etc.-19",
-      "audioText": "[You are now established on ILS approach runway 22, contact Tower.]",
-      "audioTextZh": "【你已经建立盲降进近跑道22，联系塔台。】",
+      "taskTitle": "35. SIA233 · 顺风超限-19",
+      "audioText": "You are now established on ILS approach runway 22, contact Tower.",
+      "audioTextZh": "你已经建立盲降进近跑道22，联系塔台。",
       "referenceText": "Wuhan Tower, SIA233, established ILS approach runway 22.",
       "referenceTextZh": "武汉塔台，新航233，建立盲降进近跑道22。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6e50220692b5f98972ea.mp3"

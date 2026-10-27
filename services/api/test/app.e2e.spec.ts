@@ -1,3 +1,6 @@
+import { ContentAccessService } from '../src/content-access/content-access.service';
+import { QuestionBankService } from '../src/question-bank/question-bank.service';
+import { ResourceService } from '../src/resource/resource.service';
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -122,6 +125,12 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
       assertMinimumSchemaVersion: async () => undefined,
       ping: async () => undefined,
     })
+    .overrideProvider(ContentAccessService)
+    .useValue({ assertMembership: async () => undefined })
+    .overrideProvider(QuestionBankService)
+    .useValue({ list: async () => [] })
+    .overrideProvider(ResourceService)
+    .useValue({ resolve: async () => ({ publicPath: '/question-bank-assets/test.mp3', url: 'https://example.com/free.mp3' }) })
     .overrideProvider(AUTH_VERIFIER)
     .useValue(new FakeAuthVerifier())
     .overrideProvider(AccountIdentityService)
@@ -838,7 +847,7 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('requires authentication for question banks, vocabulary, resources, editorial, feedback and AI', async () => {
+  it('allows anonymous free discovery reads but protects feedback and AI', async () => {
     const app = await testApp();
     const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
     const responses = await Promise.all([
@@ -849,9 +858,9 @@ describe('API foundation', () => {
       app.inject({ method: 'POST', url: '/v1/feedback' }),
       app.inject({ method: 'POST', url: '/v1/ai/consent', payload }),
     ]);
-    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401, 401, 401, 401]);
-    expect(responses.map((response) => response.json().error.code)).toEqual([
-      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
+    expect(responses.map((response) => response.statusCode)).toEqual([200, 200, 200, 200, 401, 401]);
+    expect(responses.filter(response => response.statusCode === 401).map((response) => response.json().error.code)).toEqual([
+      'missing_bearer_token', 'missing_bearer_token',
     ]);
     await app.close();
   });
@@ -930,6 +939,25 @@ describe('API foundation', () => {
     expect(etag).toMatch(/^"[a-f0-9]{64}"$/);
     const cached = await app.inject({ method: 'GET', url: '/v1/vocabulary', headers: { ...headers, 'if-none-match': etag! } });
     expect(cached.statusCode).toBe(304);
+    const expanded = await app.inject({ method: 'GET', url: '/v1/vocabulary?catalog=question-bank-core', headers: { ...headers, 'if-none-match': etag! } });
+    expect(expanded.statusCode).toBe(200);
+    const books = expanded.json().data.dataset.books;
+    expect(books.map((book: { words: unknown[] }) => book.words.length)).toEqual([360, 372, 106, 409]);
+    expect(books.slice(0, 3)).toEqual(response.json().data.dataset.books);
+    expect(books[3].assessmentEligible).toBe(false);
+    expect(books[3].words.every((word: { example: string; exampleTranslation: string; pronunciationText: string; frequency: unknown }) => word.example && word.exampleTranslation && word.pronunciationText && word.frequency)).toBe(true);
+    expect(expanded.headers.etag).not.toBe(etag);
+    const coreCached = await app.inject({ method: 'GET', url: '/v1/vocabulary?catalog=question-bank-core', headers: { ...headers, 'if-none-match': expanded.headers.etag! } });
+    expect(coreCached.statusCode).toBe(304);
+    const unified = await app.inject({ method:'GET',url:'/v1/vocabulary?catalog=three-books-v3',headers:{...headers,'if-none-match':etag!} });
+    expect(unified.statusCode).toBe(200);
+    const modern=unified.json().data.dataset;
+    expect(modern.catalogId).toBe('three-books-v3');
+    expect(modern.books.map((book:{id:string})=>book.id)).toEqual(['preview','icao4','icao5']);
+    expect(modern.books.every((book:{words:{frequency:{scope:string};example:string;pronunciationText:string}[]})=>book.words.length>0&&book.words.every(word=>word.frequency.scope==='question-bank-english-content'&&word.example&&word.pronunciationText))).toBe(true);
+    expect(unified.headers.etag).not.toBe(etag);
+    const modernCached=await app.inject({method:'GET',url:'/v1/vocabulary?catalog=three-books-v3',headers:{...headers,'if-none-match':unified.headers.etag!}});
+    expect(modernCached.statusCode).toBe(304);
     await app.close();
   });
 

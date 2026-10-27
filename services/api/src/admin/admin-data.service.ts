@@ -23,10 +23,12 @@ import {
   feedbackReplies,
   feedbackAttachments,
   opsAuditEvents,
+  questionBankReleases,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { AdminAuditService } from './admin-audit.service';
 import type { OpsAuthenticatedStaff } from './admin.types';
+import { feedbackQuestionName } from './feedback-question-name';
 
 function maskedReference(value: string) {
   if (value.length <= 8) return `${value.slice(0, 2)}••••${value.slice(-2)}`;
@@ -215,6 +217,7 @@ export class AdminDataService {
     cursor?: string,
     limit = 30,
     status?: string,
+    source?: string,
   ): Promise<OpsFeedbackListResponse> {
     let before: { createdAt: Date; id: string } | undefined;
     if (cursor) {
@@ -228,6 +231,7 @@ export class AdminDataService {
     const pageSize = Math.max(1, Math.min(50, limit));
     const rows = await this.database.db.select().from(feedbackTickets).where(and(
       gt(feedbackTickets.retentionAt, new Date()),
+      source ? eq(feedbackTickets.source, source) : undefined,
       status ? inArray(feedbackTickets.status, feedbackStatusStorageFilter(status)) : undefined,
       before ? or(lt(feedbackTickets.createdAt, before.createdAt), and(
         eq(feedbackTickets.createdAt, before.createdAt), lt(feedbackTickets.id, before.id),
@@ -267,6 +271,23 @@ export class AdminDataService {
       targetType: 'feedback_ticket', targetId: ticket.id, reason: '查看用户提交的反馈详情',
       metadata: { attachmentCount: attachments.length },
     });
+    const replies = await this.database.db.select().from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id))
+      .orderBy(feedbackReplies.createdAt, feedbackReplies.id);
+    let questionName: { displayName: string; displayNameSource: 'submitted_release' | 'current_release' } | undefined;
+    if (ticket.bankId && ticket.categoryId && ticket.topicId && ticket.cardId) {
+      const [release] = await this.database.db.select({ payload: questionBankReleases.payload, checksum: questionBankReleases.checksum })
+        .from(questionBankReleases).where(and(
+          eq(questionBankReleases.bankId, ticket.bankId),
+          ticket.bankVersion == null ? eq(questionBankReleases.active, true) : eq(questionBankReleases.version, ticket.bankVersion),
+        )).orderBy(desc(questionBankReleases.version)).limit(1);
+      // A deleted or renamed current question must not replace the historical name.
+      if (release && (!ticket.bankChecksum || ticket.bankChecksum === release.checksum)) {
+        const displayName = feedbackQuestionName(release.payload, {
+          categoryId: ticket.categoryId, topicId: ticket.topicId, cardId: ticket.cardId,
+        });
+        if (displayName) questionName = { displayName, displayNameSource: ticket.bankVersion == null ? 'current_release' : 'submitted_release' };
+      }
+    }
     return {
       ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
       status: feedbackStatusForClient(ticket.status), source: ticket.source, summary: feedbackSummary(ticket.description),
@@ -277,10 +298,10 @@ export class AdminDataService {
         bankId: ticket.bankId, categoryId: ticket.categoryId, topicId: ticket.topicId, cardId: ticket.cardId,
         bankVersion: ticket.bankVersion ?? undefined, bankChecksum: ticket.bankChecksum ?? undefined,
         verified: ticket.questionVerified,
+        ...questionName,
       } : null,
       attachments,
-      replies: (await this.database.db.select().from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id))
-        .orderBy(feedbackReplies.createdAt, feedbackReplies.id)).map(reply => ({ id: reply.id, text: reply.text, createdAt: reply.createdAt.toISOString() })),
+      replies: replies.map(reply => ({ id: reply.id, text: reply.text, createdAt: reply.createdAt.toISOString() })),
     };
   }
 

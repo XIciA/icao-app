@@ -16,7 +16,7 @@
       "id": "atc-scenario-0175-card-main-3014",
       "taskTitle": "UAL 817-2",
       "audioText": "C: UAL 817, what type of aircraft is it?\nB: Tell the controller it's Airbus 330.",
-      "audioTextZh": "C： UAL 817，是什么机型？\nB： 告诉管制员，这是 Airbus 330。",
+      "audioTextZh": "C：UAL 817，是什么机型？\nB：告诉管制员，这是 Airbus 330。",
       "referenceText": "Wuhan Ground, UAL 817, it's Airbus 330.",
       "referenceTextZh": "武汉地面，UAL 817，这是 Airbus 330。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-075-ual817-q02.mp3"
@@ -52,7 +52,7 @@
       "id": "atc-scenario-0175-card-main-3018",
       "taskTitle": "UAL 817-6",
       "audioText": "C: UAL 817, wind 200, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, contact Wuhan Tower to change to Runway 22 and state the reason.",
-      "audioTextZh": "C： UAL 817，风向 200，风速 8 米/秒。\nB： 顺风超过你的起飞限制，联系武汉塔台请求更换至 Runway 22 并说明原因。",
+      "audioTextZh": "C：UAL 817，风向 200，风速 8 米/秒。\nB：顺风超过你的起飞限制，联系武汉塔台请求更换至 Runway 22 并说明原因。",
       "referenceText": "Wuhan Tower, UAL 817, the tailwind exceeds our takeoff limit, request change to Runway 22.",
       "referenceTextZh": "武汉塔台，UAL 817，顺风超过我们的起飞限制，请求更换至 Runway 22。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-075-ual817-q06.mp3"
@@ -70,7 +70,7 @@
       "id": "atc-scenario-0175-card-main-3020",
       "taskTitle": "UAL 817-8",
       "audioText": "C: UAL 817, roger PAN, say your intention.\nB: tell the controller you want to dump fuel and return to land.",
-      "audioTextZh": "C： UAL 817，收到 PAN，请说明你的意图。\nB： 告诉管制员你想放油并返场落地。",
+      "audioTextZh": "C：UAL 817，收到 PAN，请说明你的意图。\nB：告诉管制员你想放油并返场落地。",
       "referenceText": "request dump fuel and return to land, UAL 817.",
       "referenceTextZh": "请求放油并返场落地，UAL 817。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-075-ual817-q08.mp3"
@@ -106,7 +106,7 @@
       "id": "atc-scenario-0175-card-main-3024",
       "taskTitle": "UAL 817-12",
       "audioText": "C: UAL 817, how long do you need to dump fuel?\nB: tell the controller you need approximately 25 minutes.",
-      "audioTextZh": "C： UAL 817，你需要多长时间放油？\nB： 告诉管制员你大约需要 25 分钟。",
+      "audioTextZh": "C：UAL 817，你需要多长时间放油？\nB：告诉管制员你大约需要 25 分钟。",
       "referenceText": "we need about 25 minutes, UAL 817.",
       "referenceTextZh": "我们大约需要 25 分钟，UAL 817。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-075-ual817-q12.mp3"

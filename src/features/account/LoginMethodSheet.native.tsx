@@ -10,6 +10,8 @@ type Props = { onClose(): void } & ({ provider: 'apple' | 'wechat'; bound: boole
 
 export function LoginMethodSheet({ provider, bound, onClose, onVerified }: Props) {
   const auth = useAuth();
+  const [visible, setVisible] = useState(true);
+  const close = () => setVisible(false);
   const providers = auth.account?.providers ?? [];
   const options: { method: AccountDeletionAuthentication['method']; label: string }[] = [
     ...(auth.account?.hasPassword ? [{ method: 'password' as const, label: '登录密码' }] : []),
@@ -61,7 +63,7 @@ export function LoginMethodSheet({ provider, bound, onClose, onVerified }: Props
       const authentication = { method: method!, password, phoneOtp };
       if (provider === 'phone') await onVerified(await auth.authorizePhoneBinding(authentication));
       else await auth.changeLoginMethod(provider, action, authentication);
-      onClose();
+      close();
     } catch (cause) {
       const code = cause instanceof Error ? cause.message : '';
       if (code === 'social_auth_cancelled') return;
@@ -74,7 +76,7 @@ export function LoginMethodSheet({ provider, bound, onClose, onVerified }: Props
     } finally { actionRef.current = false; setBusy(false); }
   }
 
-  return <BottomSheet accessibilityLabel={title} onClose={() => { if (!busy && !sending) onClose(); }} visible>
+  return <BottomSheet accessibilityLabel={title} onClose={() => { if (!busy && !sending) close(); }} onClosed={onClose} visible={visible}>
     <View style={styles.content}>
       <AppText variant="sectionTitle">{title}</AppText>
       <AppText variant="caption">{!canUnbind ? '这是当前唯一的登录方式，请先绑定另一种登录方式。'
@@ -98,7 +100,7 @@ export function LoginMethodSheet({ provider, bound, onClose, onVerified }: Props
         <Button disabled={!ready || busy || sending} loading={busy} onPress={() => void submit()}
           variant={bound && provider !== 'phone' ? 'destructive' : 'primary'}>{bound && provider !== 'phone' ? '验证并解除绑定' : '验证并继续'}</Button>
       </> : null}
-      <Button disabled={busy || sending} onPress={onClose} variant="outline">取消</Button>
+      <Button disabled={busy || sending} onPress={close} variant="outline">取消</Button>
     </View>
   </BottomSheet>;
 }

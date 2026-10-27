@@ -1,5 +1,9 @@
+import { EdgeBackRegion } from '@/components/navigation/EdgeBackRegion.native';
+import { accountRouteIdentity, infoRouteIdentity } from '@/components/navigation/route-identity.native';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
-import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps, type Href } from 'expo-router';
+import { Stack, SplashScreen, usePathname, useGlobalSearchParams, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -10,8 +14,11 @@ import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
 import { EdgeOneAlertHost } from '@/components/platform/EdgeOneAlertHost';
 import { CenteredState } from '@/components/states/CenteredState';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { StartupBrandScreen } from '@/components/states/StartupBrandScreen';
-import { AppText } from '@/components/ui';
+import { AppText, Button, Screen } from '@/components/ui';
+import { AccountRestoreState } from '@/features/auth/AccountRestoreState.native';
+import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen, postLoginDestination } from '@/features/auth/guest-access';
 import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
@@ -47,8 +54,10 @@ export default function RootLayout() {
 }
 
 export function AppStack() {
+  const guide = useGuide();
   const auth = useAuth();
   const pathname = usePathname();
+  const searchParams = useGlobalSearchParams();
   const router = useRouter();
   const [checking, setChecking] = useState(false);
   const [checkFailed, setCheckFailed] = useState(false);
@@ -60,75 +69,97 @@ export function AppStack() {
     finally { checkPending.current = false; setChecking(false); }
   }
   const authRedirectInFlightRef = useRef(false);
-  const publicDownload = Platform.OS === 'web' && pathname === '/download';
+  const publicPage = isGuestPublicPath(pathname);
+  const previousPathRef = useRef(pathname);
+  const previouslyAuthenticatedRef = useRef(auth.canAccessApp);
+  const continueBrowsing = () => { auth.consumePendingPath(); router.replace('/(tabs)'); };
   useEffect(() => {
-    if (auth.restoring && !publicDownload) return;
     const frame = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(() => undefined); });
     return () => cancelAnimationFrame(frame);
-  }, [auth.restoring, publicDownload]);
+  }, [auth.restoring, publicPage]);
 
   useEffect(() => {
-    if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !publicDownload && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
-      auth.rememberPendingPath(pathname);
+    // The browser's Back action also cancels the pending login intent. Do not
+    // clear it just because rememberPendingPath changed on the source screen.
+    const previous = previousPathRef.current;
+    previousPathRef.current = pathname;
+    if (!auth.canAccessApp && previous.startsWith('/auth/') && publicPage && !pathname.startsWith('/legal/')) {
+      auth.consumePendingPath();
     }
-  }, [auth, pathname, publicDownload]);
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const signedOut = previouslyAuthenticatedRef.current && !auth.canAccessApp;
+    previouslyAuthenticatedRef.current = auth.canAccessApp;
+    if (signedOut && !publicPage && !pathname.startsWith('/auth/')) {
+      auth.consumePendingPath();
+      router.replace('/(tabs)');
+      return;
+    }
+    if (auth.restoring || auth.canAccessApp || auth.accountRestoreUnavailable || auth.accountDeletionPending
+      || publicPage || pathname.startsWith('/auth/')) return;
+    const destination = destinationWithQuery(pathname, searchParams);
+    auth.rememberPendingPath(destination);
+    // Replace the blocked deep link so cancelling login cannot return to a
+    // protected page and immediately open login again.
+    router.replace({ pathname: '/auth/[slug]', params: { slug: 'login', next: destination, intent: 'external', returnTo: '/(tabs)' } });
+  }, [auth, pathname, publicPage, router, searchParams]);
 
   useEffect(() => {
     if (!auth.restoring && auth.canAccessApp && pathname?.startsWith('/auth/')) {
       if (authRedirectInFlightRef.current) return;
       authRedirectInFlightRef.current = true;
-      router.replace((auth.consumePendingPath() ?? '/(tabs)') as Href);
+      auth.consumePendingPath();
+      // Recovery retains its credential-reset flow; ordinary login opens the banks.
+      router.replace((auth.passwordChangePurpose === 'recovery' ? '/account/password?mode=recovery' : postLoginDestination(searchParams)) as Href);
       return;
     }
     authRedirectInFlightRef.current = false;
-  }, [auth, pathname, router]);
+  }, [auth, pathname, router, searchParams]);
 
-  if (auth.restoring && !publicDownload) return <StartupBrandScreen />;
-  if (auth.accountRestoreUnavailable && !publicDownload) {
-    return (
-      <StartupBrandScreen
-        busy={checking}
-        description="暂时无法读取本机安全登录状态，或无法向服务器确认账号请求。为保护账号与本机数据，确认成功前不会进入业务页面。"
-        onRetry={() => { void checkAccount(auth.retryAccountRestore); }}
-        error={checkFailed ? "检查未完成，请联网后重试" : "暂时无法确认账号状态"}
-      />
-    );
-  }
-  if (auth.accountDeletionPending && !publicDownload) {
-    return (
-      <CenteredState
+  // Keep the navigator mounted while account checks fail or run. This makes
+  // “continue browsing” usable even on a cold-start private deep link.
+  const accountState = auth.restoring ? <GlobalLoadingScreen />
+    : auth.accountRestoreUnavailable ? <AccountRestoreState retry={auth.retryAccountRestore} signOut={auth.signOut} onBrowse={continueBrowsing} />
+    : auth.accountDeletionPending ? <Screen><CenteredState
         actionLabel={checking ? "正在检查…" : "重新检查"}
-        description="删除任务正在安全处理。完成前此账号不能继续使用；你可以关闭 App，稍后重新打开会自动继续检查。"
+        description="删除任务正在安全处理。完成前此账号不能继续使用；你可以先浏览题库目录。"
         onAction={() => { void checkAccount(auth.resumeAccountDeletion); }}
         title={checkFailed ? "检查未完成，请稍后重试" : "账号正在注销"}
-      />
-    );
-  }
+        secondary={<Button onPress={continueBrowsing} variant="ghost">继续浏览题库</Button>}
+      /></Screen> : undefined;
 
   return (
     <View style={styles.root}>
       <Stack
+            screenLayout={({ children, navigation, route }) => {
+              if (accountState && (route.name === 'auth/[slug]' || !isPublicStackScreen(route.name, route.params))) return accountState;
+              // Never mount a protected page (or its data hooks) for a guest.
+              if ((!auth.canAccessApp && !isPublicStackScreen(route.name, route.params)) || (auth.canAccessApp && route.name === 'auth/[slug]')) return <GlobalLoadingScreen />;
+              return Platform.OS === 'ios'
+                ? <EdgeBackRegion enabled={!['index', '(tabs)', 'auth/[slug]'].includes(route.name)} navigation={navigation}>{children}</EdgeBackRegion>
+                : children;
+            }}
+            screenListeners={{ transitionStart: () => guide?.suspend(true), transitionEnd: () => guide?.suspend(false) }}
             screenOptions={{
               animation: 'slide_from_right',
               animationDuration: 220,
               contentStyle: { backgroundColor: colors.background },
-              fullScreenGestureEnabled: true,
-              gestureEnabled: true,
+              fullScreenGestureEnabled: false,
+              gestureDirection: 'horizontal',
+              gestureEnabled: Platform.OS !== 'ios',
               headerShown: false,
             }}
           >
             <Stack.Screen name="index" options={{ animation: 'fade', gestureEnabled: false }} />
-            <Stack.Protected guard={!auth.canAccessApp}>
               <Stack.Screen name="auth/[slug]" options={{ gestureEnabled: false }} />
-            </Stack.Protected>
             <Stack.Screen name="legal/[slug]" />
             <Stack.Screen name="download" />
-            <Stack.Protected guard={auth.canAccessApp}>
               <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
               <Stack.Screen name="question-bank/[bankId]/index" />
               <Stack.Screen
                 name="question-bank/[bankId]/study/[categoryId]/[topicId]"
-                options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+                options={{ gestureEnabled: Platform.OS !== 'ios' }}
               />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
@@ -138,13 +169,12 @@ export function AppStack() {
               {includeNativeProtectedRoutes ? (
                 <Stack.Screen
                   name="content/hotspot/[briefId]/study"
-                  options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+                  options={{ gestureEnabled: Platform.OS !== 'ios' }}
                 />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />
-              <Stack.Screen name="account/[slug]" />
-              <Stack.Screen name="info/[slug]" />
-            </Stack.Protected>
+              <Stack.Screen name="account/[slug]" dangerouslySingular={accountRouteIdentity} />
+              <Stack.Screen name="info/[slug]" dangerouslySingular={infoRouteIdentity} />
       </Stack>
       <UiAcceptanceBadge />
     </View>

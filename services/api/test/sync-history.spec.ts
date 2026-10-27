@@ -22,7 +22,7 @@ function fixture(selections: unknown[][]) {
     insert: vi.fn((table: unknown) => ({ values: (values: Record<string, unknown>) => { inserts.push({ table, values }); return { onConflictDoNothing: async () => undefined, onConflictDoUpdate: () => ({ returning: async () => [values] }) }; } })),
   };
   const database = { db: { transaction: async (operation: (transaction: typeof tx) => Promise<unknown>) => operation(tx), select: () => ({ from: () => ({ where: () => ({ orderBy: () => ({ limit: async () => [{ sequence: 0 }] }) }) }) }) } };
-  const service = new SyncService(database as unknown as DatabaseService);
+  const service = new SyncService(database as unknown as DatabaseService, {} as never);
   const internals = service as unknown as {
     applyDocument: (transaction: unknown, user: string, entry: DocumentMutation) => Promise<SyncPushResult>;
     applyLearningRecord: (transaction: unknown, user: string, entry: LearningRecordMutation, generation: number) => Promise<SyncPushResult>;
@@ -114,4 +114,30 @@ it('preserves new resume metadata on old-client writes and returns the actual me
     state: { visited: true, completed: false, note: 'edited' } } });
   expect(result.authoritative).toMatchObject({ state: { visited: true, completed: true, note: 'edited', lastVisitedAt } });
   expect(inserts.find(entry => entry.table === syncChanges)?.values.payload).toEqual(result.authoritative);
+});
+
+it.each([
+  ['pending', undefined, 'pending'], ['pending', 'completed', 'completed'],
+  ['completed', undefined, 'completed'], ['completed', 'pending', 'completed'],
+] as const)('preserves setup %s with incoming %s', async (previous, incoming, expected) => {
+  const profile = { displayName: '机长', avatarUri: null, target: 'icao4-first' };
+  const current = { documentKey: 'account_profile', payload: { ...profile, studySetup: previous }, version: 4, updatedAt: new Date(createdAt) };
+  const { internals, tx } = fixture([[current]]);
+  const update = vi.fn();
+  const transaction = { ...tx, update: () => ({ set: (value: unknown) => { update(value); return { where: async () => undefined }; } }) };
+  await internals.applyDocument(transaction, 'user', { kind: 'document', mutationId: 'setup', payload: {
+    documentKey: 'account_profile', document: { ...profile, ...(incoming ? { studySetup: incoming } : {}) }, version: 5, updatedAt: createdAt,
+  } });
+  expect(update).toHaveBeenCalledWith(expect.objectContaining({ payload: expect.objectContaining({ studySetup: expected }) }));
+});
+
+it('merges delayed setup completion without overwriting newer profile choices', async () => {
+  const current = { documentKey: 'account_profile', payload: { displayName: '新名字', avatarUri: null, target: 'icao5-recert', studyScope: 'all', studySetup: 'pending' }, version: 9, updatedAt: new Date(createdAt) };
+  const { internals, tx } = fixture([[current]]);
+  const update = vi.fn();
+  const transaction = { ...tx, update: () => ({ set: (value: unknown) => { update(value); return { where: async () => undefined }; } }) };
+  await internals.applyDocument(transaction, 'user', { kind: 'document', mutationId: 'late-setup', payload: {
+    documentKey: 'account_profile', document: { displayName: '旧名字', avatarUri: null, target: 'icao4-first', studyScope: 'selected', studySetup: 'completed' }, version: 2, updatedAt: createdAt,
+  } });
+  expect(update).toHaveBeenCalledWith(expect.objectContaining({ version: 10, payload: { ...current.payload, studySetup: 'completed' } }));
 });

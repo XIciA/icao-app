@@ -1,6 +1,7 @@
 import { act, fireEvent, render } from '@testing-library/react-native';
 import { Text } from 'react-native';
 import { useSaveAction } from '../use-save-action.native';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 let mockOwner = 0;
 jest.mock('@/features/sync/learning-sync.native', () => ({
   captureLearningWriteContext: () => mockOwner,
@@ -33,4 +34,15 @@ it('blocks duplicate submissions and prevents retry into a different account', a
   await fireEvent.press(screen.getByText('重试保存'));
   expect(write).toHaveBeenCalledTimes(1);
   expect(advance).not.toHaveBeenCalled();
+});
+
+it('keeps successful routine saves on the page without opening a saving modal', async () => {
+  let complete!: () => void;
+  const screen=await render(<Page/>);
+  let pending!: Promise<void>;
+  await act(async()=>{pending=save.run(()=>new Promise<void>(resolve=>{complete=resolve;}));});
+  expect(save.saving).toBe(true);expect(save.isPending()).toBe(true);
+  expect(screen.queryByText('正在保存')).toBeNull();expect(screen.getByText('原学习页面')).toBeTruthy();
+  await act(async()=>{complete();await pending;});
+  expect(save.saving).toBe(false);
 });

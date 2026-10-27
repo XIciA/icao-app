@@ -12,6 +12,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from 'react';
 import { AppState, Platform } from 'react-native';
 
@@ -35,7 +36,6 @@ import {
 } from './commerce-transaction-coordinator.native';
 import type {
   CommerceActionResult,
-  CommerceEntitlementChange,
   CommerceEntitlementChangeReason,
   CommerceRuntimeOffering,
   CommerceRuntimeError,
@@ -53,6 +53,7 @@ import {
   clearCommerceEntitlementGeneration,
   getCommerceEntitlementSnapshot,
   publishCommerceEntitlementChange,
+  subscribeCommerceEntitlementChanges,
 } from './commerce-entitlement-events';
 import {
   clearUncertainPurchase,
@@ -277,8 +278,8 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
   const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   const [phase, setPhase] = useState<CommerceRuntimePhase>('unavailable');
   const [offerings, setOfferings] = useState<readonly CommerceRuntimeOffering[]>([]);
-  const [entitlementChange, setEntitlementChange] = useState<CommerceEntitlementChange | undefined>(
-    getCommerceEntitlementSnapshot,
+  const entitlementChange = useSyncExternalStore(
+    subscribeCommerceEntitlementChanges, getCommerceEntitlementSnapshot, getCommerceEntitlementSnapshot,
   );
   const [error, setError] = useState<CommerceRuntimeError>();
   const [message, setMessage] = useState<string>();
@@ -307,7 +308,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       reason,
     });
     if (!next || next.generation !== controller.entitlementGeneration) return;
-    setEntitlementChange(next);
+
   }, []);
 
   const refreshEntitlement = useCallback(async (
@@ -426,7 +427,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
     setPhase(accountId && Platform.OS === 'ios' ? 'loading' : 'unavailable');
     if (Platform.OS !== 'ios' || !accountId) {
       deactivateNativeCommerceEnvironment();
-      setEntitlementChange(clearCommerceEntitlementGeneration('account-change'));
+      clearCommerceEntitlementGeneration('account-change');
       controllerRef.current = undefined;
       setPhase('unavailable');
       return;
@@ -437,7 +438,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       'production',
       'account-change',
     );
-    setEntitlementChange(ownerChange);
+
     const distributionEnvironment = detectNativeDistributionEnvironment();
     const environmentActivation = activateNativeCommerceEnvironment(
       accountId,

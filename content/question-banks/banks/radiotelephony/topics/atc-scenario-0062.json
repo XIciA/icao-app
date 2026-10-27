@@ -88,7 +88,7 @@
       "id": "atc-scenario-0062-card-main-1071",
       "taskTitle": "CCA 976-10",
       "audioText": "B: As you apply power, you hear a master warning alarm, tell Wuhan Tower you are stopping.",
-      "audioTextZh": "B: 当你加推力时，听到主警告警报，告诉 武汉塔台 你正在中止。",
+      "audioTextZh": "B: 当你加推力时，听到主警告警报，告诉武汉塔台你正在中止。",
       "referenceText": "Wuhan Tower, CCA 976, stopping due to master warning.",
       "referenceTextZh": "武汉塔台，CCA 976，因主警告中止起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1071.mp3"
@@ -97,16 +97,16 @@
       "id": "atc-scenario-0062-card-main-1072",
       "taskTitle": "CCA 976-11",
       "audioText": "C: CCA 976, expedite taxi and vacated at F, contact Ground when clear of runway.",
-      "audioTextZh": "C: CCA 976，加快滑行并在 F 脱离，脱离跑道后联系 地面。",
+      "audioTextZh": "C: CCA 976，加快滑行并在 F 脱离，脱离跑道后联系地面。",
       "referenceText": "Expedite taxi and vacated at F, contact Ground when clear of runway, CCA 976.",
-      "referenceTextZh": "加快滑行并在 F 脱离，脱离跑道后联系 地面，CCA 976。",
+      "referenceTextZh": "加快滑行并在 F 脱离，脱离跑道后联系地面，CCA 976。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1072.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1073",
       "taskTitle": "CCA 976-12",
       "audioText": "B: Tell Ground you are clear of Runway 04 at F, and that you had to abort takeoff because flap setting is incorrect.",
-      "audioTextZh": "B: 告诉 地面 你已在 F 脱离跑道 04，并因襟翼设置不正确不得不中止起飞。",
+      "audioTextZh": "B: 告诉地面你已在 F 脱离跑道 04，并因襟翼设置不正确不得不中止起飞。",
       "referenceText": "Wuhan Ground, CCA 976, runway vacated at F, we had to abort takeoff due to incorrect flap setting.",
       "referenceTextZh": "武汉地面，CCA 976，已在 F 脱离跑道，我们因襟翼设置不正确不得不中止起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1073.mp3"
@@ -160,7 +160,7 @@
       "id": "atc-scenario-0062-card-main-1079",
       "taskTitle": "CCA 976-18",
       "audioText": "B: Now the source of smoke can't be detected and is becoming unbearable, notify Wuhan Tower you hope to turn left, and make a landing on the nearest available Runway 22, this is a Distress call.",
-      "audioTextZh": "B: 现在烟源无法确定且变得难以忍受，通知 武汉塔台 你希望左转，并在最近可用跑道 22 着陆，这是遇险呼叫。",
+      "audioTextZh": "B: 现在烟源无法确定且变得难以忍受，通知武汉塔台你希望左转，并在最近可用跑道 22 着陆，这是遇险呼叫。",
       "referenceText": "Mayday MAYDAY MAYDAY, Wuhan Tower, CCA 976, the source of smoke can't be detected and is becoming unbearable, request turn left to make a landing on the nearest available Runway 22.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉塔台，CCA 976，烟源无法确定且变得难以忍受，请求左转在最近可用跑道 22 着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1079.mp3"

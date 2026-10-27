@@ -25,7 +25,7 @@
       "id": "atc-scenario-0060-card-main-1031",
       "taskTitle": "CCA 725-3",
       "audioText": "B: Contact Delivery to tell them you want to use Runway 36L due parking position.",
-      "audioTextZh": "B: 联系 放行，告诉他们你因停机位置想使用跑道 36L。",
+      "audioTextZh": "B: 联系放行，告诉他们你因停机位置想使用跑道 36L。",
       "referenceText": "Wuhan Delivery, CCA 725, request Runway 36L due parking position.",
       "referenceTextZh": "武汉放行，CCA 725，因停机位置请求跑道 36L。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1031.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0060-card-main-1033",
       "taskTitle": "CCA 725-5",
       "audioText": "B: While you are starting the engines, 1 of the engine starters failed, contact Ground to request hold at present position to carry out emergency procedure.",
-      "audioTextZh": "B: 开车时，一台发动机起动机失效，联系 地面请求在当前位置等待以执行应急程序。",
+      "audioTextZh": "B: 开车时，一台发动机起动机失效，联系地面请求在当前位置等待以执行应急程序。",
       "referenceText": "Wuhan Ground, CCA 725, 1 of the engine starters failed, request hold at present position to carry out emergency procedure.",
       "referenceTextZh": "武汉地面，CCA 725，一台发动机起动机失效，请求在当前位置等待以执行应急程序。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1033.mp3"

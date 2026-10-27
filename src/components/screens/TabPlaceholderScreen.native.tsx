@@ -1,3 +1,9 @@
+import { InitialStudySetup } from '@/features/profile/InitialStudySetup.native';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { useLoginEntry } from '@/features/auth/use-login-entry';
+import { accountEntryLabel, publicAccountStatus } from '@/features/auth/public-account-status';
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
 import { examGoal } from '@/features/account/profile-model';
@@ -5,9 +11,8 @@ import { useProfile } from '@/features/account/profile-store.native';
 import { ChevronRight, type LucideIcon } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { useRouter } from 'expo-router';
+
 import { useStudyCatalog } from '@/features/question-bank/hooks/useStudyCatalog.native';
-import { StudyScopeSelector } from '@/features/question-bank/components/StudyScopeSelector';
 
 import { colors, radii, spacing } from '@/theme';
 
@@ -34,13 +39,39 @@ type Props = {
 };
 
 // The existing route uses this component only for the question-bank home.
-export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, onEntryPress }: Props) {
+export function TabPlaceholderScreen(props: Props) {
+  const auth = useAuth();
+  return auth.canAccessApp ? <AuthenticatedQuestionBankHome {...props} /> : <GuestQuestionBankHome {...props} />;
+}
+
+function GuestQuestionBankHome(props: Props) {
+  const login = useLoginEntry();
+  const status = publicAccountStatus(useAuth());
+  const router = useRouter();
+  const headerLeading = <Pressable accessibilityRole="button" accessibilityLabel={accountEntryLabel(status)} hitSlop={6}
+    disabled={status === 'restoring'} style={styles.accountEntry}
+    onPress={() => login('/account/profile')}><ProfileAvatar size={40} uri={null} />
+    {status !== 'guest' ? <AppText variant="caption" style={styles.accountEntryText}>{accountEntryLabel(status)}</AppText> : null}
+  </Pressable>;
+  return <QuestionBankHome {...props} headerLeading={headerLeading} guest
+    onEntryPress={(entry) => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } })} />;
+}
+
+function AuthenticatedQuestionBankHome(props: Props) {
+  const { entries } = props;
   const profile = useProfile();
   const router = useRouter();
   const headerLeading = <Pressable accessibilityRole="button" accessibilityLabel="打开个人资料" hitSlop={6} onPress={() => router.push('/account/profile')} style={({ pressed }) => pressed ? { opacity: 0.7 } : undefined}><ProfileAvatar size={40} uri={profile.avatarUri} /></Pressable>;
   const goal = examGoal(profile.target);
   const catalog = useStudyCatalog();
   const visibleEntries = goal.banks.flatMap((id) => entries.filter((entry) => entry.slug === id).map((entry) => ({ ...entry, meta: catalog.find((bank) => bank.id === id)?.summary ?? '此范围暂无内容' })));
+  return <><QuestionBankHome {...props} headerLeading={headerLeading} entries={visibleEntries}
+    onEntryPress={(entry) => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } })} />
+    <InitialStudySetup />
+  </>;
+}
+
+function QuestionBankHome({ title, eyebrow, headerLeading, headerTrailing, entries, onEntryPress }: Props & { guest?: boolean }) {
   return (
     <Screen
       background={(
@@ -53,11 +84,11 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
       contentStyle={styles.content}
       scroll
     >
-      <View style={styles.header}>
+      <View style={styles.header}><GuideAnchor id="study-open" />
         {headerLeading || headerTrailing ? (
           <View style={styles.toolbar}>
             <View>{headerLeading}</View>
-            <View style={styles.actions}><StudyScopeSelector />{headerTrailing}</View>
+            <View style={styles.actions}>{headerTrailing}</View>
           </View>
         ) : null}
         {eyebrow ? (
@@ -70,7 +101,7 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
       </View>
 
       <View style={styles.list}>
-        {visibleEntries.map((entry) => {
+        {entries.map((entry) => {
           const Icon = entry.icon;
           const enabled = entry.enabled ?? true;
           return (
@@ -108,6 +139,8 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
 }
 
 const styles = StyleSheet.create({
+  accountEntry: { flexDirection: 'row', alignItems: 'center', gap: spacing[2] },
+  accountEntryText: { flexShrink: 1 },
   content: { paddingTop: spacing[2] },
   header: { marginBottom: spacing[5] },
   toolbar: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },

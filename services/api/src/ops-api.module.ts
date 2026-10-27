@@ -1,9 +1,15 @@
+import { VocabularyAdminController } from './admin/vocabulary-admin.controller';
+import { VocabularyAdminService } from './admin/vocabulary-admin.service';
+import { VocabularyAudioService } from './admin/vocabulary-audio.service';
+import { VocabularyLiveService } from './vocabulary/vocabulary-live.service';
 import { ContentPreviewStorageService } from './admin/content-preview-storage.service';
 import { ContentWorkflowController } from './admin/content-workflow.controller';
 import { ContentWorkflowService } from './admin/content-workflow.service';
 import { AdminUsersController } from './admin/admin-users.controller';
 import { AdminGlobalResetService } from './admin/admin-global-reset.service';
 import { AdminReportsController } from './admin/admin-reports.controller';
+import { AdminStabilityController } from './admin/admin-stability.controller';
+import { AdminStabilityService } from './admin/admin-stability.service';
 import { AiAllowanceService } from './commerce/ai-allowance.service';
 import { AiUsageRulesService } from './commerce/ai-usage-rules.service';
 import { AdminAiRulesController } from './commerce/admin-ai-rules.controller';
@@ -37,8 +43,8 @@ export class OpsApiModule {
   static forRoot(config: OpsApiConfig = loadOpsConfig()): DynamicModule {
     return {
       module: OpsApiModule,
-      controllers: [ContentWorkflowController, AdminUsersController, AdminReportsController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
-      providers: [ContentWorkflowService, ContentPreviewStorageService,
+      controllers: [VocabularyAdminController, ContentWorkflowController, AdminUsersController, AdminReportsController, AdminStabilityController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
+      providers: [VocabularyAdminService, VocabularyAudioService, VocabularyLiveService, ContentWorkflowService, ContentPreviewStorageService,
         { provide: OPS_API_CONFIG, useValue: config },
         {
           provide: DatabaseService,
@@ -68,6 +74,7 @@ export class OpsApiModule {
           ) => new CommerceService({}, database, appleVerifier, benefits),
         },
         AdminAuditService,
+        AdminStabilityService,
         OpsLoginRateLimiter,
         AdminAuthService,
         RequireAdminAuthGuard,

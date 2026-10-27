@@ -34,7 +34,7 @@ import { PhoneSecurityRetentionService } from './auth/phone-security-retention.s
 import { RecentAuthController } from './auth/recent-auth.controller';
 import { RecentAuthService } from './auth/recent-auth.service';
 import { RECENT_AUTH_PASSWORD_VERIFIER, SupabaseRecentAuthPasswordVerifier } from './auth/recent-auth-password.verifier';
-import { RequireAuthGuard } from './auth/require-auth.guard';
+import { RequireAuthGuard, OptionalAuthGuard } from './auth/require-auth.guard';
 import { SessionSecurityService } from './auth/session-security.service';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
 import { AliyunSmsProvider } from './auth/sms/aliyun-sms.provider';
@@ -64,6 +64,7 @@ import { TencentAsrService } from './ai/tencent-asr.service';
 import { AiService } from './ai/ai.service';
 import { VocabularyController } from './vocabulary/vocabulary.controller';
 import { VocabularyService } from './vocabulary/vocabulary.service';
+import { VocabularyLiveService } from './vocabulary/vocabulary-live.service';
 import { EditorialController } from './editorial/editorial.controller';
 import { EditorialService } from './editorial/editorial.service';
 import { FeedbackAttachmentStorage } from './feedback/feedback-attachment-storage';
@@ -109,6 +110,7 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     AppleServerReconciliationService,
     AppleNotificationReconciliationService,
     RequireAuthGuard,
+    OptionalAuthGuard,
     AliyunSmsProvider,
     SmsDeliveryAuthority,
     SupabaseSmsHookService,
@@ -142,6 +144,7 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     TencentAsrService,
     AiService,
     VocabularyService,
+    VocabularyLiveService,
     FeedbackAttachmentStorage,
     FeedbackCleanupService,
     FeedbackService,

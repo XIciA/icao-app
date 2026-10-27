@@ -1,22 +1,22 @@
 {
   "id": "atc-fzy-634",
-  "name": "CCA983 weather&injury, etc.",
+  "name": "CCA983 · 天气与人员受伤",
   "declaredCardCount": 18,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111627",
-      "taskTitle": "6. CCA983 weather&injury, etc.-1",
-      "audioText": "[Your call sign is CCA983, from Los Angeles to Beijing, DABMA 30, level 9800m, SABEM 45, contact Beijing Control.]",
-      "audioTextZh": "【你的呼号是CCA（国航）983，飞机从洛杉矶飞往北京，DABMA 30分，高度9800米，SABEM 45分，联系北京区调。】",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-1",
+      "audioText": "Your call sign is CCA983, from Los Angeles to Beijing, DABMA 30, level 9800m, SABEM 45, contact Beijing Control.",
+      "audioTextZh": "你的呼号是CCA（国航）983，飞机从洛杉矶飞往北京，DABMA 30分，高度9800米，SABEM 45分，联系北京区调。",
       "referenceText": "Beijing Control, CCA983, from Los Angeles to Beijing, DABMA 30, maintaining 9800m, SABEM 45.",
       "referenceTextZh": "北京区调，国航983，洛杉矶飞往北京，DABMA 30分，9800米保持，SABEM 45分。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/83418ac3b156fad01034.mp3"
     },
     {
       "id": "radiotelephony-fzy-111628",
-      "taskTitle": "6. CCA983 weather&injury, etc.-2",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-2",
       "audioText": "CCA983, Beijing Control, confirm squawk 1230.[Your squawk is 1232.]",
       "audioTextZh": "国航983，北京区调，证实应答机1230。【你的应答机编码是1232。】",
       "referenceText": "Negative, squawk is 1232, CCA983.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111629",
-      "taskTitle": "6. CCA983 weather&injury, etc.-3",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-3",
       "audioText": "Roger, CCA983, squawk 1232, radar contact.",
       "audioTextZh": "收到，国航983，应答机1232, 雷达看到。",
       "referenceText": "Roger, CCA983.",
@@ -34,16 +34,16 @@
     },
     {
       "id": "radiotelephony-fzy-111630",
-      "taskTitle": "6. CCA983 weather&injury, etc.-4",
-      "audioText": "[You are experiencing severe turbulence, request descent to low level.]",
-      "audioTextZh": "【你在经历严重颠簸，请求下降到低高度层。】",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-4",
+      "audioText": "You are experiencing severe turbulence, request descent to low level.",
+      "audioTextZh": "你在经历严重颠簸，请求下降到低高度层。",
       "referenceText": "Beijing Control, CCA983. We are experiencing severe turbulence, request descent to low level.",
       "referenceTextZh": "北京区调，国航983，我们正在经历严重颠簸，请求下降到低高度层。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/259033159b6cf20ca798.mp3"
     },
     {
       "id": "radiotelephony-fzy-111631",
-      "taskTitle": "6. CCA983 weather&injury, etc.-5",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-5",
       "audioText": "CCA983, roger, descend to 8400m.",
       "audioTextZh": "国航983，收到，下降到8400米。",
       "referenceText": "Descend to 8400m, CCA983.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111632",
-      "taskTitle": "6. CCA983 weather&injury, etc.-6",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-6",
       "audioText": "CCA983, what is the detailed ride condition?[Tell the ATC the turbulence is caused by cumulonimbus.]",
       "audioTextZh": "国航983，穿越颠簸状态如何？【告诉ATC颠簸是由积雨云引起的。】",
       "referenceText": "The turbulence is caused by cumulonimbus, CCA983.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111633",
-      "taskTitle": "6. CCA983 weather&injury, etc.-7",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-7",
       "audioText": "CCA983, roger, thanks.[Report to the controller that you have been struck by lightning.]",
       "audioTextZh": "国航983，收到，谢谢。【报告管制员飞机遭受了雷击。】",
       "referenceText": "Beijing Control, CCA983, we have been struck by lightning.",
@@ -70,16 +70,16 @@
     },
     {
       "id": "radiotelephony-fzy-111634",
-      "taskTitle": "6. CCA983 weather&injury, etc.-8",
-      "audioText": "CCA983, roger, confirm your operations are normal?[Tell the controller that flight is smooth, but the main power doesn’t work, now you are using the auxiliary power supply.]",
-      "audioTextZh": "国航983，收到，证实能够正常飞行？ 【告诉管制员飞行操作顺畅，但是主电源不工作，现在你正在使用辅助电源。】",
-      "referenceText": "Negative, flight is smooth, but the main power doesn’t work, we are using the auxiliary power supply now, CCA983.",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-8",
+      "audioText": "CCA983, roger, confirm your operations are normal?[Tell the controller that flight is smooth, but the main power doesn't work, now you are using the auxiliary power supply.]",
+      "audioTextZh": "国航983，收到，证实能够正常飞行？【告诉管制员飞行操作顺畅，但是主电源不工作，现在你正在使用辅助电源。】",
+      "referenceText": "Negative, flight is smooth, but the main power doesn't work, we are using the auxiliary power supply now, CCA983.",
       "referenceTextZh": "不，飞行操作顺畅，失去主电源，我们现在正在使用辅助电源，国航983。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ad48042124440f24085.mp3"
     },
     {
       "id": "radiotelephony-fzy-111635",
-      "taskTitle": "6. CCA983 weather&injury, etc.-9",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-9",
       "audioText": "CCA983, roger, any other problem?[There is something wrong with the navigation system, ask ATC to monitor you closely.]",
       "audioTextZh": "国航983，收到，还有其它问题吗？【导航系统出现问题，向ATC请求密切监控。】",
       "referenceText": "Our navigation system is out of action, please keep a close eye on us, CCA983.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111636",
-      "taskTitle": "6. CCA983 weather&injury, etc.-10",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-10",
       "audioText": "CCA983, roger, where did the lightning strike you?[Only the left hand windshield was struck, others are all normal.]",
       "audioTextZh": "国航983，收到，雷击在飞机哪个部位？【只有左边挡风玻璃遭受雷击，其它部位全部正常。】",
       "referenceText": "Lightning hit us above the left hand windshield, zero damage, CCA983.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111637",
-      "taskTitle": "6. CCA983 weather&injury, etc.-11",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-11",
       "audioText": "CCA983, roger, say intention.[Request priority landing at Beijing airport.]",
       "audioTextZh": "国航983，收到，说明意图。【请求优先着陆在北京机场。】",
       "referenceText": "Request priority landing at Beijing airport, CCA983.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111638",
-      "taskTitle": "6. CCA983 weather&injury, etc.-12",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-12",
       "audioText": "CCA983, roger. Turn left direct to HUR, descend to and maintain 3600m. Expect runway 01.",
       "audioTextZh": "国航983，收到。左转直飞HUR，下降保持3600米，预计跑道01。",
       "referenceText": "Turn left direct to HUR, descend to and maintain 3600m. Expect runway 01, CCA983.",
@@ -115,8 +115,8 @@
     },
     {
       "id": "radiotelephony-fzy-111639",
-      "taskTitle": "6. CCA983 weather&injury, etc.-13",
-      "audioText": "[You want to know the weather condition at Beijing airport.]",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-13",
+      "audioText": "You want to know the weather condition at Beijing airport.",
       "audioTextZh": "【你想知道北京机场的天气情况。】",
       "referenceText": "Beijing Control, CCA983, advise weather condition at Beijing airport.",
       "referenceTextZh": "北京区调，国航983，请告知北京机场的天气情况。",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111640",
-      "taskTitle": "6. CCA983 weather&injury, etc.-14",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-14",
       "audioText": "CCA983, weather is clearing except for a little ice on the runway, expect a visual approach runway 01.",
       "audioTextZh": "国航983，天气晴朗，但跑道有少量冰，预计目视进近跑道01。",
       "referenceText": "Visual approach, runway 01, thanks, CCA983.",
@@ -133,16 +133,16 @@
     },
     {
       "id": "radiotelephony-fzy-111641",
-      "taskTitle": "6. CCA983 weather&injury, etc.-15",
-      "audioText": "[As a passenger was bruised on the head during the turbulence, request medical service on arrival.]",
-      "audioTextZh": "【因为机上有一位乘客在颠簸中擦伤头部，请求到达时的医疗服务。】",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-15",
+      "audioText": "As a passenger was bruised on the head during the turbulence, request medical service on arrival.",
+      "audioTextZh": "因为机上有一位乘客在颠簸中擦伤头部，请求到达时的医疗服务。",
       "referenceText": "Beijing Approach, CCA983, request medical service on arrival as a passenger was hurt during the turbulence.",
       "referenceTextZh": "北京进近，国航983，请求到达时医疗服务，一位乘客在颠簸中受伤。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ab4799d4c7897479d08f.mp3"
     },
     {
       "id": "radiotelephony-fzy-111642",
-      "taskTitle": "6. CCA983 weather&injury, etc.-16",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-16",
       "audioText": "CCA983, medical services will be ready on arrival.[You have established localizer, contact Beijing Tower.]",
       "audioTextZh": "国航983，医疗服务将在到达后就位。【你已经建立好航向道，联系北京塔台。】",
       "referenceText": "Beijing Tower, CCA983, established localizer.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111643",
-      "taskTitle": "6. CCA983 weather&injury, etc.-17",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-17",
       "audioText": "CCA983, cleared to land runway 01, runway is covered with patches of ice, braking action poor, use caution.[Readback and ask the tower whether the preceding aircraft can land normally.]",
       "audioTextZh": "国航983，允许着陆跑道01，跑道被冰覆盖，刹车效应差，务必谨慎。【复诵并向塔台询问前面的飞机是否能正常着陆。】",
       "referenceText": "Cleared to land runway 01, braking action poor, did the preceding aircraft land normally? CCA983.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111644",
-      "taskTitle": "6. CCA983 weather&injury, etc.-18",
+      "taskTitle": "6. CCA983 · 天气与人员受伤-18",
       "audioText": "CCA983, all preceding aircraft had normal landings, standing ice is not that serious.",
       "audioTextZh": "国航983, 之前的所有飞机都已经正常着陆，积冰不是非常严重。",
       "referenceText": "Thanks, CCA983.",

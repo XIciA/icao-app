@@ -70,7 +70,7 @@
       "id": "atc-scenario-0130-card-main-2248",
       "taskTitle": "ACA 517-8",
       "audioText": "B: Advise Wuhan Control you want to divert to Wuhan and track direct to WHA and descend to lower levels.",
-      "audioTextZh": "B: 通知 武汉管制 你想改航 Wuhan，直飞 WHA 并下降到较低高度。",
+      "audioTextZh": "B: 通知武汉管制你想改航 Wuhan，直飞 WHA 并下降到较低高度。",
       "referenceText": "Wuhan Control, ACA 517, request divert to Wuhan and track direct to WHA and descend to lower levels.",
       "referenceTextZh": "武汉管制，ACA 517，请求改航 Wuhan，直飞 WHA，并下降到较低高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q08.mp3"

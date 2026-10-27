@@ -1,60 +1,60 @@
 {
   "id": "opi-fzy-838",
-  "name": "Modern cockpit",
-  "declaredCardCount": 5,
+  "name": "现代驾驶舱",
   "cards": [
     {
       "id": "opi-fzy-838-image-1",
       "kind": "image",
-      "taskTitle": "Modern cockpit · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-838.png",
-      "imageAlt": "Modern cockpit，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "imageAlt": "现代驾驶舱，用于本话题的看图描述和问答",
+      "studyTier": 1,
+      "taskTitle": "现代驾驶舱 · 看图材料"
     },
     {
       "id": "opi-fzy-152371",
-      "taskTitle": "Modern cockpit-1",
+      "audio": "/question-bank-assets/revisions/opi/7e73bd0c107b4c2fa95f5d0bbe243fcfd031311e0a64f49c64d932cd8b2cbde3/audio/opi/opi-fzy-152371.mp3",
       "audioText": "What can we learn from this picture?",
-      "audioTextZh": "从图中能了解到什么？",
       "studyTier": 1,
+      "taskTitle": "现代驾驶舱-1",
+      "audioTextZh": "从图中能了解到什么？",
       "referenceText": "From this picture, we can know it's a modern cockpit. There are many digital instruments such as PFD, MFD, ECAM, FMS and so on.",
       "referenceTextZh": "从图中我们可以了解到这是一个现代驾驶舱，里边有许多数字化仪表，比如PFD, MFD, ECAM, FMS等。",
-      "audio": "/question-bank-assets/revisions/opi/7e73bd0c107b4c2fa95f5d0bbe243fcfd031311e0a64f49c64d932cd8b2cbde3/audio/opi/opi-fzy-152371.mp3",
       "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-152372",
-      "taskTitle": "Modern cockpit-2",
-      "audioText": "Do you prefer modern cockpit or traditional cockpit? Why?",
-      "audioTextZh": "你喜欢现代驾驶舱还是传统驾驶舱？为什么？",
-      "studyTier": 1,
-      "referenceText": "I prefer modern glass cockpit.\nBecause there are many modern technologies and equipment in the cockpit.\nFor example, EFIS, TCAS and GPS.\nThese technologies and equipment largely reduce pilot’s workload and reduce human errors.",
-      "referenceTextZh": "我喜欢现代驾驶舱。\n因为在驾驶舱中有很多现代科技和设备。\n比如：电子仪表系统，空中防撞系统和全球定位系统。\n这些科技和系统可以减轻飞行员的工作负担，降低人为失误。",
       "audio": "/question-bank-assets/revisions/opi/99aa683d7a72b439d636b712e48b18286de5b0baeac6e14c06a6b398dba221bb/audio/opi/opi-fzy-152372.mp3",
+      "audioText": "Do you prefer modern cockpit or traditional cockpit? Why?",
+      "studyTier": 1,
+      "taskTitle": "现代驾驶舱-2",
+      "audioTextZh": "你喜欢现代驾驶舱还是传统驾驶舱？为什么？",
+      "referenceText": "I prefer modern glass cockpit.\nBecause there are many modern technologies and equipment in the cockpit.\nFor example, EFIS, TCAS and GPS.\nThese technologies and equipment largely reduce pilot's workload and reduce human errors.",
+      "referenceTextZh": "我喜欢现代驾驶舱。\n因为在驾驶舱中有很多现代科技和设备。\n比如：电子仪表系统，空中防撞系统和全球定位系统。\n这些科技和系统可以减轻飞行员的工作负担，降低人为失误。",
       "audioDurationSeconds": 3.6
     },
     {
       "id": "opi-fzy-152373",
-      "taskTitle": "Modern cockpit-3",
+      "audio": "/question-bank-assets/revisions/opi/2e36fed62968a23c6f06ef6d07178de7d22ca9c9f7e97cc78bbb6e1c6b1bb5ab/audio/opi/opi-fzy-152373.mp3",
       "audioText": "What information can you get from PFD?",
-      "audioTextZh": "你可以从主飞行显示器上获得哪些信息？",
       "studyTier": 1,
+      "taskTitle": "现代驾驶舱-3",
+      "audioTextZh": "你可以从主飞行显示器上获得哪些信息？",
       "referenceText": "We can get many information from primary flight display.\nsuch as, flight heading, altitude, airspeed, pitch and so on.\nSuch information is very important for the pilot.",
       "referenceTextZh": "我们可以从主飞行显示器上获得很多信息。\n比如：航向，高度，空速和俯仰等等。\n这些信息对飞行员来说非常重要。",
-      "audio": "/question-bank-assets/revisions/opi/2e36fed62968a23c6f06ef6d07178de7d22ca9c9f7e97cc78bbb6e1c6b1bb5ab/audio/opi/opi-fzy-152373.mp3",
       "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-fzy-152374",
-      "taskTitle": "Modern cockpit-4",
+      "audio": "/question-bank-assets/revisions/opi/cc2cebbfba3fe7c911a54ffb0a47f2dcb8c20421207fbd101f5c26e3efd3c8aa/audio/opi/opi-fzy-152374.mp3",
       "audioText": "How can you sense the surrounding environment in the modern cockpit?",
-      "audioTextZh": "在现代驾驶舱中，你如何感知周围环境？",
       "studyTier": 1,
+      "taskTitle": "现代驾驶舱-4",
+      "audioTextZh": "在现代驾驶舱中，你如何感知周围环境？",
       "referenceText": "Many modern equipment is used to sense the surrounding environment for the pilot in the cockpit.\nFor example, the TCAS can sense the conflicting traffic and give solution to the pilots to avoid them.\nThe airborne weather radar can detect the bad weather, so pilots can go round the bad weather before flying into them.\nThe GPWS can give pilots terrain information and inform pilots to pull up before crashing into the ground.",
       "referenceTextZh": "在驾驶舱有很多可以帮助飞行员感知周围环境的设备。\n例如：空中防撞系统可以感知冲突航空器，并且给飞行员避让的建议。\n机载气象雷达可以探测不利天气，因此飞行员可以提前绕飞。\n近地告警系统可以感知地形信息，告知飞行员在撞向地面之前拉起飞机。",
-      "audio": "/question-bank-assets/revisions/opi/cc2cebbfba3fe7c911a54ffb0a47f2dcb8c20421207fbd101f5c26e3efd3c8aa/audio/opi/opi-fzy-152374.mp3",
       "audioDurationSeconds": 3.504
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-08"
 }

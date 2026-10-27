@@ -54,6 +54,9 @@ function bestEffortDelete(file?: File) {
 }
 
 export class RecordingRepository {
+  private readonly loginSessions = new Set<string>();
+  retainSessionForLogin(sessionId: string) { this.loginSessions.add(sessionId); }
+  releaseSessionFromLogin(sessionId: string) { this.loginSessions.delete(sessionId); }
   private readonly root = new Directory(Paths.cache, 'icao-recordings');
   private readonly createId: () => string;
   private readonly mediaProbe: RecordingMediaProbe;
@@ -177,6 +180,7 @@ export class RecordingRepository {
   }
 
   cleanupSession(sessionId: string) {
+    if (this.loginSessions.has(sessionId)) return;
     const directory = new Directory(this.root, safeSegment(sessionId));
     if (!directory.exists) return;
     try {

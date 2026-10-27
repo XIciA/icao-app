@@ -1,4 +1,9 @@
-import type { VocabularyBook, VocabularyDataset } from '@/features/vocabulary/types';
+import { releaseFixture } from '@/features/vocabulary/test-support/live-fixture';
+import { apiFetch } from '@/platform/api-client';
+jest.mock('expo-crypto',()=>({CryptoDigestAlgorithm:{SHA256:'sha256'},digestStringAsync:async(_type:string,text:string)=>jest.requireActual('node:crypto').createHash('sha256').update(text).digest('hex')}));
+const vocabularyRelease=releaseFixture(),vocabularyDataset=vocabularyRelease.dataset;
+
+jest.mock('@/platform/api-client', () => ({ getApiBaseUrl: () => 'https://test.invalid', apiFetch: jest.fn() }));
 
 const mockStorage = new Map<string, string>();
 const mockRelease = {
@@ -28,43 +33,18 @@ import { loadResourceEditorial } from '@/features/editorial/repository.web';
 // eslint-disable-next-line import/first
 import { loadVocabulary } from '@/features/vocabulary/repository.web';
 
-function createBook(id: VocabularyBook['id'], count: number): VocabularyBook {
-  const level = id === 'preview' ? 1 : id === 'icao4' ? 2 : 3;
-  return {
-    id,
-    level,
-    name: id,
-    description: id,
-    words: Array.from({ length: count }, (_, index) => ({
-      id: `${id}-${index}`,
-      bookId: id,
-      level,
-      word: `word ${index}`,
-      meaning: `meaning ${index}`,
-      example: `Example ${index}.`,
-      exampleTranslation: `例句 ${index}`,
-      source: { name: 'test', rowIndex: index, sourceNo: index },
-    })),
-  };
-}
+// Exercise the historical implementation explicitly, independently of the formal Web default.
+jest.mock('@/config/web-runtime', () => {
+  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+  try {
+    return jest.requireActual('@/config/web-runtime');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
+  }
+});
 
-const vocabularyDataset: VocabularyDataset = {
-  schemaVersion: 1,
-  version: 1,
-  source: {
-    name: 'test',
-    generatedAt: '2026-07-28T00:00:00.000Z',
-    sourceRows: 838,
-    validRows: 838,
-    ignoredRows: 0,
-    invalidRows: 0,
-  },
-  books: [
-    createBook('preview', 360),
-    createBook('icao4', 372),
-    createBook('icao5', 106),
-  ],
-};
 
 const editorialRelease = {
   version: 2,
@@ -93,26 +73,29 @@ const editorialRelease = {
   }],
 };
 
-describe('same-origin Web content caches', () => {
+describe('current API vocabulary and historical editorial Web caches', () => {
   beforeEach(() => {
     mockStorage.clear();
     jest.restoreAllMocks();
+    jest.mocked(apiFetch).mockReset();
   });
 
   afterEach(() => {
     jest.restoreAllMocks();
   });
 
-  it('shows a release-matched vocabulary cache without waiting for refresh', async () => {
-    const fetchMock = jest.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-      new Response(JSON.stringify(vocabularyDataset), { status: 200 }),
-    );
-    await expect(loadVocabulary()).resolves.toMatchObject({ source: 'remote' });
+  it('loads the current Web vocabulary catalog and retains it when its API is unavailable', async () => {
+    jest.mocked(apiFetch).mockResolvedValueOnce(new Response(JSON.stringify({
+      data: vocabularyRelease,
+    }), { status: 200 }));
+    await expect(loadVocabulary()).resolves.toMatchObject({ source: 'remote', dataset: vocabularyDataset });
+    expect(apiFetch).toHaveBeenCalledWith('/v1/vocabulary?catalog=vocabulary-live-v1', expect.anything());
 
-    fetchMock.mockImplementationOnce(() => new Promise<Response>(() => undefined));
+    jest.mocked(apiFetch).mockRejectedValueOnce(new Error('offline'));
     await expect(loadVocabulary()).resolves.toMatchObject({
       dataset: vocabularyDataset,
       source: 'cache',
+      warning: 'vocabulary_remote_unavailable',
     });
   });
 

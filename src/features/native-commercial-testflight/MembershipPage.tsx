@@ -1,3 +1,8 @@
+import { useEffect, useRef } from 'react';
+import { useIsFocused } from '@react-navigation/native';
+import { useLocalSearchParams, type Href } from 'expo-router';
+import { useAppRouter } from '@/components/navigation/useAppRouter';
+import { safeAppDestination } from '@/features/auth/guest-access';
 import { RefreshCcw, ShieldCheck, Star, Zap } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
 
@@ -29,6 +34,10 @@ function formatDate(value: string | null | undefined) {
 
 export function MembershipPage() {
   const commerce = useCommerceRuntime();
+  const router = useAppRouter();
+  const { next } = useLocalSearchParams<{ next?: string }>();
+  const focused = useIsFocused();
+  const resumed = useRef(false);
   const working = commerce.phase === 'purchasing' || commerce.phase === 'restoring';
   const reconciling = commerce.phase === 'reconciling';
   const purchasePending = commerce.phase === 'pending';
@@ -37,7 +46,16 @@ export function MembershipPage() {
   // Pending blocks another purchase. Refresh and explicit Restore Purchases
   // remain available because either action can resolve the pending state.
   const managementDisabled = loading || working || reconciling;
-  const active = commerce.entitlement?.membership.active === true;
+  const active = commerce.entitlement?.membership.active === true
+    && (!commerce.entitlement.membership.expiresAt || Date.parse(commerce.entitlement.membership.expiresAt) > Date.now());
+  useEffect(() => {
+    if (!focused) { resumed.current = false; return; }
+    const target = safeAppDestination(next);
+    if (active && !resumed.current && target && !target.startsWith('/account/membership')) {
+      resumed.current = true;
+      router.replace(target as Href);
+    }
+  }, [active, focused, next, router]);
   const statusMessage = commerce.error?.userMessage ?? commerce.message;
 
   return (

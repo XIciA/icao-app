@@ -52,7 +52,7 @@
       "id": "atc-scenario-0148-card-main-2555",
       "taskTitle": "CCA 1301-6",
       "audioText": "C: roger, thank you. CCA 1301, continue taxi.\nB: tell the controller that you are unable to taxi because you find the taxiway surface is contaminated with leaking fluid.",
-      "audioTextZh": "C： 收到，谢谢。CCA 1301，继续滑行。\nB： 告诉管制员你无法滑行，因为发现滑行道道面被泄漏液体污染。",
+      "audioTextZh": "C：收到，谢谢。CCA 1301，继续滑行。\nB：告诉管制员你无法滑行，因为发现滑行道道面被泄漏液体污染。",
       "referenceText": "we are unable to taxi, the taxiway surface is contaminated with leaking fluid, CCA 1301.",
       "referenceTextZh": "我们无法滑行，滑行道道面被泄漏液体污染，CCA 1301。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-046-cca1301-q06.mp3"
@@ -97,7 +97,7 @@
       "id": "atc-scenario-0148-card-main-2560",
       "taskTitle": "CCA 1301-11",
       "audioText": "C: CCA 1301, stop immediately, I say again, stop immediately.\nB: tell the controller you used the maximum brakes and you are stopping on the runway.",
-      "audioTextZh": "C： CCA 1301，立即停止，我再说一遍，立即停止。\nB： 告诉管制员你使用了最大刹车，正在跑道上停下。",
+      "audioTextZh": "C：CCA 1301，立即停止，我再说一遍，立即停止。\nB：告诉管制员你使用了最大刹车，正在跑道上停下。",
       "referenceText": "Beijing Tower, CCA 1301, we used the maximum brakes, we are stopping on the runway.",
       "referenceTextZh": "北京塔台，CCA 1301，我们使用了最大刹车，正在跑道上停下。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-046-cca1301-q11.mp3"
@@ -142,7 +142,7 @@
       "id": "atc-scenario-0148-card-main-2565",
       "taskTitle": "CCA 1301-16",
       "audioText": "C: CCA 1301, what assistance do you need?\nB: Tell the controller you need ground services to cool the wheels.",
-      "audioTextZh": "C： CCA 1301，你需要什么协助？\nB： 告诉管制员你需要地面服务为机轮降温。",
+      "audioTextZh": "C：CCA 1301，你需要什么协助？\nB：告诉管制员你需要地面服务为机轮降温。",
       "referenceText": "request ground services to cool the wheels, CCA 1301.",
       "referenceTextZh": "请求地面服务为机轮降温，CCA 1301。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-046-cca1301-q16.mp3"
@@ -151,7 +151,7 @@
       "id": "atc-scenario-0148-card-main-2566",
       "taskTitle": "CCA 1301-17",
       "audioText": "C: CCA 1301, what else do you need?\nB: tell the controller one of your nose wheel tyres was deflated, you have to hold at present position for maintenance inspection.",
-      "audioTextZh": "C： CCA 1301，你还需要什么？\nB： 告诉管制员你的一个前轮轮胎瘪了，必须在当前位置等待维修检查。",
+      "audioTextZh": "C：CCA 1301，你还需要什么？\nB：告诉管制员你的一个前轮轮胎瘪了，必须在当前位置等待维修检查。",
       "referenceText": "one of our nose wheel tyres was deflated, we have to hold at present position for maintenance inspection, CCA 1301.",
       "referenceTextZh": "我们的一个前轮轮胎瘪了，必须在当前位置等待维修检查，CCA 1301。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-046-cca1301-q17.mp3"
@@ -169,7 +169,7 @@
       "id": "atc-scenario-0148-card-main-2568",
       "taskTitle": "CCA 1301-19",
       "audioText": "C: CCA 1301, what assistance do you require?\nB: tell the controller you need a tug to tow you back to the maintenance apron.",
-      "audioTextZh": "C： CCA 1301，你需要什么协助？\nB： 告诉管制员你需要一辆牵引车将你拖回维修机坪。",
+      "audioTextZh": "C：CCA 1301，你需要什么协助？\nB：告诉管制员你需要一辆牵引车将你拖回维修机坪。",
       "referenceText": "request a tug to tow us back to the maintenance apron, CCA 1301.",
       "referenceTextZh": "请求一辆牵引车将我们拖回维修机坪，CCA 1301。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-046-cca1301-q19.mp3"

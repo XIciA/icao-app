@@ -1,8 +1,10 @@
+import type { AppContentHotspotBrief, AppContentHotspotOverview } from '@icao/contracts/app-content';
 import { BadRequestException, ForbiddenException, HttpException, Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import {
   CONTENT_ACCESS_POLICY_VERSION,
-  isFreeQuestionBankCard,
+  freeQuestionBankCardIds,
   studyScopeCardIds,
+  questionBankRadioEntries,
   type ContentAccessCredential,
   type ContentAccessScope,
   type CommerceEnvironment,
@@ -64,10 +66,11 @@ function isContentDataset(value: unknown): value is ContentDataset {
   return Boolean(value && typeof value === 'object' && typeof dataset.id === 'string' && Array.isArray(dataset.categories) && dataset.categories.every(isContentCategory));
 }
 
-function topicAccess(topic: ContentTopic, availableCardCount: number, freeCardCount: number): QuestionBankContentAccess {
+function topicAccess(topic: ContentTopic, availableCardCount: number, freeCards: ContentCard[]): QuestionBankContentAccess {
   const declaredCardCount = typeof topic.declaredCardCount === 'number' ? topic.declaredCardCount : topic.cards.length;
   return {
-    level: freeCardCount >= declaredCardCount ? 'free' : 'member',
+    freeCardIds: freeCards.map(card => card.id),
+    level: freeCards.length >= declaredCardCount ? 'free' : 'member',
     availableCardCount,
     declaredCardCount,
   };
@@ -78,26 +81,28 @@ function activeTopic(topic: ContentTopic): ContentTopic {
   return cards.length === topic.cards.length ? topic : { ...topic, cards, declaredCardCount: cards.length };
 }
 
-function filterTopic(bankId: string, topic: ContentTopic, membershipActive: boolean) {
+function filterTopic(bankId: string, freeIds: Set<string>, topic: ContentTopic, membershipActive: boolean) {
   topic = activeTopic(topic);
-  const freeCards = topic.cards.filter((card) => isFreeQuestionBankCard(bankId, topic.id, card.id));
+  const freeCards = topic.cards.filter((card) => freeIds.has(card.id));
   const cards = membershipActive ? topic.cards : freeCards;
   return {
     ...topic,
     scopeCardIds: studyScopeCardIds(bankId, topic),
+    radioEntries: questionBankRadioEntries(topic),
     cards,
-    access: topicAccess(topic, cards.length, freeCards.length),
+    access: topicAccess(topic, cards.length, freeCards),
   };
 }
 
-function catalogTopic(bankId: string, topic: ContentTopic) {
+function catalogTopic(bankId: string, freeIds: Set<string>, topic: ContentTopic) {
   topic = activeTopic(topic);
-  const freeCards = topic.cards.filter((card) => isFreeQuestionBankCard(bankId, topic.id, card.id));
+  const freeCards = topic.cards.filter((card) => freeIds.has(card.id));
   return {
     ...topic,
     scopeCardIds: studyScopeCardIds(bankId, topic),
+    radioEntries: questionBankRadioEntries(topic),
     cards: freeCards,
-    access: topicAccess(topic, freeCards.length, freeCards.length),
+    access: topicAccess(topic, freeCards.length, freeCards),
   };
 }
 
@@ -110,8 +115,8 @@ export class ContentAccessService {
 
   async getCatalog(
     bankId: string,
-    accountId: string,
-    sessionId: string,
+    accountId: string | undefined,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     now = new Date(),
   ) {
@@ -120,13 +125,14 @@ export class ContentAccessService {
       this.activeRelease(bankId),
       this.membership(accountId, environment, now),
     ]);
+    const freeIds = freeQuestionBankCardIds(release.dataset);
     return {
       ...release,
       dataset: {
         ...release.dataset,
         categories: release.dataset.categories.map((category) => ({
           ...category,
-          topics: category.topics.map((topic) => catalogTopic(bankId, topic)),
+          topics: category.topics.map((topic) => catalogTopic(bankId, freeIds, topic)),
         })),
         access: this.accessSummary(membership),
       },
@@ -137,8 +143,8 @@ export class ContentAccessService {
     bankId: string,
     categoryId: string,
     topicId: string,
-    accountId: string,
-    sessionId: string,
+    accountId: string | undefined,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     now = new Date(),
     expected?: { version: number; checksum?: string },
@@ -151,7 +157,7 @@ export class ContentAccessService {
     const category = release.dataset.categories.find((candidate) => candidate.id === categoryId);
     const topic = category?.topics.find((candidate) => candidate.id === topicId);
     if (!category || !topic) throw new NotFoundException('question_bank_topic_not_found');
-    const filtered = filterTopic(bankId, topic, membership.active);
+    const filtered = filterTopic(bankId, freeQuestionBankCardIds(release.dataset), topic, membership.active);
     if (filtered.cards.length === 0) throw new ForbiddenException('membership_required');
     return {
       bankId: release.bankId,
@@ -164,10 +170,10 @@ export class ContentAccessService {
   }
 
   async assertResourceAccess(
-    accountId: string,
+    accountId: string | undefined,
     bankId: string,
     publicPath: string,
-    sessionId: string,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     now = new Date(),
   ) {
@@ -175,13 +181,14 @@ export class ContentAccessService {
     const membership = await this.membership(accountId, environment, now);
     if (membership.active) return;
     const releases = await this.database.db.select({ payload: questionBankReleases.payload }).from(questionBankReleases)
-      .where(eq(questionBankReleases.bankId, bankId));
+      .where(and(eq(questionBankReleases.bankId, bankId), eq(questionBankReleases.active, true)));
     for (const release of releases) {
       if (!isContentDataset(release.payload)) continue;
+      const freeIds = freeQuestionBankCardIds(release.payload);
       for (const category of release.payload.categories) {
         for (const topic of category.topics) {
           for (const card of topic.cards) {
-            if (isFreeQuestionBankCard(bankId, topic.id, card.id) && this.cardUsesResource(card, publicPath)) return;
+            if (freeIds.has(card.id) && this.cardUsesResource(card, publicPath)) return;
           }
         }
       }
@@ -189,10 +196,34 @@ export class ContentAccessService {
     throw new ForbiddenException('membership_required');
   }
 
+  async hotspotOverview(brief: AppContentHotspotBrief): Promise<AppContentHotspotOverview> {
+    const release = await this.activeRelease('opi');
+    const available = new Map(release.dataset.categories.flatMap(category => category.topics.map(topic => [topic.id, topic] as const)));
+    return { brief, topics: brief.topics.map(reference => {
+      const topic = available.get(reference.topicId);
+      const cards = new Map(topic?.cards.filter(card => card.retired !== true).map(card => [card.id, card]));
+      return { topicId: reference.topicId, topicTitle: reference.topicTitle, cards: reference.cardIds.map(id => {
+        const card = cards.get(id);
+        if (!card || typeof card.audioText !== 'string') throw new NotFoundException('hotspot_question_unavailable');
+        // Allowlist every field: the full card also contains protected answers and audio.
+        const reportedPrompts = card.reportedPrompts && typeof card.reportedPrompts === 'object'
+          ? Object.fromEntries(Object.entries(card.reportedPrompts).filter((entry): entry is [string, string[]] =>
+            Array.isArray(entry[1]) && entry[1].every(value => typeof value === 'string')))
+          : undefined;
+        return { id, prompt: card.audioText, ...(reportedPrompts ? { reportedPrompts } : {}) };
+      }) };
+    }) };
+  }
+
+  async assertMembership(accountId: string, sessionId: string, environment: CommerceEnvironment) {
+    await this.assertEnvironmentAuthorized(accountId, sessionId, environment, new Date());
+    if (!(await this.membership(accountId, environment, new Date())).active) throw new ForbiddenException('membership_required');
+  }
+
   async issueCredential(
     accountId: string,
     input: IssueContentCredentialRequest,
-    sessionId: string,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     now = new Date(),
   ): Promise<ContentAccessCredential> {
@@ -247,10 +278,11 @@ export class ContentAccessService {
   }
 
   private async membership(
-    accountId: string,
+    accountId: string | undefined,
     environment: CommerceEnvironment,
     now: Date,
   ): Promise<MembershipAccess> {
+    if (!accountId) return { active: false, expiresAt: null, segmentId: null, environment: null };
     const [segment] = await this.database.db.select({
       endsAt: membershipEntitlementSegments.endsAt,
       environment: membershipEntitlementSegments.environment,
@@ -288,11 +320,15 @@ export class ContentAccessService {
   }
 
   async assertEnvironmentAuthorized(
-    accountId: string,
-    sessionId: string,
+    accountId: string | undefined,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     now: Date,
   ) {
+    if (!accountId || !sessionId) {
+      if (environment !== 'production') throw new ForbiddenException('sandbox_environment_not_authorized');
+      return;
+    }
     if (environment === 'production') return;
     const signingSecret = this.config.contentCredentialSigningSecret;
     if (!signingSecret) throw new ServiceUnavailableException('content_credentials_unavailable');

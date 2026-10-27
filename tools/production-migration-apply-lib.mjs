@@ -3,6 +3,64 @@ const PLAN_PATTERN = /^(0|[1-9][0-9]*):(0|[1-9][0-9]*):0$/u;
 const BACKUP_PATTERN = /^icao-[0-9]{8}T[0-9]{6}Z-[0-9]+\.dump$/u;
 const EVIDENCE_PATTERN = /^\/opt\/icao\/runtime\/migration-rehearsals\/evidence\/rehearsal-[a-f0-9]{12}-[0-9]{8}T[0-9]{6}Z\.txt$/u;
 
+export const REUSABLE_REHEARSAL_SOURCE = '64678f357635f277090abe7c0f4e1c9adf8eb67f';
+export const REUSABLE_REHEARSAL_EVIDENCE = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-64678f357635-20261027T034722Z.txt';
+export const MIGRATION_PAYLOAD_PATHS = ['package.json','pnpm-lock.yaml','pnpm-workspace.yaml','patches',
+  'modules/icao-distribution-environment','modules/icao-wechat-auth','packages/contracts','services/api',
+  'content/vocabulary','content/app-content/text.json','content/question-banks/opi-hotspots.json','infra/api'];
+const reviewedTestPath = 'services/api/scripts/vocabulary-storage-role-tests.mjs';
+const reviewedTestBefore = 'd6fdc30447306c06046677c9d01d62f894460bc4';
+const reviewedTestAfter = '3e674d452cdddc8f27b3d46234ba4aeb03b2c58f';
+
+export function assertReviewedRehearsalDelta(changedPaths, beforeBlob, afterBlob) {
+  if (changedPaths.length === 0) return;
+  if (changedPaths.length !== 1 || changedPaths[0] !== reviewedTestPath
+    || beforeBlob !== reviewedTestBefore || afterBlob !== reviewedTestAfter) {
+    throw new Error('rehearsal_reuse_payload_difference_not_reviewed');
+  }
+}
+
+/** One approved Oct27 receipt; intentionally not a general stale-evidence bypass. */
+export function prepareRehearsalReuse(text, { root, runnerSha, prePlan, postPlan, evidencePath, gitRead }) {
+  if (!SHA_PATTERN.test(runnerSha) || evidencePath !== REUSABLE_REHEARSAL_EVIDENCE) {
+    throw new Error('rehearsal_reuse_identity_invalid');
+  }
+  validatePlanTransition(prePlan,postPlan);
+  const fields = Object.create(null);
+  for (const line of String(text).trim().split(/\r?\n/u)) {
+    const index = line.indexOf('=');
+    if (index < 1 || Object.hasOwn(fields,line.slice(0,index))) throw new Error('rehearsal_reuse_evidence_ambiguous');
+    fields[line.slice(0,index)] = line.slice(index+1);
+  }
+  const required = { source_sha:REUSABLE_REHEARSAL_SOURCE,pre_plan:prePlan,post_plan:postPlan,
+    cleanup_verified:'1',isolated_database_removed:'1',missing_preexisting_tables:'0',
+    preexisting_fingerprint_mismatches:'0',missing_contracts:'0',unvalidated_constraints:'0',
+    device_digest_columns:'0',schema_contract_verified:'1' };
+  for (const [key,value] of Object.entries(required)) {
+    if (fields[key] !== value) throw new Error(`rehearsal_reuse_evidence_mismatch:${key}`);
+  }
+  for (const key of ['archive_sha256','backup_sha256','schema_contract_sha256']) {
+    if (!/^[a-f0-9]{64}$/u.test(fields[key] ?? '')) throw new Error(`rehearsal_reuse_digest_invalid:${key}`);
+  }
+  if (!BACKUP_PATTERN.test(fields.backup_name ?? '')
+    || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$/u.test(fields.completed_at ?? '')
+    || !Number.isFinite(Date.parse(fields.completed_at))) throw new Error('rehearsal_reuse_backup_or_time_invalid');
+  const git = gitRead ?? (args => execFileSync('git',['-C',root,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));
+  git(['merge-base','--is-ancestor',REUSABLE_REHEARSAL_SOURCE,runnerSha]);
+  const changed = git(['diff','--name-only','-z',REUSABLE_REHEARSAL_SOURCE,runnerSha,'--',...MIGRATION_PAYLOAD_PATHS]).split('\0').filter(Boolean);
+  assertReviewedRehearsalDelta(changed,
+    git(['rev-parse',`${REUSABLE_REHEARSAL_SOURCE}:${reviewedTestPath}`]).trim(),
+    git(['rev-parse',`${runnerSha}:${reviewedTestPath}`]).trim());
+  for (const sha of [REUSABLE_REHEARSAL_SOURCE,runnerSha]) {
+    if (!git(['ls-tree',sha,'--',reviewedTestPath]).startsWith('100644 blob ')) {
+      throw new Error('rehearsal_reuse_test_mode_not_reviewed');
+    }
+  }
+  const payloadTree = git(['ls-tree','-r','-z',REUSABLE_REHEARSAL_SOURCE,'--',...MIGRATION_PAYLOAD_PATHS]);
+  return { payloadSource:REUSABLE_REHEARSAL_SOURCE,backupName:fields.backup_name,
+    evidencePath,payloadTreeSha256:createHash('sha256').update(payloadTree).digest('hex'),
+    evidenceSha256:createHash('sha256').update(text).digest('hex') };
+}
 export function parsePlan(value, label = 'plan') {
   const match = typeof value === 'string' ? PLAN_PATTERN.exec(value) : null;
   if (!match) throw new Error(`${label}_invalid`);
@@ -88,3 +146,5 @@ export function summarizeNonAuthoritativeRowCounts(before, after, label = 'row_c
     interpretation: 'non_authoritative_concurrent_activity_allowed',
   };
 }
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';

@@ -1,4 +1,7 @@
+import { vocabularyDocumentSchema, vocabularyDocumentForPolicy } from './vocabulary-document';
+import type { VocabularyMigrationPolicy } from '@icao/contracts/vocabulary-live';
 import { retiredQuestionCards } from './retired-question-cards';
+import { rebaseFormattedAnnotations } from './question-bank-format-compat';
 
 type Value = Record<string, unknown>;
 const object = (value: unknown): Value => value && typeof value === 'object' && !Array.isArray(value) ? value as Value : {};
@@ -7,9 +10,9 @@ export function isRetiredCard(bankId: unknown, cardId: unknown) { return retired
 export function emptyRetiredState(updatedAt: string) { return { visited: false, completed: false, note: '', updatedAt }; }
 export function sanitizeRetiredAnnotations(value: Value): Value {
   if (!value.entries || typeof value.entries !== 'object') return value;
-  return { ...value, entries: Object.fromEntries(Object.entries(object(value.entries)).filter(([, entry]) => {
+  return rebaseFormattedAnnotations({ ...value, entries: Object.fromEntries(Object.entries(object(value.entries)).filter(([, entry]) => {
     const item = object(entry); return !isRetiredCard(item.bankId, item.cardId);
-  })) };
+  })) });
 }
 const retiredItem = (value: unknown) => {
   const item = object(value); const source = object(item.source);
@@ -45,8 +48,13 @@ export function sanitizeRetiredLearningRecord(value: Value): Value {
   }
   return result;
 }
-export function sanitizeRetiredSyncPayload(kind: string, value: Value): Value {
+export function sanitizeRetiredSyncPayload(kind: string, value: Value, policy?: VocabularyMigrationPolicy): Value {
   if (kind === 'card_state' && isRetiredCard(value.bankId, value.cardId)) return { ...value, state: emptyRetiredState(String(value.updatedAt ?? new Date(0).toISOString())) };
+  if (kind === 'document' && value.documentKey === 'vocabulary') {
+    if (policy) return { ...value, document: vocabularyDocumentForPolicy(value.document, policy) };
+    const parsed = vocabularyDocumentSchema.safeParse(value.document);
+    return parsed.success ? { ...value, document: parsed.data } : value;
+  }
   if (kind === 'document' && value.documentKey === 'annotations') return { ...value, document: sanitizeRetiredAnnotations(object(value.document)) };
   if (kind === 'learning_record' && value.record) {
     const record = sanitizeRetiredLearningRecord(object(value.record));

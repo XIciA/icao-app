@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-865",
-  "name": "AFR332 smoke in the cockpit",
+  "name": "AFR332 · 驾驶舱烟雾",
   "declaredCardCount": 17,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-153491",
-      "taskTitle": "46. AFR332 smoke in the cockpit-1",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-1",
       "audioText": "Your call sign is AFR332, at stand No.223, ask for push back and startup instructions.",
       "audioTextZh": "你的呼号是法航332，你在223号停机位，申请推出开车指令。",
       "referenceText": "Wuhan Ground, AFR332, stand No.223, request pushback and startup.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-153492",
-      "taskTitle": "46. AFR332 smoke in the cockpit-2",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-2",
       "audioText": "AFR332, pushback and startup approved, long push.",
       "audioTextZh": "法航332，同意推出开车，推长点。",
       "referenceText": "Cleared for push back and start up, long push, AFR332.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-153493",
-      "taskTitle": "46. AFR332 smoke in the cockpit-3",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-3",
       "audioText": "Now you realize the tug is not in position yet, request a tug.",
       "audioTextZh": "现在你发现拖车没有就位，请求拖车。",
       "referenceText": "Wuhan Ground, AFR332, request a tug.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-153494",
-      "taskTitle": "46. AFR332 smoke in the cockpit-4",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-4",
       "audioText": "AFR332, roger, tug is on the way.",
       "audioTextZh": "法航332，拖车已经在路上了。",
       "referenceText": "Roger, thanks, AFR332.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-153495",
-      "taskTitle": "46. AFR332 smoke in the cockpit-5",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-5",
       "audioText": "Now you have finished pushback and startup procedure, you are ready for taxi.",
       "audioTextZh": "现在，你完成了推出和开车程序，你准备好滑行了。",
       "referenceText": "Wuhan Ground, AFR332, request taxi.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-153496",
-      "taskTitle": "46. AFR332 smoke in the cockpit-6",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-6",
       "audioText": "AFR332, taxi via taxiway A3, A, E5 to the holding point of runway 22. Taxi with caution, the taxiway is slippery due to the heavy rain.",
       "audioTextZh": "法航332，经由滑行道A3，A，E5滑至跑道22外等待点，谨慎滑行，由于大雨，滑行道湿滑。",
       "referenceText": "Taxi via taxiway A3, A, E5 to the holding point of runway 22, taxi with caution, AFR332.",
@@ -61,16 +61,16 @@
     },
     {
       "id": "radiotelephony-fzy-153497",
-      "taskTitle": "46. AFR332 smoke in the cockpit-7",
-      "audioText": "[Now you reached the holding position of runway 22, request line up instructions.]",
-      "audioTextZh": "[你现在到达跑道22外等待点，请求上跑道指令。]",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-7",
+      "audioText": "Now you reached the holding position of runway 22, request line up instructions.",
+      "audioTextZh": "你现在到达跑道22外等待点，请求上跑道指令。",
       "referenceText": "Wuhan Tower, AFR332, request line up.",
       "referenceTextZh": "武汉塔台，法航332，请求上跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/23c757e45cf72b784a98.mp3"
     },
     {
       "id": "radiotelephony-fzy-153498",
-      "taskTitle": "46. AFR332 smoke in the cockpit-8",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-8",
       "audioText": "AFR332, behind the landing A330, line up behind.",
       "audioTextZh": "法航332，在着陆的A330后面，上跑道等待。",
       "referenceText": "Behind the landing A330, line up behind, AFR332.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-153499",
-      "taskTitle": "46. AFR332 smoke in the cockpit-9",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-9",
       "audioText": "AFR332, when ready, cleared for takeoff.",
       "audioTextZh": "法航332，准备好后可以起飞。",
       "referenceText": "Cleared for takeoff, runway 22, AFR332.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-153500",
-      "taskTitle": "46. AFR332 smoke in the cockpit-10",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-10",
       "audioText": "AFR332, follow ZF01D, runway heading until 1200m, contact Wuhan Departure on 124.25.",
       "audioTextZh": "法航332，按照ZF01离场，跑道航向直到1200米，联系武汉离场，124.25。",
       "referenceText": "ZF01D, runway heading until 1200m, contact Departure on 124.25, AFR332.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-153501",
-      "taskTitle": "46. AFR332 smoke in the cockpit-11",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-11",
       "audioText": "AFR332, Wuhan Departure, when passing HG, turn left heading 220, next ZF.",
       "audioTextZh": "法航332，武汉离场，过HG，左转航向220，下一个ZF。",
       "referenceText": "When passing HG, turn left heading 220, next ZF, AFR332.",
@@ -106,16 +106,16 @@
     },
     {
       "id": "radiotelephony-fzy-153502",
-      "taskTitle": "46. AFR332 smoke in the cockpit-12",
-      "audioText": "[You are now at 3600m, you smell something unusual in the cockpit, but you haven’t found out the source of the smell, report this situation to Wuhan Tower and request to hold for doing the checklist.]",
-      "audioTextZh": "[你现在在3600米，你在驾驶舱内闻到异常气味，但是你没有发现气味来源，将情况报告给武汉塔台，申请等待并执行检查单。]",
-      "referenceText": "Wuhan Tower, AFR332, 3600m, we find unusual smell in the cockpit, but we haven’t found out the source, request to hold for checklist.",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-12",
+      "audioText": "You are now at 3600m, you smell something unusual in the cockpit, but you haven't found out the source of the smell, report this situation to Wuhan Tower and request to hold for doing the checklist.",
+      "audioTextZh": "你现在在3600米，你在驾驶舱内闻到异常气味，但是你没有发现气味来源，将情况报告给武汉塔台，申请等待并执行检查单。",
+      "referenceText": "Wuhan Tower, AFR332, 3600m, we find unusual smell in the cockpit, but we haven't found out the source, request to hold for checklist.",
       "referenceTextZh": "武汉塔台，法航332,3600米，我们在驾驶舱发现异常气味，但是我们还没有发现气味来源，请求等待并执行检查单。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a5237870b44b20cd5b35.mp3"
     },
     {
       "id": "radiotelephony-fzy-153503",
-      "taskTitle": "46. AFR332 smoke in the cockpit-13",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-13",
       "audioText": "AFR332, direct to ZF, hold as published.",
       "audioTextZh": "法航332，直飞ZF，按照发布程序等待。",
       "referenceText": "Direct to ZF, hold as published, AFR332.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-153504",
-      "taskTitle": "46. AFR332 smoke in the cockpit-14",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-14",
       "audioText": "As you perform the checklist, there is dense smoke in the cockpit, contact Wuhan Tower and make a distress call for priority landing to Wuhan airport.",
       "audioTextZh": "在你执行检查单的时候，驾驶舱中的烟雾变浓，联系武汉塔台，做遇险通话，请求在武汉机场优先着陆。",
       "referenceText": "Mayday, Mayday, Mayday, Wuhan Tower, AFR332, heavy smoke in the cockpit, request priority landing to Wuhan airport.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-153505",
-      "taskTitle": "46. AFR332 smoke in the cockpit-15",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-15",
       "audioText": "AFR332, roger Mayday, follow ZF01A, descend to 1800m, when able, report passengers on board.\n[Read back the instructions and tell controller that you have 220 passengers on board.]",
       "audioTextZh": "法航332，收到Mayday，按照ZF01进场，下到1800米，方便的时候，报告机上人数。\n[复诵指令，告诉管制员你的机上人数是220。]",
       "referenceText": "ZF01A, descend to 1800m, we have 220 passengers on board, AFR332.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-153506",
-      "taskTitle": "46. AFR332 smoke in the cockpit-16",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-16",
       "audioText": "AFR332, descend to and maintain 600m, turn right to join the downwind for runway 22, report when turning base.",
       "audioTextZh": "法航3332，下到600米保持，右转加入跑道22的3边，进入4边后报。",
       "referenceText": "Descend to and maintain 600m, turn right to join the downwind for runway 22, report when turning base, AFR332.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-153507",
-      "taskTitle": "46. AFR332 smoke in the cockpit-17",
+      "taskTitle": "46. AFR332 · 驾驶舱烟雾-17",
       "audioText": "The smoke situation cannot be controlled, request emergency services upon landing.",
       "audioTextZh": "烟雾情况无法控制，在降落后请求紧急服务。",
       "referenceText": "Wuhan Tower, AFR332, smoke cannot be controlled, request emergency services after landing.",

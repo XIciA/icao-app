@@ -1,22 +1,22 @@
 {
   "id": "atc-fzy-633",
-  "name": "CES5102 loud noise&injury, etc.",
+  "name": "CES5102 · 巨响与人员受伤",
   "declaredCardCount": 18,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111609",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-1",
-      "audioText": "[Your call sign is CES5102, destination Beijing, 4800m maintaining, estimating DOGAR05, information F, now contact Beijing Approach.]",
-      "audioTextZh": "【你的呼号是东方5102，目的地北京，保持4800米，预计到达DOGAR时间为05分，通播F，现在联系北京进近。】",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-1",
+      "audioText": "Your call sign is CES5102, destination Beijing, 4800m maintaining, estimating DOGAR05, information F, now contact Beijing Approach.",
+      "audioTextZh": "你的呼号是东方5102，目的地北京，保持4800米，预计到达DOGAR时间为05分，通播F，现在联系北京进近。",
       "referenceText": "Beijing Approach, CES5102, 4800m maintaining, estimating DOGAR05, information F.",
       "referenceTextZh": "北京进近，东方5102，保持4800米，预计到达DOGAR时间为05分，通播F。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4da8999711631cae93d0.mp3"
     },
     {
       "id": "radiotelephony-fzy-111610",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-2",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-2",
       "audioText": "CES5102, Beijing Approach, DOGAR03 arrival, expect ILS approach runway 01, maintain 4800m.",
       "audioTextZh": "东方5102，北京进近，DOGAR-03进场，盲降进近跑道01，保持4800米。",
       "referenceText": "DOGAR03 arrival, expect ILS approach runway 01, maintain 4800m, CES5102.",
@@ -25,16 +25,16 @@
     },
     {
       "id": "radiotelephony-fzy-111611",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-3",
-      "audioText": "[Flight attendants reported that a loud noise is coming from the backward right of the cabin, report this to the controller and request emergency descent.]",
-      "audioTextZh": "【空乘人员听到客舱右后方一声巨响，把这一情况报告给管制员，请求紧急下降。】",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-3",
+      "audioText": "Flight attendants reported that a loud noise is coming from the backward right of the cabin, report this to the controller and request emergency descent.",
+      "audioTextZh": "空乘人员听到客舱右后方一声巨响，把这一情况报告给管制员，请求紧急下降。",
       "referenceText": "(Mayday Mayday Mayday) Beijing Approach, CES5102, we have a loud noise coming from the cabin, request emergency descent.",
       "referenceTextZh": "（Mayday Mayday Mayday）北京进近，东方5102，我们听到客舱内一声巨响，请求紧急下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/042935504d8b3dc37c87.mp3"
     },
     {
       "id": "radiotelephony-fzy-111612",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-4",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-4",
       "audioText": "CES5102, descend to and maintain 2100m on QNH 1012.",
       "audioTextZh": "东方5102，下降并保持2100，修正海压1012。",
       "referenceText": "Descend to and maintain 2100m on QNH 1012, CES5102.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111613",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-5",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-5",
       "audioText": "CES5102, can you describe the sound in more detail?[It seems to be an outside air noise or a slight depressurization problem.]",
       "audioTextZh": "东方5102，可以具体描述一下那声巨响么？【似乎是外部空气噪音或轻微失压问题。】",
       "referenceText": "It sounds like an outside air noise or a slight depressurization problem, CES5102.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111614",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-6",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-6",
       "audioText": "CES5102, roger.[The engineers advised that it may be a problem with the door seal. They suggested you reduce speed to minimum, report to the controller.]",
       "audioTextZh": "东方5102，收到。【工程师说可能是舱门密封有问题。他们建议将速度降至最低，报告给管制员。】",
       "referenceText": "Beijing Approach, CES5102, maybe a problem with the door seal. The engineers suggest we reduce speed to minimum.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111615",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-7",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-7",
       "audioText": "CES5102, affirm, do you require emergency service on arrival?[You have three passengers injured during emergency descent, so you will need medical service on arrival, require priority landing.]",
       "audioTextZh": "东方5102，同意，到达时需要紧急服务么？【紧急下降时有三名乘客受伤，所以到达时你需要医疗服务，并请求优先降落。】",
       "referenceText": "Affirm, we have three injured persons during descent. Request priority landing and require ambulance on arrival, CES5102.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111616",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-8",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-8",
       "audioText": "CES5102, roger, you are number one, doctors and ambulance will be ready on arrival. [Request change runway 36R to save time.]",
       "audioTextZh": "东方5102，收到，你第一个，到达时医生和救护车都将准备好。【为了节省时间请求更换至36右跑道。】",
       "referenceText": "No.1, request runway change to 36R, CES5102.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111617",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-9",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-9",
       "audioText": "CES5102, Beijing roger, turn left heading 300, radar vector for landing.",
       "audioTextZh": "东方5102，北京收到，左转航向300，雷达引导降落。",
       "referenceText": "Turn left heading 300, radar vector for landing, ES5102.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111618",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-10",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-10",
       "audioText": "CES5102, the weather is deteriorating, say intentions. [Tell the controller you want to continue approach.]",
       "audioTextZh": "东方5102，恶劣天气状况，请示意图。【告诉管制员你想继续进近。】",
       "referenceText": "Request continue approach, CES5102.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111619",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-11",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-11",
       "audioText": "CES5102, descend to and maintain 900m, turn right heading 330, report established on localizer.",
       "audioTextZh": "东方5102，下降保持900米，右转航向330，建立航道报告。",
       "referenceText": "Descend to and maintain 900m, turn right heading 330, report established on the localizer, CES5102.",
@@ -106,8 +106,8 @@
     },
     {
       "id": "radiotelephony-fzy-111620",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-12",
-      "audioText": "[Report established on localizer 5 miles final RWY 36R.]",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-12",
+      "audioText": "Report established on localizer 5 miles final RWY 36R.",
       "audioTextZh": "【跑道36右五边5海里航向道建立后报】",
       "referenceText": "Beijing Approach, CES5102, established on localizer 5 miles final runway 36R.",
       "referenceTextZh": "北京进近，东方5102，跑道36右，五边5海里航向道已建立。",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111621",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-13",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-13",
       "audioText": "CES5102, continue approach and contact Beijing Tower 118.1.",
       "audioTextZh": "东方5102，继续进近，联系北京塔台118.1。",
       "referenceText": "Continue approach, 118.1, CES5102.",
@@ -124,8 +124,8 @@
     },
     {
       "id": "radiotelephony-fzy-111622",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-14",
-      "audioText": "[Report to Tower that you have established ILS.]",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-14",
+      "audioText": "Report to Tower that you have established ILS.",
       "audioTextZh": "【告知塔台你已经建立了盲降。】",
       "referenceText": "Beijing Tower, CES5102, established ILS.",
       "referenceTextZh": "北京塔台，东方5102，建立盲降。",
@@ -133,16 +133,16 @@
     },
     {
       "id": "radiotelephony-fzy-111623",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-15",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-15",
       "audioText": "CES5102, Beijing Tower, expect low visibility for your arrival, say intention.[You want to try landing.]",
       "audioTextZh": "东方5102，北京塔台，机场低能见，请示意图。【你想尝试降落。】",
       "referenceText": "Roger, request landing, CES5102.",
-      "referenceTextZh": "收到，请求着陆， 东方5102。",
+      "referenceTextZh": "收到，请求着陆，东方5102。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ed4e2b364ef14caa97f.mp3"
     },
     {
       "id": "radiotelephony-fzy-111624",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-16",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-16",
       "audioText": "CES5102, continue approach, report outer marker.",
       "audioTextZh": "东方5102，继续进近，过远台报告。",
       "referenceText": "Report outer marker, CES5102.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111625",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-17",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-17",
       "audioText": "[Over outer marker.]",
       "audioTextZh": "【过远台了。】",
       "referenceText": "Beijing Tower, CES5102, outer marker.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111626",
-      "taskTitle": "5. CES5102 loud noise&injury, etc.-18",
+      "taskTitle": "5. CES5102 · 巨响与人员受伤-18",
       "audioText": "CES5102, cleared to land runway 36R, surface wind 160, 7m/s, report vacated.",
       "audioTextZh": "东方5102，可以着陆，跑道36右，地面风160，7米/秒，脱离后报告。",
       "referenceText": "Cleared to land runway 36R, report vacated, CES5102.",

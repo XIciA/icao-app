@@ -1,0 +1,56 @@
+{
+  "candidate": {
+    "version": "1.3.6",
+    "build": 3582990
+  },
+  "frontend": {
+    "numPassedTests": 1502,
+    "numFailedTests": 0,
+    "numPassedTestSuites": 222,
+    "numFailedTestSuites": 0
+  },
+  "api": {
+    "passedFiles": 67,
+    "passedTests": 682
+  },
+  "checks": {
+    "types": "passed",
+    "lint": "0 errors, 19 existing warnings",
+    "contentSourceAndFormat": "passed",
+    "contracts": "passed",
+    "nativeReleaseStaticChecks": "passed",
+    "fullLocalMedia": "unavailable: existing local media source incomplete; no content or resource paths changed"
+  },
+  "deviceAcceptance": "not performed: user requested code-only verification",
+  "delivery": {
+    "web": {
+      "url": "https://readyoufife.com",
+      "deploymentId": "dp3w4tprilkb",
+      "publicBundleSha256": "58f0bb2ca17d5985ad7c4db13253734abf296417166090dd4d37a309494cf7b0",
+      "status": "deployed and exact bytes verified"
+    },
+    "ios": {
+      "buildId": "7cd48e1b-9fdd-4fd1-b782-921f25b5428c",
+      "processingState": "VALID",
+      "internalBuildState": "IN_BETA_TESTING",
+      "status": "available in existing internal testing group"
+    },
+    "android": {
+      "packageName": "com.readyoufife.app.test",
+      "versionCode": 3582990,
+      "sha256": "225e404b1b596abed509f161ce91ea7958db2fa176ee14442d89c18c3483c424",
+      "sizeBytes": 135589525,
+      "certificateSha256": "25d4fe5523417289da5fe0bf970593b98fe4ea658883edeb5792906e31456629",
+      "matchesPreviousTestCertificate": true,
+      "url": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.6-b3582990.apk",
+      "status": "published; public full download digest verified"
+    },
+    "officialChannelsUnchanged": true,
+    "record": "../../records/releases/20261024-learning-ui-1.3.6.md"
+  },
+  "source": {
+    "commit": "8c6a30f6688cade451ce3fa9eb64a6b302bea2e7",
+    "pullRequest": 237,
+    "ciRun": 40064269823
+  }
+}

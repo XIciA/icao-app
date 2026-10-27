@@ -1,7 +1,7 @@
 {
   "id": "atc-fzy-790",
   "name": "QFA160 [导航问题，燃油短缺]",
-  "declaredCardCount": 18,
+  "declaredCardCount": 17,
   "studyTier": 1,
   "practiceKind": "scenario",
   "cards": [
@@ -13,15 +13,6 @@
       "referenceText": "Zhengzhou Control, QFA160, from Tokyo to Guangzhou, we are cruising at 11,000 meters over WX.",
       "referenceTextZh": "郑州区调，澳航160，从东京飞往广州，我们在11000米巡航，飞过WX。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f41ebbd434181ed63351.mp3"
-    },
-    {
-      "id": "radiotelephony-fzy-152558",
-      "taskTitle": "9-QFA160 [导航问题，燃油短缺]-2",
-      "audioText": "C: QFA160, Zhengzhou Control, radar contact, maintain 10500 meters.",
-      "audioTextZh": "澳航160，郑州区调，雷达识别，10500米保持。",
-      "referenceText": "Roger, maintain 10500 meters, QFA160.",
-      "referenceTextZh": "收到，10500米保持，澳航160。",
-      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ec88efeb3535ad91e559.mp3"
     },
     {
       "id": "radiotelephony-fzy-152559",
@@ -71,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-152564",
       "taskTitle": "9-QFA160 [导航问题，燃油短缺]-8",
-      "audioText": "B: Now you find you won’t have enough fuel to fly to Guangzhou. You decide to divert to Changsha airport. Notify Zhengzhou Control.",
+      "audioText": "B: Now you find you won't have enough fuel to fly to Guangzhou. You decide to divert to Changsha airport. Notify Zhengzhou Control.",
       "audioTextZh": "现在，你发现你没有足够的燃油飞往广州，你决定改航到长沙机场，告知郑州区调。",
       "referenceText": "Zhengzhou Control, QFA160, request divert to Changsha airport due fuel shortage.",
       "referenceTextZh": "郑州区调，QFA160，由于燃油短缺，请求改航长沙机场。",
@@ -137,7 +128,7 @@
       "audioText": "C: QFA160, roger, divert to Wuhan Airport approved, descend to and maintain 4800 meters, contact 120.45 when reaching.",
       "audioTextZh": "QFA160，收到，同意改航到武汉机场，下到4800米保持，到4800米后联系120.45。",
       "referenceText": "Roger, divert to Wuhan Airport approved, descend to and maintain 4800 meters, contact 120.45 when reaching, QFA160.",
-      "referenceTextZh": "收到，同意改航到武汉机场，下到4800米保持，到4800米后联系120.45， QFA160。",
+      "referenceTextZh": "收到，同意改航到武汉机场，下到4800米保持，到4800米后联系120.45，QFA160。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2720998fb5bcf1a437f0.mp3"
     },
     {

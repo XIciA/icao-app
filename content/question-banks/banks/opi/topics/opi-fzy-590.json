@@ -1,82 +1,87 @@
 {
   "id": "opi-fzy-590",
-  "name": "Figure 34",
-  "declaredCardCount": 7,
+  "name": "传统与玻璃驾驶舱",
   "cards": [
     {
       "id": "opi-fzy-590-image-1",
       "kind": "image",
-      "taskTitle": "Figure 34 · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-590.png",
-      "imageAlt": "Figure 34，用于本话题的看图描述和问答",
-      "studyTier": 0
+      "imageAlt": "传统与玻璃驾驶舱，用于本话题的看图描述和问答",
+      "studyTier": 0,
+      "taskTitle": "传统与玻璃驾驶舱 · 看图材料"
     },
     {
       "id": "opi-fzy-110433",
-      "taskTitle": "Figure 34-1",
+      "audio": "/question-bank-assets/revisions/opi/b08a393e8af1651907ee98e18fbf3a60eaf7b0bfd836aec45e248e07ea13f200/audio/opi/opi-fzy-110433.mp3",
       "audioText": "Describe what is shown in the pictures. (See Fig.34)",
-      "audioTextZh": "请描述图片内容。（见图34）",
       "studyTier": 0,
+      "taskTitle": "传统与玻璃驾驶舱-1",
+      "audioTextZh": "请描述图片内容。（见图34）",
       "referenceText": "The upper left picture shows a traditional and out-of-date cockpit. There are many electromechanical instrument panels such as altimeter, attitude indicator, airspeed indicator showing in the main control panel. The below right picture shows a modern aircraft cockpit, from its control lever we can see it is a cockpit of Boeing aircraft. Many electronic displays such as EFIS, EICAS and FMS are showing in the primary flight display area.",
       "referenceTextZh": "左上图是一个传统的老式的飞机驾驶舱，许多机电式仪表盘例如高度表、姿态仪、空速表显示在主操纵台上。右下图是一个现代飞机的驾驶舱，从操纵杆可以看出是一个波音飞机的驾驶舱，在主飞行显示器上显示有许多电子指示仪如电子飞行仪表系统、机组警告系统、飞行管理系统等。",
-      "audio": "/question-bank-assets/revisions/opi/b08a393e8af1651907ee98e18fbf3a60eaf7b0bfd836aec45e248e07ea13f200/audio/opi/opi-fzy-110433.mp3",
       "audioDurationSeconds": 3.432
     },
     {
       "id": "opi-fzy-110434",
-      "taskTitle": "Figure 34-2",
-      "audioText": "What’s the main feature of modern aircraft cockpit?",
-      "audioTextZh": "现代飞机驾驶舱的主要特色是什么呢？",
-      "studyTier": 0,
-      "referenceText": "Modern and advanced liquid crystal display and quite high degree of automation, which greatly economize our pilots’ energy.",
-      "referenceTextZh": "先进的液晶仪表显示，相当高的自动化程度，充分节省了飞行员的精力。",
       "audio": "/question-bank-assets/revisions/opi/5324d95bb3e104e80082ee8147e1d8c369c88391e35195bee513869656d7d982/audio/opi/opi-fzy-110434.mp3",
+      "audioText": "What's the main feature of modern aircraft cockpit?",
+      "studyTier": 0,
+      "taskTitle": "传统与玻璃驾驶舱-2",
+      "audioTextZh": "现代飞机驾驶舱的主要特色是什么呢？",
+      "referenceText": "Modern and advanced liquid crystal display and quite high degree of automation, which greatly economize our pilots' energy.",
+      "referenceTextZh": "先进的液晶仪表显示，相当高的自动化程度，充分节省了飞行员的精力。",
       "audioDurationSeconds": 2.712
     },
     {
       "id": "opi-fzy-110435",
-      "taskTitle": "Figure 34-3",
+      "audio": "/question-bank-assets/revisions/opi/b0341c4eacfc49ff4c218c91740bfa869e56735bc0fd98f04f0cdeb55cd0556a/audio/opi/opi-fzy-110435.mp3",
       "audioText": "As we all know, the cockpit window is definitely not allowed to be opened during flight. What about the situation when on the ground?",
-      "audioTextZh": "众所周知，驾驶舱的窗户在飞行途中被禁止打开，那么在地面时是否可以打开？",
       "studyTier": 0,
+      "taskTitle": "传统与玻璃驾驶舱-3",
+      "audioTextZh": "众所周知，驾驶舱的窗户在飞行途中被禁止打开，那么在地面时是否可以打开？",
       "referenceText": "Most cockpit windows can be opened when the aircraft is on the ground. They are equipped with a sun shield. Nearly all glass windows in the large aircraft have anti-reflective coating, and an internal heating element to melt ice. Smaller aircraft is possibly equipped with a transparent aircraft canopy.",
       "referenceTextZh": "大多数驾驶舱的窗户在地面时都可以打开。窗户配备遮阳板。几乎所有大型飞机的玻璃窗都有防反射涂层，内部有加热元件可以融冰。小型飞机可能配备有透明座舱盖。",
-      "audio": "/question-bank-assets/revisions/opi/b0341c4eacfc49ff4c218c91740bfa869e56735bc0fd98f04f0cdeb55cd0556a/audio/opi/opi-fzy-110435.mp3",
       "audioDurationSeconds": 7.128
     },
     {
       "id": "opi-fzy-110436",
-      "taskTitle": "Figure 34-4",
+      "audio": "/question-bank-assets/revisions/opi/35837284709051c88e5b886a707733c90462bb5b0900215f5fb1a86961202cd8/audio/opi/opi-fzy-110436.mp3",
       "audioText": "What are the differences between the duty of captain and the first officer in a flight?",
-      "audioTextZh": "飞行中机长和副驾驶的职责有哪些不同？",
       "studyTier": 0,
+      "taskTitle": "传统与玻璃驾驶舱-4",
+      "audioTextZh": "飞行中机长和副驾驶的职责有哪些不同？",
       "referenceText": "The captain is often the pilot-in-command, he must be skillful and experienced and shall have authority as to disposition of the aircraft so as to ensure the safety of the aircraft and the persons therein. While the first officer shall assist the captain to operate the aircraft. They always work together and discuss issues with each other before the captain makes a decision.",
       "referenceTextZh": "机长通常是正驾驶员，需要操作熟练并有丰富的经验，管理飞机部署并确保飞机和机内乘客的安全，副驾驶辅助机长操纵飞机。机长和副驾驶要共同工作，在机长做决定前，两人要一起讨论。",
-      "audio": "/question-bank-assets/revisions/opi/35837284709051c88e5b886a707733c90462bb5b0900215f5fb1a86961202cd8/audio/opi/opi-fzy-110436.mp3",
       "audioDurationSeconds": 4.224
     },
     {
       "id": "opi-fzy-110437",
-      "taskTitle": "Figure 34-5",
+      "audio": "/question-bank-assets/revisions/opi/4f5103bcf64914cf483b9b232ea4dd1310006fc8c82552da548d3b2b5636d465/audio/opi/opi-fzy-110437.mp3",
       "audioText": "What should a captain mainly do in a flight?",
-      "audioTextZh": "机长在飞行中的主要工作是什么？",
       "studyTier": 0,
+      "taskTitle": "传统与玻璃驾驶舱-5",
+      "audioTextZh": "机长在飞行中的主要工作是什么？",
       "referenceText": "Before the flight, the captain usually reviews the weather, flight plan, Notices to Airman (NOTAM), performance and fuel issues. At the stage of takeoff and landing, it is the captain who operates aircraft. During cruising, usually both captain and co-pilot would cover some distance.",
       "referenceTextZh": "在飞行前，机长要检查天气情况、飞行计划、航行通告、飞机性能、燃油问题。在起飞和降落阶段，机长操纵飞机。飞机巡航时，机长和副驾驶可分别负责航线中的某一段。",
-      "audio": "/question-bank-assets/revisions/opi/4f5103bcf64914cf483b9b232ea4dd1310006fc8c82552da548d3b2b5636d465/audio/opi/opi-fzy-110437.mp3",
       "audioDurationSeconds": 2.208
     },
     {
       "id": "opi-fzy-110438",
-      "taskTitle": "Figure 34-6",
-      "audioText": "How do captain and the first officer make cooperation in case of emergency?",
-      "audioTextZh": "假如发生紧急情况，机长和副驾驶要如何合作？",
+      "audio": "/question-bank-assets/revisions/opi/68a4111ef8818e5d9f03c5b235cbde232e865b3c20c082779bd14ee811d0e7c3/audio/opi/opi-fzy-110438.mp3",
+      "audioText": "How should the captain and first officer work together during an emergency?",
       "studyTier": 0,
-      "referenceText": "If an emergency arises in flight, one of the crew would control the aircraft and the other would focus on managing the emergency and contact ATC.",
-      "referenceTextZh": "飞行中出现紧急情况时，其中一个人需要操纵飞机，另一个人要负责应急管理并联系ATC。",
-      "audio": "/question-bank-assets/revisions/opi/59a7c9a18cd9a1aea13f59917dc025e38e3df3a695cadada08f55999be35714c/audio/opi/opi-fzy-110438.mp3",
-      "audioDurationSeconds": 4.272
+      "taskTitle": "传统与玻璃驾驶舱-6",
+      "audioTextZh": "紧急情况下，机长和副驾驶应如何协作？",
+      "referenceText": "If an emergency occurs in flight, one pilot controls the aircraft while the other manages the emergency and communicates with ATC.",
+      "referenceTextZh": "飞行中出现紧急情况时，一名飞行员操纵飞机，另一名飞行员处理紧急情况并与空中交通管制沟通。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "How should crew members cooperate in an emergency?"
+        ]
+      },
+      "audioDurationSeconds": 3.792
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-08"
 }

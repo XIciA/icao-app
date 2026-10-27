@@ -1,78 +1,78 @@
 {
   "id": "opi-topic-0084",
   "name": "当前位置与工作背景",
-  "declaredCardCount": 7,
   "cards": [
     {
-      "id": "opi-core-848",
-      "taskTitle": "其它-当前位置与工作背景-1",
-      "audioText": "What is your current position?",
-      "audioTextZh": "你目前担任什么职位？",
-      "referenceText": "I am a student pilot and I am currently undergoing flight training.",
-      "referenceTextZh": "我是一名学员飞行员，目前正在接受飞行训练。",
-      "audio": "/question-bank-assets/revisions/opi/662bc8676a12b3c19db7dff431d4b11c4e89be6b1dc5a892ee34fdb2a5a38070/audio/opi/opi-core-848.mp3",
-      "audioDurationSeconds": 1.512
-    },
-    {
-      "id": "opi-core-848-part-2",
-      "taskTitle": "其它-当前位置与工作背景-2",
-      "audioText": "Could you describe your work background?",
-      "audioTextZh": "你能否介绍一下自己的工作经历？",
-      "referenceText": "I am a student pilot at Jiutian Flight School, where I train on the DA-40. I have accumulated 100 flight hours and currently hold a private pilot licence.",
-      "referenceTextZh": "我是九天航校的一名学员飞行员，使用 DA-40 训练。我已经积累 100 小时飞行时间，目前持有私用驾驶员执照。",
-      "audio": "/question-bank-assets/revisions/opi/762aa4802c1eb81c4c85e6e766e5ada0b48b4ce7a722d9344fe848d8a09cb67a/audio/opi/opi-core-848-part-2.mp3",
-      "audioDurationSeconds": 1.992
-    },
-    {
       "id": "opi-core-850",
-      "taskTitle": "其它-当前位置与工作背景-3",
+      "audio": "/question-bank-assets/revisions/opi/3a936b6f2174156ad5f935323abc59c2fe22533597462d727d11b5ad894ea56d/audio/opi/opi-core-850.mp3",
       "audioText": "When and where did you complete your most recent transition training?",
+      "taskTitle": "其它-当前位置与工作背景-3",
       "audioTextZh": "你最近一次转机型训练是在何时、何地完成的？",
       "referenceText": "I have not completed any transition training yet.",
       "referenceTextZh": "我还没有完成任何转机型训练。",
-      "audio": "/question-bank-assets/revisions/opi/3a936b6f2174156ad5f935323abc59c2fe22533597462d727d11b5ad894ea56d/audio/opi/opi-core-850.mp3",
       "audioDurationSeconds": 3.432
     },
     {
-      "id": "opi-core-850-part-2",
-      "taskTitle": "其它-当前位置与工作背景-4",
-      "audioText": "Which aircraft type did your most recent transition training cover?",
-      "audioTextZh": "你最近一次转机型训练针对哪种机型？",
-      "referenceText": "No aircraft type applies because I have not completed any transition training yet.",
-      "referenceTextZh": "没有适用机型，因为我还没有完成任何转机型训练。",
-      "audio": "/question-bank-assets/revisions/opi/53565b8718e55265c409bd4ed5bc2aa2a558b1695c6d50b24f47269e8e307437/audio/opi/opi-core-850-part-2.mp3",
-      "audioDurationSeconds": 3.648
-    },
-    {
       "id": "opi-core-850-part-3",
-      "taskTitle": "其它-当前位置与工作背景-5",
+      "audio": "/question-bank-assets/revisions/opi/3c20ce65eb52479c0463efde6d1c7a4b8f883c835f09df2443ef4e9a30d9fd5e/audio/opi/opi-core-850-part-3.mp3",
       "audioText": "Have you completed any high-performance aircraft training? If so, what did it cover?",
+      "taskTitle": "其它-当前位置与工作背景-5",
       "audioTextZh": "你是否完成过高性能航空器训练？如果有，培训内容是什么？",
       "referenceText": "No, I have not completed high-performance aircraft training yet. I am still training on the DA-40 at flight school, so I do not claim any syllabus, qualification, or flight time for a high-performance aircraft. I would complete the programme approved for the relevant aircraft before operating one.",
       "referenceTextZh": "没有，我还没有完成高性能飞机训练。目前仍在航校使用 DA-40 训练，因此不会声称自己具备高性能飞机的课程经历、资质或飞行时间。驾驶相关飞机前，我会完成经批准的训练方案。",
-      "audio": "/question-bank-assets/revisions/opi/3c20ce65eb52479c0463efde6d1c7a4b8f883c835f09df2443ef4e9a30d9fd5e/audio/opi/opi-core-850-part-3.mp3",
       "audioDurationSeconds": 4.92
     },
     {
-      "id": "opi-extra-154",
-      "taskTitle": "其它-当前位置与工作背景-6",
-      "audioText": "When and where did you complete your high-performance flight training?",
-      "audioTextZh": "你在何时、何地完成了高性能飞行训练？",
-      "referenceText": "I have not completed high-performance flight training yet. I am still receiving flight training at a flight school.",
-      "referenceTextZh": "我还没有完成高性能飞行训练，目前仍在航校接受飞行训练。",
-      "audio": "/question-bank-assets/revisions/opi/200170490d51e7d31145f54b5eb0c93afc07065969b2eda2fad4bf9cc9ad0e43/audio/opi/opi-extra-154.mp3",
-      "audioDurationSeconds": 3.192
+      "id": "opi-core-850-part-2",
+      "audio": "/question-bank-assets/revisions/opi/53565b8718e55265c409bd4ed5bc2aa2a558b1695c6d50b24f47269e8e307437/audio/opi/opi-core-850-part-2.mp3",
+      "audioText": "Which aircraft type did your most recent transition training cover?",
+      "taskTitle": "其它-当前位置与工作背景-4",
+      "audioTextZh": "你最近一次转机型训练针对哪种机型？",
+      "referenceText": "No aircraft type applies because I have not completed any transition training yet.",
+      "referenceTextZh": "没有适用机型，因为我还没有完成任何转机型训练。",
+      "audioDurationSeconds": 3.648
     },
     {
       "id": "opi-extra-161",
-      "taskTitle": "其它-当前位置与工作背景-7",
+      "audio": "/question-bank-assets/revisions/opi/db47a20a46a06b7bcd3832ebddce325d12c4bf5cbb245cb137d7ec07d90dc81f/audio/opi/opi-extra-161.mp3",
       "audioText": "How many flight hours did you accumulate during high-performance flight training?",
+      "taskTitle": "其它-当前位置与工作背景-7",
       "audioTextZh": "你在高性能飞行训练期间积累了多少飞行小时？",
       "referenceText": "I have not accumulated any hours in high-performance flight training because I have not started that training yet. My current flight time has been gained during ordinary flight training on the DA-40.",
       "referenceTextZh": "我还没有开始高性能飞行训练，因此没有积累相关飞行时间。目前的飞行时间来自使用 DA-40 进行的普通飞行训练。",
-      "audio": "/question-bank-assets/revisions/opi/db47a20a46a06b7bcd3832ebddce325d12c4bf5cbb245cb137d7ec07d90dc81f/audio/opi/opi-extra-161.mp3",
       "audioDurationSeconds": 4.248
+    },
+    {
+      "id": "opi-extra-154",
+      "audio": "/question-bank-assets/revisions/opi/200170490d51e7d31145f54b5eb0c93afc07065969b2eda2fad4bf9cc9ad0e43/audio/opi/opi-extra-154.mp3",
+      "audioText": "When and where did you complete your high-performance flight training?",
+      "taskTitle": "其它-当前位置与工作背景-6",
+      "audioTextZh": "你在何时、何地完成了高性能飞行训练？",
+      "referenceText": "I have not completed high-performance flight training yet. I am still receiving flight training at a flight school.",
+      "referenceTextZh": "我还没有完成高性能飞行训练，目前仍在航校接受飞行训练。",
+      "audioDurationSeconds": 3.192
+    },
+    {
+      "id": "opi-core-848-part-2",
+      "audio": "/question-bank-assets/revisions/opi/762aa4802c1eb81c4c85e6e766e5ada0b48b4ce7a722d9344fe848d8a09cb67a/audio/opi/opi-core-848-part-2.mp3",
+      "audioText": "Could you describe your work background?",
+      "taskTitle": "其它-当前位置与工作背景-2",
+      "audioTextZh": "你能否介绍一下自己的工作经历？",
+      "referenceText": "I am a student pilot at Jiutian Flight School, where I train on the DA-40. I have accumulated 100 flight hours and currently hold a private pilot licence.",
+      "referenceTextZh": "我是九天航校的一名学员飞行员，使用 DA-40 训练。我已经积累 100 小时飞行时间，目前持有私用驾驶员执照。",
+      "audioDurationSeconds": 1.992
+    },
+    {
+      "id": "opi-core-848",
+      "audio": "/question-bank-assets/revisions/opi/662bc8676a12b3c19db7dff431d4b11c4e89be6b1dc5a892ee34fdb2a5a38070/audio/opi/opi-core-848.mp3",
+      "audioText": "What is your current position?",
+      "taskTitle": "其它-当前位置与工作背景-1",
+      "audioTextZh": "你目前担任什么职位？",
+      "referenceText": "I am a student pilot and I am currently undergoing flight training.",
+      "referenceTextZh": "我是一名学员飞行员，目前正在接受飞行训练。",
+      "audioDurationSeconds": 1.512
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-07"
 }

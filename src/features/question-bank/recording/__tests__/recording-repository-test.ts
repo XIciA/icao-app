@@ -181,6 +181,20 @@ describe('RecordingRepository', () => {
     expect(mockFiles.has(asset.uri)).toBe(false);
   });
 
+  it('keeps the real committed WAV through login teardown, then restores normal cleanup', async () => {
+    mockFiles.set('file:///raw.wav', { bytes: wave(64_000) });
+    const repo = repository();
+    const asset = await repo.commitRaw(raw('file:///raw.wav'));
+    repo.retainSessionForLogin(asset.sessionId);
+    repo.cleanupSession(asset.sessionId);
+    expect(repo.assetExists(asset)).toBe(true);
+    expect(mockFiles.get(asset.uri)?.bytes.length).toBe(64_044);
+    repo.releaseSessionFromLogin(asset.sessionId);
+    expect(repo.assetExists(asset)).toBe(true);
+    repo.cleanupSession(asset.sessionId);
+    expect(repo.assetExists(asset)).toBe(false);
+  });
+
   it('removes expired session directories but preserves recent sessions', () => {
     const now = Date.parse('2026-07-16T12:00:00.000Z');
     mockDirectories.set('file:///cache/icao-recordings', now);

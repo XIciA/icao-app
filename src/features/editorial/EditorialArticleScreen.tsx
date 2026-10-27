@@ -1,4 +1,3 @@
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import type { EditorialBlock } from '@icao/contracts';
 import { Image } from 'expo-image';
 import { ExternalLink, FileQuestion, WifiOff } from '@/components/ui/icons';
@@ -13,21 +12,22 @@ import { useEditorialArticle } from './use-editorial';
 
 export function EditorialArticleScreen({ slug }: { slug: string }) {
   const state = useEditorialArticle(slug);
-  if (state.status === 'loading') return <Screen><TopBar title="资源文章" /><CenteredState description="正在加载文章正文。" title="加载中" /></Screen>;
-  if (state.status === 'empty') return <Screen><TopBar title="资源文章" /><CenteredState description="这篇文章不存在或已撤回。" icon={FileQuestion} title="未找到文章" /></Screen>;
-  if (state.status === 'error') return <Screen><TopBar title="资源文章" /><CenteredState actionLabel="重新加载" description="暂时无法获取文章，请检查网络后重试。" onAction={state.retry} title="文章加载失败" tone="destructive" /></Screen>;
+  if (state.status === 'loading') return <Screen header={<TopBar title="资源文章" />}><CenteredState description="正在加载文章正文。" title="加载中" /></Screen>;
+  if (state.status === 'empty') return <Screen header={<TopBar title="资源文章" />}><CenteredState description="这篇文章不存在或已撤回。" icon={FileQuestion} title="未找到文章" /></Screen>;
+  if (state.status === 'error') return <Screen header={<TopBar title="资源文章" />}><CenteredState actionLabel="重新加载" description="暂时无法获取文章，请检查网络后重试。" onAction={state.retry} title="文章加载失败" tone="destructive" /></Screen>;
   const article = state.value;
   return (
-    <Screen scroll contentStyle={styles.screen}>
-      <TopBar title="资源文章" />
+    <Screen scroll contentStyle={styles.screen} header={<TopBar title="资源文章" />}>
       {state.warning ? (
         <View style={styles.cacheNotice}>
           <WifiOff color={colors.accent} size={16} />
           <AppText color={colors.foreground} style={styles.grow} variant="caption">网络不可用，正在显示上次缓存的文章。</AppText>
         </View>
       ) : null}
-      {article.coverUrl ? <Image accessibilityLabel={article.cover.alt} contentFit="cover" source={{ uri: article.coverUrl }} style={styles.hero} /> : null}
-      <View style={styles.article}><GuideAnchor id="resource-article" />
+      <View style={styles.hero}>
+        {article.coverUrl ? <Image accessibilityLabel={article.cover.alt} contentFit="cover" source={{ uri: article.coverUrl }} style={StyleSheet.absoluteFill} /> : null}
+      </View>
+      <View style={styles.article}>
         <Tag>{article.badge}</Tag>
         <AppText style={styles.title} variant="pageTitle">{article.title}</AppText>
         <AppText style={styles.summary}>{article.summary}</AppText>

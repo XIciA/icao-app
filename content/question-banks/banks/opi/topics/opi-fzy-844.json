@@ -1,49 +1,49 @@
 {
   "id": "opi-fzy-844",
-  "name": "Cross wind",
-  "declaredCardCount": 4,
+  "name": "侧风着陆",
   "cards": [
     {
       "id": "opi-fzy-844-image-1",
       "kind": "image",
-      "taskTitle": "Cross wind · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-844.png",
-      "imageAlt": "Cross wind，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "imageAlt": "侧风着陆，用于本话题的看图描述和问答",
+      "studyTier": 1,
+      "taskTitle": "侧风着陆 · 看图材料"
     },
     {
       "id": "opi-fzy-152390",
-      "taskTitle": "Cross wind-1",
+      "audio": "/question-bank-assets/revisions/opi/90020d0671c1c391123bd665dfd6b6aca62141af27b81b5a73f4e35ef82ef294/audio/opi/opi-fzy-152390.mp3",
       "audioText": "What information can you get from this picture?",
-      "audioTextZh": "你从这张图片中得到哪些信息？",
       "studyTier": 1,
+      "taskTitle": "侧风着陆-1",
+      "audioTextZh": "你从这张图片中得到哪些信息？",
       "referenceText": "From this picture, I can get the airplane is encountering strong wind during the approach.\nThe pilot is making a crosswind landing now.",
       "referenceTextZh": "我从这张图中了解到飞机在进近时遭遇强风。\n飞行员在做侧风降落。",
-      "audio": "/question-bank-assets/revisions/opi/90020d0671c1c391123bd665dfd6b6aca62141af27b81b5a73f4e35ef82ef294/audio/opi/opi-fzy-152390.mp3",
       "audioDurationSeconds": 2.352
     },
     {
       "id": "opi-fzy-152391",
-      "taskTitle": "Cross wind-2",
+      "audio": "/question-bank-assets/revisions/opi/e4257c4d0d5925edd86d069606152a178ec710557264f8e83f6002ee6974e6e7/audio/opi/opi-fzy-152391.mp3",
       "audioText": "Do you think crosswind landing is dangerous?",
-      "audioTextZh": "你认为侧风着陆危险吗？",
       "studyTier": 1,
+      "taskTitle": "侧风着陆-2",
+      "audioTextZh": "你认为侧风着陆危险吗？",
       "referenceText": "Yes, crosswind landing is very dangerous, and it may cause many serious consequences.\nFor example, it can cause aircraft to veer off the runway, and it can also lead to tail strike or wingtip strikes the ground, which can cause structural damage or even passenger injured.\nSo, it is dangerous to land with crosswind.",
       "referenceTextZh": "侧风着陆是很危险的，它可能会造成许多严重后果。\n例如，它可能导致飞机偏离跑道，也可能导致机尾或翼尖撞击地面，从而导致结构损坏甚至乘客受伤。\n所以侧风着陆是很危险的。",
-      "audio": "/question-bank-assets/revisions/opi/e4257c4d0d5925edd86d069606152a178ec710557264f8e83f6002ee6974e6e7/audio/opi/opi-fzy-152391.mp3",
       "audioDurationSeconds": 2.496
     },
     {
       "id": "opi-fzy-152392",
-      "taskTitle": "Cross wind-3",
+      "audio": "/question-bank-assets/revisions/opi/724f21cc2960b963846f2af5b3b11317bc431ef3196bc6789f3592c1a28d6b2a/audio/opi/opi-fzy-152392.mp3",
       "audioText": "What influence does wind have on airplanes during flight?",
-      "audioTextZh": "飞行中风对飞机有什么影响？",
       "studyTier": 1,
+      "taskTitle": "侧风着陆-3",
+      "audioTextZh": "飞行中风对飞机有什么影响？",
       "referenceText": "Generally speaking, the hazards of wind shear and gust are great during take-off and landing.\nHowever, there is no limitation imposed en route.\nWe usually consider tailwind for fuel saving.",
       "referenceTextZh": "通常，风切变和阵风对航班的起降有很大危险。\n而飞机在航行中没有强加的限制。\n为了节油，我们通常考虑顺风飞行。",
-      "audio": "/question-bank-assets/revisions/opi/724f21cc2960b963846f2af5b3b11317bc431ef3196bc6789f3592c1a28d6b2a/audio/opi/opi-fzy-152392.mp3",
       "audioDurationSeconds": 3.024
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

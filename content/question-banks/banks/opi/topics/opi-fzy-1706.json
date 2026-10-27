@@ -1,49 +1,49 @@
 {
   "id": "opi-fzy-1706",
-  "name": "Pushback procedure",
-  "declaredCardCount": 4,
+  "name": "飞机推出程序",
   "cards": [
     {
       "id": "opi-fzy-1706-image-1",
       "kind": "image",
-      "taskTitle": "Pushback procedure · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-1706.png",
-      "imageAlt": "Pushback procedure，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "imageAlt": "飞机推出程序，用于本话题的看图描述和问答",
+      "studyTier": 1,
+      "taskTitle": "飞机推出程序 · 看图材料"
     },
     {
       "id": "opi-fzy-224948",
-      "taskTitle": "Pushback procedure-1",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-224948.mp3",
       "audioText": "What can you see from this picture?",
-      "audioTextZh": "从这张图片上，你可以看到什么？",
       "studyTier": 1,
+      "taskTitle": "飞机推出程序-1",
+      "audioTextZh": "从这张图片上，你可以看到什么？",
       "referenceText": "From this picture, I can see a big passenger aircraft with two engines is about to push-back. According to its appearance, I believe the aircraft is C909, one of the big aircraft made by China independently. There are three ground staff near the aircraft, and they are monitoring the push-back process.",
       "referenceTextZh": "从这张图中，我可以看到一架有两个发动机的大型客机正准备推出。根据它的外观，我认为这架飞机是C909，中国自主制造的大型飞机之一。飞机附近有三名地面人员，他们正在监控推出过程。",
-      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-224948.mp3",
       "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-224949",
-      "taskTitle": "Pushback procedure-2",
+      "audio": "/question-bank-assets/revisions/opi/4870c7304e586caa544c303e98ea8f818e4c2fb1281757ba81f43e9447058589/audio/opi/opi-fzy-224949.mp3",
       "audioText": "Can you introduce the pushback procedure of your company?",
-      "audioTextZh": "你能介绍下你们公司的推出程序吗？",
       "studyTier": 1,
+      "taskTitle": "飞机推出程序-2",
+      "audioTextZh": "你能介绍下你们公司的推出程序吗？",
       "referenceText": "In our company, the process of aircraft push-back requires the collaboration of the crew, maintenance personnel and the tower controller. The crew command, the maintenance staff connects to the tow bar and commands the operation with standard gestures, and the tower controller gives the clearance of the push-back. After completion, the maintenance staff disconnect the tow bar and the aircraft starts its engine and taxis by itself.",
       "referenceTextZh": "在我们公司，飞机推出过程需要机组、机务与塔台三方协作。机组指挥，机务连接拖车并用标准手势指挥操作，塔台批准许可。完成后脱开拖把，飞机启动发动机自行滑出。",
-      "audio": "/question-bank-assets/revisions/opi/4870c7304e586caa544c303e98ea8f818e4c2fb1281757ba81f43e9447058589/audio/opi/opi-fzy-224949.mp3",
       "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-fzy-224950",
-      "taskTitle": "Pushback procedure-3",
+      "audio": "/question-bank-assets/revisions/opi/bd1a49285dd3f460bbfe294a407a67fc3d6696e2acad3464d66825addf7ee9cc/audio/opi/opi-fzy-224950.mp3",
       "audioText": "How to ensure the safety of the push-back at night?",
-      "audioTextZh": "夜间如何保证推出的安全？",
       "studyTier": 1,
+      "taskTitle": "飞机推出程序-3",
+      "audioTextZh": "夜间如何保证推出的安全？",
       "referenceText": "We can take the following measures, for instance, enhancing the ground lighting system; In addition to standard gestures, the aircraft maintenance staff must wear headphones to establish two-way voice communication with the cockpit to ensure that instructions are clear and correct. Increase the number of personnel to monitor the position of the aircraft at any time, etc.",
       "referenceTextZh": "我们可以采取以下措施，比如，增强地面照明系统；除标准手势外，机务指挥员必须佩戴耳机与驾驶舱建立双向语音通讯，确保指令清晰无误；增加观察员，随时监督飞机位置等。",
-      "audio": "/question-bank-assets/revisions/opi/bd1a49285dd3f460bbfe294a407a67fc3d6696e2acad3464d66825addf7ee9cc/audio/opi/opi-fzy-224950.mp3",
       "audioDurationSeconds": 2.616
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

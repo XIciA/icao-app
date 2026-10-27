@@ -1,3 +1,8 @@
+import { useRadioQueueFilter } from './use-radio-queue-filter';
+import { useAppRouter } from '@/components/navigation/useAppRouter';
+import { canPlayRadioTrack, hasRadioMembership, visibleRadioCatalogs } from './access';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
+import { hydrateRadioCatalogTopic, mergeRadioCatalogProgress } from './catalog-hydration.native';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
 import { useBrowserAudioPlayer } from '@/platform/audio/browser-audio-player';
@@ -9,9 +14,9 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 import Storage from '@/platform/storage';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
-import { commerceEntitlementSnapshotVersion, getCommerceEntitlementSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
+import { commerceContentAccessSnapshot, getCommerceEntitlementSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 
-import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog.browser';
+import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog.browser';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
 import { clampRadioInterval } from './radio-interval';
 import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioPlayerContextValue, RadioSubtitleMode, RadioTrack } from './types';
@@ -40,8 +45,13 @@ function findTrack(catalogs: RadioCatalog[], bankId: RadioBankId, trackId: strin
 
 export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const auth = useAuth();
-  const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceEntitlementSnapshotVersion, commerceEntitlementSnapshotVersion);
+  const router = useAppRouter();
+  const memberRedirect = useRef(() => undefined as void);
+  memberRedirect.current = () => router.push('/account/membership?next=%2Fcontent%2Fradio');
+  const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceContentAccessSnapshot, commerceContentAccessSnapshot);
+  const catalogDatasets = useRef<QuestionBankDataset[]>([]);
   const [catalogAttempt, setCatalogAttempt] = useState(0);
+  const [catalogLoading, setCatalogLoading] = useState(false);
   const [catalogError, setCatalogError] = useState<string>();
   const profile = useProfile();
   const selection = useMemo(() => ({ scope: normalizeStudyScope(profile.studyScope), target: profile.target }), [profile.studyScope, profile.target]);
@@ -56,7 +66,10 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const [loadedCatalogs, setLoadedCatalogs] = useState({ owner: contentOwner, catalogs: embeddedCatalogs });
   // Fail closed during render; an effect alone would expose the old owner's
   // protected transcript for one frame while a new account is loading/offline.
-  const catalogs = loadedCatalogs.owner === contentOwner ? loadedCatalogs.catalogs : embeddedCatalogs;
+  const memberAccess = hasRadioMembership();
+  const sourceCatalogs = useMemo(() => visibleRadioCatalogs(loadedCatalogs.owner === contentOwner ? loadedCatalogs.catalogs : embeddedCatalogs, memberAccess), [loadedCatalogs, contentOwner, embeddedCatalogs, memberAccess]);
+  const queueFilter = useRadioQueueFilter(sourceCatalogs, contentOwner);
+  const catalogs = queueFilter.catalogs;
   const [bankId, setBankId] = useState<RadioBankId>(embeddedCatalogs[0]?.bankId ?? 'listening');
   const [trackId, setTrackId] = useState(embeddedCatalogs[0]?.tracks[0]?.id ?? '');
   const [bankTrackIds, setBankTrackIds] = useState<Partial<Record<RadioBankId, string>>>({});
@@ -128,6 +141,11 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }, []);
 
   const prepareTrack = useCallback(async (track: RadioTrack, { autoPlay, forceRefresh = false, position: nextPosition = 0 }: { autoPlay: boolean; forceRefresh?: boolean; position?: number }) => {
+    if (!canPlayRadioTrack(track)) {
+      pendingPlay.current = false; player.pause();
+      setSourceState({ loading: false, error: '该音频需要会员，点击播放开通。' });
+      return;
+    }
     const request = generation.current + 1;
     const owner = contentOwnerRef.current;
     generation.current = request;
@@ -143,6 +161,16 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       player.pause();
       await releaseLease();
       if (request !== generation.current || owner !== contentOwnerRef.current) return;
+      if (track.contentLoaded === false) {
+        const hydrated = await hydrateRadioCatalogTopic(catalogDatasets.current, track.bankId, track.categoryId, track.topicId);
+        if (request !== generation.current || owner !== contentOwnerRef.current) return;
+        catalogDatasets.current = mergeRadioCatalogProgress(hydrated, catalogDatasets.current);
+        const nextCatalogs = deriveRadioCatalogs(catalogDatasets.current, selection);
+        const ready = nextCatalogs.find(bank => bank.bankId === track.bankId)?.tracks.find(item => item.id === track.id);
+        if (!ready?.audioPath) throw new Error('radio_topic_unavailable');
+        track = ready;
+        setLoadedCatalogs({ owner, catalogs: nextCatalogs });
+      }
       const uri = await resolveTrack(track, forceRefresh);
       if (request !== generation.current || owner !== contentOwnerRef.current) return;
       player.replace(uri);
@@ -154,10 +182,10 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       pendingPlay.current = false;
       setSourceState({ loading: false, error: '音频加载失败，请重试或切换下一首' });
     }
-  }, [clearIntervalTimer, player, releaseLease, resolveTrack]);
+  }, [clearIntervalTimer, player, releaseLease, resolveTrack, selection]);
 
   const startPreparedPlayback = useCallback(async () => {
-    if (!currentTrack || preparedTrackId.current !== currentTrack.id || !status.isLoaded) return;
+    if (!currentTrack || !canPlayRadioTrack(currentTrack) || preparedTrackId.current !== currentTrack.id || !status.isLoaded) return;
     let lease: AudioLease | undefined;
     const request = generation.current;
     const owner = contentOwnerRef.current;
@@ -183,6 +211,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     const current = stateRef.current;
     const { catalog, track } = findTrack(current.catalogs, current.bankId, nextTrackId);
     if (!catalog || !track) return;
+    if (autoPlay && !canPlayRadioTrack(track)) { memberRedirect.current(); return; }
     setTrackId(track.id);
     setBankTrackIds((value) => ({ ...value, [catalog.bankId]: track.id }));
     setShuffle((value) => selectShuffleTrack(value, track.id));
@@ -227,20 +256,29 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     preparedTrackId.current = undefined; loadingTrackId.current = undefined; installedTrackId.current = undefined;
     clearIntervalTimer(); player.pause(); player.replace(null);
     void releaseLease();
+    catalogDatasets.current = [];
     setLoadedCatalogs({ owner: contentOwner, catalogs: embeddedCatalogs });
-    setCatalogError(undefined); setSourceState({ loading: false });
+    setCatalogError(undefined); setCatalogLoading(false); setSourceState({ loading: false });
     if (!signedIn) setSessionVisible(false);
     setTrackId(embeddedCatalogs[0]?.tracks[0]?.id ?? ''); setBankTrackIds({});
     setShuffle({ history: [], cursor: -1 });
   }, [clearIntervalTimer, contentOwner, embeddedCatalogs, formalWeb, player, releaseLease, signedIn]);
 
   useEffect(() => {
-    if (auth.restoring || !auth.session || !sessionVisible) return;
+    if (auth.restoring || !sessionVisible) return;
     let active = true;
     setCatalogError(undefined);
-    void loadRadioCatalogs(selection).then((nextCatalogs) => {
+    setCatalogLoading(true);
+    const publish = (nextCatalogs: RadioCatalog[]) => {
+      if (catalogDatasets.current.length) nextCatalogs = deriveRadioCatalogs(catalogDatasets.current, selection);
       if (active && contentOwnerRef.current === contentOwner && nextCatalogs.length) setLoadedCatalogs({ owner: contentOwner, catalogs: nextCatalogs });
-    }).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); });
+    };
+    void loadRadioCatalogs(selection, stateRef.current.bankId, () => active && contentOwnerRef.current === contentOwner, publish, () => stateRef.current.bankId, {
+      previousDatasets: catalogDatasets.current,
+      onDatasets: datasets => {
+        if (active && contentOwnerRef.current === contentOwner) catalogDatasets.current = mergeRadioCatalogProgress(datasets, catalogDatasets.current);
+      },
+    }).then(publish).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
     return () => { active = false; };
   }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection]);
 
@@ -280,7 +318,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }), [clearIntervalTimer, player]);
 
   useEffect(() => {
-    if (!restored || !auth.session || !sessionVisible || !currentTrack || loadingTrackId.current === currentTrack.id || preparedTrackId.current === currentTrack.id) return;
+    if (!restored || !sessionVisible || !currentTrack || loadingTrackId.current === currentTrack.id || preparedTrackId.current === currentTrack.id) return;
     const restoredPosition = pendingSeek.current;
     void prepareTrack(currentTrack, { autoPlay: false, position: restoredPosition });
   }, [auth.session, currentTrack, prepareTrack, restored, sessionVisible]);
@@ -322,7 +360,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }, [releaseLease, status.playbackState]);
 
   useEffect(() => {
-    if (!auth.session || !sourceMatches || !status.didJustFinish || handledFinish.current || preparedTrackId.current !== currentTrack?.id) return;
+    if (!sourceMatches || !status.didJustFinish || handledFinish.current || preparedTrackId.current !== currentTrack?.id) return;
     handledFinish.current = true;
     void releaseLease();
     if (intervalSeconds <= 0) {
@@ -356,6 +394,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
 
   const play = useCallback(async () => {
     if (!currentTrack) return;
+    if (!canPlayRadioTrack(currentTrack)) { memberRedirect.current(); return; }
     pendingPlay.current = true;
     clearIntervalTimer();
     if (preparedTrackId.current !== currentTrack.id || !status.isLoaded) {
@@ -407,8 +446,25 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     setSourceState({ loading: false });
   }, [clearIntervalTimer, player, releaseLease]);
 
+  const previousFilterSignature = useRef(queueFilter.signature);
+  useLayoutEffect(() => {
+    if (previousFilterSignature.current === queueFilter.signature) return;
+    previousFilterSignature.current = queueFilter.signature;
+    const catalog = catalogs.find(item => item.bankId === bankId);
+    const retained = catalog?.tracks.find(item => item.id === trackId);
+    const first = retained ?? catalog?.tracks[0];
+    setShuffle({ history: first ? [first.id] : [], cursor: first ? 0 : -1 });
+    if (!retained) {
+      pause();
+      if (first) chooseTrack(first.id, false);
+      else { stopAndClear(); setTrackId(''); setSessionVisible(true); }
+    }
+  }, [queueFilter.signature, catalogs, bankId, trackId, chooseTrack, pause, stopAndClear]);
+
   const value = useMemo<RadioPlayerContextValue>(() => ({
-    catalogs,
+    catalogs: sourceCatalogs,
+    queueFilter: queueFilter.filter,
+    setQueueFilter: queueFilter.setFilter,
     currentCatalog,
     currentTrack,
     currentIndex,
@@ -421,8 +477,11 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     speedOptions,
     playing,
     loading: sourceState.loading,
+    catalogLoading,
+    catalogError,
+    retryCatalog: () => setCatalogAttempt(value => value + 1),
     buffering,
-    error: catalogError ?? sourceState.error,
+    error: sourceState.error,
     position,
     duration,
     sessionVisible,
@@ -438,7 +497,14 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       const savedId = bankTrackIds[nextBankId];
       const nextId = savedId && catalog?.tracks.some((track) => track.id === savedId) ? savedId : catalog?.tracks[0]?.id;
       const track = catalog?.tracks.find((item) => item.id === nextId);
-      if (!catalog || !track) return;
+      if (!catalog) return;
+      if (!track || (savedId && !catalog.tracks.some(track => track.id === savedId))) {
+        stopAndClear();
+        setSessionVisible(true);
+        setBankId(catalog.bankId);
+        setTrackId(savedId ?? '');
+        return;
+      }
       pendingPlay.current = false;
       setBankId(catalog.bankId);
       setTrackId(track.id);
@@ -454,11 +520,10 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     setRate,
     setIntervalSeconds,
     retry: () => {
-      if (catalogError) { setCatalogAttempt(value => value + 1); return; }
       if (currentTrack) void prepareTrack(currentTrack, { autoPlay: true, forceRefresh: true, position });
     },
     stopAndClear,
-  }), [bankTrackIds, buffering, catalogError, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
+  }), [sourceCatalogs, queueFilter.filter, queueFilter.setFilter, bankTrackIds, buffering, catalogError, catalogLoading, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
 
   return <RadioContext.Provider value={value}>{children}</RadioContext.Provider>;
 }

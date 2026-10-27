@@ -1,7 +1,7 @@
 import { act, render, waitFor } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
-import { ApiClientError, apiRequest } from '@/platform/api-client';
+import { ApiClientError, apiRequest, apiRequestWithAccessToken } from '@/platform/api-client';
 import { AuthProvider, useAuth } from '../AuthProvider';
 import type { AppSession } from '../auth-service';
 import legalContent from '../../../../content/app-content/text.json';
@@ -73,7 +73,7 @@ jest.mock('@/platform/api-client', () => {
     ApiClientError: MockApiClientError,
     apiFetch: jest.fn(),
     apiRequest: jest.fn(),
-    apiRequestWithAccessToken: (path: string, _token: string, init: object) => mockApiRequest(path, init),
+    apiRequestWithAccessToken: jest.fn((path: string, _token: string, init: object) => mockApiRequest(path, init)),
     setApiAccessTokenProvider: jest.fn(),
     setApiAuthRecovery: jest.fn(),
   };
@@ -164,6 +164,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     mockSessionChangeListener = undefined;
     mockSwitchLearningAccount.mockReset().mockResolvedValue(undefined);
     mockApiRequest.mockReset();
+    (apiRequestWithAccessToken as jest.Mock).mockClear();
     mockGetSession.mockReset().mockResolvedValue(undefined);
     mockRefreshSession.mockReset().mockResolvedValue(undefined);
     mockAuthorizePasswordRecovery.mockReset().mockResolvedValue({
@@ -329,6 +330,8 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(currentAuth.canAccessApp).toBe(false);
     expect(currentAuth.accountRestoreUnavailable).toBe(true);
     expect(mockSignOut).not.toHaveBeenCalled();
+    // Successful authentication persisted this session before workspace setup failed.
+    mockGetSession.mockResolvedValue(socialSession);
     await act(async () => { await currentAuth.retryAccountRestore(); });
     expect(currentAuth.canAccessApp).toBe(true);
   });
@@ -605,6 +608,40 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(currentAuth.accountRestoreUnavailable).toBe(false);
     expect(currentAuth.account?.accountId).toBe('phone-auth-user');
     expect(screen.getByTestId('auth-state').props.children).toBe('ready');
+  });
+
+  it('re-reads a refreshed session before retrying a failed cold-start bootstrap', async () => {
+    const refreshed = { ...phoneSession, accessToken: 'refreshed-phone-access-token' };
+    mockGetSession.mockResolvedValueOnce(phoneSession).mockResolvedValueOnce(refreshed);
+    mockApiRequest.mockRejectedValueOnce(new ApiClientError('api_http_503', 503))
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', providers: ['phone'] });
+    await render(<AuthProvider><MockAuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+
+    await act(async () => { await currentAuth.retryAccountRestore(); });
+
+    expect(mockGetSession).toHaveBeenCalledTimes(2);
+    expect(apiRequestWithAccessToken).toHaveBeenNthCalledWith(2, '/v1/account', refreshed.accessToken);
+    expect(currentAuth.session?.accessToken).toBe(refreshed.accessToken);
+    expect(currentAuth.canAccessApp).toBe(true);
+    expect(mockSignOut).not.toHaveBeenCalled();
+  });
+
+  it('returns to login when the persisted session became invalid after a bootstrap failure', async () => {
+    mockGetSession.mockResolvedValueOnce(phoneSession).mockResolvedValueOnce(undefined);
+    mockApiRequest.mockRejectedValueOnce(new ApiClientError('api_http_503', 503));
+    await render(<AuthProvider><MockAuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+
+    await act(async () => { await currentAuth.retryAccountRestore(); });
+
+    expect(currentAuth.session).toBeUndefined();
+    expect(currentAuth.accountRestoreUnavailable).toBe(false);
+    expect(currentAuth.canAccessApp).toBe(false);
+    expect(apiRequestWithAccessToken).toHaveBeenCalledTimes(1);
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
   });
 
   it('authorizes a verified recovery OTP and adopts the password update session without refreshing the old token', async () => {
