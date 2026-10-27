@@ -51,7 +51,7 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
   ],
   export: [
     { id: 'export-open', text: '点击右上角的导出，整理你的900句学习资料。' },
-    { id: 'export-levels', text: '选择导出等级，也可以保留当前范围。', read: true },
+    { id: 'export-levels', text: '选择导出范围，也可以保留当前选择。', read: true },
     { id: 'export-scope', text: '选择全部、已学习或有标注句子，也可保留当前选择。', read: true },
     { id: 'export-translation', text: '按需要决定是否包含中文翻译。', read: true },
     { id: 'export-personal', text: '可以把高亮、标签和笔记一起带走。', read: true },

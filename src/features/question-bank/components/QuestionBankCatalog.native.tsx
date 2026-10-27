@@ -44,7 +44,7 @@ import { normalizeStudyScope } from '@icao/contracts';
 
 const ScenarioStudyScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
 
-export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
+export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
   const account = useAuth().account?.accountId;
   const owner = useRef(account); owner.current = account;
@@ -64,7 +64,11 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
     setSceneBusy(true); setSceneError('');
     try {
       const categories = await Promise.all(dataset.categories.map(async category => ({ ...category,
-        topics: await Promise.all(category.topics.map(async topic => await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset)) ?? topic)),
+        topics: await Promise.all(category.topics.map(async topic => {
+          const loaded = await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset));
+          const ids = new Set(topic.scopeCardIds?.all ?? topic.cards.map(card => card.id));
+          return loaded ? { ...loaded, cards: loaded.cards.filter(card => ids.has(card.id)) } : topic;
+        })),
       })));
       if (generation !== sceneGeneration.current || owner.current !== accountAtStart) return;
       const next = sentenceScenarioPackage({ ...dataset, categories }, id);
@@ -136,7 +140,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
   }
 
   if (scenePackage) return <Suspense fallback={<Screen><AppText>正在打开场景…</AppText></Screen>}><ScenarioStudyScreen studyPackage={scenePackage} onReturn={() => setScenePackage(undefined)} returnLabel="返回场景目录" returnHref="/question-bank/sentences900" /></Suspense>;
-  if (exporting) return <SentenceExportScreen dataset={exportDataset ?? dataset} onBack={() => { if (guide?.current === 'export') guide.pause(); setExporting(false); }} />;
+  if (exporting) return <SentenceExportScreen dataset={dataset} initialBrowseMode={sceneMode ? 'scene' : 'level'} onBack={() => { if (guide?.current === 'export') guide.pause(); setExporting(false); }} />;
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader
@@ -163,7 +167,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
           {sceneError ? <AppText color={colors.destructive}>{sceneError}</AppText> : null}
           {sceneMode && dataset.id === 'sentences900' ? SENTENCE_SCENARIOS.map(scene => {
             const count = sentenceScenarioCount(dataset, scene.id);
-            return <Card key={scene.id}><Pressable accessibilityRole="button" disabled={sceneBusy || !count} onPress={() => void openScene(scene.id)} style={styles.categoryHeader}>
+            return <Card key={scene.id} style={styles.category}><Pressable accessibilityRole="button" disabled={sceneBusy || !count} onPress={() => void openScene(scene.id)} style={({ pressed }) => [styles.categoryHeader, pressed ? styles.pressed : null]}>
               <View style={styles.categoryIcon}><QuestionBankCategoryIcon bankId="sentences900" categoryId={`scenario-${scene.id}`} categoryName={scene.name} /></View>
               <View style={styles.categoryCopy}><AppText variant="cardTitle">{scene.name}</AppText><AppText variant="caption">{count} 句</AppText></View>
               <View style={styles.categoryStatus}><View style={styles.countPill}><AppText variant="micro" style={styles.countText} color={sceneProgress[scene.id] ? colors.primary : colors.mutedForeground}>{progressReady ? `${sceneProgress[scene.id] ?? 0}/${count}` : '进度待读取'}</AppText></View></View>

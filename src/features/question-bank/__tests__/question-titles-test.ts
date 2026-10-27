@@ -39,3 +39,21 @@ it('labels the radiotelephony scoring group 专项训练 without changing conten
   });
   expect(JSON.stringify(bank)).toBe(before);
 });
+
+it('restores Sentence plus the original number across cards and metadata without changing identity or content', () => {
+  for (const source of [data, publicData]) {
+    const bank = (source as QuestionBankDataset[]).find(item => item.id === 'sentences900')!;
+    const original = JSON.stringify(bank);
+    const projected = naturalDatasetTitles(bank);
+    bank.categories.forEach((category, c) => category.topics.forEach((topic, t) => {
+      const next = projected.categories[c].topics[t];
+      next.cards.forEach((card, index) => {
+        expect(card).toEqual({ ...topic.cards[index], taskTitle: `Sentence${Number(card.id.split('-').at(-1))}` });
+      });
+      next.radioEntries?.forEach((entry, index) => {
+        expect(entry).toEqual({ ...topic.radioEntries![index], title: `Sentence${Number(entry.id.split('-').at(-1))}` });
+      });
+    }));
+    expect(JSON.stringify(bank)).toBe(original);
+  }
+});

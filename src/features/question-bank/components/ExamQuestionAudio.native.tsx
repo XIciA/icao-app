@@ -197,7 +197,7 @@ export function ExamQuestionAudio({ replay, exam = true, autoPlay = true, questi
     {exam && replay ? <Button size="sm" variant="outline" disabled={replay.blocked || resolving || phase !== 'ended' || Boolean(replay.ledger.usedGroups[replay.group])} onPress={() => {
       if (replayStarting.current || replay.blocked || phaseRef.current !== 'ended' || replay.ledger.usedGroups[replay.group]) return;
       replayStarting.current = true; replayPending.current = true; operations.current.play(true);
-    }}>{replay.ledger.usedGroups[replay.group] ? '本组重听已使用' : '重听（Replay）· 本组剩余 1 次'}</Button> : null}
+    }}>{replay.ledger.usedGroups[replay.group] ? '本组重听已使用' : 'say again · 本组剩余 1 次'}</Button> : null}
     {interruptionReplay && exam ? <Button size="sm" variant="outline" disabled={replay?.blocked} onPress={() => { if (appState.current !== 'active' || systemInterrupted.current) return; awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(!replayRef.current); }}>{replay ? '继续播放题目音频' : '重播本题音频'}</Button> : null}
     {canRetry ? <Button size="sm" variant="outline" onPress={() => { onRetry?.(); wantPlay.current = true; update('loading'); setLoadAttempt(value => value + 1); }}>重新加载音频</Button> : null}
     {practiceControls}

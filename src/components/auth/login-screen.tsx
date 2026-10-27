@@ -351,7 +351,7 @@ export function LoginScreen() {
     <AuthShell>
       <View style={styles.brandRow}>
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
-        <AuthHeading title="登录 / 注册" subtitle="继续你的 ICAO 备考进度" />
+        <AuthHeading title="登录 / 注册" />
       </View>
       <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
       <View style={styles.form}>

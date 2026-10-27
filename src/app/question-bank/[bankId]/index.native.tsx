@@ -30,5 +30,5 @@ function QuestionBankCatalogRouteBody() {
       </Screen>
     );
   }
-  return <QuestionBankCatalog dataset={state.data} exportDataset={state.catalog} warning={state.warning} onRetry={state.retry} />;
+  return <QuestionBankCatalog dataset={state.data} warning={state.warning} onRetry={state.retry} />;
 }
