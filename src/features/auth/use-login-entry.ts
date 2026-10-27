@@ -10,13 +10,13 @@ export function useLoginEntry() {
   const router = useAppRouter();
   const pathname = usePathname();
   const incomingUrl = useURL();
-  return (destination: string, _reason?: string, options: { replace?: boolean } = {}) => {
+  return (destination: string, _reason?: string, options: { replace?: boolean; returnTo?: string } = {}) => {
     const navigate = options.replace ? router.replace : router.push;
     const target = safeAppDestination(destination) ?? '/(tabs)';
     if (auth.canAccessApp) { navigate(target as Href); return; }
     auth.rememberPendingPath(target);
     // The auth route already renders account restoration/confirmation before its form.
     // Keep the original feature explicit instead of sending a guest through membership.
-    navigate({ pathname: '/auth/[slug]', params: { slug: 'login', next: target, ...(target.split('?')[0] === '/account/membership' ? { intent: 'membership' } : isExternalContentEntry(incomingUrl, pathname, target) ? { intent: 'external' } : !['/', '/(tabs)', '/(tabs)/profile', '/profile'].includes(target) ? { intent: 'feature' } : {}), returnTo: publicLoginReturn(pathname) } });
+    navigate({ pathname: '/auth/[slug]', params: { slug: 'login', next: target, ...(target.split('?')[0] === '/account/membership' ? { intent: 'membership' } : isExternalContentEntry(incomingUrl, pathname, target) ? { intent: 'external' } : !['/', '/(tabs)', '/(tabs)/profile', '/profile', '/account/profile'].includes(target) ? { intent: 'feature' } : {}), returnTo: publicLoginReturn(options.returnTo ?? pathname) } });
   };
 }

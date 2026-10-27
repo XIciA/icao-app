@@ -58,3 +58,11 @@ it('retains an incoming public study link through the login entry', async () => 
   await act(() => result.current(`${mockPathname}?cardId=2`));
   expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ intent: 'external', next: `${mockPathname}?cardId=2` }) }));
 });
+
+it('cancels a blocked membership destination to its public parent instead of looping', async () => {
+  mockPathname = '/account/membership';
+  // A direct membership link is replaced, and its cancellation destination is explicit.
+  const { result } = await renderHook(() => useLoginEntry());
+  await act(() => result.current('/content/mock-exam', undefined, { returnTo: '/(tabs)/discover' }));
+  expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ next: '/content/mock-exam', returnTo: '/(tabs)/discover' }) }));
+});

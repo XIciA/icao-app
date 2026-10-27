@@ -14,7 +14,7 @@ export function GuestMembershipPage() {
   useEffect(() => {
     if (sent.current) return;
     sent.current = true;
-    login(destination, undefined, { replace: true });
+    login(destination, undefined, { replace: true, returnTo: '/(tabs)/profile' });
   }, [destination, login]);
   return <GlobalLoadingScreen />;
 }

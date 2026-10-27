@@ -271,6 +271,13 @@ describe('authentication routing', () => {
     expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
     expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
+it('resumes an explicit feature target after login instead of reopening the membership explanation', async () => {
+  mockCanAccessApp = true; mockPathname = '/auth/login';
+  mockSearchParams = { intent: 'feature', next: '/content/mock-exam' };
+  await render(<NativeAppStack />);
+  expect(mockReplace).toHaveBeenCalledWith('/content/mock-exam');
+});
+
 });
 
 it.each(['ios', 'android', 'web'] as const)('keeps edge-return animation platform scoped on %s', async platform => {

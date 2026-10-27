@@ -35,7 +35,7 @@ export function MemberFeatureGate({ children }: PropsWithChildren) {
   useEffect(() => {
     if (!focused) { redirected.current = false; return; }
     if (redirected.current) return;
-    if (!auth.canAccessApp) { redirected.current = true; login(destination, undefined, { replace: true }); return; }
+    if (!auth.canAccessApp) { redirected.current = true; login(destination, undefined, { replace: true, returnTo: '/(tabs)/discover' }); return; }
     // Missing or failed entitlement reads are not evidence of a non-member.
     if (commerce.entitlement && !active && !['loading', 'reconciling', 'error'].includes(commerce.phase)) {
       redirected.current = true;
