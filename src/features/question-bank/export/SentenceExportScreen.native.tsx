@@ -3,7 +3,7 @@ import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
 import { GuideAnchor, useGuide, useGuideAvailability, useGuideConfirmation } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from './pdf-generator';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { Check } from '@/components/ui/icons';
 import { AppText, BottomSheet, Button, Screen } from '@/components/ui';
 import { TopBar } from '@/components/navigation/TopBar';
@@ -32,6 +32,13 @@ export function SentenceExportScreen({dataset,onBack,initialBrowseMode='level'}:
   const [data,setData]=useState<{rows:ExportSentence[];annotations:QuestionBankAnnotationStore}>();const [attempt,setAttempt]=useState(0);
   const [options,setOptions]=useState<ExportOptions>({...defaults,browseMode:initialBrowseMode,scenes:SENTENCE_SCENARIOS.map(s=>s.id),levels:dataset.categories.map(c=>c.name)});
   const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [output,setOutput]=useState<{uri:string;pages:number;count:number}>();
+  const [longWait, setLongWait] = useState(false);
+  useEffect(() => {
+    setLongWait(false);
+    if (!busy || output) return;
+    const timer = setTimeout(() => setLongWait(true), 10_000);
+    return () => clearTimeout(timer);
+  }, [busy, output]);
   const outputUri=useRef<string | undefined>(undefined);const active=useRef(true);const context=useRef(captureLearningWriteContext()).current;
   useEffect(()=>{active.current=true;return()=>{active.current=false;if(outputUri.current)releasePdf(outputUri.current);};},[]);
   useEffect(()=>{let current=true;setError('');setData(undefined);
@@ -113,10 +120,9 @@ export function SentenceExportScreen({dataset,onBack,initialBrowseMode='level'}:
           <View><GuideAnchor id="export-translation" /><DetailRow label="语言" last disabled={busy} onPress={()=>setPicker('language')}>{options.translation?'中英对照':'仅英文'}</DetailRow></View>
         </DetailGroup>
         <DetailGroup title="附带内容"><View style={styles.chips}><GuideAnchor id="export-personal" />{(['highlights','tags','notes'] as const).map(key=><Pressable key={key} accessibilityRole="checkbox" accessibilityLabel={{highlights:'我的高亮',tags:'我的标签',notes:'我的笔记'}[key]} accessibilityState={{checked:options[key],disabled:busy}} disabled={busy} style={[styles.chip,options[key]&&styles.selected]} onPress={()=>{setOptions(current=>({...current,[key]:!current[key]}));}}><AppText color={options[key]?colors.primary:colors.foreground} variant="caption">{{highlights:'高亮',tags:'标签',notes:'笔记'}[key]}</AppText>{options[key]?<Check size={15} color={colors.primary}/>:null}</Pressable>)}</View></DetailGroup>
-        <AppText variant="caption">所选{sceneMode?'场景':'等级'}合并导出。英文原文始终保留，高亮、标签和笔记可独立选择。</AppText>
       </>}
     </GuideScrollView>
-    {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View style={styles.row}><AppText variant="caption">{data?`将导出 ${count} 句`:'正在读取可导出的句子…'}</AppText><AppText variant="micro">PDF · A4</AppText></View><View><GuideAnchor id="export-generate" />{busy ? <View style={styles.exportProgress}><AppText accessibilityLiveRegion="polite" variant="caption">正在导出，请稍等…</AppText><Button variant="ghost" onPress={cancelGeneration}>取消导出</Button></View> : <Button disabled={!data||!count} onPress={()=>void generate()}>生成 PDF</Button>}</View></View>:null}
+    {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View><GuideAnchor id="export-generate" />{busy ? <View style={styles.exportProgress}><View style={styles.exportStatus}><ActivityIndicator accessible accessibilityRole="progressbar" accessibilityLabel="导出进度" size="small" color={colors.primary} /><AppText accessibilityLiveRegion="polite" style={styles.exportCopy} variant="caption">{longWait ? '导出时间可能稍长，请稍等' : '正在导出，请稍等'}</AppText></View><Button variant="ghost" onPress={cancelGeneration}>取消导出</Button></View> : <Button disabled={!data||!count} onPress={()=>void generate()}>生成 PDF</Button>}</View></View>:null}
     <BottomSheet visible={!!picker} onClose={()=>setPicker(undefined)} accessibilityLabel={picker==='mode'?'分组方式':picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}>
       <View style={styles.section}><GuideAnchor id={picker==='levels'?'export-levels':picker==='language'?'export-translation':'export-scope'} /><AppText variant="sectionTitle">{picker==='mode'?'分组方式':picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}</AppText>
         {picker==='mode'?(['level','scene'] as const).map(mode=><Option key={mode} label={mode==='scene'?'按场景':'按等级'} selected={options.browseMode===mode} onPress={()=>{setOptions(current=>({...current,browseMode:mode}));setPicker(undefined);}}/>):null}
@@ -133,6 +139,8 @@ export function SentenceExportScreen({dataset,onBack,initialBrowseMode='level'}:
 function Option({label,selected,onPress,guideId}:{label:string;selected:boolean;onPress:()=>void;guideId?:string}){return <Pressable accessibilityRole="checkbox" accessibilityState={{checked:selected}} onPress={onPress} style={styles.row}>{guideId ? <GuideAnchor id={guideId} /> : null}<AppText>{label}</AppText>{selected?<Check size={20} color={colors.primary}/>:<View style={{width:20}}/>}</Pressable>;}
 const styles=StyleSheet.create({
   screen:{paddingHorizontal:0},content:{padding:spacing[5],gap:spacing[5]},section:{gap:spacing[3]},
+  exportStatus:{flex:1,flexDirection:'row',alignItems:'center',gap:spacing[2]},
+  exportCopy:{flexShrink:1},
   exportProgress:{flexDirection:'row',alignItems:'center',justifyContent:'space-between',minHeight:44,gap:spacing[2]},
   dock:{borderTopWidth:1,borderTopColor:colors.border,paddingHorizontal:spacing[5],paddingTop:spacing[3],gap:spacing[2]},
   row:{flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:spacing[3],paddingVertical:spacing[2],minHeight:44},

@@ -91,7 +91,7 @@ it('does not put account A photo preparation into account B draft', async () => 
   await screen.rerender(<AccountProfilePage />);
   await act(async () => { prepared.resolve(jpeg); });
   expect(screen.getByTestId('avatar').props.children).toBe('default-avatar');
-  expect(screen.getByLabelText('编辑昵称').props.value).toBe('学员 B');
+  expect(screen.getByText('学员 B')).toBeTruthy();
   expect(updateProfile).not.toHaveBeenCalled();
 });
 
@@ -99,6 +99,7 @@ it.each(['blur', 'account', 'unmount'])('does not navigate when saving completes
   const saved = deferred<Awaited<ReturnType<typeof updateProfile>>>();
   jest.mocked(updateProfile).mockReturnValueOnce(saved.promise);
   const screen = await render(<AccountProfilePage />);
+  await fireEvent.press(screen.getByLabelText('修改昵称'));
   await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新昵称');
   await fireEvent.press(screen.getByText('保存修改'));
   if (leave === 'unmount') await screen.unmount();
@@ -119,6 +120,7 @@ it('keeps the profile editor focused on identity without duplicate exam selector
 
 it('does not save a stale goal when cloud profile arrives during nickname editing', async () => {
   const screen = await render(<AccountProfilePage />);
+  await fireEvent.press(screen.getByLabelText('修改昵称'));
   await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新的昵称');
   mockProfile = { ...mockProfile, target: 'icao5-first' };
   await screen.rerender(<AccountProfilePage />);
@@ -128,6 +130,7 @@ it('does not save a stale goal when cloud profile arrives during nickname editin
 
 it('refreshes untouched fields while retaining the edited nickname', async () => {
   const screen = await render(<AccountProfilePage />);
+  await fireEvent.press(screen.getByLabelText('修改昵称'));
   await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新的昵称');
   mockProfile = { displayName: '云端昵称', target: 'icao5-first', avatarUri: jpeg };
   await screen.rerender(<AccountProfilePage />);
@@ -135,4 +138,19 @@ it('refreshes untouched fields while retaining the edited nickname', async () =>
   expect(screen.getByTestId('avatar').props.children).toBe(jpeg);
   await fireEvent.press(screen.getByText('保存修改'));
   expect(updateProfile).toHaveBeenCalledWith({ displayName: '新的昵称' });
+});
+
+it('opens a compact nickname field only after the pencil and keeps saving explicit', async () => {
+  const screen = await render(<AccountProfilePage />);
+  expect(screen.getByText('飞行学员')).toBeTruthy();
+  expect(screen.queryByLabelText('编辑昵称')).toBeNull();
+  await fireEvent.press(screen.getByLabelText('修改昵称'));
+  expect(screen.getByLabelText('编辑昵称')).toHaveStyle({ width: 180 });
+  await fireEvent.changeText(screen.getByLabelText('编辑昵称'), '新昵称');
+  await fireEvent(screen.getByLabelText('编辑昵称'), 'submitEditing');
+  expect(screen.queryByLabelText('编辑昵称')).toBeNull();
+  expect(screen.getByText('新昵称')).toBeTruthy();
+  expect(updateProfile).not.toHaveBeenCalled();
+  await fireEvent.press(screen.getByText('保存修改'));
+  expect(updateProfile).toHaveBeenCalledWith({ displayName: '新昵称' });
 });

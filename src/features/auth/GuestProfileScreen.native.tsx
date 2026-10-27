@@ -2,6 +2,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { Avatar } from '@/components/account/account-ui';
+import { SoftGlow } from '@/components/visual/SoftGlow';
 import { UserRound } from '@/components/ui/icons';
 import { colors, spacing } from '@/theme';
 import { useLoginEntry } from './use-login-entry';
@@ -24,7 +25,7 @@ export function GuestProfileScreen() {
     catch { setError('检查未完成，请稍后重试。'); }
     finally { retrying.current = false; setBusy(false); }
   }
-  if (status !== 'guest') return <Screen scroll bottomInset contentStyle={styles.screen}>
+  if (status !== 'guest') return <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} scroll bottomInset contentStyle={styles.screen}>
     <AppText variant="pageTitle">我的</AppText>
     <Card style={styles.card}>
       <Avatar icon={UserRound} size={60} />
@@ -42,7 +43,7 @@ export function GuestProfileScreen() {
       <Button variant="ghost" onPress={() => router.push('/(tabs)')}>浏览题库</Button>
     </Card>
   </Screen>;
-  return <Screen scroll bottomInset contentStyle={styles.guestScreen}>
+  return <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} scroll bottomInset contentStyle={styles.guestScreen}>
     <View style={styles.invitation}>
       <Image accessibilityIgnoresInvertColors accessible={false} source={require('../../../assets/illustrations/guest-learning-bookmark.png')} style={styles.illustration} resizeMode="contain" />
       <AppText variant="pageTitle" style={styles.title}>{'让每一次学习，\n都有记录'}</AppText>
@@ -52,6 +53,7 @@ export function GuestProfileScreen() {
   </Screen>;
 }
 const styles = StyleSheet.create({
+  glow: { left: -170, top: -180 },
   screen: { gap: spacing[4], paddingTop: spacing[3] },
   card: { alignItems: 'center', gap: spacing[4], paddingVertical: spacing[6] },
   caption: { color: colors.mutedForeground, textAlign: 'center' },
