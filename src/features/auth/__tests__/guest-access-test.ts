@@ -45,3 +45,10 @@ it('returns a deliberate membership login to the original purchase target', () =
   expect(postLoginDestination({intent:'membership', next:'/account/membership?next=%2Fcontent%2Fmock-exam'})).toBe('/account/membership?next=%2Fcontent%2Fmock-exam');
   expect(postLoginDestination({intent:'membership', next:'/account/settings'})).toBe('/(tabs)');
 });
+
+it('resumes a deliberate feature action while rejecting looping or external targets', () => {
+  expect(postLoginDestination({ intent: 'feature', next: '/info/feedback?source=exam' })).toBe('/info/feedback?source=exam');
+  expect(postLoginDestination({ intent: 'feature', next: '/content/mock-exam' })).toBe('/content/mock-exam');
+  expect(postLoginDestination({ intent: 'feature', next: '/auth/login' })).toBe('/(tabs)');
+  expect(postLoginDestination({ intent: 'feature', next: '//other.example' })).toBe('/(tabs)');
+});

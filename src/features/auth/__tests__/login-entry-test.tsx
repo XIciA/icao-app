@@ -18,7 +18,7 @@ it('remembers the selected question bank before opening login from the catalogue
   const { result } = await renderHook(() => useLoginEntry());
   await act(() => result.current('/question-bank/listening', '登录后进入题库学习'));
   expect(mockRemember).toHaveBeenCalledWith('/question-bank/listening');
-  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/listening', returnTo: '/' } });
+  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/listening', returnTo: '/', intent: 'feature' } });
   expect(mockRemember.mock.invocationCallOrder[0]).toBeLessThan(mockPush.mock.invocationCallOrder[0]);
 });
 
@@ -26,7 +26,7 @@ it('returns a cancelled discovery login to discovery', async () => {
   mockPathname = '/discover';
   const { result } = await renderHook(() => useLoginEntry());
   await act(() => result.current('/content/radio'));
-  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/radio', returnTo: '/discover' } });
+  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/radio', returnTo: '/discover', intent: 'feature' } });
 });
 
 it('takes authenticated users directly to the same feature', async () => {
@@ -43,12 +43,12 @@ it.each([
   { accountRestoreUnavailable: true },
   { accountDeletionPending: true },
   { session: { user: { id: 'existing' } }, accountReady: true },
-])('uses the protected account gate instead of a new login form for %j', async (state) => {
+])('lets the auth route retain account recovery or confirmation for %j', async (state) => {
   mockAccountState = state;
   const { result } = await renderHook(() => useLoginEntry());
   await act(() => result.current('/question-bank/listening'));
   expect(mockRemember).toHaveBeenCalledWith('/question-bank/listening');
-  expect(mockPush).toHaveBeenCalledWith('/question-bank/listening');
+  expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ pathname: '/auth/[slug]', params: expect.objectContaining({ next: '/question-bank/listening', intent: 'feature' }) }));
 });
 
 it('retains an incoming public study link through the login entry', async () => {
@@ -57,4 +57,12 @@ it('retains an incoming public study link through the login entry', async () => 
   const { result } = await renderHook(() => useLoginEntry());
   await act(() => result.current(`${mockPathname}?cardId=2`));
   expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ intent: 'external', next: `${mockPathname}?cardId=2` }) }));
+});
+
+it('cancels a blocked membership destination to its public parent instead of looping', async () => {
+  mockPathname = '/account/membership';
+  // A direct membership link is replaced, and its cancellation destination is explicit.
+  const { result } = await renderHook(() => useLoginEntry());
+  await act(() => result.current('/content/mock-exam', undefined, { returnTo: '/(tabs)/discover' }));
+  expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ next: '/content/mock-exam', returnTo: '/(tabs)/discover' }) }));
 });

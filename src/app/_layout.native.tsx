@@ -102,7 +102,7 @@ export function AppStack() {
     auth.rememberPendingPath(destination);
     // Replace the blocked deep link so cancelling login cannot return to a
     // protected page and immediately open login again.
-    router.replace({ pathname: '/auth/[slug]', params: { slug: 'login', next: destination, intent: 'external', returnTo: '/(tabs)' } });
+    router.replace({ pathname: '/auth/[slug]', params: { slug: 'login', next: destination, intent: 'feature', returnTo: '/(tabs)' } });
   }, [auth, pathname, publicPage, router, searchParams]);
 
   useEffect(() => {

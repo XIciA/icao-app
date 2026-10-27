@@ -1,5 +1,5 @@
 import { ArrowLeft, BarChart3, Check, Clock3, RotateCcw, Volume2, X } from '@/components/ui/icons';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -45,7 +45,7 @@ function Rule({ number, title, description }: { number: string; title: string; d
 
 export function VocabularyTestRunner({ books, onExit, onFinish }: { books: VocabularyBook[]; onExit: () => void; onFinish: (result: VocabularyTestResult) => void }) {
   const insets = useSafeAreaInsets();
-  const words = useMemo(() => toVocabularyTestWords(books), [books]);
+  const [words] = useState(() => toVocabularyTestWords(books));
   const [answers, setAnswers] = useState<VocabularyTestAnswer[]>([]);
   const [question, setQuestion] = useState<VocabularyTestQuestion | undefined>(() => selectVocabularyQuestion({ words, answers: [], usedIds: new Set(), mode: 'normal', questionNo: 1 }));
   const [seconds, setSeconds] = useState(VOCABULARY_TEST_SECONDS);
@@ -143,9 +143,9 @@ export function VocabularyTestRunner({ books, onExit, onFinish }: { books: Vocab
           <Pressable accessibilityLabel={`播放${question.word.word}发音`} onPress={() => { void speakVocabularyWithFeedback(question.word.word); }} style={styles.sound}><Volume2 color={colors.primary} size={20} /></Pressable>
           {revealed ? (
             <Card style={styles.answerCard}>
-              <View style={styles.answerHeading}><View style={[styles.answerIcon, chosenCorrect ? styles.answerKnown : styles.answerUnknown]}>{chosenCorrect ? <Check color={colors.primary} size={18} /> : <X color={colors.destructive} size={18} />}</View><AppText variant="cardTitle">{chosenCorrect ? '已记录为认识' : '已记录为不认识'}</AppText></View>
+              <View style={[styles.answerHeading, chosenCorrect ? styles.answerKnown : styles.answerUnknown]}><View style={styles.answerIcon}>{chosenCorrect ? <Check color={colors.primary} size={18} /> : <X color={colors.destructive} size={18} />}</View><AppText color={chosenCorrect ? colors.primary : colors.destructive} variant="button">{chosenCorrect ? '认识' : '不认识'}</AppText></View>
               <AppText style={styles.testMeaning} variant="sectionTitle">{question.word.meaning}</AppText>
-              {chosenCorrect ? <Pressable accessibilityLabel="改为不认识" onPress={reviseAsUnknown}><AppText color={colors.destructive} style={styles.center} variant="button">刚才点错了，改为不认识</AppText></Pressable> : null}
+              {chosenCorrect ? <Button variant="outline" onPress={reviseAsUnknown} style={styles.reviseButton}><AppText color={colors.destructive} variant="button">改为不认识</AppText></Button> : null}
             </Card>
           ) : <AppText style={styles.center} variant="caption">不要猜太久，按第一反应作答</AppText>}
         </View>
@@ -201,10 +201,11 @@ const styles = StyleSheet.create({
   testWord: { fontSize: 36, lineHeight: 46, textAlign: 'center' },
   sound: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   answerCard: { alignItems: 'center', gap: spacing[4], maxWidth: 520, padding: spacing[5], width: '100%' },
-  answerHeading: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
+  answerHeading: { alignItems: 'center', flexDirection: 'row', gap: spacing[1], borderRadius: radii.full, paddingHorizontal: spacing[3], paddingVertical: spacing[1] },
+  reviseButton: { borderColor: colors.destructive, backgroundColor: `${colors.destructive}1A`, alignSelf: 'center' },
   answerIcon: { alignItems: 'center', borderRadius: radii.full, height: 32, justifyContent: 'center', width: 32 },
   answerKnown: { backgroundColor: colors.primary10 },
-  answerUnknown: { backgroundColor: 'rgba(219,43,51,0.10)' },
+  answerUnknown: { backgroundColor: `${colors.destructive}1A` },
   testMeaning: { lineHeight: 30, textAlign: 'center' },
   testActions: { backgroundColor: colors.background72, borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, paddingHorizontal: spacing[4], paddingTop: spacing[3] },
   answerButtons: { flexDirection: 'row', gap: spacing[3] },

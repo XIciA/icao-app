@@ -53,9 +53,9 @@ describe('<DiscoverTab />', () => {
   });
 });
 
-it('sends a guest to membership only when choosing mock practice', async () => {
+it('sends a guest directly to login when choosing member practice', async () => {
   mockCanAccessApp = false;
   const screen = await render(<DiscoverTab />);
   await fireEvent.press(screen.getByLabelText('打开模拟练习'));
-  expect(mockPush).toHaveBeenCalledWith('/account/membership?next=%2Fcontent%2Fmock-exam');
+  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/mock-exam', intent: 'feature', returnTo: '/discover' } });
 });

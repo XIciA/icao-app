@@ -19,7 +19,8 @@ beforeEach(() => { jest.clearAllMocks(); mockAuthenticated = true; mockFocused =
 it('does not mount paid functionality for a guest', async () => {
   mockAuthenticated = false;
   await render(<MemberFeatureGate><Child /></MemberFeatureGate>);
-  expect(mockReplace).toHaveBeenCalledWith('/account/membership?next=%2Fcontent%2Fradio');
+  expect(mockLogin).toHaveBeenCalledWith('/content/radio', undefined, { replace: true, returnTo: '/(tabs)/discover' });
+  expect(mockReplace).not.toHaveBeenCalled();
   expect(mockChild).not.toHaveBeenCalled();
 });
 it('routes a confirmed non-member to purchase and retains the original target', async () => {

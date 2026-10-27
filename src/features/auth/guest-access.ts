@@ -48,6 +48,7 @@ export function destinationWithQuery(pathname: string, params: Record<string, st
 /** Ordinary account entry never restores a previous tab or private account page. */
 export function postLoginDestination(params: Record<string, string | string[] | undefined>) {
   const target = typeof params.next === 'string' ? safeAppDestination(params.next) : undefined;
+  if (params.intent === 'feature' && target) return target;
   if (params.intent === 'membership' && target && normalizedAppPath(target) === '/account/membership') return target;
   if (params.intent === 'external' && target) {
     const path = normalizedAppPath(target);

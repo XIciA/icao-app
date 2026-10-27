@@ -6,7 +6,7 @@ import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
-import { AppText, BottomSheet, Button, Screen } from '@/components/ui';
+import { AppText, Button, Screen } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { colors, fonts, radii, spacing } from '@/theme';
 import { prepareProfileAvatar } from '../../../modules/icao-profile-avatar/src';
@@ -23,8 +23,6 @@ export function AccountProfilePage() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const commerce = useCommerceRuntime();
-  const [editing, setEditing] = useState<'name'>();
-  const [nameInput, setNameInput] = useState('');
   const guide = useGuide();
   const auth = useAuth();
   const profile = useProfile();
@@ -42,7 +40,6 @@ export function AccountProfilePage() {
   useFocusEffect(useCallback(() => {
     focused.current = !!accountId;
     pendingAction.current = undefined;
-    setEditing(undefined);
     setPicking(false);
     setSaving(false);
     setError('');
@@ -131,7 +128,7 @@ export function AccountProfilePage() {
       <GuideScrollView contentContainerStyle={styles.form} keyboardShouldPersistTaps="handled">
         <DetailGroup title="基本资料">
           <DetailRow label="头像" disabled={saving || picking} onPress={() => void chooseAvatar()}><ProfileAvatar size={48} uri={draft.avatarUri} /></DetailRow>
-          <DetailRow label="昵称" last disabled={saving || picking} onPress={() => { setNameInput(draft.displayName); setEditing('name'); }}>{draft.displayName}</DetailRow>
+          <DetailRow label="昵称" last><TextInput accessibilityLabel="编辑昵称" editable={!saving && !picking} maxLength={48} returnKeyType="done" style={styles.nickname} value={draft.displayName} onChangeText={displayName => { edited.current.add('displayName'); setDraft(current => ({ ...current, displayName })); setError(''); }} /></DetailRow>
         </DetailGroup>
         <DetailGroup title="会员与账号">
           <DetailRow label="会员"><MembershipStatus align="end" /></DetailRow>
@@ -142,20 +139,13 @@ export function AccountProfilePage() {
         {error ? <AppText accessibilityRole="alert" color={colors.destructive} variant="caption">{error}</AppText> : null}
       </GuideScrollView>
       <View style={[styles.dock, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}><GuideAnchor id="setup-save" /><Button disabled={(!dirty && guide?.step !== 'setup-save') || saving || picking} loading={saving} onPress={() => void save()} size="lg">保存修改</Button></View>
-      <BottomSheet visible={!!editing} onClose={() => setEditing(undefined)} accessibilityLabel="修改昵称">
-        <View style={styles.editor}>
-          <AppText variant="sectionTitle">修改昵称</AppText>
-          <TextInput accessibilityLabel="编辑昵称" maxLength={48} style={styles.nickname} value={nameInput} onChangeText={setNameInput} />
-          <AppText variant="caption">1–24 个字符</AppText>
-          <Button disabled={!nameInput.trim() || Array.from(nameInput.trim()).length > 24} onPress={() => { edited.current.add('displayName'); setDraft(current => ({ ...current, displayName: nameInput.trim() })); setError(''); setEditing(undefined); }}>完成</Button>
-        </View>
-      </BottomSheet>
+
     </Screen>
   );
 }
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 }, form: { gap: spacing[5], padding: spacing[5] },
   dock: { borderTopWidth: 1, borderTopColor: colors.border, paddingHorizontal: spacing[5], paddingTop: spacing[4], backgroundColor: colors.background },
-  editor: { gap: spacing[4] }, accountId: { textAlign: 'right' },
-  nickname: { borderColor: colors.input, borderWidth: 1, borderRadius: radii.md, padding: spacing[3], color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 16 },
+  accountId: { textAlign: 'right' },
+  nickname: { borderColor: colors.input, borderWidth: 1, borderRadius: radii.md, padding: spacing[2], minHeight: 44, width: '100%', textAlign: 'right', color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 16 },
 });

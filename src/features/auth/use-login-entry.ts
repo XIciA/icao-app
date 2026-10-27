@@ -3,7 +3,6 @@ import { usePathname, type Href } from 'expo-router';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
 import { useAuth } from './AuthProvider';
 import { isExternalContentEntry, publicLoginReturn, safeAppDestination } from './guest-access';
-import { publicAccountStatus } from './public-account-status';
 
 /** Intercept a deliberate action before mounting its protected screen. */
 export function useLoginEntry() {
@@ -11,13 +10,13 @@ export function useLoginEntry() {
   const router = useAppRouter();
   const pathname = usePathname();
   const incomingUrl = useURL();
-  return (destination: string, _reason?: string) => {
+  return (destination: string, _reason?: string, options: { replace?: boolean; returnTo?: string } = {}) => {
+    const navigate = options.replace ? router.replace : router.push;
     const target = safeAppDestination(destination) ?? '/(tabs)';
-    if (auth.canAccessApp) { router.push(target as Href); return; }
+    if (auth.canAccessApp) { navigate(target as Href); return; }
     auth.rememberPendingPath(target);
-    // Let the existing protected-route account gate handle restoration or
-    // consent. Opening a fresh login form would misrepresent a retained session.
-    if (publicAccountStatus(auth) !== 'guest' && target.split('?')[0] !== '/account/membership') { router.push(target as Href); return; }
-    router.push({ pathname: '/auth/[slug]', params: { slug: 'login', next: target, ...(target.split('?')[0] === '/account/membership' ? { intent: 'membership' } : isExternalContentEntry(incomingUrl, pathname, target) ? { intent: 'external' } : {}), returnTo: publicLoginReturn(pathname) } });
+    // The auth route already renders account restoration/confirmation before its form.
+    // Keep the original feature explicit instead of sending a guest through membership.
+    navigate({ pathname: '/auth/[slug]', params: { slug: 'login', next: target, ...(target.split('?')[0] === '/account/membership' ? { intent: 'membership' } : isExternalContentEntry(incomingUrl, pathname, target) ? { intent: 'external' } : !['/', '/(tabs)', '/(tabs)/profile', '/profile', '/account/profile'].includes(target) ? { intent: 'feature' } : {}), returnTo: publicLoginReturn(options.returnTo ?? pathname) } });
   };
 }
