@@ -76,3 +76,10 @@ it('shows formal history with Beijing dates, filtering, and before/after classif
   await click(element.querySelector('.vocab-history-row'));expect(element.querySelector('.vocab-history-detail').textContent).toContain('起落架');
   await change(element.querySelector('.vocab-history-filters input'),'gear');await click(button('查询历史'));expect(mocks.api.mock.calls.at(-1)[0]).toContain('word=gear');
 });
+
+it('clears selected rows when undoing a move removes that word from the current book',async()=>{
+  const word=firstVisible();await selectFirst();await click(button('移入ICAO 5 冲刺'));
+  await click([...element.querySelectorAll('[aria-label="批量调整词书"] button')][2]);
+  await click([...element.querySelectorAll('.vocab-bulk-list input')].find(input=>input.getAttribute('aria-label')===`选择 ${word.word}`));
+  await click(button('查看修改'));await click(button('撤销'));expect(element.textContent).toContain('已选 0 个');expect(element.textContent).toContain('待提交 0 个词');
+});
