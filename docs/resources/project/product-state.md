@@ -27,10 +27,10 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | 渠道 / 服务 | 最近有证据的交付 | 验收边界 / 证据 |
 | --- | --- | --- |
 | Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
-| App Store | 1.2.1 / 3576434，10 月 21 日记录确认已上架，并补齐正式更新清单 | 本轮未提交正式审核或更新正式清单；上架与功能真机验收分别判断。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
+| App Store | 正式仍为1.2.1 / 3576434；1.2.2 / 3586478已于10月27日20:39提交，WAITING_FOR_REVIEW | 本轮仅删除课程弹层末尾一行，保留原审核通过后自动发布设置；尚未批准/上架，正式清单未切换。[送审回执](../../records/releases/20261026-audio-session-recovery.md) |
 | Android 测试版 | 1.3.12 / 3584843，10 月 25 日独立测试包及官网测试入口已更新 | 综合修复与紧凑词书UI统一交付；1.3.14新候选因本机空间不足构建中止，测试指针保留本版，重构建待续。正式渠道不变，实际体验待用户验收。[记录](../../records/releases/20261025-combined-repair-vocabulary-ui-1.3.12.md) |
-| iOS TestFlight | 1.2.2 / 3586477，10月27日Apple VALID、IN_BETA_TESTING，现有内部组可访问，测试清单已切换 | 源码29ae9cd3；仅本轮八项轻量修正，用户指定承接正式1.2.1。直接从TestFlight选择安装，真机验收待完成，通过后同包提审，尚未提交App Store。[记录及八项清单](../../records/releases/20261026-audio-session-recovery.md) |
-| EdgeOne 产品 Web | 1.2.2；源码29ae9cd3，deployment dpze9r1ts06m | 八项修正同步，共享页面公网脚本与本地字节一致，未改后台、API、词库或学习记录。[本轮记录](../../records/releases/20261026-audio-session-recovery.md) |
+| iOS TestFlight | 1.2.2 / 3586478，Apple VALID、IN_BETA_TESTING，现有内部组可访问 | 源码8f3c3ce4；只删末尾一行及递增构建号。用户明确免除此纯文案包重复验收，已送App Store等待审核，未伪造新包真机结果。[记录](../../records/releases/20261026-audio-session-recovery.md) |
+| EdgeOne 产品 Web | 1.2.2；源码8f3c3ce4，deployment dpilekjuysfe | 指定末尾文案已移除，公网脚本与本地字节一致，原正文/寄语/按钮保留。[记录](../../records/releases/20261026-audio-session-recovery.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | 10月27日production-migration-5fe05c123eb8，实际源码与runner均为5fe05c12 | 0058考试信息两列已应用，账本59项无漂移；镜像与微信配置保持。内容33版恢复28天39份热点来源及641条考点题目关系，OPI题库28版仅更新73个气象显示字段。人工确认1652词及既有学习记录保留。[本轮记录](../../records/releases/20261026-audio-session-recovery.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
@@ -40,7 +40,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 
 - **后台批量调整等级与历史（10月27日）**：本地与线上运营后台已交付，跨三词书草稿、统一事务提交和逐词历史可用；生产验证通过，待用户实际整理验收。App无需重新发包，正式词库v5/1652词及App API保持。[本轮记录](../../records/releases/20261027-vocabulary-level-batch.md)。
 
-- **最终候选1.2.2（10月27日）**：八项轻量修正已交付TestFlight3586477及网页。用户在真机验收，通过后用同一包提交App Store；此前热点归属、音频及人工词库成果保持。正式渠道尚未切换。[八项清单与证据](../../records/releases/20261026-audio-session-recovery.md)
+- **1.2.2已提交苹果审核（10月27日）**：新构建3586478只删除课程弹层末尾一句，保持此前八项轻量修正。用户已授权免重复验收并直接送审；Apple与浏览器确认WAITING_FOR_REVIEW，审核通过后按原设置自动发布。正式渠道清单待实际可下载后更新。[送审记录](../../records/releases/20261026-audio-session-recovery.md)
 
 - **1.3.15统一TestFlight已交付（10月26日）**：PR #266/#269/#271/#272覆盖3584951后本轮全部已确认改动，最终源码8458f5eb。前端244套/1696项、API71文件/710项及Node22运行时检查通过；TestFlight3584952、配套API/后台、1320新增录音与题目修订已交付，旧9773录音保留。更新清单仅改iOS测试渠道，用户真机验收待完成。[统一记录](../../records/releases/20261026-coordinated-testflight.md)
 

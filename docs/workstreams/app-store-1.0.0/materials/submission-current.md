@@ -1,5 +1,13 @@
 # 听你五个 · 本次 App Store 送审材料唯一来源
 
+## 当前送审：2026-10-27
+
+**1.2.2（3586478）已提交，WAITING_FOR_REVIEW。** 提交ID`b0fab0fd-2b33-4fbf-a189-74acfb33ca2a`，绑定本次确切新构建，沿用审核通过后自动发布设置。本轮复用线上已批准1.2.1的商店资料、五张截图及审核账号，仅更新版本/构建和“修复了已知问题。”更新说明；不沿用下方1.0.0历史构建限制。用户明确授权本纯文案包无需再次人工验收。
+
+[本轮准确源码、包摘要与送审回执](../../../records/releases/20261026-audio-session-recovery.md)；[Apple审核页](https://appstoreconnect.apple.com/apps/6800583111/distribution/reviewsubmissions/details/b0fab0fd-2b33-4fbf-a189-74acfb33ca2a)。当前只是等待审核，尚未获批准或正式可下载。
+
+## 历史送审资料（以下保留原记录）
+
 更新：2026-09-14 03:01（北京时间）。**1.0.0（3524033）** 已上传 TestFlight（VALID）并重新提交 App Store；App与7/31/93天三项会员均为 **等待审核**，保留审核通过后自动发布设置。正式源码 `f8cee39f7bbcc1c23ff88033eec5bbd47627a5e1`。执行证据见[本轮记录](../../../records/workstreams/product-release-readiness/app-review-september14-execution.md)。
 
 本轮微信方案为：已安装微信显示入口，未安装隐藏，返回App重新检测；Apple与手机号/密码登录独立可用。不得沿用此前免安装SDK窗口或Safari授权的描述。CallKit已移除，保留随身听后台播放。用户提供的后台录屏直接使用，不要求额外微信或购买视频。
