@@ -13,7 +13,7 @@ jest.mock('../annotations/annotation-store.native',()=>({readAnnotationStore:jes
 jest.mock('../platform/learning-store.native',()=>({sqliteLearningStore:{getTopicStates:jest.fn().mockResolvedValue({})}}));
 jest.mock('../export/pdf-platform',()=>({exportFontBytes:jest.fn(),storePdf:jest.fn().mockResolvedValue('file:///test.pdf'),releasePdf:jest.fn(),previewPdf:()=>mockPreview(),sharePdf:()=>mockShare()}));
 jest.mock('../export/pdf-generator',()=>({generateSentencesPdf:jest.fn().mockResolvedValue({bytes:new Uint8Array(),pageCount:1,sentenceCount:1})}));
-const dataset={id:'sentences900',categories:[{id:'main',name:'3级',topics:[{id:'topic',cards:[]}]}]} as never;
+const dataset={id:'sentences900',categories:[{id:'main',name:'3级',topics:[{id:'topic',cards:[],scopeCardIds:{all:['one'],selected:[],crash:[]}}]}]} as never;
 it('clears an actual preview failure when returning to options and permits another export',async()=>{
  mockPreview.mockRejectedValue(new Error('file_opening_failed'));mockShare.mockResolvedValue(undefined);
  const view=await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></SafeAreaProvider>);
@@ -145,4 +145,39 @@ it('lets back cancel an active job and return without waiting for completion',as
  await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
  await fireEvent.press(view.getByLabelText('返回'));expect(onBack).toHaveBeenCalledTimes(1);
  await act(async()=>job.resolve(pdfResult));expect(view.queryByText('PDF 已生成')).toBeNull();
+});
+
+it('starts from browsing mode, keeps each selection independent and never hydrates outside the supplied scope',async()=>{
+ const ids=['sentence900-main-002','sentence900-main-584'];
+ const scoped={id:'sentences900',categories:[{id:'main',name:'4级',topics:[{id:'topic',cards:[],scopeCardIds:{all:ids,selected:[],crash:[]}}]}]} as never;
+ const repo=jest.requireMock('../data/repository.native').questionBankRepository;
+ repo.getTopic.mockResolvedValueOnce({id:'topic',cards:[...ids,'sentence900-main-900'].map(id=>({id,kind:'text'}))});
+ const view=await render(<SentenceExportScreen dataset={scoped} initialBrowseMode="scene" onBack={jest.fn()}/>);
+ await waitFor(()=>expect(view.getByText('将导出 2 句')).toBeTruthy());
+ expect(view.getByText('按场景')).toBeTruthy();
+ await fireEvent.press(view.getByText('范围'));
+ expect(view.queryByRole('checkbox',{name:'其它情况通话术语'})).toBeNull();
+ await fireEvent.press(view.getByRole('checkbox',{name:'基本通话术语'}));
+ await fireEvent.press(view.getByText('完成'));
+ expect(view.getByText('将导出 1 句')).toBeTruthy();
+ await fireEvent.press(view.getByText('分组方式'));
+ await fireEvent.press(view.getByRole('checkbox',{name:'按等级'}));
+ expect(view.getByText('将导出 2 句')).toBeTruthy();
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByRole('checkbox',{name:'4级'}));
+ await fireEvent.press(view.getByText('完成'));
+ expect(view.getByRole('button',{name:'生成 PDF'})).toBeDisabled();
+ await fireEvent.press(view.getByText('分组方式'));
+ await fireEvent.press(view.getByRole('checkbox',{name:'按场景'}));
+ expect(view.getByText('将导出 1 句')).toBeTruthy();
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
+ const call=jest.mocked(generateSentencesPdf).mock.calls.at(-1)!;
+ expect(call[0].map(row=>row.card.id)).toEqual(ids);
+ expect(call[1]).toMatchObject({browseMode:'scene',levels:[]});
+ expect(call[1].scenes).not.toContain('basic');
+});
+
+it('uses the same export form for Web and Native',()=>{
+ expect(jest.requireActual('../export/SentenceExportScreen.tsx').SentenceExportScreen).toBe(SentenceExportScreen);
 });

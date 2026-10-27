@@ -3,7 +3,8 @@ import fontkit from '@pdf-lib/fontkit';
 import { ANNOTATION_PALETTE } from '@icao/contracts/annotation-management';
 import type { QuestionBankAnnotationStore } from '../annotations/types';
 import { contentFingerprint, tokenizeStudyText } from '../annotations/text';
-import { selectedSentences, type ExportOptions, type ExportSentence } from './export-model';
+import { sentenceDisplayTitle } from '../lib/sentence-display-title';
+import { exportGroupTitle, selectedSentences, type ExportOptions, type ExportSentence } from './export-model';
 const ink=rgb(.067,.086,.122),muted=rgb(.36,.39,.44),blue=rgb(.122,.369,.851);
 const color=(hex:string)=>rgb(...[1,3,5].map(n=>parseInt(hex.slice(n,n+2),16)/255) as [number,number,number]);
 type Piece={text:string;highlight?:string};
@@ -45,7 +46,8 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
   // The bundled CJK font loses glyphs when fontkit subsets it; retain its original glyph IDs.
   const font=await doc.embedFont(fontBytes,{subset:false});
   const latin=await doc.embedFont(StandardFonts.TimesRoman);
-  doc.setTitle('900句 · 我的学习资料');doc.setAuthor('听你五个');doc.setCreationDate(exportedAt);
+  const title = `900句 · ${options.browseMode === 'scene' ? '按场景' : '按等级'} · 我的学习资料`;
+  doc.setTitle(title);doc.setAuthor('听你五个');doc.setCreationDate(exportedAt);
   const width=595.28,height=841.89,margin=44,textX=111,textWidth=width-margin-textX;
   let page:PDFPage;let y=0;
   const drawText=(text:string,settings:Parameters<PDFPage['drawText']>[1])=>{
@@ -64,8 +66,9 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
     y-=size+7;
   };
   newPage();
-  line([{text:'900句 · 我的学习资料'}],20,margin);
-  line([{text:`${options.levels.join(' / ')}  ·  ${chosen.length} 句  ·  ${exportedAt.toLocaleDateString('zh-CN')}`}],9,margin,muted);y-=6;
+  line([{text:title}],20,margin);
+  const groupNames = [...new Set(chosen.map(row=>exportGroupTitle(row,options)))];
+  wrap([{text:`${groupNames.join(' / ')}  ·  ${chosen.length} 句  ·  ${exportedAt.toLocaleDateString('zh-CN')}`}],font,latin,9,width-margin*2).forEach(parts=>line(parts,9,margin,muted));y-=6;
   const usedTags=new Set(chosen.flatMap(row=>row.annotation?.tagIds??[]));
   const definitions=annotations.tagDefinitions.filter(tag=>usedTags.has(tag.id));
   if(options.tags&&definitions.length){
@@ -73,7 +76,7 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
     for(const tag of definitions){const w=measureText(tag.label,font,latin,9)+28;if(x+w>width-margin){y-=20;x=margin;ensure(20);}page!.drawCircle({x:x+3,y:y+3,size:3,color:color(ANNOTATION_PALETTE[tag.color])});drawText(tag.label,{size:9,x:x+13,y,color:muted});x+=w;}
     y-=24;
   }
-  let previousLevel='';
+  let previousGroup='';
   for(const row of chosen){
     await cooperate();
     // Release the JS thread between rows so progress indicators and cancellation stay responsive.
@@ -88,12 +91,13 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
     const english=wrap(pieces,font,latin,10.5,textWidth);
     const translated=options.translation&&row.card.audioTextZh?wrap([{text:row.card.audioTextZh}],font,latin,9,textWidth):[];
     const notes=options.notes&&row.annotation?.note.trim()?wrap([{text:'笔记：'+row.annotation.note}],font,latin,9,textWidth):[];
+    const group=exportGroupTitle(row,options);
     const blockHeight=english.length*17.5+(translated.length+notes.length)*16+13;
-    ensure(Math.min(blockHeight+(previousLevel!==row.level?28:0),height-112));
-    if(previousLevel!==row.level){line([{text:row.level}],13,margin,blue);y-=5;previousLevel=row.level;}
-    const number=row.card.taskTitle.match(/\d+/)?.[0]??row.card.id.replace('sentence900-main-','');
-    drawText(number,{size:9,x:margin,y,color:muted});
-    if(options.tags){const tags=definitions.filter(d=>row.annotation?.tagIds.includes(d.id));tags.forEach((tag,index)=>page!.drawCircle({x:76+(index%4)*8,y:y+3-Math.floor(index/4)*8,size:2.5,color:color(ANNOTATION_PALETTE[tag.color])}));}
+    ensure(Math.min(blockHeight+(previousGroup!==group?28:0),height-112));
+    if(previousGroup!==group){line([{text:group}],13,margin,blue);y-=5;previousGroup=group;}
+    const label=sentenceDisplayTitle(row.card.id,row.card.taskTitle);
+    drawText(label,{size:8,x:margin,y,color:muted});
+    if(options.tags){const tags=definitions.filter(d=>row.annotation?.tagIds.includes(d.id));tags.forEach((tag,index)=>page!.drawCircle({x:margin+3+(index%4)*8,y:y-12-Math.floor(index/4)*8,size:2.5,color:color(ANNOTATION_PALETTE[tag.color])}));}
     english.forEach(parts=>line(parts,10.5,textX));translated.forEach(parts=>line(parts,9,textX,muted));notes.forEach(parts=>line(parts,9,textX,muted));y-=9;
   }
   const pages=doc.getPages();pages.forEach((p,index)=>p.drawText(`${index+1} / ${pages.length}`,{font:latin,size:9,x:width/2-12,y:25,color:muted}));
