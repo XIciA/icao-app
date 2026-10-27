@@ -1,9 +1,17 @@
 -- Explicit production preparation, NOT an application migration or startup hook.
--- Run only from approved main with psql -X -v ON_ERROR_STOP=1 -f this-file.
+-- Run only from approved main, as the existing supabase_admin superuser,
+-- with psql -X -v ON_ERROR_STOP=1 -f this-file.
 -- No credentials are created or read here. Other roles/policies are untouched.
 BEGIN;
 SET LOCAL lock_timeout = '5s';
 SET LOCAL statement_timeout = '30s';
+DO $executor$
+BEGIN
+  IF NOT (SELECT rolsuper FROM pg_roles WHERE rolname = current_user) THEN
+    RAISE EXCEPTION 'vocabulary_storage_superuser_executor_required';
+  END IF;
+END
+$executor$;
 SELECT pg_advisory_xact_lock(hashtext('ops_vocabulary_storage_provision'));
 
 DO $guard$
