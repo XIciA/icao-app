@@ -30,7 +30,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | App Store | 1.2.1 / 3576434，10 月 21 日记录确认已上架，并补齐正式更新清单 | 本轮未提交正式审核或更新正式清单；上架与功能真机验收分别判断。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
 | Android 测试版 | 1.3.12 / 3584843，10 月 25 日独立测试包及官网测试入口已更新 | 综合修复与紧凑词书UI统一交付；1.3.14新候选因本机空间不足构建中止，测试指针保留本版，重构建待续。正式渠道不变，实际体验待用户验收。[记录](../../records/releases/20261025-combined-repair-vocabulary-ui-1.3.12.md) |
 | iOS TestFlight | 1.3.16 / 3586474，10月27日Apple VALID、IN_BETA_TESTING，现有内部组可访问，测试更新清单已切换 | 精确源码440984cf；音频恢复、性能、随身听、900句等级/场景、模考重听、反馈/高亮与人工确认1652词统一交付。包与线上配套验证通过，用户真机验收待完成。[统一记录](../../records/releases/20261026-audio-session-recovery.md) |
-| EdgeOne 产品 Web | readyoufife.com 已上线，源码 `4e462045`，deployment `dpvzkuuok4wq` | 随身听加载/数量与词频说明同步交付；公网脚本摘要通过，浏览器加载提示和切换已观察，完整体验待验。[记录](../../records/releases/20261025-radio-frequency-1.3.14.md) |
+| EdgeOne 产品 Web | 1.3.17；源码 c7cefc40，deployment dpe4o3d23q77，电脑网页微信扫码购买已开放 | 会员页对齐当前 App，价格复用 Android 目录；API、迁移58项、支付说明v32与公网脚本核对通过。真实扫码付款和跨端权益同步待人工验收，本轮未发布移动端安装包。[记录](../../records/releases/20261027-wechat-web-pay.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | 10月27日production-migration-440984cf063f已上线，实际API源码64678f35、迁移执行主干440984cf | 0055/0056已应用，账本57项无漂移；1652词v4、532累计退役映射、音频资源及标题增量发布完成。健康、鉴权、旧目录兼容和真实AI三能力通过。[本轮记录](../../records/releases/20261026-audio-session-recovery.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
