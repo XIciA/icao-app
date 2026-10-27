@@ -1,5 +1,7 @@
 # 2026-10-27 后台批量调整等级与词库历史
 
+当前状态：功能由 PR #290 合入主干；用户随后明确选择“部署线上运营后台”。北京时间 20:04:20 已完成线上运营后台部署，业务只读验收通过，用户界面验收待完成。App API 和正式词库保持原状。
+
 用户在本聊天确认方案后要求执行。范围为现有运营后台、本地后台桥接与管理 API；App 客户端、在线词库协议、安装包版本、正式词库内容及用户学习数据不作修改。
 
 ## 实现
@@ -17,6 +19,31 @@
 - 真实隔离 PostgreSQL 覆盖 110 个词一次发布、并发重复批次只生成一版、版本栅栏、审计失败整体回滚、历史查询和移动后保留学习/收藏状态。
 - HTTP 控制器覆盖管理员/客服/未登录权限、大批次输入、非法目标、条数上限和历史参数；本地白名单新路径及越界拒绝。
 - 运营前端/API 类型检查及构建、受影响 API lint、合同运行时检查与聚焦测试通过；GitHub CI 与最终本地安装证据以 PR 和本机交付清单为准。浏览器已进行只读预览，未向正式库提交测试移动。
-- 截图功能对应线上新版运营后台代码；本机同时运行的旧版后台尚无词库入口，不能将该旧进程视为截图入口。本轮先更新本地后台供直接验收；线上独立运营后台生产部署需另核对明确授权，ECS App API 不需部署，不作数据库迁移或正式词库发布。
+- 截图功能对应线上新版运营后台代码；本机同时运行的旧版后台尚无词库入口，不能将该旧进程视为截图入口。本轮先更新本地后台供直接验收；用户随后明确授权线上运营后台生产部署，现已交付。ECS App API 不部署，不作数据库迁移或正式词库发布。
 
 代码检查通过不等于用户验收。本轮不重新构建 App、不修改 App 更新提示或现有词库版本。
+
+
+## 线上生产交付（用户追加明确授权）
+
+- 入口：`https://api.readyoufife.com/admin/`，词库管理中的“批量调整等级”和“操作历史”。
+- 生产源码：`29ae9cd3dd33396bf0cca9a33451107255888b2f`；本轮后台功能为 PR #290，发布时使用已进入 origin/main 的干净 main 独立 checkout。后续 App 界面提交未改变本轮 Ops 发布路径，不构建 App。
+- Release ID：`vocabulary-levels-20261027-29ae9cd3`。
+- Annotated tag：`release/ops-production/20261027-vocabulary-levels-29ae9cd3`，绑定上述源码并已推送。
+- 部署时间：`2026-10-27T12:04:20Z`（北京时间 20:04:20）。
+- 官方发布入口：`scripts/deploy-ops-release.sh deploy`，仅更新 Ops API、Ops Web 及对应网关配置；原用户 API 容器未重启。
+- 切换前账本检查：59 项 applied、0 pending、0 drift，只读检查；备份 `icao-20261027T120047Z-2977560.dump` 已校验并在隔离环境完整恢复成功。
+- Ops API 镜像：`sha256:6dea315f78fe589dcc9d12bf7823cdeba678057b9dddaf869dbc77c56cf8ddb7`。
+- Ops Web 镜像：`sha256:1b4d2dd03def51b4b94f19de3de49d509a7f081e0375809edda5bbc6006125f5`。
+- 回滚快照：`/opt/icao/runtime/releases/ops-vocabulary-levels-20261027-29ae9cd3/attempts/20261027T120215Z-2885399`。本轮未执行回滚。
+
+### 部署后证据
+
+- 公网页面、HSTS、Ops health/ready 和版本标识通过；公网 JS/CSS 与正在运行的 Web 容器逐字节一致。
+- 新 history 和 levels/preview 路径未登录均返回 401；普通 App API 上的管理路径返回 404，权限及入口隔离保持。
+- 在部署后的 Ops 容器中，用实际服务和生产配置只读验证：历史包含 v5、v4，v5 有 1 个词的分类变化明细；110 词等级调整预览通过、缺失录音为 0。没有调用 publish。
+- 正式词库仍为 v5：考前预习390、四级809、五级453，共1652词；checksum 保持 `1285b4c0296baa9abcfeb3d56594594df1a058f071b2f729de2a88b305409544`。
+- App API 镜像仍为 `sha256:e481475b6c9e39e68605079c9c54ee34d45bb8d3afd189eb6ac8a446263456c2`，启动时间仍为 `2026-10-27T08:02:49.030445843Z`；镜像和启动时间与部署前完全一致。
+- 官方证据位于服务器对应 release 的 `deployment-evidence.json`，本机另保存于 `.generated/ops-release/vocabulary-levels-20261027-29ae9cd3/`。HTTP及只读业务验证另存 `http-verification.json`、`business-verification.json`；持久副本在 `~/Library/Application Support/听你五个后台/production-vocabulary-levels-20261027/`。
+
+代码检查、生产部署与只读业务验收通过；管理员实际批量整理及用户界面验收仍由用户完成。没有为了测试而移动、发布或撤销任何正式词条，也未升级 App 或更改 App 更新渠道。
