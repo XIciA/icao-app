@@ -12,6 +12,7 @@ const centers = brief => [...new Set(brief.centers.filter(c => !nonCenters.has(c
 export function restoreHotspotSources(current, historical) {
   const next = structuredClone(current);
   const restored = [];
+  const priorIds = new Map();
   for (const old of historical.hotspots.briefs.filter(b => b.sources?.length)) {
     const matches = next.hotspots.briefs.filter(b => b.date === old.date);
     const target = matches.length === 1 ? matches[0] : undefined;
@@ -21,11 +22,19 @@ export function restoreHotspotSources(current, historical) {
     if (!isDeepStrictEqual(relations(target), relations(old)) || !isDeepStrictEqual(centers(target), centers(old))) {
       throw new Error('hotspot_changed_requires_relation_merge');
     }
+    // Flattening also promoted a source alias to the daily ID. Restore the
+    // historical daily ID; the current ID remains resolvable through sources.
+    priorIds.set(old.id, target.id);
+    target.id = old.id;
     target.sources = structuredClone(old.sources);
     restored.push(target.id);
   }
   const proof = structuredClone(next);
-  for (const id of restored) delete proof.hotspots.briefs.find(b => b.id === id).sources;
+  for (const id of restored) {
+    const brief = proof.hotspots.briefs.find(b => b.id === id);
+    delete brief.sources;
+    brief.id = priorIds.get(id);
+  }
   if (!isDeepStrictEqual(proof, current)) throw new Error('unrelated_content_changed');
   return { payload: next, restored };
 }

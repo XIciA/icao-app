@@ -22,3 +22,9 @@ test('never drops a newer question or invents a center when history no longer ma
   const changed = structuredClone(current); changed.hotspots.briefs[0].topics[0].cardIds.push('new');
   assert.throws(() => restoreHotspotSources(changed, old), /requires_relation_merge/);
 });
+test('restores a historical daily ID and retains the newer source link as an alias', () => {
+  const flattened = structuredClone(current); flattened.hotspots.briefs[0].id = 'one';
+  const { payload } = restoreHotspotSources(flattened, old);
+  assert.equal(payload.hotspots.briefs[0].id, 'day');
+  assert(payload.hotspots.briefs[0].sources.some(s => s.id === flattened.hotspots.briefs[0].id));
+});
