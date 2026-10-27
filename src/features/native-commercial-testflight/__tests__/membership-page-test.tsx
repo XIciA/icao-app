@@ -56,6 +56,21 @@ describe('Native membership purchase page', () => {
     expect(mockPurchase).toHaveBeenCalledWith('membership_7d_v1');
   });
 
+  it('shows approved USD reference prices without replacing the StoreKit charge', async () => {
+    mockCommerce = runtimeValue({ offerings: [
+      { productKey: 'membership_7d_v1', durationDays: 7, localizedPrice: '$1.99', currencyCode: 'USD' },
+      { productKey: 'membership_31d_v1', durationDays: 31, localizedPrice: '$5.99', currencyCode: 'USD' },
+      { productKey: 'membership_93d_v1', durationDays: 93, localizedPrice: '$14.99', currencyCode: 'USD' },
+    ] });
+    const screen = await render(<Page />);
+    for (const price of [10, 23, 53]) expect(screen.getByLabelText(`换算参考价${price}美元`)).toHaveStyle({ textDecorationLine: 'line-through' });
+    expect(screen.getByText('开通31天会员 · $5.99')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
+    expect(mockPurchase).toHaveBeenCalledWith('membership_31d_v1');
+    await fireEvent.press(screen.getByText('购买须知'));
+    expect(screen.getByText(/美元划线价按人民币参考价折算/u)).toBeTruthy();
+  });
+
   it('does not compare foreign currency prices with CNY original prices', async () => {
     const screen = await render(<Page />);
     expect(screen.getByText('HK$31.00')).toBeTruthy();
@@ -129,7 +144,9 @@ describe('Native membership purchase page', () => {
     expect(screen.getByText('会员续费')).toBeTruthy();
     expect(screen.getByText('会员权益')).toBeTruthy();
     expect(screen.queryByText(/权益相同|到期不自动续费/u)).toBeNull();
+    expect(screen.getByText(/当前有效期至/u)).toBeTruthy();
     expect(screen.getByText(/续费后预计至/u)).toBeTruthy();
+    expect(screen.queryByText(/^有效期至/u)).toBeNull();
     expect(mockBack).not.toHaveBeenCalled();
   });
 

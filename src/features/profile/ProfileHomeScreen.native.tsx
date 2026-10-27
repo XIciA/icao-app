@@ -1,16 +1,14 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { FLOATING_TAB_BAR_HEIGHT } from '@/components/navigation/tab-bar-metrics';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from 'expo-router';
 import { Flame, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
-import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
-import { AppText } from '@/components/ui';
+import { AppState, Platform, StyleSheet, View } from 'react-native';
+import { SoftGlow } from '@/components/visual/SoftGlow';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
-import { colors, radii, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 import { ProfileLearningCard } from './ProfileLearningCard.native';
 import { AccountScreen, RowGroup, Row } from '@/components/account/account-ui';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -27,8 +25,6 @@ const menu = [
 
 export function ProfileHomeScreen() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
-  const [reset, setReset] = useState<{ owner: string; phase: 'working' | 'done' | 'failed' }>();
   const guide = useGuide();
   const auth = useAuth();
   const profile = useProfile();
@@ -37,8 +33,6 @@ export function ProfileHomeScreen() {
     || (item.slug !== 'membership' && item.slug !== 'feedback' && item.slug !== 'exam-feedback'));
   const [examUnread, setExamUnread] = useState<{accountId:string;value:boolean}>();
   const [feedbackUnread, setFeedbackUnread] = useState<{accountId:string;value:boolean}>();
-  const resetOwner = auth.account?.accountId ?? 'ui-acceptance';
-  const resetState = reset?.owner === resetOwner ? reset.phase : 'idle';
   const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   useFocusEffect(
     useCallback(() => {
@@ -76,7 +70,7 @@ export function ProfileHomeScreen() {
   }
 
   return (
-    <View style={styles.root}><AccountScreen>
+    <View style={styles.root}><AccountScreen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />}>
       <ProfileIdentityCard
         profile={profile}
         accountLabel={accountLabel}
@@ -95,23 +89,14 @@ export function ProfileHomeScreen() {
           ))}
         </RowGroup>
       </View>
-      {guide?.testingResetAvailable ? <View style={{ height: 80 }} /> : null}
     </AccountScreen>
-    {guide?.testingResetAvailable && guide.resetForTesting ? <View style={[styles.testing, { bottom: Math.max(insets.bottom, spacing[4]) + FLOATING_TAB_BAR_HEIGHT + spacing[3] }]}>
-      {resetState === 'done' ? <AppText variant="caption">已重置引导，学习数据保留</AppText> : null}
-      {resetState === 'failed' ? <AppText variant="caption" color={colors.destructive}>重置未完成，请重试</AppText> : null}
-      <Pressable accessibilityRole="button" accessibilityLabel="一键重置为新用户" disabled={resetState === 'working' || guide.ready === false} onPress={() => {
-        setReset({ owner: resetOwner, phase: 'working' });
-        void guide.resetForTesting!().then(success => setReset(current => current?.owner === resetOwner ? { owner: resetOwner, phase: success ? 'done' : 'failed' } : current));
-      }} style={styles.resetButton}><AppText color={colors.primary} variant="caption">{resetState === 'working' ? '正在重置…' : '一键重置为新用户'}</AppText></Pressable>
-    </View> : null}</View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  testing: { position: 'absolute', right: spacing[4], alignItems: 'flex-end', gap: spacing[2] },
-  resetButton: { backgroundColor: colors.card, borderColor: colors.primary, borderWidth: StyleSheet.hairlineWidth, borderRadius: radii.full, minHeight: 44, paddingHorizontal: spacing[4], justifyContent: 'center' },
+  glow: { left: -170, top: -180 },
   unreadDot: {position:'absolute',right:40,top:26,width:8,height:8,borderRadius:4,backgroundColor:colors.primary},
   menuSpacing: { marginTop: spacing[5] },
 });

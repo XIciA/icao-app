@@ -6,9 +6,9 @@ import type { PropsWithChildren } from 'react';
 import { AppText, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
-export function AccountScreen({ children }: { children: React.ReactNode }) {
+export function AccountScreen({ children, background }: { children: React.ReactNode; background?: React.ReactNode }) {
   return (
-    <Screen bottomInset contentStyle={styles.screen} scroll>
+    <Screen background={background} bottomInset contentStyle={styles.screen} scroll>
       {children}
     </Screen>
   );

@@ -162,7 +162,7 @@ export function VocabularyTestResultView({ result, onBack, onRestart }: { result
   return (
     <Screen scroll contentStyle={styles.zero} header={<TopBar title="测评结果" onBack={onBack} />}>
       <View style={styles.page}>
-        <View style={styles.resultHero}><AppText color={colors.primary} style={styles.score} variant="pageTitle">{result.totalRate}%</AppText><AppText variant="caption">答对 {result.correct} / {result.total}</AppText><Tag>{result.verdict}</Tag></View>
+        <View style={styles.resultHero}><AppText color={colors.primary} style={styles.score} variant="pageTitle">{result.totalRate}%</AppText><AppText variant="caption">答对 {result.correct} / {result.total}</AppText><AppText variant="sectionTitle" color={colors.primary} style={styles.verdict}>{result.verdict}</AppText></View>
         <Card style={styles.resultCard}><AppText variant="cardTitle">结果判断</AppText><AppText>{result.judgment}</AppText></Card>
         <Card style={styles.resultCard}><AppText variant="cardTitle">学习建议</AppText><AppText>{result.suggestion}</AppText></Card>
         <View style={styles.levelGrid}>{([3, 4, 5] as const).map((level) => { const stat = result.levelStats[level]; return <Card key={level} style={styles.levelCard}><AppText variant="caption">{level} 级词汇</AppText><AppText color={colors.primary} variant="sectionTitle">{stat.rate === null ? '—' : `${stat.rate}%`}</AppText><AppText variant="micro">{stat.correct} / {stat.total}</AppText></Card>; })}</View>
@@ -211,6 +211,7 @@ const styles = StyleSheet.create({
   answerButtons: { flexDirection: 'row', gap: spacing[3] },
   flexButton: { flex: 1 },
   resultHero: { alignItems: 'center', gap: spacing[2], paddingVertical: spacing[5] },
+  verdict: { alignSelf: 'center', textAlign: 'center', fontSize: 24, lineHeight: 32 },
   score: { fontSize: 50, lineHeight: 58 },
   resultCard: { gap: spacing[2], padding: spacing[5] },
   levelGrid: { flexDirection: 'row', gap: spacing[2] },

@@ -11,6 +11,9 @@ type MembershipProductDefinition = Readonly<{
   recommended: boolean;
   /** CNY display reference only; the payment channel supplies the actual price. */
   originalPriceCny?: number;
+  /** User-approved rounded display reference: CNY basis / 6.7171 (2026-10-27 SAFE rate).
+   * This is not a StoreKit charge or a claim of historical USD sales. */
+  referencePriceUsd?: number;
 }>;
 
 /** The sole Native mapping from stable business keys to permanent Apple IDs. */
@@ -22,6 +25,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     durationDays: 7,
     recommended: false,
     originalPriceCny: 68,
+    referencePriceUsd: 10,
   }),
   Object.freeze({
     key: 'membership_15d_v1',
@@ -37,6 +41,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     durationDays: 31,
     recommended: false,
     originalPriceCny: 158,
+    referencePriceUsd: 23,
   }),
   Object.freeze({
     key: 'membership_62d_v1',
@@ -52,6 +57,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     durationDays: 93,
     recommended: false,
     originalPriceCny: 358,
+    referencePriceUsd: 53,
   }),
 ]);
 

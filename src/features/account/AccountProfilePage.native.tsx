@@ -4,7 +4,8 @@ import { requestPhotoSelectionPermission } from '@/platform/photo-permission.nat
 import * as ImagePicker from 'expo-image-picker';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Pencil } from '@/components/ui/icons';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Screen } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -23,6 +24,7 @@ export function AccountProfilePage() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const commerce = useCommerceRuntime();
+  const [editingName, setEditingName] = useState(false);
   const guide = useGuide();
   const auth = useAuth();
   const profile = useProfile();
@@ -39,6 +41,7 @@ export function AccountProfilePage() {
   const pendingAction = useRef<{ accountId: string } | undefined>(undefined);
   useFocusEffect(useCallback(() => {
     focused.current = !!accountId;
+    setEditingName(false);
     pendingAction.current = undefined;
     setPicking(false);
     setSaving(false);
@@ -128,7 +131,10 @@ export function AccountProfilePage() {
       <GuideScrollView contentContainerStyle={styles.form} keyboardShouldPersistTaps="handled">
         <DetailGroup title="基本资料">
           <DetailRow label="头像" disabled={saving || picking} onPress={() => void chooseAvatar()}><ProfileAvatar size={48} uri={draft.avatarUri} /></DetailRow>
-          <DetailRow label="昵称" last><TextInput accessibilityLabel="编辑昵称" editable={!saving && !picking} maxLength={48} returnKeyType="done" style={styles.nickname} value={draft.displayName} onChangeText={displayName => { edited.current.add('displayName'); setDraft(current => ({ ...current, displayName })); setError(''); }} /></DetailRow>
+          <DetailRow label="昵称" last><View style={styles.nicknameRow}>{editingName
+            ? <TextInput accessibilityLabel="编辑昵称" autoFocus editable={!saving && !picking} maxLength={48} returnKeyType="done" onBlur={() => setEditingName(false)} onSubmitEditing={() => setEditingName(false)} style={styles.nickname} value={draft.displayName} onChangeText={displayName => { edited.current.add('displayName'); setDraft(current => ({ ...current, displayName })); setError(''); }} />
+            : <><AppText numberOfLines={1} style={styles.nicknameValue}>{draft.displayName}</AppText><Pressable accessibilityRole="button" accessibilityLabel="修改昵称" disabled={saving || picking} onPress={() => setEditingName(true)} style={styles.editName}><Pencil size={16} color={colors.mutedForeground} /></Pressable></>}
+          </View></DetailRow>
         </DetailGroup>
         <DetailGroup title="会员与账号">
           <DetailRow label="会员"><MembershipStatus align="end" /></DetailRow>
@@ -147,5 +153,8 @@ const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 }, form: { gap: spacing[5], padding: spacing[5] },
   dock: { borderTopWidth: 1, borderTopColor: colors.border, paddingHorizontal: spacing[5], paddingTop: spacing[4], backgroundColor: colors.background },
   accountId: { textAlign: 'right' },
-  nickname: { borderColor: colors.input, borderWidth: 1, borderRadius: radii.md, padding: spacing[2], minHeight: 44, width: '100%', textAlign: 'right', color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 16 },
+  nicknameRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', maxWidth: '100%', gap: spacing[1] },
+  nicknameValue: { flexShrink: 1, textAlign: 'right' },
+  editName: { minHeight: 44, minWidth: 44, alignItems: 'center', justifyContent: 'center' },
+  nickname: { borderColor: colors.input, borderWidth: 1, borderRadius: radii.md, padding: spacing[2], minHeight: 44, width: 180, maxWidth: '100%', textAlign: 'right', color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 16 },
 });

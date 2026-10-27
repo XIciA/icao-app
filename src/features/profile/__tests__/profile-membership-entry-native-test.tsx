@@ -37,16 +37,15 @@ it('does not expose Native payment in a web surface', async () => {
   expect(screen.queryByText('会员购买')).toBeNull();
 });
 
-it('offers one-click reset only when the shared controller enables testing and reports completion inline',async()=>{
+it('never exposes the removed reset entry even if the guide supports testing',async()=>{
  const bindings=jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
  const resetForTesting=jest.fn(async()=>true);
  const guide={event:jest.fn(),availability:jest.fn(),register:jest.fn(),modal:jest.fn(),surface:()=>null,offer:jest.fn(),exit:jest.fn(),start:jest.fn(async()=>undefined),suspend:jest.fn(),pause:jest.fn(),checkpoint:jest.fn(),ready:true,testingResetAvailable:true,resetForTesting};
  const spy=jest.spyOn(bindings,'useGuide').mockReturnValue(guide);
  try {
   const screen=await render(<ProfileHomeScreen/>);
-  await fireEvent.press(screen.getByRole('button',{name:'一键重置为新用户'}));
-  expect(resetForTesting).toHaveBeenCalledTimes(1);
-  expect(screen.getByText('已重置引导，学习数据保留')).toBeTruthy();
+  expect(screen.queryByRole('button',{name:'一键重置为新用户'})).toBeNull();
+  expect(resetForTesting).not.toHaveBeenCalled();
   spy.mockReturnValue({...guide,testingResetAvailable:false});await screen.rerender(<ProfileHomeScreen/>);
   expect(screen.queryByRole('button',{name:'一键重置为新用户'})).toBeNull();
  } finally {spy.mockRestore();}

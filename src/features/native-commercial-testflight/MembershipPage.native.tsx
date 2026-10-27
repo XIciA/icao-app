@@ -91,7 +91,6 @@ function MembershipContent() {
     : pending ? '等待购买确认' : selected ? `${active ? '续费' : '开通'}${selected.durationDays}天会员 · ${selected.localizedPrice}` : '正在读取套餐价格';
 
   return <Screen bottomInset contentStyle={styles.screen} scroll header={<TopBar title={active ? '会员续费' : '会员开通'} />}>
-    {active && expiresLabel ? <AppText variant="caption">有效期至 {expiresLabel}</AppText> : null}
     <Card style={styles.benefits}>
       <AppText color={colors.mutedForeground} variant="caption">会员权益</AppText>
       <View style={styles.benefitGrid}>
@@ -102,20 +101,21 @@ function MembershipContent() {
       {products.map((product) => {
         const offering = commerce.offerings.find((item) => item.productKey === product.key);
         const selected = selectedKey === product.key;
-        const originalPrice = offering?.currencyCode === 'CNY'
-          ? listMembershipProducts().find((item) => item.key === product.key)?.originalPriceCny
-          : undefined;
+        const definition = listMembershipProducts().find((item) => item.key === product.key);
+        const originalPrice = offering?.currencyCode === 'CNY' ? definition?.originalPriceCny
+          : offering?.currencyCode === 'USD' ? definition?.referencePriceUsd : undefined;
+        const usd = offering?.currencyCode === 'USD';
         return <Pressable key={product.key} accessibilityRole="radio" accessibilityLabel={`${product.durationDays}天会员`}
           accessibilityState={{ selected, disabled: busy || pending }} disabled={busy || pending}
           onPress={() => setSelectedKey(product.key)} style={({ pressed }) => [styles.plan, selected && styles.selectedPlan, pressed && styles.pressed]}>
           <AppText color={selected ? colors.primary : colors.foreground} variant="button">{product.durationDays}天</AppText>
           <AppText color={selected ? colors.primary : colors.foreground} variant="cardTitle">{offering?.localizedPrice ?? '—'}</AppText>
           {originalPrice != null ? <AppText color={colors.mutedForeground} variant="caption" style={styles.originalPrice}
-            accessibilityLabel={`原价${originalPrice}元`}>¥{originalPrice}</AppText> : null}
+            accessibilityLabel={usd ? `换算参考价${originalPrice}美元` : `原价${originalPrice}元`}>{usd ? 'US$' : '¥'}{originalPrice}</AppText> : null}
         </Pressable>;
       })}
     </View>
-    {renewalLabel ? <AppText variant="caption" style={styles.center}>续费后预计至 {renewalLabel}</AppText> : null}
+    {active && expiresLabel ? <View style={styles.validity}><AppText variant="caption" style={styles.center}>当前有效期至 {expiresLabel}</AppText>{renewalLabel ? <AppText variant="caption" style={styles.center}>续费后预计至 {renewalLabel}</AppText> : null}</View> : null}
     <Button disabled={!canPurchase} onPress={() => { if (selected) { trackProductClick('purchase', selected.productKey); void run(() => commerce.purchase(selected.productKey)); } }} size="lg" style={styles.purchase} testID="membership-purchase">{label}</Button>
     {status ? <AppText accessibilityLiveRegion="polite" style={styles.center} variant="caption">{status}</AppText> : null}
     {!commerce.supported ? <AppText style={styles.center} variant="caption">当前设备暂不支持购买。已购买的权益以账号实际状态为准。</AppText> : null}
@@ -131,7 +131,7 @@ function MembershipContent() {
       <View style={styles.terms}>
         <AppText variant="sectionTitle">购买须知</AppText>
         <AppText>一次购买，到期不自动续费。</AppText>
-        <AppText>价格以支付平台显示为准。有效期内续费将顺延会员时间，不会立即补充 AI 额度；每周额度按原周期恢复。</AppText>
+        <AppText>价格以支付平台显示为准。美元划线价按人民币参考价折算。有效期内续费将顺延会员时间，不会立即补充 AI 额度；每周额度按原周期恢复。</AppText>
         <AppText>购买和恢复的权益归属原购买账号。若购买结果尚未确认，请等待自动核对，避免重复付款。</AppText>
         <AppText>会员到期后保留学习数据；会员题面、参考答案和音频按当前权限开放。</AppText>
         <Button onPress={() => setShowTerms(false)} variant="outline">关闭</Button>
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   plan: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing[2], paddingHorizontal: spacing[1], paddingVertical: spacing[4], borderRadius: radii.lg, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.card },
   selectedPlan: { backgroundColor: colors.primary08, borderColor: colors.primary }, pressed: { opacity: 0.8 },
   originalPrice: { textDecorationLine: 'line-through' },
+  validity: { gap: spacing[1] },
   purchase: { marginTop: spacing[1] }, center: { textAlign: 'center' },
   footer: { flexDirection: 'row', justifyContent: 'center', gap: spacing[5] }, terms: { gap: spacing[4] },
 });
