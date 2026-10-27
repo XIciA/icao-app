@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
 import { assertReviewedRehearsalDelta, MIGRATION_PAYLOAD_PATHS, prepareRehearsalReuse,
-  REUSABLE_REHEARSAL_EVIDENCE, REUSABLE_REHEARSAL_SOURCE } from './production-migration-apply-lib.mjs';
+  REUSABLE_REHEARSAL_EVIDENCE, REUSABLE_REHEARSAL_SOURCE, WEB_PAY_REHEARSAL_SOURCE, WEB_PAY_REHEARSAL_EVIDENCE, WEB_PAY_REHEARSAL_ARCHIVE } from './production-migration-apply-lib.mjs';
 
 const source = await readFile(new URL('../scripts/apply-production-migrations.sh',import.meta.url),'utf8');
 function block(name) {
@@ -163,4 +163,16 @@ test('every SSH/SCP call carries bounded connection/keepalive options including 
     assert.match(actual.stdout,/^serveraliveinterval 15$/mu);
     assert.match(actual.stdout,/^serveralivecountmax 3$/mu);
   } finally {await rm(root,{recursive:true,force:true});}
+});
+
+
+test('web payment receipt allows only an identical complete API payload and its exact plan and archive', () => {
+  const text = evidence.replaceAll(REUSABLE_REHEARSAL_SOURCE, WEB_PAY_REHEARSAL_SOURCE).replace('pre_plan=55:2:0','pre_plan=57:1:0').replace('post_plan=57:0:0','post_plan=58:0:0').replace('a'.repeat(64), WEB_PAY_REHEARSAL_ARCHIVE);
+  const read = args => args[0] === 'diff' ? '' : args[0] === 'ls-tree' ? '100644 blob same\0' : '';
+  const input = {...options, prePlan:'57:1:0',postPlan:'58:0:0',evidencePath:WEB_PAY_REHEARSAL_EVIDENCE,gitRead:read};
+  assert.equal(prepareRehearsalReuse(text,input).payloadSource,WEB_PAY_REHEARSAL_SOURCE);
+  for(const path of MIGRATION_PAYLOAD_PATHS) assert.throws(()=>prepareRehearsalReuse(text,{...input,gitRead:args=>args[0]==='diff' ? `${path}\0` : read(args)}),/payload_changed/);
+  assert.throws(()=>prepareRehearsalReuse(text,{...input,gitRead:args=>args[0]==='ls-tree' && args[3]===input.runnerSha ? '120000 blob changed' : read(args)}),/tree_changed/);
+  assert.throws(()=>prepareRehearsalReuse(text.replace(WEB_PAY_REHEARSAL_ARCHIVE,'e'.repeat(64)),input),/binding_mismatch/);
+  assert.throws(()=>prepareRehearsalReuse(text.replace('57:1:0','56:2:0'),{...input,prePlan:'56:2:0'}),/binding_mismatch/);
 });

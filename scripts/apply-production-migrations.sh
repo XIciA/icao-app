@@ -151,7 +151,10 @@ if [ -n "$REUSE_EVIDENCE" ]; then
     "$REHEARSAL_EVIDENCE" > "$REHEARSAL_LOG" <<'READ_REUSE'
 set -eu
 root=/opt/icao/runtime/migration-rehearsals
-test "$1" = "$root/evidence/rehearsal-64678f357635-20261027T034722Z.txt"
+case "$1" in
+  "$root/evidence/rehearsal-64678f357635-20261027T034722Z.txt"|"$root/evidence/rehearsal-f153b6579fd2-20261027T062958Z.txt") ;;
+  *) exit 1 ;;
+esac
 for directory in "$root" "$root/evidence"; do
   test -d "$directory" && test ! -L "$directory"
   test "$(stat -c '%u:%a' -- "$directory")" = '0:700'
@@ -450,7 +453,14 @@ test "$confirmation" = "APPLY_PRODUCTION_MIGRATIONS:$source_sha:$expected_pre_pl
 case "$rehearsal_reused" in
   0) test "$payload_source_sha" = "$source_sha" ;;
   1)
-    test "$payload_source_sha" = 64678f357635f277090abe7c0f4e1c9adf8eb67f
+    case "$payload_source_sha:$rehearsal_evidence" in
+      64678f357635f277090abe7c0f4e1c9adf8eb67f:/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-64678f357635-20261027T034722Z.txt) ;;
+      f153b6579fd2990ae98626e54673158f0264ab73:/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-f153b6579fd2-20261027T062958Z.txt)
+        test "$expected_pre_plan:$expected_post_plan" = '57:1:0:58:0:0'
+        test "$archive_sha" = cb3b17070cf583acd187da8539d0a7fa0a06a5b9ebe6d9ca7bb35dc7c202b8e4
+        ;;
+      *) exit 1 ;;
+    esac
     for digest in "$payload_tree_sha" "$reused_evidence_sha"; do
       printf '%s\n' "$digest" | grep -Eq '^[a-f0-9]{64}$'
     done

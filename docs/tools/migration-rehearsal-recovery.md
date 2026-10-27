@@ -8,7 +8,7 @@
 
 两脚本的每次 SSH/SCP（包括清理、恢复证据读取）采用 ConnectTimeout=10、ServerAliveInterval=15、ServerAliveCountMax=3。它限制建连和失联等待，不会因恢复数据库长时间无 stdout 而中断仍响应 SSH 探测的连接，也不宣称能终止健康连接上的任意远端进程挂起。失败后仍核对远端活动和锁，不盲目重复迁移。
 
-## 本轮唯一可复用的成功证据
+## 早间迁移的限定恢复证据
 
 显式设置：
 
@@ -37,3 +37,22 @@ ICAO_PRODUCTION_MIGRATION_REUSE_REHEARSAL_EVIDENCE=/opt/icao/runtime/migration-r
 - `reuse_pre_plan_verified_at` / `reuse_state_proof`：新鲜只读状态证明及其路径，原演练时间单独保留。
 
 该文件证明复用前的来源及账本状态，不证明第二次完整恢复或第二轮整库指纹。生产最终效果由统一发布任务的实际执行记录说明。
+
+
+## 网页支付演练的限定恢复（2026-10-27）
+
+网页支付源码 `f153b6579fd2990ae98626e54673158f0264ab73` 已完成新的完整恢复演练，
+原凭据为 `/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-f153b6579fd2-20261027T062958Z.txt`，
+计划为 `57:1:0 → 58:0:0`。原归档 SHA256 为
+`cb3b17070cf583acd187da8539d0a7fa0a06a5b9ebe6d9ca7bb35dc7c202b8e4`。
+正式迁移前，其他任务合入文档和独立工具导致最新主线保护停止了发布；生产迁移尚未执行。
+
+仅这份新凭据可通过同一个 `ICAO_PRODUCTION_MIGRATION_REUSE_REHEARSAL_EVIDENCE` 入口恢复。
+与早间恢复不同，网页支付恢复不接受任何 API 归档输入差异，包括测试文件、文件模式、配置、
+迁移、依赖、内容或 Dockerfile。工具逐项比较完整归档根的 Git 对象与模式，要求零差异，
+同时限定原 source、凭据路径、计划和原归档摘要。文档及未入 API 归档的独立工具变化不改变运行时制品。
+
+执行时仍从干净的最新 main 运行，保留真实 payload source 为 f153，不将新 runner 冒充新的恢复演练。
+远端仍核对 root-only 原凭据、原备份摘要与有效期，在锁内重新核对当前生产账本，正式停服后
+另建权威备份。后续 API 身份、配置预检、schema、客户端权限、数据保留和失败处理不变。
+此处只记录本次恢复方法，不新增长期规则或额外部署授权。
