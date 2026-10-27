@@ -7,13 +7,14 @@ import {
   productionMigrationConfirmation,
   prepareRehearsalReuse,
   REUSABLE_REHEARSAL_EVIDENCE,
+  WEB_PAY_REHEARSAL_EVIDENCE,
 } from './production-migration-apply-lib.mjs';
 
 const [command, ...args] = process.argv.slice(2);
 
 if (command === 'reuse-path') {
-  if (args[0] !== REUSABLE_REHEARSAL_EVIDENCE) throw new Error('rehearsal_reuse_path_not_reviewed');
-  console.log(REUSABLE_REHEARSAL_EVIDENCE);
+  if (![REUSABLE_REHEARSAL_EVIDENCE, WEB_PAY_REHEARSAL_EVIDENCE].includes(args[0])) throw new Error('rehearsal_reuse_path_not_reviewed');
+  console.log(args[0]);
 } else if (command === 'reuse-rehearsal') {
   const [runnerSha,prePlan,postPlan,evidencePath,file,root] = args;
   const result = prepareRehearsalReuse(await readFile(file,'utf8'),{root,runnerSha,prePlan,postPlan,evidencePath});

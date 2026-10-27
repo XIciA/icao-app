@@ -5,6 +5,9 @@ const EVIDENCE_PATTERN = /^\/opt\/icao\/runtime\/migration-rehearsals\/evidence\
 
 export const REUSABLE_REHEARSAL_SOURCE = '64678f357635f277090abe7c0f4e1c9adf8eb67f';
 export const REUSABLE_REHEARSAL_EVIDENCE = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-64678f357635-20261027T034722Z.txt';
+export const WEB_PAY_REHEARSAL_SOURCE = 'f153b6579fd2990ae98626e54673158f0264ab73';
+export const WEB_PAY_REHEARSAL_EVIDENCE = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-f153b6579fd2-20261027T062958Z.txt';
+export const WEB_PAY_REHEARSAL_ARCHIVE = 'cb3b17070cf583acd187da8539d0a7fa0a06a5b9ebe6d9ca7bb35dc7c202b8e4';
 export const MIGRATION_PAYLOAD_PATHS = ['package.json','pnpm-lock.yaml','pnpm-workspace.yaml','patches',
   'modules/icao-distribution-environment','modules/icao-wechat-auth','packages/contracts','services/api',
   'content/vocabulary','content/app-content/text.json','content/question-banks/opi-hotspots.json','infra/api'];
@@ -20,9 +23,11 @@ export function assertReviewedRehearsalDelta(changedPaths, beforeBlob, afterBlob
   }
 }
 
-/** One approved Oct27 receipt; intentionally not a general stale-evidence bypass. */
+/** Exact Oct27 receipts; web payment permits no payload differences at all. */
 export function prepareRehearsalReuse(text, { root, runnerSha, prePlan, postPlan, evidencePath, gitRead }) {
-  if (!SHA_PATTERN.test(runnerSha) || evidencePath !== REUSABLE_REHEARSAL_EVIDENCE) {
+  const webPayment = evidencePath === WEB_PAY_REHEARSAL_EVIDENCE;
+  const payloadSource = webPayment ? WEB_PAY_REHEARSAL_SOURCE : REUSABLE_REHEARSAL_SOURCE;
+  if (!SHA_PATTERN.test(runnerSha) || (!webPayment && evidencePath !== REUSABLE_REHEARSAL_EVIDENCE)) {
     throw new Error('rehearsal_reuse_identity_invalid');
   }
   validatePlanTransition(prePlan,postPlan);
@@ -32,7 +37,8 @@ export function prepareRehearsalReuse(text, { root, runnerSha, prePlan, postPlan
     if (index < 1 || Object.hasOwn(fields,line.slice(0,index))) throw new Error('rehearsal_reuse_evidence_ambiguous');
     fields[line.slice(0,index)] = line.slice(index+1);
   }
-  const required = { source_sha:REUSABLE_REHEARSAL_SOURCE,pre_plan:prePlan,post_plan:postPlan,
+  if (webPayment && (prePlan !== '57:1:0' || postPlan !== '58:0:0' || fields.archive_sha256 !== WEB_PAY_REHEARSAL_ARCHIVE)) throw new Error('web_payment_rehearsal_binding_mismatch');
+  const required = { source_sha:payloadSource,pre_plan:prePlan,post_plan:postPlan,
     cleanup_verified:'1',isolated_database_removed:'1',missing_preexisting_tables:'0',
     preexisting_fingerprint_mismatches:'0',missing_contracts:'0',unvalidated_constraints:'0',
     device_digest_columns:'0',schema_contract_verified:'1' };
@@ -46,18 +52,25 @@ export function prepareRehearsalReuse(text, { root, runnerSha, prePlan, postPlan
     || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$/u.test(fields.completed_at ?? '')
     || !Number.isFinite(Date.parse(fields.completed_at))) throw new Error('rehearsal_reuse_backup_or_time_invalid');
   const git = gitRead ?? (args => execFileSync('git',['-C',root,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));
-  git(['merge-base','--is-ancestor',REUSABLE_REHEARSAL_SOURCE,runnerSha]);
-  const changed = git(['diff','--name-only','-z',REUSABLE_REHEARSAL_SOURCE,runnerSha,'--',...MIGRATION_PAYLOAD_PATHS]).split('\0').filter(Boolean);
+  git(['merge-base','--is-ancestor',payloadSource,runnerSha]);
+  const changed = git(['diff','--name-only','-z',payloadSource,runnerSha,'--',...MIGRATION_PAYLOAD_PATHS]).split('\0').filter(Boolean);
+  if (webPayment) {
+    if (changed.length) throw new Error('web_payment_rehearsal_payload_changed');
+    const originalTree = git(['ls-tree','-r','-z',payloadSource,'--',...MIGRATION_PAYLOAD_PATHS]);
+    const runnerTree = git(['ls-tree','-r','-z',runnerSha,'--',...MIGRATION_PAYLOAD_PATHS]);
+    if (originalTree !== runnerTree) throw new Error('web_payment_rehearsal_payload_tree_changed');
+  } else {
   assertReviewedRehearsalDelta(changed,
-    git(['rev-parse',`${REUSABLE_REHEARSAL_SOURCE}:${reviewedTestPath}`]).trim(),
+    git(['rev-parse',`${payloadSource}:${reviewedTestPath}`]).trim(),
     git(['rev-parse',`${runnerSha}:${reviewedTestPath}`]).trim());
-  for (const sha of [REUSABLE_REHEARSAL_SOURCE,runnerSha]) {
+  for (const sha of [payloadSource,runnerSha]) {
     if (!git(['ls-tree',sha,'--',reviewedTestPath]).startsWith('100644 blob ')) {
       throw new Error('rehearsal_reuse_test_mode_not_reviewed');
     }
   }
-  const payloadTree = git(['ls-tree','-r','-z',REUSABLE_REHEARSAL_SOURCE,'--',...MIGRATION_PAYLOAD_PATHS]);
-  return { payloadSource:REUSABLE_REHEARSAL_SOURCE,backupName:fields.backup_name,
+  }
+  const payloadTree = git(['ls-tree','-r','-z',payloadSource,'--',...MIGRATION_PAYLOAD_PATHS]);
+  return { payloadSource:payloadSource,backupName:fields.backup_name,
     evidencePath,payloadTreeSha256:createHash('sha256').update(payloadTree).digest('hex'),
     evidenceSha256:createHash('sha256').update(text).digest('hex') };
 }
