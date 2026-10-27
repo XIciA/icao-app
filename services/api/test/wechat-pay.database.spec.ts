@@ -77,14 +77,14 @@ async function owner(tx: CommerceTransaction) {
   return row!.id;
 }
 
-function fixture(tx: CommerceTransaction) {
+function fixture(tx: CommerceTransaction, nativeAvailable = true) {
   const appId = 'wx1234567890'; const merchantId = '1900000001';
   const trades = new Map<string, Record<string, unknown>>();
   const request = vi.fn(async (method: string, path: string, body?: Record<string, unknown>): Promise<unknown> => {
-    if (path === '/v3/pay/transactions/app') {
+    if (path === '/v3/pay/transactions/app' || path === '/v3/pay/transactions/native') {
       const id = body!.out_trade_no as string;
-      trades.set(id, trades.get(id) ?? { appid: appId, mchid: merchantId, out_trade_no: id, trade_type: 'APP', trade_state: 'NOTPAY', amount: body!.amount });
-      return { prepay_id: `prepay-${id}` };
+      trades.set(id, trades.get(id) ?? { appid: appId, mchid: merchantId, out_trade_no: id, trade_type: path.endsWith('/native') ? 'NATIVE' : 'APP', trade_state: 'NOTPAY', amount: body!.amount });
+      return path.endsWith('/native') ? { code_url: `weixin://wxpay/bizpayurl?pr=${id}` } : { prepay_id: `prepay-${id}` };
     }
     if (path.includes('/close')) {
       const id = path.split('/')[5]!;
@@ -102,7 +102,7 @@ function fixture(tx: CommerceTransaction) {
     }
     throw new Error(`unexpected_fixture_request:${method}:${path}`);
   });
-  const merchant = { available: true, config: () => ({ appId, merchantId, notifyUrl: 'https://test.invalid/v1/commerce/wechat/notifications' }), request,
+  const merchant = { available: true, nativeAvailable, config: () => ({ appId, merchantId, notifyUrl: 'https://test.invalid/v1/commerce/wechat/notifications' }), request,
     paymentParameters: (prepayId: string) => ({ appId, partnerId: merchantId, prepayId, packageValue: 'Sign=WXPay', nonceStr: 'nonce', timeStamp: '1', sign: 'test-only' }),
     notification: (raw: Buffer) => JSON.parse(raw.toString()) as unknown };
   const db = { db: tx };
@@ -117,6 +117,53 @@ function fixture(tx: CommerceTransaction) {
 }
 
 describe('WeChat checkout joins the existing commerce ledger', () => {
+  it('keeps Native purchases disabled unless explicitly enabled', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, request } = fixture(tx, false);
+    expect(service.catalog('NATIVE')).toEqual({ available: false, products: [] });
+    expect(service.catalog().available).toBe(true);
+    await expect(service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID(), channel: 'NATIVE' })).rejects.toThrow('wechat_native_pay_unavailable');
+    expect(request).not.toHaveBeenCalled();
+  }));
+  it('persists Native QR codes, recovers pending orders and shares fulfillment/refund with APP', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, request, paid } = fixture(tx);
+    const input = { productKey: 'membership_7d_v1', idempotencyKey: randomUUID(), channel: 'NATIVE' as const };
+    const checkout = await service.create(accountId, input);
+    expect(checkout).toMatchObject({ channel: 'NATIVE', state: 'pending', codeUrl: expect.stringContaining('weixin://wxpay/') });
+    expect(checkout.payment).toBeUndefined();
+    expect((await service.pending(accountId))?.codeUrl).toBe(checkout.codeUrl);
+    expect((await service.create(accountId, input)).codeUrl).toBe(checkout.codeUrl);
+    expect(request.mock.calls.filter(([, path]) => path === '/v3/pay/transactions/native')).toHaveLength(1);
+    await expect(service.create(accountId, { ...input, channel: 'APP' })).rejects.toThrow('wechat_checkout_idempotency_conflict');
+    const trade = paid(checkout.id);
+    trade.trade_type = 'APP';
+    await expect(service.status(accountId, checkout.id)).rejects.toThrow('wechat_pay_invalid_transaction');
+    expect(await tx.select().from(schema.commerceOrders)).toHaveLength(0);
+    trade.trade_type = 'NATIVE';
+    const result = await service.status(accountId, checkout.id);
+    expect(result.state).toBe('paid'); expect(result.entitlement?.membership.active).toBe(true); expect(result.codeUrl).toBeUndefined();
+    await service.notification(Buffer.from(JSON.stringify({ eventType: 'TRANSACTION.SUCCESS', resource: trade })), { get: () => null });
+    expect(await tx.select().from(schema.commerceOrders)).toHaveLength(1);
+    expect((await service.refund(checkout.id, 'authorized test refund')).state).toBe('refunded');
+  }));
+  it('rejects QR responses pointing outside the WeChat payment scheme and recovers using the same order', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, request } = fixture(tx);
+    const input = { productKey: 'membership_7d_v1', idempotencyKey: randomUUID(), channel: 'NATIVE' as const };
+    const implementation = request.getMockImplementation()!;
+    request.mockResolvedValueOnce({ code_url: 'https://attacker.invalid/payment' });
+    await expect(service.create(accountId, input)).rejects.toThrow('wechat_pay_invalid_response');
+    const pending = await service.pending(accountId);
+    expect(pending?.codeUrl).toBeUndefined();
+    request.mockImplementation(implementation);
+    expect((await service.create(accountId, input)).id).toBe(pending?.id);
+  }));
+  it('removes an expired Native QR only after reconciling payment and closing the unpaid merchant order', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service } = fixture(tx);
+    const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID(), channel: 'NATIVE' });
+    await tx.update(schema.wechatPaymentAttempts).set({ expiresAt: new Date(Date.now() - 1000) }).where(eq(schema.wechatPaymentAttempts.id, checkout.id));
+    expect((await service.pending(accountId))?.codeUrl).toBeUndefined();
+    expect((await service.status(accountId, checkout.id)).state).toBe('closed');
+    expect(await service.pending(accountId)).toBeNull();
+  }));
   it('rejects new day-pass purchases but settles an existing paid day pass exactly once', () => scenario(async (tx) => {
     const accountId = await owner(tx);
     const { service, paid } = fixture(tx);

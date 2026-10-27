@@ -576,7 +576,9 @@ test('vocabulary releases are explicitly server-only, reject direct client acces
       assert.match(attempt.stderr, /permission denied for table vocabulary_releases/u);
     }
     // Verify RLS itself, independently of the missing table grant. No fixture
-    // row or temporary privilege survives this isolated transaction.
+    // row or temporary privilege survives this isolated connection: disconnect
+    // rolls back its open transaction. Keep SELECT last so all psql versions
+    // return its scalar rather than the result of a trailing ROLLBACK.
     assert.equal(queryScalar(`
       BEGIN;
       INSERT INTO public.vocabulary_releases(version,checksum,payload)
@@ -584,7 +586,6 @@ test('vocabulary releases are explicitly server-only, reject direct client acces
       GRANT SELECT ON public.vocabulary_releases TO ${role};
       SET LOCAL ROLE ${role};
       SELECT count(*) FROM public.vocabulary_releases;
-      ROLLBACK;
     `), '0', `${role} must not read even an existing release with a temporary SELECT grant`);
   }
 });

@@ -15,6 +15,7 @@ export class WechatMerchantError extends ServiceUnavailableException {
 export class WechatMerchantClient {
   constructor(@Inject(API_CONFIG) private readonly runtime: Pick<ApiConfig, 'wechatPay'>) {}
   get available() { return Boolean(this.runtime.wechatPay); }
+  get nativeAvailable() { return this.available && this.runtime.wechatPay?.nativeEnabled === true; }
   config(): WechatPayConfig {
     if (!this.runtime.wechatPay) throw new ServiceUnavailableException('wechat_pay_unavailable');
     return this.runtime.wechatPay;

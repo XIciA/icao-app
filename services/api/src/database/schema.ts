@@ -1298,6 +1298,8 @@ export const wechatPaymentAttempts = pgTable('wechat_payment_attempts', {
   aiUsageRuleVersionId: uuid('ai_usage_rule_version_id').notNull().references(() => aiUsageRuleVersions.id),
   state: text('state').default('pending').notNull(),
   prepayId: text('prepay_id'),
+  tradeType: text('trade_type').default('APP').notNull(),
+  codeUrl: text('code_url'),
   transactionId: text('transaction_id'),
   paidAt: timestamp('paid_at', { withTimezone: true }),
   refundId: text('refund_id'),
@@ -1309,6 +1311,7 @@ export const wechatPaymentAttempts = pgTable('wechat_payment_attempts', {
   uniqueIndex('wechat_payment_attempts_idempotency').on(table.accountId, table.idempotencyKey),
   uniqueIndex('wechat_payment_attempts_transaction').on(table.transactionId),
   index('wechat_payment_attempts_account_state').on(table.accountId, table.state),
+  check('wechat_payment_attempts_channel_check', sql`${table.tradeType} IN ('APP','NATIVE')`),
   check('wechat_payment_attempts_state_check', sql`${table.state} IN ('pending','paid','closed','refund_pending','refunded')`),
   check('wechat_payment_attempts_amount_check', sql`${table.amountFen} > 0 AND ${table.durationDays} > 0`),
 ]).enableRLS();

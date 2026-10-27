@@ -6,11 +6,11 @@ import { API_CONFIG, type ApiConfig } from '../config';
 import * as schema from './schema';
 
 // This API requires the account, content, AI allowance and payment tables through
-// 0056_vocabulary_live_releases. Bind startup to the exact migration, not a table-count guess.
-export const MINIMUM_DATABASE_SCHEMA_VERSION = 56;
+// 0057_long_drax. Bind startup to the exact migration, not a table-count guess.
+export const MINIMUM_DATABASE_SCHEMA_VERSION = 57;
 export const MINIMUM_DATABASE_MIGRATION = {
-  createdAt: 1793033035448,
-  hash: '1d141f4aa6b59b741fa992824054aa6c90f61f0f38b738d18f1ad1e09a3557be',
+  createdAt: 1793078267963,
+  hash: '12485c16117ea4f145371d60b7f53df672c9cc9589fb87fd371a3bd3dbe08b26',
 } as const;
 
 @Injectable()

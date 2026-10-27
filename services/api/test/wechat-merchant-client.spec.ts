@@ -16,6 +16,12 @@ function signed(body: string, at = Math.floor(Date.now() / 1000)) {
 }
 afterEach(() => vi.unstubAllGlobals());
 describe('Wechat APIv3 trust boundary', () => {
+  it('does not advertise Native payment from APP credentials alone', () => {
+    expect(client.nativeAvailable).toBe(false);
+    expect(new WechatMerchantClient({ wechatPay: { ...config, nativeEnabled: true } }).nativeAvailable).toBe(true);
+    expect(() => parseWechatPayConfig({ WECHAT_PAY_NATIVE_ENABLED: 'true' }, config.appId)).toThrow('invalid_wechat_pay_native_enabled');
+    expect(() => parseWechatPayConfig({ WECHAT_PAY_NATIVE_ENABLED: '1' }, config.appId)).toThrow('incomplete_wechat_pay_configuration');
+  });
   it('does not create payment capability from a login AppSecret or incomplete configuration', () => {
     expect(parseWechatPayConfig({ WECHAT_APP_SECRET: 'login-only' }, config.appId)).toBeUndefined();
     expect(() => parseWechatPayConfig({ WECHAT_PAY_MCH_ID: config.merchantId }, config.appId)).toThrow('incomplete_wechat_pay_configuration');
