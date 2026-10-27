@@ -36,7 +36,7 @@ import {
   MINIMUM_DATABASE_MIGRATION,
 } from '../src/database/database.service.ts';
 import * as databaseSchema from '../src/database/schema.ts';
-import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
+import { PUBLIC_TABLE_ACCESS_CLASSIFICATION, SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 import { cleanupTemporaryBusinessAccount } from './live-verifier-account-fixture.mjs';
 import { AiAllowanceService } from '../src/commerce/ai-allowance.service.ts';
 import { INITIAL_AI_RULE_ID } from '../src/commerce/ai-allowance-domain.ts';
@@ -554,8 +554,39 @@ test('the cumulative migration enables RLS on every public table', () => {
     JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(':').map(Number);
-  assert.equal(tableCount, 67, 'the exact production schema inventory must remain classified');
+  assert.equal(tableCount, SERVER_ONLY_PUBLIC_TABLES.length, 'the exact production schema inventory must remain classified');
   assert.equal(rlsCount, tableCount);
+});
+
+test('vocabulary releases are explicitly server-only, reject direct client access and enforce RLS', () => {
+  assert.equal(PUBLIC_TABLE_ACCESS_CLASSIFICATION.vocabulary_releases, 'server_only');
+  assert.equal(queryScalar(`
+    SELECT relrowsecurity FROM pg_class WHERE oid = 'public.vocabulary_releases'::regclass
+  `), 't');
+  for (const role of ['anon', 'authenticated']) {
+    for (const statement of [
+      'SELECT * FROM public.vocabulary_releases',
+      `INSERT INTO public.vocabulary_releases(version,checksum,payload) VALUES (999999,'${'a'.repeat(64)}','{}')`,
+      'UPDATE public.vocabulary_releases SET active=false',
+      'DELETE FROM public.vocabulary_releases',
+      'TRUNCATE public.vocabulary_releases',
+    ]) {
+      const attempt = psql(`BEGIN; SET LOCAL ROLE ${role}; ${statement}; ROLLBACK;`);
+      assert.notEqual(attempt.status, 0, `${role}: ${statement}`);
+      assert.match(attempt.stderr, /permission denied for table vocabulary_releases/u);
+    }
+    // Verify RLS itself, independently of the missing table grant. No fixture
+    // row or temporary privilege survives this isolated transaction.
+    assert.equal(queryScalar(`
+      BEGIN;
+      INSERT INTO public.vocabulary_releases(version,checksum,payload)
+        VALUES (999999,'${'a'.repeat(64)}','{}');
+      GRANT SELECT ON public.vocabulary_releases TO ${role};
+      SET LOCAL ROLE ${role};
+      SELECT count(*) FROM public.vocabulary_releases;
+      ROLLBACK;
+    `), '0', `${role} must not read even an existing release with a temporary SELECT grant`);
+  }
 });
 
 test('Apple reconciliation batches have one database-enforced completed terminal event', () => {
