@@ -429,7 +429,6 @@ function StoryDetail() {
       <Card style={styles.storyQuote}>
         <AppText style={styles.quoteText} variant="sectionTitle">{webCoursePromoCatalog.story.quote}</AppText>
       </Card>
-      <AppText variant="caption">{webCoursePromoCatalog.story.footer}</AppText>
     </View>
   );
 }
