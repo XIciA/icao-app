@@ -107,3 +107,15 @@ it('discards a delayed QR from a previous account and does not refresh the new a
   expect(view.queryByLabelText('微信支付二维码，请使用另一台设备的微信扫一扫')).toBeNull();
   expect(mockRefresh).not.toHaveBeenCalled();
 });
+
+
+it('defaults to the 31-day app plan and never creates an order when switching plans', async () => {
+  const plans = [7, 31, 93].map((days) => ({ ...product, productKey: `membership_${days}d_v1`, durationDays: days, title: `${days}天会员`, amountFen: days === 31 ? 3800 : days === 7 ? 1200 : 9800 }));
+  const normal = mockApi.getMockImplementation()!;
+  mockApi.mockImplementation((path, ...args) => path.includes('/catalog') ? Promise.resolve({ available: true, products: plans }) : normal(path, ...args));
+  const view = await render(<WebWechatCheckout />);
+  await waitFor(() => expect(view.getByText('开通31天会员 · ¥38.00')).toBeTruthy());
+  await fireEvent.press(view.getByLabelText('93天会员'));
+  expect(view.getByText('开通93天会员 · ¥98.00')).toBeTruthy();
+  expect(mockApi.mock.calls.every(([, , options]) => !options)).toBe(true);
+});
