@@ -161,3 +161,4 @@ section { padding-top: 48px; }
 .vocab-mode-actions + .vocabulary-admin { padding-top:24px; }
 @media(max-width:650px) { .vocab-levels .vocab-toolbar input { flex-basis:100%; }.vocab-levels .vocab-toolbar select { flex:1; min-width:160px; } }
 @media(max-width:650px) { .vocab-levels .ops-tabs { flex-wrap:nowrap; }.vocab-levels .ops-tabs button { flex-shrink:0; } }
+@media(max-width:650px) { .vocab-bulk-actions label,.vocab-bulk-actions>span { flex-basis:100%; }.vocab-bulk-actions button { flex:1 1 150px; min-width:140px; } }
