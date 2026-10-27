@@ -153,7 +153,7 @@ function AccountCheckout({ userId }: { userId: string }) {
           const chosen = product.productKey === selectedKey;
           const original = listMembershipProducts().find((p) => p.key === product.productKey)?.originalPriceCny;
           return <Pressable key={product.productKey} accessibilityRole="radio" accessibilityLabel={product.title}
-            accessibilityState={{ selected: chosen, disabled: blocked }} disabled={blocked || Boolean(retry.current && retry.current.productKey !== product.productKey)}
+            accessibilityState={{ checked: chosen, disabled: blocked }} disabled={blocked || Boolean(retry.current && retry.current.productKey !== product.productKey)}
             onPress={() => setSelectedKey(product.productKey)} style={[styles.plan, chosen && styles.selectedPlan]}>
             <AppText color={chosen ? colors.primary : colors.foreground} variant="button">{product.durationDays}天</AppText>
             <AppText color={chosen ? colors.primary : colors.foreground} variant="cardTitle">¥{(product.amountFen / 100).toFixed(2)}</AppText>
