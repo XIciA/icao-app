@@ -19,6 +19,21 @@ const payload = {
 } as const;
 
 describe('feedback submission validation', () => {
+  it('accepts optional date-only exam details, trims the center, and rejects invalid dates or use by other sources', () => {
+    const exam = { ...payload, source: 'exam_report', category: 'opi' };
+    expect(feedbackSubmissionSchema.parse({ ...exam, examDate: '2024-02-29', examCenter: '  上海  ' })).toMatchObject({ examDate: '2024-02-29', examCenter: '上海' });
+    expect(feedbackSubmissionSchema.safeParse(exam).success).toBe(true);
+    for (const examDate of ['0000-01-01', '2026-02-29', '2026-13-01', '2026-1-01', '2026-10-27T00:00:00Z', '']) {
+      expect(feedbackSubmissionSchema.safeParse({ ...exam, examDate }).success).toBe(false);
+    }
+    expect(feedbackSubmissionSchema.safeParse({ ...exam, examCenter: 'x'.repeat(101) }).success).toBe(false);
+    expect(feedbackSubmissionSchema.parse({ ...exam, examCenter: '  ' }).examCenter).toBeUndefined();
+    for (const source of ['profile', 'study', 'opi_hotspot']) {
+      const other = { ...payload, source, category: source === 'opi_hotspot' ? 'opi' : 'other', question: { bankId: 'opi', categoryId: 'main', topicId: 'topic', cardId: 'card' } };
+      expect(feedbackSubmissionSchema.safeParse({ ...other, examDate: '2026-10-27' }).success).toBe(false);
+      expect(feedbackSubmissionSchema.safeParse({ ...other, examCenter: '上海' }).success).toBe(false);
+    }
+  });
   it.each(['feature_suggestion', 'content_correction', 'other'] as const)('accepts category %s', (category) => {
     expect(feedbackSubmissionSchema.safeParse({ ...payload, category }).success).toBe(true);
   });

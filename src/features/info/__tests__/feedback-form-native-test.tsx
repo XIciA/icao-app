@@ -22,6 +22,47 @@ function screen() {
 }
 beforeEach(() => { jest.clearAllMocks(); mockParams = { slug: 'feedback', source: 'profile', compose: '1' }; mockId = 0; });
 
+it('starts exam details empty, cancels without choosing today, preserves the selected category, and treats metadata as dirty',async()=>{
+ mockParams={slug:'feedback',source:'exam_report',compose:'1'};
+ const view=await render(screen());
+ expect(view.getByText('选择日期')).toBeTruthy();expect(view.getByLabelText('考点名称').props.value).toBe('');
+ await fireEvent.press(view.getByLabelText('考试时间'));
+ await fireEvent.press(view.getByText('取消'));
+ expect(view.getByText('选择日期')).toBeTruthy();
+ await fireEvent.press(view.getByText('听力'));
+ await fireEvent.changeText(view.getByLabelText('考点名称'),'上海');
+ expect(jest.mocked(usePreventRemove).mock.calls.at(-1)?.[0]).toBe(true);
+ mockSubmit.mockResolvedValue({ticketNumber:'FB-exam'});
+ await fireEvent.changeText(view.getByPlaceholderText('请描述相关题型的考情。'),'本次考试的听力考情');
+ await fireEvent.press(view.getByTestId('feedback-submit'));
+ await waitFor(()=>expect(mockSubmit).toHaveBeenCalledWith(expect.objectContaining({category:'listening',examDate:undefined,examCenter:'上海'})));
+});
+
+it('selects and clears a date-only value, and creates a new idempotency key when exam details change after a failed attempt',async()=>{
+ mockParams={slug:'feedback',source:'exam_report',compose:'1'};mockSubmit.mockRejectedValue(new Error('offline'));
+ const view=await render(screen());
+ const now=new Date();const date=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-15`;
+ await fireEvent.press(view.getByLabelText('考试时间'));await fireEvent.press(view.getByLabelText(date));await fireEvent.press(view.getByText('确定'));
+ expect(view.getByText(date)).toBeTruthy();
+ await fireEvent.changeText(view.getByPlaceholderText('请描述相关题型的考情。'),'本次考试的完整考情');
+ await fireEvent.press(view.getByTestId('feedback-submit'));await waitFor(()=>expect(mockSubmit).toHaveBeenCalledTimes(1));
+ expect(mockSubmit.mock.calls[0][0].examDate).toBe(date);
+ await fireEvent.press(view.getByTestId('feedback-submit'));await waitFor(()=>expect(mockSubmit).toHaveBeenCalledTimes(2));
+ expect(mockSubmit.mock.calls[1][0].clientSubmissionId).toBe(mockSubmit.mock.calls[0][0].clientSubmissionId);
+ await fireEvent.changeText(view.getByLabelText('考点名称'),'北京');
+ await fireEvent.press(view.getByTestId('feedback-submit'));await waitFor(()=>expect(mockSubmit).toHaveBeenCalledTimes(3));
+ expect(mockSubmit.mock.calls[2][0].clientSubmissionId).not.toBe(mockSubmit.mock.calls[1][0].clientSubmissionId);
+ await fireEvent.press(view.getByLabelText('考试时间'));await fireEvent.press(view.getByText('清空'));
+ expect(view.getByText('选择日期')).toBeTruthy();
+ await fireEvent.press(view.getByTestId('feedback-submit'));await waitFor(()=>expect(mockSubmit).toHaveBeenCalledTimes(4));
+ expect(mockSubmit.mock.calls[3][0].examDate).toBeUndefined();expect(mockSubmit.mock.calls[3][0].clientSubmissionId).not.toBe(mockSubmit.mock.calls[2][0].clientSubmissionId);
+});
+
+it.each(['profile','opi_hotspot'])('does not display exam inputs for %s',async(source)=>{
+ mockParams={slug:'feedback',source,compose:'1'};const view=await render(screen());
+ expect(view.queryByLabelText('考试时间')).toBeNull();expect(view.queryByLabelText('考点名称')).toBeNull();
+});
+
 it('keeps the form usable when the system photo picker fails', async () => {
   jest.mocked(ImagePicker.requestMediaLibraryPermissionsAsync).mockRejectedValueOnce(new Error('picker_unavailable'));
   const view = await render(screen());
@@ -91,7 +132,7 @@ it('shows one discard confirmation for repeated swipes and permits retry after c
 });
 
 it.each([
- {source:'exam_report',category:'listening',placeholder:'请描述相关题型的考情。'},
+ {source:'exam_report',category:'opi',placeholder:'请描述相关题型的考情。'},
  {source:'opi_hotspot',category:'opi',placeholder:'请描述你收集到的 OPI 热点题目或线索。'},
 ])('reuses the form with the correct $source identity and history',async({source,category,placeholder})=>{
  mockParams={slug:'feedback',source,compose:'1'};mockSubmit.mockResolvedValue({ticketNumber:'FB-new'});

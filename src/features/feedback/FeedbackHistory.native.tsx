@@ -26,6 +26,17 @@ function FeedbackStatus({ value }: { value: string }) {
   </Tag>;
 }
 
+function FeedbackTags({ item }: { item: MyFeedbackItem }) {
+  return <View style={styles.row}><Tag size="md" tone="muted">{category[item.category] ?? '反馈'}</Tag><FeedbackStatus value={item.status} /></View>;
+}
+function ExamDetails({ item }: { item: MyFeedbackItem }) {
+  if (item.source !== 'exam_report' || (!item.examDate && !item.examCenter)) return null;
+  return <View style={{ gap: spacing[1] }}>
+    {item.examDate ? <AppText variant="caption">考试时间：{item.examDate}</AppText> : null}
+    {item.examCenter ? <AppText variant="caption">考点名称：{item.examCenter}</AppText> : null}
+  </View>;
+}
+
 function FeedbackImage({ url }: { url: string; multiple: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -88,11 +99,12 @@ function History({account}:{account?:string}) {
       </View>}
       {selected ? detail && <View style={styles.detail}>
         <View style={styles.summary}>
-          <View style={styles.row}><Tag tone="muted">{category[detail.category] ?? '反馈'}</Tag><FeedbackStatus value={detail.status} /></View>
+          <FeedbackTags item={detail} />
           <AppText variant="caption">提交于 {new Date(detail.createdAt).getFullYear()}/{date(detail.createdAt)}</AppText>
         </View>
         <Card style={styles.detailCard}>
           <AppText style={styles.identity}>我的反馈</AppText>
+          <ExamDetails item={detail} />
           <AppText style={styles.bodyText} color={colors.foreground} selectable>{detail.description}</AppText>
           {detail.attachments.length > 0 && <View style={styles.attachments}>
             <AppText variant="caption">附图 · {detail.attachments.length} 张</AppText>
@@ -118,7 +130,8 @@ function History({account}:{account?:string}) {
               onPress={() => router.push({ pathname: '/info/[slug]', params: { slug: 'feedback', source: kind === 'opinion' ? 'profile' : kind, ticket: item.ticketNumber } })}
               style={({ pressed }) => [styles.record, index > 0 ? styles.recordDivider : null, pressed ? styles.pressed : null]}>
               <View style={styles.recordMain}>
-                <View style={styles.row}><Tag tone="muted">{category[item.category] ?? '反馈'}</Tag><FeedbackStatus value={item.status} /></View>
+                <FeedbackTags item={item} />
+                <ExamDetails item={item} />
                 <View style={{ gap: spacing[1] }}><AppText variant="caption">我的反馈</AppText><AppText style={styles.bodyText} color={colors.foreground} numberOfLines={2}>{item.description}</AppText></View>
                 {latest && <View style={styles.replyPreview}>
                   <View style={styles.previewHeading}><AppText style={styles.identity} color={colors.primary}>团队回复</AppText>{item.unread && <AppText variant="caption" color={colors.primary}>· 新回复</AppText>}</View>

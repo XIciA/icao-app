@@ -38,6 +38,14 @@ function fixture(batches: unknown[][]) {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('feedback admin access', () => {
+  it('returns exam details in both Ops list and detail without inventing values for older submissions', async () => {
+    const exam={...ticket,source:'exam_report',category:'opi',bankId:null,examDate:'2026-10-27',examCenter:'上海'};
+    const {service}=fixture([[exam],[exam],[],[]]);
+    expect((await service.feedbackQueue('查看用户反馈',staff,'request')).items[0]).toMatchObject({examDate:'2026-10-27',examCenter:'上海'});
+    expect(await service.feedbackDetail(ticket.ticketNumber,staff,'request')).toMatchObject({examDate:'2026-10-27',examCenter:'上海'});
+    const old=await fixture([[{...exam,examDate:null,examCenter:null}],[],[]]).service.feedbackDetail(ticket.ticketNumber,staff,'request');
+    expect(old).not.toHaveProperty('examDate');expect(old).not.toHaveProperty('examCenter');
+  });
   it.each([['processing','in_progress'],['resolved','cannot_reproduce']])('filters %s using compatible storage values', async (visible,stored) => {
     const {service,queries}=fixture([[{...ticket,status:stored}]]);
     const result=await service.feedbackQueue('查看用户反馈',staff,'request',undefined,30,visible);

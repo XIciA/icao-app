@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm';
-import { bigint, bigserial, boolean, check, foreignKey, index, integer, jsonb, pgTable, primaryKey, text, timestamp, unique, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { bigint, bigserial, boolean, check, date, foreignKey, index, integer, jsonb, pgTable, primaryKey, text, timestamp, unique, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 export const accounts = pgTable('accounts', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -560,6 +560,8 @@ export const feedbackTickets = pgTable('feedback_tickets', {
   category: text('category').notNull(),
   description: text('description').notNull(),
   contact: text('contact'),
+  examDate: date('exam_date', { mode: 'string' }),
+  examCenter: text('exam_center'),
   status: text('status').default('received').notNull(),
   source: text('source').notNull(),
   sourceRoute: text('source_route').notNull(),

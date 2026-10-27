@@ -31,6 +31,17 @@ function fixture(batches:unknown[][]) {
   return {user,admin,db,conditions,writes,storage,audit};
 }
 describe('learner feedback history',()=>{
+  it('returns exam metadata verbatim in list and detail, while old and non-exam records omit it',async()=>{
+    const exam={...ticket,source:'exam_report',category:'opi',examDate:'2026-10-27',examCenter:'上海'};
+    const listed=await fixture([[exam],[],[]]).user.list(owner,undefined,'exam_report');
+    expect(listed.items[0]).toMatchObject({examDate:'2026-10-27',examCenter:'上海'});
+    const detailed=await fixture([[exam],[],[]]).user.detail(owner,ticket.ticketNumber);
+    expect(detailed).toMatchObject({examDate:'2026-10-27',examCenter:'上海'});
+    for(const row of [{...exam,source:'profile'},{...ticket,source:'exam_report',examDate:null,examCenter:null}]){
+      const result=await fixture([[row],[],[]]).user.detail(owner,ticket.ticketNumber);
+      expect(result).not.toHaveProperty('examDate');expect(result).not.toHaveProperty('examCenter');
+    }
+  });
   it.each([['in_progress','processing'],['cannot_reproduce','resolved']])('exposes historical %s as %s without rewriting records',async(stored,visible)=>{
     const f=fixture([[{...ticket,status:stored}],[],[]]);
     expect((await f.user.list(owner)).items[0]?.status).toBe(visible);

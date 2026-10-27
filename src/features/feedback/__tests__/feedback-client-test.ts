@@ -1,6 +1,8 @@
 // Keep the existing generic/Web upload behavior covered separately from Native owner guards.
-jest.mock('../feedback-client', () => jest.requireActual('../feedback-client.ts'));
 import { submitFeedback } from '../feedback-client';
+import { createFeedbackUploadForm } from '@/platform/feedback-upload';
+
+jest.mock('../feedback-client', () => jest.requireActual('../feedback-client.ts'));
 
 const mockGetDiagnostics = jest.fn();
 const mockClearDiagnostics = jest.fn();
@@ -42,6 +44,16 @@ describe('feedback diagnostics submission', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockGetDiagnostics.mockResolvedValue(diagnosticBundle);
+  });
+
+  it('keeps optional exam metadata in the generic upload payload and omits it for other sources',async()=>{
+    mockUploadFetch.mockImplementation(async()=>new Response(JSON.stringify({data:{ticketNumber:'FB-exam'}}),{status:200}));
+    const input={clientSubmissionId:'00000000-0000-4000-8000-000000000123',category:'opi' as const,description:'本次考试考情反馈',sourceRoute:'/info/feedback',images:[],examDate:'2026-10-27',examCenter:'  上海  '};
+    await submitFeedback({...input,source:'exam_report'});
+    expect(JSON.parse(jest.mocked(createFeedbackUploadForm).mock.calls.at(-1)![0])).toMatchObject({examDate:'2026-10-27',examCenter:'上海'});
+    await submitFeedback({...input,source:'opi_hotspot'});
+    const payload=JSON.parse(jest.mocked(createFeedbackUploadForm).mock.calls.at(-1)![0]);
+    expect(payload).not.toHaveProperty('examDate');expect(payload).not.toHaveProperty('examCenter');
   });
 
   it('clears the submitted correlation only after the ticket succeeds', async () => {

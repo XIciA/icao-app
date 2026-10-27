@@ -32,6 +32,18 @@ beforeEach(() => {
 afterEach(async () => { await act(async () => root.unmount()); element.remove(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 describe('minimal ops feedback experience', () => {
+  it('shows saved exam date and center in list and detail, without empty labels on legacy submissions', async () => {
+    const exam={...item,source:'exam_report',category:'opi',examDate:'2026-10-27',examCenter:'上海'};
+    mocks.api.mockImplementation(async path=>path.includes('FB-')?{...exam,description:'考试反馈',attachments:[]}:{items:[exam],nextCursor:null});
+    await act(async()=>root.render(createElement(App)));
+    expect(element.querySelector('.feedback-row').textContent).toContain('2026-10-27 · 上海');
+    await click(element.querySelector('.feedback-row'));
+    expect(element.querySelector('.feedback-exam-details').textContent).toBe('考试时间2026-10-27考点名称上海');
+    await click(button('返回反馈列表'));
+    mocks.api.mockImplementation(async path=>path.includes('FB-')?{...item,source:'exam_report',description:'旧考试反馈',attachments:[]}:{items:[{...item,source:'exam_report'}],nextCursor:null});
+    await click(element.querySelector('.feedback-row'));
+    expect(element.querySelector('.feedback-exam-details')).toBeNull();
+  });
   it('identifies study feedback in the list and shows the full historical question name in detail', async () => {
     const name = '陆空通话 / QFA / QFA160 [导航问题，燃油短缺] / 9-QFA160 [导航问题，燃油短缺]-2';
     mocks.api.mockImplementation(async path => path.includes('FB-')

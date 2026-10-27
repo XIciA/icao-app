@@ -6,6 +6,7 @@ import { and, count, desc, eq, gt, gte, isNull, lt, or, sql } from 'drizzle-orm'
 import { randomUUID } from 'node:crypto';
 
 import { DatabaseService } from '../database/database.service';
+import { feedbackExamDetails } from './feedback-exam-details';
 import { feedbackAttachments, feedbackReplies, feedbackTickets, questionBankReleases } from '../database/schema';
 import { FeedbackAttachmentStorage } from './feedback-attachment-storage';
 import type { FeedbackImage } from './feedback-image';
@@ -120,6 +121,8 @@ export class FeedbackService {
           category: payload.category,
           description: payload.description,
           contact: payload.contact ?? null,
+          examDate: payload.source === 'exam_report' ? payload.examDate ?? null : null,
+          examCenter: payload.source === 'exam_report' ? payload.examCenter ?? null : null,
           status: 'received',
           source: payload.source,
           sourceRoute: payload.sourceRoute,
@@ -176,7 +179,7 @@ export class FeedbackService {
   private async publicItem(ticket: typeof feedbackTickets.$inferSelect) {
     const replies = await this.database.db.select({ id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt })
       .from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id)).orderBy(feedbackReplies.createdAt, feedbackReplies.id);
-    return { ticketNumber: ticket.ticketNumber, source: ticket.source, category: ticket.category, description: ticket.description,
+    return { ...feedbackExamDetails(ticket), ticketNumber: ticket.ticketNumber, source: ticket.source, category: ticket.category, description: ticket.description,
       status: feedbackStatusForClient(ticket.status), createdAt: ticket.createdAt.toISOString(),
       unread: replies.some(reply => !ticket.repliesReadAt || reply.createdAt > ticket.repliesReadAt),
       replies: replies.map(reply => ({ ...reply, createdAt: reply.createdAt.toISOString() })) };

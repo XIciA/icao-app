@@ -34,6 +34,8 @@ export type SubmitFeedbackInput = {
   category: FeedbackCategory;
   description: string;
   contact?: string;
+  examDate?: string;
+  examCenter?: string;
   source: FeedbackSource;
   sourceRoute: string;
   question?: VersionedFeedbackQuestionContext;
@@ -85,6 +87,7 @@ async function submitOwnedFeedback(input: SubmitFeedbackInput, owner: FeedbackOw
     category: input.category,
     description: input.description.trim(),
     contact: input.contact?.trim() || undefined,
+    ...(input.source === 'exam_report' ? { examDate: input.examDate || undefined, examCenter: input.examCenter?.trim() || undefined } : {}),
     source: input.source,
     sourceRoute: input.sourceRoute.split(/[?#]/u)[0] || '/',
     appDisplayVersion: APP_DISPLAY_VERSION,
