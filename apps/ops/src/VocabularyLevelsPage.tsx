@@ -63,7 +63,7 @@ export function VocabularyLevelsPage({actorId,onDirtyChange,onPublished}:{actorI
   }
   const detail=byId.get(details??'');
   return <div className="vocab-levels">
-    {error&&<p className="notice error" role="alert">{errors[error]??error}</p>}{notice&&<p className="notice success" role="status">{notice}</p>}
+    {error&&<p className="notice error" role="alert">{errors[error]??(error.startsWith('invalid_vocabulary_book:')?'每个分类需至少保留一个单词，请调整草稿后重试。':error)}</p>}{notice&&<p className="notice success" role="status">{notice}</p>}
     {!release?<p className="muted">{busy?'正在读取词库…':'词库暂时不可用。'} <button disabled={busy} onClick={()=>void load()}>重新读取词库</button></p>:<>
       <p className="muted">线上版本 {release.version} · {originals.length} 词。分类数量按草稿预览，提交后正式生效。</p>
       <nav className="ops-tabs" aria-label="批量调整词书">{release.dataset.books.map(value=><button disabled={busy} key={value.id} className={book===value.id?'active':''} onClick={()=>{setBook(value.id);setSelected(new Set());}}>{value.name} · {effective.filter(word=>word.bookId===value.id).length}</button>)}</nav>
