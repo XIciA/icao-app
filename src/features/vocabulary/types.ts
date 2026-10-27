@@ -47,10 +47,20 @@ export type VocabularyTestResult = {
   answers: VocabularyTestAnswer[];
 };
 
+export type VocabularyStudySession = {
+  answers?: Record<string, Exclude<VocabularyWordStatus, 'new'>>;
+  wordIds: string[];
+  nextWordId: string | null;
+  order: 'frequency' | 'random';
+  startedAt: string;
+  updatedAt: string;
+};
+
 export type VocabularyState = {
   schemaVersion: 1;
   words: Record<string, VocabularyWordProgress>;
   lastTest?: VocabularyTestResult;
+  studySession?: VocabularyStudySession;
   updatedAt: string;
 };
 

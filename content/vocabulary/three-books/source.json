@@ -3,7 +3,7 @@
   "version": 3,
   "baseVocabularyChecksum": "b4b00bb3bc62c994548b5345bba519e49c6b520687d35395adc865731c9869df",
   "coreSourceChecksum": "501dde26c13caa7ac4a0615cdd0ebd3f099c4304a03efc20cae433f8f4b41a6e",
-  "corpusVersion": 26,
+  "corpusVersion": 27,
   "books": [
     {
       "id": "preview",
@@ -56623,7 +56623,7 @@
     }
   ],
   "editorialChecksums": {
-    "inventory.json": "36fac388b2b2e9cd818c4e02cdf74f4af9a374b646cf52fa38b9afab89375e39",
+    "inventory.json": "79dd65e07d119e20095bc4613eed0b62819bc8322bca07aa22bb66ea188d2d5a",
     "legacy-edits.tsv": "587173d9692213bf8c337587512bef557c46d03a03cfccf431da92419c7e6619",
     "coverage.tsv": "ee7c533a2374881d947e6a30d1edeaf0bc90d19eae0ffb2e8c38b6b4915f6151",
     "supplement.tsv": "e4eca49a925d4b258a152197974195426fd997c8dcba013ed57e6049b667a148",

@@ -1,7 +1,7 @@
 import type { QuestionBankId } from '../types';
 
 export type AnnotationToneKey = import('@icao/contracts/annotation-management').ManagedAnnotationTone;
-export type AnnotationTextBlockId = 'question' | 'reference';
+export type AnnotationTextBlockId = 'question' | 'reference' | `choice-${number}`;
 
 export type AnnotationDefinition = {
   id: string;
@@ -35,6 +35,7 @@ export type QuestionAnnotationEntry = QuestionBankCardTarget & {
 
 export type QuestionBankAnnotationStore = {
   version: 1 | 2;
+  choiceHighlights?: true;
   deletedDefinitions?: import('@icao/contracts/annotation-management').AnnotationDeletions;
   legacyImported: boolean;
   tagDefinitions: AnnotationDefinition[];

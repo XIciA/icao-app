@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-624",
-  "name": "AFR872 lavatory&make a PA, ect.",
+  "name": "AFR872 · 厕所异常与客舱广播",
   "declaredCardCount": 18,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111429",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-1",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-1",
       "audioText": "You are the pilot of AFR872 which is inbound for Wuhan. You have just been handed over from Guangzhou Control, you are over DAPRO at time 35 and your flight level is 9500m, call Wuhan Control.",
       "audioTextZh": "你是法航872的飞行员，飞机飞往武汉。你刚从广州区调转出，过DAPRO时间35分，飞行高度9500米，呼叫武汉区调。",
       "referenceText": "Wuhan Control, AFR872, good morning, DAPRO 35, maintaining 9500m.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111430",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-2",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-2",
       "audioText": "AFR872, Wuhan Control, radar identified, descend and maintain 5100m before LKO.[Read Back]",
       "audioTextZh": "法航872，武汉区调，雷达已识别，LKO前下降保持5100米。【复诵】",
       "referenceText": "Descend and maintain 5100m before LKO, AFR872.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111431",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-3",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-3",
       "audioText": "Now you are over LKO at 5100m, you have copied the latest ATIS K, call Wuhan Approach Control.",
       "audioTextZh": "飞机飞过LKO，高度5100米，你抄收了最新的通播K，呼叫武汉进近。",
       "referenceText": "Wuhan Approach, AFR872, maintaining 5100m, over LKO, information K.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111432",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-4",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-4",
       "audioText": "AFR872, Wuhan Approach, radar contact, follow LKO-1A Arrival, descend and maintain 3600m on QNH1004.[Read Back]",
       "audioTextZh": "法航872，武汉进近，雷达已识别，LKO-1A进场，下降保持修正海压3600米，修正海压1004。【复诵】",
       "referenceText": "LKO-1A Arrival, descend and maintain 3600m on QNH 1004, AFR872.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111433",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-5",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-5",
       "audioText": "You've received a report from the flight attendant saying that there is smoke coming from the lavatory. You think it may develop into fire, so you declare distress to the ATC.",
       "audioTextZh": "你收到乘务员的报告，卫生间内有烟冒出。你认为这可能会引发火灾，所以向ATC宣布遇险。",
       "referenceText": "MAYDAY, MAYDAY, MAYDAY, Wuhan Approach, AFR872, flight attendant reported smoke coming out from the lavatory, request priority landing and emergency services",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111434",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-6",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-6",
       "audioText": "AFR872, Wuhan Approach, roger MAYDAY, turn right heading 040, descend and maintain 2100m, radar vector to ILS approach runway 36R, you are priority landing.[Read Back]",
       "audioTextZh": "法航872，武汉进近，收到MAYDAY，右转航向040，下降保持2100米，雷达引导盲降进近跑道36右，你优先着陆。【复诵】",
       "referenceText": "Roger, right heading 040, descend and maintain 2100 m, ILS runway 36R, AFR872.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111435",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-7",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-7",
       "audioText": "As the captain of the flight, you may want to make a passenger address. The 'PA' may include: don't be panic, remain seated, the flight crew are experienced, ATC assistance is available to us, etc.",
       "audioTextZh": "作为此次航班的机长，你想要做旅客广播。广播内容可能包括：不要慌张，原位坐好，机组人员经验丰富，ATC会为我们提供援助等。",
       "referenceText": "Ladies and gentlemen, this is your captain speaking. Fasten your seatbelt and remain seated. Don't worry. Believe us, we are a very experienced flight crew, and we can control this situation. And air traffic control is ready to assist us.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111436",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-8",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-8",
       "audioText": "AFR872, Wuhan Approach, what is the situation on board now? Keep us advised.[You are grateful for the reminding, report to ATC that more smoke accumulated in the passenger cabin and the passengers are coughing hard.]",
       "audioTextZh": "法航872，武汉进近，现在机上情况怎么样？随时报告。【感谢ATC的提醒，报告客舱内烟雾越来越多，乘客们咳嗽的很严重。】",
       "referenceText": "Thanks. The smoke is becoming denser in the passenger cabin and the passengers are coughing hard, AFR872.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111437",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-9",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-9",
       "audioText": "AFR872, Wuhan Approach, continue descend and maintain 1200m, fire services and ambulance will be with you upon your landing.[You are required to read back the clearance and show your gratitude.]",
       "audioTextZh": "法航872，武汉进近，继续下降保持1200米，消防车及救护车在你着陆时就已就位。【你需要复诵消息并表示感谢。】",
       "referenceText": "Descend and maintain 1200m, thank you very much, AFR872.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111438",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-10",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-10",
       "audioText": "Now you report to ATC that you have already removed the dense smoke, two aged people and one baby are nearly suffocated, others are not seriously harmed.",
       "audioTextZh": "报告ATC浓烟已经清除，两位年长者和一个婴儿差点窒息，其它人未严重受伤。",
       "referenceText": "Wuhan Approach, AFR872, we have removed the dense smoke, but we have two aged people and one baby are suffering smoke, others are not seriously harmed.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111439",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-11",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-11",
       "audioText": "Roger, we'll relay this information to the parties concerned.[A few minutes later.]AFR872, descend and maintain 900m, expect ILS approach runway 36R, you are number 1.[Read Back]",
       "audioTextZh": "收到，我们会将此信息转达给有关方面。【几分钟后。】法航872，下降保持900米，盲降进近跑道36右，你第一个。【复诵】",
       "referenceText": "Descend and maintain 900 meters, ILS runway 36R, AFR872.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111440",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-12",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-12",
       "audioText": "You have fully established on the ILS runway 36R and your position is 12km from touchdown, call Wuhan Approach.",
       "audioTextZh": "你已完全建立了盲降进近，跑道36右，距离着陆12千米，呼叫武汉进近。",
       "referenceText": "Wuhan Approach, AFR872, fully established ILS runway 36R, position 12km from touchdown.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111441",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-13",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-13",
       "audioText": "AFR872, continue approach and contact Tower 118.6, good day.[Read Back]",
       "audioTextZh": "法航872，继续进近，联系塔台118.6，再见。【复诵】",
       "referenceText": "Continue approach and contact Tower 118.6, AFR872",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111442",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-14",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-14",
       "audioText": "Now contact Wuhan Tower, report to ATC that you are 11km from touchdown on final and you are an emergency landing aircraft.",
       "audioTextZh": "联系武汉塔台，报告ATC你距离五边着陆还有11千米，需要紧急着陆。",
       "referenceText": "Wuhan Tower, AFR872, 11km from touchdown on final, we have declared emergency.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111443",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-15",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-15",
       "audioText": "AFR872, radar identified, continue ILS approach runway 36R, you are no. 1, report outer marker.[Read Back]",
       "audioTextZh": "法航872，雷达已识别，继续盲降进近跑道36右，你第一个，过远台报告。【复诵】",
       "referenceText": "ILS approach runway 36R, no. 1, report outer marker, AFR872.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111444",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-16",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-16",
       "audioText": "Now you are over outer marker, call Wuhan Tower.",
       "audioTextZh": "盲降进近跑道36右，过远台报告，法航872。",
       "referenceText": "Wuhan Tower, AFR872 at outer marker.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111445",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-17",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-17",
       "audioText": "AFR872, cleared to land runway 36R, wind 340 degrees at 9 m/s.[Read Back]",
       "audioTextZh": "法航872，可以着陆跑道36右，风340，9米/秒。【复诵】",
       "referenceText": "Cleared to land 36R, AFR872.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111446",
-      "taskTitle": "41. AFR872 lavatory&make a PA, ect.-18",
+      "taskTitle": "41. AFR872 · 厕所异常与客舱广播-18",
       "audioText": "[A few minutes later.]AFR872, Ground, taxi to No.5 Apron via taxiway E3, A, A8, the fire services and medical teams are waiting for you on the apron.[You are required to read back the clearance and show your gratitude.]",
       "audioTextZh": "【几分钟后。】法航872，地面，沿滑行道E3，A，A8滑至5号停机坪，消防车和医疗队在那里等待。【你需要复诵并表示感谢。】",
       "referenceText": "Taxi to No.5 Apron via taxiway E3, A, A8, thank you very much, AFR872.",

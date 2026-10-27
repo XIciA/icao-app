@@ -156,6 +156,52 @@ describe('AudioSessionOrchestrator', () => {
     expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
   });
 
+  it('recovers on the next request after a settled mode failure and failed idle reconciliation', async () => {
+    const session = new AudioSessionOrchestrator();
+    mockSetAudioModeAsync
+      .mockRejectedValueOnce(new Error('temporary native mode failure'))
+      .mockRejectedValueOnce(new Error('native session still interrupted'));
+
+    await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    await flush();
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+
+    await expect(session.acquire('recording', 'recording-start')).resolves.toMatchObject({ owner: 'recording' });
+    expect(mockSetIsAudioActiveAsync.mock.calls.map(([active]) => active)).toEqual([false, true]);
+  });
+
+  it('keeps failed recovery closed but allows a later settled recovery attempt', async () => {
+    const session = new AudioSessionOrchestrator();
+    mockSetAudioModeAsync.mockRejectedValue(new Error('interrupted'));
+    await expect(session.acquire('study', 'play')).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    await flush();
+    await expect(session.acquire('recording', 'record')).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    expect(mockSetIsAudioActiveAsync).not.toHaveBeenCalled();
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+    mockSetAudioModeAsync.mockResolvedValue(undefined);
+    await expect(session.acquire('study', 'play-again')).resolves.toMatchObject({ owner: 'study' });
+  });
+
+  it('does not overlap a timed-out recovery with another native transition', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    mockSetAudioModeAsync.mockRejectedValueOnce(new Error('mode')).mockRejectedValueOnce(new Error('idle'));
+    await expect(session.acquire('study', 'play')).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    await flush();
+    let finishRecovery!: () => void;
+    mockSetAudioModeAsync.mockImplementationOnce(() => new Promise<undefined>(resolve => { finishRecovery = () => resolve(undefined); }));
+    const retry = session.acquire('recording', 'record');
+    const assertion = expect(retry).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+    await jest.advanceTimersByTimeAsync(2_000);
+    await assertion;
+    await expect(session.acquire('study', 'play-again')).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(3);
+    finishRecovery();
+    await flush();
+    await expect(session.acquire('study', 'play-after-settlement')).resolves.toMatchObject({ owner: 'study' });
+    jest.useRealTimers();
+  });
+
   it('reconciles a late activation before allowing a new owner', async () => {
     jest.useFakeTimers();
     const session = new AudioSessionOrchestrator();

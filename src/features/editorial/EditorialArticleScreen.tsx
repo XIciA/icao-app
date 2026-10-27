@@ -24,7 +24,9 @@ export function EditorialArticleScreen({ slug }: { slug: string }) {
           <AppText color={colors.foreground} style={styles.grow} variant="caption">网络不可用，正在显示上次缓存的文章。</AppText>
         </View>
       ) : null}
-      {article.coverUrl ? <Image accessibilityLabel={article.cover.alt} contentFit="cover" source={{ uri: article.coverUrl }} style={styles.hero} /> : null}
+      <View style={styles.hero}>
+        {article.coverUrl ? <Image accessibilityLabel={article.cover.alt} contentFit="cover" source={{ uri: article.coverUrl }} style={StyleSheet.absoluteFill} /> : null}
+      </View>
       <View style={styles.article}>
         <Tag>{article.badge}</Tag>
         <AppText style={styles.title} variant="pageTitle">{article.title}</AppText>

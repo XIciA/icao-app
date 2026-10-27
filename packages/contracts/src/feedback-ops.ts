@@ -37,6 +37,7 @@ export type OpsFeedbackDetail = OpsFeedbackQueueItem & {
 export type FeedbackStatus = 'received' | 'processing' | 'resolved';
 export type FeedbackReply = { id: string; text: string; createdAt: string };
 export type MyFeedbackItem = {
+  source?: string;
   ticketNumber: string; category: string; description: string; status: string;
   createdAt: string; replies: FeedbackReply[]; unread: boolean;
 };

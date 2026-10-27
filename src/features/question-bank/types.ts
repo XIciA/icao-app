@@ -144,7 +144,7 @@ export type CardLearningState = {
   recordingDurationMillis?: number;
   tagIds?: string[];
   highlights?: {
-    blockId: 'question' | 'reference';
+    blockId: 'question' | 'reference' | `choice-${number}`;
     wordIndex: number;
     colorId: string;
     quote: string;
@@ -184,6 +184,7 @@ export type StudyReviewSnapshot = {
 };
 
 export type QuestionBankStudyPackage = {
+  sentenceReplay?: import('../mock-exam/sentence-replay').SentenceReplayLedger;
   initialItemId?: string;
   id: string;
   startedAt: string;

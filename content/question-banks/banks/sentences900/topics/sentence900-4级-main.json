@@ -5,7 +5,7 @@
   "cards": [
     {
       "id": "sentence900-main-251",
-      "taskTitle": "Sentence251",
+      "taskTitle": "语句 251",
       "audioText": "Your radar vector appears to be taking us to the prohibited area, confirm.",
       "audioTextZh": "雷达引导好像把我们带入了禁飞区，证实。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-251-54073e848a40.mp3",
@@ -13,7 +13,7 @@
     },
     {
       "id": "sentence900-main-762",
-      "taskTitle": "Sentence762",
+      "taskTitle": "语句 762",
       "audioText": "We are stopping taxi. The boarding bridge is not at its designated position.",
       "audioTextZh": "我们停止（滑行）了。廊桥不在指定位置。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-762-da35fda22c29.mp3",
@@ -21,7 +21,7 @@
     },
     {
       "id": "sentence900-main-529",
-      "taskTitle": "Sentence529",
+      "taskTitle": "语句 529",
       "audioText": "We have emptied most of our fire extinguishers, but the cabin fire is still on.",
       "audioTextZh": "我们已经释放了灭火瓶，但客舱火警仍然存在。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-529-63288982a2b5.mp3",
@@ -29,7 +29,7 @@
     },
     {
       "id": "sentence900-main-841",
-      "taskTitle": "Sentence841",
+      "taskTitle": "语句 841",
       "audioText": "Our cargo manifest shows that there are 80 kilograms of lithium batteries on board.",
       "audioTextZh": "我们货物舱单表明机上有80千克的锂电池。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-841-78e3abd83c76.mp3",
@@ -37,7 +37,7 @@
     },
     {
       "id": "sentence900-main-639",
-      "taskTitle": "Sentence639",
+      "taskTitle": "语句 639",
       "audioText": "Our airspeed is unreliable. Request climb to minimum safe altitude to perform checklist.",
       "audioTextZh": "我们的空速指示不可靠。申请爬升到最低安全高度来做检查单。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-639-7e137bb58482.mp3",
@@ -45,7 +45,7 @@
     },
     {
       "id": "sentence900-main-418",
-      "taskTitle": "Sentence418",
+      "taskTitle": "语句 418",
       "audioText": "Descending to FL60, maintain VMC FL90 to FL70, report traffic in sight at FL80.",
       "audioTextZh": "下降到高度层60，高度90到高度70之间保持目视气象条件，高度80看见活动飞机报告。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-418-b5a3221792fa.mp3",
@@ -53,7 +53,7 @@
     },
     {
       "id": "sentence900-main-067",
-      "taskTitle": "Sentence67",
+      "taskTitle": "语句 67",
       "audioText": "Cleared to exit the hold, fly direct to ML. Contact Approach on 128.35.",
       "audioTextZh": "可以离开等待，直飞ML。联系进近128.35，",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-067-ad640a60f4d1.mp3",
@@ -61,7 +61,7 @@
     },
     {
       "id": "sentence900-main-507",
-      "taskTitle": "Sentence507",
+      "taskTitle": "语句 507",
       "audioText": "We are flying with batteries only. Is there any airport available within 25 minutes of flying?",
       "audioTextZh": "我们仅依靠电瓶飞行。有没有25分钟之内能够飞到的可用机场？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-507-13d3663e7056.mp3",
@@ -69,7 +69,7 @@
     },
     {
       "id": "sentence900-main-554",
-      "taskTitle": "Sentence554",
+      "taskTitle": "语句 554",
       "audioText": "We might have a fuel leak near the wing root. Request fire trucks on arrival.",
       "audioTextZh": "翼根可能存在漏油，申请消防车到场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-554-683f63d5b3d1.mp3",
@@ -77,7 +77,7 @@
     },
     {
       "id": "sentence900-main-620",
-      "taskTitle": "Sentence620",
+      "taskTitle": "语句 620",
       "audioText": "Our brakes have seized. The tyres might burst during touchdown. Request fire trucks on arrival.",
       "audioTextZh": "我们的刹车卡死了。可能接地时轮胎会爆胎。申请消防车到场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-620-3da94f4cebb2.mp3",
@@ -85,7 +85,7 @@
     },
     {
       "id": "sentence900-main-443",
-      "taskTitle": "Sentence443",
+      "taskTitle": "语句 443",
       "audioText": "All our air conditioning packs have malfunctioned. Request rapid descent to MEA.",
       "audioTextZh": "我们全部的空调组件已故障。请求快速下降到最低航路高度。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-443-dc7cedce8dca.mp3",
@@ -93,7 +93,7 @@
     },
     {
       "id": "sentence900-main-526",
-      "taskTitle": "Sentence526",
+      "taskTitle": "语句 526",
       "audioText": "We have smoke coming from our avionics bay. We are evacuating. Request fire trucks.",
       "audioTextZh": "我们有烟雾来自我们的电子设备舱。我们正在紧急撤离。申请消防车。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-526-70258871595d.mp3",
@@ -101,7 +101,7 @@
     },
     {
       "id": "sentence900-main-601",
-      "taskTitle": "Sentence601",
+      "taskTitle": "语句 601",
       "audioText": "Traffic at our twelve o'clock, 10 miles, climbing. Should we expedite our descent to cross altitudes?",
       "audioTextZh": "冲突飞机在我们12点钟方位，10海里处，正在上升。我们应该加速下降穿越高度吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-601-78b9743bf0d0.mp3",
@@ -109,7 +109,7 @@
     },
     {
       "id": "sentence900-main-756",
-      "taskTitle": "Sentence756",
+      "taskTitle": "语句 756",
       "audioText": "Lining up Runway 35. Runway lights are too bright. Request to dim the runway lights.",
       "audioTextZh": "进跑道35。跑道灯太亮。申请调暗跑道灯。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-756-112a02435621.mp3",
@@ -117,7 +117,7 @@
     },
     {
       "id": "sentence900-main-835",
-      "taskTitle": "Sentence835",
+      "taskTitle": "语句 835",
       "audioText": "A bomb has exploded and the cabin is full of smoke. Request emergency descent.",
       "audioTextZh": "炸弹已爆炸，客舱到处是烟雾。申请紧急下降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-835-8e0772e6872a.mp3",
@@ -125,7 +125,7 @@
     },
     {
       "id": "sentence900-main-488",
-      "taskTitle": "Sentence488",
+      "taskTitle": "语句 488",
       "audioText": "Our VHF number One receiver has failed. We are no longer monitoring 121.5.",
       "audioTextZh": "我们第一部甚高频接收机失效，我们不再监听121.5。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-488-0e4b6b5fc71b.mp3",
@@ -133,7 +133,7 @@
     },
     {
       "id": "sentence900-main-778",
-      "taskTitle": "Sentence778",
+      "taskTitle": "语句 778",
       "audioText": "We have had a tail strike. Request to stop climb at 3000 feet and return for landing.",
       "audioTextZh": "我们已发生机尾擦地。请求3000英尺停止爬升并返场着陆。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-778-4421d868ba44.mp3",
@@ -141,7 +141,7 @@
     },
     {
       "id": "sentence900-main-630",
-      "taskTitle": "Sentence630",
+      "taskTitle": "语句 630",
       "audioText": "Our inertial reference system has failed, unable GPS approach. Request ILS or VOR approach.",
       "audioTextZh": "我们的惯导失效了，不能够使用GPS进近。申请盲降或VOR进近。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-630-6758ab2d0fbc.mp3",
@@ -149,7 +149,7 @@
     },
     {
       "id": "sentence900-main-832",
-      "taskTitle": "Sentence832",
+      "taskTitle": "语句 832",
       "audioText": "Some explosives were discovered behind a panel near the back of the cabin.",
       "audioTextZh": "客舱后部的一块面板后面发现一些爆炸物。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-832-3e5702cb044a.mp3",
@@ -157,7 +157,7 @@
     },
     {
       "id": "sentence900-main-537",
-      "taskTitle": "Sentence537",
+      "taskTitle": "语句 537",
       "audioText": "Request high speed approach. Part of our flight control surfaces have separated from the wing.",
       "audioTextZh": "请求大速度进近。部分飞机操作面与机翼分离。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-537-0efd698722b2.mp3",
@@ -165,7 +165,7 @@
     },
     {
       "id": "sentence900-main-561",
-      "taskTitle": "Sentence561",
+      "taskTitle": "语句 561",
       "audioText": "We are indicating fuel filter clog. Request descent and to maintain high speed.",
       "audioTextZh": "我们显示有燃油过滤阻塞，申请下降并保持大速度。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-561-de45275955d2.mp3",
@@ -173,7 +173,7 @@
     },
     {
       "id": "sentence900-main-533",
-      "taskTitle": "Sentence533",
+      "taskTitle": "语句 533",
       "audioText": "The aircraft has a tendency to roll to the right. I need additional airspace to maneuver.",
       "audioTextZh": "飞机有向右横滚的趋势，我需要更多的的空域来机动。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-533-590394858e9c.mp3",
@@ -181,7 +181,7 @@
     },
     {
       "id": "sentence900-main-490",
-      "taskTitle": "Sentence490",
+      "taskTitle": "语句 490",
       "audioText": "All of our VHF transmitters have failed, now transmitting on HF radio. Please respond.",
       "audioTextZh": "我们所有甚高频发射机都失效了，现在高频无线电发报，请回复。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-490-af1212593384.mp3",
@@ -189,7 +189,7 @@
     },
     {
       "id": "sentence900-main-676",
-      "taskTitle": "Sentence676",
+      "taskTitle": "语句 676",
       "audioText": "The cockpit windshield has cracked. Request descent to FL220.",
       "audioTextZh": "驾驶舱风挡裂了。请求下降高度220。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-676-ad8325a484c8.mp3",
@@ -197,7 +197,7 @@
     },
     {
       "id": "sentence900-main-678",
-      "taskTitle": "Sentence678",
+      "taskTitle": "语句 678",
       "audioText": "Neither of us can see through our windshield. Does your airport permit auto-land?",
       "audioTextZh": "我们和副驾驶都无法通过风挡看到外面。你机场允许自动着陆吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-678-903a7e593881.mp3",
@@ -205,7 +205,7 @@
     },
     {
       "id": "sentence900-main-780",
-      "taskTitle": "Sentence780",
+      "taskTitle": "语句 780",
       "audioText": "We cannot get good climb profile due engine problems. Request maintain runway heading.",
       "audioTextZh": "由于发动机问题，我们不能得到很好的爬升剖面，申请保持跑道航向。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-780-3e0b58aa9e9d.mp3",
@@ -213,7 +213,7 @@
     },
     {
       "id": "sentence900-main-468",
-      "taskTitle": "Sentence468",
+      "taskTitle": "语句 468",
       "audioText": "We have a navigation map shift, unable to perform the RNAV approach. Request radar vectors.",
       "audioTextZh": "我们有导航地图漂移，无法飞RNAV进近。申请雷达引导。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-468-e60d1df96d05.mp3",
@@ -221,7 +221,7 @@
     },
     {
       "id": "sentence900-main-801",
-      "taskTitle": "Sentence801",
+      "taskTitle": "语句 801",
       "audioText": "We have three serious and five minor injuries on board. Request ambulances on arrival.",
       "audioTextZh": "我们机上有三人重伤，五人轻伤。请求救护车到场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-801-21f9eaf3e788.mp3",
@@ -229,7 +229,7 @@
     },
     {
       "id": "sentence900-main-478",
-      "taskTitle": "Sentence478",
+      "taskTitle": "语句 478",
       "audioText": "We need a few minutes to reprogram the flight management computers. Request radar vectors.",
       "audioTextZh": "我们需要几分钟重新输程序到飞行管理计算机，申请雷达引导。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-478-46a91da76072.mp3",
@@ -237,7 +237,7 @@
     },
     {
       "id": "sentence900-main-644",
-      "taskTitle": "Sentence644",
+      "taskTitle": "语句 644",
       "audioText": "Our weather radar has failed. How did the preceding aircraft deviate from the weather?",
       "audioTextZh": "我们气象雷达坏了。前机都怎么绕飞的？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-644-660eaac92274.mp3",
@@ -245,7 +245,7 @@
     },
     {
       "id": "sentence900-main-511",
-      "taskTitle": "Sentence511",
+      "taskTitle": "语句 511",
       "audioText": "We have cut off the electrical system to the cabin and the onboard fire is under control.",
       "audioTextZh": "我们已经切断了到客舱的电气系统，机上火情得到了控制。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-511-ac71746d869c.mp3",
@@ -253,7 +253,7 @@
     },
     {
       "id": "sentence900-main-527",
-      "taskTitle": "Sentence527",
+      "taskTitle": "语句 527",
       "audioText": "We have smoke coming from our avionics bay. We are disembarking the passengers.",
       "audioTextZh": "我们有烟雾来自我们的电子设备舱，我们正在让旅客离机。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-527-65f748817a41.mp3",
@@ -261,7 +261,7 @@
     },
     {
       "id": "sentence900-main-480",
-      "taskTitle": "Sentence480",
+      "taskTitle": "语句 480",
       "audioText": "We are now flying with basic navigation due to systems failure. Request radar vectors.",
       "audioTextZh": "由于系统故障，我们现在使用基本导航飞行。申请雷达引导。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-480-b7c5aaa87939.mp3",
@@ -269,7 +269,7 @@
     },
     {
       "id": "sentence900-main-739",
-      "taskTitle": "Sentence739",
+      "taskTitle": "语句 739",
       "audioText": "Request to cancel our approach. The runway is not long enough and there are water patches.",
       "audioTextZh": "申请取消进近。跑道不够长，还有部分积水。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-739-3f17344c7a4c.mp3",
@@ -277,7 +277,7 @@
     },
     {
       "id": "sentence900-main-863",
-      "taskTitle": "Sentence863",
+      "taskTitle": "语句 863",
       "audioText": "We veered off the runway. We are evacuating near the runway and rapid exit J5.",
       "audioTextZh": "我们偏出了跑道，正在撤离。我们的位置在跑道和快速脱离道口J5附近。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-863-bfda57772293.mp3",
@@ -285,7 +285,7 @@
     },
     {
       "id": "sentence900-main-811",
-      "taskTitle": "Sentence811",
+      "taskTitle": "语句 811",
       "audioText": "We have an 8-month old infant with head injuries. Request ambulance on arrival.",
       "audioTextZh": "我们有个8个月大的婴儿头部受伤。申请救护车到场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-811-b2b66e2ae13f.mp3",
@@ -293,7 +293,7 @@
     },
     {
       "id": "sentence900-main-712",
-      "taskTitle": "Sentence712",
+      "taskTitle": "语句 712",
       "audioText": "We are unsure of our position due heavy fog. We are holding position.",
       "audioTextZh": "由于浓雾，我们不确定我们的位置。原地等待中。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-712-c4f3616c5a98.mp3",
@@ -301,7 +301,7 @@
     },
     {
       "id": "sentence900-main-688",
-      "taskTitle": "Sentence688",
+      "taskTitle": "语句 688",
       "audioText": "We have performed our procedures but engine vibration still exists. Request diversion.",
       "audioTextZh": "我们已完成了程序但发动机抖振仍然存在。申请备降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-688-5bc52865aab3.mp3",
@@ -309,7 +309,7 @@
     },
     {
       "id": "sentence900-main-573",
-      "taskTitle": "Sentence573",
+      "taskTitle": "语句 573",
       "audioText": "We still have only one hydraulic system. Request the longest runway for landing.",
       "audioTextZh": "我们仍然有一套液压系统。申请最长的跑道着陆。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-573-988e182e2d1e.mp3",
@@ -317,7 +317,7 @@
     },
     {
       "id": "sentence900-main-642",
-      "taskTitle": "Sentence642",
+      "taskTitle": "语句 642",
       "audioText": "Our weather radar has failed and we are in IMC. Request return for landing.",
       "audioTextZh": "我们气象雷达失效，我们仪表气象条件飞行。申请返场落地。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-642-ad5f693a3b73.mp3",
@@ -325,7 +325,7 @@
     },
     {
       "id": "sentence900-main-829",
-      "taskTitle": "Sentence829",
+      "taskTitle": "语句 829",
       "audioText": "The air marshal and passengers have restrained five suspects. The situation is now under control.",
       "audioTextZh": "安全保安和旅客们已经制服了五名疑犯。局面得到了控制。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-829-5a63f4ef276a.mp3",
@@ -333,7 +333,7 @@
     },
     {
       "id": "sentence900-main-707",
-      "taskTitle": "Sentence707",
+      "taskTitle": "语句 707",
       "audioText": "We cannot continue holding in icing conditions. Request descent immediately and cancel speed restrictions.",
       "audioTextZh": "我们不能在结冰条件下继续等待。请求立即下降并取消速度限制。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-707-1053ced84d4e.mp3",
@@ -341,7 +341,7 @@
     },
     {
       "id": "sentence900-main-479",
-      "taskTitle": "Sentence479",
+      "taskTitle": "语句 479",
       "audioText": "We need to reconfigure the flight management computers for approach. Request holding instructions.",
       "audioTextZh": "我们需要为进近重新设置飞行管理计算机，申请等待指令。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-479-e8fe4042bc4e.mp3",
@@ -349,7 +349,7 @@
     },
     {
       "id": "sentence900-main-695",
-      "taskTitle": "Sentence695",
+      "taskTitle": "语句 695",
       "audioText": "Our left engine has ingested FOD. We are shutting down engines and holding position.",
       "audioTextZh": "我们的左发吸入了外物而损坏。我们马上关车并原地等待。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-695-b583e7d358f8.mp3",
@@ -357,7 +357,7 @@
     },
     {
       "id": "sentence900-main-487",
-      "taskTitle": "Sentence487",
+      "taskTitle": "语句 487",
       "audioText": "We are not qualified for CAT IIIB approach and auto-land. Request diversion.",
       "audioTextZh": "我们不具备IIIB类进近和自动着陆资格。请求改航。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-487-f50253dc86df.mp3",
@@ -365,7 +365,7 @@
     },
     {
       "id": "sentence900-main-672",
-      "taskTitle": "Sentence672",
+      "taskTitle": "语句 672",
       "audioText": "Smoke is coming from the cabin floor. We are performing an evacuation. All slides have been deployed.",
       "audioTextZh": "有烟雾来自客舱地板。我们正在进行撤离。滑梯已经放出。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-672-f8eedc7a392b.mp3",
@@ -373,7 +373,7 @@
     },
     {
       "id": "sentence900-main-645",
-      "taskTitle": "Sentence645",
+      "taskTitle": "语句 645",
       "audioText": "We do not have that route in our database. Which heading should we maintain for now?",
       "audioTextZh": "我们数据库没有这个航路。我们现在应该保持哪个航向？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-645-9a29605ceb7b.mp3",
@@ -381,7 +381,7 @@
     },
     {
       "id": "sentence900-main-779",
-      "taskTitle": "Sentence779",
+      "taskTitle": "语句 779",
       "audioText": "We have veered off the runway due asymmetric thrust. We are evacuating. Request emergency assistance.",
       "audioTextZh": "由于不对称推力，我们在跑道上突然转向偏出了跑道，正在撤离。申请紧急救助。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-779-423ee6e5b993.mp3",
@@ -389,7 +389,7 @@
     },
     {
       "id": "sentence900-main-582",
-      "taskTitle": "Sentence582",
+      "taskTitle": "语句 582",
       "audioText": "We have an error in our airspeed. Request to climb to minimum safe altitude.",
       "audioTextZh": "我们的空速有误差。申请上升到最低安全高度以上。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-582-25bf855b0047.mp3",
@@ -397,7 +397,7 @@
     },
     {
       "id": "sentence900-main-557",
-      "taskTitle": "Sentence557",
+      "taskTitle": "语句 557",
       "audioText": "We are too heavy for landing. Request fuel-dump at the fuel dumping area.",
       "audioTextZh": "我们返场落地重量会太重。申请去放油区域放油。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-557-c181c02e9921.mp3",
@@ -405,7 +405,7 @@
     },
     {
       "id": "sentence900-main-772",
-      "taskTitle": "Sentence772",
+      "taskTitle": "语句 772",
       "audioText": "Our cabin crew will direct all passengers to stay outside the runway after evacuation.",
       "audioTextZh": "撤离后我们的客舱机组将指导所有旅客待在跑道外。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-772-b4f88a3cdf29.mp3",
@@ -413,7 +413,7 @@
     },
     {
       "id": "sentence900-main-703",
-      "taskTitle": "Sentence703",
+      "taskTitle": "语句 703",
       "audioText": "We made a diversion due to reports of freezing rain at our original destination.",
       "audioTextZh": "我们备降是由于收到目的地机场冻雨报告。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-703-36827cb3e1ef.mp3",
@@ -421,7 +421,7 @@
     },
     {
       "id": "sentence900-main-713",
-      "taskTitle": "Sentence713",
+      "taskTitle": "语句 713",
       "audioText": "We had a rapid airspeed decay due turbulence. Request immediate descent to FL390.",
       "audioTextZh": "我们的空速由于颠簸快速衰减。申请立即下降到高度390。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-713-cba9089749c7.mp3",
@@ -429,7 +429,7 @@
     },
     {
       "id": "sentence900-main-680",
-      "taskTitle": "Sentence680",
+      "taskTitle": "语句 680",
       "audioText": "Our engine control has malfunctioned. We cannot get much thrust. Request immediate descent.",
       "audioTextZh": "我们的发动机控制有故障。我们不能得到较大推力。申请立即下降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-680-94d6feddde25.mp3",
@@ -437,7 +437,7 @@
     },
     {
       "id": "sentence900-main-435",
-      "taskTitle": "Sentence435",
+      "taskTitle": "语句 435",
       "audioText": "At 150W (west) contact San Francisco Radio, primary 3494, secondary 11342.",
       "audioTextZh": "在西经150度联系旧金山无线电，主高频3494，备份高频11342。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-435-58cacbd6e5e5.mp3",
@@ -445,7 +445,7 @@
     },
     {
       "id": "sentence900-main-512",
-      "taskTitle": "Sentence512",
+      "taskTitle": "语句 512",
       "audioText": "We had an electrical fire from the galley, now extinguished. Request return to land.",
       "audioTextZh": "我们有厨房电气火警，现在已经熄灭。请求返场着陆。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-512-e4e0f778b65d.mp3",
@@ -453,7 +453,7 @@
     },
     {
       "id": "sentence900-main-423",
-      "taskTitle": "Sentence423",
+      "taskTitle": "语句 423",
       "audioText": "Cleared to leave A1 via BKM VOR, maintain FL230 while in controlled airspace.",
       "audioTextZh": "可以经由BKMVOR台离开A1，在管制空域保持高度230。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-423-c9d7929e84f7.mp3",
@@ -461,7 +461,7 @@
     },
     {
       "id": "sentence900-main-643",
-      "taskTitle": "Sentence643",
+      "taskTitle": "语句 643",
       "audioText": "Our weather radar has malfunctioned. What is the highest available level for cruise?",
       "audioTextZh": "我们气象雷达故障。最高可用的巡航高度是多少？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-643-9e1b92c712f9.mp3",
@@ -469,7 +469,7 @@
     },
     {
       "id": "sentence900-main-656",
-      "taskTitle": "Sentence656",
+      "taskTitle": "语句 656",
       "audioText": "Our APU bleed air malfunctioned during engine startup. We are calling the ground staff, standby.",
       "audioTextZh": "我们的APU引气在发动机开车时故障了。我们正在呼叫地面机务，请稍等。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-656-13c9c509c7c2.mp3",
@@ -477,7 +477,7 @@
     },
     {
       "id": "sentence900-main-504",
-      "taskTitle": "Sentence504",
+      "taskTitle": "语句 504",
       "audioText": "One of our transformers has failed. I'll let you know if a diversion is required.",
       "audioTextZh": "我们一个变压整流器故障了。如果需要备降我会第一时间告诉你。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-504-d6f224c1d245.mp3",
@@ -485,7 +485,7 @@
     },
     {
       "id": "sentence900-main-647",
-      "taskTitle": "Sentence647",
+      "taskTitle": "语句 647",
       "audioText": "We have a navigation malfunction. Request diversion to a suitable airport that has less complex terrain.",
       "audioTextZh": "我们有导航故障。申请备降到就近的较少复杂地形的机场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-647-2419b4d9091b.mp3",
@@ -493,7 +493,7 @@
     },
     {
       "id": "sentence900-main-519",
-      "taskTitle": "Sentence519",
+      "taskTitle": "语句 519",
       "audioText": "We cannot extinguish the engine fire. Request priority landing and emergency services on arrival.",
       "audioTextZh": "我们不能熄灭发动机火情。申请优先落地和到场时的紧急服务。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-519-c3a0dc09adbe.mp3",
@@ -501,7 +501,7 @@
     },
     {
       "id": "sentence900-main-708",
-      "taskTitle": "Sentence708",
+      "taskTitle": "语句 708",
       "audioText": "We have a \"Wind-shear Ahead\" warning message. Request to delay takeoff or change to another runway.",
       "audioTextZh": "我们出现了“前方风切变”警告信息。请求延迟起飞，或换一条跑道。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-708-0d93262e92f2.mp3",
@@ -509,7 +509,7 @@
     },
     {
       "id": "sentence900-main-524",
-      "taskTitle": "Sentence524",
+      "taskTitle": "语句 524",
       "audioText": "A passenger ignited the lavatory waste bin. Advise the airport police to await our arrival.",
       "audioTextZh": "一名旅客点燃了盥洗室垃圾桶。告知机场警察到场来处理。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-524-44b109a9d835.mp3",
@@ -517,7 +517,7 @@
     },
     {
       "id": "sentence900-main-585",
-      "taskTitle": "Sentence585",
+      "taskTitle": "语句 585",
       "audioText": "Some of our instruments are not indicating correctly. Request level off to perform checklist.",
       "audioTextZh": "一些仪表不能正确显示，申请改平飞执行检查单。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-585-4c30b9307c57.mp3",
@@ -525,7 +525,7 @@
     },
     {
       "id": "sentence900-main-563",
-      "taskTitle": "Sentence563",
+      "taskTitle": "语句 563",
       "audioText": "We are near the freezing temperature of jet fuel. Request descent to FL 390.",
       "audioTextZh": "我们接近燃油的冰点温度，申请下降到高度390。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-563-7bdbff438ef9.mp3",
@@ -533,7 +533,7 @@
     },
     {
       "id": "sentence900-main-323",
-      "taskTitle": "Sentence323",
+      "taskTitle": "语句 323",
       "audioText": "Reduce to minimum approach speed, turn right heading 230, cleared for ILS approach Runway 27.",
       "audioTextZh": "减小到最小进近速度，右转航向230，可以盲降进近，跑道27号。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-323-b18f534f46cc.mp3",
@@ -541,7 +541,7 @@
     },
     {
       "id": "sentence900-main-746",
-      "taskTitle": "Sentence746",
+      "taskTitle": "语句 746",
       "audioText": "Runway is covered with patches of ice. Braking action is medium to poor.",
       "audioTextZh": "跑道被大片结冰覆盖。刹车效应中等偏差。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-746-9535d365df8c.mp3",
@@ -549,7 +549,7 @@
     },
     {
       "id": "sentence900-main-851",
-      "taskTitle": "Sentence851",
+      "taskTitle": "语句 851",
       "audioText": "We have a possible traffic conflict at 10 o'clock, converging with our flight path.",
       "audioTextZh": "我们可能在10点钟方位有冲突飞机，与我们的飞行线路会聚。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-851-932f33e09dad.mp3",
@@ -557,7 +557,7 @@
     },
     {
       "id": "sentence900-main-877",
-      "taskTitle": "Sentence877",
+      "taskTitle": "语句 877",
       "audioText": "Confirm we are being vectored to fly overhead the airport for right downwind.",
       "audioTextZh": "证实你会引导我们飞越机场上空然后做右三边。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-877-03aae4336bee.mp3",
@@ -565,7 +565,7 @@
     },
     {
       "id": "sentence900-main-586",
-      "taskTitle": "Sentence586",
+      "taskTitle": "语句 586",
       "audioText": "Two of our display units have failed. We are no longer RNP qualified. Request diversion.",
       "audioTextZh": "我们的两个显示屏故障。我们不再具备RNP资格。申请备降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-586-9b85c628a3c0.mp3",
@@ -573,7 +573,7 @@
     },
     {
       "id": "sentence900-main-726",
-      "taskTitle": "Sentence726",
+      "taskTitle": "语句 726",
       "audioText": "We made the go-around because strong convective currents on short final made our approach unstable.",
       "audioTextZh": "我们复飞的原因是因为短五边很强的对流气流使进近不稳定。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-726-f23e3469b30f.mp3",
@@ -581,7 +581,7 @@
     },
     {
       "id": "sentence900-main-607",
-      "taskTitle": "Sentence607",
+      "taskTitle": "语句 607",
       "audioText": "Our oil pressure reading is lower than normal. Request hold at present position.",
       "audioTextZh": "我们滑油压力读数比正常要低。请求在当前位置等待。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-607-0616475ae3e2.mp3",
@@ -589,7 +589,7 @@
     },
     {
       "id": "sentence900-main-271",
-      "taskTitle": "Sentence271",
+      "taskTitle": "语句 271",
       "audioText": "We have traffic at our 12 o'clock, 5 miles, 500 feet below, climbing.",
       "audioTextZh": "我们看到了活动飞机，在12点钟方位，5海里，低于我们500英尺，正在上升。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-271-d36253f29b68.mp3",
@@ -597,7 +597,7 @@
     },
     {
       "id": "sentence900-main-802",
-      "taskTitle": "Sentence802",
+      "taskTitle": "语句 802",
       "audioText": "One passenger is having difficulty breathing. Request descent to a lower level to reduce cabin altitude.",
       "audioTextZh": "一名旅客呼吸困难。请求立即下降到较低高度以减小客舱高度。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-802-621a4f6ed608.mp3",
@@ -605,7 +605,7 @@
     },
     {
       "id": "sentence900-main-447",
-      "taskTitle": "Sentence447",
+      "taskTitle": "语句 447",
       "audioText": "We have unusual smell from air conditioning packs. Request stop climb at 7000 feet.",
       "audioTextZh": "空调组件出现异常气味。请求在7000英尺，停止爬升。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-447-592bee7f9abb.mp3",
@@ -613,7 +613,7 @@
     },
     {
       "id": "sentence900-main-420",
-      "taskTitle": "Sentence420",
+      "taskTitle": "语句 420",
       "audioText": "Cleared to destination airport via DAPRO, flight planned route, FL240, join A1 at FL240.",
       "audioTextZh": "可以按DAPRO计划航路飞往目的地机场，高度240，并在高度层240加入A1航路。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-420-825e1e7978be.mp3",
@@ -621,7 +621,7 @@
     },
     {
       "id": "sentence900-main-735",
-      "taskTitle": "Sentence735",
+      "taskTitle": "语句 735",
       "audioText": "We were struck by hail. Our airframe is severely damaged. Request emergency services.",
       "audioTextZh": "我们被冰雹击中了。我们的机身严重受损。申请紧急服务。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-735-06bed9f1d282.mp3",
@@ -629,7 +629,7 @@
     },
     {
       "id": "sentence900-main-825",
-      "taskTitle": "Sentence825",
+      "taskTitle": "语句 825",
       "audioText": "There is a stand-off in the cabin. Some of the hijackers are carrying blades.",
       "audioTextZh": "客舱已陷于僵持状态。一些劫机犯拿着刀片。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-825-21a23b74fb67.mp3",
@@ -637,7 +637,7 @@
     },
     {
       "id": "sentence900-main-541",
-      "taskTitle": "Sentence541",
+      "taskTitle": "语句 541",
       "audioText": "We have a problem with yaw damping. The aircraft is oscillating severely. Request diversion.",
       "audioTextZh": "我们偏航阻尼出现问题，飞机摇摆很严重，申请备降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-541-3317cb1ee334.mp3",
@@ -645,7 +645,7 @@
     },
     {
       "id": "sentence900-main-605",
-      "taskTitle": "Sentence605",
+      "taskTitle": "语句 605",
       "audioText": "We are having abnormal engine indications. Request to reduce speed to 250 knots.",
       "audioTextZh": "我们显示不正常的发动机参数。申请调速到250节。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-605-1050a5dd214a.mp3",
@@ -653,7 +653,7 @@
     },
     {
       "id": "sentence900-main-574",
-      "taskTitle": "Sentence574",
+      "taskTitle": "语句 574",
       "audioText": "Our left engine anti-ice system has failed. Request immediate climb to leave the icing area.",
       "audioTextZh": "我们的左发防冰系统故障，申请立即上升来脱离结冰区域。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-574-f73609f4232e.mp3",
@@ -661,7 +661,7 @@
     },
     {
       "id": "sentence900-main-444",
-      "taskTitle": "Sentence444",
+      "taskTitle": "语句 444",
       "audioText": "We had a malfunction of one air conditioning pack. Request descent to a lower level.",
       "audioTextZh": "我们有一个空调组件故障。请求下降到较低高度。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-444-cf54a39e0635.mp3",
@@ -669,7 +669,7 @@
     },
     {
       "id": "sentence900-main-560",
-      "taskTitle": "Sentence560",
+      "taskTitle": "语句 560",
       "audioText": "We cannot shut off the fuel dump valve. Request radar vectors for short final, Runway 17.",
       "audioTextZh": "我们无法关断放油活门，申请雷达引导到短五边，跑道17。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-560-9a0bee08614e.mp3",
@@ -677,7 +677,7 @@
     },
     {
       "id": "sentence900-main-071",
-      "taskTitle": "Sentence71",
+      "taskTitle": "语句 71",
       "audioText": "After passing SY VOR, leave the hold on heading 250, cleared for VOR approach Runway 06.",
       "audioTextZh": "过SYVOR台后，离开等待，航向250，可以VOR进近，跑道06号。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-071-0ebd854e57f7.mp3",
@@ -685,7 +685,7 @@
     },
     {
       "id": "sentence900-main-073",
-      "taskTitle": "Sentence73",
+      "taskTitle": "语句 73",
       "audioText": "Cleared to LHR, hold at LHR as published. Maintain 8000 feet. Expect further clearance at 18.",
       "audioTextZh": "可以飞往LHR，并按公布的航图在LHR等待。保持高度8000英尺，预计进一步许可时间18。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-073-602608fbd9d6.mp3",
@@ -693,7 +693,7 @@
     },
     {
       "id": "sentence900-main-018",
-      "taskTitle": "Sentence18",
+      "taskTitle": "语句 18",
       "audioText": "Right heading 330, descending to 3000 feet, cleared for ILS approach Runway 36R.",
       "audioTextZh": "右转航向330，下降到3000英尺，可以盲降进近，跑道36右。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-018-716271a013ef.mp3",
@@ -701,7 +701,7 @@
     },
     {
       "id": "sentence900-main-584",
-      "taskTitle": "Sentence584",
+      "taskTitle": "语句 584",
       "audioText": "We have a master caution. I will notify you if a diversion is required.",
       "audioTextZh": "我们有一个主警告灯亮了。如需备降，我将告知。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-584-f47f17862577.mp3",
@@ -709,7 +709,7 @@
     },
     {
       "id": "sentence900-main-717",
-      "taskTitle": "Sentence717",
+      "taskTitle": "语句 717",
       "audioText": "I apologize for the level bust, but we needed the altitude loss to recover from wind-shear.",
       "audioTextZh": "很抱歉偏离指定高度了，但我们需要损失高度来改出风切变。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-717-561ea9c9671f.mp3",
@@ -717,7 +717,7 @@
     },
     {
       "id": "sentence900-main-600",
-      "taskTitle": "Sentence600",
+      "taskTitle": "语句 600",
       "audioText": "We have conflicting traffic at eleven o'clock, 8 miles, climbing. Request vectors for avoidance.",
       "audioTextZh": "我们显示冲突飞机在我们11点钟方位，8海里处，正在上升。申请雷达引导来避开。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-600-e4143e348888.mp3",
@@ -725,7 +725,7 @@
     },
     {
       "id": "sentence900-main-691",
-      "taskTitle": "Sentence691",
+      "taskTitle": "语句 691",
       "audioText": "Engine Number Three has smoke coming out of the pylon section. We are evacuating.",
       "audioTextZh": "三号发动机吊架部位出现烟雾。我们正在撤离。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-691-e45d4105cf1d.mp3",
@@ -733,7 +733,7 @@
     },
     {
       "id": "sentence900-main-674",
-      "taskTitle": "Sentence674",
+      "taskTitle": "语句 674",
       "audioText": "We have a cargo smoke warning. We are disembarking passengers. Request fire services.",
       "audioTextZh": "我们有货舱烟雾警告。我们正在让旅客下飞机。请求消防服务。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-674-95c357044a3b.mp3",
@@ -741,7 +741,7 @@
     },
     {
       "id": "sentence900-main-661",
-      "taskTitle": "Sentence661",
+      "taskTitle": "语句 661",
       "audioText": "We are leaking bleed air. Request turn right heading 095 to avoid the icing area.",
       "audioTextZh": "我们的引气正在泄漏。请求右转095以避开结冰区。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-661-aba255e7ab1b.mp3",
@@ -749,7 +749,7 @@
     },
     {
       "id": "sentence900-main-583",
-      "taskTitle": "Sentence583",
+      "taskTitle": "语句 583",
       "audioText": "We have master warning lights in the cockpit. Request landing at the nearest suitable airport.",
       "audioTextZh": "我们的驾驶舱主警告灯亮了。申请就近合适机场着陆。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-583-e7317291ad88.mp3",
@@ -757,7 +757,7 @@
     },
     {
       "id": "sentence900-main-572",
-      "taskTitle": "Sentence572",
+      "taskTitle": "语句 572",
       "audioText": "Request the longest runway and vectors for a wide downwind due to hydraulic failure.",
       "audioTextZh": "由于液压失效，请求最长的跑道和雷达引导到宽的三边。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-572-c7a37db9382d.mp3",
@@ -765,7 +765,7 @@
     },
     {
       "id": "sentence900-main-539",
-      "taskTitle": "Sentence539",
+      "taskTitle": "语句 539",
       "audioText": "Request vectors for long final. We are controlling the airplane with mechanical backup.",
       "audioTextZh": "请求雷达引导到长五边。我们正用机械备用设备操作飞机。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-539-c1716bf357ba.mp3",
@@ -773,7 +773,7 @@
     },
     {
       "id": "sentence900-main-608",
-      "taskTitle": "Sentence608",
+      "taskTitle": "语句 608",
       "audioText": "The oil temperature is higher than normal. We are monitoring other engine parameters.",
       "audioTextZh": "我们滑油温度比正常的要高。我们正在监控其他发动机参数。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-608-4409b7af6c30.mp3",
@@ -781,7 +781,7 @@
     },
     {
       "id": "sentence900-main-401",
-      "taskTitle": "Sentence401",
+      "taskTitle": "语句 401",
       "audioText": "Climb to and maintain FL290, re-cleared to track direct to BKM VOR, the rest unchanged.",
       "audioTextZh": "上升并保持高度290，重新直飞BKMVOR台，其余未变。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-401-4d00ed20f5de.mp3",
@@ -789,7 +789,7 @@
     },
     {
       "id": "sentence900-main-595",
-      "taskTitle": "Sentence595",
+      "taskTitle": "语句 595",
       "audioText": "We have autopilot disconnection. We are no longer RVSM qualified. Request leaving RVSM airspace.",
       "audioTextZh": "我们自动驾驶脱开了，我们不再符合RVSM资质，申请离开RVSM空域。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-595-dcc0719c0202.mp3",
@@ -797,7 +797,7 @@
     },
     {
       "id": "sentence900-main-836",
-      "taskTitle": "Sentence836",
+      "taskTitle": "语句 836",
       "audioText": "We are evacuating on the runway. Be advised the bomb is still on board.",
       "audioTextZh": "我们正在跑道上紧急撤离。请你告知相关人员炸弹还在飞机上。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-836-45353c0d78fe.mp3",
@@ -805,7 +805,7 @@
     },
     {
       "id": "sentence900-main-782",
-      "taskTitle": "Sentence782",
+      "taskTitle": "语句 782",
       "audioText": "The center of gravity is disturbed. We will relocate passengers prior to approach. Request holding.",
       "audioTextZh": "重心被干扰了。进近前我们将重新安排旅客。申请等待。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-782-971ed403d2f3.mp3",
@@ -813,7 +813,7 @@
     },
     {
       "id": "sentence900-main-293",
-      "taskTitle": "Sentence293",
+      "taskTitle": "语句 293",
       "audioText": "We are too low to the surrounding terrain. Confirm we are still being radar vectored.",
       "audioTextZh": "我们高度太低，周围有地形。证实我们仍然被雷达引导。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-293-16dd8ae0dd8b.mp3",
@@ -821,7 +821,7 @@
     },
     {
       "id": "sentence900-main-787",
-      "taskTitle": "Sentence787",
+      "taskTitle": "语句 787",
       "audioText": "We were not informed of a frequency change. I will now monitor your frequency.",
       "audioTextZh": "我们未得到频率改变的通知。我将现在监听你的频率。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-787-8bcb4b8cf9e7.mp3",
@@ -829,7 +829,7 @@
     },
     {
       "id": "sentence900-main-858",
-      "taskTitle": "Sentence858",
+      "taskTitle": "语句 858",
       "audioText": "Some of the cabin crew are injured. They were serving meals during the TCAS maneuver.",
       "audioTextZh": "部分客舱机组受伤了。TCAS机动时他们正在供餐。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-858-7b717010eb2f.mp3",
@@ -837,7 +837,7 @@
     },
     {
       "id": "sentence900-main-752",
-      "taskTitle": "Sentence752",
+      "taskTitle": "语句 752",
       "audioText": "A Pilot overflying reported seeing virga above the runways. Request to terminate our approach.",
       "audioTextZh": "飞越的一名飞行员报告在跑道上空看见了雨幡。申请终止进近。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-752-206816acafe1.mp3",
@@ -845,7 +845,7 @@
     },
     {
       "id": "sentence900-main-671",
-      "taskTitle": "Sentence671",
+      "taskTitle": "语句 671",
       "audioText": "We have an abnormal noise coming from one of our cabin doors. Request rapid descent to 5000 feet.",
       "audioTextZh": "我们有一个客舱门有异常噪音。申请快速下降到5000英尺。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-671-90f1ce691a70.mp3",
@@ -853,7 +853,7 @@
     },
     {
       "id": "sentence900-main-559",
-      "taskTitle": "Sentence559",
+      "taskTitle": "语句 559",
       "audioText": "We need about 18 minutes to jettison fuel before coming in for the approach.",
       "audioTextZh": "我们在进近前需要大概18分钟放油。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-559-ac2656b312b5.mp3",
@@ -861,7 +861,7 @@
     },
     {
       "id": "sentence900-main-544",
-      "taskTitle": "Sentence544",
+      "taskTitle": "语句 544",
       "audioText": "We have a problem with fuel temperature. Request holding position on the taxiway.",
       "audioTextZh": "我们的燃油温度有问题。请求滑行道上原地等待。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-544-13a5b03c9afb.mp3",
@@ -869,7 +869,7 @@
     },
     {
       "id": "sentence900-main-597",
-      "taskTitle": "Sentence597",
+      "taskTitle": "语句 597",
       "audioText": "Request to climb to minimum safe altitude due to malfunction of navigation computers.",
       "audioTextZh": "由于导航计算机故障，申请爬升到最低安全高度。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-597-d2ddd8c55935.mp3",
@@ -877,7 +877,7 @@
     },
     {
       "id": "sentence900-main-459",
-      "taskTitle": "Sentence459",
+      "taskTitle": "语句 459",
       "audioText": "We have an avionics ventilation problem. The skin heat-exchangers and blower fan have failed.",
       "audioTextZh": "我们的电子通风有问题。蒙皮热交换器和吹风扇都故障了。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-459-26ac1a34886c.mp3",
@@ -885,7 +885,7 @@
     },
     {
       "id": "sentence900-main-711",
-      "taskTitle": "Sentence711",
+      "taskTitle": "语句 711",
       "audioText": "We have received information of a new volcanic eruption. Will it affect our route?",
       "audioTextZh": "我们收到火山喷发的一条新信息，会影响我们航路吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-711-e867e267743f.mp3",
@@ -893,7 +893,7 @@
     },
     {
       "id": "sentence900-main-314",
-      "taskTitle": "Sentence314",
+      "taskTitle": "语句 314",
       "audioText": "Hold over BKM VOR at FL100, inbound track 280 degrees, left hand pattern, outbound time 1 minute.",
       "audioTextZh": "在BKMVOR台等待，高度层100，向台航迹280度，左等待，背台时间1分钟。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-314-e32b1a69cd63.mp3",
@@ -901,7 +901,7 @@
     },
     {
       "id": "sentence900-main-083",
-      "taskTitle": "Sentence83",
+      "taskTitle": "语句 83",
       "audioText": "Recleared to destination via ZF01 Departure, Runway 36R, rest of clearance unchanged.",
       "audioTextZh": "重新允许经由ZF-01号标准离场程序飞往目的地，跑道36R，其余许可不变。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-083-f19f5a25129a.mp3",
@@ -909,7 +909,7 @@
     },
     {
       "id": "sentence900-main-513",
-      "taskTitle": "Sentence513",
+      "taskTitle": "语句 513",
       "audioText": "There was a fire from the avionics bay. Request radar vectors for final.",
       "audioTextZh": "电子设备舱有火警。请求雷达引导到五边。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-513-d37733d9a75c.mp3",
@@ -917,7 +917,7 @@
     },
     {
       "id": "sentence900-main-079",
-      "taskTitle": "Sentence79",
+      "taskTitle": "语句 79",
       "audioText": "Cleared to destination via ZAM, flight planned route, D03 Departure, cruising level 230, squawk 3763.",
       "audioTextZh": "可以经由ZAM飞往目的地，按照计划航路，D-03号标准仪表离场，巡航高度层230，应答机3763。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-079-dca98f34cfc3.mp3",
@@ -925,7 +925,7 @@
     },
     {
       "id": "sentence900-main-685",
-      "taskTitle": "Sentence685",
+      "taskTitle": "语句 685",
       "audioText": "We have a low oil pressure warning from engine Number Two. Request diversion.",
       "audioTextZh": "我们的二发有滑油压力低的警告。申请备降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-685-0638e0f5b73c.mp3",
@@ -933,7 +933,7 @@
     },
     {
       "id": "sentence900-main-673",
-      "taskTitle": "Sentence673",
+      "taskTitle": "语句 673",
       "audioText": "We had a smoke warning from the forward cargo hold. We are evacuating.",
       "audioTextZh": "我们有烟雾来自前货舱。我们正在进行撤离。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-673-3105edb2c1d6.mp3",
@@ -941,7 +941,7 @@
     },
     {
       "id": "sentence900-main-579",
-      "taskTitle": "Sentence579",
+      "taskTitle": "语句 579",
       "audioText": "Our pitot static heating system has failed. We might have an altitude error.",
       "audioTextZh": "我们皮托管静压口加温系统故障了，我们可能有高度误差。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-579-b79bc07bff51.mp3",
@@ -949,7 +949,7 @@
     },
     {
       "id": "sentence900-main-475",
-      "taskTitle": "Sentence475",
+      "taskTitle": "语句 475",
       "audioText": "The ILS signal was unstable. Request approach to another runway or request another type of approach.",
       "audioTextZh": "盲降信号不稳定。申请换一条跑道进近，或申请另一种进近方式。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-475-35805b5bc227.mp3",
@@ -957,7 +957,7 @@
     },
     {
       "id": "sentence900-main-894",
-      "taskTitle": "Sentence894",
+      "taskTitle": "语句 894",
       "audioText": "Not ready for immediate takeoff due possible wake turbulence from departing heavy aircraft.",
       "audioTextZh": "没有准备好立即起飞，刚起飞的重型机可能有尾流。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-894-6eec764ddf1a.mp3",
@@ -965,7 +965,7 @@
     },
     {
       "id": "sentence900-main-720",
-      "taskTitle": "Sentence720",
+      "taskTitle": "语句 720",
       "audioText": "The thunderstorms will last for about 40 minutes according to the weather update. Request diversion.",
       "audioTextZh": "根据天气更新情况，雷暴将持续约40分钟。申请备降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-720-c79b35427c16.mp3",
@@ -973,7 +973,7 @@
     },
     {
       "id": "sentence900-main-622",
-      "taskTitle": "Sentence622",
+      "taskTitle": "语句 622",
       "audioText": "We have exhausted all options. We will land without the nose gear fully locked.",
       "audioTextZh": "我们用尽了所有选项。现在只能够尝试没有前起落架完全锁住的情况下落地。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-622-8e720156ff65.mp3",
@@ -981,7 +981,7 @@
     },
     {
       "id": "sentence900-main-616",
-      "taskTitle": "Sentence616",
+      "taskTitle": "语句 616",
       "audioText": "We are holding at present position. It appears one of the over-wing exits has unlocked.",
       "audioTextZh": "我们在原地等待。好像机翼上方的一个出口松锁。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-616-c1a187b7627c.mp3",
@@ -989,7 +989,7 @@
     },
     {
       "id": "sentence900-main-892",
-      "taskTitle": "Sentence892",
+      "taskTitle": "语句 892",
       "audioText": "Sorry, there was a problem with my audio equipment. How do you read me now?",
       "audioTextZh": "抱歉，因为我们的音频设备有问题。现在你听我几个？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-892-97958d8f5929.mp3",
@@ -997,7 +997,7 @@
     },
     {
       "id": "sentence900-main-632",
-      "taskTitle": "Sentence632",
+      "taskTitle": "语句 632",
       "audioText": "We have to recalibrate our instruments. Request to level off and maintain heading.",
       "audioTextZh": "我们需要重新校准仪表。申请改平飞并保持航向。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-632-4476b6049e88.mp3",
@@ -1005,7 +1005,7 @@
     },
     {
       "id": "sentence900-main-476",
-      "taskTitle": "Sentence476",
+      "taskTitle": "语句 476",
       "audioText": "The DME indication is not correct. Confirm the DME is still in service.",
       "audioTextZh": "DME显示不对。证实DME还在运行中。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-476-f08dbe886baa.mp3",
@@ -1013,7 +1013,7 @@
     },
     {
       "id": "sentence900-main-599",
-      "taskTitle": "Sentence599",
+      "taskTitle": "语句 599",
       "audioText": "We have conflicting traffic at one o'clock, 6 miles, descending. Request heading 130 for avoidance.",
       "audioTextZh": "我们显示冲突飞机在我们1点钟方位，6海里处，正在下降。申请航向130来避开。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-599-74c4e8004ed0.mp3",
@@ -1021,7 +1021,7 @@
     },
     {
       "id": "sentence900-main-456",
-      "taskTitle": "Sentence456",
+      "taskTitle": "语句 456",
       "audioText": "Request descent rate less than 500 feet per minute due to unpressurized cabin.",
       "audioTextZh": "由于客舱失压，请求下降率小于每分钟500英尺。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-456-43331bfdc225.mp3",
@@ -1029,7 +1029,7 @@
     },
     {
       "id": "sentence900-main-198",
-      "taskTitle": "Sentence198",
+      "taskTitle": "语句 198",
       "audioText": "Thicker patches of fog exist further along the runway. RVR significantly reduced.",
       "audioTextZh": "跑道后端雾会变浓。跑道视程明显变差。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-198-c58c0772bc1c.mp3",
@@ -1037,7 +1037,7 @@
     },
     {
       "id": "sentence900-main-808",
-      "taskTitle": "Sentence808",
+      "taskTitle": "语句 808",
       "audioText": "A pregnant passenger is in severe pain. Request priority landing and ambulance on arrival.",
       "audioTextZh": "一名孕妇承受剧痛。申请优先着陆和救护车到场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-808-47e6ccec8dc0.mp3",
@@ -1045,7 +1045,7 @@
     },
     {
       "id": "sentence900-main-589",
-      "taskTitle": "Sentence589",
+      "taskTitle": "语句 589",
       "audioText": "We made the go around due to map drift on our navigation display.",
       "audioTextZh": "我们复飞是因为导航显示上地图漂移。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-589-da17e91965cb.mp3",
@@ -1053,7 +1053,7 @@
     },
     {
       "id": "sentence900-main-759",
-      "taskTitle": "Sentence759",
+      "taskTitle": "语句 759",
       "audioText": "The NOTAM says this part of the taxiway is closed during this period, please verify.",
       "audioTextZh": "航行通告说部分滑行道在这期间关闭。请核实。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-759-35f743ba3749.mp3",
@@ -1061,7 +1061,7 @@
     },
     {
       "id": "sentence900-main-471",
-      "taskTitle": "Sentence471",
+      "taskTitle": "语句 471",
       "audioText": "The ILS signal seems to be very unstable. Did any other pilot report a similar situation?",
       "audioTextZh": "盲降信号不稳定，其他飞行员报告过类似情况吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-471-6a719793f011.mp3",
@@ -1069,7 +1069,7 @@
     },
     {
       "id": "sentence900-main-705",
-      "taskTitle": "Sentence705",
+      "taskTitle": "语句 705",
       "audioText": "We are encountering clear ice. Request immediate right turn to heading 130.",
       "audioTextZh": "我们遇到了明冰。申请立即右转航向130。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-705-41081f3a1f42.mp3",
@@ -1077,7 +1077,7 @@
     },
     {
       "id": "sentence900-main-784",
-      "taskTitle": "Sentence784",
+      "taskTitle": "语句 784",
       "audioText": "My apologies for the deviation due the wrong altitude setting. Request further instructions.",
       "audioTextZh": "抱歉由于错误的高度设定而偏离，申请进一步指令。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-784-0820e4541ced.mp3",
@@ -1085,7 +1085,7 @@
     },
     {
       "id": "sentence900-main-871",
-      "taskTitle": "Sentence871",
+      "taskTitle": "语句 871",
       "audioText": "The military aircraft has made an abrupt maneuver indicating we may continue on this heading.",
       "audioTextZh": "军用飞机已突然机动，表明我们可以继续保持此航向。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-871-89750fc722e4.mp3",
@@ -1093,7 +1093,7 @@
     },
     {
       "id": "sentence900-main-403",
-      "taskTitle": "Sentence403",
+      "taskTitle": "语句 403",
       "audioText": "Passing POU at 43, maintaining FL310, estimating MLT at 55, next NLD.",
       "audioTextZh": "当前位置POU，时间43分，高度310，预计MLT55分，下一位置NLD。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-403-96f16c588954.mp3",
@@ -1101,7 +1101,7 @@
     },
     {
       "id": "sentence900-main-804",
-      "taskTitle": "Sentence804",
+      "taskTitle": "语句 804",
       "audioText": "A stressed passenger attempted to open an emergency exit. Request airport security on arrival.",
       "audioTextZh": "一名闹情绪的旅客试图打开应急出口。申请机场保安到场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-804-439de8aea610.mp3",
@@ -1109,7 +1109,7 @@
     },
     {
       "id": "sentence900-main-818",
-      "taskTitle": "Sentence818",
+      "taskTitle": "语句 818",
       "audioText": "We have a hijack situation on board. Can our destination airport provide armed intervention?",
       "audioTextZh": "我们被劫机了。我们的目的地机场能提供武装干涉吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-818-c396dd7e34f6.mp3",
@@ -1117,7 +1117,7 @@
     },
     {
       "id": "sentence900-main-743",
-      "taskTitle": "Sentence743",
+      "taskTitle": "语句 743",
       "audioText": "We have observed blowing sand in the vicinity of the airport. How long will this last?",
       "audioTextZh": "我们已观察到在机场邻近地区有吹沙，持续多长时间呢？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-743-89f939943eae.mp3",
@@ -1125,7 +1125,7 @@
     },
     {
       "id": "sentence900-main-741",
-      "taskTitle": "Sentence741",
+      "taskTitle": "语句 741",
       "audioText": "Request holding instructions. We'll attempt another approach when the rain showers become lighter.",
       "audioTextZh": "申请等待指令。阵雨变小的时候我们再重新进近。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-741-b5f40eee0373.mp3",
@@ -1133,7 +1133,7 @@
     },
     {
       "id": "sentence900-main-469",
-      "taskTitle": "Sentence469",
+      "taskTitle": "语句 469",
       "audioText": "Inertial reference system has failed. We are navigating on raw data. Request conventional approach.",
       "audioTextZh": "惯导失效了，我们正在使用原始导航，申请传统进近。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-469-e85c24b474d1.mp3",
@@ -1141,7 +1141,7 @@
     },
     {
       "id": "sentence900-main-785",
-      "taskTitle": "Sentence785",
+      "taskTitle": "语句 785",
       "audioText": "My apologies for the level deviation. We were caught in a strong updraft.",
       "audioTextZh": "抱歉高度偏离了。我们遇到了强上升气流。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-785-344ebd4daf52.mp3",
@@ -1149,7 +1149,7 @@
     },
     {
       "id": "sentence900-main-087",
-      "taskTitle": "Sentence87",
+      "taskTitle": "语句 87",
       "audioText": "Cleared to destination, BK02 RNAV Departure, initially 3000 feet, departure frequency 125.4, squawk 3311.",
       "audioTextZh": "可以到目的地机场，BK02号RNAV离场，起始高度3000英尺，离场频率125.4，应答机编码3311。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-087-fee5fd014487.mp3",
@@ -1157,7 +1157,7 @@
     },
     {
       "id": "sentence900-main-383",
-      "taskTitle": "Sentence383",
+      "taskTitle": "语句 383",
       "audioText": "Climb to and maintain FL310. Maintain Mach number decimal 81 or greater until BKM VOR.",
       "audioTextZh": "上升并保持高度310。BKMVOR台前保持马赫数点81或更大。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-383-287096b96dae.mp3",
@@ -1165,7 +1165,7 @@
     },
     {
       "id": "sentence900-main-384",
-      "taskTitle": "Sentence384",
+      "taskTitle": "语句 384",
       "audioText": "Descend to and maintain FL 270. Do not exceed Mach number decimal 79.",
       "audioTextZh": "下降并保持高度270。不要超出马赫数点79。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-384-3ba22c80e66e.mp3",
@@ -1173,7 +1173,7 @@
     },
     {
       "id": "sentence900-main-445",
-      "taskTitle": "Sentence445",
+      "taskTitle": "语句 445",
       "audioText": "We have lost electrical power to the cabin air compressor. Request immediate descent to 10,000 feet.",
       "audioTextZh": "我们的客舱空气压缩机失去电源。请求立即下降到10000英尺。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-445-4f71dd743c96.mp3",
@@ -1181,7 +1181,7 @@
     },
     {
       "id": "sentence900-main-786",
-      "taskTitle": "Sentence786",
+      "taskTitle": "语句 786",
       "audioText": "We used too much speed brakes and penetrated our level. Did we cause any conflict?",
       "audioTextZh": "我们使用过大量的减速板而穿越了我们的高度。我们引起冲突了吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-786-82b4c03ce118.mp3",
@@ -1189,7 +1189,7 @@
     },
     {
       "id": "sentence900-main-134",
-      "taskTitle": "Sentence134",
+      "taskTitle": "语句 134",
       "audioText": "Behind Boeing747 passing left to right, taxi to holding point A1 Runway 24.",
       "audioTextZh": "后面的波音747从左向右通过后，滑行至24号跑道等待点A1。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-134-a768101a4792.mp3",
@@ -1197,7 +1197,7 @@
     },
     {
       "id": "sentence900-main-898",
-      "taskTitle": "Sentence898",
+      "taskTitle": "语句 898",
       "audioText": "Are you banning us from entry because of our airline or our aircraft type?",
       "audioTextZh": "你禁止我们飞入是因为我们公司或我们的机型吗？",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-898-63b080a90889.mp3",
@@ -1205,7 +1205,7 @@
     },
     {
       "id": "sentence900-main-807",
-      "taskTitle": "Sentence807",
+      "taskTitle": "语句 807",
       "audioText": "We have a passenger with a suspected heart attack. Request diversion to a suitable airport.",
       "audioTextZh": "我们有名乘客疑似有心脏病。申请备降到合适机场。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-807-e8dc061bb253.mp3",
@@ -1213,7 +1213,7 @@
     },
     {
       "id": "sentence900-main-575",
-      "taskTitle": "Sentence575",
+      "taskTitle": "语句 575",
       "audioText": "We must descend immediately to exit icing conditions. Our right engine bleed air has failed.",
       "audioTextZh": "我们必须立即下降脱离结冰条件。我们的右发引气已失效。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-575-4d70700a744c.mp3",
@@ -1221,7 +1221,7 @@
     },
     {
       "id": "sentence900-main-412",
-      "taskTitle": "Sentence412",
+      "taskTitle": "语句 412",
       "audioText": "Request clearance to enter controlled airspace northeast of BKM VOR at FL240 at time 43.",
       "audioTextZh": "请求在BKMVOR台东北方向高度240，时间43分时进入管制空域的许可。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-412-46120311754c.mp3",
@@ -1229,7 +1229,7 @@
     },
     {
       "id": "sentence900-main-556",
-      "taskTitle": "Sentence556",
+      "taskTitle": "语句 556",
       "audioText": "We are evacuating. Advise emergency personnel that fuel odors are still present in the cabin.",
       "audioTextZh": "我们正在紧急撤离。请告诉地面人员机上仍然有燃油味道。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-556-739da81ebe57.mp3",
@@ -1237,7 +1237,7 @@
     },
     {
       "id": "sentence900-main-531",
-      "taskTitle": "Sentence531",
+      "taskTitle": "语句 531",
       "audioText": "Our flight control computers are not functioning well. We are having difficulty maintaining level flight, unable RVSM.",
       "audioTextZh": "我们飞行操作计算机工作不太理想，我们保持平飞有些困难，不能在RVSM空域飞行。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-531-f20f2bd6b23d.mp3",
@@ -1245,7 +1245,7 @@
     },
     {
       "id": "sentence900-main-508",
-      "taskTitle": "Sentence508",
+      "taskTitle": "语句 508",
       "audioText": "If there is no airport within 100 miles, we have to make a forced landing.",
       "audioTextZh": "如果100海里范围内没有机场，我们必须迫降。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-508-88c924477532.mp3",
@@ -1253,7 +1253,7 @@
     },
     {
       "id": "sentence900-main-626",
-      "taskTitle": "Sentence626",
+      "taskTitle": "语句 626",
       "audioText": "The tyres are deflated. We will have to hold at present position for maintenance inspection.",
       "audioTextZh": "轮胎瘪了，我们需要原地等待机务来做检查。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-626-12b34a5e7aa1.mp3",
@@ -1261,7 +1261,7 @@
     },
     {
       "id": "sentence900-main-805",
-      "taskTitle": "Sentence805",
+      "taskTitle": "语句 805",
       "audioText": "We have a hostage situation. Request stair vehicles on standby to disembark the passengers.",
       "audioTextZh": "我们有一名人质。申请客梯车待命以便让旅客们下飞机。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-805-fa52b19f7713.mp3",
@@ -1269,7 +1269,7 @@
     },
     {
       "id": "sentence900-main-506",
-      "taskTitle": "Sentence506",
+      "taskTitle": "语句 506",
       "audioText": "We are operating with only the emergency generator. Request track direct to final, Runway 26.",
       "audioTextZh": "我们能够使用的只有紧急发电机。申请直飞五边，跑道26号。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-506-1899f4f15336.mp3",

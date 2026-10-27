@@ -20,6 +20,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
   onBack,
   onSelect,
   right,
+  rightWidth = 44,
   showDivider = true,
   value,
 }: {
@@ -29,6 +30,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
   onBack: () => void;
   onSelect: (value: Value) => void;
   right?: ReactNode;
+  rightWidth?: number;
   showDivider?: boolean;
   value: Value;
 }) {
@@ -46,7 +48,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
           accessibilityLabel="返回"
           hitSlop={8}
           onPress={onBack}
-          style={({ pressed }) => [styles.headerButton, pressed ? styles.pressed : null]}
+          style={({ pressed }) => [styles.headerButton, { marginRight: rightWidth - 44 }, pressed ? styles.pressed : null]}
         >
           <ArrowLeft color={colors.foreground} size={20} />
         </Pressable>
@@ -62,7 +64,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
           <AppText numberOfLines={1} style={styles.moduleTitle} variant="cardTitle">{selected.label}</AppText>
           <ChevronDown color={colors.mutedForeground} size={16} />
         </Pressable>
-        <View style={styles.headerButton}>{right}</View>
+        <View style={[styles.headerButton, { width: rightWidth }]}>{right}</View>
       </View>
 
       <BottomSheet accessibilityLabel={accessibilityLabel} onClose={() => setVisible(false)} visible={visible}>

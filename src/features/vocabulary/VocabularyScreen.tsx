@@ -1,7 +1,7 @@
-import { orderVocabularySession } from './study-order';
+import { prepareVocabularySession } from './study-session';
 import { useStudyOrder } from './use-study-order';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
@@ -23,7 +23,7 @@ import {
   VocabularyTestRunner,
 } from './components/VocabularyTestViews';
 import { useVocabularyProgress } from './progress-store';
-import { loadVocabulary, type VocabularyLoadResult } from './repository';
+import { useVocabularyCatalog } from './use-vocabulary-catalog';
 import type {
   VocabularyBookId,
   VocabularyTestResult,
@@ -39,13 +39,11 @@ type SessionStatus = Exclude<VocabularyWordStatus, 'new'>;
 const emptySummary: VocabularySessionSummary = { known: 0, vague: 0, forgot: 0, wrong: 0 };
 
 export function VocabularyScreen() {
-  const [loadAttempt, setLoadAttempt] = useState(0);
-  const [loadResult, setLoadResult] = useState<VocabularyLoadResult>();
-  const [loadError, setLoadError] = useState(false);
+  const [view, setView] = useState<ViewName>('books');
+  const { loadResult, loadError, retry } = useVocabularyCatalog(view === 'books');
   const books = useMemo(() => loadResult?.dataset.books ?? [], [loadResult]);
   const progress = useVocabularyProgress(books);
   const { order, chooseOrder } = useStudyOrder();
-  const [view, setView] = useState<ViewName>('books');
   const [returnView, setReturnView] = useState<ReturnView>('books');
   const [activeBookId, setActiveBookId] = useState<VocabularyBookId>('preview');
   const [selected, setSelected] = useState<Set<VocabularyBookId>>(new Set());
@@ -57,32 +55,28 @@ export function VocabularyScreen() {
   const [testRunKey, setTestRunKey] = useState(0);
   const [currentTestResult, setCurrentTestResult] = useState<VocabularyTestResult>();
 
-  useEffect(() => {
-    let active = true;
-    setLoadError(false);
-    void loadVocabulary().then((result) => { if (active) setLoadResult(result); }).catch(() => { if (active) setLoadError(true); });
-    return () => { active = false; };
-  }, [loadAttempt]);
-
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
   const startStudy = useCallback((words: VocabularyWord[], from: ReturnView) => {
-    const ordered = orderVocabularySession(words, progress.state, order);
+    const prepared = prepareVocabularySession(words, progress.state, order, undefined);
+    const ordered = prepared.queue;
     if (!ordered.length) return;
+void progress.saveStudySession(prepared.session).then(() => {
     setStudyWords(ordered);
-    setStudyIndex(0);
-    setRevealed(false);
-    setSessionStatuses({});
+    setStudyIndex(prepared.index);
+    setRevealed(prepared.revealed);
+    setSessionStatuses(prepared.statuses);
     setSessionSummary(emptySummary);
     setReturnView(from);
     setView('study');
-  }, [progress.state, order]);
+    });
+  }, [progress, order]);
 
   if (!loadResult || !progress.ready) {
     return (
       <Screen contentStyle={{ paddingHorizontal: 0 }}>
         <TopBar title="单词学习" />
         {loadError ? (
-          <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={() => setLoadAttempt((value) => value + 1)} tone="destructive" />
+          <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={retry} tone="destructive" />
         ) : (
           <CenteredState icon={BookOpen} title="正在准备词汇资源" description="正在读取 ICAO 词书和你的学习进度。" />
         )}
@@ -105,6 +99,7 @@ export function VocabularyScreen() {
       return progress.setStatus(currentWord.id, status);
     };
     const next = () => {
+void progress.saveStudySession({wordIds:studyWords.map(word=>word.id),order,startedAt:progress.state.studySession?.startedAt ?? new Date().toISOString(),updatedAt:new Date().toISOString(),nextWordId:studyWords[studyIndex+1]?.id ?? null}).then(() => {
       if (studyIndex < studyWords.length - 1) {
         setStudyIndex((value) => value + 1);
         setRevealed(false);
@@ -113,6 +108,7 @@ export function VocabularyScreen() {
       const summary = Object.values(sessionStatuses).reduce((result, status) => ({ ...result, [status]: result[status] + 1 }), { ...emptySummary });
       setSessionSummary(summary);
       setView('complete');
+      });
     };
     return <VocabularyStudyView index={studyIndex} onChoose={(status) => { setRevealed(true); return recordStatus(status); }} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => progress.toggleFavorite(currentWord)} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }

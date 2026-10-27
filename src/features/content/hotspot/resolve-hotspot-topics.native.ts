@@ -8,7 +8,6 @@ export function resolveHotspotTopics(brief: OpiHotspotBrief, dataset: QuestionBa
   return brief.topics.map(selected => {
     const topic = topics.get(selected.topicId);
     if (!topic) throw new Error(`热点话题不存在：${selected.topicId}`);
-    if (topic.name !== selected.topicTitle) throw new Error(`热点话题标题与 OPI 题库不一致：${selected.topicId}`);
     const cards = selected.cardIds.map(id => {
       if (seen.has(id)) throw new Error(`热点题目重复：${id}`);
       const card = topic.cards.find(candidate => candidate.id === id);
@@ -17,6 +16,6 @@ export function resolveHotspotTopics(brief: OpiHotspotBrief, dataset: QuestionBa
       return card;
     });
     if (!cards.length) throw new Error(`热点话题没有可学习题目：${selected.topicId}`);
-    return { ...selected, cards };
+    return { ...selected, topicTitle: topic.name, cards };
   });
 }

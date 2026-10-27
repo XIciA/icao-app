@@ -46,7 +46,7 @@
         },
         {
           "topicId": "opi-topic-0040",
-          "topicTitle": "GPS",
+          "topicTitle": "全球定位系统",
           "cardIds": [
             "opi-core-515",
             "opi-core-519"
@@ -70,7 +70,7 @@
         },
         {
           "topicId": "opi-topic-0007",
-          "topicTitle": "CRM与机组协作",
+          "topicTitle": "机组资源管理与协作",
           "cardIds": [
             "opi-core-135"
           ]
@@ -122,7 +122,7 @@
         },
         {
           "topicId": "opi-topic-0039",
-          "topicTitle": "GNSS",
+          "topicTitle": "全球导航卫星系统",
           "cardIds": [
             "opi-core-513",
             "opi-core-514"
@@ -244,7 +244,7 @@
       "topics": [
         {
           "topicId": "opi-topic-0147",
-          "topicTitle": "VASI",
+          "topicTitle": "目视进近坡度指示系统",
           "cardIds": [
             "opi-extra-370",
             "opi-extra-369",
@@ -275,7 +275,7 @@
         },
         {
           "topicId": "opi-topic-0021",
-          "topicTitle": "低能见度与RVR",
+          "topicTitle": "低能见度与跑道视程",
           "cardIds": [
             "opi-extra-193",
             "opi-extra-194",
@@ -296,7 +296,7 @@
         },
         {
           "topicId": "opi-topic-0015",
-          "topicTitle": "SOP",
+          "topicTitle": "标准操作程序",
           "cardIds": [
             "opi-core-232",
             "opi-core-233",
@@ -306,7 +306,7 @@
         },
         {
           "topicId": "opi-topic-0041",
-          "topicTitle": "GPWS与EGPWS",
+          "topicTitle": "近地警告与增强型近地警告系统",
           "cardIds": [
             "opi-core-520",
             "opi-core-521",
@@ -316,7 +316,7 @@
         },
         {
           "topicId": "opi-topic-0020",
-          "topicTitle": "QAR",
+          "topicTitle": "快速存取记录器",
           "cardIds": [
             "opi-core-310",
             "opi-core-311",
@@ -345,7 +345,7 @@
       "topics": [
         {
           "topicId": "opi-topic-0067",
-          "topicTitle": "空中相撞与TCAS",
+          "topicTitle": "空中相撞与空中防撞系统",
           "cardIds": [
             "opi-core-717",
             "opi-core-337",
@@ -357,7 +357,7 @@
         },
         {
           "topicId": "opi-topic-0033",
-          "topicTitle": "PBN/RNAV/RNP进近",
+          "topicTitle": "基于性能的导航与进近",
           "cardIds": [
             "opi-core-467",
             "opi-core-468",
@@ -447,7 +447,7 @@
         },
         {
           "topicId": "opi-topic-0135",
-          "topicTitle": "EBT",
+          "topicTitle": "循证训练",
           "cardIds": [
             "opi-extra-298",
             "opi-extra-299",
@@ -466,7 +466,7 @@
         },
         {
           "topicId": "opi-topic-0015",
-          "topicTitle": "SOP",
+          "topicTitle": "标准操作程序",
           "cardIds": [
             "opi-core-232",
             "opi-core-233",
@@ -477,7 +477,7 @@
         },
         {
           "topicId": "opi-topic-0058",
-          "topicTitle": "CDFA",
+          "topicTitle": "连续下降最后进近",
           "cardIds": [
             "opi-core-633",
             "opi-core-634",
@@ -634,7 +634,7 @@
         },
         {
           "topicId": "opi-topic-0039",
-          "topicTitle": "GNSS",
+          "topicTitle": "全球导航卫星系统",
           "cardIds": [
             "opi-core-513",
             "opi-core-514",
@@ -723,7 +723,7 @@
         },
         {
           "topicId": "opi-topic-0015",
-          "topicTitle": "SOP",
+          "topicTitle": "标准操作程序",
           "cardIds": [
             "opi-core-232",
             "opi-core-233",
@@ -756,7 +756,7 @@
         },
         {
           "topicId": "opi-topic-0039",
-          "topicTitle": "GNSS",
+          "topicTitle": "全球导航卫星系统",
           "cardIds": [
             "opi-core-513",
             "opi-core-514",
@@ -830,7 +830,7 @@
         },
         {
           "topicId": "opi-topic-0147",
-          "topicTitle": "VASI",
+          "topicTitle": "目视进近坡度指示系统",
           "cardIds": [
             "opi-extra-370",
             "opi-extra-369",
@@ -851,7 +851,7 @@
         },
         {
           "topicId": "opi-topic-0007",
-          "topicTitle": "CRM与机组协作",
+          "topicTitle": "机组资源管理与协作",
           "cardIds": [
             "opi-core-135",
             "opi-core-138",
@@ -873,7 +873,7 @@
         },
         {
           "topicId": "opi-topic-0135",
-          "topicTitle": "EBT",
+          "topicTitle": "循证训练",
           "cardIds": [
             "opi-extra-298",
             "opi-extra-300",
@@ -906,7 +906,7 @@
         },
         {
           "topicId": "opi-topic-0040",
-          "topicTitle": "GPS",
+          "topicTitle": "全球定位系统",
           "cardIds": [
             "opi-core-516",
             "opi-core-518",
@@ -1019,7 +1019,7 @@
         },
         {
           "topicId": "opi-topic-0007",
-          "topicTitle": "CRM与机组协作",
+          "topicTitle": "机组资源管理与协作",
           "cardIds": [
             "opi-core-139",
             "opi-core-212",
@@ -1116,7 +1116,7 @@
         },
         {
           "topicId": "opi-topic-0007",
-          "topicTitle": "CRM与机组协作",
+          "topicTitle": "机组资源管理与协作",
           "cardIds": [
             "opi-core-135",
             "opi-core-138",
@@ -1138,7 +1138,7 @@
         },
         {
           "topicId": "opi-topic-0058",
-          "topicTitle": "CDFA",
+          "topicTitle": "连续下降最后进近",
           "cardIds": [
             "opi-core-633",
             "opi-core-634",
@@ -1210,7 +1210,7 @@
         },
         {
           "topicId": "opi-topic-0147",
-          "topicTitle": "VASI",
+          "topicTitle": "目视进近坡度指示系统",
           "cardIds": [
             "opi-extra-370",
             "opi-extra-369",
@@ -1276,7 +1276,7 @@
         },
         {
           "topicId": "opi-topic-0032",
-          "topicTitle": "RVSM",
+          "topicTitle": "缩小垂直间隔",
           "cardIds": [
             "opi-core-463",
             "opi-core-460",
@@ -1338,7 +1338,7 @@
       "topics": [
         {
           "topicId": "opi-topic-0007",
-          "topicTitle": "CRM与机组协作",
+          "topicTitle": "机组资源管理与协作",
           "cardIds": [
             "opi-core-137",
             "opi-core-138",

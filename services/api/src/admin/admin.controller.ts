@@ -169,17 +169,19 @@ export class AdminController {
 
   @Get('feedback')
   async feedback(
+    @Query('source') source: string | undefined,
     @Query('status') status: string | undefined,
     @Query('cursor') cursor: string | undefined,
     @Req() request: OpsAuthenticatedRequest,
     @Res({ passthrough: true }) reply: FastifyReply,
   ): Promise<ApiSuccessEnvelope<OpsFeedbackListResponse>> {
+    if (source && !['profile', 'study', 'exam_report', 'opi_hotspot'].includes(source)) throw new BadRequestException('invalid_feedback_source');
     if (status && !['received', 'processing', 'resolved'].includes(status)) throw new BadRequestException('invalid_feedback_status');
     if (cursor && cursor.length > 300) throw new BadRequestException('invalid_feedback_cursor');
     reply.header('cache-control', 'private, no-store');
     return {
       requestId: request.id,
-      data: await this.data.feedbackQueue('查看用户提交的反馈列表', request.opsStaff!, request.id, cursor, 30, status),
+      data: await this.data.feedbackQueue('查看用户提交的反馈列表', request.opsStaff!, request.id, cursor, 30, status, source),
     };
   }
 

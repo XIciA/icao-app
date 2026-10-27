@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-635",
-  "name": "BAW038 ingestion, etc.",
+  "name": "BAW038 · 外来物吸入",
   "declaredCardCount": 18,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111645",
-      "taskTitle": "7. BAW038 ingestion, etc.-1",
+      "taskTitle": "7. BAW038 · 外来物吸入-1",
       "audioText": "Your call sign is BAW038, from Beijing to London, passing 1200m climbing to 1800m, now contact Beijing Departure.",
       "audioTextZh": "你的呼号是英航038，飞机从北京飞往伦敦，通过1200米，正在上升至1800米，现在联系北京离场。",
       "referenceText": "Beijing Departure, BAW038, passing 1200m climbing to 1800m.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111646",
-      "taskTitle": "7. BAW038 ingestion, etc.-2",
+      "taskTitle": "7. BAW038 · 外来物吸入-2",
       "audioText": "BAW038, Beijing Departure, identified, climb to 6000m on standard.",
       "audioTextZh": "英航038，北京离场，雷达已识别，上升到标准气压6000米。",
       "referenceText": "Climb to 6000m on standard, BAW038.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111647",
-      "taskTitle": "7. BAW038 ingestion, etc.-3",
+      "taskTitle": "7. BAW038 · 外来物吸入-3",
       "audioText": "The aircraft ingested something, request descent to 3000m.",
       "audioTextZh": "飞机吸入了某些东西，请求下降到3000米。",
       "referenceText": "Beijing Departure, BAW038, foreign object ingestion, request descent to 3000m.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111648",
-      "taskTitle": "7. BAW038 ingestion, etc.-4",
+      "taskTitle": "7. BAW038 · 外来物吸入-4",
       "audioText": "BAW038, roger, descend to 3000m on QNH 1011.",
       "audioTextZh": "英航038，收到，下降到3000米，修正海压1011。",
       "referenceText": "Descend to 3000m on QNH 1011, BAW038.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111649",
-      "taskTitle": "7. BAW038 ingestion, etc.-5",
+      "taskTitle": "7. BAW038 · 外来物吸入-5",
       "audioText": "BAW038, Beijing Departure, report intention.[Your turbine blades appear to be broken, request return to Beijing airport.]",
       "audioTextZh": "英航038，北京离场，报告意图。【你的涡轮叶片似乎破损了，请求返回北京机场。】",
       "referenceText": "Request return to Beijing airport, our turbine blades may have been broken, BAW038.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111650",
-      "taskTitle": "7. BAW038 ingestion, etc.-6",
+      "taskTitle": "7. BAW038 · 外来物吸入-6",
       "audioText": "BAW038, roger, turn right heading 180, information I, radar vector for landing.",
       "audioTextZh": "英航038，收到，右转航向180，通播I，雷达引导着陆。",
       "referenceText": "Turn right heading 180, information I, radar vector for landing, BAW038.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111651",
-      "taskTitle": "7. BAW038 ingestion, etc.-7",
+      "taskTitle": "7. BAW038 · 外来物吸入-7",
       "audioText": "BAW038, report current situation.[Tell the controller that the port engine flamed out and you should land as soon as possible.]",
       "audioTextZh": "英航038，报告现在的情况。【告诉管制员左发熄火了，你需要尽快着陆。】",
       "referenceText": "Panpan, Panpan, Panpan, Beijing Departure, BAW038, port engine flames out, request priority landing.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111652",
-      "taskTitle": "7. BAW038 ingestion, etc.-8",
+      "taskTitle": "7. BAW038 · 外来物吸入-8",
       "audioText": "BAW038 roger, can you execute normal landing, do you require fuel dumping?[You can land normally and no need for fuel dumping.]",
       "audioTextZh": "英航038，收到，能否执行正常着陆，需要放油吗？【飞机可以正常着陆，不需要放油。】",
       "referenceText": "We can make a normal landing without dumping fuel, BAW038.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111653",
-      "taskTitle": "7. BAW038 ingestion, etc.-9",
+      "taskTitle": "7. BAW038 · 外来物吸入-9",
       "audioText": "[2 minutes later.][Tell the controller the fuel passage is blocked, only the auxiliary fuel tank is available, request priority landing.]",
       "audioTextZh": "【2分钟后】【告诉管制员燃油管道被堵住了，只有备用油箱可以使用，请求优先着陆。】",
       "referenceText": "Beijing Departure, BAW038, fuel passage blocked by a foreign object, now only the auxiliary fuel tank is operative, request priority landing.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111654",
-      "taskTitle": "7. BAW038 ingestion, etc.-10",
+      "taskTitle": "7. BAW038 · 外来物吸入-10",
       "audioText": "BAW038, Beijing roger, report endurance.[Tell Control that your endurance is 30 minutes.]",
       "audioTextZh": "英航038，北京收到，报告续航时间。【告诉管制员你的续航时间是30分钟。】",
       "referenceText": "Endurance 0030, BAW038.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111655",
-      "taskTitle": "7. BAW038 ingestion, etc.-11",
+      "taskTitle": "7. BAW038 · 外来物吸入-11",
       "audioText": "BAW038, roger, turn right heading 300, expect runway 01, caution surface wind 240, 12m/s, gusting to 18m/s.",
       "audioTextZh": "英航038，收到，右转航向300，预计跑道01，注意地面风240, 12米/秒，阵风18米/秒。",
       "referenceText": "Turn right heading 300, expect runway 01, roger, BAW038.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111656",
-      "taskTitle": "7. BAW038 ingestion, etc.-12",
+      "taskTitle": "7. BAW038 · 外来物吸入-12",
       "audioText": "BAW038, turn right heading 340, report established localizer.",
       "audioTextZh": "英航038，右转航向340，建立航向道后报。",
       "referenceText": "Turn right heading 340, report established localizer, BAW038.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111657",
-      "taskTitle": "7. BAW038 ingestion, etc.-13",
+      "taskTitle": "7. BAW038 · 外来物吸入-13",
       "audioText": "You have established localizer.",
       "audioTextZh": "【你已经建立好航向道。】",
       "referenceText": "Beijing Approach, BAW038, established localizer.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111658",
-      "taskTitle": "7. BAW038 ingestion, etc.-14",
+      "taskTitle": "7. BAW038 · 外来物吸入-14",
       "audioText": "BAW038, continue approach, contact Beijing Tower 118.1, I will advise them of your problem.",
       "audioTextZh": "英航038，继续进近，联系北京塔台118.1，我会通知他们你的情况。",
       "referenceText": "Continue approach, 118.1, thanks, BAW038.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111659",
-      "taskTitle": "7. BAW038 ingestion, etc.-15",
+      "taskTitle": "7. BAW038 · 外来物吸入-15",
       "audioText": "You have established ILS.",
       "audioTextZh": "【你已经建立盲降。】",
       "referenceText": "Beijing Tower, BAW038, established ILS.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111660",
-      "taskTitle": "7. BAW038 ingestion, etc.-16",
+      "taskTitle": "7. BAW038 · 外来物吸入-16",
       "audioText": "BAW038, Beijing Tower, continue approach, report outer marker, caution surface wind 240, 12m/s, gusting to 18m/s.",
       "audioTextZh": "英航038，北京塔台，继续进近，过远台报告，注意地面风240, 12米/秒，阵风18米/秒。",
       "referenceText": "Roger, report outer marker, BAW038.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111661",
-      "taskTitle": "7. BAW038 ingestion, etc.-17",
+      "taskTitle": "7. BAW038 · 外来物吸入-17",
       "audioText": "[Over outer marker.]",
       "audioTextZh": "【到外指点标。】",
       "referenceText": "Beijing Tower, BAW038, outer marker.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111662",
-      "taskTitle": "7. BAW038 ingestion, etc.-18",
+      "taskTitle": "7. BAW038 · 外来物吸入-18",
       "audioText": "BAW038, cleared to land runway 01, wind 240, 12m/s, report vacated.",
       "audioTextZh": "英航038，可以着陆跑道01，风向240, 风速12米/秒，脱离跑道后报。",
       "referenceText": "Cleared to land runway 01, report vacated, BAW038.",

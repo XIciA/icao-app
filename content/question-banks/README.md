@@ -15,3 +15,7 @@
 2. 只修改维护源，不手工修改 `dist/question-bank-release`。
 3. 修改后执行 `pnpm content:build && pnpm content:check:full`。
 4. App 和 API 只消费统一发布 contract，不按题库复制业务实现。
+
+仅修改标题等文本且本机没有完整历史媒体时，可执行 `pnpm content:build --source-only`，
+从维护源生成 App/API 数据，再执行 `pnpm content:check:ci`。
+该模式只验证资源清单，不检查媒体文件是否存在；不能替代正式媒体发布前的完整校验。

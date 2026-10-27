@@ -5,29 +5,29 @@
   "sourceReleases": [
     {
       "bankId": "listening",
-      "version": 26,
+      "version": 27,
       "checksum": "24b3a25218ef300f9517b05d17fb3a0dd8aea5da0cc33a17a86512f0250a2b3b"
     },
     {
       "bankId": "sentences900",
-      "version": 26,
-      "checksum": "d751280f47e1fbc6c6482cd39581acb8def494c5bac7293cd41b2465ad1a96a0"
+      "version": 27,
+      "checksum": "1e1f3682fdb410386d73d296a0fc1b7b234bce83ed55af8b46bb030cbf75ca13"
     },
     {
       "bankId": "radiotelephony",
-      "version": 26,
-      "checksum": "824e2b5a7ec1f2abc420edb9ddeb27969f78ed9f9491adbb4b66fbc7ab09d5e3"
+      "version": 27,
+      "checksum": "12f063bf4c1996f806e95265d67d25a8677bbc8e2a704841e0431dd52e396084"
     },
     {
       "bankId": "opi",
-      "version": 26,
-      "checksum": "0488b53969fcf7b092ee02f3b0618f5d7c7827c0f40bb4163178cea61d184071"
+      "version": 27,
+      "checksum": "ae04603cffff3dff8b0ecd18d6da645d0cbee2092381cca05710773baaea946b"
     },
     {
       "bankId": "storytelling",
-      "version": 26,
+      "version": 27,
       "checksum": "cde4b45c5e2bfd4f67fd0325c60daba4a38a816e51e9d24212bc181871bc2d7e"
     }
   ],
-  "checksum": "f37fc34bb8928954df9ca124d484ff2c297f19d55baada2e7e1b3b34302e7e94"
+  "checksum": "e8c3cf7de7f14d12e8c5b03b5ce3e15536bd7b00990c532883b095f3bfb1241e"
 }

@@ -21,13 +21,23 @@ export type AudioSessionErrorCode =
   | 'recording_exclusive';
 
 export class AudioSessionError extends Error {
-  constructor(readonly code: AudioSessionErrorCode, message: string) {
+  constructor(readonly code: AudioSessionErrorCode, message: string, readonly diagnosticCode?:
+    'session_mode_configuration_failed' | 'session_activation_failed' | 'session_deactivation_failed'
+    | 'session_recovery_pending' | 'session_recovery_failed') {
     super(message);
     this.name = 'AudioSessionError';
   }
 }
 
 const TRANSITION_TIMEOUT_MS = 2_000;
+
+type BlockedTransition = {
+  error: AudioSessionError;
+  token: number;
+  // Only set after both the original native operation and recovery have settled.
+  // An unresolved operation or unconfirmed owner pause must remain fail-closed.
+  canRetryRecovery?: boolean;
+};
 
 const profiles = {
   wordSpeech: { allowsRecording: false, interruptionMode: 'doNotMix' as const, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false },
@@ -43,7 +53,7 @@ export class AudioSessionOrchestrator {
   private active?: AudioLease;
   private nextToken = 1;
   private transition: Promise<void> = Promise.resolve();
-  private blockedTransition?: { error: AudioSessionError; token: number };
+  private blockedTransition?: BlockedTransition;
   private nextBlockedToken = 1;
 
   register(owner: AudioOwner, client: AudioSessionClient) {
@@ -83,12 +93,14 @@ export class AudioSessionOrchestrator {
           'mode_switch_timeout',
           'mode_switch_failed',
           true,
+          'session_mode_configuration_failed',
         );
         await this.boundedTransition(
           setIsAudioActiveAsync(true),
           'mode_switch_timeout',
           'mode_switch_failed',
           true,
+          'session_activation_failed',
         );
       } catch (error) {
         const code = error instanceof AudioSessionError ? error.code : 'mode_switch_failed';
@@ -113,12 +125,14 @@ export class AudioSessionOrchestrator {
           'mode_switch_timeout',
           'mode_switch_failed',
           true,
+          'session_mode_configuration_failed',
         );
         await this.boundedTransition(
           setIsAudioActiveAsync(false),
           'mode_switch_timeout',
           'mode_switch_failed',
           true,
+          'session_deactivation_failed',
         );
       } catch (error) {
         this.active = undefined;
@@ -151,11 +165,15 @@ export class AudioSessionOrchestrator {
   }
 
   private enqueue<T>(operation: () => Promise<T>): Promise<T> {
-    const result = this.transition.catch(() => undefined).then(() => {
+    const result = this.transition.catch(() => undefined).then(async () => {
+      if (this.blockedTransition?.canRetryRecovery) {
+        await this.retryIdleRecovery(this.blockedTransition);
+      }
       if (this.blockedTransition) {
         throw new AudioSessionError(
           this.blockedTransition.error.code,
           'The previous audio transition is still recovering.',
+          'session_recovery_pending',
         );
       }
       return operation();
@@ -169,6 +187,7 @@ export class AudioSessionOrchestrator {
     timeoutCode: AudioSessionErrorCode,
     failureCode: AudioSessionErrorCode,
     recoverSession = false,
+    diagnosticCode?: AudioSessionError['diagnosticCode'],
   ) {
     return new Promise<T>((resolve, reject) => {
       let finished = false;
@@ -176,7 +195,7 @@ export class AudioSessionOrchestrator {
       const timeout = setTimeout(() => {
         if (finished) return;
         finished = true;
-        const error = new AudioSessionError(timeoutCode, timeoutCode);
+        const error = new AudioSessionError(timeoutCode, timeoutCode, diagnosticCode);
         this.blockUntilSettled(error, settlement, recoverSession);
         reject(error);
       }, TRANSITION_TIMEOUT_MS);
@@ -191,7 +210,7 @@ export class AudioSessionOrchestrator {
           if (finished) return;
           finished = true;
           clearTimeout(timeout);
-          const error = new AudioSessionError(failureCode, failureCode);
+          const error = new AudioSessionError(failureCode, failureCode, diagnosticCode);
           if (recoverSession) this.blockUntilSettled(error, Promise.resolve(), true);
           reject(error);
         },
@@ -232,7 +251,7 @@ export class AudioSessionOrchestrator {
     recoverSession: boolean,
   ) {
     const token = this.nextBlockedToken++;
-    const block = { error, token };
+    const block: BlockedTransition = { error, token };
     this.blockedTransition = block;
     // A timed-out native operation cannot be cancelled. Session-changing operations
     // must settle first, then reconcile to idle/inactive before a new owner can enter.
@@ -244,7 +263,9 @@ export class AudioSessionOrchestrator {
         if (this.blockedTransition === block) this.blockedTransition = undefined;
       },
       () => {
-        // If reconciliation cannot be proven, remain fail-closed until App restart.
+        // The native call has settled. A later user request can re-establish
+        // idle safely; a transient interruption must not disable audio forever.
+        if (this.blockedTransition === block) block.canRetryRecovery = true;
       },
     );
   }
@@ -255,7 +276,7 @@ export class AudioSessionOrchestrator {
     previous: AudioLease,
   ) {
     const token = this.nextBlockedToken++;
-    const block = { error, token };
+    const block: BlockedTransition = { error, token };
     this.blockedTransition = block;
     // A late successful pause means the old client is no longer an audio owner.
     // Remove only that exact lease, then prove the native session is idle before
@@ -266,8 +287,12 @@ export class AudioSessionOrchestrator {
         if (this.active?.token === previous.token && this.active.owner === previous.owner) {
           this.active = undefined;
         }
-        await this.reconcileIdleSession();
-        if (this.blockedTransition === block) this.blockedTransition = undefined;
+        try {
+          await this.reconcileIdleSession();
+          if (this.blockedTransition === block) this.blockedTransition = undefined;
+        } catch {
+          if (this.blockedTransition === block) block.canRetryRecovery = true;
+        }
       },
       () => {
         // The old client never confirmed it paused, so ownership remains blocked.
@@ -278,6 +303,31 @@ export class AudioSessionOrchestrator {
   private async reconcileIdleSession() {
     await setAudioModeAsync(profiles.idle);
     await setIsAudioActiveAsync(false);
+  }
+
+  private retryIdleRecovery(block: BlockedTransition): Promise<void> {
+    block.canRetryRecovery = false;
+    emitAudioDiagnostic({ code: 'session_recovery_requested', level: 'info', scope: 'session' });
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        // Do not permit another native call until this recovery really settles.
+        reject(new AudioSessionError('mode_switch_timeout', 'Audio session recovery is still pending.', 'session_recovery_pending'));
+      }, TRANSITION_TIMEOUT_MS);
+      void this.reconcileIdleSession().then(() => {
+        clearTimeout(timeout);
+        if (this.blockedTransition === block) {
+          this.active = undefined;
+          this.blockedTransition = undefined;
+        }
+        emitAudioDiagnostic({ code: 'session_recovered', level: 'info', scope: 'session' });
+        resolve();
+      }, () => {
+        clearTimeout(timeout);
+        if (this.blockedTransition === block) block.canRetryRecovery = true;
+        emitAudioDiagnostic({ code: 'session_recovery_failed', level: 'warning', scope: 'session' });
+        reject(new AudioSessionError(block.error.code, 'Audio session recovery failed.', 'session_recovery_failed'));
+      });
+    });
   }
 }
 

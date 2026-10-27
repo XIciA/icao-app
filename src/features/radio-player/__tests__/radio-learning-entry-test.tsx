@@ -1,3 +1,4 @@
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ account: { accountId: 'radio-learning-entry-test' } }) }));
 import { GuideBindingContext } from '@/features/usage-guide/GuideBindings';
 import { fireEvent, render, within } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

@@ -217,6 +217,7 @@ export class AdminDataService {
     cursor?: string,
     limit = 30,
     status?: string,
+    source?: string,
   ): Promise<OpsFeedbackListResponse> {
     let before: { createdAt: Date; id: string } | undefined;
     if (cursor) {
@@ -230,6 +231,7 @@ export class AdminDataService {
     const pageSize = Math.max(1, Math.min(50, limit));
     const rows = await this.database.db.select().from(feedbackTickets).where(and(
       gt(feedbackTickets.retentionAt, new Date()),
+      source ? eq(feedbackTickets.source, source) : undefined,
       status ? inArray(feedbackTickets.status, feedbackStatusStorageFilter(status)) : undefined,
       before ? or(lt(feedbackTickets.createdAt, before.createdAt), and(
         eq(feedbackTickets.createdAt, before.createdAt), lt(feedbackTickets.id, before.id),

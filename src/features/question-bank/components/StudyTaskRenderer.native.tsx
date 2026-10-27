@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import type { RecordingAsset } from '../recording/types';
@@ -9,6 +10,8 @@ import { SpeakingPracticePanel } from './SpeakingPracticePanel';
 
 export function StudyTaskRenderer({
   examMode = false,
+  highlightMode,
+  renderChoiceText,
   behavior,
   card,
   sessionId,
@@ -31,6 +34,8 @@ export function StudyTaskRenderer({
   variant = 'default',
 }: {
   examMode?: boolean;
+  highlightMode?: boolean;
+  renderChoiceText?: (text: string, index: number) => ReactNode;
   behavior: StudyBehavior;
   card: QuestionBankCard;
   sessionId: string;
@@ -55,6 +60,8 @@ export function StudyTaskRenderer({
   if (behavior.taskKind === 'choices') {
     return card.choices?.length ? (
       <ChoiceList
+        highlightMode={highlightMode}
+        renderChoiceText={renderChoiceText}
         choices={card.choices}
         choicesZh={card.choicesZh}
         correctChoiceIndex={card.correctChoiceIndex}

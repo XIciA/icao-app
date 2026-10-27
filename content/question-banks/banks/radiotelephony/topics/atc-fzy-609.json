@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-609",
-  "name": "CES586 drunk&cumuliform, etc.",
+  "name": "CES586 · 醉酒乘客与积状云",
   "declaredCardCount": 17,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111152",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-1",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-1",
       "audioText": "You are maintaining 9200m, ETA JTN at 55, squawk 1532; make an initial contact with Wuhan Control.",
       "audioTextZh": "飞机保持9200米，预计到达JTN时间55分，应答机1532；和武汉区调建立初次联系。",
       "referenceText": "Wuhan Control, CES586, 9200m maintaining, ETA JTN 55, squawk 1532.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111153",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-2",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-2",
       "audioText": "CES586, Wuhan Control, radar contact, direct to TOL, confirm Mach number .79.[Tell controller you are maintaining Mach number .79. And read back instructions.]",
       "audioTextZh": "东方586，武汉区调，雷达已识别，直飞TOL，证实马赫数点79。【告诉管制员你在维持马赫数点79并复诵指令。】",
       "referenceText": "Direct to TOL, affirm Mach number .79, CES586.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111154",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-3",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-3",
       "audioText": "CES586, around TOL reported moderate to severe clear air turbulence between 6000m to 10400m. The alternative level is 11600m, report intention?[Tell the controller you can accept 11600m.]",
       "audioTextZh": "东方586，TOL附近报告有强烈晴空乱流，高度6000米至10400米。备用高度是11600米，报告意图。【告诉管制员11600米可用。】",
       "referenceText": "Affirm 11600m, CES586.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111155",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-4",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-4",
       "audioText": "You receive the report from cabin said that a drunk passenger is behaving irrationally affecting cabin services and disturbing cabin order. You suspect the higher cabin altitude make the passenger uncomfortable. You want to fly a lower level.",
       "audioTextZh": "你收到客舱报告，一名醉酒乘客行为异常，影响客舱服务，扰乱客舱秩序。你怀疑较高的客舱压力让该乘客不舒服。你想请求较低高度。",
       "referenceText": "Wuhan Control, CES586, request descent due passenger uncomfortable.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111156",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-5",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-5",
       "audioText": "CES586, maintaining 11600m due the airspace congestion. Reduce Mach number to .75.[Read Back]",
       "audioTextZh": "东方586，由于空域拥挤，保持11600米。减小马赫数到点75。【复诵】",
       "referenceText": "Maintaining 11600m, reduce Mach number .75, CES586.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111157",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-6",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-6",
       "audioText": "The passenger took out the overhead oxygen mask. He is being closely monitored. Report the situation to the controller and request descent.",
       "audioTextZh": "该乘客拿出头顶上的氧气面罩。他被密切地监测。报告管制员该情况并请求下降。",
       "referenceText": "Wuhan Control, CES586, request descent. The passenger took out the oxygen mask and being monitored.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111158",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-7",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-7",
       "audioText": "CES586, descend and maintain 6600m by XSH.[Read Back]",
       "audioTextZh": "东方586，下降保持6600米，过XSH。【复诵】",
       "referenceText": "Descend and maintain 6600m by XSH, CES586.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111159",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-8",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-8",
       "audioText": "CES586, due to temporarily airspace restriction is effective immediately, after XSH, direct to ZF, expect ZF-03A Arrival. ILS approach runway 36R.[Read Back]",
       "audioTextZh": "东方586，由于临时空域限制立即生效，过XSH，直飞ZF，预计ZF-03A进场，盲降进近跑道36右。【复诵】",
       "referenceText": "After XSH, direct to ZF, expect ZF-03A arrival. ILS approach runway 36R, CES586.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111160",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-9",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-9",
       "audioText": "CES586, contact Wuhan Approach on 120.4.[Readback]",
       "audioTextZh": "东方586，联系武汉进近120.4。【复诵】",
       "referenceText": "Wuhan Approach 120.4, CES586.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111161",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-10",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-10",
       "audioText": "You have received ATIS O and is proceeding direct to ZF, maintaining 6600m. Call Wuhan Approach.",
       "audioTextZh": "你收到ATIS O，继续直飞ZF，6600米保持。呼叫武汉进近。",
       "referenceText": "Wuhan Approach, CES586, maintaining 6600m, information O, direct to ZF.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111162",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-11",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-11",
       "audioText": "CES586, information P valid, descend and maintain 4200m.[Read Back]",
       "audioTextZh": "东方586，通播P生效，下降保持4200米。【复诵】",
       "referenceText": "Descend and maintain 4200m, information P, CES586.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111163",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-12",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-12",
       "audioText": "You find the cumuliform clouds ahead; request turn left direct to HG.",
       "audioTextZh": "你发现前方有积雨云，请求左转直飞HG。",
       "referenceText": "Wuhan Approach, CES586, Request turn left direct to HG due cumuliform clouds ahead.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111164",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-13",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-13",
       "audioText": "CES586, Airspace restriction canceled. Turn left heading 220. Radar vector ILS approach runway 36R.[Read Back]",
       "audioTextZh": "东方586，空域限制取消。左转航向220。雷达引导盲降进近跑道36右。【复诵】",
       "referenceText": "Turn left heading 220, radar vector ILS approach runway 36R, CES586.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111165",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-14",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-14",
       "audioText": "CES586, turn right heading 330, descend and maintain 900m ILS approach runway 36R.[Read Back]",
       "audioTextZh": "东方586，右转航向330，下降保持900米，盲降进近跑道36右。【复诵】",
       "referenceText": "Descend and maintain 900m, turn right heading 330, ILS approach runway 36R, CES586.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111166",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-15",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-15",
       "audioText": "While intercepting the localizer, the drunk passenger discharges the fire extinguisher. The purser make an emergency call said there is still passenger standing in the cabin. Inform the Wuhan Approach the situation and request terminate the approach, proceed to the holding area.",
       "audioTextZh": "切入航道时，该醉酒乘客打开灭火器。接到乘务长的紧急呼叫，说仍有乘客站在客舱里。通知武汉进近该情况，请求中止进近，继续进入等待区。",
       "referenceText": "Wuhan Approach, CES586, Terminate the approach and request hold due passenger discharges the fire extinguisher and some passengers standing in the cabin.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111167",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-16",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-16",
       "audioText": "CES586, direct to DA, climb and maintain 1200m, expect further clearance time 50.",
       "audioTextZh": "东方586，直飞DA，上升保持1200米，预计抄收进一步许可时间为50分。",
       "referenceText": "Direct to DA, climb and maintain 1200m, copy time 50, CES586.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111168",
-      "taskTitle": "26. CES586 drunk&cumuliform, etc.-17",
+      "taskTitle": "26. CES586 · 醉酒乘客与积状云-17",
       "audioText": "Now the problematic passenger has been properly restrained. Advice the Approach you are ready to leave the hold.",
       "audioTextZh": "该问题乘客已被适当控制。告诉进近你已准备好离开等待区。",
       "referenceText": "Wuhan Approach, CES586, request leave the hold and continue approach.",

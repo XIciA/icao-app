@@ -1,3 +1,4 @@
+import type { FeedbackKind } from './feedback-config';
 import type { MyFeedbackDetail, MyFeedbackList } from '@icao/contracts/feedback-ops';
 import { apiRequest } from '@/platform/api-client';
 import { getNativeCommerceEnvironmentState, subscribeNativeCommerceEnvironment } from '@/features/native-commercial-testflight/commerce-environment.native';
@@ -21,10 +22,10 @@ export async function feedbackRequest<T>(path: string, init: RequestInit = {}): 
     return result;
   } finally { unsubscribe(); init.signal?.removeEventListener('abort', abort); }
 }
-export const listMyFeedback = (cursor?: string, signal?: AbortSignal) => feedbackRequest<MyFeedbackList>(cursor ? `?cursor=${encodeURIComponent(cursor)}` : '', { signal });
+export const listMyFeedback = (cursor?: string, signal?: AbortSignal, kind: FeedbackKind = 'opinion') => feedbackRequest<MyFeedbackList>(`?kind=${kind}${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`, { signal });
 export const getMyFeedback = (number: string, signal?: AbortSignal) => feedbackRequest<MyFeedbackDetail>(`/${encodeURIComponent(number)}`, { signal });
 export const markFeedbackRead = (number: string, replyId: string, signal?: AbortSignal) => feedbackRequest(`/${encodeURIComponent(number)}/read`, {
   method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ replyId }), signal,
 });
 
-export const unreadFeedback = () => feedbackRequest<{unread:boolean}>('/unread');
+export const unreadFeedback = (kind: FeedbackKind = 'opinion') => feedbackRequest<{unread:boolean}>(`/unread?kind=${kind}`);

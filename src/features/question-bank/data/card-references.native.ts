@@ -1,5 +1,5 @@
 import { ApiClientError } from '@/platform/api-client';
-import { commerceEntitlementSnapshotVersion } from '@/features/native-commercial-testflight/commerce-entitlement-events';
+import { commerceContentAccessSnapshot } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { nativeCommerceEnvironmentSnapshot } from '@/features/native-commercial-testflight/commerce-environment.native';
 import { createCardDirectory, directoryHasCompleteBank, type CardLocation } from './card-directory';
 import { contentReleaseOf } from './content-version.native';
@@ -12,18 +12,37 @@ export type CardReference = {
   message?: string;
 };
 export const cardIdentityKey = (target: Pick<QuestionBankCardTarget, 'bankId' | 'cardId'>) => `${target.bankId}:${target.cardId}`;
-export const referenceOwner = () => `${nativeCommerceEnvironmentSnapshot()}:${commerceEntitlementSnapshotVersion()}`;
+export const referenceOwner = () => `${nativeCommerceEnvironmentSnapshot()}:${commerceContentAccessSnapshot()}`;
 
 /** A request-local projection of the existing repository; no second content cache. */
-export async function resolveCardReferences(targets: readonly QuestionBankCardTarget[]) {
+export async function resolveCardReferences(targets: readonly QuestionBankCardTarget[], options: {
+  onProgress?: (values: Map<string, CardReference>) => void;
+  isCurrent?: () => boolean;
+} = {}) {
   const owner = referenceOwner();
-  const assertOwner = () => { if (owner !== referenceOwner()) throw new Error('content_account_changed'); };
+  const assertOwner = () => {
+    if (owner !== referenceOwner()) throw new Error('content_account_changed');
+    if (options.isCurrent && !options.isCurrent()) throw new Error('content_request_cancelled');
+  };
+  // One shared limit for catalog and topic requests across every bank.
+  let running = 0;
+  const waiting: (() => void)[] = [];
+  const request = async <T,>(load: () => Promise<T>): Promise<T> => {
+    if (running >= 4) await new Promise<void>(resolve => waiting.push(resolve));
+    else running++;
+    try { assertOwner(); return await load(); }
+    finally {
+      const next = waiting.shift();
+      if (next) next(); else running--;
+    }
+  };
   const result = new Map<string, CardReference>();
+  const publish = () => { assertOwner(); options.onProgress?.(new Map(result)); };
   const bankIds = [...new Set(targets.map(target => target.bankId))];
-  for (const bankId of bankIds) {
+  await Promise.all(bankIds.map(async bankId => {
     const requested = targets.filter(target => target.bankId === bankId);
     try {
-      const loaded = await loadQuestionBank(bankId); assertOwner();
+      const loaded = await request(() => loadQuestionBank(bankId)); assertOwner();
       if (!loaded) throw new Error('question_bank_unavailable');
       const directory = createCardDirectory([loaded.dataset]);
       const topics = new Map<string, CardLocation[]>();
@@ -42,12 +61,12 @@ export async function resolveCardReferences(targets: readonly QuestionBankCardTa
           topics.set(topicKey, [...(topics.get(topicKey) ?? []), location]);
         }
       }
-      // Bound concurrency and share each topic request among its annotations.
-      const groups = [...topics.values()];
-      for (let i = 0; i < groups.length; i += 4) await Promise.all(groups.slice(i, i + 4).map(async locations => {
+      publish();
+      // Share each topic request among its annotations; publish as it completes.
+      await Promise.all([...topics.values()].map(async locations => {
         const first = locations[0];
         try {
-          const topic = await questionBankRepository.getTopic(bankId, first.categoryId, first.topicId, contentReleaseOf(loaded.dataset));
+          const topic = await request(() => questionBankRepository.getTopic(bankId, first.categoryId, first.topicId, contentReleaseOf(loaded.dataset)));
           assertOwner();
           for (const location of locations) {
             const card = topic?.cards.find(card => card.id === location.cardId);
@@ -62,12 +81,14 @@ export async function resolveCardReferences(targets: readonly QuestionBankCardTa
             message: locked ? '原题属于会员内容，标注仍保留。' : '原题加载未完成，请联网后重试。',
           });
         }
+        publish();
       }));
     } catch {
       assertOwner();
       for (const target of requested) result.set(cardIdentityKey(target), { status: 'unavailable', message: '原题加载未完成，请联网后重试。' });
+      publish();
     }
-  }
+  }));
   assertOwner();
   return result;
 }

@@ -1,3 +1,6 @@
+import { useSentenceBrowseMode } from '@/features/question-bank/lib/use-sentence-browse-mode';
+import { SENTENCE_SCENARIOS, sentenceScenario } from '@/features/question-bank/lib/sentence-scenarios';
+import { QuestionBankCategoryIcon } from '@/features/question-bank/components/QuestionBankCategoryIcon';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { AppText, BottomSheet, Button } from '@/components/ui';
@@ -10,11 +13,13 @@ import { colors, radii, spacing } from '@/theme';
 import { emptyRadioQueueFilter, hasRadioQueueFilter, radioDirectory, radioTrackIdentity, type RadioQueueFilter } from './queue-filter';
 import type { RadioPlayerContextValue, RadioTrack } from './types';
 
-type Row = { key: string; title: string; depth: number; tracks: RadioTrack[]; expandable?: boolean; count?: string };
+type Row = { key: string; title: string; depth: number; tracks: RadioTrack[]; expandable?: boolean; count?: string; sceneId?: string };
 export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlayerContextValue; visible: boolean; onClose: () => void }) {
   const { height } = useAppViewportDimensions();
   const annotations = useQuestionAnnotations();
   const [filterOpen, setFilterOpen] = useState(false);
+  const [browseOpen, setBrowseOpen] = useState(false);
+  const [sceneMode, setSceneMode] = useSentenceBrowseMode();
   const [draft, setDraft] = useState<RadioQueueFilter>(emptyRadioQueueFilter);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const catalog = radio.currentCatalog;
@@ -23,12 +28,24 @@ export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlaye
   const active = hasRadioQueueFilter(radio.queueFilter ?? emptyRadioQueueFilter);
   const currentTrackRef = useRef(radio.currentTrack); currentTrackRef.current = radio.currentTrack;
   useEffect(() => {
-    if (!visible) { setFilterOpen(false); return; }
+    if (!visible) { setFilterOpen(false); setBrowseOpen(false); return; }
     const track = currentTrackRef.current;
-    setExpanded(new Set(track ? [`category:${track.categoryId}`, `topic:${track.categoryId}:${track.topicId}`] : []));
+    const scene = track && sentenceScenario(track.id);
+    setExpanded(new Set(track ? [`category:${track.categoryId}`, `topic:${track.categoryId}:${track.topicId}`, ...(scene ? [`scene:${scene.id}`] : [])] : []));
+    setBrowseOpen(false);
   }, [visible, catalog?.bankId]);
   const rows = useMemo(() => {
     const result: Row[] = [];
+    if (catalog?.bankId === 'sentences900' && sceneMode) {
+      for (const scene of SENTENCE_SCENARIOS) {
+        const tracks = catalog.tracks.filter(track => sentenceScenario(track.id)?.id === scene.id);
+        if (!tracks.length) continue;
+        const key = `scene:${scene.id}`;
+        result.push({ key, title: scene.name, depth: 0, tracks, expandable: true, count: `${tracks.length}句`, sceneId: scene.id });
+        if (expanded.has(key)) tracks.forEach(track => result.push({ key: radioTrackIdentity(track), title: track.title, depth: 1, tracks: [track] }));
+      }
+      return result;
+    }
     for (const category of directory) {
       const key = `category:${category.id}`;
       const single = sourceDirectory.find(item => item.id === category.id)?.topics.length === 1;
@@ -41,18 +58,26 @@ export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlaye
       }
     }
     return result;
-  }, [directory, sourceDirectory, expanded]);
+  }, [directory, sourceDirectory, expanded, catalog, sceneMode]);
   const play = (track: RadioTrack) => { radio.selectTrack(track.id, true); onClose(); };
   const toggle = (key: string) => setExpanded(previous => { const next = new Set(previous); if (next.has(key)) next.delete(key); else next.add(key); return next; });
   const toggleColor = (key: 'tagIds' | 'highlightIds', id: string) => setDraft(previous => ({ ...previous, [key]: previous[key].includes(id) ? previous[key].filter(value => value !== id) : [...previous[key], id] }));
   return <BottomSheet accessibilityLabel="播放队列" visible={visible} onClose={onClose} scrollable={false}>
-    <View style={{ height: Math.min(height * 0.78, 650) }}>
-      <View style={styles.header}>
+    <View style={{ height: browseOpen ? undefined : Math.min(height * 0.78, 650) }}>
+      <View style={[styles.header, browseOpen && { display: 'none' }]}>
         <AppText variant="sectionTitle">{filterOpen ? '筛选' : '播放队列'}</AppText>
+        {browseOpen ? <Pressable accessibilityRole="button" accessibilityLabel="关闭浏览方式" onPress={() => setBrowseOpen(false)} style={styles.iconButton}><X size={21} color={colors.foreground} /></Pressable> : <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          {!filterOpen && catalog?.bankId === 'sentences900' ? <Pressable accessibilityRole="button" accessibilityLabel="900句浏览方式" onPress={() => setBrowseOpen(true)} style={styles.iconButton}><SlidersHorizontal size={21} color={colors.primary} /></Pressable> : null}
         {filterOpen ? <Pressable accessibilityRole="button" accessibilityLabel="关闭筛选" onPress={() => setFilterOpen(false)} style={styles.iconButton}><X size={21} color={colors.foreground} /></Pressable>
           : <Pressable accessibilityRole="button" accessibilityLabel={active ? '修改筛选' : '筛选播放队列'} disabled={!radio.setQueueFilter} onPress={() => { setDraft(radio.queueFilter ?? emptyRadioQueueFilter); setFilterOpen(true); }} style={({ pressed }) => [styles.filterButton, pressed && styles.pressed]}><SlidersHorizontal size={18} color={active ? colors.primary : colors.mutedForeground} /><AppText color={active ? colors.primary : colors.mutedForeground}>{active ? '已筛选' : '筛选'}</AppText></Pressable>}
+        </View>}
       </View>
-      {filterOpen ? <>
+      {browseOpen ? <View>
+        {([{ scene: false, title: '按等级' }, { scene: true, title: '按场景' }] as const).map(option => <Pressable key={option.title} accessibilityRole="radio" accessibilityState={{ checked: sceneMode === option.scene }} onPress={() => { setSceneMode(option.scene); setBrowseOpen(false); }} style={styles.rowMain}>
+          <AppText variant="button" style={styles.grow} color={sceneMode === option.scene ? colors.primary : colors.foreground}>{option.title}</AppText>
+          {sceneMode === option.scene ? <Check size={18} color={colors.primary} /> : null}
+        </Pressable>)}
+      </View> : filterOpen ? <>
         <ScrollView style={styles.list} contentContainerStyle={styles.filterContent}>
           {!annotations.hydrated ? <ActivityIndicator color={colors.primary} /> : annotations.loadErrorMessage ? <Button onPress={() => void annotations.refresh()} >重新读取标注</Button> : null}
           {([{ key: 'tags', label: '标签', Icon: Tag, definitions: annotations.tagDefinitions, ids: 'tagIds' }, { key: 'highlights', label: '高亮', Icon: Highlighter, definitions: annotations.highlightDefinitions, ids: 'highlightIds' }, { key: 'notes', label: '笔记', Icon: NotebookPen }] as const).map(item => <View key={item.key} style={styles.filterGroup}>
@@ -73,6 +98,7 @@ export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlaye
           const current = !item.expandable && track.id === radio.currentTrack?.id;
           return <View style={[styles.row, { marginLeft: item.depth * spacing[4] }, current && styles.current]}>
             <Pressable accessibilityRole="button" accessibilityLabel={item.expandable ? `${expanded.has(item.key) ? '收起' : '展开'}${item.title}` : `播放 ${item.title}`} accessibilityState={item.expandable ? { expanded: expanded.has(item.key) } : { selected: current }} onPress={() => item.expandable ? toggle(item.key) : play(track)} style={styles.rowMain}>
+              {item.sceneId ? <View style={styles.sceneIcon}><QuestionBankCategoryIcon bankId="sentences900" categoryId={`scenario-${item.sceneId}`} categoryName={item.title} /></View> : null}
               <View style={styles.grow}><AppText numberOfLines={2} variant={item.depth === 0 ? 'cardTitle' : 'body'} color={current ? colors.primary : colors.foreground}>{item.title}</AppText>{item.count ? <AppText variant="caption">{item.count}</AppText> : <AppText variant="caption">{track.requiresMembership ? '会员 · ' : ''}{formatAudioTime(track.durationSeconds)}</AppText>}</View>
               {item.expandable ? expanded.has(item.key) ? <ChevronDown size={18} color={colors.mutedForeground} /> : <ChevronRight size={18} color={colors.mutedForeground} /> : current ? <Headphones size={17} color={colors.primary} /> : null}
             </Pressable>
@@ -83,6 +109,7 @@ export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlaye
   </BottomSheet>;
 }
 const styles = StyleSheet.create({
+  sceneIcon: { width: 38, height: 38, borderRadius: radii.full, backgroundColor: colors.primary10, alignItems: 'center', justifyContent: 'center' },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingBottom: spacing[3], borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: colors.border },
   filterButton: { minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[2] },
   iconButton: { width: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },

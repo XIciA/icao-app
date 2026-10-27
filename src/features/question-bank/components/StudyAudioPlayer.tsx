@@ -86,6 +86,7 @@ export function StudyAudioPlayer({
   const webStartGenerationRef = useRef(0);
   const webStartTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [webStartState, setWebStartState] = useState<WebAudioStartState>('idle');
+  const [nativeStartFailed, setNativeStartFailed] = useState(false);
   const currentAppState = AppState.currentState;
   const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>(
     typeof currentAppState === 'string' ? currentAppState : 'active',
@@ -195,6 +196,7 @@ export function StudyAudioPlayer({
 
   useEffect(() => {
     playGeneration.current += 1;
+    setNativeStartFailed(false);
     const shouldRequestAutoPlay = autoPlayRequest > 0;
     const shouldGateWebAutoPlay = Platform.OS === 'web'
       && shouldRequestAutoPlay
@@ -256,7 +258,9 @@ export function StudyAudioPlayer({
         audioLease.current = lease;
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+        setNativeStartFailed(false);
       } catch {
+        if (Platform.OS !== 'web' && operationGeneration === playGeneration.current) setNativeStartFailed(true);
         cancelWebStartAttempt(Platform.OS === 'web' ? 'timed-out' : 'idle');
         if (lease) await releaseAudioLease(lease);
       }
@@ -394,7 +398,9 @@ export function StudyAudioPlayer({
         audioLease.current = lease;
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+        setNativeStartFailed(false);
       } catch {
+        if (operationGeneration === playGeneration.current) setNativeStartFailed(true);
         cancelWebStartAttempt();
         if (lease) await releaseAudioLease(lease);
       }
@@ -471,7 +477,9 @@ export function StudyAudioPlayer({
       audioLease.current = lease;
       onPlaybackStart?.();
       if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+      setNativeStartFailed(false);
     } catch {
+      if (Platform.OS !== 'web' && operationGeneration === playGeneration.current) setNativeStartFailed(true);
       if (lease) await releaseAudioLease(lease);
     }
   }
@@ -493,7 +501,9 @@ export function StudyAudioPlayer({
         audioLease.current = lease;
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+        setNativeStartFailed(false);
       } catch {
+        if (Platform.OS !== 'web' && operationGeneration === playGeneration.current) setNativeStartFailed(true);
         if (lease) await releaseAudioLease(lease);
       }
     })();
@@ -659,6 +669,8 @@ export function StudyAudioPlayer({
           )}
         </>
       )}
+
+      {nativeStartFailed ? <AppText accessibilityLiveRegion="polite" color={colors.destructive} variant="caption">音频暂时无法启动，请再次点击播放重试。</AppText> : null}
 
       <AppModal animationType="fade" onRequestClose={closeSpeedMenu} transparent visible={Boolean(speedMenuPosition)}>
         <View style={styles.modalLayer}>

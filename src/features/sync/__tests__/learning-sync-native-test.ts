@@ -15,7 +15,7 @@ jest.mock('expo-sqlite/kv-store', () => ({
   },
 }));
 
-jest.mock('@/platform/api-client', () => ({ apiRequest: (...args: unknown[]) => mockApiRequest(...args) }));
+jest.mock('@/platform/api-client', () => ({ getApiBaseUrl: () => undefined, apiRequest: (...args: unknown[]) => mockApiRequest(...args) }));
 
 
 import * as repository from '@/features/question-bank/data/repository.native';
