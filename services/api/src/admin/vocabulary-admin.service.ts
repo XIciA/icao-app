@@ -1,13 +1,15 @@
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
-import { and, eq, inArray, sql } from 'drizzle-orm';
+import { and, desc, eq, inArray, lt, sql } from 'drizzle-orm';
 import { applyVocabularyEdits, type VocabularyEdit } from '@icao/contracts/vocabulary-edit';
 import { vocabularyTerms, type VocabularyLiveContent } from '@icao/contracts/vocabulary-live';
 import type { VocabularyWord } from '@icao/contracts';
 import { createHash } from 'node:crypto';
 import { DatabaseService } from '../database/database.service';
-import { questionBankReleases, resourceObjects, vocabularyReleases } from '../database/schema';
+import { opsAuditEvents, opsStaffAccounts, questionBankReleases, resourceObjects, vocabularyReleases } from '../database/schema';
 import { VocabularyLiveService, VOCABULARY_PUBLICATION_LOCK, vocabularyContentChecksum } from '../vocabulary/vocabulary-live.service';
 import { AdminAuditService } from './admin-audit.service';
+import type { VocabularyHistoryDetail, VocabularyHistoryItem, VocabularyHistoryPage, VocabularyLevelMove, VocabularyLevelPlan, VocabularyLevelPublication } from '@icao/contracts/vocabulary-admin';
+import { levelEdits, vocabularyHistoryChanges } from './vocabulary-levels';
 import type { OpsAuthenticatedRequest } from './admin.types';
 
 export function pronunciationPath(text: string) {
@@ -46,8 +48,8 @@ export function liveWordFrequency(word: VocabularyWord, banks: { bankId: string;
 export class VocabularyAdminService {
   constructor(private readonly database: DatabaseService, private readonly live: VocabularyLiveService, private readonly audit: AdminAuditService) {}
   async read() { return this.live.get(); }
-  private async plan(previous: VocabularyLiveContent, edits: VocabularyEdit[], tx: DatabaseService['db']) {
-    if (!edits.length || edits.length > 100) throw new BadRequestException('vocabulary_edits_limit');
+  private async plan(previous: VocabularyLiveContent, edits: VocabularyEdit[], tx: DatabaseService['db'], limit = 100) {
+    if (!edits.length || edits.length > limit) throw new BadRequestException('vocabulary_edits_limit');
     let next: VocabularyLiveContent;
     try {
       const prior=new Map(previous.dataset.books.flatMap(book=>book.words.map(word=>[word.id,word] as const)));
@@ -85,12 +87,82 @@ export class VocabularyAdminService {
       const planned=await this.plan(previous,edits,tx);
       if (planned.checksum!==expectedChecksum) throw new ConflictException('vocabulary_preview_changed');
       if (planned.missingAudio.length) throw new ConflictException('vocabulary_audio_incomplete');
-      // Preserve the baseline as immutable history before the first admin change.
-      await tx.insert(vocabularyReleases).values({version:previous.version,checksum:previous.checksum,payload:{schemaVersion:previous.schemaVersion,catalogId:previous.catalogId,version:previous.version,dataset:previous.dataset,policy:previous.policy},active:false}).onConflictDoNothing();
-      await tx.update(vocabularyReleases).set({active:false}).where(eq(vocabularyReleases.active,true));
-      await tx.insert(vocabularyReleases).values({version:planned.content.version,checksum:planned.checksum,payload:planned.content,active:true});
-      await this.audit.record({requestId:request.id,actorStaffId:request.opsStaff!.id,actorRole:request.opsStaff!.role,action:'ops.vocabulary.publish',targetType:'vocabulary_release',targetId:String(planned.content.version),reason:'后台词库保存发布',beforeState:{version:previous.version,checksum:previous.checksum},afterState:{version:planned.content.version,checksum:planned.checksum},metadata:{edits:edits.map(edit=>({type:edit.type,...('id' in edit?{id:edit.id}:{})}))}},tx);
+      await this.commitRelease(previous, planned, request, tx, {
+        action:'ops.vocabulary.publish', reason:'后台词库保存发布',
+        metadata:{edits:edits.map(edit=>({type:edit.type,...('id' in edit?{id:edit.id}:{} )}))},
+      });
       return {...planned.content,checksum:planned.checksum};
     });
   }
+
+  private async commitRelease(previous: Awaited<ReturnType<VocabularyLiveService['get']>>, planned: {content:VocabularyLiveContent;checksum:string}, request:OpsAuthenticatedRequest, tx:DatabaseService['db'], audit:{action:string;reason:string;metadata:Record<string,unknown>}) {
+    await tx.insert(vocabularyReleases).values({version:previous.version,checksum:previous.checksum,payload:{schemaVersion:previous.schemaVersion,catalogId:previous.catalogId,version:previous.version,dataset:previous.dataset,policy:previous.policy},active:false}).onConflictDoNothing();
+    await tx.update(vocabularyReleases).set({active:false}).where(eq(vocabularyReleases.active,true));
+    await tx.insert(vocabularyReleases).values({version:planned.content.version,checksum:planned.checksum,payload:planned.content,active:true});
+    await this.audit.record({requestId:request.id,actorStaffId:request.opsStaff!.id,actorRole:request.opsStaff!.role,action:audit.action,targetType:'vocabulary_release',targetId:String(planned.content.version),reason:audit.reason,beforeState:{version:previous.version,checksum:previous.checksum},afterState:{version:planned.content.version,checksum:planned.checksum},metadata:audit.metadata},tx);
+  }
+
+  private async levelPlan(previous: Awaited<ReturnType<VocabularyLiveService['get']>>, moves:VocabularyLevelMove[], tx:DatabaseService['db']) {
+    const edits=levelEdits(previous,moves);
+    const planned=await this.plan(previous,edits,tx,5000);
+    const changes=vocabularyHistoryChanges(previous,planned.content).filter(change=>change.before&&change.after).map(change=>({id:change.id,word:change.word,from:change.before!.bookId,to:change.after!.bookId}));
+    const summary:VocabularyLevelPlan={baseVersion:previous.version,checksum:planned.checksum,changes,counts:previous.dataset.books.map(book=>({id:book.id,name:book.name,before:book.words.length,after:planned.content.dataset.books.find(next=>next.id===book.id)!.words.length})),missingAudio:planned.missingAudio};
+    return {planned,summary};
+  }
+
+  async previewLevels(baseVersion:number,moves:VocabularyLevelMove[]) {
+    return this.database.db.transaction(async tx=>{
+      await tx.execute(sql`select pg_advisory_xact_lock(${VOCABULARY_PUBLICATION_LOCK})`);
+      const previous=await this.live.get(tx);
+      if(previous.version!==baseVersion)throw new ConflictException('vocabulary_version_changed_reload');
+      return (await this.levelPlan(previous,moves,tx)).summary;
+    });
+  }
+
+  async publishLevels(input:{baseVersion:number;moves:VocabularyLevelMove[];checksum:string;batchId:string;note:string},request:OpsAuthenticatedRequest):Promise<VocabularyLevelPublication> {
+    const fingerprint=createHash('sha256').update(JSON.stringify({baseVersion:input.baseVersion,moves:[...input.moves].sort((a,b)=>a.id.localeCompare(b.id)),checksum:input.checksum,note:input.note})).digest('hex');
+    return this.database.db.transaction(async tx=>{
+      await tx.execute(sql`select pg_advisory_xact_lock(${VOCABULARY_PUBLICATION_LOCK})`);
+      await tx.execute(sql`select pg_advisory_xact_lock(hashtext('app_content_publish'))`);
+      const [existing]=await tx.select().from(opsAuditEvents).where(and(eq(opsAuditEvents.action,'ops.vocabulary.levels'),eq(opsAuditEvents.actorStaffId,request.opsStaff!.id),sql`${opsAuditEvents.metadata}->>'batchId' = ${input.batchId}`)).limit(1);
+      if(existing){
+        if((existing.metadata as Record<string,unknown>).fingerprint!==fingerprint)throw new ConflictException('vocabulary_batch_id_reused');
+        return {release:await this.live.get(tx),publishedVersion:Number(existing.targetId),alreadyPublished:true};
+      }
+      const previous=await this.live.get(tx);
+      if(previous.version!==input.baseVersion)throw new ConflictException('vocabulary_version_changed_reload');
+      const {planned,summary}=await this.levelPlan(previous,input.moves,tx);
+      if(planned.checksum!==input.checksum)throw new ConflictException('vocabulary_preview_changed');
+      if(planned.missingAudio.length)throw new ConflictException('vocabulary_audio_incomplete');
+      await this.commitRelease(previous,planned,request,tx,{action:'ops.vocabulary.levels',reason:'后台批量调整等级',metadata:{batchId:input.batchId,fingerprint,note:input.note,changes:summary.changes}});
+      return {release:{...planned.content,checksum:planned.checksum},publishedVersion:planned.content.version,alreadyPublished:false};
+    });
+  }
+
+  private async historyItem(row:typeof vocabularyReleases.$inferSelect,previous?:typeof vocabularyReleases.$inferSelect):Promise<VocabularyHistoryDetail> {
+    const [event]=await this.database.db.select({event:opsAuditEvents,actor:opsStaffAccounts.email}).from(opsAuditEvents).leftJoin(opsStaffAccounts,eq(opsAuditEvents.actorStaffId,opsStaffAccounts.id)).where(and(eq(opsAuditEvents.targetType,'vocabulary_release'),eq(opsAuditEvents.targetId,String(row.version)),inArray(opsAuditEvents.action,['ops.vocabulary.levels','ops.vocabulary.publish','ops.vocabulary.import']))).orderBy(desc(opsAuditEvents.sequence)).limit(1);
+    const changes=vocabularyHistoryChanges(previous?.payload as VocabularyLiveContent|undefined,row.payload as VocabularyLiveContent);
+    const metadata=event?.event.metadata as Record<string,unknown>|undefined;
+    return {version:row.version,previousVersion:previous?.version??null,createdAt:(event?.event.createdAt??row.createdAt).toISOString(),actor:event?.actor??(event?'系统导入':'未记录'),type:event?.event.action==='ops.vocabulary.levels'?'levels':event?.event.action==='ops.vocabulary.publish'?'edit':event?'import':'baseline',note:typeof metadata?.note==='string'?metadata.note:event?.event.reason??'',changeCount:changes.length,levelChanges:changes.filter(change=>change.before&&change.after&&change.before.bookId!==change.after.bookId).map(change=>({id:change.id,word:change.word,from:change.before!.bookId,to:change.after!.bookId})),changes};
+  }
+
+  async history(query:{cursor?:number;word?:string;actor?:string;type?:string;from?:string;to?:string}):Promise<VocabularyHistoryPage> {
+    const rows=await this.database.db.select().from(vocabularyReleases).where(query.cursor?lt(vocabularyReleases.version,query.cursor):undefined).orderBy(desc(vocabularyReleases.version)).limit(21);
+    const items:VocabularyHistoryItem[]=[];
+    for(let i=0;i<Math.min(rows.length,20);i++){
+      const detail=await this.historyItem(rows[i]!,rows[i+1]);
+      const needle=query.word?.toLowerCase();
+      if(needle&&!detail.changes.some(change=>[change.id,change.word,change.before?.word,change.before?.meaning,change.after?.meaning].some(value=>value?.toLowerCase().includes(needle))))continue;
+      if(query.actor&&!detail.actor.toLowerCase().includes(query.actor.toLowerCase())||query.type&&query.type!==detail.type||query.from&&detail.createdAt<query.from||query.to&&detail.createdAt>=query.to)continue;
+      items.push({version:detail.version,previousVersion:detail.previousVersion,createdAt:detail.createdAt,actor:detail.actor,type:detail.type,note:detail.note,changeCount:detail.changeCount,levelChanges:detail.levelChanges});
+    }
+    return {items,nextCursor:rows.length>20?rows[19]!.version:null};
+  }
+
+  async historyDetail(version:number):Promise<VocabularyHistoryDetail> {
+    const rows=await this.database.db.select().from(vocabularyReleases).where(sql`${vocabularyReleases.version} <= ${version}`).orderBy(desc(vocabularyReleases.version)).limit(2);
+    if(rows[0]?.version!==version)throw new BadRequestException('vocabulary_history_missing');
+    return this.historyItem(rows[0],rows[1]);
+  }
+
 }

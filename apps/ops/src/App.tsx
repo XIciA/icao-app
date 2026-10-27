@@ -99,7 +99,7 @@ export function App({ renderAiRules }: { renderAiRules?: (props: AiRulesPageProp
       <div className="ops-session"><span>{local ? "本地连接 · 正式数据" : session.staff.email}</span>{!local && <button className="link-button" onClick={() => void logout()}>退出</button>}</div>
     </header>
     <div className="ops-content"><ErrorNotice error={error} />
-      {page === 'vocabulary' && session.staff.role === 'admin' ? <VocabularyPage onDirtyChange={setDirty}/> : page === 'stability' ? <StabilityPage onUsage={() => changePage('usage')} /> : page === 'content' ? <ContentOrdersPage admin={session.staff.role==='admin'} /> : page === 'feedback' ? <FeedbackPage /> : page === 'usage' || page === 'clicks' ? <ReportsPage key={page} kind={page} /> : page === 'entitlements' ? <EntitlementsPage /> : session.staff.role !== 'admin'
+      {page === 'vocabulary' && session.staff.role === 'admin' ? <VocabularyPage actorId={session.staff.id} onDirtyChange={setDirty}/> : page === 'stability' ? <StabilityPage onUsage={() => changePage('usage')} /> : page === 'content' ? <ContentOrdersPage admin={session.staff.role==='admin'} /> : page === 'feedback' ? <FeedbackPage /> : page === 'usage' || page === 'clicks' ? <ReportsPage key={page} kind={page} /> : page === 'entitlements' ? <EntitlementsPage /> : session.staff.role !== 'admin'
         ? <p className="notice">当前账号没有调整 AI 额度的权限。</p>
         : renderAiRules?.({ onDirtyChange: setDirty }) ?? <AiRulesPage onDirtyChange={setDirty} />}
     </div>

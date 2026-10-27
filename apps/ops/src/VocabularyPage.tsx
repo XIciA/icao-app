@@ -1,3 +1,5 @@
+import { VocabularyLevelsPage } from './VocabularyLevelsPage';
+import { VocabularyHistoryPage } from './VocabularyHistoryPage';
 import { useEffect, useRef, useState } from 'react';
 import type { VocabularyWord } from '@icao/contracts';
 import type { VocabularyEdit } from '@icao/contracts/vocabulary-edit';
@@ -7,7 +9,7 @@ import { opsApi, opsResponse } from './api';
 type Plan={content:VocabularyLiveContent;checksum:string;missingAudio:string[]};
 const message=(error:unknown)=>error instanceof Error?error.message:'操作未完成';
 const errors:Record<string,string>={vocabulary_version_changed_reload:'词库已被其他管理员更新，请重新载入后再修改。',vocabulary_preview_changed:'内容或题库已变化，请重新预览。',vocabulary_audio_incomplete:'请先补齐单词和例句录音。',vocabulary_audio_upload_unconfigured:'服务器尚未配置词库录音上传权限。',vocabulary_frequency_corpus_incomplete:'题库语料不完整，暂时不能发布。'};
-export function VocabularyPage({onDirtyChange}:{onDirtyChange:(dirty:boolean)=>void}) {
+function VocabularyEditor({onDirtyChange}:{onDirtyChange:(dirty:boolean)=>void}) {
   const [release,setRelease]=useState<VocabularyLiveRelease>();
   const [book,setBook]=useState('preview'); const [query,setQuery]=useState('');
   const [sort,setSort]=useState<'alphabetical'|'frequency'>('alphabetical');
@@ -56,4 +58,20 @@ export function VocabularyPage({onDirtyChange}:{onDirtyChange:(dirty:boolean)=>v
       <div className="vocab-actions"><button disabled={busy} onClick={()=>void preview()}>检查并预览</button>{plan&&<><span>{plan.missingAudio.length?`缺少 ${plan.missingAudio.length} 个录音`:`检查通过 · ${plan.content.dataset.books.reduce((n,b)=>n+b.words.length,0)} 词`}</span><button className="primary" disabled={busy||Boolean(plan.missingAudio.length)} onClick={()=>void publish()}>确认保存并发布</button></>}</div>
     </>:<p className="muted">选择词条后，可编辑内容、调整等级、删除、合并或拆分。</p>}</article></div>
   </section>;
+}
+
+
+export function VocabularyPage({onDirtyChange,actorId='local'}:{onDirtyChange:(dirty:boolean)=>void;actorId?:string}) {
+  const [mode,setMode]=useState<'editor'|'levels'|'history'>('editor');
+  const [editorDirty,setEditorDirty]=useState(false),[levelsDirty,setLevelsDirty]=useState(false);
+  const [levelsOpened,setLevelsOpened]=useState(false),[historyRevision,setHistoryRevision]=useState(0);
+  useEffect(()=>{onDirtyChange(mode==='editor'?editorDirty:levelsDirty);},[mode,editorDirty,levelsDirty,onDirtyChange]);
+  function navigate(next:typeof mode){if(next===mode)return;if(mode==='editor'&&editorDirty&&!window.confirm('放弃单词编辑中尚未发布的修改？'))return;if(next==='editor'&&levelsDirty&&!window.confirm('等级调整草稿已保留在当前浏览器，返回词库编辑？'))return;if(next==='levels')setLevelsOpened(true);setMode(next);}
+  return <><div className="vocab-mode-actions" role="group" aria-label="词库工作模式"><button className={mode==='editor'?'active':''} onClick={()=>navigate('editor')}>词库编辑</button><button className={mode==='levels'?'active':''} onClick={()=>navigate('levels')}>批量调整等级</button><button className={mode==='history'?'active':''} onClick={()=>navigate('history')}>操作历史</button></div>
+    {mode==='editor'&&<VocabularyEditor onDirtyChange={setEditorDirty}/>}
+    {mode!=='editor'&&<section className="vocabulary-admin"><div className="page-heading"><h1>{mode==='levels'?'批量调整等级':'词库操作历史'}</h1></div>
+      {levelsOpened&&<div hidden={mode!=='levels'}><VocabularyLevelsPage actorId={actorId} onDirtyChange={setLevelsDirty} onPublished={()=>setHistoryRevision(value=>value+1)}/></div>}
+      {mode==='history'&&<VocabularyHistoryPage key={historyRevision}/>}
+    </section>}
+  </>;
 }

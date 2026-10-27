@@ -13,7 +13,7 @@ import { canonicalVocabularyJson, vocabularyLivePayload } from '@icao/contracts/
 import { createHash } from 'node:crypto';
 import { VocabularyLiveService } from '../src/vocabulary/vocabulary-live.service';
 import { VocabularyAdminService, vocabularyAudioPaths } from '../src/admin/vocabulary-admin.service';
-import type { AdminAuditService } from '../src/admin/admin-audit.service';
+import { AdminAuditService } from '../src/admin/admin-audit.service';
 import { SyncService } from '../src/sync/sync.service';
 import type { OpsAuthenticatedRequest } from '../src/admin/admin.types';
 import { vocabularyDocumentForPolicy } from '../src/sync/vocabulary-document';
@@ -129,4 +129,45 @@ it('imports the reviewed immutable baseline idempotently with exact hash, comple
   const retried=await importVocabulary('publish',path,environment);expect(retried.alreadyPublished).toBe(true);
   expect(await database.select().from(schema.vocabularyReleases)).toHaveLength(1);
   expect(await database.select().from(schema.opsAuditEvents).where(eq(schema.opsAuditEvents.action,'ops.vocabulary.import'))).toHaveLength(1);
+});
+
+
+it('publishes more than 100 classification-only moves as one atomic version and exposes immutable searchable history',async()=>{
+  const db={db:database} as unknown as DatabaseService,live=new VocabularyLiveService(db),audit=new AdminAuditService(db),service=new VocabularyAdminService(db,live,audit);
+  const [staff]=await database.insert(schema.opsStaffAccounts).values({email:'level-admin@example.com',role:'admin',passwordHash:'test',totpSecretCiphertext:'test',totpSecretIv:'test',totpSecretTag:'test',totpConfirmedAt:new Date()}).returning();
+  const req={id:'levels-test',opsStaff:{id:staff!.id,role:'admin'}} as OpsAuthenticatedRequest;
+  const previous=await live.get(),source=previous.dataset.books[1]!.words.slice(0,110);
+  const moves=source.map(word=>({id:word.id,bookId:'icao5' as const}));
+  const preview=await service.previewLevels(previous.version,moves);expect(preview.changes).toHaveLength(110);
+  expect(await database.select().from(schema.vocabularyReleases).where(eq(schema.vocabularyReleases.active,true))).toHaveLength(1);
+  const input={baseVersion:previous.version,moves,checksum:preview.checksum,batchId:'34887de0-96bd-4ca5-86ea-89dcc8f78e75',note:'高频词等级复核'};
+  const [first,retry]=await Promise.all([service.publishLevels(input,req),service.publishLevels(input,req)]);
+  expect(first.publishedVersion).toBe(previous.version+1);expect(retry.publishedVersion).toBe(first.publishedVersion);expect([first.alreadyPublished,retry.alreadyPublished].sort()).toEqual([false,true]);
+  const next=await live.get();expect(next.version).toBe(previous.version+1);
+  const words=new Map(next.dataset.books.flatMap(book=>book.words.map(word=>[word.id,word] as const)));
+  for(const word of source)expect(words.get(word.id)).toEqual({...word,bookId:'icao5',level:3});
+  const history=await service.history({word:source[0]!.word,actor:'level-admin',type:'levels'});
+  expect(history.items).toHaveLength(1);expect(history.items[0]).toMatchObject({version:next.version,changeCount:110,note:input.note});
+  const detail=await service.historyDetail(next.version);expect(detail.changes).toHaveLength(110);expect(detail.levelChanges[0]).toMatchObject({from:'icao4',to:'icao5'});
+  expect(await database.select().from(schema.opsAuditEvents).where(eq(schema.opsAuditEvents.action,'ops.vocabulary.levels'))).toHaveLength(1);
+  await expect(service.publishLevels({...input,note:'changed payload'},req)).rejects.toThrow('vocabulary_batch_id_reused');
+  const policyProgress={schemaVersion:1 as const,words:{[source[0]!.id]:{status:'known' as const,favorite:true,updatedAt:'2026-10-27T00:00:00.000Z'}},updatedAt:'2026-10-27T00:00:00.000Z'};
+  expect(vocabularyDocumentForPolicy(policyProgress,next.policy)).toEqual(policyProgress);
+});
+
+it('rejects stale, duplicate, missing and no-op level moves and rolls back the version switch when audit fails',async()=>{
+  const f=fixture(),previous=await f.live.get(),word=previous.dataset.books[0]!.words[0]!;
+  const [actor]=await database.select().from(schema.opsStaffAccounts).limit(1);
+  const levelRequest={...request,opsStaff:{id:actor!.id,role:'admin'}} as OpsAuthenticatedRequest;
+  const moves=[{id:word.id,bookId:'icao4' as const}];
+  await expect(f.service.previewLevels(previous.version-1,moves)).rejects.toThrow('vocabulary_version_changed_reload');
+  await expect(f.service.previewLevels(previous.version,[...moves,...moves])).rejects.toThrow('invalid_vocabulary_level_move');
+  await expect(f.service.previewLevels(previous.version,[{id:'missing',bookId:'icao4'}])).rejects.toThrow('invalid_vocabulary_level_move');
+  await expect(f.service.previewLevels(previous.version,[{id:word.id,bookId:word.bookId}])).rejects.toThrow('vocabulary_no_level_changes');
+  const plan=await f.service.previewLevels(previous.version,moves);
+  vi.mocked(f.audit.record).mockRejectedValueOnce(new Error('audit unavailable'));
+  await expect(f.service.publishLevels({baseVersion:previous.version,moves,checksum:plan.checksum,batchId:'54de0f0a-6c61-48b0-8b66-c4bcf8122836',note:''},levelRequest)).rejects.toThrow('audit unavailable');
+  expect((await f.live.get()).version).toBe(previous.version);
+  expect(await database.select().from(schema.vocabularyReleases).where(eq(schema.vocabularyReleases.active,true))).toHaveLength(1);
+  await expect(f.service.historyDetail(999999)).rejects.toThrow('vocabulary_history_missing');
 });

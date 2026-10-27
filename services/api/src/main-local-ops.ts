@@ -60,7 +60,7 @@ async function main(){
     session=await auth.login({email:settings.email!,password:settings.password!,totpCode:totpCodeAt(delivery.totpSecret),deviceName:'本地管理后台'},randomUUID(),'127.0.0.1');await writeFile(sessionPath,JSON.stringify(session),{mode:0o600});return session;}
   await authenticate();
   const cookie=randomBytes(32).toString('hex');const dist=join(root,'apps/ops/dist');
-  const allowed=/^\/v1\/admin\/(?:stability|vocabulary(?:\/(?:preview|publish|audio))?|content-orders(?:\/[^?]*)?|feedback(?:\/[^?]*)?|ai-rules(?:\/(?:preview|publish))?|users(?:\/(?:search|operations|[\w-]+\/detail|reset-allowances\/(?:preview|[\w-]+\/execute)))?|reports\/(?:usage|clicks|accounts\/[\w-]+)|review-entitlements\/(?:preview|[\w-]+\/execute))(?:\?.*)?$/;
+  const allowed=/^\/v1\/admin\/(?:stability|vocabulary(?:\/(?:preview|publish|audio|levels\/(?:preview|publish)|history(?:\/[1-9][0-9]*)?))?|content-orders(?:\/[^?]*)?|feedback(?:\/[^?]*)?|ai-rules(?:\/(?:preview|publish))?|users(?:\/(?:search|operations|[\w-]+\/detail|reset-allowances\/(?:preview|[\w-]+\/execute)))?|reports\/(?:usage|clicks|accounts\/[\w-]+)|review-entitlements\/(?:preview|[\w-]+\/execute))(?:\?.*)?$/;
   const server=createServer(async(req,res)=>{
     try{
       if(req.headers.host!=='127.0.0.1:4173'||req.headers['sec-fetch-site']==='cross-site'){res.writeHead(403).end();return;}
