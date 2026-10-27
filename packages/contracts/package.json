@@ -15,7 +15,8 @@
     "./content-workflow": "./src/content-workflow.ts",
     "./ops-stability": "./src/ops-stability.ts",
     "./vocabulary-live": "./src/vocabulary-live.ts",
-    "./vocabulary-edit": "./src/vocabulary-edit.ts"
+    "./vocabulary-edit": "./src/vocabulary-edit.ts",
+    "./vocabulary-admin": "./src/vocabulary-admin.ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
