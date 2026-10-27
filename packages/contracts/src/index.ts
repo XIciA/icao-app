@@ -422,6 +422,8 @@ export type FeedbackSubmissionPayload = {
   category: FeedbackCategory;
   description: string;
   contact?: string;
+  examDate?: string;
+  examCenter?: string;
   source: FeedbackSource;
   sourceRoute: string;
   appDisplayVersion: string;
@@ -984,6 +986,8 @@ export type OpsAccountCommerceSummary = {
 };
 
 export type OpsFeedbackQueueItem = {
+  examDate?: string;
+  examCenter?: string;
   ticketNumber: string;
   accountId: string;
   category: string;

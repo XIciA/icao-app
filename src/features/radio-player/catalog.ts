@@ -1,3 +1,4 @@
+import { sentenceDisplayTitle } from '@/features/question-bank/lib/sentence-display-title';
 import { getEmbeddedQuestionBanks, loadQuestionBank } from '@/features/question-bank/data/repository';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 
@@ -22,7 +23,7 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[]): RadioCatal
             categoryTitle: category.name,
             topicId: topic.id,
             topicTitle: topic.name,
-            title: card.taskTitle,
+            title: sentenceDisplayTitle(card.id, card.taskTitle),
             audioText: card.audioText,
             audioTextZh: card.audioTextZh,
             audioPath: card.audio,

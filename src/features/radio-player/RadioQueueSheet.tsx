@@ -4,7 +4,7 @@ import { QuestionBankCategoryIcon } from '@/features/question-bank/components/Qu
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { AppText, BottomSheet, Button } from '@/components/ui';
-import { Check, ChevronDown, ChevronRight, Headphones, Highlighter, NotebookPen, Play, SlidersHorizontal, Tag, X } from '@/components/ui/icons';
+import { Check, ChevronDown, ChevronRight, Headphones, Highlighter, NotebookPen, Play, Funnel, SlidersHorizontal, Tag, X } from '@/components/ui/icons';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { useQuestionAnnotations } from '@/features/question-bank/annotations/use-question-annotations';
 import { annotationToneColors } from '@/features/question-bank/annotations/colors';
@@ -69,11 +69,11 @@ export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlaye
         {browseOpen ? <Pressable accessibilityRole="button" accessibilityLabel="关闭浏览方式" onPress={() => setBrowseOpen(false)} style={styles.iconButton}><X size={21} color={colors.foreground} /></Pressable> : <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           {!filterOpen && catalog?.bankId === 'sentences900' ? <Pressable accessibilityRole="button" accessibilityLabel="900句浏览方式" onPress={() => setBrowseOpen(true)} style={styles.iconButton}><SlidersHorizontal size={21} color={colors.primary} /></Pressable> : null}
         {filterOpen ? <Pressable accessibilityRole="button" accessibilityLabel="关闭筛选" onPress={() => setFilterOpen(false)} style={styles.iconButton}><X size={21} color={colors.foreground} /></Pressable>
-          : <Pressable accessibilityRole="button" accessibilityLabel={active ? '修改筛选' : '筛选播放队列'} disabled={!radio.setQueueFilter} onPress={() => { setDraft(radio.queueFilter ?? emptyRadioQueueFilter); setFilterOpen(true); }} style={({ pressed }) => [styles.filterButton, pressed && styles.pressed]}><SlidersHorizontal size={18} color={active ? colors.primary : colors.mutedForeground} /><AppText color={active ? colors.primary : colors.mutedForeground}>{active ? '已筛选' : '筛选'}</AppText></Pressable>}
+          : <Pressable accessibilityRole="button" accessibilityLabel={active ? '修改筛选' : '筛选播放队列'} disabled={!radio.setQueueFilter} onPress={() => { setDraft(radio.queueFilter ?? emptyRadioQueueFilter); setFilterOpen(true); }} style={({ pressed }) => [styles.iconButton, pressed && styles.pressed]}><Funnel size={21} color={active ? colors.primary : colors.mutedForeground} /></Pressable>}
         </View>}
       </View>
       {browseOpen ? <View>
-        {([{ scene: false, title: '按等级' }, { scene: true, title: '按场景' }] as const).map(option => <Pressable key={option.title} accessibilityRole="radio" accessibilityState={{ checked: sceneMode === option.scene }} onPress={() => { setSceneMode(option.scene); setBrowseOpen(false); }} style={styles.rowMain}>
+        {([{ scene: false, title: '按等级' }, { scene: true, title: '按场景' }] as const).map(option => <Pressable key={option.title} accessibilityRole="radio" accessibilityState={{ checked: sceneMode === option.scene }} onPress={() => { setSceneMode(option.scene); setBrowseOpen(false); }} style={styles.browseOption}>
           <AppText variant="button" style={styles.grow} color={sceneMode === option.scene ? colors.primary : colors.foreground}>{option.title}</AppText>
           {sceneMode === option.scene ? <Check size={18} color={colors.primary} /> : null}
         </Pressable>)}
@@ -111,7 +111,7 @@ export function RadioQueueSheet({ radio, visible, onClose }: { radio: RadioPlaye
 const styles = StyleSheet.create({
   sceneIcon: { width: 38, height: 38, borderRadius: radii.full, backgroundColor: colors.primary10, alignItems: 'center', justifyContent: 'center' },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingBottom: spacing[3], borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: colors.border },
-  filterButton: { minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[2] },
+  browseOption: { minHeight: 64, flexDirection: 'row', alignItems: 'center', paddingVertical: spacing[3], paddingHorizontal: spacing[2] },
   iconButton: { width: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
   pressed: { opacity: 0.6 }, list: { flex: 1 }, grow: { flex: 1 },
   row: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: colors.border },

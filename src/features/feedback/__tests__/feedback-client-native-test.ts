@@ -31,6 +31,17 @@ beforeEach(() => {
 });
 afterEach(() => jest.useRealTimers());
 
+it('sends calendar strings and trimmed centers only for exam reports on the shared Native and EdgeOne path', async () => {
+  mockUpload.mockImplementation(async()=>response());
+  await submitFeedback({...input,source:'exam_report',category:'opi',examDate:'2026-10-27',examCenter:'  上海  '});
+  expect(JSON.parse(mockUpload.mock.calls[0][1].body)).toMatchObject({examDate:'2026-10-27',examCenter:'上海'});
+  for(const source of ['profile','study','opi_hotspot'] as const){
+    await submitFeedback({...input,source,examDate:'2026-10-27',examCenter:'上海'});
+    const payload=JSON.parse(mockUpload.mock.calls.at(-1)![1].body);
+    expect(payload).not.toHaveProperty('examDate');expect(payload).not.toHaveProperty('examCenter');
+  }
+});
+
 it('retains the original question version, idempotency key and account token on the single upload path', async () => {
   await expect(submitFeedback(input)).resolves.toMatchObject({ ticketNumber: 'FB-123' });
   const [url, options] = mockUpload.mock.calls[0];

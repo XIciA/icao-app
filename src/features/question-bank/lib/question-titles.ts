@@ -1,7 +1,12 @@
+import { sentenceDisplayTitle } from './sentence-display-title';
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 
 /** Display names never identify a question; a caller can supply its final visible order. */
 export function naturalTopicTitles(bankId: QuestionBankId, topic: QuestionBankTopic, displayOrder?: readonly string[]): QuestionBankTopic {
+  if (bankId === 'sentences900') return { ...topic,
+    cards: topic.cards.map(card => ({ ...card, taskTitle: sentenceDisplayTitle(card.id, card.taskTitle) })),
+    radioEntries: topic.radioEntries?.map(entry => ({ ...entry, title: sentenceDisplayTitle(entry.id, entry.title) })),
+  };
   if (bankId !== 'listening' && bankId !== 'storytelling') return topic;
   const order = displayOrder ?? topic.scopeCardIds?.all ?? topic.cards.filter(card => !card.retired).map(card => card.id);
   const numbers = new Map(order.map((id, index) => [id, index + 1]));
@@ -15,7 +20,7 @@ export function naturalTopicTitles(bankId: QuestionBankId, topic: QuestionBankTo
   return { ...topic, cards };
 }
 export function naturalDatasetTitles(dataset: QuestionBankDataset): QuestionBankDataset {
-  if (dataset.id !== 'listening' && dataset.id !== 'storytelling' && dataset.id !== 'radiotelephony') return dataset;
+  if (dataset.id !== 'listening' && dataset.id !== 'storytelling' && dataset.id !== 'radiotelephony' && dataset.id !== 'sentences900') return dataset;
   const categories = dataset.id === 'listening' ? [...dataset.categories].sort((a, b) => listeningRank(a.id) - listeningRank(b.id)) : dataset.id === 'radiotelephony' ? [...dataset.categories].sort((a, b) => Number(a.topics.every(topic => topic.practiceKind === 'scoring-points')) - Number(b.topics.every(topic => topic.practiceKind === 'scoring-points'))) : dataset.categories;
   return { ...dataset, categories: categories.map(category => ({ ...category,
     name: dataset.id === 'listening' ? category.name.replace(/(\d+)s/g, '$1秒')

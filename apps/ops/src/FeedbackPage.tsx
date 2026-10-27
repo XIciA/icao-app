@@ -10,6 +10,14 @@ const date = (value: string) => new Date(value).toLocaleString('zh-CN', { hour12
 const failure = (cause: unknown) => cause instanceof Error && cause.message === 'feedback_not_found'
   ? '这条反馈已不在有效保留期内。' : '读取失败，请重试。';
 
+function ExamDetails({ item }: { item: OpsFeedbackQueueItem }) {
+  if (item.source !== 'exam_report' || (!item.examDate && !item.examCenter)) return null;
+  return <dl className="feedback-exam-details">
+    {item.examDate && <><dt>考试时间</dt><dd>{item.examDate}</dd></>}
+    {item.examCenter && <><dt>考点名称</dt><dd>{item.examCenter}</dd></>}
+  </dl>;
+}
+
 function Attachment({ ticket, image }: { ticket: string; image: OpsFeedbackAttachment }) {
   const [url, setUrl] = useState<string>();
   const [error, setError] = useState(false);
@@ -100,6 +108,7 @@ export function FeedbackPage() {
         <p className="feedback-description"><strong>{sources[detail.source] ?? '意见反馈'}</strong>
           {detail.source === 'study' && (detail.question?.displayName ? <> · {detail.question.displayName}</> : ' · 题名暂无法核实，原始题目编号见下方')}
         </p>
+        <ExamDetails item={detail} />
         <p className="feedback-description">{detail.description}</p>
         {detail.attachments.length > 0 && <div className="feedback-images">{detail.attachments.map((image) => <Attachment key={image.id} ticket={detail.ticketNumber} image={image} />)}</div>}
         <h2>处理回复</h2>
@@ -124,7 +133,7 @@ export function FeedbackPage() {
       <div className="feedback-filters">{[['','全部'],...Object.entries(statuses)].map(([value,label])=><button key={value} disabled={busy} aria-pressed={statusFilter===value} onClick={()=>{setStatusFilter(value ?? '');setItems([]);setNextCursor(null);setLoaded(false);}}>{label}</button>)}</div>
       {error && <p className="notice error" role="alert">{error} <button disabled={busy} onClick={() => void load(loaded ? nextCursor ?? undefined : undefined)}>重试</button></p>}
       <div className="result-list">{items.map((item) => <button className="result-card feedback-row" key={item.ticketNumber} onClick={() => setSelected(item.ticketNumber)}>
-        <span><strong>{categoryLabel[item.category] ?? item.category} · {sources[item.source] ?? '意见反馈'}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
+        <span><strong>{categoryLabel[item.category] ?? item.category} · {sources[item.source] ?? '意见反馈'}</strong><span>{item.summary}</span>{item.source === 'exam_report' && (item.examDate || item.examCenter) && <small>{[item.examDate, item.examCenter].filter(Boolean).join(' · ')}</small>}<small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
       </button>)}</div>
       {!busy && loaded && items.length === 0 && <p className="muted">暂无反馈。</p>}
       {busy && <p aria-live="polite">正在载入…</p>}

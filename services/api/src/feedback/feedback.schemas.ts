@@ -46,6 +46,8 @@ export const feedbackSubmissionSchema = z.object({
   category: z.enum(['feature_suggestion', 'content_correction', 'other', 'listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi']),
   description: z.string().trim().min(5).max(500),
   contact: z.string().trim().max(100).optional().transform((value) => value || undefined),
+  examDate: z.iso.date().refine(value => !value.startsWith('0000-'), 'invalid_exam_date').optional(),
+  examCenter: z.string().trim().max(100).optional().transform(value => value || undefined),
   source: z.enum(['profile', 'study', 'exam_report', 'opi_hotspot']),
   sourceRoute: z.string().trim().min(1).max(500).transform((value) => value.split(/[?#]/u, 1)[0] || '/'),
   appDisplayVersion,
@@ -66,6 +68,9 @@ export const feedbackSubmissionSchema = z.object({
   }).optional(),
   diagnostics: feedbackDiagnosticBundleSchema.optional(),
 }).strict().superRefine((value, context) => {
+  if (value.source !== 'exam_report' && (value.examDate !== undefined || value.examCenter !== undefined)) {
+    context.addIssue({ code: 'custom', message: 'exam_details_require_exam_report', path: ['source'] });
+  }
   const bankCategory = ['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'].includes(value.category);
   if ((value.source === 'exam_report' && !bankCategory) || (value.source === 'opi_hotspot' && value.category !== 'opi') || (['profile', 'study'].includes(value.source) && bankCategory)) context.addIssue({ code: 'custom', message: 'feedback_category_source_mismatch', path: ['category'] });
   if (value.source === 'study' && !value.question) {

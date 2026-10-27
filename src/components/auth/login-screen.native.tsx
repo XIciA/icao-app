@@ -442,7 +442,6 @@ function LoginContent() {
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
         <AuthHeading title="登录 / 注册" />
       </View>
-      <AppText variant="caption">继续你的 ICAO 学习之旅。</AppText>
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
         {loginMethod === 'otp' ? (

@@ -232,14 +232,6 @@ export function CourseCatalogScreen() {
               </View>
             </View>
           </Card>
-
-          <View style={styles.brandFooter}>
-            <View style={styles.brand}>
-              <View style={styles.brandIcon}><GraduationCap color={colors.primaryForeground} size={15} /></View>
-              <AppText variant="cardTitle">{webCoursePromoCatalog.contact.brand}</AppText>
-            </View>
-            <AppText style={styles.center} variant="caption">{webCoursePromoCatalog.contact.footer}</AppText>
-          </View>
         </View>
       </ScrollView>
 
@@ -542,16 +534,6 @@ const styles = StyleSheet.create({
   contactLabel: { flexShrink: 1 },
   contactList: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2], justifyContent: 'center' },
   contactValue: { color: colors.primary, fontFamily: fonts.monoRegular },
-  brandFooter: { alignItems: 'center', gap: spacing[3] },
-  brand: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
-  brandIcon: {
-    alignItems: 'center',
-    backgroundColor: colors.primary,
-    borderRadius: radii.md,
-    height: 32,
-    justifyContent: 'center',
-    width: 32,
-  },
   sheetFooter: { gap: spacing[3], paddingBottom: spacing[1] },
   detail: { gap: spacing[5], paddingBottom: spacing[4] },
   detailHeader: { gap: spacing[3] },

@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { useEffect as mockUseEffect } from 'react';
 import { useRouter as mockUseRouter } from 'expo-router';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
@@ -14,6 +15,22 @@ jest.mock('../feedback-history-client.native',()=>({listMyFeedback:(...args:any[
 const item={ticketNumber:'FB-261019-00000001',category:'other',description:'我的反馈内容',status:'processing',createdAt:'2026-10-19T00:00:00Z',replies:[{id:'r1',text:'正在修复问题',createdAt:'2026-10-19T01:00:00Z'}],unread:true};
 const screen=()=> <SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><FeedbackHistory/></SafeAreaProvider>;
 beforeEach(()=>{jest.clearAllMocks();mockAccount='account-a';mockParams={};mockList.mockResolvedValue({items:[item],nextCursor:null,unread:true});mockDetail.mockResolvedValue({...item,attachments:[]});mockRead.mockResolvedValue({read:true});});
+it('shows provided exam details consistently in list and detail, while old records have no empty metadata labels',async()=>{
+ const exam={...item,source:'exam_report',category:'opi',examDate:'2026-10-27',examCenter:'上海'};
+ mockParams={source:'exam_report'};mockList.mockResolvedValue({items:[exam],nextCursor:null});mockDetail.mockResolvedValue({...exam,attachments:[]});
+ const view=await render(screen());await waitFor(()=>expect(view.getByText('考试时间：2026-10-27')).toBeTruthy());expect(view.getByText('考点名称：上海')).toBeTruthy();
+ mockParams={source:'exam_report',ticket:item.ticketNumber};await view.rerender(screen());
+ await waitFor(()=>expect(view.getByText('我的反馈')).toBeTruthy());expect(view.getByText('考试时间：2026-10-27')).toBeTruthy();
+ for(const label of ['OPI','处理中']){
+   const text=view.getByText(label);const style=StyleSheet.flatten(text.props.style);
+   const other=StyleSheet.flatten(view.getByText(label==='OPI'?'处理中':'OPI').props.style);
+   expect([style.fontSize,style.fontFamily,style.fontWeight,style.lineHeight]).toEqual([other.fontSize,other.fontFamily,other.fontWeight,other.lineHeight]);
+ }
+
+ mockDetail.mockResolvedValue({...item,source:'exam_report',attachments:[]});
+ mockParams={source:'exam_report',ticket:'old-ticket'};await view.rerender(screen());
+ await waitFor(()=>expect(view.queryByText('考试时间：2026-10-27')).toBeNull());expect(view.queryByText(/考点名称：/)).toBeNull();
+});
 it('opens the submitted feedback with public replies and acknowledges only the displayed reply',async()=>{
  const view=await render(screen());await waitFor(()=>expect(view.getByText('我的反馈内容')).toBeTruthy());
  await fireEvent.press(view.getByText('我的反馈内容'));

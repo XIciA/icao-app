@@ -196,11 +196,11 @@ it('shares one successful replay across four questions, survives remounts and bl
  await act(async()=>{mockStatus={...mockStatus,didJustFinish:true,currentTime:5};await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);});
  expect(ledger.completedItems.q1).toBe(true);
  await view.rerender(<ExamQuestionAudio {...props} replay={{...replay,blocked:true}}/>);
- await fireEvent.press(view.getByText('重听（Replay）· 本组剩余 1 次'));
+ await fireEvent.press(view.getByText('say again · 本组剩余 1 次'));
  expect(mockPlayer.play).toHaveBeenCalledTimes(1);
  mockStatus={...mockStatus,didJustFinish:false,playing:false,currentTime:0};
  await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);
- await fireEvent.press(view.getByText('重听（Replay）· 本组剩余 1 次'));
+ await fireEvent.press(view.getByText('say again · 本组剩余 1 次'));
  await waitFor(()=>expect(mockPlayer.play).toHaveBeenCalledTimes(2));
  expect(ledger.usedGroups['sentence-1']).toBeUndefined();
  await act(async()=>{mockStatus={...mockStatus,playing:true,currentTime:0.1};await view.rerender(<ExamQuestionAudio {...props} replay={replay}/>);});

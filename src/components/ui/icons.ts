@@ -13,6 +13,7 @@ export { default as BookOpenText } from 'lucide-react-native/icons/book-open-tex
 export { default as BookX } from 'lucide-react-native/icons/book-x';
 export { default as Bookmark } from 'lucide-react-native/icons/bookmark';
 export { default as Bot } from 'lucide-react-native/icons/bot';
+export { default as Funnel } from 'lucide-react-native/icons/funnel';
 export { default as Calendar } from 'lucide-react-native/icons/calendar';
 export { default as CalendarDays } from 'lucide-react-native/icons/calendar-days';
 export { default as Captions } from 'lucide-react-native/icons/captions';

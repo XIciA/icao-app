@@ -54,3 +54,45 @@ it('reuses an existing split component without creating a duplicate card or rese
   expect(body.edits.map(edit=>edit.type)).toEqual(['delete','upsert']);expect(body.edits[1].word.id).not.toBe(target.id);
   expect(element.textContent).toContain('沿用现有记录');
 });
+it('sorts the current book alphabetically or by existing frequency, with alphabetical ties and missing frequency last',async()=>{
+  const fixture=structuredClone(release);
+  const base=fixture.dataset.books[0].words[0];
+  fixture.dataset.books[0].words=[
+    {...base,id:'zero',word:'Zebra',frequency:{...base.frequency,occurrences:0}},
+    {...base,id:'beta',word:'beta',frequency:{...base.frequency,occurrences:20}},
+    {...base,id:'missing',word:'Absent',frequency:undefined},
+    {...base,id:'alpha',word:'alpha',frequency:{...base.frequency,occurrences:20}},
+    {...base,id:'high',word:'Zulu',frequency:{...base.frequency,occurrences:100}},
+  ];
+  const original=JSON.stringify(fixture);
+  mocks.api.mockResolvedValueOnce(fixture);
+  await click(button('重新载入'));
+  const displayed=()=>[...element.querySelectorAll('.vocab-list strong')].map(node=>node.textContent);
+  expect(displayed()).toEqual(['Absent','alpha','beta','Zebra','Zulu']);
+  await act(async()=>{const sort=element.querySelector('[aria-label="词条排序"]');sort.value='frequency';sort.dispatchEvent(new Event('change',{bubbles:true}));});
+  expect(displayed()).toEqual(['Zulu','alpha','beta','Zebra','Absent']);
+  expect(JSON.stringify(fixture)).toBe(original);
+  await click(element.querySelectorAll('nav button')[1]);
+  expect(displayed()).toEqual([...fixture.dataset.books[1].words].sort((a,b)=>(b.frequency?.occurrences??-1)-(a.frequency?.occurrences??-1)||a.word.localeCompare(b.word,'en',{sensitivity:'base'})).map(word=>word.word));
+});
+it('preserves search, the selected stable ID, dirty edits and a ready preview when sorting without reloading or publishing',async()=>{
+  await click(element.querySelector('.result-card'));
+  const selectedId=release.dataset.books[0].words[0].id;
+  const changeInput=async(input,value)=>act(async()=>{
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,value);
+    input.dispatchEvent(new Event('input',{bubbles:true}));
+  });
+  await changeInput(element.querySelector('.vocab-editor input'),'edited word');
+  await changeInput(element.querySelector('[aria-label="搜索词条"]'),release.dataset.books[0].words[0].word);
+  await click(button('检查并预览'));
+  const callCount=mocks.api.mock.calls.length;
+  await act(async()=>{const sort=element.querySelector('[aria-label="词条排序"]');sort.value='frequency';sort.dispatchEvent(new Event('change',{bubbles:true}));});
+  expect(mocks.api.mock.calls).toHaveLength(callCount);
+  expect(element.querySelector('.vocab-editor input').value).toBe('edited word');
+  expect(element.querySelector('[aria-label="搜索词条"]').value).toBe(release.dataset.books[0].words[0].word);
+  expect(element.querySelector('nav button.active').textContent).toContain(release.dataset.books[0].name);
+  expect(button('确认保存并发布')).toBeTruthy();
+  const preview=JSON.parse(mocks.api.mock.calls.find(call=>call[0].endsWith('/preview'))[1].body);
+  expect(preview.edits[0].word.id).toBe(selectedId);
+  expect(preview.edits[0].word.word).toBe('edited word');
+});

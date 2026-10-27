@@ -34,11 +34,11 @@ export function AuthTopBar() {
   );
 }
 
-export function AuthHeading({ title, subtitle }: { title: string; subtitle: string }) {
+export function AuthHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <View style={styles.heading}>
       <AppText variant="pageTitle">{title}</AppText>
-      <AppText variant="caption">{subtitle}</AppText>
+      {subtitle ? <AppText variant="caption">{subtitle}</AppText> : null}
     </View>
   );
 }

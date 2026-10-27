@@ -1,3 +1,4 @@
+import { feedbackExamDetails } from '../feedback/feedback-exam-details';
 import { feedbackStatusForClient, feedbackStatusForStorage, feedbackStatusStorageFilter } from '../feedback/feedback-status';
 import type { OpsFeedbackListResponse, OpsFeedbackDetail } from '@icao/contracts/feedback-ops';
 import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
@@ -246,6 +247,7 @@ export class AdminDataService {
     const last = items.at(-1);
     return {
       items: items.map((ticket) => ({
+        ...feedbackExamDetails(ticket),
         ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
         status: feedbackStatusForClient(ticket.status), summary: feedbackSummary(ticket.description), source: ticket.source,
         createdAt: ticket.createdAt.toISOString(),
@@ -289,6 +291,7 @@ export class AdminDataService {
       }
     }
     return {
+      ...feedbackExamDetails(ticket),
       ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
       status: feedbackStatusForClient(ticket.status), source: ticket.source, summary: feedbackSummary(ticket.description),
       description: ticket.description, contact: ticket.contact, createdAt: ticket.createdAt.toISOString(),

@@ -1,3 +1,4 @@
+import { sentenceDisplayTitle } from '@/features/question-bank/lib/sentence-display-title';
 import { orderQuestionBanks } from '@/features/question-bank/lib/bank-order';
 import embeddedRelease from '@/features/question-bank/data/question-bank-public-release.json';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
@@ -33,12 +34,12 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
         tracks: bank.categories.flatMap((category) => category.topics.flatMap((topic) => {
           const cards = new Map(topic.cards.map(card => [card.id, card]));
           const entries = topic.radioEntries
-            ? topic.radioEntries : topic.cards.flatMap(card => card.retired || card.kind === 'image' || !card.audio ? [] : [{ id: card.id, title: card.taskTitle, durationSeconds: card.audioDurationSeconds ?? 0 }]);
+            ? topic.radioEntries : topic.cards.flatMap(card => card.retired || card.kind === 'image' || !card.audio ? [] : [{ id: card.id, title: sentenceDisplayTitle(card.id, card.taskTitle), durationSeconds: card.audioDurationSeconds ?? 0 }]);
           return entries.flatMap((entry) => {
             const card = cards.get(entry.id);
             if (!card) {
               return [{ id: entry.id, bankId: bank.id, bankTitle: bank.title, categoryId: category.id, categoryTitle: category.name,
-                topicId: topic.id, topicTitle: topic.name, title: entry.title || `${topic.name}-${stableIndex + 1}`,
+                topicId: topic.id, topicTitle: topic.name, title: sentenceDisplayTitle(entry.id, entry.title || `${topic.name}-${stableIndex + 1}`),
                 audioText: '', audioPath: '', durationSeconds: entry.durationSeconds, stableIndex: stableIndex++, contentLoaded: false, requiresMembership: !topic.access?.freeCardIds?.includes(entry.id) }];
             }
             if (card.retired || card.kind === 'image' || !card.audio) return [];
@@ -52,7 +53,7 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
               categoryTitle: category.name,
               topicId: topic.id,
               topicTitle: topic.name,
-              title: card.taskTitle,
+              title: sentenceDisplayTitle(card.id, card.taskTitle),
               audioText: card.audioText,
               audioTextZh: card.audioTextZh,
               ...radioCardContent(bank.id, card),

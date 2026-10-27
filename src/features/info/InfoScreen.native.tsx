@@ -1,6 +1,7 @@
 import { feedbackKind, feedbackTitle, examFeedbackOptions } from '@/features/feedback/feedback-config';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { UserGuideScreen } from '@/features/usage-guide/UserGuideScreen';
+import { FeedbackDateField } from '@/features/feedback/FeedbackDateField';
 import { FeedbackHistory } from '@/features/feedback/FeedbackHistory.native';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import { AboutPage } from './AboutPage.native';
@@ -103,7 +104,7 @@ function FeedbackPage() {
     : undefined;
   const initialCategory: FeedbackCategory = diagnosticFeature
     ? 'other'
-    : kind === 'exam_report' ? 'listening' : kind === 'opi_hotspot' ? 'opi' : source === 'study' ? 'content_correction' : 'feature_suggestion';
+    : kind === 'exam_report' ? 'opi' : kind === 'opi_hotspot' ? 'opi' : source === 'study' ? 'content_correction' : 'feature_suggestion';
   const initialDescription = diagnosticFeature === 'recording'
     ? '录音功能出现异常，请协助排查。'
     : diagnosticFeature === 'ai'
@@ -126,6 +127,8 @@ function FeedbackPage() {
   const [category, setCategory] = useState<FeedbackCategory>(initialCategory);
   const [description, setDescription] = useState(initialDescription);
   const [contact, setContact] = useState('');
+  const [examDate, setExamDate] = useState('');
+  const [examCenter, setExamCenter] = useState('');
   const [images, setImages] = useState<ImagePicker.ImagePickerAsset[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -133,7 +136,7 @@ function FeedbackPage() {
   const mounted = useRef(true);
   const submission = useRef<AbortController | undefined>(undefined);
   const confirmingExit = useRef(false);
-  const dirty = description.length > 0 || contact.length > 0 || images.length > 0;
+  const dirty = description.length > 0 || contact.length > 0 || images.length > 0 || (kind === 'exam_report' && (examDate.length > 0 || examCenter.length > 0));
 
   useEffect(() => {
     mounted.current = true;
@@ -145,6 +148,9 @@ function FeedbackPage() {
     setCategory(initialCategory);
     setDescription(initialDescription);
     setContact('');
+    setExamDate('');
+    setExamCenter('');
+    submittedFingerprint.current = undefined;
     setImages([]);
     setError('');
     setTicketNumber('');
@@ -215,7 +221,7 @@ function FeedbackPage() {
     setSubmitting(true);
     setError('');
     try {
-      const fingerprint = JSON.stringify({ category, description, contact, question, images: images.map((image) => image.uri) });
+      const fingerprint = JSON.stringify({ category, description, contact, ...(kind === 'exam_report' ? { examDate, examCenter } : {}), question, images: images.map((image) => image.uri) });
       const submissionId = submittedFingerprint.current !== undefined && submittedFingerprint.current !== fingerprint
         ? createClientSubmissionId() : clientSubmissionId;
       submittedFingerprint.current = fingerprint;
@@ -225,6 +231,7 @@ function FeedbackPage() {
         category,
         description,
         contact,
+        ...(kind === 'exam_report' ? { examDate: examDate || undefined, examCenter: examCenter.trim() || undefined } : {}),
         source,
         sourceRoute: params.sourceRoute ?? (source === 'study' ? '/question-bank/study' : kind === 'opi_hotspot' ? '/content/hotspot' : '/(tabs)/profile'),
         question,
@@ -247,6 +254,9 @@ function FeedbackPage() {
     setCategory(initialCategory);
     setDescription(initialDescription);
     setContact('');
+    setExamDate('');
+    setExamCenter('');
+    submittedFingerprint.current = undefined;
     setImages([]);
     setError('');
     setTicketNumber('');
@@ -296,6 +306,10 @@ function FeedbackPage() {
           </View>
         ) : null}
         {kind === 'opi_hotspot' ? <AppText variant="caption">OPI 热点 · 提交后由团队整理审核</AppText> : <Choice disabled={submitting} options={kind === 'exam_report' ? examFeedbackOptions : CATEGORY_OPTIONS} value={category} onChange={setCategory} />}
+        {kind === 'exam_report' && <>
+          <FeedbackDateField value={examDate} onChange={setExamDate} disabled={submitting} />
+          <TextField label="考点名称" accessibilityLabel="考点名称" value={examCenter} onChangeText={setExamCenter} maxLength={100} editable={!submitting} />
+        </>}
         <TextField
           editable={!submitting}
           error={description.length > 0 && description.trim().length < 5 ? '请至少输入 5 个字' : undefined}
