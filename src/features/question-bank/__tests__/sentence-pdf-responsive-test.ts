@@ -1,4 +1,4 @@
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, PDFPage } from 'pdf-lib';
 import { buildSentencesPdf } from '../export/sentences-pdf';
 import type { ExportOptions, ExportSentence } from '../export/export-model';
 import type { QuestionBankAnnotationStore } from '../annotations/types';
@@ -21,3 +21,19 @@ it('stops an abandoned export before font loading or output serialization', asyn
   await expect(buildSentencesPdf(rows,options,annotations,new Uint8Array(),new Date(),{signal:controller.signal,yieldControl})).rejects.toThrow('export_cancelled');
   expect(yieldControl).toHaveBeenCalledTimes(1);
 });
+
+it('writes one scene heading per chapter and original Sentence IDs into the actual PDF',async()=>{
+ const font=readFileSync(`${process.cwd()}/assets/fonts/NotoSerifSC_600SemiBold.ttf`);
+ const draw=jest.spyOn(PDFPage.prototype,'drawText');
+ try {
+  const sceneRows=[584,2,900,1,584].map((number,index)=>({...rows[index],card:{...rows[index].card,id:`sentence900-main-${String(number).padStart(3,'0')}`,taskTitle:'旧标题'}}));
+  const result=await buildSentencesPdf(sceneRows,{...options,browseMode:'scene',scenes:['other','emergency','basic']},annotations,font);
+  const pdf=await PDFDocument.load(result.bytes);
+  expect(pdf.getTitle()).toBe('900句 · 按场景 · 我的学习资料');
+  expect(result.sentenceCount).toBe(4);
+  const labels=draw.mock.calls.map(call=>call[0]);
+  expect(labels.filter(text=>/^Sentence\d+$/.test(text))).toEqual(['Sentence1','Sentence2','Sentence584','Sentence900']);
+  // One heading per chapter; the summary is emitted as a separate combined run.
+  for(const scene of ['基本通话术语','紧急情况通话术语','其它情况通话术语']) expect(labels.filter(text=>text===scene)).toHaveLength(1);
+ } finally { draw.mockRestore(); }
+},30000);
