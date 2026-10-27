@@ -1,4 +1,5 @@
 import './migration-preservation-tests.mjs';
+import './production-migration-recovery-tests.mjs';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -809,6 +810,12 @@ candidate_runtime_env="$TEST_RUNTIME_ENV"
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 image="$EXPECTED_IMAGE"
 source_sha=${sourceSha}
+payload_source_sha=${sourceSha}
+payload_tree_sha=not_applicable
+rehearsal_reused=0
+reused_evidence_sha=not_applicable
+reuse_pre_plan_verified_at=not_applicable
+reuse_state_proof=not_applicable
 expected_pre_plan=${prePlan}
 expected_post_plan=${postPlan}
 confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
@@ -1169,6 +1176,12 @@ source_id=aaaaaaaaaaaa
 token_id=bbbbbbbbbbbb
 stage=test
 source_sha=${sourceSha}
+payload_source_sha=${sourceSha}
+payload_tree_sha=not_applicable
+rehearsal_reused=0
+reused_evidence_sha=not_applicable
+reuse_pre_plan_verified_at=not_applicable
+reuse_state_proof=not_applicable
 archive_sha=${'c'.repeat(64)}
 confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
 backup_name=${backupName}
@@ -1669,6 +1682,7 @@ backup_tool="$MOCK_BACKUP_TOOL"
 backup_root="$MOCK_BACKUP_ROOT"
 old_api_drained=0
 old_api_drain_started=0
+rehearsal_reused=0
 stage=test
 ${block}
 printf 'drained=%s backup=%s sha=%s\n' "$old_api_drained" "$cutover_backup_name" "$cutover_backup_sha"

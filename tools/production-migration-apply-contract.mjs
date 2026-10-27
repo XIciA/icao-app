@@ -5,11 +5,20 @@ import {
   deriveJournalBoundPostPlan,
   parseRehearsalSuccess,
   productionMigrationConfirmation,
+  prepareRehearsalReuse,
+  REUSABLE_REHEARSAL_EVIDENCE,
 } from './production-migration-apply-lib.mjs';
 
 const [command, ...args] = process.argv.slice(2);
 
-if (command === 'derive-post') {
+if (command === 'reuse-path') {
+  if (args[0] !== REUSABLE_REHEARSAL_EVIDENCE) throw new Error('rehearsal_reuse_path_not_reviewed');
+  console.log(REUSABLE_REHEARSAL_EVIDENCE);
+} else if (command === 'reuse-rehearsal') {
+  const [runnerSha,prePlan,postPlan,evidencePath,file,root] = args;
+  const result = prepareRehearsalReuse(await readFile(file,'utf8'),{root,runnerSha,prePlan,postPlan,evidencePath});
+  console.log([result.payloadSource,result.backupName,result.payloadTreeSha256,result.evidenceSha256].join('|'));
+} else if (command === 'derive-post') {
   const [prePlan, journalPath] = args;
   if (!journalPath) throw new Error('migration_journal_path_missing');
   const journal = JSON.parse(await readFile(journalPath, 'utf8'));

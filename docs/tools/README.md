@@ -28,7 +28,7 @@
 | 宣传站运维 | `public/promo/`、Nginx 配置 → 独立宣传站产物 | 上传、切换目录、证书及服务器操作均有外部副作用；不使用旧 Vercel 部署入口 | [操作说明](../../infra/promo/README.md)、[迁移证据](../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | 原生构建与发布：`pnpm ios:standalone`、`pnpm android:standalone`；`pnpm release:ios:testflight`、`pnpm release:android` | 源码、签名与运行环境 → 安装包 / 渠道上传 | 构建与上传分开辨认；release 脚本有外部副作用，按目标渠道和既有授权使用 | [命令参考](../resources/developer/development-command-reference.md)、[双端发布参考](../resources/operations/dual-platform-release.md) |
 | 正式更新清单：`tools/publish-app-update.py` | 已审核的渠道 JSON、可选 APK 与主机受保护配置 → 不可变 APK、清单备份与渠道指针 | 在存储主机执行，会写线上存储；不在文档中复制凭据或直接套用历史发布参数 | [最近发布及验证](../records/releases/20261021-app-updates-1.2.1.md) |
-| API / 数据库发布：`pnpm release:database:migrate`、`./scripts/deploy-api-release.sh` | 已合并源码、受控环境与备份 → 迁移 / 服务产物及证据 | 生产变更；数据库迁移与服务部署分别核对授权，不能作为日常诊断命令 | [迁移脚本](../../scripts/apply-production-migrations.sh)、[API 说明](../../infra/api/README.md) |
+| API / 数据库发布：`pnpm release:database:migrate`、`./scripts/deploy-api-release.sh` | 已合并源码、受控环境与备份 → 迁移 / 服务产物及证据 | 生产变更；数据库迁移与服务部署分别核对授权，不能作为日常诊断命令 | [迁移脚本](../../scripts/apply-production-migrations.sh)、[API 说明](../../infra/api/README.md)、[本轮演练恢复](migration-rehearsal-recovery.md) |
 
 `pnpm check` 是完整本地校验，`pnpm check:ci` 是干净 runner 的入口；二者的媒体输入要求不同，
 不互相代替。文档改动通常只需格式、引用和命令入口检查，具体范围见既有交付规则。
