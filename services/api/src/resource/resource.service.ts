@@ -1,3 +1,4 @@
+import { timed } from '../performance/request-performance';
 import { Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, desc, eq, inArray } from 'drizzle-orm';
@@ -35,23 +36,23 @@ export class ResourceService {
     environment: CommerceEnvironment,
     checksum?: string,
   ): Promise<ResolvedResource> {
-    const [resource] = await this.database.db.select().from(resourceObjects)
+    const [resource] = await timed('resource.lookup', () => this.database.db.select().from(resourceObjects)
       .where(and(eq(resourceObjects.sourcePath, publicPath), checksum
         ? and(eq(resourceObjects.checksum, checksum), inArray(resourceObjects.status, ['ready', 'superseded']))
         : eq(resourceObjects.status, 'ready')))
       .orderBy(desc(resourceObjects.createdAt))
-      .limit(1);
+      .limit(1));
     if (!resource) throw new NotFoundException('resource_not_found');
     if (publicPath.startsWith('/question-bank-assets/')) {
-      await this.contentAccess.assertResourceAccess(
+      await timed('resource.access', () => this.contentAccess.assertResourceAccess(
         accountId,
         resource.module,
         publicPath,
         sessionId,
         environment,
-      );
+      ));
     }
-    const { data, error } = await this.storage.storage.from(resource.storageBucket).createSignedUrl(resource.objectKey, EXPIRES_IN_SECONDS);
+    const { data, error } = await timed('resource.sign', () => this.storage.storage.from(resource.storageBucket).createSignedUrl(resource.objectKey, EXPIRES_IN_SECONDS));
     if (error || !data.signedUrl) throw new ServiceUnavailableException('resource_signing_failed');
     return {
       publicPath,

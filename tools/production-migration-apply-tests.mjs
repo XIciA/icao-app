@@ -189,7 +189,12 @@ test('binds minimumSchemaVersion to the exact required 0058 journal entry', asyn
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
-  const entry = journal.entries.at(-1);
+  // Later additive performance indexes do not raise the functional startup floor.
+  const entry = journal.entries.find(candidate => candidate.idx === 58);
+  assert.equal(journal.entries.at(-1).tag, '0059_resource_lookup_indexes');
+  const indexes = await readFile(new URL('../services/api/drizzle/0059_resource_lookup_indexes.sql', import.meta.url), 'utf8');
+  assert.equal(indexes.split('--> statement-breakpoint').filter(statement => /^CREATE INDEX /u.test(statement.trim())).length, 2);
+  assert.doesNotMatch(indexes, /ALTER TABLE|DROP |DELETE |UPDATE |INSERT /u);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
   assert.equal(entry.idx, 58);
   assert.equal(entry.tag, '0058_feedback_exam_details');
