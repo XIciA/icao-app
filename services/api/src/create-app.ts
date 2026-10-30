@@ -1,3 +1,4 @@
+import { registerRequestPerformance } from './performance/request-performance';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
 import { NestFactory } from '@nestjs/core';
 import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
@@ -19,6 +20,7 @@ export async function createApp(config: ApiConfig = loadConfig()) {
     bufferLogs: true,
     rawBody: true,
   });
+  registerRequestPerformance(app.getHttpAdapter().getInstance());
   app.enableCors(apiCorsOptions(config.corsOrigins));
   app.useGlobalFilters(new HttpErrorFilter());
   registerSyncUploadPolicy(app.getHttpAdapter().getInstance());

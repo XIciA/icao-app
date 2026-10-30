@@ -1,0 +1,2 @@
+CREATE INDEX "resource_objects_ready_path_created" ON "resource_objects" USING btree ("source_path","created_at" DESC NULLS LAST) WHERE "resource_objects"."status" = 'ready';--> statement-breakpoint
+CREATE INDEX "resource_objects_version_path_created" ON "resource_objects" USING btree ("source_path","checksum","created_at" DESC NULLS LAST) WHERE "resource_objects"."status" in ('ready', 'superseded');

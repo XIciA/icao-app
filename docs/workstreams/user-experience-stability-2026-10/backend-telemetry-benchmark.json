@@ -1,0 +1,15 @@
+{
+  "note": "Alternating 30 concurrent Fastify injections, 300 samples each, synthetic 2ms wait and 9KB JSON, in-memory log sink; not production.",
+  "report": {
+    "disabled": {
+      "samples": 300,
+      "p50Ms": 3.0834999999999866,
+      "p95Ms": 4.303791999999987
+    },
+    "enabled": {
+      "samples": 300,
+      "p50Ms": 3.3074589999999944,
+      "p95Ms": 4.372041999999993
+    }
+  }
+}

@@ -1,17 +1,11 @@
 import type { OfflineDownloadScope } from '@icao/contracts';
 import { Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import type { CommerceEnvironment, QuestionBankRelease, QuestionBankReleaseSummary } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
 import { questionBankReleases } from '../database/schema';
 import { ContentAccessService } from '../content-access/content-access.service';
-
-type DatasetMetadata = {
-  title?: unknown;
-  declaredTopicCount?: unknown;
-  declaredCardCount?: unknown;
-};
 
 @Injectable()
 export class QuestionBankService {
@@ -26,16 +20,20 @@ export class QuestionBankService {
   }
 
   async list(): Promise<QuestionBankReleaseSummary[]> {
-    const rows = await this.database.db.select().from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId);
+    const rows = await this.database.db.select({
+      bankId: questionBankReleases.bankId, version: questionBankReleases.version, checksum: questionBankReleases.checksum,
+      title: sql<unknown>`${questionBankReleases.payload}->'title'`,
+      declaredTopicCount: sql<unknown>`${questionBankReleases.payload}->'declaredTopicCount'`,
+      declaredCardCount: sql<unknown>`${questionBankReleases.payload}->'declaredCardCount'`,
+    }).from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId);
     return rows.map((row) => {
-      const metadata = row.payload as DatasetMetadata;
       return {
         bankId: row.bankId,
         version: row.version,
         checksum: row.checksum,
-        title: typeof metadata.title === 'string' ? metadata.title : row.bankId,
-        declaredTopicCount: typeof metadata.declaredTopicCount === 'number' ? metadata.declaredTopicCount : 0,
-        declaredCardCount: typeof metadata.declaredCardCount === 'number' ? metadata.declaredCardCount : 0,
+        title: typeof row.title === 'string' ? row.title : row.bankId,
+        declaredTopicCount: typeof row.declaredTopicCount === 'number' ? row.declaredTopicCount : 0,
+        declaredCardCount: typeof row.declaredCardCount === 'number' ? row.declaredCardCount : 0,
       };
     });
   }

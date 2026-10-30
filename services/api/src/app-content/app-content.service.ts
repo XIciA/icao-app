@@ -1,6 +1,8 @@
+import { VersionedReadCache } from '../content/versioned-read-cache';
+import { timed, timedSync } from '../performance/request-performance';
 import { Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { canonicalAppContentJson, isAppContentSnapshot, compatibleHotspotBriefs, dailyHotspotTitle, type AppContentRelease } from '@icao/contracts/app-content';
-import { desc, eq } from 'drizzle-orm';
+import { and, desc, eq } from 'drizzle-orm';
 import { createHash } from 'node:crypto';
 
 import { DatabaseService } from '../database/database.service';
@@ -8,11 +10,40 @@ import { appContentReleases } from '../database/schema';
 
 @Injectable()
 export class AppContentService {
+  private readonly releases = new VersionedReadCache<AppContentRelease>();
+  private readonly formats = new VersionedReadCache<AppContentRelease>();
   constructor(private readonly database: DatabaseService) {}
 
+  async publicRelease(format: string | undefined): Promise<AppContentRelease> {
+    const release = await this.get();
+    const supported = format === '3' ? '3' : format === '2' ? '2' : 'legacy';
+    if (supported === '3') return release;
+    return this.formats.get(JSON.stringify([release.version, release.checksum, supported]), async () =>
+      timedSync('app_content.project', () => supported === '2' ? compatibleHotspotRelease(release) : legacyHotspotRelease(release)));
+  }
+
   async get(reader: Pick<DatabaseService['db'], 'select'> = this.database.db): Promise<AppContentRelease> {
-    const [row] = await reader.select().from(appContentReleases)
-      .where(eq(appContentReleases.active, true)).orderBy(desc(appContentReleases.version)).limit(1);
+    // Transactional callers (including legal acceptance) must see their transaction's
+    // version and must never publish uncommitted content to the process cache.
+    if (reader !== this.database.db) {
+      const [row] = await reader.select().from(appContentReleases)
+        .where(eq(appContentReleases.active, true)).orderBy(desc(appContentReleases.version)).limit(1);
+      return this.validate(row);
+    }
+    const [metadata] = await timed('app_content.metadata', () => reader.select({
+      version: appContentReleases.version, checksum: appContentReleases.checksum,
+    }).from(appContentReleases).where(eq(appContentReleases.active, true))
+      .orderBy(desc(appContentReleases.version)).limit(1));
+    if (!metadata) throw new NotFoundException('app_content_release_not_found');
+    return this.releases.get(JSON.stringify([metadata.version, metadata.checksum]), async () => {
+      const [row] = await timed('app_content.payload', () => reader.select().from(appContentReleases)
+        .where(and(eq(appContentReleases.version, metadata.version), eq(appContentReleases.checksum, metadata.checksum)))
+        .orderBy(desc(appContentReleases.version)).limit(1));
+      return timedSync('app_content.validate', () => this.validate(row));
+    });
+  }
+
+  private validate(row: typeof appContentReleases.$inferSelect | undefined): AppContentRelease {
     if (!row) throw new NotFoundException('app_content_release_not_found');
     if (!isAppContentSnapshot(row.payload) || row.payload.version !== row.version) {
       throw new ServiceUnavailableException('app_content_release_invalid');

@@ -1,3 +1,4 @@
+import { timed } from '../performance/request-performance';
 import { preserveManagedAnnotations, mergeOfflineAnnotations } from '@icao/contracts/annotation-management';
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import type {
@@ -134,11 +135,11 @@ export class SyncService {
     if (!parsed.success) throw new BadRequestException('invalid_sync_payload');
     if (parsed.data.ownerUserId && parsed.data.ownerUserId !== userId) throw new ConflictException('sync_user_mismatch');
 
-    const response = await this.database.db.transaction(async (tx) => {
+    const response = await timed('sync.push.transaction', () => this.database.db.transaction(async (tx) => {
       const hasVocabulary = parsed.data.mutations.some(mutation => mutation.kind === 'document' && mutation.payload.documentKey === VOCABULARY_DOCUMENT_KEY);
-      if (hasVocabulary) await tx.execute(sql`select pg_advisory_xact_lock(${VOCABULARY_PUBLICATION_LOCK})`);
+      if (hasVocabulary) await timed('sync.lock', () => tx.execute(sql`select pg_advisory_xact_lock(${VOCABULARY_PUBLICATION_LOCK})`));
       const policy = hasVocabulary ? (await this.liveVocabulary.get(tx)).policy : undefined;
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+      await timed('sync.lock', () => tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`));
       const [account] = await tx.select({
         aiResultGeneration: accounts.aiResultGeneration,
         dataGeneration: accounts.learningDataGeneration,
@@ -198,7 +199,7 @@ export class SyncService {
         resetAiResults: requestedAiResultGeneration !== account.aiResultGeneration,
         results: output,
       };
-    });
+    }));
 
     return {
       ...response,
@@ -572,8 +573,8 @@ export class SyncService {
     if (ownerUserId && ownerUserId !== userId) throw new ConflictException('sync_user_mismatch');
     const cursor = rawCursor === undefined ? 0 : Number(rawCursor);
     if (!Number.isSafeInteger(cursor) || cursor < 0) throw new BadRequestException('invalid_sync_cursor');
-    return this.database.db.transaction(async (tx) => {
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+    return timed('sync.pull.transaction', () => this.database.db.transaction(async (tx) => {
+      await timed('sync.lock', () => tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`));
       const limit = 200;
       const [account] = await tx.select({
         aiResultGeneration: accounts.aiResultGeneration,
@@ -602,12 +603,12 @@ export class SyncService {
         dataGeneration: account.dataGeneration,
         aiResultGeneration: account.aiResultGeneration,
       };
-    });
+    }));
   }
 
   async deleteAiResult(userId: string, recordId: string): Promise<PrivacyDeletionResponse> {
     return this.database.db.transaction(async (tx) => {
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+      await timed('sync.lock', () => tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`));
       const [account] = await tx.select({
         aiResultGeneration: accounts.aiResultGeneration,
         dataGeneration: accounts.learningDataGeneration,
@@ -697,7 +698,7 @@ export class SyncService {
   ): Promise<PrivacyDeletionResponse> {
     const requestHash = hashPrivacyRequest(action, request);
     return this.database.db.transaction(async (tx) => {
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+      await timed('sync.lock', () => tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`));
       const target = and(
         eq(privacyActionReceipts.accountId, userId),
         eq(privacyActionReceipts.action, action),

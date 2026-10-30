@@ -5,7 +5,7 @@ import type { ApiSuccessEnvelope } from '@icao/contracts';
 import type { AppContentRelease } from '@icao/contracts/app-content';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
-import { AppContentService, legacyHotspotRelease, compatibleHotspotRelease } from './app-content.service';
+import { AppContentService } from './app-content.service';
 
 /** Public legal/content metadata and hotspot question overviews; protected study data stays in topic APIs. */
 @Controller('v1/app-content')
@@ -29,9 +29,8 @@ export class AppContentController {
     @Req() request: FastifyRequest,
     @Res({ passthrough: true }) reply: FastifyReply,
   ): Promise<ApiSuccessEnvelope<AppContentRelease> | undefined> {
-    const current = await this.content.get();
     const format=(request.query as {hotspotFormat?:string}|undefined)?.hotspotFormat;
-    const data=format==='3'?current:format==='2'?compatibleHotspotRelease(current):legacyHotspotRelease(current);
+    const data = await this.content.publicRelease(format);
     const etag = `"${data.checksum}"`;
     reply.header('etag', etag).header('cache-control', 'public, max-age=0, must-revalidate');
     if (ifNoneMatch === etag) { reply.status(304); return undefined; }

@@ -49,7 +49,7 @@ export class OpsApiModule {
         {
           provide: DatabaseService,
           inject: [OPS_API_CONFIG],
-          useFactory: (opsConfig: OpsApiConfig) => new DatabaseService(opsConfig),
+          useFactory: (opsConfig: OpsApiConfig) => new DatabaseService({ ...opsConfig, databaseApplicationName: 'icao-ops-api' }),
         },
         AiUsageRulesService,
     AiAllowanceService,

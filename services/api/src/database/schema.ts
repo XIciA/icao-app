@@ -516,7 +516,10 @@ export const resourceObjects = pgTable('resource_objects', {
   mimeType: text('mime_type').notNull(),
   status: text('status').default('ready').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
-}).enableRLS();
+}, (table) => [
+  index('resource_objects_ready_path_created').on(table.sourcePath, table.createdAt.desc()).where(sql`${table.status} = 'ready'`),
+  index('resource_objects_version_path_created').on(table.sourcePath, table.checksum, table.createdAt.desc()).where(sql`${table.status} in ('ready', 'superseded')`),
+]).enableRLS();
 
 export const editorialReleases = pgTable('editorial_releases', {
   id: uuid('id').defaultRandom().primaryKey(),

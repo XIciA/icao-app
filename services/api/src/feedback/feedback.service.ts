@@ -2,7 +2,7 @@ import { feedbackStatusForClient } from './feedback-status';
 import { BadRequestException, NotFoundException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import type { FeedbackSubmissionResponse } from '@icao/contracts';
 import type { VersionedFeedbackSubmissionPayload as FeedbackSubmissionPayload } from '@icao/contracts/feedback-ops';
-import { and, count, desc, eq, gt, gte, isNull, lt, or, sql } from 'drizzle-orm';
+import { and, count, desc, eq, gt, gte, isNull, lt, or, sql, inArray } from 'drizzle-orm';
 import { randomUUID } from 'node:crypto';
 
 import { DatabaseService } from '../database/database.service';
@@ -176,8 +176,9 @@ export class FeedbackService {
     return ticket;
   }
 
-  private async publicItem(ticket: typeof feedbackTickets.$inferSelect) {
-    const replies = await this.database.db.select({ id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt })
+  private async publicItem(ticket: typeof feedbackTickets.$inferSelect,
+    prefetched?: Array<Pick<typeof feedbackReplies.$inferSelect, 'id' | 'text' | 'createdAt'>>) {
+    const replies = prefetched ?? await this.database.db.select({ id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt })
       .from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id)).orderBy(feedbackReplies.createdAt, feedbackReplies.id);
     return { ...feedbackExamDetails(ticket), ticketNumber: ticket.ticketNumber, source: ticket.source, category: ticket.category, description: ticket.description,
       status: feedbackStatusForClient(ticket.status), createdAt: ticket.createdAt.toISOString(),
@@ -198,7 +199,17 @@ export class FeedbackService {
       feedbackKindFilter(kind), eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
       before ? or(lt(feedbackTickets.createdAt, before.time), and(eq(feedbackTickets.createdAt, before.time), lt(feedbackTickets.id, before.id))) : undefined,
     )).orderBy(desc(feedbackTickets.createdAt), desc(feedbackTickets.id)).limit(31);
-    const items = await Promise.all(rows.slice(0, 30).map(ticket => this.publicItem(ticket)));
+    const page = rows.slice(0, 30);
+    const replies = page.length ? await this.database.db.select({ ticketId: feedbackReplies.ticketId,
+      id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt,
+    }).from(feedbackReplies).where(inArray(feedbackReplies.ticketId, page.map(ticket => ticket.id)))
+      .orderBy(feedbackReplies.createdAt, feedbackReplies.id) : [];
+    const byTicket = new Map<string, Array<Pick<typeof feedbackReplies.$inferSelect, 'id' | 'text' | 'createdAt'>>>();
+    for (const { ticketId, id, text, createdAt } of replies) {
+      const group = byTicket.get(ticketId) ?? [];
+      group.push({ id, text, createdAt }); byTicket.set(ticketId, group);
+    }
+    const items = await Promise.all(page.map(ticket => this.publicItem(ticket, byTicket.get(ticket.id) ?? [])));
     const last = rows[29];
     const { unread } = await this.unread(userId, kind);
     return { items, unread, nextCursor: rows.length > 30 && last
