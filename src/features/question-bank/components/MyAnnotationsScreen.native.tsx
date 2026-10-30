@@ -58,6 +58,7 @@ export function MyAnnotationsScreen() {
   const bankEntries = useMemo(() => Object.values(annotations.store.entries)
     .filter((entry) => bankId === 'all' || entry.bankId === bankId)
     .sort((left, right) => Date.parse(right.updatedAt) - Date.parse(left.updatedAt)), [annotations.store.entries, bankId]);
+  const recoveredNotes = annotations.store.recoveredNotes?.filter(note => bankId === 'all' || note.bankId === bankId) ?? [];
   const references = useCardReferences(bankEntries);
   const tagEntries = useMemo(() => bankEntries.filter((entry) => entry.tagIds.length > 0), [bankEntries]);
   const highlightEntries = useMemo(() => bankEntries.filter((entry) => entry.highlights.length > 0), [bankEntries]);
@@ -86,7 +87,7 @@ export function MyAnnotationsScreen() {
   function countForSegment(value: AnnotationSegment) {
     if (value === 'tags') return tagEntries.length;
     if (value === 'highlights') return highlightEntries.length;
-    return noteEntries.length;
+    return noteEntries.length + recoveredNotes.length;
   }
 
   function chooseBank(value: BankFilter) {
@@ -154,13 +155,14 @@ export function MyAnnotationsScreen() {
 
         {!annotations.hydrated ? <LoadingState /> : annotations.loadErrorMessage ? (
           <StateCard icon={Search} title="本机标注读取失败" description={annotations.loadErrorMessage} action={<Button onPress={() => void annotations.refresh()} variant="outline">重试</Button>} />
-        ) : visibleEntries.length ? (
+        ) : visibleEntries.length || segment === 'notes' && recoveredNotes.length ? (
           <View style={styles.list}>
             {segment === 'tags' ? visibleTagEntries.map((entry) => <TagRow definitions={tagDefinitionMap} entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
             {segment === 'highlights' ? visibleHighlightEntries.map((entry) => <HighlightRow colorFilter={selectedColors} definitions={highlightDefinitionMap} entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
             {segment === 'notes' ? noteEntries.map((entry) => <NoteRow entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
           </View>
         ) : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}
+        {segment === 'notes' ? recoveredNotes.map(note => <View style={styles.rowCard} key={note.id}><View style={styles.rowCopy}><AppText selectable>{note.note}</AppText><AppText variant="micro">{note.reason === 'retired' ? '原题已不可用' : '冲突副本'}</AppText></View></View>) : null}
       </ScrollView>
 
     </Screen>

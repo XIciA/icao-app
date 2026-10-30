@@ -1,3 +1,5 @@
+import { readProfile } from '@/features/account/profile-store.native';
+import { clearAccountRestore, readAccountRestore, saveAccountRestore } from './account-restore-cache';
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 import type { DeleteAccountResponse } from '@icao/contracts';
@@ -153,6 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     sessionRef.current = next;
     if (userChanged) accountInitializationRef.current = undefined;
     if (!next || resetAccount || userChanged) {
+      if (!next) void clearAccountRestore().catch(() => undefined);
       setLearningSyncActiveUser(undefined);
       setAccount(undefined);
       activeAccountIdRef.current = undefined;
@@ -272,9 +275,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     const promise = apiRequestWithAccessToken<NativeAccountSummary>('/v1/account', next.accessToken);
     accountInitializationRef.current = { promise, userId: next.user.id };
-    void promise.catch(() => {
+    void promise.finally(() => {
       if (accountInitializationRef.current?.promise === promise) accountInitializationRef.current = undefined;
-    });
+    }).catch(() => undefined);
     return promise;
   }, []);
 
@@ -295,8 +298,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       if (sessionRef.current?.user.id !== next.user.id) throw new Error('auth_request_not_completed');
       await switchLearningSyncAccount(resolved.accountId);
+      await readProfile();
       assertCurrent();
-      let consent = legalStatusRef.current?.accountId === resolved.accountId ? legalStatusRef.current : undefined;
+      // Cached acceptance renders immediately, but online restoration still checks the current legal versions.
+      let consent: LegalConsentStatus | undefined;
       if (!consent) {
         consent = await getLegalConsentStatus(resolved.accountId);
         assertCurrent();
@@ -319,6 +324,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         sessionRef.current?.user.id !== next.user.id
         || (expectedEpoch !== undefined && sessionMutationRef.current !== expectedEpoch)
       ) throw new Error('auth_request_not_completed');
+      void saveAccountRestore(next.user.id, resolved, consent).catch(() => undefined);
       setAccount(resolved);
       activeAccountIdRef.current = resolved.accountId;
       legalStatusRef.current = consent;
@@ -326,8 +332,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setAccountRestoreUnavailable(false);
       setAccountReady(true);
       return next;
-    } catch {
-      if (sessionMutationRef.current === expectedEpoch && sessionRef.current?.user.id === next.user.id) {
+    } catch (error) {
+      if ((expectedEpoch === undefined || sessionMutationRef.current === expectedEpoch) && sessionRef.current?.user.id === next.user.id) {
+        if (activeAccountIdRef.current && !(error instanceof ApiClientError && [401, 403].includes(error.status))) return next;
+        if (error instanceof ApiClientError && [401, 403].includes(error.status)) {
+          setAccountReady(false);
+          await clearAccountRestore().catch(() => undefined);
+        }
         // A temporary account-profile failure must not destroy a verified auth
         // session. The root gate keeps business data closed and offers retry.
         setAccountRestoreUnavailable(true);
@@ -340,6 +351,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!service) return false;
     const expectedMutation = sessionMutationRef.current;
     try {
+      // Local identity is restored before any online profile or entitlement work.
+      if (!activeAccountIdRef.current && service.getLocalSession && !await readPendingAccountDeletion()) {
+        const local = await service.getLocalSession?.();
+        const cached = local ? await readAccountRestore(local.user.id) : undefined;
+        if (local && cached && sessionMutationRef.current === expectedMutation) {
+          setSessionSnapshot(local);
+          await switchLearningSyncAccount(cached.account.accountId);
+          await readProfile();
+          if (sessionMutationRef.current !== expectedMutation || sessionRef.current?.user.id !== local.user.id) return;
+          activeAccountIdRef.current = cached.account.accountId;
+          legalStatusRef.current = cached.legal;
+          setAccount(cached.account); setLegalStatus(cached.legal); setAccountReady(true);
+          setAccountRestoreUnavailable(false); setRestoring(false);
+        }
+      }
       const deletionState = await inspectPendingAccountDeletion();
       if (deletionState !== 'none') return deletionState === 'unavailable' ? false : undefined;
       // A failed bootstrap may leave an in-memory session whose token expires
@@ -358,7 +384,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch {
       if (sessionMutationRef.current !== expectedMutation) return;
       if (accountDeletionPendingRef.current) return;
-      setAccountRestoreUnavailable(true);
+      if (!activeAccountIdRef.current) setAccountRestoreUnavailable(true);
       return false;
     }
   }, [acceptAuthenticatedSession, inspectPendingAccountDeletion, service, setSessionSnapshot]);
@@ -431,7 +457,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUiAcceptanceMode(false);
         await acceptAuthenticatedSession(persisted).catch(() => undefined);
       }).catch(() => {
-        if (active && sessionMutationRef.current === observedMutation && interactiveAuthRef.current === undefined) {
+        if (active && !activeAccountIdRef.current && sessionMutationRef.current === observedMutation && interactiveAuthRef.current === undefined) {
           setAccountRestoreUnavailable(true);
         }
       });
@@ -441,6 +467,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const appState = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
         service.startAutoRefresh();
+        void restorePersistedAccount();
         void runLearningSync().catch(() => undefined);
       } else service.stopAutoRefresh();
     });

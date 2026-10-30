@@ -96,6 +96,10 @@ async function writeLearningRecord(record: LearningRecord, assertCurrent: () => 
   if (await Storage.getItem(deletedKey(record.id))
     || (record.sessionId && await Storage.getItem(deletedSessionKey(record.sessionId)))) return false;
   const records = await readSummaries();
+  if (record.sourceUnavailable) {
+    await Storage.multiRemove([detailKey(record.id), aiDetailKey(record.id)]);
+    assertCurrent();
+  }
   // Feedback is derived from separately owned per-attempt AI data on read.
   const { studyFeedback: _feedback, ...clean } = record;
   const review = clean.studyReview

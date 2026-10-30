@@ -23,3 +23,8 @@ export async function hasValidOfflineMemberResourceAccess(_path: string) { retur
 export async function cacheMemberResource(_path: string, _url: string,
   _expected?: { checksum: string; sizeBytes: number },
   _options: { temporary?: boolean; isCurrent?: () => boolean } = {}): Promise<string | undefined> { return undefined; }
+
+export async function suspendQuestionBankMemberAccess(_accountId: string) {}
+export async function invalidateOfflineTopic(_scope: ContentAccessScope) {}
+
+export async function isOfflineTopicInvalid(_scope: ContentAccessScope) { return false; }

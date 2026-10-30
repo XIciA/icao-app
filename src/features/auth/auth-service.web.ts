@@ -10,6 +10,7 @@ export type AppSession = {
 export type AuthService = {
   mode: 'invite' | 'phone-otp';
   getSession(): Promise<AppSession | undefined>;
+  getLocalSession?(): Promise<AppSession | undefined>;
   refreshSession(): Promise<AppSession | undefined>;
   signInWithInviteCode(inviteCode: string): Promise<AppSession>;
   requestPhoneOtp(phone: string): Promise<void>;

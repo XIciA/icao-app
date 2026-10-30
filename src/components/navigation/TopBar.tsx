@@ -12,9 +12,10 @@ type Props = {
   onBack?: () => void;
   close?: boolean;
   right?: ReactNode;
+  actionWidth?: number;
 };
 
-export function TopBar({ title, onBack, close = false, right }: Props) {
+export function TopBar({ title, onBack, close = false, right, actionWidth }: Props) {
   const router = useRouter();
   const Icon = close ? X : ArrowLeft;
   const handleBack = onBack ?? (() => {
@@ -29,14 +30,14 @@ export function TopBar({ title, onBack, close = false, right }: Props) {
         accessibilityRole="button"
         hitSlop={8}
         onPress={handleBack}
-        style={({ pressed }) => [styles.iconButton, pressed ? styles.pressed : null]}
+        style={({ pressed }) => [styles.iconButton, actionWidth ? { width: actionWidth, alignItems: 'flex-start', paddingLeft: 12 } : null, pressed ? styles.pressed : null]}
       >
         <Icon color={colors.foreground} size={20} strokeWidth={2} />
       </Pressable>
       <AppText numberOfLines={1} style={styles.title} variant="cardTitle">
         {title}
       </AppText>
-      <View style={styles.action}>{right}</View>
+      <View style={[styles.action, actionWidth ? { width: actionWidth } : null]}>{right}</View>
     </View>
   );
 }

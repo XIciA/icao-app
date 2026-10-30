@@ -37,3 +37,5 @@
 - [使用指南统一整改](guide-unification-2026-10-24/execution.md)：聚光灯、弹层、返回与按模块恢复；与学习页面修复统一交付。
 
 - [2026-10-26功能优化](next-round-2026-10/requirements.md)：已确认方案，正在实施；含反馈复用、900句场景、重听及听力高亮。
+
+- [离线学习与启动恢复](offline-learning-2026-10/final-plan.md)：已授权实施；[实施记录](offline-learning-2026-10/implementation.md)、[真机验收清单](offline-learning-2026-10/device-acceptance.md)。

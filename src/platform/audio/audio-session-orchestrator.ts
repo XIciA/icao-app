@@ -147,6 +147,16 @@ export class AudioSessionOrchestrator {
     });
   }
 
+  stopContentPlayback(): Promise<void> {
+    return this.enqueue(async () => {
+      const lease = this.active;
+      if (!lease || !['radio', 'study'].includes(lease.owner)) return;
+      const client = this.clients.get(lease.owner);
+      if (client) await this.boundedOwnerDeactivation(Promise.resolve(client.deactivate('download-delete')), lease);
+      if (this.active?.token === lease.token) this.active = undefined;
+    });
+  }
+
   getActiveLeaseForTests() {
     return this.active;
   }

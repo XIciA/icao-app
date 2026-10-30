@@ -60,6 +60,9 @@ function normalizeEntry(value: unknown): QuestionAnnotationEntry | undefined {
     tagIds: Array.isArray(value.tagIds) ? Array.from(new Set(value.tagIds.filter((item): item is string => typeof item === 'string' && Boolean(item)))) : [],
     highlights: Array.from(highlights.values()),
     note: typeof value.note === 'string' ? value.note : '',
+    baseUpdatedAt: typeof value.baseUpdatedAt === 'string' ? value.baseUpdatedAt : undefined,
+    restoredAfterDeletion: typeof value.restoredAfterDeletion === 'string' ? value.restoredAfterDeletion : undefined,
+    ancestorUpdatedAts: Array.isArray(value.ancestorUpdatedAts) ? value.ancestorUpdatedAts.filter((item): item is string => typeof item === 'string').slice(-64) : undefined,
     updatedAt: typeof value.updatedAt === 'string' && Number.isFinite(Date.parse(value.updatedAt)) ? new Date(value.updatedAt).toISOString() : new Date().toISOString(),
   };
 }
@@ -93,7 +96,9 @@ export function normalizeAnnotationStore(value: unknown): QuestionBankAnnotation
     entry.highlights = entry.highlights.filter((h) => highlightDefinitions.some((d) => d.id === h.colorId));
   }
   return {
-    version: 2, choiceHighlights: true, deletedDefinitions,
+    version: 2, choiceHighlights: true, deletedDefinitions, offlineMerge: true,
+    deletedEntries: isObject(value.deletedEntries) ? value.deletedEntries as QuestionBankAnnotationStore['deletedEntries'] : {},
+    recoveredNotes: Array.isArray(value.recoveredNotes) ? value.recoveredNotes.filter(note => note && typeof note.id === 'string' && typeof note.note === 'string') : [],
     legacyImported: value.legacyImported === true,
     tagDefinitions,
     highlightDefinitions,
@@ -205,9 +210,16 @@ export function createEmptyAnnotationEntry(target: QuestionBankCardTarget): Ques
 export function setAnnotationEntry(store: QuestionBankAnnotationStore, target: QuestionBankCardTarget, entry: QuestionAnnotationEntry) {
   const entries = { ...store.entries };
   const key = questionBankCardTargetKey(target);
-  if (!entry.tagIds.length && !entry.highlights.length && !entry.note.trim()) delete entries[key];
-  else entries[key] = { ...entry, ...target, updatedAt: new Date().toISOString() };
-  return { ...store, entries };
+  const deletedEntries = { ...store.deletedEntries };
+  const updatedAt = new Date().toISOString();
+  if (!entry.tagIds.length && !entry.highlights.length && !entry.note.trim()) {
+    deletedEntries[key] = { at: updatedAt, base: entries[key]?.updatedAt };
+    delete entries[key];
+  } else entries[key] = { ...entry, ...target,
+    baseUpdatedAt: entries[key]?.baseUpdatedAt ?? entries[key]?.updatedAt ?? deletedEntries[key]?.at,
+    ancestorUpdatedAts: [...new Set([...(entries[key]?.ancestorUpdatedAts ?? []), entries[key]?.updatedAt].filter((item): item is string => Boolean(item)))].slice(-64),
+    restoredAfterDeletion: entries[key]?.restoredAfterDeletion ?? deletedEntries[key]?.at, updatedAt };
+  return { ...store, offlineMerge: true as const, entries, deletedEntries };
 }
 
 export function createAnnotationDefinitionId(prefix: 'tag' | 'highlight') {

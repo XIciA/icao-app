@@ -82,7 +82,7 @@ function LearningRecordsContent() {
   }, [loadPage]);
 
   async function open(record: LearningRecord) {
-    if (openingRef.current || deletingId) return;
+    if (record.sourceUnavailable || openingRef.current || deletingId) return;
     openingRef.current = true;
     setOpeningId(record.id);
     setError('');
@@ -103,7 +103,7 @@ function LearningRecordsContent() {
     }).finally(() => { if (mounted.current) setDeletingId(undefined); });
   }
   function confirmDelete(record: LearningRecord) {
-    if (openingRef.current || deletingId) return;
+    if (record.sourceUnavailable || openingRef.current || deletingId) return;
     Alert.alert('删除这次学习记录？', '将删除本次作答和 AI 反馈，保留题目笔记、标签和学习进度。', [
       { text: '取消', style: 'cancel' },
       { text: '删除', style: 'destructive', onPress: () => remove(record) },
@@ -138,12 +138,12 @@ function LearningRecordsContent() {
           </Pressable>
         )}>
           <Card style={styles.card}>
-            <Pressable accessibilityRole="button" accessibilityLabel={`查看${record.bankTitle} ${record.topicTitle}`} accessibilityActions={[{ name: 'delete', label: '删除这次学习记录' }]} onAccessibilityAction={event => { if (event.nativeEvent.actionName === 'delete') confirmDelete(record); }} disabled={busy} onPress={() => { void open(record); }} style={styles.content}>
+            <Pressable accessibilityRole="button" accessibilityLabel={`查看${record.bankTitle} ${record.topicTitle}`} accessibilityActions={[{ name: 'delete', label: '删除这次学习记录' }]} onAccessibilityAction={event => { if (event.nativeEvent.actionName === 'delete') confirmDelete(record); }} disabled={busy || record.sourceUnavailable} onPress={() => { void open(record); }} style={styles.content}>
               <GuideAnchor id="recap-record" /><View style={styles.titleRow}>
                 <View style={styles.icon}><History color={colors.primary} size={18} /></View>
                 <View style={styles.copy}><AppText variant="cardTitle">{record.source === 'hotspot' ? 'OPI 热点' : record.recordType === 'mock_exam' ? '模拟考试' : record.bankTitle}</AppText><AppText variant="caption">{record.source === 'hotspot' ? record.hotspot?.title : record.recordType === 'mock_exam' ? record.categoryTitle : record.topicTitle}</AppText></View>
                 {record.recordType === 'mock_exam' && record.reason !== 'complete' ? <Tag tone="accent">未完成</Tag> : null}
-                <ChevronRight color={colors.mutedForeground} size={18} />
+                {record.sourceUnavailable ? <AppText variant="micro">原题已不可用</AppText> : <ChevronRight color={colors.mutedForeground} size={18} />}
               </View>
               <View style={styles.metrics}>
                 <View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.recordType === 'mock_exam' ? `已答 ${record.answeredCount ?? record.completedCount}/${record.totalCount} 题` : `本次学习 ${record.studiedCount ?? record.totalCount} 题`}</AppText></View>

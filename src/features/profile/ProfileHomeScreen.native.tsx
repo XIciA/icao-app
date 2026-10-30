@@ -3,7 +3,7 @@ import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect } from 'expo-router';
-import { Flame, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
+import { Download, Flame, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
 import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { SoftGlow } from '@/components/visual/SoftGlow';
@@ -20,6 +20,7 @@ const menu = [
   { slug: 'guide', label: '使用指南', icon: HelpCircle },
   { slug: 'exam-feedback', label: '考情反馈', icon: Flame },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
+  { slug: 'downloads', label: '下载管理', icon: Download },
   { slug: 'settings', label: '设置', icon: Settings },
 ];
 
@@ -29,7 +30,7 @@ export function ProfileHomeScreen() {
   const auth = useAuth();
   const profile = useProfile();
   const cloudWeb = Platform.OS === 'web' && isEdgeOneProductionWeb();
-  const visibleMenu = menu.filter((item) => Platform.OS !== 'web' || cloudWeb
+  const visibleMenu = menu.filter(item => item.slug !== 'downloads' || Platform.OS !== 'web').filter((item) => Platform.OS !== 'web' || cloudWeb
     || (item.slug !== 'membership' && item.slug !== 'feedback' && item.slug !== 'exam-feedback'));
   const [examUnread, setExamUnread] = useState<{accountId:string;value:boolean}>();
   const [feedbackUnread, setFeedbackUnread] = useState<{accountId:string;value:boolean}>();
@@ -59,6 +60,7 @@ export function ProfileHomeScreen() {
   function open(slug: string) {
     if (slug === 'membership') { trackProductClick('membership_open','profile'); router.push('/account/membership'); }
     else if (slug === 'guide') router.push({ pathname: '/info/[slug]', params: { slug: 'guide' } });
+    else if (slug === 'downloads') router.push('/account/downloads');
     else if (slug === 'settings') router.push('/account/settings');
     else if (slug === 'exam-feedback') router.push({ pathname: '/info/[slug]', params: { slug: 'feedback', source: 'exam_report' } });
     else if (slug === 'feedback')

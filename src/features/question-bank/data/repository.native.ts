@@ -1,3 +1,4 @@
+import { getConnectivity } from '../platform/network-service';
 import { Platform } from 'react-native';
 import { orderQuestionBanks } from '../lib/bank-order';
 import { commerceContentAccessSnapshot } from '@/features/native-commercial-testflight/commerce-entitlement-events';
@@ -22,11 +23,14 @@ import {
 } from '@/features/native-commercial-testflight/commerce-environment';
 import { ApiClientError, apiAccessToken, apiFetch, apiRequest, getApiBaseUrl } from '@/platform/api-client';
 import {
-  clearQuestionBankMemberContent,
+  suspendQuestionBankMemberAccess,
   currentQuestionBankContentAccountId,
   questionBankContentAccountGeneration,
   readMemberTopicCache,
   writeMemberTopicCache,
+  invalidateOfflineTopic,
+  isOfflineTopicInvalid,
+  inspectOfflineMemberTopicAccess,
 } from './member-content-cache';
 
 const datasets = orderQuestionBanks((publicData as QuestionBankDataset[]).map(naturalDatasetTitles));
@@ -41,6 +45,11 @@ export type QuestionBankRepository = {
   getDataset(id: QuestionBankId): Promise<QuestionBankDataset | undefined>;
   getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected?: ContentReleaseReference): Promise<QuestionBankTopic | undefined>;
 };
+
+const catalogListeners = new Set<(dataset: QuestionBankDataset) => void>();
+export function subscribeQuestionBankCatalog(listener: (dataset: QuestionBankDataset) => void) {
+  catalogListeners.add(listener); return () => { catalogListeners.delete(listener); };
+}
 
 let legacyCacheCleanup: Promise<void> | undefined;
 
@@ -109,7 +118,7 @@ export const embeddedQuestionBankRepository: QuestionBankRepository = {
 // later account/permission change is still rejected after the cleanup awaits.
 async function clearExpiredMemberContent(context: ReturnType<typeof contentContext>) {
   assertContentContextCurrent(context);
-  const cleanup = clearQuestionBankMemberContent(context.accountId!);
+  const cleanup = suspendQuestionBankMemberAccess(context.accountId!);
   context.accountGeneration = questionBankContentAccountGeneration();
   await cleanup.catch(() => undefined);
   assertContentContextCurrent(context);
@@ -130,7 +139,14 @@ const remoteQuestionBankSource = {
     };
     const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers, signal });
     assertContentContextCurrent(context);
-    if (response.status === 304 && cached) return cached.dataset;
+    if (response.status === 304 && cached) {
+      if (accountId && await Storage.getItem(`icao.downloads.v1.${accountId}.${environment}`)) {
+        const { reconcileDownloadedBank } = await import('../downloads/download-manager.native');
+        await reconcileDownloadedBank(id);
+        assertContentContextCurrent(context);
+      }
+      return cached.dataset;
+    }
     if (response.status === 404) return undefined;
     if (!response.ok) throw new Error(`question_bank_http_${response.status}`);
     const body = await response.json() as ApiSuccessEnvelope<QuestionBankRelease<QuestionBankDataset>>;
@@ -141,6 +157,11 @@ const remoteQuestionBankSource = {
       await clearExpiredMemberContent(context);
     }
     if (accountId) {
+      if (await Storage.getItem(`icao.downloads.v1.${accountId}.${environment}`)) {
+        const { reconcileDownloadedBank } = await import('../downloads/download-manager.native');
+        await reconcileDownloadedBank(id);
+      }
+      assertContentContextCurrent(context);
       await Storage.setItem(
         cacheKey(accountId, environment, id),
         JSON.stringify({ ...body.data, cachedAt: new Date().toISOString() } satisfies CachedRelease),
@@ -151,6 +172,13 @@ const remoteQuestionBankSource = {
   async getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected: ContentReleaseReference | undefined, context: ReturnType<typeof contentContext>) {
     const { accountId, environment } = context;
     const scope = { bankId, categoryId, topicId, ...(expected ? { version: expected.version } : {}) } satisfies ContentAccessScope & { version?: number };
+    const local = accountId ? await readMemberTopicCache(accountId, scope) : undefined;
+    if (local && local.cards.length >= local.declaredCardCount && sameContentRelease(local, expected) && !await isOfflineTopicInvalid(scope)) return local;
+    if (await getConnectivity() === 'offline') {
+      if (local && sameContentRelease(local, expected) && local.cards.length) return local;
+      const access = await inspectOfflineMemberTopicAccess(scope);
+      throw new ApiClientError(access === 'expired' || access === 'invalid' ? 'offline_authorization_required' : 'offline_content_missing', 0);
+    }
     try {
       const release = await apiRequest<QuestionBankTopicRelease<QuestionBankTopic>>(
         `/v1/question-banks/${encodeURIComponent(bankId)}/categories/${encodeURIComponent(categoryId)}/topics/${encodeURIComponent(topicId)}${expected ? `?version=${expected.version}&checksum=${expected.checksum}` : ''}`,
@@ -206,7 +234,7 @@ const remoteQuestionBankSource = {
         && error.status >= 400
         && error.status < 500
       ) {
-        await clearQuestionBankMemberContent(accountId).catch(() => undefined);
+        await invalidateOfflineTopic(scope).catch(() => undefined);
       }
       throw error;
     }
@@ -273,6 +301,14 @@ export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBank
   await ensureLegacyFullCacheRemoved();
   assertCurrent();
   if (base) {
+    const local = await readCachedCatalog(context.accountId, context.environment, id);
+    assertCurrent();
+    if (local) {
+      void remoteQuestionBankRepository.getDataset(id).then(dataset => {
+        if (dataset && contentContextIsCurrent(context)) catalogListeners.forEach(listener => listener(naturalDatasetTitles(dataset)));
+      }).catch(() => undefined);
+      return { dataset: naturalDatasetTitles(local.dataset), source: 'cache' };
+    }
     try {
       const remote = await remoteQuestionBankRepository.getDataset(id);
       if (remote) return { dataset: naturalDatasetTitles(remote), source: 'remote' };

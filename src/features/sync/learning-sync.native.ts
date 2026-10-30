@@ -1,3 +1,4 @@
+import { mergeOfflineAnnotations } from '@icao/contracts/annotation-management';
 import type {
   CardStateMutation,
   DocumentMutation,
@@ -773,7 +774,11 @@ async function applyChange(change: SyncChange, meta: SyncMeta) {
       await replaceProfileFromSync(payload.document);
       meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
     } else if (payload.documentKey === 'annotations') {
-      await replaceAnnotationStoreFromSync(payload.document);
+      const pending = await readOutbox();
+      const hasNewerLocal = pending.some(mutation => mutation.kind === 'document' && mutation.payload.documentKey === 'annotations'
+        && mutation.payload.document.offlineMerge === true);
+      const local = hasNewerLocal ? parseJson<Record<string, unknown>>(await Storage.getItem(ANNOTATIONS_KEY), {}) : undefined;
+      await replaceAnnotationStoreFromSync(local?.offlineMerge === true ? mergeOfflineAnnotations(payload.document, local) : payload.document);
       meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
     } else if (payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
       await replaceVocabularyStateFromSync(payload.document);

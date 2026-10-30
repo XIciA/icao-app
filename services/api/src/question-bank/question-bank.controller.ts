@@ -1,3 +1,4 @@
+import type { OfflineDownloadScope } from '@icao/contracts';
 import { BadRequestException, Controller, Get, Headers, Param, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, QUESTION_BANK_CATALOG_VERSION, FREE_CONTENT_SELECTION_VERSION, type ApiSuccessEnvelope, type QuestionBankRelease, type QuestionBankReleaseSummary, type QuestionBankTopicRelease } from '@icao/contracts';
 import type { FastifyReply } from 'fastify';
@@ -15,6 +16,15 @@ export class QuestionBankController {
   @Get()
   async list(@Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<QuestionBankReleaseSummary[]>> {
     return { requestId: request.id, data: await this.questionBanks.list() };
+  }
+
+  @Get(':bankId/offline')
+  async offline(@Param('bankId') bankId: string, @Query('scope') scope: OfflineDownloadScope,
+    @Headers(COMMERCE_ENVIRONMENT_HEADER) environment: string | undefined, @Req() request: AuthenticatedRequest,
+    @Res({ passthrough: true }) reply: FastifyReply) {
+    reply.header('cache-control', 'private, no-store');
+    return { requestId: request.id, data: await this.questionBanks.offlineManifest(bankId, scope, request.user?.id,
+      request.auth?.sessionId, contentCommerceEnvironment(environment)) };
   }
 
   @Get(':bankId')

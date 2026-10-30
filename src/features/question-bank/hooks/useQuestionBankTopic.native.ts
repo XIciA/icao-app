@@ -1,4 +1,4 @@
-import { commerceContentAccessSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
+import { canRetainContentOnAccessRefresh, commerceContentAccessSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import type { ContentReleaseReference } from '../data/content-version.native';
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { normalizeStudyScope, studyScopeCardIds } from '@icao/contracts';
@@ -30,12 +30,22 @@ export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categor
   const [attempt, setAttempt] = useState(0);
   const requestKey = JSON.stringify([bankId, categoryId, topicId, environmentSnapshot, attempt, expected, enabled, accessSnapshot]);
   const [response, setResponse] = useState<{ key: string; value: State }>();
-  const state = useMemo<State>(() => response?.key === requestKey ? response.value : { status: 'loading' }, [response, requestKey]);
+  const state = useMemo<State>(() => {
+    if (response?.key === requestKey) return response.value;
+    const old = response ? JSON.parse(response.key) : [];
+    const next = JSON.parse(requestKey);
+    const sameSession = [0, 1, 2, 3, 4, 6].every(index => old[index] === next[index]) && canRetainContentOnAccessRefresh(old[7], next[7]);
+    return sameSession && response?.value.status === 'ready' ? response.value : { status: 'loading' };
+  }, [response, requestKey]);
 
   useEffect(() => {
     let active = true;
-    const setState = (value: State) => setResponse({ key: requestKey, value });
-    setState({ status: 'loading' });
+    const setState = (value: State) => setResponse(previous => {
+      const old = previous ? JSON.parse(previous.key) : [];
+      const next = JSON.parse(requestKey);
+      const sameSession = [0, 1, 2, 3, 4, 6].every(index => old[index] === next[index]) && canRetainContentOnAccessRefresh(old[7], next[7]);
+      return { key: requestKey, value: sameSession && previous?.value.status === 'ready' && value.status === 'ready' ? previous.value : value };
+    });
     if (!enabled) return () => { active = false; };
     if (!bankId || !categoryId || !topicId) {
       setState({ status: 'error', error: new Error('invalid_question_bank_topic') });

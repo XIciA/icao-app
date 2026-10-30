@@ -14,9 +14,9 @@ it('cleans mixed study snapshots and recomputes counts without changing original
   expect(clean.noteCount).toBeUndefined(); expect(review.items).toHaveLength(2);
   expect(sanitizeRetiredLearningRecord(clean)).toEqual(clean);
 });
-it('removes an affected complete exam and an empty practice session with minimal tombstones', () => {
-  expect(sanitizeRetiredLearningRecord({ recordType: 'mock_exam', sessionId: 'x', studyReview: review, mockExam: { score: 100 } })).toEqual({ deleted: true, recordType: 'mock_exam', sessionId: 'x' });
-  expect(sanitizeRetiredLearningRecord({ recordType: 'session', studyReview: { ...review, items: [gone] } }).deleted).toBe(true);
+it('retains history metadata without retired question snapshots', () => {
+  expect(sanitizeRetiredLearningRecord({ recordType: 'mock_exam', sessionId: 'x', studyReview: review, mockExam: { score: 100 } })).toEqual({ sourceUnavailable: true, recordType: 'mock_exam', sessionId: 'x' });
+  expect(sanitizeRetiredLearningRecord({ recordType: 'session', studyReview: { ...review, items: [gone] } }).sourceUnavailable).toBe(true);
 });
 it('keeps unrelated exam and old history with no evidence of a removed card', () => {
   const value = { recordType: 'mock_exam', studyReview: { ...review, items: [kept] } };
@@ -25,9 +25,11 @@ it('keeps unrelated exam and old history with no evidence of a removed card', ()
 });
 it('cleans annotations and old mutation responses without deleting shared tag definitions', () => {
   const doc = { tagDefinitions: [{ id: 't' }], entries: { gone: { bankId: 'listening', cardId: 'listening-main-1010', note: 'secret' }, kept: { bankId: 'listening', cardId: 'listening-main-187', note: 'keep' } } };
-  expect(sanitizeRetiredAnnotations(doc)).toEqual({ ...doc, entries: { kept: doc.entries.kept } });
+  expect(sanitizeRetiredAnnotations(doc)).toMatchObject({ entries: { kept: doc.entries.kept }, recoveredNotes: [{ note: 'secret', reason: 'retired' }] });
+  expect(Object.keys(sanitizeRetiredAnnotations(doc).entries as object)).toEqual(['kept']);
+  expect(sanitizeRetiredAnnotations(sanitizeRetiredAnnotations(doc))).toEqual(sanitizeRetiredAnnotations(doc));
   expect(sanitizeRetiredSyncPayload('card_state', { bankId: 'listening', cardId: 'listening-main-1010', state: { completed: true, note: 'secret' }, updatedAt: 'date', version: 999 })).toMatchObject({ version: 999, state: emptyRetiredState('date') });
-  expect(sanitizeRetiredSyncPayload('learning_record', { recordId: 'exam', record: { recordType: 'mock_exam', studyReview: review } })).toMatchObject({ deleted: true, record: { deleted: true } });
+  expect(sanitizeRetiredSyncPayload('learning_record', { recordId: 'exam', record: { recordType: 'mock_exam', studyReview: review } })).toMatchObject({ record: { sourceUnavailable: true } });
 });
 it('leaves existing unrelated deletion markers unchanged', () => {
   const value = { deleted: true, recordType: 'session', sessionId: 'unrelated', reason: 'user_deleted' };

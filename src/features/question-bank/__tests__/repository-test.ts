@@ -2,10 +2,12 @@
 const mockStorageValues = new Map<string, string>();
 const mockSecureValues = new Map<string, string>();
 const mockFiles = new Set<string>();
+const mockFileBytes = new Map<string, Uint8Array>();
 
 jest.mock('expo-sqlite/kv-store', () => ({
   getItem: jest.fn(async (key: string) => mockStorageValues.get(key) ?? null),
   setItem: jest.fn(async (key: string, value: string) => { mockStorageValues.set(key, value); }),
+  removeItem: jest.fn(async (key: string) => { mockStorageValues.delete(key); }),
   getAllKeys: jest.fn(async () => [...mockStorageValues.keys()]),
   multiRemove: jest.fn(async (keys: string[]) => { keys.forEach((key) => mockStorageValues.delete(key)); }),
 }));
@@ -26,12 +28,12 @@ jest.mock('expo-crypto', () => {
   return {
     AESKeySize: { AES256: 256 },
     AESEncryptionKey: TestKey,
-    AESSealedData: { fromCombined: (value: string) => value },
+    AESSealedData: { fromCombined: (value: string | Uint8Array) => value },
     CryptoDigestAlgorithm: { SHA256: 'SHA-256' },
     digest: jest.fn(async () => new Uint8Array(32).fill(0xab)),
     digestStringAsync: jest.fn(async (_algorithm: string, value: string) => `digest-${value.replaceAll('/', '-')}`),
-    aesEncryptAsync: jest.fn(async (value: Uint8Array) => ({ combined: async () => encode(value) })),
-    aesDecryptAsync: jest.fn(async (value: string) => decode(value)),
+    aesEncryptAsync: jest.fn(async (value: Uint8Array) => ({ combined: async (encoding?: string) => encoding === 'base64' ? encode(value) : new Uint8Array([...new Uint8Array(16), ...value]) })),
+    aesDecryptAsync: jest.fn(async (value: string | Uint8Array) => typeof value === 'string' ? decode(value) : value.slice(16)),
   };
 });
 jest.mock('expo-file-system', () => {
@@ -47,10 +49,11 @@ jest.mock('expo-file-system', () => {
     uri: string;
     constructor(first: MockDirectory | string, ...parts: string[]) { this.uri = [typeof first === 'string' ? first : first.uri, ...parts].join('/'); }
     get exists() { return mockFiles.has(this.uri); }
-    get size() { return 10; }
+    get size() { return mockFileBytes.get(this.uri)?.length ?? 10; }
     get name() { return this.uri.split('/').pop()!; }
     get modificationTime() { return 0; }
-    async bytes() { return new Uint8Array(10); }
+    async bytes() { return mockFileBytes.get(this.uri) ?? new Uint8Array(10); }
+    write(bytes: Uint8Array) { mockFileBytes.set(this.uri, bytes); mockFiles.add(this.uri); }
     delete() { mockFiles.delete(this.uri); }
     move(destination: MockFile) { mockFiles.delete(this.uri); this.uri = destination.uri; mockFiles.add(this.uri); }
     static async downloadFileAsync(_url: string, file: MockFile) { mockFiles.add(file.uri); return file; }
@@ -198,6 +201,7 @@ describe('embeddedQuestionBankRepository', () => {
     mockStorageValues.clear();
     mockSecureValues.clear();
     mockFiles.clear();
+    mockFileBytes.clear();
     jest.restoreAllMocks();
     if (originalApiUrl === undefined) delete process.env.EXPO_PUBLIC_ICAO_API_URL;
     else process.env.EXPO_PUBLIC_ICAO_API_URL = originalApiUrl;
@@ -688,7 +692,7 @@ describe('embeddedQuestionBankRepository', () => {
     } finally { release(); }
     await waitFor(() => expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(true));
     request.mockRejectedValue(new Error('offline'));
-    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toMatch(/^file:\/\/\/document\/icao-member-content\//);
+    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toMatch(/^file:\/\/\/cache\/icao-authorized-content\//);
   });
 
   it('keeps authorized online audio playable when the optional local URL cache cannot be written', async () => {

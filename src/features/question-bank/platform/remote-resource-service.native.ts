@@ -1,3 +1,4 @@
+import { getConnectivity } from './network-service';
 import { COMMERCE_ENVIRONMENT_HEADER, type ResolvedResource } from '@icao/contracts';
 
 import {
@@ -8,11 +9,13 @@ import { ApiClientError, apiRequest, getApiBaseUrl } from '@/platform/api-client
 import Storage from '@/platform/storage';
 import {
   cacheMemberResource,
-  clearQuestionBankMemberContent,
+  invalidateOfflineResource,
+  discardTemporaryMemberResource,
   currentQuestionBankContentAccountId,
   hasValidOfflineMemberResourceAccess,
   questionBankContentAccountGeneration,
   resolveOfflineMemberResource,
+  offlineResourceFailureCode,
 } from '../data/member-content-cache.native';
 
 type CachedResource = ResolvedResource & { expiresAt: number };
@@ -79,6 +82,13 @@ export async function resolveSignedQuestionBankAsset(
     ? await resolveOfflineMemberResource(path).catch(() => undefined)
     : undefined;
   assertCurrent();
+  if (offline) return offline;
+  if (await getConnectivity() === 'offline') {
+    const local = forceRefresh ? await resolveOfflineMemberResource(path) : undefined;
+    assertCurrent();
+    if (local) return local;
+    throw new ApiClientError(await offlineResourceFailureCode(path), 0);
+  }
   const key = accountId ? resourceCacheKey(accountId, environment, path) : undefined;
   const cachedValue = key ? await Storage.getItem(key).catch(() => undefined) : undefined;
   assertCurrent();
@@ -112,7 +122,10 @@ export async function resolveSignedQuestionBankAsset(
     assertCurrent();
     if (cause instanceof ApiClientError && cause.status >= 400 && cause.status < 500) {
       if (accountId && (cause.status === 401 || cause.status === 403)) {
-        await clearQuestionBankMemberContent(accountId);
+        await invalidateOfflineResource(path);
+        if (cachedValue) {
+          try { await discardTemporaryMemberResource(path, (JSON.parse(cachedValue) as CachedResource).checksum); } catch { /* No usable copy remains authorized. */ }
+        }
       }
       throw cause;
     }

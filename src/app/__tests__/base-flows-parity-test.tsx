@@ -6,6 +6,7 @@ import { AccountScreen } from '@/features/account/AccountScreen';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { InfoScreen } from '@/features/info/InfoScreen';
 
+jest.mock('@/features/question-bank/downloads/DownloadManagementScreen', () => ({ DownloadManagementScreen: () => null }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { getActiveOwner: () => undefined } }));
 jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({phase:'unavailable'}) }));
 let mockInstalledVersion: string | null = '2.3.4';

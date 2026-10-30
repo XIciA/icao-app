@@ -10,16 +10,28 @@ export function isRetiredCard(bankId: unknown, cardId: unknown) { return retired
 export function emptyRetiredState(updatedAt: string) { return { visited: false, completed: false, note: '', updatedAt }; }
 export function sanitizeRetiredAnnotations(value: Value): Value {
   if (!value.entries || typeof value.entries !== 'object') return value;
-  return rebaseFormattedAnnotations({ ...value, entries: Object.fromEntries(Object.entries(object(value.entries)).filter(([, entry]) => {
-    const item = object(entry); return !isRetiredCard(item.bankId, item.cardId);
-  })) });
+  const recovered = Array.isArray(value.recoveredNotes) ? [...value.recoveredNotes] : [];
+  const entries = Object.fromEntries(Object.entries(object(value.entries)).filter(([key, entry]) => {
+    const item = object(entry);
+    if (!isRetiredCard(item.bankId, item.cardId)) return true;
+    if (typeof item.note === 'string' && item.note.trim()) {
+      const id = `retired/${key}/${item.updatedAt}`;
+      if (!recovered.some(note => object(note).id === id)) recovered.push({ id, bankId: item.bankId, cardId: item.cardId, note: item.note, updatedAt: item.updatedAt, reason: 'retired' });
+    }
+    return false;
+  }));
+  return rebaseFormattedAnnotations({ ...value, entries, ...(recovered.length ? { recoveredNotes: recovered } : {}) });
 }
+
 const retiredItem = (value: unknown) => {
   const item = object(value); const source = object(item.source);
   return isRetiredCard(object(item.dataset).id ?? source.bankId, object(item.card).id ?? source.cardId);
 };
 export function sanitizeRetiredLearningRecord(value: Value): Value {
-  const tombstone = () => ({ deleted: true, recordType: value.recordType, sessionId: value.sessionId });
+  // Keep history metadata, never a second copy of retired questions or feedback.
+  const tombstone = () => Object.fromEntries(Object.entries({ ...value, sourceUnavailable: true }).filter(([key]) =>
+    ['schemaVersion', 'id', 'sessionId', 'cardId', 'bankId', 'bankTitle', 'categoryTitle', 'topicTitle', 'completedCount', 'totalCount',
+      'correctCount', 'durationSeconds', 'reason', 'createdAt', 'updatedAt', 'recordType', 'answeredCount', 'studiedCount', 'sourceUnavailable'].includes(key)));
   if (value.deleted === true) return value;
   if (isRetiredCard(value.bankId, value.cardId)) return tombstone();
   let result = value;

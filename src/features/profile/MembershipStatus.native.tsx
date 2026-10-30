@@ -1,3 +1,6 @@
+import { useAuth } from '@/features/auth/AuthProvider';
+import { secureSessionStorage } from '@/features/auth/secure-session-storage';
+import { getNativeCommerceEnvironment } from '@/features/native-commercial-testflight/commerce-environment';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
@@ -8,8 +11,9 @@ import type { CommerceEntitlementSummary } from '@icao/contracts';
 import { colors, radii, spacing } from '@/theme';
 
 export function membershipPresentation(entitlement?: CommerceEntitlementSummary) {
-  if (!entitlement) return { active: false, label: '正在确认会员…', expires: '—' };
-  const { active, expiresAt } = entitlement.membership;
+  if (!entitlement) return { active: false, label: '待验证', expires: '—' };
+  const { expiresAt } = entitlement.membership;
+  const active = entitlement.membership.active && (!expiresAt || Date.parse(expiresAt) > Date.parse(entitlement.serverTime));
   const expires = expiresAt ? new Date(expiresAt).toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }) : '—';
   // Access stays owned by commerce; this only formats the service snapshot.
   const days = expiresAt ? Math.max(0, Math.ceil((Date.parse(expiresAt) - Date.parse(entitlement.serverTime)) / 86_400_000)) : 0;
@@ -21,8 +25,41 @@ export function VipBadge({ active }: { active: boolean }) {
 }
 export function MembershipStatus({ pill = false, align = 'start' }: { pill?: boolean; align?: 'start' | 'end' }) {
   const commerce = useCommerceRuntime(); const router = useAppRouter(); const [open, setOpen] = useState(false);
-  const membership = membershipPresentation(commerce.entitlement);
-  const statusLabel = commerce.phase === 'error' && !commerce.entitlement ? '会员状态暂时无法读取' : membership.label;
+  const auth = useAuth();
+  const owner = auth.accountReady ? auth.account?.accountId : undefined;
+  const environment = getNativeCommerceEnvironment();
+  const entitlementKey = JSON.stringify(commerce.entitlement);
+  const cacheKey = `icao.membership.presentation.v1.${owner}.${environment}`;
+  const [cached, setCached] = useState<{ key: string; snapshot: CommerceEntitlementSummary; receivedAt: number }>();
+  const [now, setNow] = useState(Date.now);
+  useEffect(() => { const timer = setInterval(() => setNow(Date.now()), 60_000); return () => clearInterval(timer); }, []);
+  useEffect(() => {
+    let active = true;
+    if (!owner) return;
+    if (entitlementKey) {
+      const snapshot = JSON.parse(entitlementKey) as CommerceEntitlementSummary;
+      void secureSessionStorage.setItem(cacheKey, JSON.stringify({ snapshot, receivedAt: Date.now() })).catch(() => undefined);
+      setCached({ key: cacheKey, snapshot, receivedAt: Date.now() });
+    } else {
+      void secureSessionStorage.getItem(cacheKey).then(raw => {
+        if (!raw || !active) return;
+        const value = JSON.parse(raw) as { snapshot: CommerceEntitlementSummary; receivedAt: number };
+        const elapsed = Date.now() - value.receivedAt;
+        if (elapsed < 0 || elapsed > 72 * 60 * 60 * 1000) return;
+        const time = Date.parse(value.snapshot.serverTime) + elapsed;
+        if (value.snapshot.membership.active && Date.parse(value.snapshot.membership.expiresAt ?? '') <= time) return;
+        setCached({ key: cacheKey, snapshot: value.snapshot, receivedAt: value.receivedAt });
+      }).catch(() => undefined);
+    }
+    return () => { active = false; };
+  }, [cacheKey, owner, entitlementKey]);
+  // A presentation snapshot never feeds commerce permissions or purchase decisions.
+  const elapsed = cached ? Math.max(0, now - cached.receivedAt) : 0;
+  const display = cached?.key === cacheKey && (commerce.entitlement || elapsed <= 72 * 60 * 60 * 1000)
+    ? { ...cached.snapshot, serverTime: new Date(Date.parse(cached.snapshot.serverTime) + elapsed).toISOString() }
+    : commerce.entitlement;
+  const membership = membershipPresentation(display);
+  const statusLabel = commerce.phase === 'error' && !display ? '会员状态暂时无法读取' : membership.label;
   useEffect(() => { setOpen(false); }, [commerce.entitlementChange?.accountId]);
   return <>
     <Pressable

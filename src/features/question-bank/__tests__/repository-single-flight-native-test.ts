@@ -12,6 +12,9 @@ jest.mock('@/platform/storage', () => ({ __esModule: true, default: {
 } }));
 jest.mock('../data/member-content-cache', () => ({
   currentQuestionBankContentAccountId: () => mockAccount, questionBankContentAccountGeneration: () => mockGeneration,
+  suspendQuestionBankMemberAccess: jest.fn(async () => undefined),
+  isOfflineTopicInvalid: jest.fn(async () => false),
+  invalidateOfflineTopic: jest.fn(async () => undefined),
   clearQuestionBankMemberContent: jest.fn(async () => undefined), readMemberTopicCache: jest.fn(async () => undefined), writeMemberTopicCache: jest.fn(),
 }));
 jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({

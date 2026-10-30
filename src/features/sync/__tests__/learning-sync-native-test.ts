@@ -404,3 +404,16 @@ it('merges guest vocabulary with the account by word timestamp and queues it onc
   await switchLearningSyncAccount('A');
   expect((await getLearningSyncStatus()).pendingCount).toBe(count);
 });
+
+it('removes protected local history details when synchronized source becomes unavailable', async () => {
+  await upsertLearningRecord(history());
+  const reviewKey = 'icao.learning.v1.records.review.history-one';
+  const aiKey = 'icao.learning.v1.records.ai.history-one';
+  expect(mockValues.has(reviewKey)).toBe(true);
+  mockValues.set(aiKey, JSON.stringify({ transcript: 'retired detail' }));
+  const { studyReview: _review, ...metadata } = history();
+  await upsertLearningRecord({ ...metadata, sourceUnavailable: true });
+  expect(mockValues.has(reviewKey)).toBe(false);
+  expect(mockValues.has(aiKey)).toBe(false);
+  expect(await getLearningRecords()).toEqual([expect.objectContaining({ id: 'history-one', sourceUnavailable: true })]);
+});
