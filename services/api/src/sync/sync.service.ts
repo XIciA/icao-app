@@ -1,4 +1,4 @@
-import { preserveManagedAnnotations } from '@icao/contracts/annotation-management';
+import { preserveManagedAnnotations, mergeOfflineAnnotations } from '@icao/contracts/annotation-management';
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import type {
   CardStateMutation,
@@ -480,6 +480,11 @@ export class SyncService {
       // A delayed completion may merge without reverting newer profile choices.
       mutation = { ...mutation, payload: { ...mutation.payload, version: current.version + 1,
         document: { ...(current.payload as Record<string, unknown>), studySetup: 'completed' } } };
+    }
+    if (mutation.payload.documentKey === 'annotations' && mutation.payload.document.offlineMerge === true) {
+      mutation = { ...mutation, payload: { ...mutation.payload,
+        version: Math.max(mutation.payload.version, (current?.version ?? 0) + 1),
+        document: mergeOfflineAnnotations((current?.payload ?? {}) as Record<string, unknown>, mutation.payload.document) } };
     }
     if (current && mutation.payload.version <= current.version) {
       return {

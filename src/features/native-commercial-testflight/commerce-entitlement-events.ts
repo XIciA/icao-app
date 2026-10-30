@@ -69,6 +69,16 @@ export function commerceContentAccessSnapshot() {
   ]) : 'none';
 }
 
+/** Pending → verified for the same owner must not unmount an active lesson. */
+export function canRetainContentOnAccessRefresh(previous: string, next: string) {
+  if (previous === next) return true;
+  try {
+    const a = JSON.parse(previous); const b = JSON.parse(next);
+    return Array.isArray(a) && Array.isArray(b) && a.slice(0, 3).every((value, index) => value === b[index])
+      && a[3] !== false && b[3] !== false;
+  } catch { return false; }
+}
+
 export function subscribeCommerceEntitlementChanges(
   listener: CommerceEntitlementChangeListener,
 ) {

@@ -38,6 +38,7 @@ export type PhoneBindingVerification = { account: NativeAccountSummary; challeng
 
 export type AuthService = {
   getSession(): Promise<AppSession | undefined>;
+  getLocalSession?(): Promise<AppSession | undefined>;
   refreshSession(): Promise<AppSession | undefined>;
   isAppleSignInAvailable(): Promise<boolean>;
   isWechatSignInAvailable(): Promise<boolean>;
@@ -231,6 +232,16 @@ export class SupabasePhoneAuthService implements AuthService {
       }
       return data.session;
     });
+  }
+
+  async getLocalSession(): Promise<AppSession | undefined> {
+    const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
+    if (!url || Platform.OS === 'web') return undefined;
+    try {
+      const key = `sb-${new URL(url).hostname.split('.')[0]}-auth-token`;
+      const raw = await secureSessionStorage.getItem(key);
+      return raw ? appSession(JSON.parse(raw) as Session) : undefined;
+    } catch { return undefined; }
   }
 
   async getSession(): Promise<AppSession | undefined> {

@@ -1067,3 +1067,5 @@ export function questionBankRadioEntries(topic: { cards: readonly { id: string; 
 
 export { migrateVocabularyDocument, vocabularyDocumentForLegacyClient } from './vocabulary-migration.ts';
 export { vocabularyRetiredIds, vocabularyRetiredFavoriteKeys } from './vocabulary-migration-data.ts';
+
+export * from './offline-download.ts';

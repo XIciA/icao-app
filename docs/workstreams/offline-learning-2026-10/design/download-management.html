@@ -1,0 +1,203 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&display=swap');
+#offline-refined{padding:24px 8px;display:flex;justify-content:center}
+#offline-refined .device{--paper:#FBFAF7;--ink:#11161F;--surface:#FFFFFF;--brand:#1F5ED9;--muted:#5D636F;--soft:#F4F2EC;--line:rgba(17,22,31,.09);--tint:rgba(31,94,217,.06);--amber:#B77610;--red:#DB2B33;color-scheme:light;position:relative;width:100%;max-width:390px;min-height:780px;border-radius:35px;background:var(--paper);color:var(--ink);border:1px solid var(--line);box-shadow:0 8px 18px rgba(31,94,217,.05);font:400 14px/22px 'Geist',sans-serif;overflow:hidden;display:flex;flex-direction:column}
+#offline-refined .device *{box-sizing:border-box}
+#offline-refined button{font:500 14px/22px 'Geist',sans-serif;min-height:44px;border:0;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:999px;background:var(--soft);color:var(--ink);transition:transform 140ms,background 140ms}
+#offline-refined button:active:not(:disabled){transform:scale(.98)}
+#offline-refined button:focus-visible{outline:2px solid var(--brand);outline-offset:-3px}
+#offline-refined button:disabled{opacity:.5}
+#offline-refined button.primary{background:var(--brand);color:#FDFCF8}
+#offline-refined button.ghost{background:transparent;color:var(--muted);padding:8px 4px}
+#offline-refined button.danger{color:var(--red)}
+#offline-refined button.secondary{background:var(--surface);border:1px solid var(--line);min-width:112px}
+#offline-refined button.secondary.danger{border-color:rgba(219,43,51,.25)}
+#offline-refined svg{width:18px;height:18px;flex-shrink:0}
+#offline-refined p{margin:0}
+#offline-refined .serif{font:600 17px/24px 'Noto Serif SC',serif;letter-spacing:-.15px}
+#offline-refined .mono{font-family:'Geist Mono',monospace;font-variant-numeric:tabular-nums}
+#offline-refined .statusbar{padding:14px 26px 8px;display:flex;justify-content:space-between;align-items:center;font:500 12px/19px 'Geist',sans-serif}
+#offline-refined .statusbar>span:last-child{display:flex;align-items:center;gap:6px}
+#offline-refined .topbar{min-height:56px;position:relative;display:grid;grid-template-columns:88px minmax(0,1fr) 88px;align-items:center;background:var(--paper);border-bottom:1px solid var(--line);padding:0 12px}
+#offline-refined .back{width:44px;padding:0;background:transparent}
+#offline-refined .topbar h1{font:600 17px/24px 'Noto Serif SC',serif;letter-spacing:-.15px;text-align:center;white-space:nowrap;margin:0}
+#offline-refined .check{padding:8px 0;background:transparent;color:var(--brand);justify-self:end;white-space:nowrap;font-size:12px}
+#offline-refined .check svg{width:15px;height:15px}
+#offline-refined .content{padding:20px;flex:1}
+#offline-refined .bank{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-bottom:12px}
+#offline-refined .bank:last-child{margin-bottom:0}
+#offline-refined .bank-toggle{width:100%;text-align:left;background:transparent;border-radius:0;justify-content:space-between;padding:16px;gap:10px;min-height:76px}
+#offline-refined .identity{display:flex;align-items:center;gap:12px;min-width:0}
+#offline-refined .bank-icon{display:flex;align-items:center;justify-content:center;background:var(--tint);color:var(--brand);width:36px;height:36px;flex-shrink:0;border-radius:13px}
+#offline-refined .bank-name{display:block;color:var(--ink)}
+#offline-refined .bank-end{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#offline-refined .bank-status{display:inline-flex;align-items:center;gap:4px;color:var(--muted);font:500 12px/19px 'Geist',sans-serif;white-space:nowrap}
+#offline-refined .bank-status.complete{color:var(--brand)}
+#offline-refined .bank-status svg{width:14px;height:14px}
+#offline-refined .bank-status.warn{color:var(--amber)}
+#offline-refined .bank-status.error{color:var(--red)}
+#offline-refined .arrow{color:var(--muted);display:flex}
+#offline-refined .detail{padding:20px 16px 16px;border-top:1px solid var(--line)}
+#offline-refined .range{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+#offline-refined .range button{background:var(--surface);border:1px solid var(--line);border-radius:13px;color:var(--muted)}
+#offline-refined .range button[aria-pressed=true]{color:var(--brand);background:var(--tint);border-color:var(--brand)}
+#offline-refined .info{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;line-height:19px;color:var(--muted);margin:0 0 12px}
+#offline-refined .capacity{padding:0 0 4px}
+#offline-refined .info .mono{font:400 12px/19px 'Geist',sans-serif;font-variant-numeric:tabular-nums}
+#offline-refined .capacity .mono{color:var(--muted);white-space:nowrap}
+#offline-refined .progress-value{font:400 12px/19px 'Geist',sans-serif;font-variant-numeric:tabular-nums;color:var(--muted)}
+#offline-refined .version .mono{color:var(--ink)}
+#offline-refined .info:last-child{margin-bottom:0}
+#offline-refined .hint{font-size:13px;line-height:20px;color:var(--muted);margin:8px 0 12px;display:flex;align-items:flex-start;gap:8px}
+#offline-refined .hint svg{width:16px;height:16px;margin-top:2px}
+#offline-refined .single-scope{font-size:14px;line-height:22px;color:var(--ink);margin-bottom:20px}
+#offline-refined .hint.warn{color:var(--amber)}
+#offline-refined .hint.error{color:var(--red)}
+#offline-refined .actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:20px;padding-top:12px;border-top:1px solid var(--line)}
+#offline-refined .actions .danger{margin-right:auto}
+#offline-refined .actions .primary{min-width:112px;margin-left:auto}
+#offline-refined .meter{height:5px;background:var(--soft);border-radius:999px;overflow:hidden;margin-bottom:12px}
+#offline-refined .meter span{display:block;height:100%;background:var(--brand);border-radius:999px;transition:width 220ms}
+#offline-refined .progressline{margin-top:10px}
+#offline-refined .home{width:110px;height:4px;border-radius:999px;background:var(--ink);margin:24px auto 12px}
+#offline-refined .scrim{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(17,22,31,.30);z-index:5}
+#offline-refined .dialog{width:100%;background:var(--surface);padding:24px;border-radius:29px;box-shadow:0 8px 24px rgba(31,94,217,.10)}
+#offline-refined .dialog h2{font:600 18px/25px 'Noto Serif SC',serif;margin:0 0 12px}
+#offline-refined .dialog p{color:var(--muted);font-size:14px;line-height:22px}
+#offline-refined .dialog .dialog-actions{display:flex;gap:12px;margin-top:24px}
+#offline-refined .dialog button{flex:1}
+#offline-refined .dialog button.destructive{color:#FFFFFF;background:var(--red)}
+#offline-refined [hidden]{display:none!important}
+#offline-refined .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:360px){#offline-refined{padding:16px 0}#offline-refined .content{padding:16px}#offline-refined .topbar{grid-template-columns:82px minmax(0,1fr) 82px;padding:0 8px}#offline-refined .topbar h1{font-size:16px}#offline-refined .bank-toggle{padding:14px}#offline-refined .identity{gap:8px}#offline-refined .dialog{padding:20px}}
+@media(prefers-reduced-motion:reduce){#offline-refined button,#offline-refined .meter span{transition:none}}
+</style>
+<div id="offline-refined" class="viz-dotted-background" aria-label="折叠式下载管理交互稿">
+  <div class="device" aria-label="下载管理">
+    <div class="statusbar"><span>9:41</span><span><i data-lucide="wifi" aria-hidden="true"></i><i data-lucide="battery-full" aria-hidden="true"></i></span></div>
+    <header class="topbar">
+      <button type="button" class="back cursor-interaction" data-action="back" aria-label="返回"><i data-lucide="arrow-left" aria-hidden="true"></i></button>
+      <h1>下载管理</h1>
+      <button type="button" class="check cursor-interaction" data-action="check"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>检查更新</span></button>
+    </header>
+    <main class="content" aria-label="题库下载列表"></main>
+    <div class="home" aria-hidden="true"></div>
+    <div class="sr" role="status" aria-live="polite"></div>
+    <div class="scrim" hidden></div>
+  </div>
+</div>
+<script>
+(function(){
+const root=document.getElementById('offline-refined');
+const device=root.querySelector('.device'), content=root.querySelector('main'), live=root.querySelector('[role=status]'), scrim=root.querySelector('.scrim'), check=root.querySelector('.check');
+const preview={online:true,outcome:'success'};
+const banks=[
+ {id:'listening',name:'听力',icon:'headphones',full:302.3,required:98.5,selected:'最全题库',saved:null,state:'none',progress:0,version:0,latest:27,known:false},
+ {id:'sentences',name:'900 句',icon:'book-open',full:79.7,required:55.2,selected:'五级',saved:'五级',state:'ready',progress:100,version:27,latest:27,known:true},
+ {id:'radio',name:'陆空通话',icon:'radio',full:541.1,required:164.6,selected:'最全题库',saved:'最全题库',state:'ready',progress:100,version:26,latest:27,known:false},
+ {id:'opi',name:'OPI',icon:'mic',full:64.2,required:24.0,selected:'最全题库',pendingScope:'最全题库',saved:null,state:'interrupted',progress:60,version:0,latest:27,known:false,reason:'网络中断'},
+ {id:'story',name:'故事复诵',icon:'audio-lines',full:228.3,required:44.4,selected:'最全题库',saved:null,state:'none',progress:0,version:0,latest:27,known:false}
+];
+let expanded='listening',checking=false,checkTimer,checkLabel='检查更新',labelTimer,dialog=null,dialogBank=null,returnFocus=null;
+const taskTimers=new Map();
+const I=n=>`<i data-lucide="${n}" aria-hidden="true"></i>`;
+const B=(action,text,id,classes='',disabled=false)=>`<button type="button" class="cursor-interaction ${classes}" data-action="${action}" data-id="${id}" ${disabled?'disabled':''}>${text}</button>`;
+function announce(text){live.textContent=text;}
+function checkFeedback(text){clearTimeout(labelTimer);checkLabel=text;render();announce(text);labelTimer=setTimeout(()=>{checkLabel='检查更新';render();},2800);}
+function icons(){if(globalThis.lucide)lucide.createIcons({attrs:{width:18,height:18}});}
+function busy(b){return ['downloading','updating','verifying'].includes(b.state);}
+function scopeOptions(b){return b.id==='sentences'?['四级','五级']:['精选题库','最全题库'];}
+function isFullScope(b,scope=b.selected){return scope===scopeOptions(b)[1];}
+function size(b,scope=b.selected){return '约 '+(isFullScope(b,scope)?b.full:b.required).toFixed(1)+' MB';}
+function status(b){
+ if(b.state==='downloading'||b.state==='updating')return `${b.state==='updating'?'更新中':'下载中'}${expanded!==b.id?' '+b.progress+'%':''}`;
+ if(b.state==='verifying')return '正在校验';
+ if(b.state==='interrupted')return b.reason||'未完成';
+ if(b.state==='error')return '下载失败';
+ if(b.state==='update')return '有更新';
+ if(b.state==='ready')return b.known?'已是最新':'已下载';
+ return '未下载';
+}
+function detail(b){
+ const isBusy=busy(b),hasSaved=!!b.saved,rangeChanged=hasSaved&&b.selected!==b.saved,needsDownload=b.state==='none'||['interrupted','error'].includes(b.state)||rangeChanged;
+ let html=`<div class="range" aria-label="${b.name}下载范围">${scopeOptions(b).map(s=>`<button type="button" class="cursor-interaction" data-action="scope" data-id="${b.id}" data-scope="${s}" aria-pressed="${b.selected===s}" ${isBusy?'disabled':''}>${s}</button>`).join('')}</div>`;
+ html+=`<div class="info capacity"><span>下载大小</span><span class="mono">${size(b)}</span></div>`;
+ if(isBusy){
+  html+=`<div class="info"><span>下载进度</span><span class="progress-value">${b.progress}%</span></div><div class="meter" role="progressbar" aria-label="${b.name}下载进度" aria-valuenow="${b.progress}" aria-valuemin="0" aria-valuemax="100"><span style="width:${b.progress}%"></span></div><div class="actions">${B('cancel','取消下载',b.id,'secondary')}</div>`;
+  return html;
+ }
+ if(b.state==='interrupted')html+=`<div class="info"><span>下载进度</span><span class="progress-value">${b.progress}%</span></div><div class="meter" role="progressbar" aria-label="${b.name}已下载进度" aria-valuenow="${b.progress}" aria-valuemin="0" aria-valuemax="100"><span style="width:${b.progress}%"></span></div>`;
+ if(b.state==='update')html+=`<div class="info version"><span>版本更新</span><span class="mono">V${b.version} → V${b.latest}</span></div><p class="hint warn">${I('circle-alert')}部分音频需联网播放</p>`;
+ if(b.state==='error'||b.inlineError)html+=`<p class="hint error">${I('circle-alert')}${b.inlineError||b.error||'下载失败，请重试'}</p>`;
+ let primary='';
+ if(hasSaved&&isFullScope(b,b.saved)&&!isFullScope(b)&&b.state!=='update')html+=`<p class="hint">${I('check')}已包含在${b.saved}下载中</p>`;
+ else if(b.state==='update')primary=B('start','更新下载',b.id,'primary');
+ else if(needsDownload)primary=B('start',b.state==='interrupted'?'继续下载':b.state==='error'?'重试下载':'下载'+b.selected,b.id,'primary');
+ if(rangeChanged&&!isFullScope(b,b.saved))html+=`<p class="hint">${I('check')}已下载${b.saved}，仅补充其余内容</p>`;
+ return html+`<div class="actions">${hasSaved||b.progress>0?B('delete','删除下载',b.id,'secondary danger'):''}${primary}</div>`;
+}
+function render(){
+ const focused=document.activeElement;const focusData=focused&&root.contains(focused)?{action:focused.dataset.action,id:focused.dataset.id,scope:focused.dataset.scope}:null;
+ content.innerHTML=banks.map(b=>`<article class="bank" data-bank="${b.id}"><button type="button" class="bank-toggle cursor-interaction" data-action="expand" data-id="${b.id}" aria-expanded="${expanded===b.id}" aria-controls="detail-${b.id}"><span class="identity"><span class="bank-icon">${I(b.icon)}</span><span class="bank-name serif">${b.name}</span></span><span class="bank-end"><span class="bank-status ${b.state==='ready'?'complete':b.state==='update'?'warn':b.state==='error'?'error':''}">${b.state==='ready'?I('check'):''}${status(b)}</span><span class="arrow">${I(expanded===b.id?'chevron-up':'chevron-down')}</span></span></button><div class="detail" id="detail-${b.id}" ${expanded!==b.id?'hidden':''}>${detail(b)}</div></article>`).join('');
+ check.disabled=checking;check.querySelector('span').textContent=checking?'检查中':checkLabel;
+ if(focusData&&focusData.id){let selector=`button[data-action="${focusData.action}"][data-id="${focusData.id}"]`;if(focusData.scope)selector+=`[data-scope="${focusData.scope}"]`;content.querySelector(selector)?.focus({preventScroll:true});}
+ icons();
+}
+function closeDialog(resume=true){const resumeBank=dialog==='cancel'?dialogBank:null;scrim.hidden=true;scrim.innerHTML='';content.inert=false;root.querySelector('.topbar').inert=false;dialog=null;dialogBank=null;returnFocus?.focus({preventScroll:true});if(resume&&resumeBank&&busy(resumeBank))tick(resumeBank);}
+function openDialog(kind,b){
+ dialog=kind;dialogBank=b;returnFocus=document.activeElement;if(kind==='cancel')stopTask(b);
+ const title=kind==='delete'?`删除${b.name}下载？`:'取消下载？';
+ const body=kind==='delete'?'仅删除本机内容，收藏、笔记和学习记录保留。':'已下载文件保留，可稍后继续。';
+ scrim.innerHTML=`<section class="dialog" role="dialog" aria-modal="true" aria-labelledby="offline-dialog-title" aria-describedby="offline-dialog-body"><h2 id="offline-dialog-title">${title}</h2><p id="offline-dialog-body">${body}</p><div class="dialog-actions">${B('dismiss',kind==='delete'?'取消':'继续下载',b.id)}${B('confirm',kind==='delete'?'删除':'取消下载',b.id,'destructive')}</div></section>`;
+ scrim.hidden=false;content.inert=true;root.querySelector('.topbar').inert=true;scrim.querySelector('button').focus();
+}
+function stopTask(b){clearTimeout(taskTimers.get(b.id));taskTimers.delete(b.id);}
+function begin(b){
+ if(!preview.online){b.inlineError='当前无网络，请联网后下载';render();return;}
+ stopTask(b);b.taskUpdate=b.state==='update';if(b.taskUpdate)b.selected=b.saved;if(b.pendingScope&&b.pendingScope!==b.selected)b.progress=0;b.pendingScope=b.selected;b.state=b.taskUpdate?'updating':'downloading';b.error=null;b.inlineError=null;b.reason=null;
+ if(b.progress>=100)b.progress=0;
+ render();tick(b);
+}
+function tick(b){taskTimers.set(b.id,setTimeout(()=>{
+ if(!preview.online||preview.outcome==='network'){b.state='interrupted';b.reason='网络中断';stopTask(b);render();announce('网络中断，下载已保留');return;}
+ if(preview.outcome==='storage'){b.state='error';b.error='空间不足，请清理后重试';stopTask(b);render();return;}
+ b.progress=Math.min(100,b.progress+10);
+ if(b.progress===100){b.state='verifying';render();taskTimers.set(b.id,setTimeout(()=>{b.state='ready';b.saved=b.selected;b.version=b.latest;b.known=true;stopTask(b);render();announce(b.name+'下载完成');},550));}
+ else{render();tick(b);}
+ },420));}
+function checkUpdates(){
+ if(checking)return;
+ if(!preview.online){checkFeedback('当前离线');return;}
+ const downloaded=banks.filter(b=>b.saved);
+ if(!downloaded.length){checkFeedback('暂无下载');return;}
+ clearTimeout(labelTimer);checking=true;render();
+ checkTimer=setTimeout(()=>{checking=false;if(!preview.online||preview.outcome==='network'){checkFeedback('检查失败');return;}
+ let changes=0;downloaded.forEach(b=>{if(busy(b))return;b.known=true;if(b.version<b.latest){b.state='update';changes++;}});checkFeedback(changes?`${changes} 项更新`:'已是最新');},900);
+}
+root.addEventListener('click',event=>{
+ const el=event.target.closest('button[data-action]');if(!el||el.disabled)return;
+ const action=el.dataset.action,b=banks.find(x=>x.id===el.dataset.id);
+ if(action==='expand'){expanded=expanded===b.id?null:b.id;render();}
+ if(action==='scope'){b.selected=el.dataset.scope;b.inlineError=null;render();}
+ if(action==='start'){expanded=b.id;begin(b);}
+ if(action==='check')checkUpdates();
+ if(action==='delete')openDialog('delete',b);
+ if(action==='cancel')openDialog('cancel',b);
+ if(action==='dismiss')closeDialog();
+ if(action==='confirm'){
+  const target=dialogBank,kind=dialog;stopTask(target);
+  if(kind==='delete'){target.state='none';target.saved=null;target.progress=0;target.version=0;target.known=false;target.inlineError=null;}
+  else{target.state=target.saved?(target.taskUpdate?'update':'ready'):'interrupted';target.reason='已取消';}
+  closeDialog(false);render();content.querySelector(`[data-action="expand"][data-id="${target.id}"]`)?.focus({preventScroll:true});announce(kind==='delete'?'已删除下载':'已取消下载');
+ }
+ if(action==='back')announce('当前为下载管理预览');
+});
+root.addEventListener('keydown',event=>{
+ if(!dialog)return;
+ if(event.key==='Escape'){event.preventDefault();closeDialog();}
+ if(event.key==='Tab'){const buttons=[...scrim.querySelectorAll('button')];const first=buttons[0],last=buttons[buttons.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}
+});
+render();
+if(globalThis.Tweak){const tweak=new Tweak({container:device,onChange:()=>{banks.filter(b=>busy(b)).forEach(b=>{if(!preview.online){stopTask(b);b.state='interrupted';b.reason='网络中断';}});render();}});tweak.addToggle(preview,'online',{label:'网络可用'});tweak.addSelect(preview,'outcome',{label:'下载结果',options:[{label:'正常',value:'success'},{label:'网络中断',value:'network'},{label:'空间不足',value:'storage'}]});}
+})();
+</script>

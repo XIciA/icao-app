@@ -3,7 +3,7 @@ import { useFocusEffect } from 'expo-router';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
 import { nativeCommerceEnvironmentSnapshot, subscribeNativeCommerceEnvironment } from '@/features/native-commercial-testflight/commerce-environment';
-import { getEmbeddedQuestionBanks, loadQuestionBank } from '../data/repository.native';
+import { getEmbeddedQuestionBanks, loadQuestionBank, subscribeQuestionBankCatalog } from '../data/repository.native';
 import { scopeDataset } from '../lib/study-scope';
 
 export function useStudyCatalog() {
@@ -15,7 +15,10 @@ export function useStudyCatalog() {
     void Promise.all(getEmbeddedQuestionBanks().map(async (bank) => (await loadQuestionBank(bank.id))?.dataset ?? bank))
       .then((datasets) => { if (active) setLoaded({ owner, datasets }); })
       .catch(() => { /* The built-in directory remains usable offline. */ });
-    return () => { active = false; };
+    const unsubscribe = subscribeQuestionBankCatalog(dataset => {
+      if (active) setLoaded(current => ({ owner, datasets: (current?.owner === owner ? current.datasets : getEmbeddedQuestionBanks()).map(bank => bank.id === dataset.id ? dataset : bank) }));
+    });
+    return () => { active = false; unsubscribe(); };
   }, [owner]));
   return useMemo(() => (loaded?.owner === owner ? loaded.datasets : getEmbeddedQuestionBanks())
     .map((bank) => scopeDataset(bank, normalizeStudyScope(profile.studyScope), profile.target))

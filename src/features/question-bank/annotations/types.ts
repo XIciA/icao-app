@@ -31,10 +31,16 @@ export type QuestionAnnotationEntry = QuestionBankCardTarget & {
   highlights: AnnotationHighlight[];
   note: string;
   updatedAt: string;
+  baseUpdatedAt?: string;
+  restoredAfterDeletion?: string;
+  ancestorUpdatedAts?: string[];
 };
 
 export type QuestionBankAnnotationStore = {
   version: 1 | 2;
+  offlineMerge?: true;
+  deletedEntries?: Record<string, import('@icao/contracts/annotation-management').AnnotationEntryDeletion>;
+  recoveredNotes?: import('@icao/contracts/annotation-management').RecoveredAnnotationNote[];
   choiceHighlights?: true;
   deletedDefinitions?: import('@icao/contracts/annotation-management').AnnotationDeletions;
   legacyImported: boolean;

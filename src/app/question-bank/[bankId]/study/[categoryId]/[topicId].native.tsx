@@ -42,7 +42,7 @@ function NativeQuestionBankStudyRouteBody() {
   }>();
   const resuming = useRef(Boolean(peekStudyLogin(loginResume, `${bankId}/${topicId}`))).current;
   const manualTeaching = guide === 'study' && bankId === 'sentences900' && cardId === STUDY_GUIDE_CARD;
-  const bankState = useQuestionBank(bankId);
+  const bankState = useQuestionBank(bankId, true);
   const rawCatalog = bankState.status === 'ready' ? (bankState.catalog ?? bankState.data) : undefined;
   const location = rawCatalog && cardId ? createCardDirectory([rawCatalog]).get({ bankId, cardId }) : undefined;
   const effectiveCategoryId = location?.categoryId ?? categoryId;
@@ -117,6 +117,12 @@ function NativeQuestionBankStudyRouteBody() {
         title="会员内容"
       />
     );
+  }
+  if (topicState.status === 'error' && 'code' in topicState.error && String(topicState.error.code).startsWith('offline_')) {
+    const verify = topicState.error.code === 'offline_authorization_required';
+    return stateScreen(<CenteredState title={verify ? '需要联网验证' : '该内容尚未下载'}
+      description={verify ? '联网验证后可继续使用本机内容。' : '可在下载管理中下载对应题库。'}
+      actionLabel={verify ? '重试' : '前往下载管理'} onAction={verify ? topicState.retry : () => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: bankId } })} />);
   }
   if (bankState.status === 'error' || topicState.status === 'error' || !category || !topic || targetCardMissing) {
     return stateScreen(

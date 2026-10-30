@@ -18,3 +18,16 @@ it('requests the directory release and never renders a superseded version respon
   await act(async () => latest({ ...topic, name: 'New release' }));
   await waitFor(() => expect(hook.result.current.topic?.name).toBe('New release'));
 });
+it('keeps a ready lesson mounted when a background catalog version changes', async () => {
+  jest.mocked(questionBankRepository.getTopic).mockReset().mockResolvedValue(topic);
+  const release = { bankId: 'listening', version: 1, checksum: 'a'.repeat(64) };
+  const hook = await renderHook<ReturnType<typeof useQuestionBankTopic>, { version: number }>(({ version }) => useQuestionBankTopic('listening', 'category', 'topic', { ...release, version }), { initialProps: { version: 1 } });
+  await waitFor(() => expect(hook.result.current.status).toBe('ready'));
+  const current = hook.result.current.topic;
+  let updated!: (topic: QuestionBankTopic) => void;
+  jest.mocked(questionBankRepository.getTopic).mockReturnValueOnce(new Promise(done => { updated = done; }));
+  await hook.rerender({ version: 2 });
+  expect(hook.result.current.status).toBe('ready');
+  await act(async () => updated({ ...topic, name: 'Future lesson version' }));
+  expect(hook.result.current.topic).toBe(current);
+});

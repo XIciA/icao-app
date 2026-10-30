@@ -10,6 +10,7 @@ import {
 } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Directory, File, Paths } from 'expo-file-system';
+import { createDownloadResumable } from 'expo-file-system/legacy';
 import Storage from '@/platform/storage';
 import type { ContentAccessCredential, ContentAccessScope } from '@icao/contracts';
 
@@ -160,7 +161,7 @@ async function memberResourceFile(
 ) {
   const digest = await digestStringAsync(CryptoDigestAlgorithm.SHA256, `${publicPath}#${checksum ?? 'legacy'}`);
   const extension = /\.[A-Za-z0-9]{1,8}$/u.exec(publicPath)?.[0] ?? '.bin';
-  return new File(memberResourceDirectory(accountId, environment), `${digest}${extension}`);
+  return new File(memberResourceDirectory(accountId, environment), `${digest}${extension}.sealed`);
 }
 
 function accountKeyName(accountId: string) {
@@ -310,6 +311,7 @@ export async function writeMemberTopicCache(
   scope: ContentAccessScope,
   topic: QuestionBankTopic,
   credential: ContentAccessCredential,
+  { preserveInvalid = false }: { preserveInvalid?: boolean } = {},
 ) {
   await ensureLegacyDeviceBoundContentCleanup();
   const context = memberContentContext(accountId);
@@ -338,12 +340,18 @@ export async function writeMemberTopicCache(
     await SecureStore.setItemAsync(secureCredentialKey, JSON.stringify(credential), secureOptions());
     assertMemberContentContextCurrent(context);
     await registerCredentialKey(accountId, secureCredentialKey);
+    if (!preserveInvalid) await Storage.removeItem(`${topicCacheKey(accountId, environment, scope)}.invalid`);
     assertMemberContentContextCurrent(context);
     const resourcePaths = topic.cards.flatMap((card) => card.kind === 'image'
       ? [card.image]
       : [card.audio].filter((path): path is string => Boolean(path)));
     for (const path of resourcePaths) {
-      await Storage.setItem(resourceIndexKey(accountId, environment, path), JSON.stringify(scope));
+      const indexKey = resourceIndexKey(accountId, environment, path);
+      const previous = await Storage.getItem(indexKey);
+      let scopes: ContentAccessScope[] = [];
+      try { const parsed = previous ? JSON.parse(previous) : []; scopes = (Array.isArray(parsed) ? parsed : [parsed]).filter(isLegacyScope); } catch { /* Replace damaged index only. */ }
+      if (!scopes.some(item => scopeIdentity(item) === scopeIdentity(scope))) scopes.push(scope);
+      await Storage.setItem(indexKey, JSON.stringify(scopes));
       assertMemberContentContextCurrent(context);
     }
   });
@@ -353,6 +361,8 @@ export async function readMemberTopicCache(accountId: string, scope: ContentAcce
   await ensureLegacyDeviceBoundContentCleanup();
   const context = memberContentContext(accountId);
   const { environment } = context;
+  const invalid = await Storage.getItem(`${topicCacheKey(accountId, environment, scope)}.invalid`);
+  if (invalid === '1') return undefined;
   const secureCredentialKey = credentialKey(accountId, environment, scope);
   const [credentialValue, recordValue, key] = await Promise.all([
     SecureStore.getItemAsync(secureCredentialKey),
@@ -379,6 +389,10 @@ export async function readMemberTopicCache(accountId: string, scope: ContentAcce
     assertMemberContentContextCurrent(context);
     const topic = JSON.parse(new TextDecoder().decode(decrypted)) as QuestionBankTopic;
     assertMemberContentContextCurrent(context);
+    if (invalid) {
+      const ids = new Set<string>(JSON.parse(invalid));
+      return { ...topic, cards: topic.cards.filter(card => !ids.has(card.id)) };
+    }
     return topic;
   } catch {
     return undefined;
@@ -440,6 +454,8 @@ export async function clearQuestionBankMemberContent(accountId?: string) {
       ...credentialKeys.map((key) => SecureStore.deleteItemAsync(key)),
       SecureStore.deleteItemAsync(accountKeyName(accountId)),
     ]);
+    const downloadKeys = (await Storage.getAllKeys()).filter(key => key.startsWith(`icao.downloads.v1.${accountId}.`));
+    if (downloadKeys.length) await Storage.multiRemove(downloadKeys);
     const topicPrefix = `${TOPIC_CACHE_PREFIX}${accountId}.`;
     const resourcePrefix = `${RESOURCE_INDEX_PREFIX}${accountId}.`;
     const cacheKeys = (await Storage.getAllKeys()).filter((key) => key.startsWith(topicPrefix) || key.startsWith(resourcePrefix));
@@ -471,7 +487,10 @@ async function memberResourceScope(accountId: string, publicPath: string) {
   const value = await Storage.getItem(resourceIndexKey(accountId, getNativeCommerceEnvironment(), publicPath));
   if (!value) return undefined;
   try {
-    return JSON.parse(value) as ContentAccessScope;
+    const parsed = JSON.parse(value);
+    const scopes: ContentAccessScope[] = (Array.isArray(parsed) ? parsed : [parsed]).filter(isLegacyScope);
+    for (const scope of scopes) if (await readMemberTopicCache(accountId, scope)) return scope;
+    return scopes[0];
   } catch {
     return undefined;
   }
@@ -486,11 +505,26 @@ export async function resolveOfflineMemberResource(publicPath: string) {
   assertMemberContentContextCurrent(context);
   if (!scope || !await readMemberTopicCache(accountId, scope)) return undefined;
   assertMemberContentContextCurrent(context);
+  if (await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`)) return undefined;
   const checksum = await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.checksum`);
   if (!checksum || !/^[a-f0-9]{64}$/.test(checksum)) return undefined;
   const file = await memberResourceFile(accountId, environment, publicPath, checksum);
   assertMemberContentContextCurrent(context);
-  return file.exists ? file.uri : undefined;
+  if (!file.exists) return undefined;
+  const key = await contentKey(accountId, false);
+  if (!key) return undefined;
+  try {
+    const bytes = await aesDecryptAsync(AESSealedData.fromCombined(await file.bytes()), key,
+      { additionalData: new TextEncoder().encode(`${accountId}/${environment}/${publicPath}/${checksum}`) });
+    assertMemberContentContextCurrent(context);
+    const directory = new Directory(temporaryResourceAccountDirectory(accountId), environment);
+    directory.create({ intermediates: true, idempotent: true });
+    const playable = new File(directory, file.name.replace(/\.sealed$/, ''));
+    playable.write(new Uint8Array(bytes));
+    touchTemporaryResource(playable);
+    pruneTemporaryResources(directory);
+    return playable.uri;
+  } catch { await invalidateOfflineResource(publicPath); return undefined; }
 }
 
 export async function hasValidOfflineMemberResourceAccess(publicPath: string) {
@@ -508,7 +542,7 @@ export async function cacheMemberResource(
   publicPath: string,
   signedUrl: string,
   expected?: { checksum: string; sizeBytes: number },
-  { temporary = false, isCurrent = () => true }: { temporary?: boolean; isCurrent?: () => boolean } = {},
+  { temporary = false, isCurrent = () => true, required = false, onProgress }: { temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
 ) {
   if (!expected || !/^[a-f0-9]{64}$/.test(expected.checksum) || expected.sizeBytes <= 0 || expected.sizeBytes > 52_428_800) return undefined;
   if (temporary && expected.sizeBytes > TEMPORARY_RESOURCE_MAX_FILE_BYTES) return undefined;
@@ -543,7 +577,7 @@ export async function cacheMemberResource(
     const directory = temporary
       ? new Directory(temporaryResourceAccountDirectory(accountId), environment)
       : memberResourceDirectory(accountId, environment);
-    const file = temporary ? new File(directory, persistentFile.name) : persistentFile;
+    const file = temporary ? new File(directory, persistentFile.name.replace(/\.sealed$/, '')) : persistentFile;
     // Network I/O must not hold the account lock: signing out and other tracks
     // remain responsive even when one transfer stalls. A unique staging file
     // prevents a late old-account download from overwriting a new session.
@@ -557,7 +591,7 @@ export async function cacheMemberResource(
       const checksum = temporary ? undefined : await Storage.getItem(checksumKey);
       assertMemberContentContextCurrent(context);
       if (!hasCurrentConsumer()) return undefined;
-      if (file.exists && file.size === expected.sizeBytes
+      if (!await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`) && file.exists && (temporary ? file.size === expected.sizeBytes : file.size > expected.sizeBytes)
         && (temporary ? temporaryResourceUses.has(file.uri) : checksum === expected.checksum)) {
         if (temporary) touchTemporaryResource(file);
         return file.uri;
@@ -569,11 +603,25 @@ export async function cacheMemberResource(
     if (cached) return cached;
     // Optional caching must not enqueue unlimited native transfers when users
     // rapidly change tracks. Callers can continue with the authorized stream.
-    if (activeResourceTransfers >= MAX_RESOURCE_TRANSFERS) return undefined;
+    while (required && activeResourceTransfers >= MAX_RESOURCE_TRANSFERS && hasCurrentConsumer()) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      assertMemberContentContextCurrent(context);
+    }
+    if (!hasCurrentConsumer() || activeResourceTransfers >= MAX_RESOURCE_TRANSFERS) return undefined;
     activeResourceTransfers += 1;
     try {
       stagingDirectory.create({ idempotent: true, intermediates: true });
-      await File.downloadFileAsync(signedUrl, staging, { idempotent: true });
+      if (required) {
+        const task = createDownloadResumable(signedUrl, staging.uri, {}, progress => {
+          onProgress?.(Math.min(1, progress.totalBytesWritten / expected.sizeBytes));
+        });
+        const timeout = setTimeout(() => { void task.cancelAsync().catch(() => undefined); }, 120_000);
+        const cancellation = setInterval(() => { if (!hasCurrentConsumer() || activeAccountId !== accountId || activeAccountGeneration !== context.accountGeneration) void task.cancelAsync().catch(() => undefined); }, 200);
+        try {
+          const result = await task.downloadAsync();
+          if (!result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
+        } finally { clearTimeout(timeout); clearInterval(cancellation); }
+      } else await File.downloadFileAsync(signedUrl, staging, { idempotent: true });
       assertMemberContentContextCurrent(context);
       if (!hasCurrentConsumer()) return undefined;
       if (staging.size !== expected.sizeBytes) throw new Error('resource_size_mismatch');
@@ -589,12 +637,26 @@ export async function cacheMemberResource(
         if (!hasCurrentConsumer()) return undefined;
         directory.create({ idempotent: true, intermediates: true });
         if (file.exists) file.delete();
-        staging.move(file);
+        if (temporary) staging.move(file);
+        else {
+          const key = await contentKey(accountId, true);
+          const sealed = await aesEncryptAsync(bytes, key!, { additionalData: new TextEncoder().encode(`${accountId}/${environment}/${publicPath}/${expected.checksum}`) });
+          assertMemberContentContextCurrent(context);
+          if (!hasCurrentConsumer()) return undefined;
+          file.write(await sealed.combined());
+        }
         if (temporary) {
           touchTemporaryResource(file);
           pruneTemporaryResources(directory);
         } else {
+          const previousChecksum = await Storage.getItem(checksumKey);
+          assertMemberContentContextCurrent(context);
           await Storage.setItem(checksumKey, expected.checksum);
+          if (previousChecksum && previousChecksum !== expected.checksum) {
+            const obsolete = await memberResourceFile(accountId, environment, publicPath, previousChecksum);
+            if (obsolete.exists) obsolete.delete();
+          }
+          await Storage.removeItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`);
           assertMemberContentContextCurrent(context);
         }
         return file.exists ? file.uri : undefined;
@@ -615,4 +677,165 @@ export async function cacheMemberResource(
     consumers.delete(isCurrent);
     if (resourceDownloads.get(downloadKey) === download) resourceDownloads.delete(downloadKey);
   }
+}
+
+/** Invalidation is durable and does not erase unrelated downloads or user data. */
+export async function invalidateOfflineTopic(scope: ContentAccessScope, cardIds?: string[]) {
+  const accountId = activeAccountId;
+  if (!accountId) return;
+  const context = memberContentContext(accountId);
+  const key = `${topicCacheKey(accountId, context.environment, scope)}.invalid`;
+  await withAccountContentLock(accountId, async () => {
+    assertMemberContentContextCurrent(context);
+    const previous = await Storage.getItem(key);
+    const value = !cardIds || previous === '1' ? '1' : JSON.stringify([...new Set([...(previous ? JSON.parse(previous) as string[] : []), ...cardIds])]);
+    assertMemberContentContextCurrent(context);
+    await Storage.setItem(key, value);
+  });
+}
+export async function isOfflineTopicInvalid(scope: ContentAccessScope) {
+  return activeAccountId ? Boolean(await Storage.getItem(`${topicCacheKey(activeAccountId, getNativeCommerceEnvironment(), scope)}.invalid`)) : false;
+}
+export async function invalidateOfflineResource(path: string, expectedChecksum?: string) {
+  const accountId = activeAccountId;
+  if (!accountId) return;
+  const context = memberContentContext(accountId);
+  const index = resourceIndexKey(accountId, context.environment, path);
+  await withAccountContentLock(accountId, async () => {
+    assertMemberContentContextCurrent(context);
+    if (expectedChecksum && await Storage.getItem(`${index}.checksum`) !== expectedChecksum) return;
+    assertMemberContentContextCurrent(context);
+    await Storage.setItem(`${index}.invalid`, '1');
+  });
+}
+export async function removeOfflineResources(paths: string[], scopes: ContentAccessScope[]) {
+  const accountId = activeAccountId;
+  if (!accountId) return;
+  const context = memberContentContext(accountId);
+  await withAccountContentLock(accountId, async () => {
+    assertMemberContentContextCurrent(context);
+    for (const path of paths) {
+      const index = resourceIndexKey(accountId, context.environment, path);
+      const checksum = await Storage.getItem(`${index}.checksum`);
+      if (checksum) {
+        const file = await memberResourceFile(accountId, context.environment, path, checksum);
+        if (file.exists) file.delete();
+        const playable = new File(new Directory(temporaryResourceAccountDirectory(accountId), context.environment), file.name.replace(/\.sealed$/, ''));
+        if (playable.exists) playable.delete();
+      }
+      await Storage.multiRemove([index, `${index}.checksum`, `${index}.invalid`]);
+    }
+    for (const scope of scopes) {
+      await Storage.multiRemove([topicCacheKey(accountId, context.environment, scope), `${topicCacheKey(accountId, context.environment, scope)}.invalid`]);
+      await SecureStore.deleteItemAsync(credentialKey(accountId, context.environment, scope));
+    }
+  });
+}
+
+export async function verifyOfflineResource(publicPath: string, expected: { checksum: string; sizeBytes: number }) {
+  const accountId = activeAccountId;
+  if (!accountId) return false;
+  const context = memberContentContext(accountId);
+  const file = await memberResourceFile(accountId, context.environment, publicPath, expected.checksum);
+  const key = await contentKey(accountId, false);
+  if (!file.exists || !key) return false;
+  try {
+    const bytes = new Uint8Array(await aesDecryptAsync(AESSealedData.fromCombined(await file.bytes()), key,
+      { additionalData: new TextEncoder().encode(`${accountId}/${context.environment}/${publicPath}/${expected.checksum}`) }));
+    const hash = Array.from(new Uint8Array(await digest(CryptoDigestAlgorithm.SHA256, bytes))).map(value => value.toString(16).padStart(2, '0')).join('');
+    assertMemberContentContextCurrent(context);
+    const valid = bytes.length === expected.sizeBytes && hash === expected.checksum;
+    if (!valid) await invalidateOfflineResource(publicPath, expected.checksum);
+    return valid;
+  } catch {
+    if (activeAccountId === accountId && activeAccountGeneration === context.accountGeneration) await invalidateOfflineResource(publicPath, expected.checksum);
+    return false;
+  }
+}
+
+export async function suspendQuestionBankMemberAccess(accountId: string) {
+  await withAccountContentLock(accountId, async () => {
+    const raw = await Storage.getItem(credentialIndexKey(accountId));
+    const keys: string[] = raw ? JSON.parse(raw) : [];
+    await Promise.all(keys.map(key => SecureStore.deleteItemAsync(key)));
+  });
+}
+
+export async function offlineResourcePrepared(publicPath: string, expected: { checksum: string; sizeBytes: number }) {
+  const accountId = activeAccountId;
+  if (!accountId) return false;
+  const context = memberContentContext(accountId);
+  const index = resourceIndexKey(accountId, context.environment, publicPath);
+  const file = await memberResourceFile(accountId, context.environment, publicPath, expected.checksum);
+  const valid = file.exists && file.size > expected.sizeBytes && await Storage.getItem(`${index}.checksum`) === expected.checksum
+    && !await Storage.getItem(`${index}.invalid`);
+  assertMemberContentContextCurrent(context);
+  return valid;
+}
+
+export async function offlineCredentialNeedsRefresh(scope: ContentAccessScope) {
+  if (!activeAccountId) return false;
+  try {
+    const raw = await SecureStore.getItemAsync(credentialKey(activeAccountId, getNativeCommerceEnvironment(), scope));
+    return !raw || Date.parse((JSON.parse(raw) as ContentAccessCredential).expiresAt) - Date.now() < 24 * 60 * 60 * 1000;
+  } catch { return true; }
+}
+export async function renewOfflineCredentials(credential: ContentAccessCredential) {
+  const accountId = activeAccountId;
+  if (!accountId) return;
+  const context = memberContentContext(accountId);
+  await withAccountContentLock(accountId, async () => {
+    for (const scope of credential.scopes) {
+      assertMemberContentContextCurrent(context);
+      if (!verifyContentAccessCredential({ accountId, credential, scope, environment: context.environment })) throw new Error('invalid_content_credential');
+      const key = credentialKey(accountId, context.environment, scope);
+      await SecureStore.setItemAsync(key, JSON.stringify(credential), secureOptions());
+      await registerCredentialKey(accountId, key);
+    }
+  });
+}
+
+export async function discardTemporaryMemberResource(path: string, checksum: string) {
+  const accountId = activeAccountId;
+  if (!accountId) return;
+  const environment = getNativeCommerceEnvironment();
+  const persistent = await memberResourceFile(accountId, environment, path, checksum);
+  const directory = new Directory(temporaryResourceAccountDirectory(accountId), environment);
+  for (const name of [persistent.name, persistent.name.replace(/\.sealed$/, '')]) {
+    const file = new File(directory, name);
+    if (file.exists) file.delete();
+    temporaryResourceUses.delete(file.uri);
+  }
+}
+
+/** A bank version may change outside this downloaded range. Rebase only verified unchanged cards. */
+export async function rebaseOfflineTopic(topic: import('@icao/contracts').OfflineTopic,
+  release: import('./content-version.native').ContentReleaseReference) {
+  const accountId = activeAccountId;
+  if (!accountId) return;
+  const cached = await readMemberTopicCache(accountId, topic);
+  if (!cached) return;
+  const cards = cached.cards.filter(card => topic.cardIds.includes(card.id));
+  for (const card of cards) {
+    const hash = await digestStringAsync(CryptoDigestAlgorithm.SHA256, JSON.stringify(card));
+    if (hash !== topic.cardChecksums[card.id]) return;
+  }
+  const raw = await SecureStore.getItemAsync(credentialKey(accountId, getNativeCommerceEnvironment(), topic));
+  if (!raw) return;
+  await writeMemberTopicCache(accountId, topic, { ...cached, cards, contentRelease: release } as QuestionBankTopic, JSON.parse(raw) as ContentAccessCredential, { preserveInvalid: true });
+  const missing = topic.cardIds.filter(id => !cards.some(card => card.id === id));
+  if (missing.length) await invalidateOfflineTopic(topic, missing);
+}
+
+export async function offlineResourceFailureCode(path: string) {
+  const accountId = activeAccountId;
+  if (!accountId) return 'offline_resource_missing';
+  const environment = getNativeCommerceEnvironment();
+  const index = resourceIndexKey(accountId, environment, path);
+  if (await Storage.getItem(`${index}.invalid`)) return 'offline_resource_outdated';
+  const scope = await memberResourceScope(accountId, path);
+  if (!scope) return 'offline_resource_missing';
+  const access = await inspectOfflineMemberTopicAccess(scope);
+  if (access === 'expired' || access === 'invalid') return 'offline_authorization_required';
+  return await Storage.getItem(`${index}.checksum`) ? 'offline_resource_unavailable' : 'offline_resource_missing';
 }

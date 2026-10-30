@@ -1,3 +1,4 @@
+import type { OfflineDownloadScope } from '@icao/contracts';
 import { Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import type { CommerceEnvironment, QuestionBankRelease, QuestionBankReleaseSummary } from '@icao/contracts';
@@ -18,6 +19,11 @@ export class QuestionBankService {
     private readonly database: DatabaseService,
     private readonly contentAccess: ContentAccessService,
   ) {}
+
+  async offlineManifest(bankId: string, scope: OfflineDownloadScope,
+    accountId: string | undefined, sessionId: string | undefined, environment: CommerceEnvironment) {
+    return this.contentAccess.offlineManifest(bankId, scope, accountId, sessionId, environment);
+  }
 
   async list(): Promise<QuestionBankReleaseSummary[]> {
     const rows = await this.database.db.select().from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId);

@@ -4,7 +4,7 @@ import { useQuestionBankTopic } from '../hooks/useQuestionBankTopic.native';
 import { loadQuestionBank, questionBankRepository } from '../data/repository.native';
 import { beginCommerceEntitlementGeneration, publishCommerceEntitlementChange, resetCommerceEntitlementEventsForTests } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import type { QuestionBankDataset, QuestionBankTopic } from '../types';
-jest.mock('../data/repository.native',()=>({loadQuestionBank:jest.fn(),questionBankRepository:{getTopic:jest.fn()}}));
+jest.mock('../data/repository.native',()=>({subscribeQuestionBankCatalog:()=>()=>undefined,loadQuestionBank:jest.fn(),questionBankRepository:{getTopic:jest.fn()}}));
 jest.mock('@/features/account/profile-store.native',()=>({useProfile:()=>({studyScope:'all',target:'icao5'})}));
 jest.mock('@/features/native-commercial-testflight/commerce-environment',()=>({nativeCommerceEnvironmentSnapshot:()=> 'production',subscribeNativeCommerceEnvironment:()=>()=>undefined}));
 jest.mock('../lib/study-scope',()=>({scopeDataset:(value:unknown)=>value,scopeTopic:(_bank:unknown,value:unknown)=>value}));

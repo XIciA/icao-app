@@ -33,6 +33,7 @@ export function StudyAudioPlayer({
   autoPlayRequest = 0,
   tagColors = [],
   resolving = false,
+  resourceError,
   onRetry,
   onSeekInteractionChange,
   blockedExternalGesture,
@@ -52,6 +53,7 @@ export function StudyAudioPlayer({
   autoPlayRequest?: number;
   tagColors?: string[];
   resolving?: boolean;
+  resourceError?: string;
   onRetry?: () => void;
   onSeekInteractionChange?: (active: boolean) => void;
   blockedExternalGesture?: GestureType;
@@ -99,6 +101,14 @@ export function StudyAudioPlayer({
   });
   const integrated = variant === 'integrated-recording';
   const webStartTimedOut = Platform.OS === 'web' && webStartState === 'timed-out';
+  const localFallbackKey = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (uri?.startsWith('file:') && status.playbackState === 'error' && statusAtSourceReplacementRef.current !== status
+      && onRetry && localFallbackKey.current !== playbackKey) {
+      localFallbackKey.current = playbackKey;
+      onRetry();
+    }
+  }, [uri, status, onRetry, playbackKey]);
   const audioFailed = !uri || loadTimeout.timedOut || webStartTimedOut || status.playbackState === 'error';
   const guide = useGuide();
   useGuideAvailability('study', guide?.step === 'study-play' && audioFailed && !resolving ? '音频暂时无法播放，可重试或暂不听音频继续教学。' : undefined);
@@ -554,7 +564,7 @@ export function StudyAudioPlayer({
               <AlertCircle color={colors.destructive} size={18} />
               <View style={styles.errorCopy}>
                 <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-                <AppText variant="caption">{webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+                <AppText variant="caption">{resourceError ?? (webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。')}</AppText>
               </View>
               {uri || onRetry ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
@@ -626,7 +636,7 @@ export function StudyAudioPlayer({
               <AlertCircle color={colors.destructive} size={18} />
               <View style={styles.errorCopy}>
                 <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-                <AppText variant="caption">{webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+                <AppText variant="caption">{resourceError ?? (webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。')}</AppText>
               </View>
               {uri || onRetry ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>

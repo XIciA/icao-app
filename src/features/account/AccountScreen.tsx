@@ -1,3 +1,4 @@
+import { DownloadManagementScreen } from '@/features/question-bank/downloads/DownloadManagementScreen';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { useLocalSearchParams } from 'expo-router';
@@ -23,8 +24,8 @@ import { WECHAT_LOGIN_ENABLED } from '@/features/auth/wechat-release-capability'
 import { phoneOtpChallenge, phoneOtpServerNow, type PersistedPhoneOtpChallenge } from '@/features/auth/phone-otp-challenge-store';
 import { clearLearningData, deleteAllAiResults } from './privacy-self-service.native';
 
-type AccountSlug = 'profile' | 'edit-profile' | 'membership' | 'settings' | 'privacy' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
-const pages: AccountSlug[] = ['profile', 'edit-profile', 'membership', 'settings', 'privacy', 'sync', 'security', 'bind-phone', 'password', 'delete-account'];
+type AccountSlug = 'downloads' | 'profile' | 'edit-profile' | 'membership' | 'settings' | 'privacy' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
+const pages: AccountSlug[] = ['downloads', 'profile', 'edit-profile', 'membership', 'settings', 'privacy', 'sync', 'security', 'bind-phone', 'password', 'delete-account'];
 
 export function AccountScreen() {
   const { slug } = useLocalSearchParams<{ slug: AccountSlug }>();
@@ -35,6 +36,7 @@ function AccountContent() {
   const { slug } = useLocalSearchParams<{ slug: AccountSlug }>();
   const page: AccountSlug = pages.includes(slug) ? slug : 'profile';
   if (page === 'profile' || page === 'edit-profile') return <AccountProfilePage />;
+  if (page === 'downloads' && Platform.OS !== 'web') return <DownloadManagementScreen />;
   if (page === 'membership') return <MembershipRoutePage />;
   if (page === 'settings') return <SettingsPage />;
   if (page === 'privacy') return <PrivacyPage />;
@@ -111,6 +113,7 @@ function SettingsPage() {
         <View style={styles.formNoPad}>
           <AppText variant="sectionTitle">退出登录</AppText>
           <AppText variant="caption">{pendingChanges ? '还有未同步的记录，退出后会保留在此设备，重新登录同一账号后继续同步。' : '退出当前设备，已保存的学习数据仍保留。'}</AppText>
+          <AppText variant="caption">本机下载将被清除。</AppText>
           {signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}
           <Button disabled={signingOut} loading={signingOut} onPress={() => void signOut()}>退出登录</Button>
           <Button disabled={signingOut} onPress={() => setConfirm(false)} variant="outline">取消</Button>

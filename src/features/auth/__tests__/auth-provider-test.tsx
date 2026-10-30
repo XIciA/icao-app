@@ -7,6 +7,10 @@ import type { AppSession } from '../auth-service';
 import legalContent from '../../../../content/app-content/text.json';
 import type { LoginLegalDocuments } from '../AuthProvider';
 
+let mockLocalRestore = false;
+const mockLocalSession = jest.fn();
+const mockRestoreCache = jest.fn();
+jest.mock('../account-restore-cache', () => ({ readAccountRestore: (...args: unknown[]) => mockRestoreCache(...args), saveAccountRestore: jest.fn(async () => undefined), clearAccountRestore: jest.fn(async () => undefined) }));
 const mockGetSession = jest.fn();
 const mockRefreshSession = jest.fn();
 const mockAuthorizePasswordRecovery = jest.fn();
@@ -33,6 +37,7 @@ let mockSessionChangeListener: ((session: AppSession | undefined, event: string)
 
 jest.mock('../auth-service', () => ({
   getAuthService: () => ({
+    ...(mockLocalRestore ? { getLocalSession: () => mockLocalSession() } : {}),
     getSession: (...args: unknown[]) => mockGetSession(...args),
     onSessionChange: (listener: (session: AppSession | undefined, event: string) => void) => {
       mockSessionChangeListener = listener;
@@ -162,6 +167,7 @@ function MockAuthStateProbe() {
 describe('<AuthProvider /> internal-account gate', () => {
   beforeEach(() => {
     mockSessionChangeListener = undefined;
+    mockLocalRestore = false; mockLocalSession.mockReset(); mockRestoreCache.mockReset();
     mockSwitchLearningAccount.mockReset().mockResolvedValue(undefined);
     mockApiRequest.mockReset();
     (apiRequestWithAccessToken as jest.Mock).mockClear();
@@ -198,6 +204,22 @@ describe('<AuthProvider /> internal-account gate', () => {
     mockVerifyCurrentAccountRecoveryOtp.mockReset();
     mockGetLegalConsentStatus.mockReset().mockImplementation(async (accountId: string) => ({ accountId, required: false, receipt: null }));
     mockAcceptLegalDocuments.mockReset();
+  });
+
+  it('shows the same cached account while online session restoration is still pending', async () => {
+    mockLocalRestore = true;
+    mockLocalSession.mockResolvedValue(phoneSession);
+    const account = { accountId: 'cached-account', phoneBound: true, hasPassword: true, providers: ['phone'] };
+    mockRestoreCache.mockResolvedValue({ account, legal: { accountId: account.accountId, required: false, receipt: null } });
+    let finish!: (value: AppSession | undefined) => void;
+    mockGetSession.mockReturnValue(new Promise(resolve => { finish = resolve; }));
+    mockApiRequest.mockResolvedValue(account);
+    await render(<AuthProvider><MockAuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.canAccessApp).toBe(true));
+    expect(currentAuth.account?.accountId).toBe(account.accountId);
+    expect(currentAuth.restoring).toBe(false);
+    await act(async () => { finish(phoneSession); });
+    expect(currentAuth.canAccessApp).toBe(true);
   });
 
   it.each(['password', 'binding', 'recovery'] as const)('ignores a late %s response after the user signs into another account', async (operation) => {

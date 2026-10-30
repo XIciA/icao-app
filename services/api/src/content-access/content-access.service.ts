@@ -4,6 +4,7 @@ import {
   CONTENT_ACCESS_POLICY_VERSION,
   freeQuestionBankCardIds,
   studyScopeCardIds,
+  offlineScopeValid, offlineTopicCards, type OfflineManifest, type OfflineDownloadScope,
   questionBankRadioEntries,
   type ContentAccessCredential,
   type ContentAccessScope,
@@ -22,6 +23,7 @@ import {
   contentEnvironmentSessionGrants,
   membershipEntitlementSegments,
   questionBankReleases,
+  resourceObjects,
 } from '../database/schema';
 
 type ContentCard = Record<string, unknown> & { id: string };
@@ -112,6 +114,43 @@ export class ContentAccessService {
     @Inject(API_CONFIG) private readonly config: ApiConfig,
     private readonly database: DatabaseService,
   ) {}
+
+  async offlineManifest(bankId: string, scope: OfflineDownloadScope, accountId: string | undefined,
+    sessionId: string | undefined, environment: CommerceEnvironment): Promise<OfflineManifest> {
+    if (!offlineScopeValid(bankId, scope)) throw new BadRequestException('invalid_download_scope');
+    await this.assertEnvironmentAuthorized(accountId, sessionId, environment, new Date());
+    const release = await this.activeRelease(bankId);
+    const topics: OfflineManifest['topics'] = [];
+    const paths = new Set<string>();
+    for (const category of release.dataset.categories) {
+      for (const topic of category.topics) {
+        const cards = offlineTopicCards(bankId, String(category.name), topic, scope);
+        if (!cards.length) continue;
+        const encoded = JSON.stringify(cards);
+        topics.push({ bankId, categoryId: category.id, topicId: topic.id, cardIds: cards.map(card => card.id),
+          cardChecksums: Object.fromEntries(cards.map(card => [card.id, createHash('sha256').update(JSON.stringify(card)).digest('hex')])),
+          cardResources: Object.fromEntries(cards.map(card => [card.id, [card.audio, card.image].filter((path): path is string => typeof path === 'string')])),
+          metadataChecksum: createHash('sha256').update(JSON.stringify({ name: topic.name, nameEn: topic.nameEn, practiceKind: topic.practiceKind })).digest('hex'),
+          checksum: createHash('sha256').update(encoded).digest('hex'), sizeBytes: Buffer.byteLength(JSON.stringify({ ...topic, cards, declaredCardCount: cards.length, scopeCardIds: undefined, radioEntries: undefined })) });
+        for (const card of cards) for (const field of ['audio', 'image']) {
+          const path = card[field];
+          if (typeof path === 'string' && path.startsWith('/question-bank-assets/')) paths.add(path);
+        }
+      }
+    }
+    const rows = await this.database.db.select().from(resourceObjects)
+      .where(and(eq(resourceObjects.module, bankId), eq(resourceObjects.status, 'ready'))).orderBy(desc(resourceObjects.createdAt));
+    const byPath = new Map<string, typeof rows[number]>();
+    for (const row of rows) if (!byPath.has(row.sourcePath)) byPath.set(row.sourcePath, row);
+    const resources = [...paths].sort().map(publicPath => {
+      const row = byPath.get(publicPath);
+      if (!row) throw new ServiceUnavailableException('download_resource_unavailable');
+      return { publicPath, checksum: row.checksum, sizeBytes: row.sizeBytes };
+    });
+    return { bankId, scope, version: release.version, checksum: release.checksum, topics, resources,
+      sizeBytes: topics.reduce((sum, topic) => sum + topic.sizeBytes, 0) + resources.reduce((sum, resource) => sum + resource.sizeBytes, 0),
+      fingerprint: createHash('sha256').update(JSON.stringify({ topics, resources })).digest('hex') };
+  }
 
   async getCatalog(
     bankId: string,

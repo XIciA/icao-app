@@ -35,6 +35,7 @@ it('does not expose Native payment in a web surface', async () => {
   Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
   const screen = await render(<ProfileHomeScreen />);
   expect(screen.queryByText('会员购买')).toBeNull();
+  expect(screen.queryByText('下载管理')).toBeNull();
 });
 
 it('never exposes the removed reset entry even if the guide supports testing',async()=>{

@@ -3,6 +3,7 @@ import { useWindowDimensions } from 'react-native';
 import { ProfileIdentityCard } from '../ProfileIdentityCard.native';
 import { DEFAULT_PROFILE } from '@/features/account/profile-model';
 
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ accountReady: false }) }));
 jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 jest.mock('@/features/account/ProfileAvatar', () => ({ ProfileAvatar: () => null }));
 jest.mock('@/features/usage-guide/GuideBindings', () => ({ useGuide:()=>null, GuideAnchor: () => null, GuideSheetBackdrop: () => null, GuideModalScope: ({ children }: { children: React.ReactNode }) => children }));

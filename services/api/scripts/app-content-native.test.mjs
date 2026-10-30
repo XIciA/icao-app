@@ -100,7 +100,7 @@ describe('immutable native publication', () => {
 function mediaFixture() {
   const values = new Map(), secure = new Map(), files = new Map(), downloads = new Map();
   const kv = { getItem: async (key) => values.get(key), setItem: async (key, value) => values.set(key, value),
-    getAllKeys: async () => [...values.keys()], multiRemove: async (keys) => keys.forEach((key) => values.delete(key)) };
+    removeItem: async (key) => values.delete(key), getAllKeys: async () => [...values.keys()], multiRemove: async (keys) => keys.forEach((key) => values.delete(key)) };
   class Directory {
     constructor(...parts) { this.uri = parts.map((part) => part.uri ?? part).join('/'); }
     create() {} get exists() { return [...files.keys()].some((key) => key.startsWith(this.uri)); }
@@ -111,6 +111,7 @@ function mediaFixture() {
     constructor(...parts) { this.uri = parts.map((part) => part.uri ?? part).join('/'); }
     get exists() { return files.has(this.uri); } get size() { return files.get(this.uri)?.length ?? 0; }
     get name() { return this.uri.split('/').at(-1); } get modificationTime() { return 0; }
+    write(bytes) { files.set(this.uri, Buffer.from(bytes)); }
     async bytes() { return files.get(this.uri); } delete() { files.delete(this.uri); }
     move(destination) {
       const bytes = files.get(this.uri);
@@ -122,11 +123,12 @@ function mediaFixture() {
   }
   const crypto = { AESKeySize: { AES256: 256 }, AESEncryptionKey: { generate: async () => ({ encoded: async () => 'key' }), import: async () => ({}) },
     AESSealedData: { fromCombined: (value) => value },
-    aesEncryptAsync: async (bytes) => ({ combined: async () => Buffer.from(bytes).toString('base64') }),
-    aesDecryptAsync: async (value) => new Uint8Array(Buffer.from(value, 'base64')),
+    aesEncryptAsync: async (bytes) => ({ combined: async (encoding) => encoding === 'base64' ? Buffer.from(bytes).toString('base64') : new Uint8Array(Buffer.concat([Buffer.alloc(16), Buffer.from(bytes)])) }),
+    aesDecryptAsync: async (value) => new Uint8Array(typeof value === 'string' ? Buffer.from(value, 'base64') : Buffer.from(value).subarray(16)),
     CryptoDigestAlgorithm: { SHA256: 'sha256' }, digestStringAsync: async (_, value) => createHash('sha256').update(value).digest('hex'),
     digest: async (_, bytes) => { const hash = new Uint8Array(createHash('sha256').update(bytes).digest()); return hash.buffer; } };
   const repository = evaluate('src/features/question-bank/data/member-content-cache.native.ts', {
+    'expo-file-system/legacy': {},
     'expo-crypto': crypto, 'expo-file-system': { Directory, File, Paths: { document: 'file:/test', cache: 'file:/cache' } }, '@/platform/storage': kv,
     'expo-secure-store': { getItemAsync: async (key) => secure.get(key), setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) },
     '@/features/native-commercial-testflight/commerce-environment': { getNativeCommerceEnvironment: () => 'production', nativeCommerceEnvironmentSnapshot: () => 'production' },
@@ -149,7 +151,12 @@ describe('versioned native media cache', () => {
     fixture.downloads.set('old', oldBytes); fixture.downloads.set('next', nextBytes);
     const oldUri = await fixture.repository.cacheMemberResource(path, 'old', metadata(oldBytes));
     const nextUri = await fixture.repository.cacheMemberResource(path, 'next', metadata(nextBytes));
-    expect(oldUri).not.toBe(nextUri); expect(await fixture.repository.resolveOfflineMemberResource(path)).toBe(nextUri);
+    expect(oldUri).not.toBe(nextUri);
+    const playable = await fixture.repository.resolveOfflineMemberResource(path);
+    expect(playable).toContain('file:/cache/');
+    expect(fixture.files.get(playable)).toEqual(nextBytes);
+    expect(fixture.files.get(nextUri)).not.toEqual(nextBytes);
+    expect(fixture.files.has(oldUri)).toBe(false);
     await fixture.repository.activateQuestionBankContentAccount('account-b');
     expect(await fixture.repository.resolveOfflineMemberResource(path)).toBeUndefined();
   });

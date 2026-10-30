@@ -196,6 +196,7 @@ export type QuestionBankStudyPackage = {
 };
 
 export type LearningRecord = {
+  sourceUnavailable?: boolean;
   schemaVersion?: 1 | 2 | 3 | 4 | 5;
   id: string;
   sessionId?: string;
