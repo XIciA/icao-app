@@ -1,3 +1,4 @@
+import { validContentScopeId } from '@icao/contracts';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import vm from 'node:vm';
@@ -128,6 +129,7 @@ function mediaFixture() {
     CryptoDigestAlgorithm: { SHA256: 'sha256' }, digestStringAsync: async (_, value) => createHash('sha256').update(value).digest('hex'),
     digest: async (_, bytes) => { const hash = new Uint8Array(createHash('sha256').update(bytes).digest()); return hash.buffer; } };
   const repository = evaluate('src/features/question-bank/data/member-content-cache.native.ts', {
+    '@icao/contracts': { validContentScopeId },
     'expo-file-system/legacy': {},
     'expo-crypto': crypto, 'expo-file-system': { Directory, File, Paths: { document: 'file:/test', cache: 'file:/cache' } }, '@/platform/storage': kv,
     'expo-secure-store': { getItemAsync: async (key) => secure.get(key), setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) },
