@@ -6,7 +6,7 @@ import { OptionalAuthGuard } from '../auth/require-auth.guard';
 import { contentCommerceEnvironment } from '../content-access/content-access.environment';
 import { ResourceService } from './resource.service';
 
-function downloadableResourcePath(path: unknown): path is string {
+function downloadableResourcePath(path: unknown): boolean {
   return typeof path === 'string' && (path.startsWith('/question-bank-assets/') || /^\/pronunciation-assets\/[a-f0-9]{64}\.mp3$/.test(path));
 }
 
