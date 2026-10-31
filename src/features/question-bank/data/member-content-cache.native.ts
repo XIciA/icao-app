@@ -12,7 +12,7 @@ import * as SecureStore from 'expo-secure-store';
 import { Directory, File, Paths } from 'expo-file-system';
 import { createDownloadResumable } from 'expo-file-system/legacy';
 import Storage from '@/platform/storage';
-import type { CommerceEnvironment, ContentAccessCredential, ContentAccessScope } from '@icao/contracts';
+import { validContentScopeId, type CommerceEnvironment, type ContentAccessCredential, type ContentAccessScope } from '@icao/contracts';
 
 import {
   getNativeCommerceEnvironment,
@@ -110,8 +110,19 @@ function topicCacheKey(accountId: string, environment: ContentAccessCredential['
   return `${TOPIC_CACHE_PREFIX}${accountId}.${environment}.${scope.bankId}.${scope.categoryId}.${scope.topicId}`;
 }
 
+function validSecureStoreKey(key: unknown): key is string {
+  return typeof key === 'string' && /^[\w.-]+$/.test(key);
+}
+
 function credentialKey(accountId: string, environment: ContentAccessCredential['environment'], scope: ContentAccessScope) {
-  return `${CREDENTIAL_KEY_PREFIX}${accountId}.${environment}.${scope.bankId}.${scope.categoryId}.${scope.topicId}`;
+  const legacy = `${CREDENTIAL_KEY_PREFIX}${accountId}.${environment}.${scope.bankId}.${scope.categoryId}.${scope.topicId}`;
+  // Keep existing valid keys readable. Unicode scope IDs are valid content IDs,
+  // but cannot be used directly as native SecureStore keys. A separate prefix
+  // plus an injective UTF-8 encoding avoids collisions with legacy ASCII keys.
+  if (validSecureStoreKey(legacy)) return legacy;
+  const identity = JSON.stringify([accountId, environment, scope.bankId, scope.categoryId, scope.topicId]);
+  const encoded = Array.from(new TextEncoder().encode(identity), byte => byte.toString(16).padStart(2, '0')).join('');
+  return `icao.content.credential.v3.${encoded}`;
 }
 
 function credentialIndexKey(accountId: string) {
@@ -207,11 +218,11 @@ function legacyCacheOwner(key: string, prefix: string) {
   return undefined;
 }
 
-function isLegacyScope(value: unknown): value is ContentAccessScope {
+function isStoredContentScope(value: unknown): value is ContentAccessScope {
   if (!value || typeof value !== 'object') return false;
   const scope = value as Partial<ContentAccessScope>;
   return [scope.bankId, scope.categoryId, scope.topicId].every((part) => (
-    typeof part === 'string' && /^[A-Za-z0-9._:-]{1,128}$/u.test(part)
+    validContentScopeId(part) || typeof part === 'string' && /^[A-Za-z0-9._:-]{1,128}$/u.test(part)
   ));
 }
 
@@ -256,7 +267,7 @@ async function removeLegacyDeviceBoundMemberContent() {
     const value = await Storage.getItem(cacheKey);
     try {
       const scope = value ? JSON.parse(value) as unknown : undefined;
-      if (isLegacyScope(scope)) {
+      if (isStoredContentScope(scope)) {
         credentialKeys.add(
           `${LEGACY_CREDENTIAL_KEY_PREFIX}${owner.accountId}.${owner.environment}`
           + `.${scope.bankId}.${scope.categoryId}.${scope.topicId}`,
@@ -267,7 +278,7 @@ async function removeLegacyDeviceBoundMemberContent() {
     }
   }
   await Promise.all([
-    ...[...credentialKeys].map((key) => SecureStore.deleteItemAsync(key)),
+    ...[...credentialKeys].filter(validSecureStoreKey).map((key) => SecureStore.deleteItemAsync(key)),
     ...[...accountIds].map((accountId) => SecureStore.deleteItemAsync(accountKeyName(accountId))),
   ]);
   for (const accountId of accountIds) {
@@ -349,7 +360,7 @@ export async function writeMemberTopicCache(
       const indexKey = resourceIndexKey(accountId, environment, path);
       const previous = await Storage.getItem(indexKey);
       let scopes: ContentAccessScope[] = [];
-      try { const parsed = previous ? JSON.parse(previous) : []; scopes = (Array.isArray(parsed) ? parsed : [parsed]).filter(isLegacyScope); } catch { /* Replace damaged index only. */ }
+      try { const parsed = previous ? JSON.parse(previous) : []; scopes = (Array.isArray(parsed) ? parsed : [parsed]).filter(isStoredContentScope); } catch { /* Replace damaged index only. */ }
       if (!scopes.some(item => scopeIdentity(item) === scopeIdentity(scope))) scopes.push(scope);
       await Storage.setItem(indexKey, JSON.stringify(scopes));
       assertMemberContentContextCurrent(context);
@@ -451,7 +462,7 @@ export async function clearQuestionBankMemberContent(accountId?: string) {
       credentialKeys = [];
     }
     await Promise.all([
-      ...credentialKeys.map((key) => SecureStore.deleteItemAsync(key)),
+      ...credentialKeys.filter(validSecureStoreKey).map((key) => SecureStore.deleteItemAsync(key)),
       SecureStore.deleteItemAsync(accountKeyName(accountId)),
     ]);
     const downloadKeys = (await Storage.getAllKeys()).filter(key => key.startsWith(`icao.downloads.v1.${accountId}.`));
@@ -488,7 +499,7 @@ async function memberResourceScope(accountId: string, publicPath: string) {
   if (!value) return undefined;
   try {
     const parsed = JSON.parse(value);
-    const scopes: ContentAccessScope[] = (Array.isArray(parsed) ? parsed : [parsed]).filter(isLegacyScope);
+    const scopes: ContentAccessScope[] = (Array.isArray(parsed) ? parsed : [parsed]).filter(isStoredContentScope);
     for (const scope of scopes) if (await readMemberTopicCache(accountId, scope)) return scope;
     return scopes[0];
   } catch {
@@ -764,7 +775,7 @@ export async function suspendQuestionBankMemberAccess(accountId: string) {
   await withAccountContentLock(accountId, async () => {
     const raw = await Storage.getItem(credentialIndexKey(accountId));
     const keys: string[] = raw ? JSON.parse(raw) : [];
-    await Promise.all(keys.map(key => SecureStore.deleteItemAsync(key)));
+    await Promise.all(keys.filter(validSecureStoreKey).map(key => SecureStore.deleteItemAsync(key)));
   });
 }
 
