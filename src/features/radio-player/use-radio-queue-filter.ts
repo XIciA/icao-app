@@ -14,6 +14,6 @@ export function useRadioQueueFilter(source: RadioCatalog[], owner: string) {
   const catalogs = useMemo(() => filterRadioCatalogs(source, matches), [source, matches]);
   const setFilter = useCallback((next: RadioQueueFilter) => setSelection({ owner, filter: next }), [owner]);
   // Only changes to included question identities invalidate prepared audio, not text hydration.
-  const signature = useMemo(() => matches ? JSON.stringify(catalogs.map(catalog => [catalog.bankId, catalog.tracks.map(track => track.id)])) : '', [catalogs, matches]);
-  return { filter, setFilter, catalogs, project, signature, annotations };
+  const signature = useMemo(() => JSON.stringify(catalogs.map(catalog => [catalog.bankId, catalog.tracks.map(track => track.id)])), [catalogs]);
+  return { filter, setFilter, catalogs, project, signature, active: Boolean(matches), annotations };
 }

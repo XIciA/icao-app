@@ -273,6 +273,7 @@ export type HealthStatus = {
 };
 
 export type QuestionBankReleaseSummary = {
+  publishedAt?: string;
   bankId: string;
   version: number;
   checksum: string;

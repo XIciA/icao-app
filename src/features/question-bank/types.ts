@@ -83,6 +83,8 @@ export type QuestionBankImageCard = QuestionBankCardBase & {
 export type QuestionBankCard = QuestionBankTextCard | QuestionBankImageCard;
 
 export type QuestionBankTopic = {
+  /** Native cache projection only; never grants access or changes the release. */
+  offlineContent?: 'partial' | 'outdated';
   id: string;
   name: string;
   nameEn?: string;
@@ -105,6 +107,8 @@ export type QuestionBankCategory = {
 };
 
 export type QuestionBankDataset = {
+  /** Native projection restricted to verified downloaded media. */
+  offlineProjection?: boolean;
   id: QuestionBankId;
   title: string;
   nameEn: string;

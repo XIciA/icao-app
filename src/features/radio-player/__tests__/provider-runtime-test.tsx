@@ -5,6 +5,7 @@ import { act, render } from '@testing-library/react-native';
 import type { RadioPlayerContextValue } from '../types';
 import { RadioOperationCoordinator } from '../operation-coordinator';
 
+jest.mock('expo-network', () => ({ getNetworkStateAsync: async () => ({ isConnected: true }), addNetworkStateListener: () => ({ remove() {} }) }));
 const mockTracks = Array.from({ length: 6 }, (_, i) => ({ id: `t${i}`, bankId: 'listening', bankTitle: '听力', categoryId: 'c', categoryTitle: 'C', topicId: 'topic', topicTitle: 'T', title: `T${i}`, audioText: '', audioPath: `/audio/${i}.mp3`, durationSeconds: 20, stableIndex: i }));
 const mockCatalogs = [{ bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: mockTracks }];
 let mockSession: {user:{id:string}} | undefined = { user: { id: 'user-a' } };
@@ -120,6 +121,23 @@ describe('radio native queue integration', () => {
       expect(mockContext.currentCatalog?.bankId).toBe('radiotelephony');
       expect(mockLoadCatalogs).toHaveBeenCalledTimes(calls); // Switching must not cancel whole-directory hydration.
     } finally { await view.unmount(); mockCatalogs.pop(); }
+  });
+
+  it('removes buffered unavailable tracks when the downloadable catalog shrinks without a user filter', async () => {
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.activateSession()); await flush();
+      await act(() => mockContext.selectTrack('t0', true)); await flush();
+      expect(mockQueue.filter(item => item.radioTrackKind === 'content').length).toBeGreaterThan(1);
+      await act(() => {
+        mockCatalogs[0].tracks = [mockTracks[0], mockTracks[4]];
+        mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress?.([]);
+      }); await flush();
+      expect(mockContext.currentTrack?.id).toBe('t0');
+      expect(mockQueue.filter(item => item.radioTrackKind === 'content').every(item => ['t0', 't4'].includes(item.radioTrackId))).toBe(true);
+      await act(() => mockContext.next(false)); await flush();
+      expect(mockContext.currentTrack?.id).toBe('t4');
+    } finally { await view.unmount(); mockCatalogs[0].tracks = mockTracks; }
   });
 
   it('restores a remembered member question after switching back to an unloaded bank', async () => {

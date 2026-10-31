@@ -5,6 +5,7 @@ import { DownloadManagementScreen } from '../DownloadManagementScreen.native';
 const mockState: Record<string, unknown> = {};
 const mockManifest = jest.fn(); const mockStart = jest.fn(); const mockDelete = jest.fn();
 const mockListeners = new Set<() => void>();
+jest.mock('../release-metadata', () => ({ readDownloadReleaseMetadata: async () => [], refreshDownloadReleaseMetadata: async () => [], downloadPublicationDate: () => '2026-10-31' }));
 jest.mock('expo-router', () => ({ useLocalSearchParams: () => ({}) }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ target: 'icao4_initial', studyScope: 'selected' }) }));
 jest.mock('@/platform/audio/audio-session-orchestrator', () => ({ audioSessionOrchestrator: { getActiveOwner: () => undefined } }));
@@ -27,20 +28,24 @@ beforeEach(() => { for (const key of Object.keys(mockState)) delete mockState[ke
 test('always shows all banks and consistent size before downloading; range changes do not download', async () => {
   await render(<DownloadManagementScreen />);
   for (const name of ['听力', '900 句', '陆空通话', 'OPI', '故事复诵']) expect(screen.getByText(name)).toBeTruthy();
-  await waitFor(() => expect(screen.getByText('约 1.0 MB')).toBeTruthy());
-  expect(screen.getByText('下载大小').props.variant).toBe('micro');
-  expect(screen.getByText('约 1.0 MB').props.variant).toBe('micro');
+  await waitFor(() => expect(screen.getByText('1.0 MB')).toBeTruthy());
+  expect(screen.queryByText('下载大小')).toBeNull();
+  const range = screen.getByLabelText('选择下载范围：精选题库');
+  await fireEvent.press(range);
+  expect(screen.getByText('1.0 MB').props.variant).toBe('micro');
   await fireEvent.press(screen.getByText('最全题库'));
-  await waitFor(() => expect(screen.getByText('约 2.0 MB')).toBeTruthy());
+  await waitFor(() => expect(screen.getByText('2.0 MB')).toBeTruthy());
   expect(mockStart).not.toHaveBeenCalled();
   await fireEvent.press(screen.getByText('900 句'));
   await waitFor(() => expect(screen.getByText('四级')).toBeTruthy());
+  const level = screen.getByLabelText('选择下载范围：四级');
+  await fireEvent.press(level);
   expect(screen.getByText('五级')).toBeTruthy();
 });
 test('download uses a button and completed content keeps size without a success popup', async () => {
   await render(<DownloadManagementScreen />);
-  await waitFor(() => expect(screen.getByText('下载')).toBeTruthy());
-  await fireEvent.press(screen.getByText('下载'));
+  await waitFor(() => expect(screen.getByLabelText('下载')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('下载'));
   await waitFor(() => expect(mockStart).toHaveBeenCalledWith(expect.objectContaining({ scope: 'selected' })));
 });
 test('downloaded and progress data use the same small text; deletion needs one confirmation', async () => {
@@ -48,11 +53,23 @@ test('downloaded and progress data use the same small text; deletion needs one c
   const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
   await render(<DownloadManagementScreen />);
   await waitFor(() => expect(screen.getByText('60%')).toBeTruthy());
-  expect(screen.getByText('下载进度').props.variant).toBe(screen.getByText('60%').props.variant);
-  await fireEvent.press(screen.getByText('删除下载'));
+  expect(screen.queryByText('下载进度')).toBeNull();
+  expect(screen.getByText('60%').props.variant).toBe('micro');
+  await fireEvent.press(screen.getByLabelText('删除下载'));
   expect(alert).toHaveBeenCalledTimes(1); expect(mockDelete).not.toHaveBeenCalled();
   const buttons = alert.mock.calls[0][2]!;
   expect(buttons.map(button => button.text)).toEqual(['取消', '删除']);
   await act(async () => { buttons[1].onPress?.(); });
   expect(mockDelete).toHaveBeenCalledWith('listening'); alert.mockRestore();
+});
+
+test('sixth card reuses the same fixed row and switches three independent vocabulary books', async () => {
+  await render(<DownloadManagementScreen />);
+  await fireEvent.press(screen.getByText('单词'));
+  await waitFor(() => expect(screen.getByLabelText('选择下载范围：ICAO考前预习')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('选择下载范围：ICAO考前预习'));
+  await fireEvent.press(screen.getByText('ICAO 4 必会'));
+  await waitFor(() => expect(mockManifest).toHaveBeenCalledWith('vocabulary', 'icao4'));
+  await fireEvent.press(screen.getByLabelText('下载'));
+  await waitFor(() => expect(mockStart).toHaveBeenCalledWith(expect.objectContaining({ bankId: 'vocabulary', scope: 'icao4' })));
 });
