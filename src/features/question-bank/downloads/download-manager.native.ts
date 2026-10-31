@@ -167,7 +167,12 @@ async function compare(bankId: DownloadPackageId, latest: OfflineManifest) {
   const topics = new Map(latest.topics.map(topic => [topic.topicId, topic]));
   for (const resource of saved.resources) {
     if (!current()) return;
-    if (resources.get(resource.publicPath) !== resource.checksum) await invalidateOfflineResource(resource.publicPath, resource.checksum);
+    const publishedChecksum = resources.get(resource.publicPath);
+    // Removing a word from one book does not retire audio still used by another
+    // downloaded package. A changed checksum, however, invalidates the old bytes globally.
+    const shared = publishedChecksum === undefined && Object.entries(state).some(([otherId, item]) => otherId !== bankId
+      && (item?.latest ?? item?.target ?? item?.saved)?.resources.some(other => other.publicPath === resource.publicPath && other.checksum === resource.checksum));
+    if (!shared && publishedChecksum !== resource.checksum) await invalidateOfflineResource(resource.publicPath, resource.checksum);
   }
   for (const topic of saved.topics) {
     if (!current()) return;
