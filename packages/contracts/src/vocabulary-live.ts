@@ -114,3 +114,8 @@ export function validateVocabularyPolicyTransition(previous: VocabularyLiveConte
   }
   return next;
 }
+
+/** The same normalization drives publication, playback and offline manifests. */
+export function normalizeVocabularyPronunciation(text: string) {
+  return text.replace(/\//g, ' or ').replace(/[()（）]/g, ' ').replace(/\s+/g, ' ').trim();
+}

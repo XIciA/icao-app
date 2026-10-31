@@ -142,7 +142,7 @@ const remoteQuestionBankSource = {
     if (response.status === 304 && cached) {
       if (accountId && await Storage.getItem(`icao.downloads.v1.${accountId}.${environment}`)) {
         const { reconcileDownloadedBank } = await import('../downloads/download-manager.native');
-        await reconcileDownloadedBank(id);
+        await reconcileDownloadedBank(id).catch(() => undefined);
         assertContentContextCurrent(context);
       }
       return cached.dataset;
@@ -159,13 +159,13 @@ const remoteQuestionBankSource = {
     if (accountId) {
       if (await Storage.getItem(`icao.downloads.v1.${accountId}.${environment}`)) {
         const { reconcileDownloadedBank } = await import('../downloads/download-manager.native');
-        await reconcileDownloadedBank(id);
+        await reconcileDownloadedBank(id).catch(() => undefined);
       }
       assertContentContextCurrent(context);
       await Storage.setItem(
         cacheKey(accountId, environment, id),
         JSON.stringify({ ...body.data, cachedAt: new Date().toISOString() } satisfies CachedRelease),
-      );
+      ).catch(() => undefined);
     }
     return body.data.dataset;
   },
@@ -175,7 +175,8 @@ const remoteQuestionBankSource = {
     const local = accountId ? await readMemberTopicCache(accountId, scope) : undefined;
     if (local && local.cards.length >= local.declaredCardCount && sameContentRelease(local, expected) && !await isOfflineTopicInvalid(scope)) return local;
     if (await getConnectivity() === 'offline') {
-      if (local && sameContentRelease(local, expected) && local.cards.length) return local;
+      if (local && sameContentRelease(local, expected) && local.cards.length) return { ...local, offlineContent: await isOfflineTopicInvalid(scope) ? 'outdated' as const : 'partial' as const };
+      if (await isOfflineTopicInvalid(scope)) throw new ApiClientError('offline_content_outdated', 0);
       const access = await inspectOfflineMemberTopicAccess(scope);
       throw new ApiClientError(access === 'expired' || access === 'invalid' ? 'offline_authorization_required' : 'offline_content_missing', 0);
     }
@@ -211,13 +212,22 @@ const remoteQuestionBankSource = {
           // Never suppress revoked access or invalid request/owner boundaries.
           // A transient credential service or local cache failure must not
           // discard a topic already returned by the authenticated topic API.
-          if (error instanceof ApiClientError && error.status >= 400 && error.status < 500
-            && error.status !== 408 && error.status !== 429) throw error;
+          if (error instanceof ApiClientError && (error.status === 401 || error.status === 403
+            || error.code === 'content_account_changed')) throw error;
         }
         assertContentContextCurrent(context);
       }
       return release.topic;
     } catch (error) {
+      if (!(error instanceof ApiClientError && error.status >= 400 && error.status < 500)
+        && await getConnectivity() === 'offline') {
+        const cached = accountId ? await readMemberTopicCache(accountId, scope) : undefined;
+        assertContentContextCurrent(context);
+        if (cached && sameContentRelease(cached, expected) && cached.cards.length) return { ...cached, offlineContent: await isOfflineTopicInvalid(scope) ? 'outdated' as const : 'partial' as const };
+        if (await isOfflineTopicInvalid(scope)) throw new ApiClientError('offline_content_outdated', 0);
+        const access = await inspectOfflineMemberTopicAccess(scope);
+        throw new ApiClientError(access === 'expired' || access === 'invalid' ? 'offline_authorization_required' : 'offline_content_missing', 0);
+      }
       const mayUseOffline = !(error instanceof ApiClientError)
         || error.status === 408
         || error.status === 429
@@ -231,8 +241,7 @@ const remoteQuestionBankSource = {
         accountId
         && error instanceof ApiClientError
         && error.code !== 'content_account_changed'
-        && error.status >= 400
-        && error.status < 500
+        && (error.code === 'membership_required' || error.code === 'content_access_revoked')
       ) {
         await invalidateOfflineTopic(scope).catch(() => undefined);
       }

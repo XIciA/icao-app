@@ -1,3 +1,5 @@
+import { useOfflineBooks } from './use-offline-books.native';
+import { useAppRouter } from '@/components/navigation/useAppRouter';
 import { prepareVocabularySession, reconcileVocabularySession } from './study-session';
 import { currentVocabularyPolicy } from './live-catalog';
 import { useStudyOrder } from './use-study-order';
@@ -26,7 +28,7 @@ import {
   VocabularyTestResultView,
   VocabularyTestRunner,
 } from './components/VocabularyTestViews';
-import { useVocabularyProgress } from './progress-store.native';
+import { statsForBook, useVocabularyProgress } from './progress-store.native';
 import { useVocabularyCatalog } from './use-vocabulary-catalog';
 import type {
   VocabularyBookId,
@@ -47,8 +49,13 @@ export function VocabularyScreen() {
   const [view, setView] = useState<ViewName>('books');
   const { loadResult, loadError, retry } = useVocabularyCatalog(view === 'books');
   const policy=currentVocabularyPolicy();
-  const books = useMemo(() => (loadResult?.dataset.books ?? []).map(book=>({...book,words:book.words.filter(word=>!Object.hasOwn(policy?.retiredIds??{},word.id))})), [loadResult,policy]);
-  const progress = useVocabularyProgress(books);
+  const allBooks = useMemo(() => (loadResult?.dataset.books ?? []).map(book=>({...book,words:book.words.filter(word=>!Object.hasOwn(policy?.retiredIds??{},word.id))})), [loadResult,policy]);
+  const availability = useOfflineBooks(allBooks);
+  const books = availability.books;
+  const router = useAppRouter();
+  const progress = useVocabularyProgress(allBooks);
+  const visibleStats = useMemo(() => Object.fromEntries(books.map(book => [book.id, statsForBook(book, progress.state)])), [books, progress.state]);
+  const allDownloaded = books.length === allBooks.length && books.every(book => book.words.length === allBooks.find(candidate => candidate.id === book.id)?.words.length);
   const { order, chooseOrder } = useStudyOrder();
   const save = useSaveAction();
   const sessionOrigin = useRef<ReturnView>('books');
@@ -138,7 +145,8 @@ export function VocabularyScreen() {
   if (progress.error) return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
 
   function content() {
-  if (!loadResult || !progress.ready) {
+  if (availability.offline && !availability.loading && (!loadResult || !books.length) && view !== 'study') return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={BookOpen} title="该内容尚未下载" description="可联网下载词书后离线学习。" actionLabel="前往下载管理" onAction={() => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: 'vocabulary' } })} /></Screen>;
+  if (!loadResult || !progress.ready || availability.loading && view !== 'study') {
     return (
       <Screen contentStyle={{ paddingHorizontal: 0 }} header={<TopBar title="单词学习" />}>
         {loadError ? (
@@ -151,11 +159,11 @@ export function VocabularyScreen() {
   }
 
   if (view === 'detail' && activeBook) {
-    return <VocabularyBookDetailView order={order} onOrderChange={chooseOrder} book={activeBook} onBack={back} onList={() => setView('list')} onReset={() => save.run(() => progress.resetBook(activeBook))} onStudy={() => startStudy(activeBook.words, 'detail')} stats={progress.statsByBook[activeBook.id]!} />;
+    return <VocabularyBookDetailView offline={availability.offline} order={order} onOrderChange={chooseOrder} book={activeBook} onBack={back} onList={() => setView('list')} onReset={() => save.run(() => progress.resetBook(activeBook))} onStudy={() => startStudy(activeBook.words, 'detail')} stats={visibleStats[activeBook.id]!} />;
   }
 
   if (view === 'list' && activeBook) {
-    return <VocabularyWordListView book={activeBook} onBack={back} onStart={(words) => startStudy(words, 'list')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
+    return <VocabularyWordListView offline={availability.offline} book={activeBook} onBack={back} onStart={(words) => startStudy(words, 'list')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
   }
 
   if (view === 'study' && studyWords.length) {
@@ -185,7 +193,7 @@ export function VocabularyScreen() {
         setSessionSummary(summary);setView(fresh.words.length?'complete':'books');
       });
     };
-    return <VocabularyStudyView savedStatus={sessionStatuses[currentWord.id]} busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
+    return <VocabularyStudyView offline={availability.offline} savedStatus={sessionStatuses[currentWord.id]} busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }
 
   if (view === 'complete') {
@@ -194,10 +202,12 @@ export function VocabularyScreen() {
   }
 
   if (view === 'sessionList' && studyWords.length) {
-    const sourceBook = books.find((book) => book.id === studyWords[0]!.bookId)!;
+    const sourceBook = allBooks.find((book) => book.id === studyWords[0]!.bookId)!;
     const sessionBook = { ...sourceBook, name: '本轮单词', description: '本轮学习队列中的全部词汇。', words: studyWords };
-    return <VocabularyWordListView book={sessionBook} onBack={back} onStart={(words) => startStudy(words, 'sessionList')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
+    return <VocabularyWordListView offline={availability.offline} book={sessionBook} onBack={back} onStart={(words) => startStudy(words, 'sessionList')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
   }
+
+  if (availability.offline && !allDownloaded && ['testIntro', 'testRun'].includes(view)) return <Screen header={<TopBar title="词汇测试" onBack={back} />}><CenteredState title="测试词书尚未下载完整" description="联网或下载三本词书后可进行完整测试。" actionLabel="前往下载管理" onAction={() => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: 'vocabulary' } })} /></Screen>;
 
   if (view === 'testIntro') {
     return <VocabularyTestIntroView lastTest={progress.state.lastTest} onBack={back} onStart={() => { setTestRunKey((value) => value + 1); setView('testRun'); }} />;
@@ -223,8 +233,8 @@ export function VocabularyScreen() {
       onToggle={(id) => setSelected((current) => { const next = new Set(current); if (next.has(id)) next.delete(id); else next.add(id); return next; })}
       selected={selected}
       state={progress.state}
-      statsByBook={progress.statsByBook}
-      warning={loadResult.warning}
+      statsByBook={visibleStats}
+      offline={availability.offline}
     />
   );
   }

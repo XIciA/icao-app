@@ -1,3 +1,4 @@
+import { normalizeVocabularyPronunciation } from '@icao/contracts/vocabulary-live';
 import { CryptoDigestAlgorithm, digestStringAsync } from 'expo-crypto';
 import { Alert, AppState } from 'react-native';
 import { audioSessionOrchestrator, createSessionManagedAudioPlayer, type AudioLease } from '@/platform/audio';
@@ -9,7 +10,7 @@ let cancelCurrent: (() => void) | undefined;
 let registered = false;
 
 export function normalizePronunciation(text: string) {
-  return text.replace(/\//g, ' or ').replace(/[()（）]/g, ' ').replace(/\s+/g, ' ').trim();
+  return normalizeVocabularyPronunciation(text);
 }
 
 function ensureRegistered() {

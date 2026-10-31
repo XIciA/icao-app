@@ -12,7 +12,7 @@ import * as SecureStore from 'expo-secure-store';
 import { Directory, File, Paths } from 'expo-file-system';
 import { createDownloadResumable } from 'expo-file-system/legacy';
 import Storage from '@/platform/storage';
-import type { ContentAccessCredential, ContentAccessScope } from '@icao/contracts';
+import type { CommerceEnvironment, ContentAccessCredential, ContentAccessScope } from '@icao/contracts';
 
 import {
   getNativeCommerceEnvironment,
@@ -496,6 +496,11 @@ async function memberResourceScope(accountId: string, publicPath: string) {
   }
 }
 
+const isPublicPronunciation = (path: string) => /^\/pronunciation-assets\/[a-f0-9]{64}\.mp3$/.test(path);
+async function hasPublicDownload(accountId: string, environment: CommerceEnvironment, path: string) {
+  return isPublicPronunciation(path) && await Storage.getItem(`${resourceIndexKey(accountId, environment, path)}.public`) === '1';
+}
+
 export async function resolveOfflineMemberResource(publicPath: string) {
   const accountId = activeAccountId;
   if (!accountId) return undefined;
@@ -503,7 +508,7 @@ export async function resolveOfflineMemberResource(publicPath: string) {
   const { environment } = context;
   const scope = await memberResourceScope(accountId, publicPath);
   assertMemberContentContextCurrent(context);
-  if (!scope || !await readMemberTopicCache(accountId, scope)) return undefined;
+  if (!await hasPublicDownload(accountId, environment, publicPath) && (!scope || !await readMemberTopicCache(accountId, scope))) return undefined;
   assertMemberContentContextCurrent(context);
   if (await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`)) return undefined;
   const checksum = await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.checksum`);
@@ -533,7 +538,7 @@ export async function hasValidOfflineMemberResourceAccess(publicPath: string) {
   const context = memberContentContext(accountId);
   const scope = await memberResourceScope(accountId, publicPath);
   assertMemberContentContextCurrent(context);
-  const valid = Boolean(scope && await readMemberTopicCache(accountId, scope));
+  const valid = await hasPublicDownload(accountId, context.environment, publicPath) || Boolean(scope && await readMemberTopicCache(accountId, scope));
   assertMemberContentContextCurrent(context);
   return valid;
 }
@@ -542,7 +547,7 @@ export async function cacheMemberResource(
   publicPath: string,
   signedUrl: string,
   expected?: { checksum: string; sizeBytes: number },
-  { temporary = false, isCurrent = () => true, required = false, onProgress }: { temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
+  { temporary = false, publicDownload = false, isCurrent = () => true, required = false, onProgress }: { publicDownload?: boolean; temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
 ) {
   if (!expected || !/^[a-f0-9]{64}$/.test(expected.checksum) || expected.sizeBytes <= 0 || expected.sizeBytes > 52_428_800) return undefined;
   if (temporary && expected.sizeBytes > TEMPORARY_RESOURCE_MAX_FILE_BYTES) return undefined;
@@ -554,12 +559,13 @@ export async function cacheMemberResource(
   // authorized this request. They never grant offline member access.
   await ensureLegacyDeviceBoundContentCleanup();
   assertMemberContentContextCurrent(context);
-  const scope = temporary ? undefined : await memberResourceScope(accountId, publicPath);
+  if (publicDownload && !isPublicPronunciation(publicPath)) throw new Error('invalid_public_download_path');
+  const scope = temporary || publicDownload ? undefined : await memberResourceScope(accountId, publicPath);
   assertMemberContentContextCurrent(context);
-  if (!temporary && (!scope || !await readMemberTopicCache(accountId, scope))) return undefined;
+  if (!temporary && !publicDownload && (!scope || !await readMemberTopicCache(accountId, scope))) return undefined;
   assertMemberContentContextCurrent(context);
   if (!isCurrent()) return undefined;
-  const downloadKey = JSON.stringify([context, publicPath, expected.checksum, expected.sizeBytes, temporary]);
+  const downloadKey = JSON.stringify([context, publicPath, expected.checksum, expected.sizeBytes, temporary, publicDownload]);
   const existing = resourceDownloads.get(downloadKey);
   if (existing) {
     existing.consumers.add(isCurrent);
@@ -632,7 +638,7 @@ export async function cacheMemberResource(
       return await withAccountContentLock(accountId, async () => {
         assertMemberContentContextCurrent(context);
         if (!hasCurrentConsumer()) return undefined;
-        if (!temporary && !await readMemberTopicCache(accountId, scope!)) return undefined;
+        if (!temporary && !publicDownload && !await readMemberTopicCache(accountId, scope!)) return undefined;
         assertMemberContentContextCurrent(context);
         if (!hasCurrentConsumer()) return undefined;
         directory.create({ idempotent: true, intermediates: true });
@@ -652,6 +658,7 @@ export async function cacheMemberResource(
           const previousChecksum = await Storage.getItem(checksumKey);
           assertMemberContentContextCurrent(context);
           await Storage.setItem(checksumKey, expected.checksum);
+          if (publicDownload) await Storage.setItem(`${resourceIndexKey(accountId, environment, publicPath)}.public`, '1');
           if (previousChecksum && previousChecksum !== expected.checksum) {
             const obsolete = await memberResourceFile(accountId, environment, publicPath, previousChecksum);
             if (obsolete.exists) obsolete.delete();
@@ -723,7 +730,7 @@ export async function removeOfflineResources(paths: string[], scopes: ContentAcc
         const playable = new File(new Directory(temporaryResourceAccountDirectory(accountId), context.environment), file.name.replace(/\.sealed$/, ''));
         if (playable.exists) playable.delete();
       }
-      await Storage.multiRemove([index, `${index}.checksum`, `${index}.invalid`]);
+      await Storage.multiRemove([index, `${index}.checksum`, `${index}.invalid`, `${index}.public`]);
     }
     for (const scope of scopes) {
       await Storage.multiRemove([topicCacheKey(accountId, context.environment, scope), `${topicCacheKey(accountId, context.environment, scope)}.invalid`]);

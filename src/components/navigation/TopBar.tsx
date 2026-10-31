@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { ArrowLeft, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 
 import { colors, radii, spacing } from '@/theme';
 
@@ -13,9 +13,12 @@ type Props = {
   close?: boolean;
   right?: ReactNode;
   actionWidth?: number;
+  actionSize?: number;
+  style?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
-export function TopBar({ title, onBack, close = false, right, actionWidth }: Props) {
+export function TopBar({ title, onBack, close = false, right, actionWidth, actionSize, style, titleStyle }: Props) {
   const router = useRouter();
   const Icon = close ? X : ArrowLeft;
   const handleBack = onBack ?? (() => {
@@ -24,20 +27,20 @@ export function TopBar({ title, onBack, close = false, right, actionWidth }: Pro
   });
 
   return (
-    <View style={styles.bar}>
+    <View style={[styles.bar, style]}>
       <Pressable
         accessibilityLabel={close ? '关闭' : '返回'}
         accessibilityRole="button"
         hitSlop={8}
         onPress={handleBack}
-        style={({ pressed }) => [styles.iconButton, actionWidth ? { width: actionWidth, alignItems: 'flex-start', paddingLeft: 12 } : null, pressed ? styles.pressed : null]}
+        style={({ pressed }) => [styles.iconButton, actionSize ? { width: actionSize, height: actionSize } : null, actionWidth ? { width: actionWidth, alignItems: 'flex-start', paddingLeft: 12 } : null, pressed ? styles.pressed : null]}
       >
         <Icon color={colors.foreground} size={20} strokeWidth={2} />
       </Pressable>
-      <AppText numberOfLines={1} style={styles.title} variant="cardTitle">
+      <AppText numberOfLines={1} style={[styles.title, titleStyle]} variant="cardTitle">
         {title}
       </AppText>
-      <View style={[styles.action, actionWidth ? { width: actionWidth } : null]}>{right}</View>
+      <View style={[styles.action, actionSize ? { width: actionSize, minHeight: actionSize } : null, actionWidth ? { width: actionWidth } : null]}>{right}</View>
     </View>
   );
 }

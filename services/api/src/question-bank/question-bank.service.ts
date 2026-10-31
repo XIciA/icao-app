@@ -4,10 +4,12 @@ import { eq } from 'drizzle-orm';
 import type { CommerceEnvironment, QuestionBankRelease, QuestionBankReleaseSummary } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
-import { questionBankReleases } from '../database/schema';
+import { contentPublicationTime } from '../content-access/publication-time';
+import { questionBankReleases, resourceObjects } from '../database/schema';
 import { ContentAccessService } from '../content-access/content-access.service';
 
 type DatasetMetadata = {
+  categories?: { topics: { cards: { retired?: boolean; audio?: string; image?: string }[] }[] }[];
   title?: unknown;
   declaredTopicCount?: unknown;
   declaredCardCount?: unknown;
@@ -27,10 +29,13 @@ export class QuestionBankService {
 
   async list(): Promise<QuestionBankReleaseSummary[]> {
     const rows = await this.database.db.select().from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId);
+    const resources = await this.database.db.select({ sourcePath: resourceObjects.sourcePath, createdAt: resourceObjects.createdAt }).from(resourceObjects).where(eq(resourceObjects.status, 'ready'));
     return rows.map((row) => {
       const metadata = row.payload as DatasetMetadata;
+      const paths = new Set(metadata.categories?.flatMap(category => category.topics.flatMap(topic => topic.cards.flatMap(card => card.retired ? [] : [card.audio, card.image].filter(Boolean)))) ?? []);
       return {
         bankId: row.bankId,
+        publishedAt: contentPublicationTime(row.createdAt, resources.filter(resource => paths.has(resource.sourcePath))),
         version: row.version,
         checksum: row.checksum,
         title: typeof metadata.title === 'string' ? metadata.title : row.bankId,

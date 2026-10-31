@@ -41,3 +41,21 @@ describe('offline manifests', () => {
     await expect(service.offlineManifest('listening', 'selected', 'a', 's', 'sandbox')).rejects.toThrow('sandbox denied');
   });
 });
+
+it('detects added/deleted questions and same-path audio replacement without changing unrelated scopes', async () => {
+  const { service, dataset, rows } = fixture();
+  const load = () => service.offlineManifest('listening', 'selected', 'a', 's', 'production');
+  const original = await load();
+  dataset.categories[0]!.topics[0]!.cards.push({ id: 'new', studyTier: 1, audio: path });
+  const added = await load();
+  expect(added.topics[0]!.cardIds).toContain('new');
+  expect(added.fingerprint).not.toBe(original.fingerprint);
+  dataset.categories[0]!.topics[0]!.cards.splice(0, 1);
+  const removed = await load();
+  expect(removed.topics[0]!.cardIds).not.toContain('a');
+  expect(removed.fingerprint).not.toBe(added.fingerprint);
+  rows[0]!.checksum = 'f'.repeat(64);
+  const audio = await load();
+  expect(audio.fingerprint).not.toBe(removed.fingerprint);
+  expect(audio.resources[0]!.publicPath).toBe(path);
+});

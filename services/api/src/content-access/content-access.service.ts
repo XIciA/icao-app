@@ -1,10 +1,11 @@
+import { contentPublicationTime } from './publication-time';
 import type { AppContentHotspotBrief, AppContentHotspotOverview } from '@icao/contracts/app-content';
 import { BadRequestException, ForbiddenException, HttpException, Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import {
   CONTENT_ACCESS_POLICY_VERSION,
   freeQuestionBankCardIds,
   studyScopeCardIds,
-  offlineScopeValid, offlineTopicCards, type OfflineManifest, type OfflineDownloadScope,
+  validContentScopeId, offlineScopeValid, offlineTopicCards, type OfflineManifest, type OfflineDownloadScope,
   questionBankRadioEntries,
   type ContentAccessCredential,
   type ContentAccessScope,
@@ -40,6 +41,7 @@ type ActiveRelease = {
   version: number;
   checksum: string;
   dataset: ContentDataset;
+  publishedAt?: string;
 };
 
 type MembershipAccess = {
@@ -147,7 +149,7 @@ export class ContentAccessService {
       if (!row) throw new ServiceUnavailableException('download_resource_unavailable');
       return { publicPath, checksum: row.checksum, sizeBytes: row.sizeBytes };
     });
-    return { bankId, scope, version: release.version, checksum: release.checksum, topics, resources,
+    return { bankId, scope, publishedAt: contentPublicationTime(release.publishedAt, [...paths].flatMap(path => byPath.get(path) ? [byPath.get(path)!] : [])), version: release.version, checksum: release.checksum, topics, resources,
       sizeBytes: topics.reduce((sum, topic) => sum + topic.sizeBytes, 0) + resources.reduce((sum, resource) => sum + resource.sizeBytes, 0),
       fingerprint: createHash('sha256').update(JSON.stringify({ topics, resources })).digest('hex') };
   }
@@ -395,7 +397,7 @@ export class ContentAccessService {
       throw new NotFoundException('question_bank_not_found');
     }
     if (expected?.checksum && row.checksum !== expected.checksum) throw new BadRequestException('content_release_mismatch');
-    return { bankId: row.bankId, version: row.version, checksum: row.checksum, dataset: row.payload };
+    return { bankId: row.bankId, version: row.version, checksum: row.checksum, publishedAt: row.createdAt?.toISOString(), dataset: row.payload };
   }
 
   private accessSummary(membership: MembershipAccess): QuestionBankAccessSummary {
@@ -417,8 +419,8 @@ export class ContentAccessService {
       && typeof scope.categoryId === 'string'
       && typeof scope.topicId === 'string'
       && /^[A-Za-z0-9_-]{1,96}$/u.test(scope.bankId)
-      && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.categoryId)
-      && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.topicId)
+      && validContentScopeId(scope.categoryId)
+      && validContentScopeId(scope.topicId)
       && ((scope as ContentAccessScope & { version?: number }).version === undefined
         || (Number.isSafeInteger((scope as ContentAccessScope & { version?: number }).version) && Number((scope as ContentAccessScope & { version?: number }).version) > 0)),
     ));

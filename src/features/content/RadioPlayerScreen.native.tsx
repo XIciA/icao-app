@@ -1,9 +1,9 @@
+import { OfflineBadge } from '@/features/question-bank/components/OfflineBadge';
 import { RadioQueueSheet } from '@/features/radio-player/RadioQueueSheet';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { studyBankIcons as radioBankIcons } from '@/features/profile/StudyBankIcon';
 import { GuideAnchor, useGuide, useGuideAvailability, useGuideTarget } from '@/features/usage-guide/GuideBindings';
 import {
-  AlertCircle,
   Captions,
   CaptionsOff,
   ChevronRight,
@@ -142,9 +142,9 @@ export function RadioPlayerScreen() {
     return <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
         <TopBar title="随身听" onBack={() => Platform.OS === 'web' || router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')} />
-        <CenteredState icon={Headphones} title={radio.error || radio.catalogError ? '曲目加载失败' : '当前范围暂无可播放内容'}
-          description={radio.error ?? radio.catalogError ?? '当前考试目标或题库范围内暂无可播放内容，可以调整学习范围后重试。'}
-          actionLabel={radio.error || radio.catalogError ? '重新加载' : '返回题库'} onAction={radio.error || radio.catalogError ? radio.retryCatalog ?? radio.retry : () => router.push('/(tabs)')} />
+        <CenteredState icon={Headphones} title={radio.catalogError ?? (radio.offline ? '该内容尚未下载' : radio.error || radio.catalogError ? '曲目加载失败' : '当前范围暂无可播放内容')}
+          description={radio.catalogError ? '请联网后重试。' : radio.offline ? '可联网下载对应题库后收听。' : radio.error ?? radio.catalogError ?? '当前考试目标或题库范围内暂无可播放内容，可以调整学习范围后重试。'}
+          actionLabel={radio.catalogError ? '重新加载' : radio.offline ? '前往下载管理' : radio.error || radio.catalogError ? '重新加载' : '返回题库'} onAction={radio.catalogError ? radio.retryCatalog ?? radio.retry : radio.offline ? () => router.push('/account/downloads') : radio.error || radio.catalogError ? radio.retryCatalog ?? radio.retry : () => router.push('/(tabs)')} />
       </AppContentFrame>
     </SafeAreaView>;
   }
@@ -152,7 +152,6 @@ export function RadioPlayerScreen() {
   return (
     <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
-      {radio.catalogError ? <Pressable accessibilityRole="button" onPress={radio.retryCatalog}><AppText variant="caption" color={colors.primary}>目录更新失败，点击重试；当前音频仍可播放。</AppText></Pressable> : null}
       <QuestionBankSwitcherHeader
         guideId="radio-bank"
         items={switcherItems}
@@ -176,6 +175,7 @@ export function RadioPlayerScreen() {
           style={({ pressed }) => [styles.trackRow, pressed ? styles.trackRowPressed : null]}
         >
           <GuideAnchor id="radio-study" /><AppText numberOfLines={1} style={styles.trackTitle}>{radio.currentTrack?.title ?? (radio.catalogLoading ? '正在准备曲目' : '暂无匹配曲目')}</AppText>
+          <OfflineBadge offline={Boolean(radio.offline)} />
           <View style={styles.trackCount}><AppText color={colors.primary} style={styles.trackCountText} variant="micro">{radio.currentTrack ? `${radio.currentIndex + 1}/${radio.currentCatalog?.complete === false ? '…' : radio.currentCatalog?.tracks.length ?? 0}` : '—'}</AppText></View>
           <ChevronRight color={colors.mutedForeground} size={15} />
         </Pressable>
@@ -189,11 +189,11 @@ export function RadioPlayerScreen() {
         </View>
 
         <View style={styles.controlDock}>
-          {radio.error ? <View style={styles.errorRow}><AlertCircle color={colors.destructive} size={15} /><AppText color={colors.destructive} style={styles.errorCopy} variant="caption">{radio.error}</AppText><Pressable accessibilityLabel="重试音频" onPress={radio.retry} style={styles.retry}><RotateCcw color={colors.destructive} size={15} /><AppText color={colors.destructive} variant="caption">重试</AppText></Pressable></View> : null}
+
           <View style={styles.timelineWrap}><AudioTimeline disabled={!radio.currentTrack || radio.loading || radio.waitingForNext || Boolean(radio.error)} duration={radio.duration} onScrubEnd={radio.seek} position={radio.position} testID="radio-timeline" /></View>
           <View style={styles.transport}>
             <Pressable accessibilityLabel="上一首" disabled={!radio.currentTrack} hitSlop={6} onPress={() => void radio.previous()} style={({ pressed }) => [styles.transportButton, pressed ? styles.controlPressed : null]}><SkipBack color={colors.foreground} fill={colors.foreground} size={22} /></Pressable>
-            <Pressable accessibilityLabel={radio.error ? '重试音频' : radio.playing ? '暂停' : '播放'} disabled={!radio.currentTrack || (radio.loading && !radio.error)} onPress={() => { if (radio.error) radio.retry(); else { manualPlay.current = true; void radio.toggle(); } }} style={({ pressed }) => [styles.playButton, pressed ? styles.playPressed : null]}>
+            <Pressable accessibilityHint={radio.error} accessibilityLabel={radio.error ? '重试音频' : radio.playing ? '暂停' : '播放'} disabled={!radio.currentTrack || (radio.loading && !radio.error)} onPress={() => { if (radio.error) radio.retry(); else { manualPlay.current = true; void radio.toggle(); } }} style={({ pressed }) => [styles.playButton, pressed ? styles.playPressed : null]}>
               <GuideAnchor id="radio-play" />{(radio.loading || radio.buffering) && !radio.waitingForNext ? <ActivityIndicator color={colors.primaryForeground} /> : radio.error ? <RotateCcw color={colors.primaryForeground} size={24} /> : radio.playing ? <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={24} /> : <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={24} style={styles.playIcon} />}
             </Pressable>
             <Pressable accessibilityLabel="下一首" disabled={!radio.currentTrack} hitSlop={6} onPress={() => void radio.next(true)} style={({ pressed }) => [styles.transportButton, pressed ? styles.controlPressed : null]}><SkipForward color={colors.foreground} fill={colors.foreground} size={22} /></Pressable>

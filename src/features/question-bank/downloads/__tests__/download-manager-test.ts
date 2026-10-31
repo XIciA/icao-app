@@ -1,3 +1,5 @@
+jest.mock('@/features/vocabulary/offline-content.native', () => ({ prepareVocabularyDownload: jest.fn(async () => undefined), verifyVocabularyDownload: jest.fn(async () => undefined) }));
+jest.mock('@/features/vocabulary/speech.native', () => ({ stopVocabularySpeech: jest.fn(async () => undefined) }));
 import { prepareDownloads, downloadSnapshot, loadDownloadManifest, startDownload, cancelDownload, checkDownloadUpdates, deleteDownload } from '../download-manager.native';
 import { AppState } from 'react-native';
 import { waitFor } from '@testing-library/react-native';
@@ -114,4 +116,43 @@ test('cancel while the manifest refresh is pending cannot write content or resto
   expect(mockCache).not.toHaveBeenCalled();
   expect(downloadSnapshot().listening?.phase).toBe('paused');
   expect(downloadSnapshot().listening?.saved).toBeUndefined();
+});
+
+test('three vocabulary books use independent packages, public audio and shared deletion protection', async () => {
+  mockNetwork.mockResolvedValue({ isConnected: true, type: 'WIFI' });
+  const book = (scope: 'preview' | 'icao4'): OfflineManifest => ({ ...manifest(), bankId: 'vocabulary', scope, fingerprint: scope,
+    vocabulary: { bookId: scope, wordChecksums: { [scope]: 'a'.repeat(64) } },
+    resources: [{ ...manifest().resources[0], publicPath: `/pronunciation-assets/${'b'.repeat(64)}.mp3` }] });
+  mockRequest.mockImplementation(async (url: string) => url.includes('resolve-batch')
+    ? [{ ...book('preview').resources[0], url: 'https://media.test/word', expiresIn: 300 }]
+    : book(url.endsWith('icao4') ? 'icao4' : 'preview'));
+  mockCache.mockImplementation(async () => { mockPrepared.mockResolvedValue(true); return 'file:sealed'; });
+  await startDownload(book('preview'));
+  await waitFor(() => expect(downloadSnapshot()['vocabulary:preview']?.latest).toBeDefined());
+  await startDownload(book('icao4'));
+  await waitFor(() => expect(downloadSnapshot()['vocabulary:icao4']?.latest).toBeDefined());
+  expect(mockCache).toHaveBeenCalledWith(book('preview').resources[0].publicPath, expect.any(String), expect.any(Object), expect.objectContaining({ publicDownload: true, required: true }));
+  expect(mockRequest.mock.calls.some(([url]) => url.includes('credentials'))).toBe(false);
+  await deleteDownload('vocabulary:preview');
+  expect(downloadSnapshot()['vocabulary:preview']).toBeUndefined();
+  expect(downloadSnapshot()['vocabulary:icao4']?.saved?.scope).toBe('icao4');
+  expect(mockRemove).toHaveBeenLastCalledWith([], []);
+  await deleteDownload('vocabulary:icao4');
+  expect(mockRemove).toHaveBeenLastCalledWith([book('preview').resources[0].publicPath], []);
+});
+
+test('an update check started by the old account never invalidates the new account package', async () => {
+  mockAccount += '-saved';
+  mockValues.set(`icao.downloads.v1.${mockAccount}.production`, JSON.stringify({ listening: { phase: 'idle', saved: manifest() } }));
+  await prepareDownloads(); mockNetwork.mockResolvedValue({ isConnected: true });
+  let resolve!: (value: OfflineManifest) => void;
+  mockRequest.mockReturnValue(new Promise(done => { resolve = done; }));
+  const checking = checkDownloadUpdates();
+  const rejected = expect(checking).rejects.toThrow('账号已切换');
+  await waitFor(() => expect(mockRequest).toHaveBeenCalled());
+  mockAccount += '-other';
+  mockValues.set(`icao.downloads.v1.${mockAccount}.production`, JSON.stringify({ listening: { phase: 'idle', saved: manifest('all') } }));
+  await prepareDownloads(); resolve(manifest()); await rejected;
+  expect(mockInvalidate).not.toHaveBeenCalled();
+  expect(downloadSnapshot().listening?.saved?.scope).toBe('all');
 });

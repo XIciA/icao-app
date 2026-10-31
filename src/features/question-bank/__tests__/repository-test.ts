@@ -72,6 +72,7 @@ import {
   inspectOfflineMemberTopicAccess,
   cacheMemberResource,
   resolveOfflineMemberResource,
+  removeOfflineResources,
 } from '../data/member-content-cache.native';
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
@@ -589,6 +590,12 @@ describe('embeddedQuestionBankRepository', () => {
     await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).rejects.toMatchObject({ code: 'membership_required', status: 403 });
   });
 
+  it('preserves online member content when the separate offline credential request is malformed', async () => {
+    await authenticatedContentApi({ credentialStatus: 400 });
+    await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).resolves.toMatchObject({ items: expect.any(Array) });
+    expect([...mockSecureValues.keys()].filter(key => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
+  });
+
   it('returns authorized Web member text without requesting native offline credentials', async () => {
     const { request } = await authenticatedContentApi({ credentialStatus: 503 });
     Platform.OS = 'web';
@@ -762,6 +769,21 @@ describe('embeddedQuestionBankRepository', () => {
     await rejected;
     expect(mockFiles.size).toBe(0);
     expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(false);
+  });
+
+  it('keeps explicitly downloaded public pronunciation encrypted, account-bound and deletable without member credentials', async () => {
+    await activateQuestionBankContentAccount('words-account');
+    const path = `/pronunciation-assets/${'a'.repeat(64)}.mp3`;
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    await cacheMemberResource(path, 'https://example.test/audio', metadata, { publicDownload: true });
+    expect([...mockFiles].some(file => file.endsWith('.sealed'))).toBe(true);
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeDefined();
+    await expect(cacheMemberResource('/question-bank-assets/protected.mp3', 'https://example.test/audio', metadata, { publicDownload: true })).rejects.toThrow('invalid_public_download_path');
+    await removeOfflineResources([path], []);
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeUndefined();
+    await cacheMemberResource(path, 'https://example.test/audio', metadata, { publicDownload: true });
+    await activateQuestionBankContentAccount('other-words-account');
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeUndefined();
   });
 
   it('bounds temporary authorized public copies, keeps recent hits, and never turns them into offline member access', async () => {
