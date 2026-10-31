@@ -6,6 +6,10 @@ import { OptionalAuthGuard } from '../auth/require-auth.guard';
 import { contentCommerceEnvironment } from '../content-access/content-access.environment';
 import { ResourceService } from './resource.service';
 
+function downloadableResourcePath(path: unknown): path is string {
+  return typeof path === 'string' && (path.startsWith('/question-bank-assets/') || /^\/pronunciation-assets\/[a-f0-9]{64}\.mp3$/.test(path));
+}
+
 @Controller('v1/resources')
 @UseGuards(OptionalAuthGuard)
 export class ResourceController {
@@ -15,8 +19,8 @@ export class ResourceController {
   async batch(@Body() body: { resources?: { publicPath: string; checksum: string }[] },
     @Headers(COMMERCE_ENVIRONMENT_HEADER) environmentHeader: string | undefined, @Req() request: AuthenticatedRequest) {
     if (!Array.isArray(body?.resources) || body.resources.length < 1 || body.resources.length > 24
-      || body.resources.some(resource => !resource || typeof resource.publicPath !== 'string'
-        || !resource.publicPath.startsWith('/question-bank-assets/') || typeof resource.checksum !== 'string' || !/^[a-f0-9]{64}$/.test(resource.checksum))) throw new BadRequestException('invalid_download_resources');
+      || body.resources.some(resource => !resource || !downloadableResourcePath(resource.publicPath)
+        || typeof resource.checksum !== 'string' || !/^[a-f0-9]{64}$/.test(resource.checksum))) throw new BadRequestException('invalid_download_resources');
     const results: ResolvedResource[] = [];
     for (let offset = 0; offset < body.resources.length; offset += 4) {
       results.push(...await Promise.all(body.resources.slice(offset, offset + 4).map(resource => this.resources.resolve(request.user?.id,
@@ -33,7 +37,7 @@ export class ResourceController {
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<ResolvedResource>> {
     if (checksum !== undefined && !/^[a-f0-9]{64}$/.test(checksum)) throw new BadRequestException('invalid_resource_checksum');
-    if (!path || (!path.startsWith('/question-bank-assets/') && !path.startsWith('/editorial-assets/') && !/^\/pronunciation-assets\/[a-f0-9]{64}\.mp3$/.test(path))) {
+    if (!path || (!downloadableResourcePath(path) && !path.startsWith('/editorial-assets/'))) {
       throw new BadRequestException('invalid_resource_path');
     }
     return {
