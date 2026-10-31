@@ -156,3 +156,18 @@ test('an update check started by the old account never invalidates the new accou
   expect(mockInvalidate).not.toHaveBeenCalled();
   expect(downloadSnapshot().listening?.saved?.scope).toBe('all');
 });
+
+test('a word removed from one book does not invalidate audio still published in another downloaded book', async () => {
+  mockAccount += '-shared';
+  const book = (scope: 'preview' | 'icao4'): OfflineManifest => ({ ...manifest(), bankId: 'vocabulary', scope, fingerprint: scope,
+    vocabulary: { bookId: scope, wordChecksums: { shared: 'a'.repeat(64) } } });
+  mockValues.set(`icao.downloads.v1.${mockAccount}.production`, JSON.stringify({
+    'vocabulary:preview': { phase: 'idle', saved: book('preview') }, 'vocabulary:icao4': { phase: 'idle', saved: book('icao4') },
+  }));
+  await prepareDownloads(); mockNetwork.mockResolvedValue({ isConnected: true }); mockPrepared.mockResolvedValue(true);
+  mockRequest.mockImplementation(async (url: string) => url.endsWith('preview')
+    ? { ...book('preview'), fingerprint: 'removed', resources: [], vocabulary: { bookId: 'preview', wordChecksums: {} } } : book('icao4'));
+  expect(await checkDownloadUpdates()).toBe('1 项有更新');
+  expect(mockInvalidate).not.toHaveBeenCalled();
+  expect(downloadSnapshot()['vocabulary:icao4']?.outdated).toBe(false);
+});
