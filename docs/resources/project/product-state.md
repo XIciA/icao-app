@@ -32,7 +32,8 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | iOS TestFlight / 商店审核 | 1.3.0 / 3593083，TestFlight 可用；11 月 1 日 22:12 已提交 App Store，等待审核 | 复用同一已校验构建，审核通过后自动发布；正式更新清单待实际可下载后再切换。[记录](../../records/releases/20261101-lightweight-testflight-1.3.0.md) |
 | EdgeOne 产品 Web | 1.4.3，源码aed11822，deployment dp6h8t31bptd | 网页、收藏与主屏幕图标及随身听锁屏封面统一 App logo；公网图标和脚本摘要一致，iPhone锁屏效果待用户验收。[记录](../../records/releases/20261101-web-brand-logo-1.4.3.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
-| ECS API | production-migration-10e2dc48f780，11月1日18:06健康切换 | 0059两索引先恢复演练后迁移，101表指纹一致；19接口、五库音频、旧格式同步与真实AI通过。保留备份及旧镜像。[记录](../../records/releases/20261101-performance-pricing-1.4.4.md) |
+| ECS API | title-relocation-57c63269，11月1日兼容题库迁移部署完成 | 健康及鉴权预检通过；沿用生产签名密钥，无schema迁移。定向处理19道题旧位置数据，其他内容版本保持。[记录](../../records/releases/20261101-question-bank-titles-v29.md) |
+| 题库 | OPI、陆空通话 v29 已发布；其他三题库保持原版本 | 22个缩略词模块、19题归类及统一场景标题；公网目录全量核对通过，手机更新效果待用户验收。[记录](../../records/releases/20261101-question-bank-titles-v29.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
 | 内容运营后台 | 10月27日20:04 vocabulary-levels-20261027-29ae9cd3已上线，源码29ae9cd3 | 批量调整等级、跨词书草稿、统一提交和历史查询已交付；备份隔离恢复、公网资源/健康、权限隔离和110词只读预览通过。App API镜像和启动时间不变，正式词库仍v5/1652词；用户界面验收待完成。[本轮记录](../../records/releases/20261027-vocabulary-level-batch.md) |
 
