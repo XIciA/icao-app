@@ -113,4 +113,3 @@ export { default as Radar } from 'lucide-react-native/icons/radar';
 export { default as PlaneLanding } from 'lucide-react-native/icons/plane-landing';
 
 export { default as ChevronUp } from 'lucide-react-native/icons/chevron-up';
-export { default as ListOrdered } from 'lucide-react-native/icons/list-ordered';

@@ -1,3 +1,4 @@
+import { OfflineBadge } from '@/features/question-bank/components/OfflineBadge';
 import { VocabularyOrderSelector } from './VocabularyOrderSelector';
 import type { VocabularyStudyOrder } from '../study-order';
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
@@ -12,7 +13,6 @@ import {
   Search,
   Star,
   Volume2,
-  WifiOff,
 } from '@/components/ui/icons';
 import { useMemo, useState } from 'react';
 import { Alert, FlatList, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
@@ -60,7 +60,7 @@ export function VocabularyBooksView({
   books,
   selected,
   statsByBook,
-  warning,
+  offline = false,
   lastTest,
   onToggle,
   onDetail,
@@ -74,6 +74,7 @@ export function VocabularyBooksView({
   state: VocabularyState;
   statsByBook: Record<string, VocabularyBookStats>;
   warning?: string;
+  offline?: boolean;
   lastTest?: VocabularyTestResult;
   onToggle: (id: VocabularyBook['id']) => void;
   onDetail: (id: VocabularyBook['id']) => void;
@@ -83,15 +84,10 @@ export function VocabularyBooksView({
   const insets = useSafeAreaInsets();
   const guide = useGuide();
   return (
-    <Screen contentStyle={styles.zero} header={<TopBar title="单词学习" />}>
+    <Screen contentStyle={styles.zero} header={<TopBar title="单词学习" actionWidth={80} right={<OfflineBadge offline={offline} />} />}>
       <GuideScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false} style={styles.grow}>
 
-        {warning ? (
-          <View style={styles.warning}>
-            <WifiOff color={colors.accent} size={17} />
-            <AppText style={styles.warningText} variant="caption">当前使用设备缓存，联网后会自动获取最新词汇资源。</AppText>
-          </View>
-        ) : null}
+
 
         <Pressable accessibilityLabel="开始30题词汇测评" onPress={onTest}>
           <Card style={styles.assessmentCard}>
@@ -130,6 +126,7 @@ export function VocabularyBooksView({
 }
 
 export function VocabularyBookDetailView({
+  offline = false,
   order,
   onOrderChange,
   book,
@@ -139,6 +136,7 @@ export function VocabularyBookDetailView({
   onReset,
   onList,
 }: {
+  offline?: boolean;
   order?: VocabularyStudyOrder;
   onOrderChange?: (order: VocabularyStudyOrder) => void;
   book: VocabularyBook;
@@ -161,7 +159,7 @@ export function VocabularyBookDetailView({
     { text: '确认重置', style: 'destructive', onPress: () => { void onReset(); } },
   ]);
   return (
-    <Screen scroll contentStyle={styles.zero} header={<TopBar title="单词学习" onBack={onBack} />}>
+    <Screen scroll contentStyle={styles.zero} header={<TopBar title="单词学习" onBack={onBack} actionWidth={80} right={<OfflineBadge offline={offline} />} />}>
       <View style={styles.page}>
         <Card style={styles.detailCard}>
           <AppText variant="pageTitle">{book.name}</AppText>
@@ -184,12 +182,14 @@ export function VocabularyBookDetailView({
 type WordFilter = 'all' | VocabularyWordStatus | 'favorite';
 
 export function VocabularyWordListView({
+  offline = false,
   book,
   state,
   onBack,
   onToggleFavorite,
   onStart,
 }: {
+  offline?: boolean;
   book: VocabularyBook;
   state: VocabularyState;
   onBack: () => void;
@@ -213,7 +213,7 @@ export function VocabularyWordListView({
   const filters = [['all', '全部'], ['new', '未学'], ['known', '认识'], ['vague', '模糊'], ['forgot', '忘记'], ['wrong', '记错'], ['favorite', '收藏']] as const;
 
   return (
-    <Screen keyboard contentStyle={styles.zero} header={<TopBar title={book.name} onBack={onBack} />}>
+    <Screen keyboard contentStyle={styles.zero} header={<TopBar title={book.name} onBack={onBack} actionWidth={80} right={<OfflineBadge offline={offline} />} />}>
       <View style={styles.listHeader}>
         <View style={styles.search}>
           <Search color={colors.mutedForeground} size={17} />

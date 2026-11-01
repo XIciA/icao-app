@@ -21,6 +21,7 @@ let mockBankState: Omit<Extract<ReturnType<typeof useQuestionBank>, { status: 'r
 let mockTopicState: ReturnType<typeof useQuestionBankTopic>;
 
 jest.mock('expo-router', () => ({
+  useFocusEffect: (effect: () => void) => jest.requireActual('react').useEffect(effect, []),
   useLocalSearchParams: () => mockParams,
   useRouter: () => ({ back: mockBack, replace: mockReplace, dismissTo: mockDismissTo, push: mockPush, canGoBack: () => mockCanGoBack }),
 }));

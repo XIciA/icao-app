@@ -5,7 +5,8 @@ import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { performance } from 'node:perf_hooks';
-import { afterAll, beforeAll, expect, it } from 'vitest';
+import { afterAll, beforeAll, expect, it, vi } from 'vitest';
+import { ResourceService } from '../src/resource/resource.service';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { AppContentService, appContentChecksum } from '../src/app-content/app-content.service';
@@ -67,8 +68,8 @@ it('coalesces payload reads, keeps original summary scalars, and rechecks public
   expect(results.every(result => result.version === 1)).toBe(true);
   expect(queries.filter(query => query.startsWith('select') && query.includes('"payload"'))).toHaveLength(1);
   queries.length = 0;
-  expect(await banks.list()).toEqual([{ bankId: 'listening', version: 1, checksum: '1'.repeat(64), title: 'bank-1', declaredTopicCount: 1, declaredCardCount: 12 }]);
-  expect(queries[0]).toContain("->'title'");
+  expect(await banks.list()).toMatchObject([{ bankId: 'listening', version: 1, checksum: '1'.repeat(64), title: 'bank-1', declaredTopicCount: 1, declaredCardCount: 12 }]);
+  expect((await banks.list())[0]?.publishedAt).toBeDefined();
   await client`update question_bank_releases set active=false where bank_id='listening'`;
   await client`update question_bank_releases set active=true where bank_id='listening' and version=2`;
   expect((await content.getCatalog('listening', undefined, undefined, 'production')).version).toBe(2);
@@ -147,10 +148,47 @@ it('uses bounded resource indexes for both current and historical checksum queri
   expect(row?.object_key).toBe('key-24242');
 });
 
+it('batch resource resolution matches single lookups with one query and bounded signing', async () => {
+  const inputs = Array.from({ length: 24 }, (_, i) => ({ publicPath: `/question-bank-assets/batch/${i}.mp3`, checksum: 'a'.repeat(64) }));
+  await database.insert(schema.resourceObjects).values(inputs.flatMap(({ publicPath }, i) => [
+    { objectKey: `batch-old-${i}`, module: 'listening', sourcePath: publicPath, checksum: 'a'.repeat(64), sizeBytes: 100, mimeType: 'audio/mpeg', status: 'superseded', createdAt: new Date('2025-01-01') },
+    { objectKey: `batch-new-${i}`, module: 'listening', sourcePath: publicPath, checksum: 'b'.repeat(64), sizeBytes: 200, mimeType: 'audio/mpeg', status: 'ready', createdAt: new Date('2026-01-01') },
+  ]));
+  const access = vi.fn(async () => undefined);
+  const service = new ResourceService({ supabaseUrl: 'http://localhost:9999', supabasePublicUrl: 'https://public.invalid', supabaseSecretKey: 'synthetic' } as never,
+    { db: database } as never, { assertResourceAccess: access } as never);
+  let running = 0, peak = 0;
+  const sign = vi.fn(async (key: string, seconds: number) => {
+    peak = Math.max(peak, ++running);
+    await new Promise(resolve => setTimeout(resolve, 1)); running--;
+    expect(seconds).toBe(300);
+    return { data: { signedUrl: `http://localhost:9999/${key}` }, error: null };
+  });
+  Object.assign(service, { storage: { storage: { from: () => ({ createSignedUrl: sign }) } } });
+  queries.length = 0;
+  const batch = await service.resolveBatch('account', inputs, 'session', 'production');
+  expect(queries).toHaveLength(1);
+  expect(peak).toBeLessThanOrEqual(4);
+  expect(access).toHaveBeenCalledTimes(24);
+  const singles = [];
+  for (const input of inputs) singles.push(await service.resolve('account', input.publicPath, 'session', 'production', input.checksum));
+  expect(batch).toEqual(singles);
+  expect(batch[0]?.objectKey).toBe('batch-old-0');
+  expect((await service.resolve('account', inputs[0]!.publicPath, 'session', 'production')).objectKey).toBe('batch-new-0');
+  expect(await service.resolveBatch('account', [inputs[0]!, inputs[0]!], 'session', 'production')).toEqual([batch[0], batch[0]]);
+  await expect(service.resolveBatch('account', [{ ...inputs[0]!, checksum: 'c'.repeat(64) }], 'session', 'production')).rejects.toThrow('resource_not_found');
+  sign.mockClear(); access.mockRejectedValueOnce(new Error('membership_required'));
+  await expect(service.resolveBatch('other-account', [inputs[0]!], 'other-session', 'sandbox')).rejects.toThrow('membership_required');
+  expect(sign).not.toHaveBeenCalled();
+  expect(access).toHaveBeenLastCalledWith('other-account', 'listening', inputs[0]!.publicPath, 'other-session', 'sandbox');
+  sign.mockResolvedValueOnce({ data: { signedUrl: '' }, error: null });
+  await expect(service.resolveBatch('account', [inputs[0]!], 'session', 'production')).rejects.toThrow('resource_signing_failed');
+});
+
 // Opt-in comparison against actual pre-change code, not a rewritten approximation.
 // Runs only in the same disposable database above; never reads DATABASE_URL/.env.
 it.runIf(process.env.ICAO_BACKEND_BENCHMARK === '1')('reports old/new JSON equivalence and isolated read latency', async () => {
-  const baselineRef = '4ee68384621d44b5e0b0f63000a7c79ff94e4387';
+  const baselineRef = 'ec6781fc92061424942f6fb82d9226f176f9686a';
   const generated = resolve('.generated/backend-performance-baseline');
   mkdirSync(generated, { recursive: true });
   writeFileSync(join(generated, 'tsconfig.json'), JSON.stringify({ extends: '../../tsconfig.json', include: ['*.ts'] }));

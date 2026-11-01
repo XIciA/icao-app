@@ -134,7 +134,7 @@ export function mergeRadioCatalogProgress(incoming: QuestionBankDataset[], curre
   return incoming.map(bank => {
     const previous = current.find(item => item.id === bank.id);
     const release = contentReleaseOf(bank);
-    if (!previous || !release || !sameContentRelease(previous, release)
+    if (bank.offlineProjection || previous?.offlineProjection || !previous || !release || !sameContentRelease(previous, release)
       || bank.access?.membershipActive !== true || previous.access?.membershipActive !== true) return bank;
     return { ...bank, categories: bank.categories.map(category => {
       const old = previous.categories.find(item => item.id === category.id);

@@ -1,3 +1,6 @@
+import { contentFailure } from '../lib/content-failure';
+import { CenteredState } from '@/components/states/CenteredState';
+import { TopBar } from '@/components/navigation/TopBar';
 import { useSentenceBrowseMode } from '../lib/use-sentence-browse-mode';
 import { contentReleaseOf } from '../data/content-version.native';
 import { sqliteLearningStore } from '../platform/learning-store';
@@ -26,7 +29,7 @@ import {
   UserRound,
 } from '@/components/ui/icons';
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, RefreshControl, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
@@ -44,7 +47,7 @@ import { normalizeStudyScope } from '@icao/contracts';
 
 const ScenarioStudyScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
 
-export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
+export function QuestionBankCatalog({ dataset, onRetry }: { dataset: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
   const account = useAuth().account?.accountId;
   const owner = useRef(account); owner.current = account;
@@ -54,27 +57,37 @@ export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: Qu
   function selectBrowseMode(scene: boolean) { setSceneMode(scene); setBrowseMenuVisible(false); }
   const [scenePackage, setScenePackage] = useState<QuestionBankStudyPackage>();
   const [sceneBusy, setSceneBusy] = useState(false);
-  const [sceneError, setSceneError] = useState('');
+  const [sceneError, setSceneError] = useState<ReturnType<typeof contentFailure>>();
   const sceneGeneration = useRef(0);
-  useEffect(() => { sceneGeneration.current += 1; setScenePackage(undefined); setSceneBusy(false); setSceneError(''); return () => { sceneGeneration.current += 1; }; }, [account, dataset]);
+  useEffect(() => { sceneGeneration.current += 1; setScenePackage(undefined); setSceneBusy(false); setSceneError(undefined); return () => { sceneGeneration.current += 1; }; }, [account, dataset]);
   async function openScene(id: string) {
     if (sceneBusy) return;
     const generation = ++sceneGeneration.current;
     const accountAtStart = account;
-    setSceneBusy(true); setSceneError('');
+    setSceneBusy(true); setSceneError(undefined);
     try {
+      const unavailable: unknown[] = [];
       const categories = await Promise.all(dataset.categories.map(async category => ({ ...category,
-        topics: await Promise.all(category.topics.map(async topic => {
-          const loaded = await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset));
+        topics: await Promise.all(category.topics.filter(topic => (topic.scopeCardIds?.all ?? topic.cards.map(card => card.id)).some(cardId => sentenceScenario(cardId)?.id === id)).map(async topic => {
+          let loaded;
+          try { loaded = await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset)); }
+          catch (error) {
+            if (!contentFailure(error)) throw error;
+            unavailable.push(error);
+            return { ...topic, cards: [] };
+          }
           const ids = new Set(topic.scopeCardIds?.all ?? topic.cards.map(card => card.id));
           return loaded ? { ...loaded, cards: loaded.cards.filter(card => ids.has(card.id)) } : topic;
         })),
       })));
       if (generation !== sceneGeneration.current || owner.current !== accountAtStart) return;
       const next = sentenceScenarioPackage({ ...dataset, categories }, id);
-      if (!next.items.length) { login('/account/membership', '登录后查看会员题库'); return; }
+      if (!next.items.length) {
+        if (unavailable.length) throw unavailable[0];
+        login('/account/membership', '登录后查看会员题库'); return;
+      }
       setScenePackage(next);
-    } catch { if (generation === sceneGeneration.current) setSceneError('场景题目加载失败，请重新点击场景重试。'); }
+    } catch (error) { if (generation === sceneGeneration.current) setSceneError(contentFailure(error) ?? { title: '学习内容加载失败', description: '请联网后重新选择场景。', action: 'retry' }); }
     finally { if (generation === sceneGeneration.current) setSceneBusy(false); }
   }
   const guide = useGuide();
@@ -139,6 +152,7 @@ export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: Qu
     return undefined;
   }
 
+  if (sceneError) return <Screen header={<TopBar title="题库学习" onBack={() => setSceneError(undefined)} />}><CenteredState title={sceneError.title} description={sceneError.description} actionLabel={sceneError.action === 'download' ? '前往下载管理' : '返回目录'} onAction={() => { const download = sceneError.action === 'download'; setSceneError(undefined); if (download) router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: dataset.id } }); }} /></Screen>;
   if (scenePackage) return <Suspense fallback={<Screen><AppText>正在打开场景…</AppText></Screen>}><ScenarioStudyScreen studyPackage={scenePackage} onReturn={() => setScenePackage(undefined)} returnLabel="返回场景目录" returnHref="/question-bank/sentences900" /></Suspense>;
   if (exporting) return <SentenceExportScreen dataset={dataset} initialBrowseMode={sceneMode ? 'scene' : 'level'} onBack={() => { if (guide?.current === 'export') guide.pause(); setExporting(false); }} />;
   return (
@@ -161,10 +175,8 @@ export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: Qu
         </Pressable>)}
       </BottomSheet>
       <View style={styles.scrollFrame}>
-        <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
-          {warning ? <View><AppText>暂时无法更新题库，正在显示本机已有目录，最新内容可能尚未包含。</AppText><Button variant="outline" onPress={onRetry}>重新加载题库</Button></View> : null}
+        <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={false} onRefresh={onRetry} />}>
           {progressError ? <View><AppText>学习进度暂时无法读取，记录未被清除。题目仍可学习。</AppText><Button variant="outline" onPress={() => setProgressAttempt(n => n + 1)}>重试读取进度</Button></View> : null}
-          {sceneError ? <AppText color={colors.destructive}>{sceneError}</AppText> : null}
           {sceneMode && dataset.id === 'sentences900' ? SENTENCE_SCENARIOS.map(scene => {
             const count = sentenceScenarioCount(dataset, scene.id);
             return <Card key={scene.id} style={styles.category}><Pressable accessibilityRole="button" disabled={sceneBusy || !count} onPress={() => void openScene(scene.id)} style={({ pressed }) => [styles.categoryHeader, pressed ? styles.pressed : null]}>

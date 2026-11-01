@@ -1,3 +1,4 @@
+import { OfflineBadge } from '@/features/question-bank/components/OfflineBadge';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { Check, CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
 import { useEffect, useRef, useState } from 'react';
@@ -18,6 +19,7 @@ import { VocabularyProgress } from './VocabularyProgress';
 export type VocabularySessionSummary = Record<'known' | 'vague' | 'forgot' | 'wrong', number>;
 
 export function VocabularyStudyView({
+  offline = false,
   busy = false,
   savedStatus,
   words,
@@ -30,6 +32,7 @@ export function VocabularyStudyView({
   onNext,
   onToggleFavorite,
 }: {
+  offline?: boolean;
   busy?: boolean;
   savedStatus?: VocabularyWordStatus;
   words: VocabularyWord[];
@@ -81,7 +84,7 @@ export function VocabularyStudyView({
     <Screen contentStyle={styles.zero}>
       <View style={styles.topBar}>
         <Pressable accessibilityLabel="返回上一页" hitSlop={8} disabled={busy} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
-        <AppText variant="button">已学 {learned} / {words.length}</AppText>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><AppText variant="button">已学 {learned} / {words.length}</AppText><OfflineBadge offline={offline} /></View>
         <Pressable disabled={busy} accessibilityState={{ busy }} accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
           <GuideAnchor id="vocab-favorite" /><Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
         </Pressable>

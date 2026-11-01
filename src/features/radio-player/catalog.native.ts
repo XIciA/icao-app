@@ -1,3 +1,5 @@
+import { getConnectivity } from '@/features/question-bank/platform/network-service';
+import { offlineRadioDatasets } from './offline-catalog.native';
 import { sentenceDisplayTitle } from '@/features/question-bank/lib/sentence-display-title';
 import { orderQuestionBanks } from '@/features/question-bank/lib/bank-order';
 import embeddedRelease from '@/features/question-bank/data/question-bank-public-release.json';
@@ -70,7 +72,7 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
     })
     // Keep an authorized empty directory selectable while its protected topics
     // are still metadata-only. Otherwise a new bank can never be hydrated.
-    .filter((catalog) => catalog.tracks.length > 0 || datasets.find(bank => bank.id === catalog.bankId)?.access?.membershipActive === true);
+    .filter((catalog) => catalog.tracks.length > 0 || datasets.some(bank => bank.id === catalog.bankId && !bank.offlineProjection && bank.access?.membershipActive === true));
 }
 
 export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection): RadioCatalog[] {
@@ -122,6 +124,10 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
     } satisfies QuestionBankDataset;
   }));
   assertOwner();
+  if (await getConnectivity() === 'offline') {
+    const offline = await offlineRadioDatasets(loaded, assertOwner);
+    return selection ? offline.map(bank => scopeDataset(bank, selection.scope, selection.target)) : offline;
+  }
   const resumed = mergeRadioCatalogProgress(loaded, options.previousDatasets ?? []);
   const scoped = selection ? resumed.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : resumed;
   // App startup uses metadata only. Expand authorized text when the radio session opens.

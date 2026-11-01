@@ -11,6 +11,12 @@ import { LIVE_VOCABULARY_CATALOG, type VocabularyLiveRelease } from '@icao/contr
 export class VocabularyController {
   constructor(private readonly vocabulary: VocabularyService, private readonly live: VocabularyLiveService) {}
 
+  @Get('offline')
+  async offline(@Query('book') book: string, @Req() request: AuthenticatedRequest, @Res({ passthrough: true }) reply: FastifyReply) {
+    reply.header('cache-control', 'private, no-store');
+    return { requestId: request.id, data: await this.live.offlineManifest(book) };
+  }
+
   @Get()
   async get(
     @Headers('if-none-match') ifNoneMatch: string | undefined,

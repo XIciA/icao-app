@@ -1,3 +1,4 @@
+jest.mock('expo-network', () => ({ getNetworkStateAsync: async () => ({ isConnected: true }), addNetworkStateListener: () => ({ remove() {} }) }));
 /* eslint-disable import/first */
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -58,6 +59,7 @@ jest.mock('../repository', () => ({
 }));
 
 jest.mock('../progress-store', () => ({
+  statsForBook: jest.requireActual('../progress-store.native').statsForBook,
   progressFor: (wordId: string, state: { words: Record<string, { status: string; favorite: boolean; updatedAt: string }> }) => state.words[wordId] ?? { status: 'new', favorite: false, updatedAt: new Date(0).toISOString() },
   useVocabularyProgress: () => ({
     ready: true,

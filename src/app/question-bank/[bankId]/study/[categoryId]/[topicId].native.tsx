@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { contentFailure } from '@/features/question-bank/lib/content-failure';
+import { useCallback, useRef } from 'react';
 import { peekStudyLogin } from '@/features/question-bank/recording/login-continuation.native';
 import { GuestLearningBoundary } from '@/features/auth/GuestLearningBoundary.native';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
@@ -7,7 +8,7 @@ import { useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
-import { useLocalSearchParams } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import type { ReactNode } from 'react';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
@@ -48,6 +49,16 @@ function NativeQuestionBankStudyRouteBody() {
   const effectiveCategoryId = location?.categoryId ?? categoryId;
   const effectiveTopicId = location?.topicId ?? topicId;
   const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading', resuming ? 'all' : undefined);
+  const refreshOnReturn = useRef(() => {});
+  refreshOnReturn.current = () => {
+    if (bankState.status === 'error') bankState.retry();
+    if (topicState.status === 'error' || topicState.status === 'ready' && topicState.topic.offlineContent) topicState.retry();
+  };
+  const returned = useRef(false);
+  useFocusEffect(useCallback(() => {
+    if (returned.current) refreshOnReturn.current();
+    return () => { returned.current = true; };
+  }, []));
   useGuideAvailability('study', topicState.status === 'membership-required' ? '这部分题目需要会员，可查看会员方案或返回选择免费内容。'
     : bankState.status === 'error' || topicState.status === 'error' ? '题目暂时无法加载，请在页面重试或返回选择其他内容。'
       : topicState.status === 'ready' && !topicState.topic.cards.length ? '当前没有可学习的题目，请返回选择其他内容或跳过教学。' : undefined);
@@ -118,11 +129,11 @@ function NativeQuestionBankStudyRouteBody() {
       />
     );
   }
-  if (topicState.status === 'error' && 'code' in topicState.error && String(topicState.error.code).startsWith('offline_')) {
-    const verify = topicState.error.code === 'offline_authorization_required';
-    return stateScreen(<CenteredState title={verify ? '需要联网验证' : '该内容尚未下载'}
-      description={verify ? '联网验证后可继续使用本机内容。' : '可在下载管理中下载对应题库。'}
-      actionLabel={verify ? '重试' : '前往下载管理'} onAction={verify ? topicState.retry : () => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: bankId } })} />);
+  const failure = contentFailure(topicState.error ?? bankState.error ?? (targetCardMissing && topic?.offlineContent ? { code: topic.offlineContent === 'outdated' ? 'offline_content_outdated' : 'offline_content_incomplete' } : undefined));
+  if (failure) {
+    return stateScreen(<CenteredState title={failure.title} description={failure.description}
+      actionLabel={failure.action === 'retry' ? '重试' : '前往下载管理'}
+      onAction={failure.action === 'retry' ? () => { bankState.retry(); topicState.retry(); } : () => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: bankId } })} />);
   }
   if (bankState.status === 'error' || topicState.status === 'error' || !category || !topic || targetCardMissing) {
     return stateScreen(

@@ -1,12 +1,13 @@
 import { VersionedReadCache } from '../content/versioned-read-cache';
 import { timed, timedSync } from '../performance/request-performance';
+import { contentPublicationTime } from './publication-time';
 import type { AppContentHotspotBrief, AppContentHotspotOverview } from '@icao/contracts/app-content';
 import { BadRequestException, ForbiddenException, HttpException, Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import {
   CONTENT_ACCESS_POLICY_VERSION,
   freeQuestionBankCardIds,
   studyScopeCardIds,
-  offlineScopeValid, offlineTopicCards, type OfflineManifest, type OfflineDownloadScope,
+  validContentScopeId, offlineScopeValid, offlineTopicCards, type OfflineManifest, type OfflineDownloadScope,
   questionBankRadioEntries,
   type ContentAccessCredential,
   type ContentAccessScope,
@@ -15,7 +16,7 @@ import {
   type QuestionBankAccessSummary,
   type QuestionBankContentAccess,
 } from '@icao/contracts';
-import { and, count, desc, eq, gt, gte, lte } from 'drizzle-orm';
+import { and, count, desc, eq, gt, gte, inArray, lte } from 'drizzle-orm';
 import { createHash, createHmac, randomUUID } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -42,6 +43,7 @@ type ActiveRelease = {
   version: number;
   checksum: string;
   dataset: ContentDataset;
+  publishedAt?: string;
 };
 
 type PreparedBank = {
@@ -120,6 +122,7 @@ function catalogTopic(bankId: string, freeIds: Set<string>, topic: ContentTopic)
 @Injectable()
 export class ContentAccessService {
   private readonly releases = new VersionedReadCache<PreparedBank>({ maxBytes: 64 * 1024 * 1024 });
+  private readonly offlineContent = new VersionedReadCache<{ topics: OfflineManifest['topics']; paths: string[] }>({ maxBytes: 16 * 1024 * 1024, maxEntries: 16 });
   private readonly indexes = new WeakMap<ActiveRelease, { freeIds: Set<string>; resources: Set<string>; topics: Map<string, ContentTopic> }>();
 
   private index(prepared: PreparedBank) {
@@ -150,26 +153,34 @@ export class ContentAccessService {
     if (!offlineScopeValid(bankId, scope)) throw new BadRequestException('invalid_download_scope');
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, new Date());
     const release = await this.activeRelease(bankId);
-    const topics: OfflineManifest['topics'] = [];
-    const paths = new Set<string>();
-    for (const category of release.dataset.categories) {
-      for (const topic of category.topics) {
-        const cards = offlineTopicCards(bankId, String(category.name), topic, scope);
-        if (!cards.length) continue;
-        const encoded = JSON.stringify(cards);
-        topics.push({ bankId, categoryId: category.id, topicId: topic.id, cardIds: cards.map(card => card.id),
-          cardChecksums: Object.fromEntries(cards.map(card => [card.id, createHash('sha256').update(JSON.stringify(card)).digest('hex')])),
-          cardResources: Object.fromEntries(cards.map(card => [card.id, [card.audio, card.image].filter((path): path is string => typeof path === 'string')])),
-          metadataChecksum: createHash('sha256').update(JSON.stringify({ name: topic.name, nameEn: topic.nameEn, practiceKind: topic.practiceKind })).digest('hex'),
-          checksum: createHash('sha256').update(encoded).digest('hex'), sizeBytes: Buffer.byteLength(JSON.stringify({ ...topic, cards, declaredCardCount: cards.length, scopeCardIds: undefined, radioEntries: undefined })) });
-        for (const card of cards) for (const field of ['audio', 'image']) {
-          const path = card[field];
-          if (typeof path === 'string' && path.startsWith('/question-bank-assets/')) paths.add(path);
+    const prepared = await this.offlineContent.get(JSON.stringify([bankId, release.version, release.checksum, scope]), async () =>
+      timedSync('download.manifest.content', () => {
+        const topics: OfflineManifest['topics'] = [];
+        const paths = new Set<string>();
+        for (const category of release.dataset.categories) {
+          for (const topic of category.topics) {
+            const cards = offlineTopicCards(bankId, String(category.name), topic, scope);
+            if (!cards.length) continue;
+            const encoded = JSON.stringify(cards);
+            topics.push({ bankId, categoryId: category.id, topicId: topic.id, cardIds: cards.map(card => card.id),
+              cardChecksums: Object.fromEntries(cards.map(card => [card.id, createHash('sha256').update(JSON.stringify(card)).digest('hex')])),
+              cardResources: Object.fromEntries(cards.map(card => [card.id, [card.audio, card.image].filter((path): path is string => typeof path === 'string')])),
+              metadataChecksum: createHash('sha256').update(JSON.stringify({ name: topic.name, nameEn: topic.nameEn, practiceKind: topic.practiceKind })).digest('hex'),
+              checksum: createHash('sha256').update(encoded).digest('hex'), sizeBytes: Buffer.byteLength(JSON.stringify({ ...topic, cards, declaredCardCount: cards.length, scopeCardIds: undefined, radioEntries: undefined })) });
+            for (const card of cards) for (const field of ['audio', 'image']) {
+              const path = card[field];
+              if (typeof path === 'string' && path.startsWith('/question-bank-assets/')) paths.add(path);
+            }
+          }
         }
-      }
-    }
-    const rows = await this.database.db.select().from(resourceObjects)
-      .where(and(eq(resourceObjects.module, bankId), eq(resourceObjects.status, 'ready'))).orderBy(desc(resourceObjects.createdAt));
+        return { topics, paths: [...paths].sort() };
+      }));
+    const { topics, paths } = prepared;
+    const rows = paths.length ? await timed('download.manifest.resources', () => this.database.db.select({
+      sourcePath: resourceObjects.sourcePath, checksum: resourceObjects.checksum, sizeBytes: resourceObjects.sizeBytes, createdAt: resourceObjects.createdAt,
+    }).from(resourceObjects)
+      .where(and(eq(resourceObjects.module, bankId), eq(resourceObjects.status, 'ready'), inArray(resourceObjects.sourcePath, paths)))
+      .orderBy(desc(resourceObjects.createdAt))) : [];
     const byPath = new Map<string, typeof rows[number]>();
     for (const row of rows) if (!byPath.has(row.sourcePath)) byPath.set(row.sourcePath, row);
     const resources = [...paths].sort().map(publicPath => {
@@ -177,7 +188,7 @@ export class ContentAccessService {
       if (!row) throw new ServiceUnavailableException('download_resource_unavailable');
       return { publicPath, checksum: row.checksum, sizeBytes: row.sizeBytes };
     });
-    return { bankId, scope, version: release.version, checksum: release.checksum, topics, resources,
+    return { bankId, scope, publishedAt: contentPublicationTime(release.publishedAt, [...paths].flatMap(path => byPath.get(path) ? [byPath.get(path)!] : [])), version: release.version, checksum: release.checksum, topics, resources,
       sizeBytes: topics.reduce((sum, topic) => sum + topic.sizeBytes, 0) + resources.reduce((sum, resource) => sum + resource.sizeBytes, 0),
       fingerprint: createHash('sha256').update(JSON.stringify({ topics, resources })).digest('hex') };
   }
@@ -422,7 +433,7 @@ export class ContentAccessService {
         .orderBy(desc(questionBankReleases.version)).limit(1));
       if (!row || !isContentDataset(row.payload) || row.payload.id !== bankId) throw new NotFoundException('question_bank_not_found');
       return timedSync('content.prepare', () => {
-        const release = { bankId: row.bankId, version: row.version, checksum: row.checksum, dataset: row.payload as ContentDataset };
+        const release = { bankId: row.bankId, version: row.version, checksum: row.checksum, dataset: row.payload as ContentDataset, publishedAt: row.createdAt?.toISOString() };
         const freeIds = freeQuestionBankCardIds(release.dataset);
         const paths = new Set<string>();
         for (const category of release.dataset.categories) for (const topic of category.topics) for (const card of topic.cards) {
@@ -434,6 +445,7 @@ export class ContentAccessService {
         };
       });
     });
+
   }
 
   private accessSummary(membership: MembershipAccess): QuestionBankAccessSummary {
@@ -455,8 +467,8 @@ export class ContentAccessService {
       && typeof scope.categoryId === 'string'
       && typeof scope.topicId === 'string'
       && /^[A-Za-z0-9_-]{1,96}$/u.test(scope.bankId)
-      && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.categoryId)
-      && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.topicId)
+      && validContentScopeId(scope.categoryId)
+      && validContentScopeId(scope.topicId)
       && ((scope as ContentAccessScope & { version?: number }).version === undefined
         || (Number.isSafeInteger((scope as ContentAccessScope & { version?: number }).version) && Number((scope as ContentAccessScope & { version?: number }).version) > 0)),
     ));

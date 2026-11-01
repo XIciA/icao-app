@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ForbiddenException } from '@nestjs/common';
-import { freeQuestionBankCardIds } from '@icao/contracts';
+import { freeQuestionBankCardIds, validContentScopeId } from '@icao/contracts';
 import { generateKeyPairSync } from 'node:crypto';
 
 import { ContentAccessService } from '../src/content-access/content-access.service';
@@ -45,11 +45,12 @@ function database(
   membershipEnvironment: 'sandbox' | 'production' = 'production',
   sandboxGrant = false,
   credentialCount = 0,
+  content = dataset,
 ) {
   const values: Array<Record<string, unknown>> = [];
   const rows = async (table: unknown) => {
     if (table === questionBankReleases) {
-      return [{ bankId: 'listening', version: 7, checksum: 'a'.repeat(64), payload: dataset, active: true }];
+      return [{ bankId: content.id, version: 7, checksum: 'a'.repeat(64), payload: content, active: true }];
     }
     if (table === contentEnvironmentSessionGrants && sandboxGrant) return [{ id: 'grant-1' }];
     if (table === contentAccessCredentials) return [{ total: credentialCount }];
@@ -80,8 +81,9 @@ function service(
   membershipEnvironment: 'sandbox' | 'production' = 'production',
   sandboxGrant = false,
   credentialCount = 0,
+  content = dataset,
 ) {
-  const fixture = database(membershipExpiresAt, membershipEnvironment, sandboxGrant, credentialCount);
+  const fixture = database(membershipExpiresAt, membershipEnvironment, sandboxGrant, credentialCount, content);
   return {
     ...fixture,
     service: new ContentAccessService({
@@ -258,5 +260,28 @@ describe('versioned content access policy', () => {
       message: 'content_credential_rate_limited',
       status: 429,
     });
+  });
+});
+
+describe('content scope ID contract', () => {
+  it.each(['sentence900-3级', 'sentence900-4级-main', 'sentence900-5级-main', 'opi-topic-0004'])('accepts existing opaque ID %s', id => {
+    expect(validContentScopeId(id)).toBe(true);
+  });
+  it.each(['../secret', 'a/b', 'a?b', 'a\\b', '', 'a'.repeat(129), 'a\n'])('rejects path/control syntax %s', id => {
+    expect(validContentScopeId(id)).toBe(false);
+  });
+});
+
+
+describe('existing 900 sentence IDs through real service boundaries', () => {
+  it.each([3, 4, 5])('returns topic and signs offline credential for level %i without a special bank path', async level => {
+    const categoryId = `sentence900-${level}级`, topicId = `${categoryId}-main`;
+    const content = { ...dataset, id: 'sentences900', categories: [{ ...dataset.categories[0]!, id: categoryId, topics: [{ ...dataset.categories[0]!.topics[0]!, id: topicId }] }] };
+    const fixture = service(new Date('2026-09-25T00:00:00.000Z'), 'production', false, 0, content);
+    const topic = await fixture.service.getTopic(content.id, categoryId, topicId, ACCOUNT_ID, SESSION_ID, 'production', NOW);
+    expect(topic.topic.cards).toHaveLength(11);
+    const credential = await fixture.service.issueCredential(ACCOUNT_ID, { scopes: [{ bankId: content.id, categoryId, topicId }] }, SESSION_ID, 'production', NOW);
+    expect(credential.scopes).toEqual([{ bankId: content.id, categoryId, topicId }]);
+    expect(credential.expiresAt).toBe('2026-08-28T00:00:00.000Z');
   });
 });

@@ -3,6 +3,9 @@ const mockStorageValues = new Map<string, string>();
 const mockSecureValues = new Map<string, string>();
 const mockFiles = new Set<string>();
 const mockFileBytes = new Map<string, Uint8Array>();
+function mockValidSecureKey(key: string) {
+  if (!/^[\w.-]+$/.test(key)) throw new Error('Invalid key provided to SecureStore');
+}
 
 jest.mock('expo-sqlite/kv-store', () => ({
   getItem: jest.fn(async (key: string) => mockStorageValues.get(key) ?? null),
@@ -13,9 +16,9 @@ jest.mock('expo-sqlite/kv-store', () => ({
 }));
 jest.mock('expo-secure-store', () => ({
   AFTER_FIRST_UNLOCK_THIS_DEVICE_ONLY: 'after-first-unlock-this-device-only',
-  getItemAsync: jest.fn(async (key: string) => mockSecureValues.get(key) ?? null),
-  setItemAsync: jest.fn(async (key: string, value: string) => { mockSecureValues.set(key, value); }),
-  deleteItemAsync: jest.fn(async (key: string) => { mockSecureValues.delete(key); }),
+  getItemAsync: jest.fn(async (key: string) => { mockValidSecureKey(key); return mockSecureValues.get(key) ?? null; }),
+  setItemAsync: jest.fn(async (key: string, value: string) => { mockValidSecureKey(key); mockSecureValues.set(key, value); }),
+  deleteItemAsync: jest.fn(async (key: string) => { mockValidSecureKey(key); mockSecureValues.delete(key); }),
 }));
 jest.mock('expo-crypto', () => {
   const encode = (value: Uint8Array) => btoa(Array.from(value, (byte) => String.fromCharCode(byte)).join(''));
@@ -72,6 +75,8 @@ import {
   inspectOfflineMemberTopicAccess,
   cacheMemberResource,
   resolveOfflineMemberResource,
+  removeOfflineResources,
+  renewOfflineCredentials,
 } from '../data/member-content-cache.native';
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
@@ -107,7 +112,7 @@ function testContentCredential(
     sub: accountId,
   };
   return {
-    token: `header.${btoa(JSON.stringify(claims)).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/u, '')}.signature`,
+    token: `header.${btoa(Array.from(new TextEncoder().encode(JSON.stringify(claims)), byte => String.fromCharCode(byte)).join('')).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/u, '')}.signature`,
     issuedAt: new Date(issuedAtSeconds * 1_000).toISOString(),
     expiresAt: new Date(expiresAtSeconds * 1_000).toISOString(),
     policyVersion: 'content-access-v2' as const,
@@ -136,8 +141,10 @@ describe('embeddedQuestionBankRepository', () => {
       const bankId = /^\/v1\/question-banks\/([^/]+)/.exec(url.pathname)?.[1];
       if (bankId) {
         const full = (completeQuestionBanks as QuestionBankDataset[]).find((bank) => bank.id === bankId)!;
-        const categoryId = /\/categories\/([^/]+)/.exec(url.pathname)?.[1];
-        const topicId = /\/topics\/([^/]+)/.exec(url.pathname)?.[1];
+        const categoryParam = /\/categories\/([^/]+)/.exec(url.pathname)?.[1];
+        const categoryId = categoryParam ? decodeURIComponent(categoryParam) : undefined;
+        const topicParam = /\/topics\/([^/]+)/.exec(url.pathname)?.[1];
+        const topicId = topicParam ? decodeURIComponent(topicParam) : undefined;
         if (categoryId && topicId) {
           const topic = full.categories.find((category) => category.id === categoryId)!.topics.find((topic) => topic.id === topicId)!;
           return response({ bankId, categoryId, version: 12, checksum: 'ab'.repeat(32), access,
@@ -574,6 +581,49 @@ describe('embeddedQuestionBankRepository', () => {
     expect(request.mock.calls.filter(([url]) => String(url).includes('/topics/'))).toHaveLength(3);
   });
 
+  it.each(['listening', 'sentences900', 'radiotelephony', 'opi', 'storytelling'] as const)(
+    'loads and persists %s through the real native repository with SecureStore key restrictions', async bankId => {
+      const { accountId } = await authenticatedContentApi();
+      const bank = (completeQuestionBanks as QuestionBankDataset[]).find(item => item.id === bankId)!;
+      const category = bank.categories[0]; const summary = category.topics[0];
+      const scope = { bankId, categoryId: category.id, topicId: summary.id };
+      const topic = await remoteQuestionBankRepository.getTopic(bankId, category.id, summary.id);
+      expect(topic?.cards.length).toBeGreaterThan(0);
+      await expect(readMemberTopicCache(accountId, scope)).resolves.toMatchObject({ id: summary.id });
+      await expect(inspectOfflineMemberTopicAccess(scope)).resolves.toBe('valid');
+      const path = topic!.cards.find(card => card.audio)?.audio;
+      if (path) {
+        await expect(cacheMemberResource(path, 'https://example.test/audio', { checksum: 'ab'.repeat(32), sizeBytes: 10 })).resolves.toMatch(/^file:/);
+        await expect(resolveOfflineMemberResource(path)).resolves.toMatch(/^file:/);
+      }
+      await removeOfflineResources(path ? [path] : [], [scope]);
+      await expect(readMemberTopicCache(accountId, scope)).resolves.toBeUndefined();
+      expect([...mockSecureValues.keys()].filter(key => key.startsWith('icao.content.credential.'))).toHaveLength(0);
+    });
+
+  it('continues the authorized online request when the device keychain read fails', async () => {
+    const { request } = await authenticatedContentApi();
+    jest.mocked(SecureStore.getItemAsync).mockRejectedValueOnce(new Error('keychain_temporarily_unavailable'));
+    const bank = (completeQuestionBanks as QuestionBankDataset[]).find(item => item.id === 'sentences900')!;
+    const category = bank.categories[0];
+    await expect(remoteQuestionBankRepository.getTopic(bank.id, category.id, category.topics[0].id))
+      .resolves.toMatchObject({ id: category.topics[0].id });
+    expect(request.mock.calls.some(([url]) => String(url).includes('/topics/'))).toBe(true);
+  });
+
+  it.each(['3级', '4级', '5级'])('round-trips the %s credential through refresh, audio index and deletion', async level => {
+    const { accountId } = await authenticatedContentApi();
+    const scope = { bankId: 'sentences900', categoryId: `sentence900-${level}`, topicId: `sentence900-${level}-main` };
+    const topic = await remoteQuestionBankRepository.getTopic('sentences900', scope.categoryId, scope.topicId);
+    const path = topic!.cards.find(card => card.audio)!.audio!;
+    await renewOfflineCredentials(testContentCredential(accountId, scope));
+    await expect(inspectOfflineMemberTopicAccess(scope)).resolves.toBe('valid');
+    await expect(cacheMemberResource(path, 'https://example.test/audio', { checksum: 'ab'.repeat(32), sizeBytes: 10 })).resolves.toMatch(/^file:/);
+    await expect(resolveOfflineMemberResource(path)).resolves.toMatch(/^file:/);
+    await clearQuestionBankMemberContent(accountId);
+    expect([...mockSecureValues.keys()].filter(key => key.startsWith('icao.content.credential.'))).toHaveLength(0);
+  });
+
   it('retains the authenticated online question when only offline keychain persistence fails', async () => {
     await authenticatedContentApi({ cacheUnavailable: true });
     const paper = await buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73);
@@ -587,6 +637,12 @@ describe('embeddedQuestionBankRepository', () => {
     jest.restoreAllMocks();
     await authenticatedContentApi({ credentialStatus: 403 });
     await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).rejects.toMatchObject({ code: 'membership_required', status: 403 });
+  });
+
+  it('preserves online member content when the separate offline credential request is malformed', async () => {
+    await authenticatedContentApi({ credentialStatus: 400 });
+    await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).resolves.toMatchObject({ items: expect.any(Array) });
+    expect([...mockSecureValues.keys()].filter(key => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
   });
 
   it('returns authorized Web member text without requesting native offline credentials', async () => {
@@ -762,6 +818,21 @@ describe('embeddedQuestionBankRepository', () => {
     await rejected;
     expect(mockFiles.size).toBe(0);
     expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(false);
+  });
+
+  it('keeps explicitly downloaded public pronunciation encrypted, account-bound and deletable without member credentials', async () => {
+    await activateQuestionBankContentAccount('words-account');
+    const path = `/pronunciation-assets/${'a'.repeat(64)}.mp3`;
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    await cacheMemberResource(path, 'https://example.test/audio', metadata, { publicDownload: true });
+    expect([...mockFiles].some(file => file.endsWith('.sealed'))).toBe(true);
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeDefined();
+    await expect(cacheMemberResource('/question-bank-assets/protected.mp3', 'https://example.test/audio', metadata, { publicDownload: true })).rejects.toThrow('invalid_public_download_path');
+    await removeOfflineResources([path], []);
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeUndefined();
+    await cacheMemberResource(path, 'https://example.test/audio', metadata, { publicDownload: true });
+    await activateQuestionBankContentAccount('other-words-account');
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeUndefined();
   });
 
   it('bounds temporary authorized public copies, keeps recent hits, and never turns them into offline member access', async () => {

@@ -1,3 +1,4 @@
+import { normalizeVocabularyPronunciation } from '@icao/contracts/vocabulary-live';
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import { and, desc, eq, inArray, lt, sql } from 'drizzle-orm';
 import { applyVocabularyEdits, type VocabularyEdit } from '@icao/contracts/vocabulary-edit';
@@ -13,7 +14,7 @@ import { levelEdits, vocabularyHistoryChanges } from './vocabulary-levels';
 import type { OpsAuthenticatedRequest } from './admin.types';
 
 export function pronunciationPath(text: string) {
-  const normalized = text.replace(/\//g, ' or ').replace(/[()（）]/g, ' ').replace(/\s+/g, ' ').trim();
+  const normalized = normalizeVocabularyPronunciation(text);
   return `/pronunciation-assets/${createHash('sha256').update(normalized).digest('hex')}.mp3`;
 }
 export const vocabularyAudioPaths = (content: VocabularyLiveContent) => [...new Set(content.dataset.books.flatMap(book => book.words.flatMap(word => [pronunciationPath(word.pronunciationText ?? word.word), pronunciationPath(word.example)])))];
