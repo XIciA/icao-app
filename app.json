@@ -2,13 +2,13 @@
   "expo": {
     "name": "听你五个",
     "slug": "readyoufife",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon-native.png",
     "scheme": "readyoufife",
     "userInterfaceStyle": "light",
     "ios": {
-      "icon": "./assets/images/icon.png",
+      "icon": "./assets/images/icon-native.png",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
       "buildNumber": "3593081",
@@ -22,14 +22,14 @@
       }
     },
     "android": {
-      "icon": "./assets/images/icon.png",
+      "icon": "./assets/images/icon-native.png",
       "predictiveBackGestureEnabled": false,
       "package": "com.readyoufife.app",
       "versionCode": 3593081
     },
     "web": {
       "output": "single",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon-native.png"
     },
     "plugins": [
       "expo-router",
@@ -37,7 +37,7 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#FBFAF7",
-          "image": "./assets/images/icon.png",
+          "image": "./assets/images/icon-native.png",
           "imageWidth": 320,
           "resizeMode": "contain",
           "android": {

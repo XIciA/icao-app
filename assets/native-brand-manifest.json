@@ -122,13 +122,15 @@
       }
     ],
     "nativeBrandPlugin": "plugins/native-brand-assets.js",
-    "frozenWebIcon": "assets/images/icon.png"
+    "configIcon": "assets/images/icon-native.png"
   },
   "retiredNativeAssets": [
     "assets/images/splash-icon.png",
     "assets/images/android-icon-background.png",
     "assets/images/android-icon-foreground.png",
-    "assets/images/android-icon-monochrome.png"
+    "assets/images/android-icon-monochrome.png",
+    "assets/images/icon.png",
+    "assets/images/favicon.png"
   ],
   "inventory": {
     "candidateRoots": [
@@ -147,20 +149,12 @@
   },
   "frozenExternalAssets": [
     {
-      "path": "assets/images/favicon.png",
-      "owner": "Expo Web / frozen Vercel surface"
-    },
-    {
       "path": "official-site",
       "owner": "frozen public website"
     },
     {
       "path": "public/promo",
       "owner": "frozen promotional website"
-    },
-    {
-      "path": "assets/images/icon.png",
-      "owner": "Frozen Expo Web source; retired from Native build products"
     }
   ]
 }

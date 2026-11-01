@@ -24,8 +24,8 @@ describe('<GlobalLoadingScreen />', () => {
     expect(screen.queryByText('ICAO')).toBeNull();
   });
 
-  it('keeps the frozen Web fallback and approved Native brand master unchanged', () => {
-    const master = './assets/images/icon.png';
+  it('uses the approved brand master across platform config', () => {
+    const master = './assets/images/icon-native.png';
     const splashPlugin = appConfig.expo.plugins.find((plugin) => plugin[0] === 'expo-splash-screen');
     expect(appConfig.expo.icon).toBe(master);
     expect(appConfig.expo.ios.icon).toBe(master);
