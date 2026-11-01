@@ -44,6 +44,10 @@ jobs:
           echo "$(pg_config --bindir)" >> "$GITHUB_PATH"
       - name: Run database authority constraint tests
         run: pnpm --filter @icao/api test:commerce-db
+      - name: Fetch stable download compatibility baseline
+        # The database regression compares the current output with shipped 1.4.2.
+        # checkout is shallow; fetch only that immutable source, not all media history.
+        run: git fetch --no-tags --depth=1 origin ec6781fc92061424942f6fb82d9226f176f9686a
       - name: Run repository checks
         run: pnpm check:ci
       - name: Verify contracts without a TypeScript loader
