@@ -142,3 +142,16 @@ test('optional-first transfer has the same timeout even with a joined live downl
     expect(mockTasks[0].cancel).toHaveBeenCalledTimes(1); expect(mockFiles.size).toBe(0);
   } finally { jest.useRealTimers(); }
 });
+
+test('late native success after timeout cannot publish progress or a usable file', async () => {
+  jest.useFakeTimers();
+  try {
+    const progress = jest.fn();
+    const pending = acquireResourceTransfer('late-timeout', 'https://test/play', 100, false, { isCurrent: current, playback: true, onProgress: progress });
+    const outcome = expect(pending).rejects.toThrow('download_interrupted');
+    await Promise.resolve(); mockTasks[0].cancel.mockImplementation(async () => undefined);
+    await jest.advanceTimersByTimeAsync(120000); progress.mockClear();
+    mockTasks[0].progress(90); expect(progress).not.toHaveBeenCalled();
+    mockTasks[0].finish(); await outcome; expect(mockFiles.size).toBe(0);
+  } finally { jest.useRealTimers(); }
+});

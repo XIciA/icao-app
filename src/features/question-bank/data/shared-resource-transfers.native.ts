@@ -57,6 +57,7 @@ export async function acquireResourceTransfer(key: string, url: string, size: nu
       // All consumers share a cancellable native task, regardless of which
       // caller arrived first. Admission policy must not select a weaker I/O path.
       const task = createDownloadResumable(url, staging.uri, {}, progress => {
+        if (entry.abandoned) return;
         entry.progress = Math.max(0, Math.min(1, progress.totalBytesWritten / size));
         for (const subscriber of entry.consumers) notify(subscriber, entry.progress);
       });
@@ -69,7 +70,7 @@ export async function acquireResourceTransfer(key: string, url: string, size: nu
       const cancellation = setInterval(() => { if (!current()) cancel(); }, 100);
       try {
         const result = await task.downloadAsync();
-        if (!result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
+        if (entry.abandoned || !result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
       } finally {
         clearTimeout(timeout); clearInterval(cancellation);
         // Expo's cancelAsync also removes its JS progress subscription. Once
