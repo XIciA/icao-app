@@ -13,7 +13,7 @@ function fixture() {
   release.dataset.books.forEach(book => { book.words = book.words.slice(0, 3); });
   const paths = new Set(release.dataset.books.flatMap(book => book.words.flatMap(word => [word.pronunciationText || word.word, word.example].filter(Boolean).map(text => `/pronunciation-assets/${hash(normalizeVocabularyPronunciation(text))}.mp3`))));
   resources = [...paths].map(sourcePath => ({ sourcePath, checksum: 'a'.repeat(64), sizeBytes: 100, createdAt: new Date('2026-09-01T00:00:00Z') }));
-  vi.spyOn(service, 'get').mockResolvedValue(release);
+  vi.spyOn(service, 'get').mockImplementation(async () => ({ ...release, checksum: hash(canonicalVocabularyJson(release.dataset)) }));
   return { service, release, resources };
 }
 describe('vocabulary downloads use published words and recorded audio', () => {

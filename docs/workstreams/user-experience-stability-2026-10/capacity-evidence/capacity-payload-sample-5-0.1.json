@@ -1,0 +1,155 @@
+{
+  "kind": "isolated-service-database-load",
+  "label": "payload-sample",
+  "commit": "07490c9499a67ce641140bde68f83e5e93de881f",
+  "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "environment": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpus": 10,
+    "cpuModel": "Apple M4",
+    "totalMemoryBytes": 17179869184,
+    "node": "v24.4.1",
+    "postgres": "postgres (PostgreSQL) 14.20 (Homebrew)",
+    "dbPool": 5
+  },
+  "model": {
+    "prewarmed": false,
+    "users": 5,
+    "durationSeconds": 1,
+    "rampSeconds": 0,
+    "downloadRatio": 0.1,
+    "topicIntervalSeconds": 30,
+    "playbackResolveIntervalSeconds": 30,
+    "downloadBatchIntervalSeconds": 10,
+    "batchSize": 24,
+    "maxActive": 256
+  },
+  "fixture": {
+    "banks": [
+      "listening",
+      "sentences900",
+      "radiotelephony",
+      "opi",
+      "storytelling"
+    ],
+    "resourceRows": 10507,
+    "membershipAccounts": 5,
+    "content": "repository question-bank JSON",
+    "mediaMetadata": "synthetic path hashes and 100000-byte sizes; no audio bytes transferred"
+  },
+  "exclusions": [
+    "HTTP/TLS and Nest guards",
+    "Supabase JWT refresh and identity transactions",
+    "real Storage signing",
+    "internet bandwidth/CDN",
+    "phone decoding/encryption/storage",
+    "sync writes",
+    "real AI/payment/SMS"
+  ],
+  "elapsedMs": 1007.1909590000002,
+  "offered": 2,
+  "completed": 2,
+  "dropped": 0,
+  "peakActive": 1,
+  "sqlCount": 4,
+  "rssPeak": 373571584,
+  "cpuMilliseconds": 9.217,
+  "eventLoopP95Ms": 11.067391,
+  "measurements": {
+    "topic": {
+      "service": {
+        "count": 1,
+        "p50Ms": 1.8198750000001382,
+        "p95Ms": 1.8198750000001382,
+        "maxMs": 1.8198750000001382
+      },
+      "scheduledToCompletion": {
+        "count": 1,
+        "p50Ms": 3.082125000000133,
+        "p95Ms": 3.082125000000133,
+        "maxMs": 3.082125000000133
+      },
+      "errors": {},
+      "serializedBytes": 637763
+    },
+    "playback-resolve": {
+      "service": {
+        "count": 1,
+        "p50Ms": 5.296917000000121,
+        "p95Ms": 5.296917000000121,
+        "maxMs": 5.296917000000121
+      },
+      "scheduledToCompletion": {
+        "count": 1,
+        "p50Ms": 7.173334000000295,
+        "p95Ms": 7.173334000000295,
+        "maxMs": 7.173334000000295
+      },
+      "errors": {},
+      "serializedBytes": 408
+    }
+  },
+  "payloadSamples": [
+    {
+      "bankId": "listening",
+      "kind": "topic",
+      "jsonBytes": 637763,
+      "gzipBytes": 179639
+    },
+    {
+      "bankId": "listening",
+      "kind": "manifest",
+      "jsonBytes": 585042,
+      "gzipBytes": 164813
+    },
+    {
+      "bankId": "sentences900",
+      "kind": "topic",
+      "jsonBytes": 260589,
+      "gzipBytes": 47699
+    },
+    {
+      "bankId": "sentences900",
+      "kind": "manifest",
+      "jsonBytes": 381068,
+      "gzipBytes": 102597
+    },
+    {
+      "bankId": "radiotelephony",
+      "kind": "topic",
+      "jsonBytes": 15127,
+      "gzipBytes": 3692
+    },
+    {
+      "bankId": "radiotelephony",
+      "kind": "manifest",
+      "jsonBytes": 2456536,
+      "gzipBytes": 641905
+    },
+    {
+      "bankId": "opi",
+      "kind": "topic",
+      "jsonBytes": 5116,
+      "gzipBytes": 2069
+    },
+    {
+      "bankId": "opi",
+      "kind": "manifest",
+      "jsonBytes": 1231901,
+      "gzipBytes": 438568
+    },
+    {
+      "bankId": "storytelling",
+      "kind": "topic",
+      "jsonBytes": 90860,
+      "gzipBytes": 30938
+    },
+    {
+      "bankId": "storytelling",
+      "kind": "manifest",
+      "jsonBytes": 142931,
+      "gzipBytes": 40076
+    }
+  ]
+}

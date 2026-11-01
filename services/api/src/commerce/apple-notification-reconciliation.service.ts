@@ -1,3 +1,4 @@
+import { observeBackground } from '../performance/request-performance';
 import { randomUUID } from 'node:crypto';
 
 import {
@@ -43,9 +44,9 @@ export class AppleNotificationReconciliationService implements OnModuleInit, OnM
 
   onModuleInit() {
     if (this.config.nodeEnv === 'test') return;
-    this.timer = setInterval(() => { void this.runScheduled(); }, RETRY_INTERVAL_MS);
+    this.timer = setInterval(() => { void observeBackground('apple_notification_retry', () => this.runScheduled(), this.logger); }, RETRY_INTERVAL_MS);
     this.timer.unref();
-    void this.runScheduled();
+    void observeBackground('apple_notification_retry', () => this.runScheduled(), this.logger);
   }
 
   onModuleDestroy() {

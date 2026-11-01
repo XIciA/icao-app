@@ -21,11 +21,8 @@ export class ResourceController {
     if (!Array.isArray(body?.resources) || body.resources.length < 1 || body.resources.length > 24
       || body.resources.some(resource => !resource || !downloadableResourcePath(resource.publicPath)
         || typeof resource.checksum !== 'string' || !/^[a-f0-9]{64}$/.test(resource.checksum))) throw new BadRequestException('invalid_download_resources');
-    const results: ResolvedResource[] = [];
-    for (let offset = 0; offset < body.resources.length; offset += 4) {
-      results.push(...await Promise.all(body.resources.slice(offset, offset + 4).map(resource => this.resources.resolve(request.user?.id,
-        resource.publicPath, request.auth?.sessionId, contentCommerceEnvironment(environmentHeader), resource.checksum))));
-    }
+    const results = await this.resources.resolveBatch(request.user?.id, body.resources,
+      request.auth?.sessionId, contentCommerceEnvironment(environmentHeader));
     return { requestId: request.id, data: results };
   }
 

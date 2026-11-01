@@ -1,3 +1,5 @@
+import { VersionedReadCache } from '../content/versioned-read-cache';
+import { timed, timedSync } from '../performance/request-performance';
 import { contentPublicationTime } from './publication-time';
 import type { AppContentHotspotBrief, AppContentHotspotOverview } from '@icao/contracts/app-content';
 import { BadRequestException, ForbiddenException, HttpException, Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
@@ -14,7 +16,7 @@ import {
   type QuestionBankAccessSummary,
   type QuestionBankContentAccess,
 } from '@icao/contracts';
-import { and, count, desc, eq, gt, gte, lte } from 'drizzle-orm';
+import { and, count, desc, eq, gt, gte, inArray, lte } from 'drizzle-orm';
 import { createHash, createHmac, randomUUID } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -42,6 +44,13 @@ type ActiveRelease = {
   checksum: string;
   dataset: ContentDataset;
   publishedAt?: string;
+};
+
+type PreparedBank = {
+  release: ActiveRelease;
+  catalogCategories: Array<Record<string, unknown> & { id: string; topics: ReturnType<typeof catalogTopic>[] }>;
+  freeIds: string[];
+  freeResourcePaths: string[];
 };
 
 type MembershipAccess = {
@@ -112,6 +121,28 @@ function catalogTopic(bankId: string, freeIds: Set<string>, topic: ContentTopic)
 
 @Injectable()
 export class ContentAccessService {
+  private readonly releases = new VersionedReadCache<PreparedBank>({ maxBytes: 64 * 1024 * 1024 });
+  private readonly offlineContent = new VersionedReadCache<{ topics: OfflineManifest['topics']; paths: string[] }>({ maxBytes: 16 * 1024 * 1024, maxEntries: 16 });
+  private readonly indexes = new WeakMap<ActiveRelease, { freeIds: Set<string>; resources: Set<string>; topics: Map<string, ContentTopic> }>();
+
+  private index(prepared: PreparedBank) {
+    const hit = this.indexes.get(prepared.release);
+    if (hit) return hit;
+    const topics = new Map<string, ContentTopic>();
+    const categories = new Set<string>();
+    for (const category of prepared.release.dataset.categories) {
+      // Match the original find() behavior even for malformed duplicate IDs.
+      if (categories.has(category.id)) continue;
+      categories.add(category.id);
+      for (const topic of category.topics) {
+        const key = JSON.stringify([category.id, topic.id]);
+        if (!topics.has(key)) topics.set(key, topic);
+      }
+    }
+    const index = { freeIds: new Set(prepared.freeIds), resources: new Set(prepared.freeResourcePaths), topics };
+    this.indexes.set(prepared.release, index);
+    return index;
+  }
   constructor(
     @Inject(API_CONFIG) private readonly config: ApiConfig,
     private readonly database: DatabaseService,
@@ -122,26 +153,34 @@ export class ContentAccessService {
     if (!offlineScopeValid(bankId, scope)) throw new BadRequestException('invalid_download_scope');
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, new Date());
     const release = await this.activeRelease(bankId);
-    const topics: OfflineManifest['topics'] = [];
-    const paths = new Set<string>();
-    for (const category of release.dataset.categories) {
-      for (const topic of category.topics) {
-        const cards = offlineTopicCards(bankId, String(category.name), topic, scope);
-        if (!cards.length) continue;
-        const encoded = JSON.stringify(cards);
-        topics.push({ bankId, categoryId: category.id, topicId: topic.id, cardIds: cards.map(card => card.id),
-          cardChecksums: Object.fromEntries(cards.map(card => [card.id, createHash('sha256').update(JSON.stringify(card)).digest('hex')])),
-          cardResources: Object.fromEntries(cards.map(card => [card.id, [card.audio, card.image].filter((path): path is string => typeof path === 'string')])),
-          metadataChecksum: createHash('sha256').update(JSON.stringify({ name: topic.name, nameEn: topic.nameEn, practiceKind: topic.practiceKind })).digest('hex'),
-          checksum: createHash('sha256').update(encoded).digest('hex'), sizeBytes: Buffer.byteLength(JSON.stringify({ ...topic, cards, declaredCardCount: cards.length, scopeCardIds: undefined, radioEntries: undefined })) });
-        for (const card of cards) for (const field of ['audio', 'image']) {
-          const path = card[field];
-          if (typeof path === 'string' && path.startsWith('/question-bank-assets/')) paths.add(path);
+    const prepared = await this.offlineContent.get(JSON.stringify([bankId, release.version, release.checksum, scope]), async () =>
+      timedSync('download.manifest.content', () => {
+        const topics: OfflineManifest['topics'] = [];
+        const paths = new Set<string>();
+        for (const category of release.dataset.categories) {
+          for (const topic of category.topics) {
+            const cards = offlineTopicCards(bankId, String(category.name), topic, scope);
+            if (!cards.length) continue;
+            const encoded = JSON.stringify(cards);
+            topics.push({ bankId, categoryId: category.id, topicId: topic.id, cardIds: cards.map(card => card.id),
+              cardChecksums: Object.fromEntries(cards.map(card => [card.id, createHash('sha256').update(JSON.stringify(card)).digest('hex')])),
+              cardResources: Object.fromEntries(cards.map(card => [card.id, [card.audio, card.image].filter((path): path is string => typeof path === 'string')])),
+              metadataChecksum: createHash('sha256').update(JSON.stringify({ name: topic.name, nameEn: topic.nameEn, practiceKind: topic.practiceKind })).digest('hex'),
+              checksum: createHash('sha256').update(encoded).digest('hex'), sizeBytes: Buffer.byteLength(JSON.stringify({ ...topic, cards, declaredCardCount: cards.length, scopeCardIds: undefined, radioEntries: undefined })) });
+            for (const card of cards) for (const field of ['audio', 'image']) {
+              const path = card[field];
+              if (typeof path === 'string' && path.startsWith('/question-bank-assets/')) paths.add(path);
+            }
+          }
         }
-      }
-    }
-    const rows = await this.database.db.select().from(resourceObjects)
-      .where(and(eq(resourceObjects.module, bankId), eq(resourceObjects.status, 'ready'))).orderBy(desc(resourceObjects.createdAt));
+        return { topics, paths: [...paths].sort() };
+      }));
+    const { topics, paths } = prepared;
+    const rows = paths.length ? await timed('download.manifest.resources', () => this.database.db.select({
+      sourcePath: resourceObjects.sourcePath, checksum: resourceObjects.checksum, sizeBytes: resourceObjects.sizeBytes, createdAt: resourceObjects.createdAt,
+    }).from(resourceObjects)
+      .where(and(eq(resourceObjects.module, bankId), eq(resourceObjects.status, 'ready'), inArray(resourceObjects.sourcePath, paths)))
+      .orderBy(desc(resourceObjects.createdAt))) : [];
     const byPath = new Map<string, typeof rows[number]>();
     for (const row of rows) if (!byPath.has(row.sourcePath)) byPath.set(row.sourcePath, row);
     const resources = [...paths].sort().map(publicPath => {
@@ -162,21 +201,13 @@ export class ContentAccessService {
     now = new Date(),
   ) {
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, now);
-    const [release, membership] = await Promise.all([
-      this.activeRelease(bankId),
-      this.membership(accountId, environment, now),
+    const [prepared, membership] = await Promise.all([
+      this.preparedRelease(bankId),
+      timed('content.membership', () => this.membership(accountId, environment, now)),
     ]);
-    const freeIds = freeQuestionBankCardIds(release.dataset);
     return {
-      ...release,
-      dataset: {
-        ...release.dataset,
-        categories: release.dataset.categories.map((category) => ({
-          ...category,
-          topics: category.topics.map((topic) => catalogTopic(bankId, freeIds, topic)),
-        })),
-        access: this.accessSummary(membership),
-      },
+      ...prepared.release,
+      dataset: { ...prepared.release.dataset, categories: prepared.catalogCategories, access: this.accessSummary(membership) },
     };
   }
 
@@ -191,14 +222,15 @@ export class ContentAccessService {
     expected?: { version: number; checksum?: string },
   ) {
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, now);
-    const [release, membership] = await Promise.all([
-      this.activeRelease(bankId, expected),
-      this.membership(accountId, environment, now),
+    const [prepared, membership] = await Promise.all([
+      this.preparedRelease(bankId, expected),
+      timed('content.membership', () => this.membership(accountId, environment, now)),
     ]);
-    const category = release.dataset.categories.find((candidate) => candidate.id === categoryId);
-    const topic = category?.topics.find((candidate) => candidate.id === topicId);
-    if (!category || !topic) throw new NotFoundException('question_bank_topic_not_found');
-    const filtered = filterTopic(bankId, freeQuestionBankCardIds(release.dataset), topic, membership.active);
+    const release = prepared.release;
+    const index = this.index(prepared);
+    const topic = index.topics.get(JSON.stringify([categoryId, topicId]));
+    if (!topic) throw new NotFoundException('question_bank_topic_not_found');
+    const filtered = timedSync('content.topic', () => filterTopic(bankId, index.freeIds, topic, membership.active));
     if (filtered.cards.length === 0) throw new ForbiddenException('membership_required');
     return {
       bankId: release.bankId,
@@ -221,18 +253,13 @@ export class ContentAccessService {
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, now);
     const membership = await this.membership(accountId, environment, now);
     if (membership.active) return;
-    const releases = await this.database.db.select({ payload: questionBankReleases.payload }).from(questionBankReleases)
-      .where(and(eq(questionBankReleases.bankId, bankId), eq(questionBankReleases.active, true)));
-    for (const release of releases) {
-      if (!isContentDataset(release.payload)) continue;
-      const freeIds = freeQuestionBankCardIds(release.payload);
-      for (const category of release.payload.categories) {
-        for (const topic of category.topics) {
-          for (const card of topic.cards) {
-            if (freeIds.has(card.id) && this.cardUsesResource(card, publicPath)) return;
-          }
-        }
-      }
+    try {
+      const prepared = await this.preparedRelease(bankId);
+      if (this.index(prepared).resources.has(publicPath)) return;
+    } catch (error) {
+      // The old resource path denies access when the active bank is absent/invalid.
+      // Operational DB failures must still propagate instead of becoming permission failures.
+      if (!(error instanceof NotFoundException)) throw error;
     }
     throw new ForbiddenException('membership_required');
   }
@@ -389,15 +416,36 @@ export class ContentAccessService {
   }
 
   private async activeRelease(bankId: string, expected?: { version: number; checksum?: string }): Promise<ActiveRelease> {
-    const [row] = await this.database.db.select().from(questionBankReleases)
+    return (await this.preparedRelease(bankId, expected)).release;
+  }
+
+  private async preparedRelease(bankId: string, expected?: { version: number; checksum?: string }): Promise<PreparedBank> {
+    const [metadata] = await timed('content.metadata', () => this.database.db.select({
+      bankId: questionBankReleases.bankId, version: questionBankReleases.version, checksum: questionBankReleases.checksum,
+    }).from(questionBankReleases)
       .where(and(eq(questionBankReleases.bankId, bankId), expected ? eq(questionBankReleases.version, expected.version) : eq(questionBankReleases.active, true)))
-      .orderBy(desc(questionBankReleases.version))
-      .limit(1);
-    if (!row || !isContentDataset(row.payload) || row.payload.id !== bankId) {
-      throw new NotFoundException('question_bank_not_found');
-    }
-    if (expected?.checksum && row.checksum !== expected.checksum) throw new BadRequestException('content_release_mismatch');
-    return { bankId: row.bankId, version: row.version, checksum: row.checksum, publishedAt: row.createdAt?.toISOString(), dataset: row.payload };
+      .orderBy(desc(questionBankReleases.version)).limit(1));
+    if (!metadata) throw new NotFoundException('question_bank_not_found');
+    if (expected?.checksum && metadata.checksum !== expected.checksum) throw new BadRequestException('content_release_mismatch');
+    return this.releases.get(JSON.stringify([bankId, metadata.version, metadata.checksum]), async () => {
+      const [row] = await timed('content.payload', () => this.database.db.select().from(questionBankReleases)
+        .where(and(eq(questionBankReleases.bankId, bankId), eq(questionBankReleases.version, metadata.version), eq(questionBankReleases.checksum, metadata.checksum)))
+        .orderBy(desc(questionBankReleases.version)).limit(1));
+      if (!row || !isContentDataset(row.payload) || row.payload.id !== bankId) throw new NotFoundException('question_bank_not_found');
+      return timedSync('content.prepare', () => {
+        const release = { bankId: row.bankId, version: row.version, checksum: row.checksum, dataset: row.payload as ContentDataset, publishedAt: row.createdAt?.toISOString() };
+        const freeIds = freeQuestionBankCardIds(release.dataset);
+        const paths = new Set<string>();
+        for (const category of release.dataset.categories) for (const topic of category.topics) for (const card of topic.cards) {
+          if (freeIds.has(card.id)) for (const field of ['audio', 'image']) if (typeof card[field] === 'string') paths.add(card[field]);
+        }
+        return { release, freeIds: [...freeIds], freeResourcePaths: [...paths],
+          catalogCategories: release.dataset.categories.map(category => ({ ...category,
+            topics: category.topics.map(topic => catalogTopic(bankId, freeIds, topic)) })),
+        };
+      });
+    });
+
   }
 
   private accessSummary(membership: MembershipAccess): QuestionBankAccessSummary {
@@ -440,7 +488,4 @@ export class ContentAccessService {
     if (!topic) throw new BadRequestException('invalid_content_scope');
   }
 
-  private cardUsesResource(card: ContentCard, publicPath: string) {
-    return card.audio === publicPath || card.image === publicPath;
-  }
 }

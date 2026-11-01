@@ -1,3 +1,4 @@
+import { observeBackground } from '../performance/request-performance';
 import { createHmac, randomUUID } from 'node:crypto';
 
 import { ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, NotFoundException, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
@@ -70,12 +71,12 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
 
   onModuleInit() {
     this.retryTimer = setInterval(() => {
-      void this.retryDueJobs().catch(() => this.logger.error('account_deletion_retry_worker_failed'));
+      void observeBackground('account_deletion_retry', () => this.retryDueJobs(), this.logger).catch(() => this.logger.error('account_deletion_retry_worker_failed'));
     }, RETRY_INTERVAL_MS);
     this.retryTimer.unref();
-    void this.retryDueJobs().catch(() => this.logger.error('account_deletion_retry_worker_failed'));
+    void observeBackground('account_deletion_retry', () => this.retryDueJobs(), this.logger).catch(() => this.logger.error('account_deletion_retry_worker_failed'));
     this.retentionTimer = setInterval(() => {
-      void this.purgeExpiredRecords().catch(() => this.logger.error('account_security_retention_cleanup_failed'));
+      void observeBackground('account_retention', () => this.purgeExpiredRecords(), this.logger).catch(() => this.logger.error('account_security_retention_cleanup_failed'));
     }, RETENTION_INTERVAL_MS);
     this.retentionTimer.unref();
   }

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { describe, expect, it, vi } from 'vitest';
 import { ContentAccessService } from '../src/content-access/content-access.service';
 import type { DatabaseService } from '../src/database/database.service';
@@ -10,7 +11,7 @@ function fixture() {
   const database = { db: { select: () => ({ from: () => ({ where: () => ({ orderBy: async () => rows }) }) }) } } as unknown as DatabaseService;
   const service = new ContentAccessService({} as ApiConfig, database);
   const internal = service as unknown as { activeRelease: () => Promise<unknown>; assertEnvironmentAuthorized: () => Promise<void> };
-  vi.spyOn(internal, 'activeRelease').mockImplementation(async () => ({ bankId: dataset.id, version: 1, checksum: 'b'.repeat(64), dataset }));
+  vi.spyOn(internal, 'activeRelease').mockImplementation(async () => ({ bankId: dataset.id, version: 1, checksum: createHash('sha256').update(JSON.stringify(dataset)).digest('hex'), dataset }));
   const authorize = vi.spyOn(internal, 'assertEnvironmentAuthorized').mockResolvedValue(undefined);
   return { service, dataset, rows, authorize };
 }

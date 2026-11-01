@@ -48,12 +48,31 @@ describe('learner feedback history',()=>{
     expect(f.writes).toHaveLength(0);
   });
   it('limits every list and unread query to the authenticated account, and omits private fields',async()=>{
-    const f=fixture([[{...ticket,contact:'private',diagnostics:{secret:'internal'}}],[reply],[reply]]);
+    const f=fixture([[{...ticket,contact:'private',diagnostics:{secret:'internal'}}],[{...reply,ticketId:ticket.id}],[reply]]);
     const result=await f.user.list(owner);
     expect(result.unread).toBe(true);expect(result.items[0]?.replies).toHaveLength(1);
     expect(JSON.stringify(result)).not.toMatch(/private|diagnostics|userId/);
     expect(f.conditions[0]?.params).toContain(owner);expect(f.conditions.at(-1)?.params).toContain(owner);
     expect(f.conditions[0]?.sql).toContain('retention_at');
+  });
+  it('batches a full page of replies without leaking ticket keys or mixing replies', async () => {
+    const page = Array.from({ length: 31 }, (_, i) => ({ ...ticket, id: `00000000-0000-4000-8000-${String(i).padStart(12, '0')}`, ticketNumber: `ticket-${i}` }));
+    const replies = page.slice(0, 30).flatMap(row => [0, 1].map(i => ({ ...reply, id: `reply-${row.id}-${i}`, ticketId: row.id })));
+    const f = fixture([page, replies, [reply]]);
+    const result = await f.user.list(owner);
+    expect(f.db.select).toHaveBeenCalledTimes(3);
+    expect(result.items).toHaveLength(30);
+    expect(result.nextCursor).toBeTruthy();
+    expect(f.conditions[1]?.params).toEqual(page.slice(0, 30).map(row => row.id));
+    result.items.forEach((item, i) => {
+      expect(item.replies.map(row => row.id)).toEqual(replies.slice(i * 2, i * 2 + 2).map(row => row.id));
+      expect(item.replies[0]).not.toHaveProperty('ticketId');
+    });
+  });
+  it('skips the batch query for an empty page and still checks unread replies', async () => {
+    const f = fixture([[], []]);
+    expect(await f.user.list(owner)).toEqual({ items: [], unread: false, nextCursor: null });
+    expect(f.db.select).toHaveBeenCalledTimes(2);
   });
   it('denies another account detail before requesting images or replies',async()=>{
     const f=fixture([[]]);
