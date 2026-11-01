@@ -13,12 +13,14 @@ const mockResolve = jest.fn(async () => 'https://example.test/audio');
 const emptyStatus = () => ({ duration: 0, currentTime: 0, playing: false, isBuffering: false, isLoaded: false, didJustFinish: false });
 let mockCurrentStatus = emptyStatus();
 const mockPlayer = {
+  setLockScreenMetadata: jest.fn(), clearLockScreenMetadata: jest.fn(),
   pause: jest.fn(), play: jest.fn(), replace: jest.fn(), setPlaybackRate: jest.fn(), seekTo: jest.fn(async () => undefined),
   get currentStatus() { return mockCurrentStatus; },
   get isLoaded() { return mockCurrentStatus.isLoaded; },
 };
 const mockAnnotations = { version: 2, legacyImported: true, tagDefinitions: [{ id: 'good', label: '好题', color: 'green' }], highlightDefinitions: [], entries: { public: { bankId: 'listening', categoryId: 'c', topicId: 'topic', cardId: 'public', tagIds: ['good'], highlights: [], note: '', updatedAt: '' } } };
 jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ store: mockAnnotations }) }));
+jest.mock('expo-asset', () => ({ Asset: { fromModule: () => ({ uri: 'https://example.test/app-master.png' }) } }));
 jest.mock('@/platform/audio/browser-audio-player', () => ({ useBrowserAudioPlayer: () => mockPlayer }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => mockAuth }));
 jest.mock('@/config/web-runtime', () => ({ isEdgeOneProductionWeb: () => true }));
@@ -83,6 +85,10 @@ it('advances once per actual media completion while old loaded/ended events surv
   await view.rerender(tree()); await flush();
   await act(() => mockValue.play()); await flush();
   expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+  expect(mockPlayer.setLockScreenMetadata).toHaveBeenLastCalledWith(expect.objectContaining({
+    title: mockValue.currentTrack?.title,
+    artwork: [{ src: 'https://example.test/app-master.png', type: 'image/png' }],
+  }));
 
   const nextAudio = deferred<string>(); mockResolve.mockReturnValue(nextAudio.promise);
   mockCurrentStatus = { ...mockCurrentStatus, currentTime: 20, didJustFinish: true };
@@ -101,6 +107,7 @@ it('advances once per actual media completion while old loaded/ended events surv
   expect(mockValue.currentTrack?.id).toBe('track-1');
   expect(mockValue.duration).toBe(11);
   expect(mockPlayer.play).toHaveBeenCalledTimes(2);
+  expect(mockPlayer.setLockScreenMetadata).toHaveBeenCalledTimes(2);
 
   mockCurrentStatus = { ...mockCurrentStatus, currentTime: 5, playing: true };
   await view.rerender(tree()); await flush();

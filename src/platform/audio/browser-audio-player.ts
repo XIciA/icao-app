@@ -25,6 +25,7 @@ export class BrowserAudioPlayer {
   private detach = () => {};
   private refresh = () => {};
   private generation = 0;
+  private lockScreenMetadata?: MediaMetadata;
 
   constructor(private createMedia: () => HTMLAudioElement = () => new Audio()) {}
 
@@ -48,6 +49,7 @@ export class BrowserAudioPlayer {
     this.media?.pause();
     this.publish(initialStatus());
     if (!source) {
+      this.clearLockScreenMetadata();
       this.media?.removeAttribute('src');
       this.media?.load();
       return;
@@ -80,6 +82,22 @@ export class BrowserAudioPlayer {
     media.load();
   }
 
+  /** Optional browser metadata must never interrupt audio playback. */
+  setLockScreenMetadata(metadata: MediaMetadataInit) {
+    try {
+      if (typeof navigator === 'undefined' || !navigator.mediaSession || typeof MediaMetadata === 'undefined') return;
+      const value = new MediaMetadata(metadata);
+      navigator.mediaSession.metadata = value;
+      this.lockScreenMetadata = value;
+    } catch { /* Older browsers may not support artwork metadata. */ }
+  }
+
+  clearLockScreenMetadata() {
+    if (typeof navigator !== 'undefined' && navigator.mediaSession && this.lockScreenMetadata
+      && navigator.mediaSession.metadata === this.lockScreenMetadata) navigator.mediaSession.metadata = null;
+    this.lockScreenMetadata = undefined;
+  }
+
   async play() {
     if (!this.media) throw new Error('audio_source_missing');
     await this.media.play();
@@ -94,6 +112,7 @@ export class BrowserAudioPlayer {
   setPlaybackRate(rate: number) { if (this.media) this.media.playbackRate = rate; }
 
   release() {
+    this.clearLockScreenMetadata();
     this.generation += 1;
     this.detach();
     this.refresh = () => {};

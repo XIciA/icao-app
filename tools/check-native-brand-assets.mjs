@@ -236,13 +236,14 @@ function findSplashPlugin(appConfig) {
 
 function validateCngConfig() {
   const appConfig = JSON.parse(readFileSync(path.join(repositoryRoot, manifest.cng.config), 'utf8'));
-  const master = `./${manifest.cng.frozenWebIcon}`;
+  const master = `./${manifest.cng.configIcon}`;
   for (const [label, value] of [
     ['expo.icon', appConfig.expo.icon],
+    ['expo.web.favicon', appConfig.expo.web?.favicon],
     ['expo.ios.icon', appConfig.expo.ios?.icon],
     ['expo.android.icon', appConfig.expo.android?.icon],
   ]) {
-    if (value !== master) fail(`${label} frozen Web fallback must reference ${master}; Native products are supplied by the CNG plugin.`);
+    if (value !== master) fail(`${label} brand source must reference ${master}; Native products are supplied by the CNG plugin.`);
   }
   const nativePlugin = readFileSync(path.join(repositoryRoot, manifest.cng.nativeBrandPlugin), 'utf8');
   if (!nativePlugin.includes(manifest.master.path) || !nativePlugin.includes(manifest.master.sha256)) fail('Native brand plugin is not bound to the approved master.');

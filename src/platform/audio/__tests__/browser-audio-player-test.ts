@@ -78,3 +78,36 @@ it('propagates play rejection for a visible retry and reports pause, seek, and b
   expect(media.src).toBe('');
   player.release();
 });
+
+it('sets brand artwork on supported browsers and clears only its own metadata', () => {
+  const session = { metadata: null as unknown };
+  const navigatorDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+  const metadataDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'MediaMetadata');
+  Object.defineProperty(globalThis, 'navigator', { configurable: true, value: { mediaSession: session } });
+  Object.defineProperty(globalThis, 'MediaMetadata', { configurable: true, value: class {
+    constructor(value: MediaMetadataInit) { Object.assign(this, value); }
+  } });
+  try {
+    const player = new BrowserAudioPlayer();
+    player.setLockScreenMetadata({ title: '第一首', artwork: [{ src: 'https://example.test/app-master.png', type: 'image/png' }] });
+    expect(session.metadata).toMatchObject({ title: '第一首', artwork: [{ src: 'https://example.test/app-master.png' }] });
+    player.setLockScreenMetadata({ title: '第二首', artwork: [{ src: 'https://example.test/app-master.png' }] });
+    expect(session.metadata).toMatchObject({ title: '第二首' });
+    player.pause();
+    expect(session.metadata).not.toBeNull();
+    player.replace(null);
+    expect(session.metadata).toBeNull();
+    player.setLockScreenMetadata({ title: '第三首' });
+    const other = { title: '另一播放器' };
+    session.metadata = other;
+    player.release();
+    expect(session.metadata).toBe(other);
+    Object.defineProperty(globalThis, 'navigator', { configurable: true, value: {} });
+    expect(() => player.setLockScreenMetadata({ title: '不支持的浏览器' })).not.toThrow();
+  } finally {
+    if (navigatorDescriptor) Object.defineProperty(globalThis, 'navigator', navigatorDescriptor);
+    else Reflect.deleteProperty(globalThis, 'navigator');
+    if (metadataDescriptor) Object.defineProperty(globalThis, 'MediaMetadata', metadataDescriptor);
+    else Reflect.deleteProperty(globalThis, 'MediaMetadata');
+  }
+});

@@ -1,3 +1,5 @@
+import { Asset } from 'expo-asset';
+import { APP_BRAND_LOGO_SOURCE } from '@/components/brand/AppBrandLogo';
 import { useRadioQueueFilter } from './use-radio-queue-filter';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
 import { canPlayRadioTrack, hasRadioMembership, visibleRadioCatalogs } from './access';
@@ -198,6 +200,14 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       player.setPlaybackRate(rate);
       await player.play();
       if (request !== generation.current || owner !== contentOwnerRef.current) { await releaseLease(lease); return; }
+      try {
+        player.setLockScreenMetadata({
+          title: currentTrack.title,
+          artist: '听你五个',
+          album: currentTrack.bankTitle,
+          artwork: [{ src: Asset.fromModule(APP_BRAND_LOGO_SOURCE).uri, type: 'image/png' }],
+        });
+      } catch { /* Artwork resolution is optional; keep audio playing. */ }
       setSessionVisible(true);
       setSourceState({ loading: false });
     } catch {
@@ -312,6 +322,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       generation.current += 1;
       pendingPlay.current = false;
       player.pause();
+      player.clearLockScreenMetadata();
       audioLease.current = undefined;
       clearIntervalTimer();
     },

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 
@@ -27,6 +28,21 @@ for (const marker of required) {
   if (!javascript.includes(marker)) throw new Error(`edgeone_export_marker_missing:${marker}`);
 }
 
+// Browser identity must follow the same immutable App master as runtime artwork.
+const brand = JSON.parse(await readFile('assets/native-brand-manifest.json', 'utf8'));
+const brandDigest = createHash('sha256').update(await readFile(brand.master.path)).digest('hex').slice(0, 12);
+const brandBase = `/brand/${brandDigest}`;
+for (const suffix of ['favicon.ico', 'logo-48.png', 'logo-180.png', 'site.webmanifest']) {
+  if (!index.includes(`href="${brandBase}/${suffix}"`)) throw new Error(`web_brand_link_missing:${suffix}`);
+}
+for (const size of [48, 180, 192, 512]) {
+  const png = await readFile(join(output, `${brandBase}/logo-${size}.png`));
+  if (png.readUInt32BE(16) !== size || png.readUInt32BE(20) !== size) throw new Error(`web_brand_size_invalid:${size}`);
+}
+const webManifest = JSON.parse(await readFile(join(output, `${brandBase}/site.webmanifest`), 'utf8'));
+if (webManifest.icons.length !== 2 || !webManifest.icons.every(icon => icon.src.startsWith(brandBase + '/'))) {
+  throw new Error('web_brand_manifest_invalid');
+}
 if (!index.includes('/_expo/static/js/web/')) throw new Error('edgeone_export_boot_script_missing');
 
 for (const forbidden of ['buildCommand', 'installCommand', 'name', 'outputDirectory']) {
