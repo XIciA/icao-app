@@ -109,7 +109,7 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
   }
   const included = packageIncludes(item, scope);
   const completed = included && !item?.target && !item?.outdated;
-  const progress = completed ? 100 : (item?.target?.scope === scope || item?.saved?.scope === scope) && item?.total ? Math.min(100, Math.floor(item.completed / item.total * 100)) : 0;
+  const progress = completed ? 100 : (item?.target?.scope === scope || item?.saved?.scope === scope) && item?.total ? Math.min(99, Math.floor((item.totalBytes ? (item.downloadedBytes ?? 0) / item.totalBytes : item.completed / item.total) * 100)) : 0;
   const label = error && !completed ? compactError(error) : item?.target ? status(item) : item?.outdated ? '有更新' : included ? '已下载' : item?.saved ? '可扩展' : '未下载';
   const Action = busy ? Pause : item?.outdated || !shown ? RefreshCw : item?.target ? Play : Download;
   const actionLabel = busy ? '暂停下载' : item?.outdated ? '更新下载' : !shown ? '重试' : item?.target ? '继续下载' : '下载';

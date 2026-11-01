@@ -1,3 +1,4 @@
+import { DOWNLOAD_RESOURCE_CONCURRENCY, runResourceWorkers } from './resource-work-queue';
 import { compactDownloadError } from './download-feedback';
 import { publishDownloadAvailability } from './download-events';
 import { audioSessionOrchestrator } from '@/platform/audio/audio-session-orchestrator';
@@ -20,7 +21,7 @@ import type { QuestionBankId, QuestionBankTopic } from '../types';
 export type DownloadPhase = 'idle' | 'queued' | 'downloading' | 'verifying' | 'paused' | 'error';
 export type DownloadPackage = {
   saved?: OfflineManifest; target?: OfflineManifest; latest?: OfflineManifest;
-  phase: DownloadPhase; completed: number; total: number; error?: string; outdated?: boolean;
+  phase: DownloadPhase; completed: number; total: number; downloadedBytes?: number; totalBytes?: number; error?: string; outdated?: boolean;
 };
 export type DownloadPackageId = QuestionBankId | 'vocabulary:preview' | 'vocabulary:icao4' | 'vocabulary:icao5';
 export const downloadPackageId = (manifest: OfflineManifest) => (manifest.bankId === 'vocabulary' ? `vocabulary:${manifest.scope}` : manifest.bankId) as DownloadPackageId;
@@ -92,7 +93,7 @@ function save() {
 }
 function patch(bankId: DownloadPackageId, value: Partial<DownloadPackage>) {
   state = { ...state, [bankId]: { phase: 'idle', completed: 0, total: 0, ...state[bankId], ...value } };
-  if (Object.keys(value).every(field => field === 'completed') && Date.now() - lastProgressPersist < 1000) {
+  if (Object.keys(value).every(field => ['completed', 'downloadedBytes', 'totalBytes'].includes(field)) && Date.now() - lastProgressPersist < 1000) {
     changed(); return Promise.resolve();
   }
   lastProgressPersist = Date.now();
@@ -226,7 +227,7 @@ export async function startDownload(manifest: OfflineManifest, cellular = false)
   if (deleting.has(bankId) || ['queued', 'downloading', 'verifying'].includes(state[bankId]?.phase ?? '')) return;
   const epoch = generation, account = owner, accountGeneration = questionBankContentAccountGeneration();
   const token = (tokens.get(bankId) ?? 0) + 1; tokens.set(bankId, token);
-  await patch(bankId, { target: manifest, phase: 'queued', error: undefined, total: manifest.resources.length + manifest.topics.length, completed: 0 });
+  await patch(bankId, { target: manifest, phase: 'queued', error: undefined, total: manifest.resources.length + manifest.topics.length, completed: 0, downloadedBytes: 0, totalBytes: manifest.sizeBytes });
   if (epoch !== generation || account !== currentQuestionBankContentAccountId() || accountGeneration !== questionBankContentAccountGeneration()) throw new Error('账号已切换');
   tasks.push({ bankId, manifest, cellular, epoch, token });
   void drain().catch(() => undefined);
@@ -246,7 +247,8 @@ async function drain() {
       const contentGeneration = questionBankContentAccountGeneration();
       const account = owner;
       const current = () => epoch === generation && token === tokens.get(bankId)
-        && account === currentQuestionBankContentAccountId() && contentGeneration === questionBankContentAccountGeneration();
+        && account === currentQuestionBankContentAccountId() && contentGeneration === questionBankContentAccountGeneration()
+        && environment === getNativeCommerceEnvironment();
       if (!current()) continue;
       const ensure = async () => {
         if (!current()) throw new Error('下载已暂停');
@@ -276,7 +278,7 @@ async function drain() {
         await patch(bankId, { target: manifest, total: manifest.resources.length + manifest.topics.length });
         // Include encrypted output and transfer staging; existing content remains intact on failure.
         if (Paths.availableDiskSpace < Math.max(...manifest.resources.map(r => r.sizeBytes), 0) * 2 + await remainingDownloadBytes(manifest)) throw new Error('空间不足，请清理后继续');
-        await patch(bankId, { phase: 'downloading', completed: 0 });
+        await patch(bankId, { phase: 'downloading', completed: 0, downloadedBytes: 0, totalBytes: manifest.sizeBytes });
         if (manifest.vocabulary) {
           const { prepareVocabularyDownload } = require('@/features/vocabulary/offline-content.native') as typeof import('@/features/vocabulary/offline-content.native');
           await prepareVocabularyDownload(manifest);
@@ -314,33 +316,66 @@ async function drain() {
           if (!current()) throw new Error('下载已暂停');
           await patch(bankId, { completed: ++completed });
         }
-        let signed = new Map<string, ResolvedResource>();
-        let signedUntil = 0;
-        for (let index = 0; index < manifest.resources.length; index++) {
-          const resource = manifest.resources[index];
+        // Bytes are transient during a transfer; persist only bounded completed-resource updates.
+        const byteProgress = new Map<string, number>();
+        let lastPaint = 0;
+        const textBytes = Math.max(0, manifest.sizeBytes - manifest.resources.reduce((sum, resource) => sum + resource.sizeBytes, 0));
+        const downloadedBytes = () => Math.min(manifest.sizeBytes, textBytes + [...byteProgress.values()].reduce((sum, bytes) => sum + bytes, 0));
+        const headersForBatch = { ...headers, 'content-type': 'application/json' };
+        for (let offset = 0; offset < manifest.resources.length; offset += 24) {
           await ensure();
-          if (await offlineResourcePrepared(resource.publicPath, resource)) {
-            await patch(bankId, { completed: ++completed }); continue;
+          const batch = manifest.resources.slice(offset, offset + 24);
+          const pending: OfflineManifest['resources'] = [];
+          for (const resource of batch) {
+            await ensure();
+            if (await offlineResourcePrepared(resource.publicPath, resource)) {
+              if (!current()) throw new Error('下载已暂停');
+              byteProgress.set(resource.publicPath, resource.sizeBytes);
+              await patch(bankId, { completed: ++completed, downloadedBytes: downloadedBytes() });
+            } else pending.push(resource);
           }
-          if (Date.now() >= signedUntil) signed.clear();
-          if (!signed.has(resource.publicPath)) {
-            const batch = [];
-            for (const candidate of manifest.resources.slice(index, index + 24)) {
-              if (!await offlineResourcePrepared(candidate.publicPath, candidate)) batch.push({ publicPath: candidate.publicPath, checksum: candidate.checksum });
+          if (!pending.length) continue;
+          const resolve = async () => {
+            const response = await apiRequest<ResolvedResource[]>('/v1/resources/resolve-batch', { method: 'POST', headers: headersForBatch,
+              body: JSON.stringify({ resources: pending.map(({ publicPath, checksum }) => ({ publicPath, checksum })) }) });
+            return { signed: new Map(response.map(resource => [resource.publicPath, resource])),
+              until: Date.now() + Math.max(0, Math.min(...response.map(resource => resource.expiresIn)) - 30) * 1000 };
+          };
+          let signedBatch = await resolve();
+          let refreshing: ReturnType<typeof resolve> | undefined;
+          await runResourceWorkers(pending, DOWNLOAD_RESOURCE_CONCURRENCY, current, async (resource, workerCurrent) => {
+            await ensure();
+            if (!workerCurrent()) return;
+            if (Date.now() >= signedBatch.until) {
+              refreshing ??= resolve().then(value => { signedBatch = value; return value; }).finally(() => { refreshing = undefined; });
+              await refreshing;
             }
-            const response = await apiRequest<ResolvedResource[]>('/v1/resources/resolve-batch', { method: 'POST', headers: { ...headers, 'content-type': 'application/json' }, body: JSON.stringify({ resources: batch }) });
-            signed = new Map(response.map(value => [value.publicPath, value]));
-            signedUntil = Date.now() + Math.max(0, Math.min(...response.map(value => value.expiresIn)) - 30) * 1000;
-          }
-          const resolved = signed.get(resource.publicPath);
-          if (!resolved) throw new Error('资源暂不可用，请重试');
-          if (resolved.checksum !== resource.checksum || resolved.sizeBytes !== resource.sizeBytes) throw new Error('资源已变化，请检查更新');
-          const uri = await cacheMemberResource(resource.publicPath, resolved.url, resource, { isCurrent: current, required: true, publicDownload: Boolean(manifest.vocabulary) });
-          if (!uri) throw new Error('资源暂不可用，请继续下载');
-          await ensure();
-          await patch(bankId, { completed: ++completed });
+            if (!workerCurrent()) return;
+            const resolved = signedBatch.signed.get(resource.publicPath);
+            if (!resolved) throw new Error('资源暂不可用，请重试');
+            if (resolved.checksum !== resource.checksum || resolved.sizeBytes !== resource.sizeBytes) throw new Error('资源已变化，请检查更新');
+            const uri = await cacheMemberResource(resource.publicPath, resolved.url, resource, {
+              isCurrent: workerCurrent, required: true, publicDownload: Boolean(manifest.vocabulary),
+              isPlaybackActive: () => Boolean(audioSessionOrchestrator.getActiveOwner()),
+              onProgress: fraction => {
+                if (!workerCurrent()) return;
+                byteProgress.set(resource.publicPath, Math.floor(Math.max(0, Math.min(1, fraction)) * resource.sizeBytes));
+                if (Date.now() - lastPaint < 100) return;
+                lastPaint = Date.now();
+                state = { ...state, [bankId]: { ...state[bankId]!, downloadedBytes: downloadedBytes() } };
+                changed();
+              },
+            });
+            if (!workerCurrent()) return;
+            if (!uri) throw new Error('资源暂不可用，请继续下载');
+            await ensure();
+            if (!workerCurrent()) return;
+            byteProgress.set(resource.publicPath, resource.sizeBytes);
+            await patch(bankId, { completed: ++completed, downloadedBytes: downloadedBytes() });
+          });
         }
-        await patch(bankId, { phase: 'verifying' });
+        await ensure();
+        await patch(bankId, { phase: 'verifying', downloadedBytes: manifest.sizeBytes });
         if (manifest.vocabulary) {
           const { verifyVocabularyDownload } = require('@/features/vocabulary/offline-content.native') as typeof import('@/features/vocabulary/offline-content.native');
           await verifyVocabularyDownload(manifest);

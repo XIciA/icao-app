@@ -1,0 +1,249 @@
+{
+  "measuredAt": "2026-11-01T05:30:31.455Z",
+  "environment": "Node loopback HTTP; 25ms controlled latency; synthetic 12MiB payloads; real disk/SHA/AES-GCM and final verification",
+  "limits": "Not Expo/native bridge, device memory, Internet speed or server capacity evidence. Production default remains two bulk transfers, reduced to one during audio.",
+  "samples": [
+    {
+      "shape": "many-small",
+      "repeat": 1,
+      "concurrency": 1,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 1,
+      "transferAndSealMs": 2929,
+      "fullVerificationMs": 32,
+      "totalMs": 2962
+    },
+    {
+      "shape": "many-small",
+      "repeat": 1,
+      "concurrency": 2,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 2,
+      "transferAndSealMs": 1497,
+      "fullVerificationMs": 27,
+      "totalMs": 1524
+    },
+    {
+      "shape": "many-small",
+      "repeat": 1,
+      "concurrency": 4,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 4,
+      "transferAndSealMs": 685,
+      "fullVerificationMs": 18,
+      "totalMs": 703
+    },
+    {
+      "shape": "many-small",
+      "repeat": 2,
+      "concurrency": 4,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 4,
+      "transferAndSealMs": 680,
+      "fullVerificationMs": 13,
+      "totalMs": 693
+    },
+    {
+      "shape": "many-small",
+      "repeat": 2,
+      "concurrency": 1,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 1,
+      "transferAndSealMs": 2664,
+      "fullVerificationMs": 23,
+      "totalMs": 2687
+    },
+    {
+      "shape": "many-small",
+      "repeat": 2,
+      "concurrency": 2,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 2,
+      "transferAndSealMs": 1370,
+      "fullVerificationMs": 18,
+      "totalMs": 1388
+    },
+    {
+      "shape": "many-small",
+      "repeat": 3,
+      "concurrency": 2,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 2,
+      "transferAndSealMs": 1347,
+      "fullVerificationMs": 17,
+      "totalMs": 1364
+    },
+    {
+      "shape": "many-small",
+      "repeat": 3,
+      "concurrency": 4,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 4,
+      "transferAndSealMs": 688,
+      "fullVerificationMs": 17,
+      "totalMs": 705
+    },
+    {
+      "shape": "many-small",
+      "repeat": 3,
+      "concurrency": 1,
+      "requests": 96,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 1,
+      "transferAndSealMs": 2703,
+      "fullVerificationMs": 15,
+      "totalMs": 2718
+    },
+    {
+      "shape": "few-large",
+      "repeat": 1,
+      "concurrency": 1,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 1,
+      "transferAndSealMs": 120,
+      "fullVerificationMs": 13,
+      "totalMs": 132
+    },
+    {
+      "shape": "few-large",
+      "repeat": 1,
+      "concurrency": 2,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 2,
+      "transferAndSealMs": 80,
+      "fullVerificationMs": 14,
+      "totalMs": 94
+    },
+    {
+      "shape": "few-large",
+      "repeat": 1,
+      "concurrency": 4,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 3,
+      "transferAndSealMs": 71,
+      "fullVerificationMs": 13,
+      "totalMs": 85
+    },
+    {
+      "shape": "few-large",
+      "repeat": 2,
+      "concurrency": 4,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 3,
+      "transferAndSealMs": 62,
+      "fullVerificationMs": 11,
+      "totalMs": 73
+    },
+    {
+      "shape": "few-large",
+      "repeat": 2,
+      "concurrency": 1,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 1,
+      "transferAndSealMs": 113,
+      "fullVerificationMs": 10,
+      "totalMs": 124
+    },
+    {
+      "shape": "few-large",
+      "repeat": 2,
+      "concurrency": 2,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 2,
+      "transferAndSealMs": 86,
+      "fullVerificationMs": 10,
+      "totalMs": 96
+    },
+    {
+      "shape": "few-large",
+      "repeat": 3,
+      "concurrency": 2,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 2,
+      "transferAndSealMs": 79,
+      "fullVerificationMs": 12,
+      "totalMs": 91
+    },
+    {
+      "shape": "few-large",
+      "repeat": 3,
+      "concurrency": 4,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 3,
+      "transferAndSealMs": 62,
+      "fullVerificationMs": 10,
+      "totalMs": 72
+    },
+    {
+      "shape": "few-large",
+      "repeat": 3,
+      "concurrency": 1,
+      "requests": 3,
+      "bytes": 12582912,
+      "maxConcurrentRequests": 1,
+      "transferAndSealMs": 114,
+      "fullVerificationMs": 10,
+      "totalMs": 124
+    }
+  ],
+  "summaries": [
+    {
+      "shape": "many-small",
+      "concurrency": 1,
+      "medianMs": 2718,
+      "minMs": 2687,
+      "maxMs": 2962
+    },
+    {
+      "shape": "many-small",
+      "concurrency": 2,
+      "medianMs": 1388,
+      "minMs": 1364,
+      "maxMs": 1524
+    },
+    {
+      "shape": "many-small",
+      "concurrency": 4,
+      "medianMs": 703,
+      "minMs": 693,
+      "maxMs": 705
+    },
+    {
+      "shape": "few-large",
+      "concurrency": 1,
+      "medianMs": 124,
+      "minMs": 124,
+      "maxMs": 132
+    },
+    {
+      "shape": "few-large",
+      "concurrency": 2,
+      "medianMs": 94,
+      "minMs": 91,
+      "maxMs": 96
+    },
+    {
+      "shape": "few-large",
+      "concurrency": 4,
+      "medianMs": 73,
+      "minMs": 72,
+      "maxMs": 85
+    }
+  ]
+}

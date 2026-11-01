@@ -80,7 +80,7 @@ import {
 } from '../data/member-content-cache.native';
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
-import { AESEncryptionKey, aesDecryptAsync } from 'expo-crypto';
+import { AESEncryptionKey, aesDecryptAsync, aesEncryptAsync } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { waitFor } from '@testing-library/react-native';
@@ -969,5 +969,49 @@ describe('embeddedQuestionBankRepository', () => {
     }
   });
 
+
+  it('shares native bytes between temporary playback and persistent download without moving or deleting the other consumer file', async () => {
+    await activateQuestionBankContentAccount('shared-playback-download');
+    const path = `/pronunciation-assets/${'a'.repeat(64)}.mp3`;
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    let release!: () => void;
+    const held = new Promise<void>(done => { release = done; });
+    const nativeDownload = File.downloadFileAsync;
+    const spy = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => { await held; return nativeDownload(...args); });
+    const playback = cacheMemberResource(path, 'https://example.test/play', metadata, { temporary: true });
+    await waitFor(() => expect(spy).toHaveBeenCalledTimes(1));
+    const progress = jest.fn();
+    const persistent = cacheMemberResource(path, 'https://example.test/save', metadata, { publicDownload: true, required: true, onProgress: progress });
+    await waitFor(() => expect(progress).toHaveBeenCalledWith(0)); release();
+    const [playable, sealed] = await Promise.all([playback, persistent]);
+    expect(playable).toMatch(/^file:\/\/\/cache\/icao-authorized-content\//);
+    expect(sealed).toMatch(/\.sealed$/); expect(playable).not.toBe(sealed);
+    expect(mockFiles.has(playable!)).toBe(true); expect(mockFiles.has(sealed!)).toBe(true);
+    expect(spy).toHaveBeenCalledTimes(1); expect([...mockFiles].some(uri => uri.endsWith('.part'))).toBe(false);
+    await expect(resolveOfflineMemberResource(path)).resolves.toMatch(/^file:\/\/\/cache\//);
+  });
+
+  it('cancellation while sealed bytes are materializing cannot commit a late file or checksum', async () => {
+    await activateQuestionBankContentAccount('cancel-sealing');
+    let current = true, release!: () => void;
+    const held = new Promise<void>(done => { release = done; });
+    const originalEncrypt = aesEncryptAsync;
+    const originalImplementation = jest.mocked(aesEncryptAsync).getMockImplementation()!;
+    const combined = jest.fn();
+    jest.mocked(aesEncryptAsync).mockImplementationOnce(async (...args) => {
+      const sealed = await originalImplementation(...args);
+      return { ...sealed, combined: async (...options: Parameters<typeof sealed.combined>) => {
+        combined(); await held; return sealed.combined(...options);
+      } } as typeof sealed;
+    });
+    const task = cacheMemberResource(`/pronunciation-assets/${'c'.repeat(64)}.mp3`, 'https://example.test/audio', {
+      checksum: 'ab'.repeat(32), sizeBytes: 10,
+    }, { publicDownload: true, isCurrent: () => current });
+    await waitFor(() => expect(combined).toHaveBeenCalled()); current = false; release();
+    await expect(task).resolves.toBeUndefined();
+    expect(mockFiles.size).toBe(0);
+    expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(false);
+    expect(originalEncrypt).toHaveBeenCalled();
+  });
 
 });

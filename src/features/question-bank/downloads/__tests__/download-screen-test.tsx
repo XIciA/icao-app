@@ -73,3 +73,13 @@ test('sixth card reuses the same fixed row and switches three independent vocabu
   await fireEvent.press(screen.getByLabelText('下载'));
   await waitFor(() => expect(mockStart).toHaveBeenCalledWith(expect.objectContaining({ bankId: 'vocabulary', scope: 'icao4' })));
 });
+
+test('uses byte progress and reserves complete presentation until validation finishes', async () => {
+  const target = manifest('listening', 'selected');
+  mockState.listening = { target, phase: 'downloading', completed: 0, total: 10, downloadedBytes: 250000, totalBytes: 1000000 };
+  const view = await render(<DownloadManagementScreen />);
+  await waitFor(() => expect(screen.getByText('25%')).toBeTruthy());
+  await act(async () => { mockState.listening = { target, phase: 'verifying', completed: 10, total: 10, downloadedBytes: 1000000, totalBytes: 1000000 }; mockListeners.forEach(fn => fn()); });
+  await view.rerender(<DownloadManagementScreen key="verifying" />);
+  expect(screen.getByText('99%')).toBeTruthy(); expect(screen.queryByText('已下载')).toBeNull();
+});
