@@ -159,6 +159,7 @@ function StudyContent(props: Props) {
   const [readyAudioItemId, setReadyAudioItemId] = useState<string>();
   const [listeningCheckpoint, setListeningCheckpoint] = useState<LearningRecord>();
   const finishInFlight = useRef(false);
+  const androidReturningToSource = useRef(false);
   const cardTransitionInFlight = useRef(false);
   const annotationExitGuard = useRef<(() => Promise<boolean>) | undefined>(undefined);
   const exitAnnotationManagement = useCallback(() => annotationExitGuard.current?.() ?? Promise.resolve(true), []);
@@ -614,6 +615,10 @@ function StudyContent(props: Props) {
     }
     if (finishInFlight.current || cardTransitionInFlight.current) return;
     finishInFlight.current = true;
+    // Keep the question mounted throughout Android's outgoing transition.
+    // Saving a return must not present the report intended for explicit End.
+    androidReturningToSource.current = Platform.OS === 'android';
+    let returned = false;
     setFinishing(true);
     setFinishError(undefined);
     setCanLeaveWithoutSave(false);
@@ -634,11 +639,13 @@ function StudyContent(props: Props) {
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
       await session.finish('abort', await sessionAnnotationMetrics());
+      returned = true;
       setLeavingStudy(true);
     } catch {
       setFinishError('学习记录保存失败，内容仍保留在当前页面，请重试。');
       setCanLeaveWithoutSave(true);
     } finally {
+      if (!returned) androidReturningToSource.current = false;
       finishInFlight.current = false;
       setFinishing(false);
     }
@@ -734,7 +741,7 @@ function StudyContent(props: Props) {
     }
   }
 
-  if (session.report && !session.historyRecord) {
+  if (session.report && !session.historyRecord && !androidReturningToSource.current) {
     return <StudyReport answerScope={!session.examMode && !session.historyRecord ? { items: session.items, current: session.currentIndex } : undefined} localReturn={Boolean(onReturn)} interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (listeningCheckpoint) return <StudyReport record={listeningCheckpoint} noteCount={0} interaction="choices" onReturn={navigateAfterStudy} busy={finishing} error={finishError} onExitWithoutSave={canLeaveWithoutSave ? confirmExitWithoutSave : undefined} onEnd={() => { void finish('abort'); }} onContinue={() => { if (!finishing && listeningExamRange) { session.goTo(listeningExamRange.endIndex + 1); setListeningCheckpoint(undefined); } }} />;
