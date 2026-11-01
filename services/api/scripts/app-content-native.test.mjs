@@ -128,15 +128,38 @@ function mediaFixture() {
     aesDecryptAsync: async (value) => new Uint8Array(typeof value === 'string' ? Buffer.from(value, 'base64') : Buffer.from(value).subarray(16)),
     CryptoDigestAlgorithm: { SHA256: 'sha256' }, digestStringAsync: async (_, value) => createHash('sha256').update(value).digest('hex'),
     digest: async (_, bytes) => { const hash = new Uint8Array(createHash('sha256').update(bytes).digest()); return hash.buffer; } };
+  const filesystem = { Directory, File, Paths: { document: 'file:/test', cache: 'file:/cache' } };
+  const nativeTransfers = vi.fn((url, uri, _options, progress) => {
+    let cancelled = false;
+    return {
+      cancelAsync: async () => { cancelled = true; },
+      downloadAsync: async () => {
+        await Promise.resolve();
+        if (cancelled) return undefined;
+        const bytes = downloads.get(url);
+        progress({ totalBytesWritten: bytes.length / 2 });
+        new File(uri).write(bytes);
+        progress({ totalBytesWritten: bytes.length });
+        return { status: 200, uri };
+      },
+    };
+  });
+  // Execute the actual scheduling, sharing and staging lifecycle. Only the
+  // device filesystem/transfer primitives are stubbed, as in the prior fixture.
+  const transfers = evaluate('src/features/question-bank/data/shared-resource-transfers.native.ts', {
+    'expo-file-system': filesystem,
+    'expo-file-system/legacy': { createDownloadResumable: nativeTransfers },
+    '../downloads/resource-work-queue': evaluate('src/features/question-bank/downloads/resource-work-queue.ts', {}),
+  }, { setTimeout, clearTimeout, setInterval, clearInterval });
   const repository = evaluate('src/features/question-bank/data/member-content-cache.native.ts', {
     '@icao/contracts': { validContentScopeId },
-    'expo-file-system/legacy': {},
-    'expo-crypto': crypto, 'expo-file-system': { Directory, File, Paths: { document: 'file:/test', cache: 'file:/cache' } }, '@/platform/storage': kv,
+    './shared-resource-transfers.native': transfers,
+    'expo-crypto': crypto, 'expo-file-system': filesystem, '@/platform/storage': kv,
     'expo-secure-store': { getItemAsync: async (key) => secure.get(key), setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) },
     '@/features/native-commercial-testflight/commerce-environment': { getNativeCommerceEnvironment: () => 'production', nativeCommerceEnvironmentSnapshot: () => 'production' },
     './content-credential-verifier.native': { verifyContentAccessCredential: () => true, inspectContentAccessCredential: () => 'valid' },
   }, { TextEncoder, TextDecoder, Uint8Array });
-  return { repository, downloads, files };
+  return { repository, downloads, files, nativeTransfers };
 }
 
 describe('versioned native media cache', () => {
@@ -169,6 +192,47 @@ describe('versioned native media cache', () => {
     expect(fixture.files.size).toBe(0);
     await expect(fixture.repository.cacheMemberResource(path, 'corrupt', metadata(Buffer.from('yes')))).rejects.toThrow('resource_checksum_mismatch');
     expect(fixture.files.size).toBe(0); expect(await fixture.repository.resolveOfflineMemberResource(path)).toBeUndefined();
+  });
+  it('runs required downloads through the real shared scheduler and verifies bytes before offline playback', async () => {
+    const fixture = mediaFixture(); await start(fixture);
+    const bytes = Buffer.from('required audio');
+    fixture.downloads.set('required', bytes);
+    const onProgress = vi.fn();
+    const uri = await fixture.repository.cacheMemberResource(path, 'required', metadata(bytes), { required: true, onProgress });
+    expect(fixture.nativeTransfers).toHaveBeenCalledTimes(1);
+    expect(onProgress).toHaveBeenCalledWith(0.5);
+    expect(onProgress).toHaveBeenLastCalledWith(1);
+    expect(fixture.files.get(uri)).not.toEqual(bytes);
+    expect([...fixture.files.keys()].some(key => key.endsWith('.part'))).toBe(false);
+    const playable = await fixture.repository.resolveOfflineMemberResource(path);
+    expect(fixture.files.get(playable)).toEqual(bytes);
+  });
+  it('cancels an optional-first transfer after its playback and joined download consumers both expire', async () => {
+    const fixture = mediaFixture(); await start(fixture);
+    const bytes = Buffer.from('shared audio');
+    let finish, playbackCurrent = true, downloadCurrent = true;
+    const pending = new Promise(resolve => { finish = resolve; });
+    const cancel = vi.fn(async () => { finish(undefined); });
+    fixture.nativeTransfers.mockImplementationOnce((_url, uri) => {
+      fixture.files.set(uri, Buffer.from('partial'));
+      return { downloadAsync: () => pending, cancelAsync: cancel };
+    });
+    const playback = fixture.repository.cacheMemberResource(path, 'shared', metadata(bytes), {
+      temporary: true, isCurrent: () => playbackCurrent,
+    });
+    await vi.waitFor(() => expect(fixture.nativeTransfers).toHaveBeenCalledTimes(1));
+    const progress = vi.fn();
+    const download = fixture.repository.cacheMemberResource(path, 'shared', metadata(bytes), {
+      required: true, isCurrent: () => downloadCurrent, onProgress: progress,
+    });
+    await vi.waitFor(() => expect(progress).toHaveBeenCalledWith(0));
+    const completed = Promise.all([playback, download]); let settled = false;
+    void completed.then(() => { settled = true; });
+    playbackCurrent = false; downloadCurrent = false;
+    await vi.waitFor(() => expect(settled).toBe(true), { timeout: 600 });
+    expect(await completed).toEqual([undefined, undefined]);
+    expect(cancel).toHaveBeenCalledTimes(1); expect(fixture.nativeTransfers).toHaveBeenCalledTimes(1);
+    expect(fixture.files.size).toBe(0);
   });
 });
 

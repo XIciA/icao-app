@@ -10,7 +10,7 @@ import {
 } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Directory, File, Paths } from 'expo-file-system';
-import { createDownloadResumable } from 'expo-file-system/legacy';
+import { acquireResourceTransfer, processResourceBytes } from './shared-resource-transfers.native';
 import Storage from '@/platform/storage';
 import { validContentScopeId, type CommerceEnvironment, type ContentAccessCredential, type ContentAccessScope } from '@icao/contracts';
 
@@ -47,13 +47,10 @@ let activeAccountId: string | undefined;
 let activeAccountGeneration = 0;
 let legacyCleanupPromise: Promise<void> | undefined;
 const accountOperationTails = new Map<string, Promise<void>>();
-type ResourceDownload = { promise: Promise<string | undefined>; consumers: Set<() => boolean> };
+type ResourceDownload = { promise: Promise<string | undefined>; consumers: Map<() => boolean, ((fraction: number) => void) | undefined>; progress: number };
 const resourceDownloads = new Map<string, ResourceDownload>();
 const temporaryResourceUses = new Map<string, number>();
 let lastTemporaryResourceUse = 0;
-let resourceDownloadSequence = 0;
-let activeResourceTransfers = 0;
-const MAX_RESOURCE_TRANSFERS = 4;
 const TEMPORARY_RESOURCE_MAX_FILES = 8;
 const TEMPORARY_RESOURCE_MAX_BYTES = 64 * 1_024 * 1_024;
 const TEMPORARY_RESOURCE_MAX_FILE_BYTES = 16 * 1_024 * 1_024;
@@ -558,7 +555,7 @@ export async function cacheMemberResource(
   publicPath: string,
   signedUrl: string,
   expected?: { checksum: string; sizeBytes: number },
-  { temporary = false, publicDownload = false, isCurrent = () => true, required = false, onProgress }: { publicDownload?: boolean; temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
+  { temporary = false, publicDownload = false, isCurrent = () => true, required = false, onProgress, isPlaybackActive }: { isPlaybackActive?: () => boolean; publicDownload?: boolean; temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
 ) {
   if (!expected || !/^[a-f0-9]{64}$/.test(expected.checksum) || expected.sizeBytes <= 0 || expected.sizeBytes > 52_428_800) return undefined;
   if (temporary && expected.sizeBytes > TEMPORARY_RESOURCE_MAX_FILE_BYTES) return undefined;
@@ -579,7 +576,8 @@ export async function cacheMemberResource(
   const downloadKey = JSON.stringify([context, publicPath, expected.checksum, expected.sizeBytes, temporary, publicDownload]);
   const existing = resourceDownloads.get(downloadKey);
   if (existing) {
-    existing.consumers.add(isCurrent);
+    existing.consumers.set(isCurrent, onProgress);
+    if (isCurrent()) onProgress?.(existing.progress);
     try {
       const result = await existing.promise;
       return isCurrent() ? result : undefined;
@@ -587,20 +585,24 @@ export async function cacheMemberResource(
   }
   // Subscribers share bytes, not cancellation ownership: an obsolete prefetch
   // must not reject a current selection waiting for the same resource.
-  const consumers = new Set([isCurrent]);
-  const hasCurrentConsumer = () => [...consumers].some((current) => current());
+  const consumers = new Map([[isCurrent, onProgress]]);
+  const hasCurrentConsumer = () => {
+    try { assertMemberContentContextCurrent(context); } catch { return false; }
+    return [...consumers.keys()].some(current => current());
+  };
+  let progress = 0;
+  const reportProgress = (fraction: number) => {
+    progress = fraction;
+    const entry = resourceDownloads.get(downloadKey);
+    if (entry) entry.progress = fraction;
+    for (const [current, notify] of consumers) if (current()) notify?.(fraction);
+  };
   const downloading = (async () => {
     const persistentFile = await memberResourceFile(accountId, environment, publicPath, expected.checksum);
     const directory = temporary
       ? new Directory(temporaryResourceAccountDirectory(accountId), environment)
       : memberResourceDirectory(accountId, environment);
     const file = temporary ? new File(directory, persistentFile.name.replace(/\.sealed$/, '')) : persistentFile;
-    // Network I/O must not hold the account lock: signing out and other tracks
-    // remain responsive even when one transfer stalls. A unique staging file
-    // prevents a late old-account download from overwriting a new session.
-    const stagingDirectory = new Directory(Paths.cache, 'icao-content-transfers');
-    const staging = new File(stagingDirectory, `${Date.now()}-${++resourceDownloadSequence}.part`);
-    const stagingUri = staging.uri;
     const checksumKey = `${resourceIndexKey(accountId, environment, publicPath)}.checksum`;
     const cached = await withAccountContentLock(accountId, async () => {
       assertMemberContentContextCurrent(context);
@@ -618,75 +620,62 @@ export async function cacheMemberResource(
     assertMemberContentContextCurrent(context);
     if (!hasCurrentConsumer()) return undefined;
     if (cached) return cached;
-    // Optional caching must not enqueue unlimited native transfers when users
-    // rapidly change tracks. Callers can continue with the authorized stream.
-    while (required && activeResourceTransfers >= MAX_RESOURCE_TRANSFERS && hasCurrentConsumer()) {
-      await new Promise(resolve => setTimeout(resolve, 100));
-      assertMemberContentContextCurrent(context);
-    }
-    if (!hasCurrentConsumer() || activeResourceTransfers >= MAX_RESOURCE_TRANSFERS) return undefined;
-    activeResourceTransfers += 1;
-    try {
-      stagingDirectory.create({ idempotent: true, intermediates: true });
-      if (required) {
-        const task = createDownloadResumable(signedUrl, staging.uri, {}, progress => {
-          onProgress?.(Math.min(1, progress.totalBytesWritten / expected.sizeBytes));
-        });
-        const timeout = setTimeout(() => { void task.cancelAsync().catch(() => undefined); }, 120_000);
-        const cancellation = setInterval(() => { if (!hasCurrentConsumer() || activeAccountId !== accountId || activeAccountGeneration !== context.accountGeneration) void task.cancelAsync().catch(() => undefined); }, 200);
-        try {
-          const result = await task.downloadAsync();
-          if (!result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
-        } finally { clearTimeout(timeout); clearInterval(cancellation); }
-      } else await File.downloadFileAsync(signedUrl, staging, { idempotent: true });
+    const transferKey = JSON.stringify([context, publicPath, expected.checksum, expected.sizeBytes]);
+    const transfer = await acquireResourceTransfer(transferKey, signedUrl, expected.sizeBytes, required,
+      { isCurrent: hasCurrentConsumer, onProgress: reportProgress, isPlaybackActive, playback: temporary }).catch(error => {
       assertMemberContentContextCurrent(context);
       if (!hasCurrentConsumer()) return undefined;
-      if (staging.size !== expected.sizeBytes) throw new Error('resource_size_mismatch');
-      const bytes = new Uint8Array(await staging.bytes());
-      const hash = Array.from(new Uint8Array(await digest(CryptoDigestAlgorithm.SHA256, bytes)))
-        .map((value) => value.toString(16).padStart(2, '0')).join('');
-      if (hash !== expected.checksum) throw new Error('resource_checksum_mismatch');
-      return await withAccountContentLock(accountId, async () => {
+      throw error;
+    });
+    if (!transfer) { assertMemberContentContextCurrent(context); return undefined; }
+    const staging = transfer.file;
+    try {
+      return await processResourceBytes(async () => {
         assertMemberContentContextCurrent(context);
         if (!hasCurrentConsumer()) return undefined;
-        if (!temporary && !publicDownload && !await readMemberTopicCache(accountId, scope!)) return undefined;
-        assertMemberContentContextCurrent(context);
-        if (!hasCurrentConsumer()) return undefined;
-        directory.create({ idempotent: true, intermediates: true });
-        if (file.exists) file.delete();
-        if (temporary) staging.move(file);
-        else {
-          const key = await contentKey(accountId, true);
-          const sealed = await aesEncryptAsync(bytes, key!, { additionalData: new TextEncoder().encode(`${accountId}/${environment}/${publicPath}/${expected.checksum}`) });
+        if (staging.size !== expected.sizeBytes) throw new Error('resource_size_mismatch');
+        const bytes = new Uint8Array(await staging.bytes());
+        const hash = Array.from(new Uint8Array(await digest(CryptoDigestAlgorithm.SHA256, bytes)))
+          .map((value) => value.toString(16).padStart(2, '0')).join('');
+        if (hash !== expected.checksum) throw new Error('resource_checksum_mismatch');
+        return await withAccountContentLock(accountId, async () => {
           assertMemberContentContextCurrent(context);
           if (!hasCurrentConsumer()) return undefined;
-          file.write(await sealed.combined());
-        }
-        if (temporary) {
-          touchTemporaryResource(file);
-          pruneTemporaryResources(directory);
-        } else {
-          const previousChecksum = await Storage.getItem(checksumKey);
+          if (!temporary && !publicDownload && !await readMemberTopicCache(accountId, scope!)) return undefined;
           assertMemberContentContextCurrent(context);
-          await Storage.setItem(checksumKey, expected.checksum);
-          if (publicDownload) await Storage.setItem(`${resourceIndexKey(accountId, environment, publicPath)}.public`, '1');
-          if (previousChecksum && previousChecksum !== expected.checksum) {
-            const obsolete = await memberResourceFile(accountId, environment, publicPath, previousChecksum);
-            if (obsolete.exists) obsolete.delete();
+          if (!hasCurrentConsumer()) return undefined;
+          directory.create({ idempotent: true, intermediates: true });
+          if (file.exists) file.delete();
+          if (temporary) file.write(bytes);
+          else {
+            const key = await contentKey(accountId, true);
+            const sealed = await aesEncryptAsync(bytes, key!, { additionalData: new TextEncoder().encode(`${accountId}/${environment}/${publicPath}/${expected.checksum}`) });
+            const output = await sealed.combined();
+            assertMemberContentContextCurrent(context);
+            if (!hasCurrentConsumer()) return undefined;
+            file.write(output);
           }
-          await Storage.removeItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`);
-          assertMemberContentContextCurrent(context);
-        }
-        return file.exists ? file.uri : undefined;
-      });
-    } finally {
-      activeResourceTransfers -= 1;
-      // File.move mutates staging.uri; only remove the original partial path.
-      const partial = new File(stagingUri);
-      if (partial.exists) partial.delete();
-    }
+          if (temporary) {
+            touchTemporaryResource(file);
+            pruneTemporaryResources(directory);
+          } else {
+            const previousChecksum = await Storage.getItem(checksumKey);
+            assertMemberContentContextCurrent(context);
+            await Storage.setItem(checksumKey, expected.checksum);
+            if (publicDownload) await Storage.setItem(`${resourceIndexKey(accountId, environment, publicPath)}.public`, '1');
+            if (previousChecksum && previousChecksum !== expected.checksum) {
+              const obsolete = await memberResourceFile(accountId, environment, publicPath, previousChecksum);
+              if (obsolete.exists) obsolete.delete();
+            }
+            await Storage.removeItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`);
+            assertMemberContentContextCurrent(context);
+          }
+          return file.exists ? file.uri : undefined;
+        });
+      }, temporary);
+    } finally { transfer.release(); }
   })();
-  const download = { promise: downloading, consumers };
+  const download = { promise: downloading, consumers, progress };
   resourceDownloads.set(downloadKey, download);
   try {
     const result = await downloading;

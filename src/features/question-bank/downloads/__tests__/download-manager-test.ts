@@ -171,3 +171,85 @@ test('a word removed from one book does not invalidate audio still published in 
   expect(mockInvalidate).not.toHaveBeenCalled();
   expect(downloadSnapshot()['vocabulary:icao4']?.outdated).toBe(false);
 });
+
+function multiManifest() {
+  return { ...manifest(), sizeBytes: 1000, resources: [100, 200, 300, 400].map((sizeBytes, index) => ({ ...manifest().resources[0], publicPath: `/file-${index}.mp3`, sizeBytes })) };
+}
+function prepareMulti() {
+  const value = multiManifest();
+  mockNetwork.mockResolvedValue({ isConnected: true, type: 'WIFI' });
+  mockRequest.mockImplementation(async (url: string) => url.includes('resolve-batch')
+    ? value.resources.map(resource => ({ ...resource, url: `https://media.test${resource.publicPath}`, expiresIn: 300 })) : value);
+  return value;
+}
+test('downloads two resources concurrently and reports bytes before any resource finishes', async () => {
+  const value = prepareMulti();
+  const held: { finish(): void; options: any }[] = [];
+  mockCache.mockImplementation((_path, _url, _metadata, options) => new Promise(resolve => { held.push({ finish: () => resolve('file:sealed'), options }); }));
+  await startDownload(value); await waitFor(() => expect(held).toHaveLength(2));
+  held[0].options.onProgress(0.5); // 50 bytes out of 1000, not 1/4 files.
+  expect(downloadSnapshot().listening?.downloadedBytes).toBe(50);
+  expect(downloadSnapshot().listening?.completed).toBe(0);
+  held[0].finish(); held[1].finish(); await waitFor(() => expect(held).toHaveLength(4));
+  expect(downloadSnapshot().listening?.downloadedBytes).toBe(300);
+  held[2].finish(); held[3].finish();
+  await waitFor(() => expect(downloadSnapshot().listening?.saved).toBeDefined());
+  expect(mockVerify).toHaveBeenCalledTimes(4); expect(downloadSnapshot().listening?.downloadedBytes).toBe(1000);
+  await waitFor(() => expect(downloadSnapshot().listening?.latest).toBeDefined());
+});
+test('one failed worker stops dispatch and waits for siblings; their late progress cannot revive the package', async () => {
+  const value = prepareMulti();
+  const held: { finish(): void; fail(): void; options: any }[] = [];
+  mockCache.mockImplementation((_path, _url, _metadata, options) => new Promise((resolve, reject) => {
+    held.push({ finish: () => resolve('file:sealed'), fail: () => reject(new Error('network_interrupted')), options });
+  }));
+  await startDownload(value); await waitFor(() => expect(held).toHaveLength(2)); held[0].fail();
+  await waitFor(() => expect(held[1].options.isCurrent()).toBe(false));
+  held[1].options.onProgress(1); expect(downloadSnapshot().listening?.downloadedBytes).toBe(0);
+  expect(mockVerify).not.toHaveBeenCalled(); held[1].finish();
+  await waitFor(() => expect(downloadSnapshot().listening?.phase).toBe('paused'));
+  expect(held).toHaveLength(2); expect(downloadSnapshot().listening?.saved).toBeUndefined();
+});
+test('cancel then immediate resume waits for old workers and does not accept their completion', async () => {
+  const value = prepareMulti(); const held: { finish(): void; options: any }[] = [];
+  mockCache.mockImplementation((_path, _url, _metadata, options) => new Promise(resolve => { held.push({ finish: () => resolve('file:sealed'), options }); }));
+  await startDownload(value); await waitFor(() => expect(held).toHaveLength(2));
+  await cancelDownload('listening'); await startDownload(value);
+  expect(downloadSnapshot().listening?.phase).toBe('queued');
+  expect(held[0].options.isCurrent()).toBe(false); held[0].options.onProgress(1);
+  expect(downloadSnapshot().listening?.downloadedBytes).toBe(0);
+  held[0].finish(); held[1].finish(); await waitFor(() => expect(held).toHaveLength(4));
+  expect(downloadSnapshot().listening?.saved).toBeUndefined();
+  await cancelDownload('listening'); held[2].finish(); held[3].finish();
+  await new Promise(resolve => setTimeout(resolve, 20)); expect(mockVerify).not.toHaveBeenCalled();
+});
+test('switching account while workers run ignores old progress and completion', async () => {
+  const value = prepareMulti(); const held: { finish(): void; options: any }[] = [];
+  mockCache.mockImplementation((_path, _url, _metadata, options) => new Promise(resolve => { held.push({ finish: () => resolve('file:sealed'), options }); }));
+  await startDownload(value); await waitFor(() => expect(held).toHaveLength(2));
+  mockAccount += '-new'; await prepareDownloads();
+  held.forEach(task => { task.options.onProgress(1); task.finish(); });
+  await new Promise(resolve => setTimeout(resolve, 20));
+  expect(downloadSnapshot()).toEqual({}); expect(mockVerify).not.toHaveBeenCalled();
+});
+
+test('reused files do not transfer again and final integrity failure never marks the package complete', async () => {
+  const value = prepareMulti();
+  mockPrepared.mockImplementation(async path => path === value.resources[0].publicPath);
+  mockVerify.mockImplementation(async path => path !== value.resources[0].publicPath);
+  await startDownload(value); await waitFor(() => expect(downloadSnapshot().listening?.phase).toBe('paused'));
+  expect(mockCache).toHaveBeenCalledTimes(3); expect(downloadSnapshot().listening?.saved).toBeUndefined();
+  expect(downloadSnapshot().listening?.target).toEqual(value);
+});
+
+test('concurrent workers renew an expired signature batch once before downloading remaining files', async () => {
+  const value = prepareMulti(); const clock = jest.spyOn(Date, 'now'); const originalNow = Date.now(); let elapsed = 0;
+  clock.mockImplementation(() => originalNow + elapsed);
+  let count = 0;
+  mockCache.mockImplementation(async () => { if (++count === 2) elapsed = 301000; return 'file:sealed'; });
+  try {
+    await startDownload(value); await waitFor(() => expect(downloadSnapshot().listening?.latest).toBeDefined());
+    expect(mockCache).toHaveBeenCalledTimes(4);
+    expect(mockRequest.mock.calls.filter(([url]) => url.includes('resolve-batch'))).toHaveLength(2);
+  } finally { clock.mockRestore(); }
+});
