@@ -30,7 +30,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | App Store | 正式仍为1.2.1 / 3576434；1.2.2 / 3586478已于10月27日20:39提交，WAITING_FOR_REVIEW | 本轮仅删除课程弹层末尾一行，保留原审核通过后自动发布设置；尚未批准/上架，正式清单未切换。[送审回执](../../records/releases/20261026-audio-session-recovery.md) |
 | Android 测试版 | 1.4.1 / 3593080，独立测试包已更新 | 签名、包身份、公开摘要通过；同源900句存储键问题随1.4.2修正。正式 APK 保持。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
 | iOS TestFlight | 1.4.1 / 3593080，Apple VALID、IN_BETA_TESTING，内部“测试”组可访问 | 源码78aa1b3a；900句根因修复、紧凑下载页、随身听及三本词书离线。保留PDF，网页不下载。真机反馈900句加载仍失败，1.4.2存储键热修准备中。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
-| EdgeOne 产品 Web | 1.4.1，源码a8fdceb3，deployment dp23x0c1hw40 | 公网脚本与本地摘要一致，下载页正常；网页无离线下载，PDF保持。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
+| EdgeOne 产品 Web | 1.4.3，源码aed11822，deployment dp6h8t31bptd | 网页、收藏与主屏幕图标及随身听锁屏封面统一 App logo；公网图标和脚本摘要一致，iPhone锁屏效果待用户验收。[记录](../../records/releases/20261101-web-brand-logo-1.4.3.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | offline-root-20261031-78aa1b3a，已健康切换 | 无数据库迁移；十种范围、三本词书清单与实际音频摘要、900句场景、真实AI验证通过。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
