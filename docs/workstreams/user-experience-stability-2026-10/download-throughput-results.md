@@ -24,6 +24,12 @@
 - `git diff --check`：通过。
 - 新增关键覆盖：2/4 worker 上限与恰好一次处理；首错停止并排空；真实字节更新；取消后立即恢复；切账号晚到结果；本机复用且完整校验失败；签名过期合并刷新；下载/播放跨输出共享真实缓存调用链；一消费者取消；全部取消；部分文件清理与重试；播放处理优先；磁盘处理未完不得释放传输槽。
 
+## CI 跨端 fixture 补齐
+
+PR #304 首次 CI（41277463827）发现 `services/api/scripts/app-content-native.test.mjs` 的 VM loader 未声明新共享传输模块，导致两项媒体回归 `unexpected_import`。现加载真实 `shared-resource-transfers.native.ts` 与 worker 模块，仍只 stub 原生文件/网络原语；保留原版本替换、账号切换、损坏校验，并新增 required 原生传输、实时进度、加密落盘及暂存清理用例。
+
+聚焦验证：API 跨端文件 **12 tests** 通过，客户端 repository/shared-transfer **58 tests** 通过；脚本语法和 diff check 通过。此次只改测试装配，不修改 API 运行时代码或共享合同。
+
 ## 本地有界队列 I/O 对照
 
 脚本：`tools/benchmarks/download-resource-workers.ts`，原始 18 次样本：[download-worker-benchmark.json](download-worker-benchmark.json)。
