@@ -55,7 +55,7 @@ jest.mock('expo-router', () => ({
 jest.mock('@/features/question-bank/lib/study-catalog-progress', () => ({
   loadStudyCatalogProgress: jest.fn(),
 }));
-const mockCatalog = [
+let mockCatalog = [
   { id: 'listening', title: '听力', declaredCardCount: 160, categories: [] },
   { id: 'sentences900', title: '900句', declaredCardCount: 120, categories: [] },
   { id: 'radiotelephony', title: '陆空通话', declaredCardCount: 120, categories: [] },
@@ -143,6 +143,35 @@ describe('<ProfileTab />', () => {
     await screen.rerender(<ProfileTab />);
     expect(screen.getByText('3')).toBeTruthy();
     expect(screen.getByText('1')).toBeTruthy();
+  });
+
+  it('keeps all visible progress while equivalent or changed catalogs refresh, including a failed refresh', async () => {
+    jest.mocked(loadStudyCatalogProgress).mockResolvedValue({ listening: 5, sentences900: 2, radiotelephony: 7, opi: 6 });
+    const screen = await render(<ProfileTab />);
+    let finish!: (value: { listening: number }) => void;
+    jest.mocked(loadStudyCatalogProgress).mockReturnValueOnce(new Promise(resolve => { finish = resolve; }));
+    mockCatalog = mockCatalog.map(bank => ({ ...bank }));
+    await screen.rerender(<ProfileTab />);
+    expect(screen.queryAllByText('—')).toHaveLength(0);
+    expect(screen.getByText('5')).toBeTruthy();
+    await act(async () => finish({ listening: 9 }));
+    expect(screen.getByText('9')).toBeTruthy();
+    jest.mocked(loadStudyCatalogProgress).mockRejectedValueOnce(new Error('temporary read failure'));
+    mockCatalog = mockCatalog.map(bank => ({ ...bank }));
+    await screen.rerender(<ProfileTab />);
+    expect(screen.getByText('9')).toBeTruthy();
+    expect(screen.getByText('进度读取失败，点击重试')).toBeTruthy();
+  });
+
+  it('does not reuse another target progress while its new totals are loading', async () => {
+    jest.mocked(loadStudyCatalogProgress).mockResolvedValue({ listening: 55 });
+    const screen = await render(<ProfileTab />);
+    expect(screen.getByText('55')).toBeTruthy();
+    jest.mocked(loadStudyCatalogProgress).mockReturnValueOnce(new Promise(() => {}));
+    mockProfile.target = 'icao5-first';
+    await screen.rerender(<ProfileTab />);
+    expect(screen.queryByText('55')).toBeNull();
+    mockProfile.target = 'icao4-first';
   });
 
   it('opens word favorites from the row below annotations', async () => {

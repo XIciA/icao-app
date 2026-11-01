@@ -29,7 +29,7 @@ export function ProfileLearningCard() {
   const auth = useAuth();
   const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   const environment = useSyncExternalStore(subscribeNativeCommerceEnvironment, nativeCommerceEnvironmentSnapshot, nativeCommerceEnvironmentSnapshot);
-  const owner = `${accountId ?? ''}:${environment}`;
+  const owner = `${accountId ?? ''}:${environment}:${normalizeStudyScope(profile.studyScope)}:${profile.target}`;
   const catalog = useStudyCatalog();
   const scope = normalizeStudyScope(profile.studyScope);
   const [preferencesAccount, setPreferencesAccount] = useState<string>();
@@ -48,13 +48,13 @@ export function ProfileLearningCard() {
       try {
         const progress = await loadStudyCatalogProgress(catalog, scope);
         if (active && sequence === request) setResult({ owner, catalog, progress });
-      } catch { if (active && sequence === request) setResult({ owner, catalog, failed: true }); }
+      } catch { if (active && sequence === request) setResult(previous => ({ owner, catalog: previous?.owner === owner ? previous.catalog : catalog, progress: previous?.owner === owner ? previous.progress : undefined, failed: true })); }
     }
     void refresh();
     const subscription = AppState.addEventListener('change', state => { if (state === 'active') void refresh(); });
     return () => { active = false; subscription.remove(); };
   }, [accountId, attempt, catalog, owner, scope]));
-  const visibleResult = result?.owner === owner && result.catalog === catalog ? result : undefined;
+  const visibleResult = result?.owner === owner ? result : undefined;
   const goal = examGoal(profile.target);
   const scopeTitle = STUDY_SCOPE_OPTIONS.find(option => option.value === scope)?.title ?? '精选题库';
   // Keep the selected goal and scope together, with inline progress totals.
@@ -65,7 +65,7 @@ export function ProfileLearningCard() {
         <ChevronRight size={17} color={colors.mutedForeground} />
       </Pressable>
       <View style={styles.progress}>
-        {catalog.map(bank => {
+        {(visibleResult?.progress ? visibleResult.catalog : catalog).map(bank => {
           const learned = visibleResult?.progress?.[bank.id];
           const percent = learned === undefined ? 0 : Math.min(1, learned / Math.max(1, bank.declaredCardCount));
           return <Pressable key={bank.id} accessibilityRole="button" accessibilityLabel={`${bank.title}，${learned === undefined ? '进度待读取' : `已练习 ${learned} 题`}，共 ${bank.declaredCardCount} 题`} accessibilityHint="进入对应题库" onPress={() => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: bank.id } })} style={({ pressed }) => [styles.part, pressed && styles.pressed]}>

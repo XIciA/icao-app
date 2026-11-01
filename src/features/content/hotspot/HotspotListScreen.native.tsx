@@ -56,7 +56,7 @@ function HotspotListContent() {
                     <View style={styles.tagsRow}>
                       {hotspotCenters(brief).map((center) => <Tag key={center}><MapPin size={11} /> {center}</Tag>)}
                     </View>
-                    <AppText variant="caption">{hotspotCenters(brief).length ? `${hotspotCenters(brief).length} 个考点` : '综合反馈'} · {totalQuestions} 道题</AppText>
+                    <AppText variant="caption">{hotspotCenters(brief).length ? `${hotspotCenters(brief).length} 个考点` : '全部考点'} · {totalQuestions} 道题</AppText>
                   </View>
                   <ChevronRight color={colors.mutedForeground} size={18} />
                 </View>

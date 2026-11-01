@@ -143,13 +143,28 @@ export function legalConsentMatches(receipt: LegalConsentReceipt | null | undefi
 }
 
 /** One day is one directory entry. Source IDs remain usable as aliases and prompt keys. */
-const nonCenterLabels = new Set(['多考点反馈','冬季运行专题','综合反馈']);
+const nonCenterLabels = new Set(['多考点反馈','冬季运行专题','综合反馈','本日综合反馈','本日综合考点','全部考点']);
+export const HOTSPOT_CENTER_NAMES = ['北京考点','广汉考点','新津考点','绵阳考点','广州考点','新疆考点','西南考点','遂宁考点','深圳考点','上海考点'] as const;
+/** Stable presentation aliases; source IDs and reported questions remain unchanged. */
+export function normalizeHotspotCenter(value: string): string {
+  const label = value.trim();
+  if (!label || nonCenterLabels.has(label)) return '';
+  if (/新京|新津/u.test(label)) return '新津考点';
+  if (/绥宁|遂宁/u.test(label)) return '遂宁考点';
+  const known = HOTSPOT_CENTER_NAMES.find(center => label.includes(center.slice(0, -2)));
+  if (known) return known;
+  if (/飞院本部|中飞院/u.test(label)) return '广汉考点';
+  // Deterministic assignment keeps legacy unknown labels stable across refreshes/devices.
+  let hash = 2166136261;
+  for (const character of label) hash = Math.imul(hash ^ character.charCodeAt(0), 16777619) >>> 0;
+  return HOTSPOT_CENTER_NAMES[hash % HOTSPOT_CENTER_NAMES.length]!;
+}
 export function dailyHotspotTitle(date: string) {
   const [year,month,day]=date.split('-');
   return `${year}年${Number(month)}月${Number(day)}日 OPI 热点`;
 }
 export function hotspotCenters(brief: Pick<AppContentHotspotBrief,'centers'>) {
-  return [...new Set(brief.centers.map(center=>center.trim()).filter(center=>center&&!nonCenterLabels.has(center)))];
+  return [...new Set(brief.centers.map(normalizeHotspotCenter).filter(Boolean))];
 }
 export function hotspotSources(brief: AppContentHotspotBrief): AppContentHotspotSource[] {
   return brief.sources ?? [{id:brief.id,title:brief.title,centers:[...brief.centers],topics:brief.topics.map(t=>({...t,cardIds:[...t.cardIds]})),kind:brief.centers.length===1&&!nonCenterLabels.has(brief.centers[0]!)?'feedback':'general'}];
@@ -183,7 +198,7 @@ export function normalizeDailyHotspots(briefs: AppContentHotspotBrief[]): AppCon
       if(existing&&canonicalAppContentJson(existing)!==canonicalAppContentJson(source))throw new Error('hotspot_source_conflict');
       if(!existing)sources.push(source);
     }
-    const centers=[...new Set(sources.flatMap(source=>hotspotCenters(source)))];
+    const centers=[...new Set(sources.filter(source=>source.kind==='feedback').flatMap(hotspotCenters))];
     days.set(brief.date,{id:previous?.id??brief.id,date:brief.date,title:dailyHotspotTitle(brief.date),centers:centers.length?centers:['综合反馈'],topics:unionHotspotTopics(sources),sources});
   }
   return [...days.values()].sort((a,b)=>b.date.localeCompare(a.date));
@@ -202,8 +217,8 @@ export function mergeHotspotFeedback(briefs: AppContentHotspotBrief[], incoming:
 }
 export function selectHotspotSource(brief: AppContentHotspotBrief, selection: string): AppContentHotspotBrief {
   if(selection==='all')return brief;
-  const sources=hotspotSources(brief).filter(s=>selection==='general'?s.kind==='general':s.kind==='feedback'&&s.centers.includes(selection));
-  const centers=[...new Set(sources.flatMap(hotspotCenters))];
+  const sources=hotspotSources(brief).filter(s=>selection==='general'?s.kind==='general':s.kind==='feedback'&&hotspotCenters(s).includes(normalizeHotspotCenter(selection)));
+  const centers=[...new Set(sources.filter(source=>source.kind==='feedback').flatMap(hotspotCenters))];
   return {...brief,centers:centers.length?centers:['综合反馈'],topics:unionHotspotTopics(sources),sources};
 }
 export function hotspotReportedPrompts(brief: AppContentHotspotBrief, card: {id:string;reportedPrompts?:Record<string,string[]>}) {
@@ -211,7 +226,7 @@ export function hotspotReportedPrompts(brief: AppContentHotspotBrief, card: {id:
   return [...new Set(sources.flatMap(s=>card.reportedPrompts?.[s.id]??[]))];
 }
 export function hotspotQuestionOrigins(brief: AppContentHotspotBrief, cardId: string) {
-  return [...new Set(hotspotSources(brief).filter(s=>s.topics.some(t=>t.cardIds.includes(cardId))).flatMap(s=>s.kind==='general'?['本日综合反馈']:hotspotCenters(s)))];
+  return [...new Set(hotspotSources(brief).filter(s=>s.topics.some(t=>t.cardIds.includes(cardId))).flatMap(s=>s.kind==='general'?['全部考点']:hotspotCenters(s)))];
 }
 /** v2 callers have strict keys and source-keyed reportedPrompts. Keep their links readable. */
 export function compatibleHotspotBriefs(briefs: AppContentHotspotBrief[]): AppContentHotspotBrief[] {
