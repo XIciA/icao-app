@@ -167,8 +167,7 @@ export function hotspotCenters(brief: Pick<AppContentHotspotBrief,'centers'>) {
   return [...new Set(brief.centers.map(normalizeHotspotCenter).filter(Boolean))];
 }
 export function hotspotSources(brief: AppContentHotspotBrief): AppContentHotspotSource[] {
-  const sources = brief.sources ?? [{id:brief.id,title:brief.title,centers:[...brief.centers],topics:brief.topics.map(t=>({...t,cardIds:[...t.cardIds]})),kind:brief.centers.length===1&&!nonCenterLabels.has(brief.centers[0]!)?'feedback' as const:'general' as const}];
-  return sources.map(source => ({ ...source, centers: source.kind === 'general' ? ['综合反馈'] : hotspotCenters(source) }));
+  return brief.sources ?? [{id:brief.id,title:brief.title,centers:[...brief.centers],topics:brief.topics.map(t=>({...t,cardIds:[...t.cardIds]})),kind:brief.centers.length===1&&!nonCenterLabels.has(brief.centers[0]!)?'feedback':'general'}];
 }
 function unionHotspotTopics(sources: AppContentHotspotSource[]) {
   const groups = new Map<string,AppContentHotspotBrief['topics'][number]>();
@@ -199,7 +198,7 @@ export function normalizeDailyHotspots(briefs: AppContentHotspotBrief[]): AppCon
       if(existing&&canonicalAppContentJson(existing)!==canonicalAppContentJson(source))throw new Error('hotspot_source_conflict');
       if(!existing)sources.push(source);
     }
-    const centers=[...new Set(sources.flatMap(source=>hotspotCenters(source)))];
+    const centers=[...new Set(sources.filter(source=>source.kind==='feedback').flatMap(hotspotCenters))];
     days.set(brief.date,{id:previous?.id??brief.id,date:brief.date,title:dailyHotspotTitle(brief.date),centers:centers.length?centers:['综合反馈'],topics:unionHotspotTopics(sources),sources});
   }
   return [...days.values()].sort((a,b)=>b.date.localeCompare(a.date));
@@ -218,8 +217,8 @@ export function mergeHotspotFeedback(briefs: AppContentHotspotBrief[], incoming:
 }
 export function selectHotspotSource(brief: AppContentHotspotBrief, selection: string): AppContentHotspotBrief {
   if(selection==='all')return brief;
-  const sources=hotspotSources(brief).filter(s=>selection==='general'?s.kind==='general':s.kind==='feedback'&&s.centers.includes(normalizeHotspotCenter(selection)));
-  const centers=[...new Set(sources.flatMap(hotspotCenters))];
+  const sources=hotspotSources(brief).filter(s=>selection==='general'?s.kind==='general':s.kind==='feedback'&&hotspotCenters(s).includes(normalizeHotspotCenter(selection)));
+  const centers=[...new Set(sources.filter(source=>source.kind==='feedback').flatMap(hotspotCenters))];
   return {...brief,centers:centers.length?centers:['综合反馈'],topics:unionHotspotTopics(sources),sources};
 }
 export function hotspotReportedPrompts(brief: AppContentHotspotBrief, card: {id:string;reportedPrompts?:Record<string,string[]>}) {

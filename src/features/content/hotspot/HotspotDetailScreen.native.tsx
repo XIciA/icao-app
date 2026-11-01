@@ -41,7 +41,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
           <>
             <View style={styles.filters}>
               <Button size="sm" variant={selection==='all'?'primary':'outline'} onPress={()=>setSelection('all')}>全部考点</Button>
-              {hotspotCenters(state.brief).filter(center=>hotspotSources(state.brief).some(s=>s.kind==='feedback'&&s.centers.includes(center))).map(center=><Button key={center} size="sm" variant={selection===center?'primary':'outline'} onPress={()=>setSelection(center)}>{center}</Button>)}
+              {hotspotCenters(state.brief).filter(center=>hotspotSources(state.brief).some(s=>s.kind==='feedback'&&hotspotCenters(s).includes(center))).map(center=><Button key={center} size="sm" variant={selection===center?'primary':'outline'} onPress={()=>setSelection(center)}>{center}</Button>)}
             </View>
             <View style={styles.topicsSection}>
               <AppText variant="sectionTitle">涵盖话题与问题（{topics.length}）</AppText>
