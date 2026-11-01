@@ -1,9 +1,9 @@
 # 项目管理概览与产品状态
 
-核对日期：2026-10-31（北京时间）
+核对日期：2026-11-01（北京时间）
 
 本页汇总管理所需的产品状态、交付和待验事项。依据是仓库实现与已保存的发布证据，
-各渠道按各自最近证据更新；本轮API、TestFlight、Android测试版和Web按10月31日实测更新，后台与基础监控保留各自最近记录；
+各渠道按各自最近证据更新；API与TestFlight按11月1日实测更新，其他渠道、后台与基础监控保留各自最近记录；
 “已发布”均指对应记录中的结果。
 
 ## 产品与运行链路
@@ -29,16 +29,16 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
 | App Store | 正式仍为1.2.1 / 3576434；1.2.2 / 3586478已于10月27日20:39提交，WAITING_FOR_REVIEW | 本轮仅删除课程弹层末尾一行，保留原审核通过后自动发布设置；尚未批准/上架，正式清单未切换。[送审回执](../../records/releases/20261026-audio-session-recovery.md) |
 | Android 测试版 | 1.4.1 / 3593080，独立测试包已更新 | 签名、包身份、公开摘要通过；同源900句存储键问题随1.4.2修正。正式 APK 保持。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
-| iOS TestFlight | 1.4.1 / 3593080，Apple VALID、IN_BETA_TESTING，内部“测试”组可访问 | 源码78aa1b3a；900句根因修复、紧凑下载页、随身听及三本词书离线。保留PDF，网页不下载。真机反馈900句加载仍失败，1.4.2存储键热修准备中。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
+| iOS TestFlight | 1.4.4 / 3593082，Apple VALID、IN_BETA_TESTING，内部“测试”组可访问 | 源码10e2dc48；包含900句存储键修复、最新下载优化及会员现价28/68/168元；仅测试渠道更新，真机验收待完成。[记录](../../records/releases/20261101-performance-pricing-1.4.4.md) |
 | EdgeOne 产品 Web | 1.4.3，源码aed11822，deployment dp6h8t31bptd | 网页、收藏与主屏幕图标及随身听锁屏封面统一 App logo；公网图标和脚本摘要一致，iPhone锁屏效果待用户验收。[记录](../../records/releases/20261101-web-brand-logo-1.4.3.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
-| ECS API | offline-root-20261031-78aa1b3a，已健康切换 | 无数据库迁移；十种范围、三本词书清单与实际音频摘要、900句场景、真实AI验证通过。[记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md) |
+| ECS API | production-migration-10e2dc48f780，11月1日18:06健康切换 | 0059两索引先恢复演练后迁移，101表指纹一致；19接口、五库音频、旧格式同步与真实AI通过。保留备份及旧镜像。[记录](../../records/releases/20261101-performance-pricing-1.4.4.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
 | 内容运营后台 | 10月27日20:04 vocabulary-levels-20261027-29ae9cd3已上线，源码29ae9cd3 | 批量调整等级、跨词书草稿、统一提交和历史查询已交付；备份隔离恢复、公网资源/健康、权限隔离和110词只读预览通过。App API镜像和启动时间不变，正式词库仍v5/1652词；用户界面验收待完成。[本轮记录](../../records/releases/20261027-vocabulary-level-batch.md) |
 
 ## 当前关注与下一步
 
-- **1.4.1 离线根因修复候选（10月31日）**：优先完成TestFlight交付，API与Web已上线。按[详细清单](../../workstreams/offline-learning-2026-10/device-acceptance.md)验收900句、下载页、离线学习、随身听、三本词书与更新同步；PDF保持，网页不下载。[发布记录](../../records/releases/20261031-offline-root-fixes-1.4.1.md)。
+- **1.4.4 性能与价格候选（11月1日）**：兼容后端已上线，TestFlight已交付。优先真机验收冷启动、900句、已有离线包、播放同时下载、取消恢复、账号切换、录音AI及价格。正式移动端渠道保持，CPU/内存仍预约11月2日03:00重启。[记录](../../records/releases/20261101-performance-pricing-1.4.4.md)。
 
 - **后台批量调整等级与历史（10月27日）**：本地与线上运营后台已交付，跨三词书草稿、统一事务提交和逐词历史可用；生产验证通过，待用户实际整理验收。App无需重新发包，正式词库v5/1652词及App API保持。[本轮记录](../../records/releases/20261027-vocabulary-level-batch.md)。
 
