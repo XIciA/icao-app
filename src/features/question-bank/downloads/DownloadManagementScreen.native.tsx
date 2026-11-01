@@ -20,8 +20,8 @@ import { cancelDownload, checkDownloadUpdates, deleteDownload, downloadSnapshot,
 
 const banks = [
   { id: 'listening', title: '听力' }, { id: 'sentences900', title: '900 句' },
-  { id: 'radiotelephony', title: '陆空通话' }, { id: 'opi', title: 'OPI' },
-  { id: 'storytelling', title: '故事复诵' }, { id: 'vocabulary', title: '单词' },
+  { id: 'radiotelephony', title: '陆空通话' }, { id: 'storytelling', title: '故事复诵' },
+  { id: 'opi', title: 'OPI' }, { id: 'vocabulary', title: '单词' },
 ] as const;
 const size = (bytes: number) => `${(bytes / 1_000_000).toFixed(1)} MB`;
 const scopeLabel = (scope?: OfflineDownloadScope) => scope === 'icao4' ? '四级' : scope === 'icao5' ? '五级' : scope === 'selected' ? '精选题库' : '最全题库';

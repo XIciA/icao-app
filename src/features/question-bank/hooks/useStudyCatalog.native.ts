@@ -13,10 +13,15 @@ export function useStudyCatalog() {
   useFocusEffect(useCallback(() => {
     let active = true;
     void Promise.all(getEmbeddedQuestionBanks().map(async (bank) => (await loadQuestionBank(bank.id))?.dataset ?? bank))
-      .then((datasets) => { if (active) setLoaded({ owner, datasets }); })
+      .then((datasets) => { if (active) setLoaded(current => current?.owner === owner && JSON.stringify(current.datasets) === JSON.stringify(datasets) ? current : { owner, datasets }); })
       .catch(() => { /* The built-in directory remains usable offline. */ });
     const unsubscribe = subscribeQuestionBankCatalog(dataset => {
-      if (active) setLoaded(current => ({ owner, datasets: (current?.owner === owner ? current.datasets : getEmbeddedQuestionBanks()).map(bank => bank.id === dataset.id ? dataset : bank) }));
+      if (active) setLoaded(current => {
+        const datasets = current?.owner === owner ? current.datasets : getEmbeddedQuestionBanks();
+        const previous = datasets.find(bank => bank.id === dataset.id);
+        if (current?.owner === owner && JSON.stringify(previous) === JSON.stringify(dataset)) return current;
+        return { owner, datasets: datasets.map(bank => bank.id === dataset.id ? dataset : bank) };
+      });
     });
     return () => { active = false; unsubscribe(); };
   }, [owner]));

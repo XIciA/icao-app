@@ -1,6 +1,6 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useState } from 'react';
-import { hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
+import { normalizeHotspotCenter, hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
 import { useLocalSearchParams } from 'expo-router';
 import { Sparkles } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
@@ -22,7 +22,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
   const openMember = useMemberAction();
   const params=useLocalSearchParams<{center?:string}>();
-  const [selection,setSelection]=useState(params.center??'all');
+  const [selection,setSelection]=useState(!params.center || params.center === 'all' || params.center === 'general' ? 'all' : normalizeHotspotCenter(params.center));
   const { retry, state } = useHotspotOverview(briefId);
 
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
@@ -42,9 +42,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
             <View style={styles.filters}>
               <Button size="sm" variant={selection==='all'?'primary':'outline'} onPress={()=>setSelection('all')}>全部考点</Button>
               {hotspotCenters(state.brief).filter(center=>hotspotSources(state.brief).some(s=>s.kind==='feedback'&&s.centers.includes(center))).map(center=><Button key={center} size="sm" variant={selection===center?'primary':'outline'} onPress={()=>setSelection(center)}>{center}</Button>)}
-              {hotspotSources(state.brief).some(s=>s.kind==='general')?<Button size="sm" variant={selection==='general'?'primary':'outline'} onPress={()=>setSelection('general')}>本日综合反馈</Button>:null}
             </View>
-            {hotspotSources(state.brief).some(s=>s.kind==='general')?<AppText variant="caption">历史综合反馈未逐题确认考点归属，单独保留供查看。</AppText>:null}
             <View style={styles.topicsSection}>
               <AppText variant="sectionTitle">涵盖话题与问题（{topics.length}）</AppText>
               {topics.map((topic, topicIndex) => (
