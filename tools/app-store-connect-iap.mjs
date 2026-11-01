@@ -226,6 +226,28 @@ function priceScheduleBody(productId, pricePointId) {
   };
 }
 
+async function syncActivePrices(credentials, appId, contract) {
+  const remote = await listProducts(credentials, appId);
+  const results = [];
+  for (const product of contract.filter((item) => [7, 31, 93].includes(item.days))) {
+    const current = remote.find((item) => item.attributes?.productId === product.productId);
+    if (!current || current.attributes?.inAppPurchaseType !== 'NON_RENEWING_SUBSCRIPTION') {
+      throw new Error(`Existing membership product missing: ${product.productId}`);
+    }
+    const selected = await chinaPricePoint(credentials, current.id, product.targetPriceCny);
+    if (selected.value !== product.targetPriceCny) throw new Error('Exact requested price point unavailable');
+    const schedule = await optionalRelationship(credentials, `/v2/inAppPurchases/${encodeURIComponent(current.id)}/iapPriceSchedule`);
+    const previousPriceCny = await scheduleChinaPrice(credentials, schedule?.data?.id);
+    if (previousPriceCny !== selected.value) {
+      await api(credentials, '/v1/inAppPurchasePriceSchedules', {
+        method: 'POST', body: JSON.stringify(priceScheduleBody(current.id, selected.pricePoint.id)),
+      });
+    }
+    results.push({ productId: product.productId, previousPriceCny, requestedPriceCny: selected.value });
+  }
+  console.log(JSON.stringify({ results, availabilityChanged: false, submittedForReview: false }));
+}
+
 async function status(credentials, appId, contract) {
   const remote = await listProducts(credentials, appId);
   const byProductId = new Map(remote.map((product) => [product.attributes?.productId, product]));
@@ -478,10 +500,11 @@ const contract = productContract(source);
 const credentials = await appStoreConnectCredentials();
 const { appId } = await appStoreConnectAppContext(credentials, root);
 
-if (command === 'status') await status(credentials, appId, contract);
+if (command === 'sync-active-prices') await syncActivePrices(credentials, appId, contract);
+else if (command === 'status') await status(credentials, appId, contract);
 else if (command === 'sync-products') await syncProducts(credentials, appId, contract);
 else if (command === 'sync-commercial') await syncCommercial(credentials, appId, contract);
 else if (command === 'commercial-status') await commercialStatus(credentials, appId, contract);
 else if (command === 'notification-status') await notificationStatus(credentials, appId);
 else if (command === 'sync-notifications') await syncNotifications(credentials, appId);
-else throw new Error('Usage: node tools/app-store-connect-iap.mjs <status|sync-products|sync-commercial|commercial-status|notification-status|sync-notifications>');
+else throw new Error('Usage: node tools/app-store-connect-iap.mjs <sync-active-prices|status|sync-products|sync-commercial|commercial-status|notification-status|sync-notifications>');

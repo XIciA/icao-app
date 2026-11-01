@@ -1,5 +1,5 @@
 jest.mock('@react-navigation/native', () => ({...jest.requireActual('@react-navigation/native'), useIsFocused:()=>true}));
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render, waitFor, within } from '@testing-library/react-native';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Platform } from 'react-native';
@@ -39,19 +39,21 @@ describe('Native membership purchase page', () => {
   it.each(['ios', 'android'] as const)('shows CNY channel prices above the struck original prices on %s', async (platform) => {
     jest.replaceProperty(Platform, 'OS', platform);
     mockCommerce = runtimeValue({ offerings: [
-      { productKey: 'membership_7d_v1', durationDays: 7, localizedPrice: '¥12', currencyCode: 'CNY' },
-      { productKey: 'membership_31d_v1', durationDays: 31, localizedPrice: '¥38', currencyCode: 'CNY' },
-      { productKey: 'membership_93d_v1', durationDays: 93, localizedPrice: '¥98', currencyCode: 'CNY' },
+      { productKey: 'membership_7d_v1', durationDays: 7, localizedPrice: '¥28', currencyCode: 'CNY' },
+      { productKey: 'membership_31d_v1', durationDays: 31, localizedPrice: '¥68', currencyCode: 'CNY' },
+      { productKey: 'membership_93d_v1', durationDays: 93, localizedPrice: '¥168', currencyCode: 'CNY' },
     ] });
     const screen = await render(<Page />);
-    for (const price of ['¥12', '¥38', '¥98']) expect(screen.getByText(price)).toBeTruthy();
+    for (const [days, price] of [[7, '¥28'], [31, '¥68'], [93, '¥168']] as const) {
+      expect(within(screen.getByRole('radio', { name: `${days}天会员` })).getByText(price)).toBeTruthy();
+    }
     for (const original of [68, 158, 358]) {
       expect(screen.getByLabelText(`原价${original}元`)).toHaveStyle({ textDecorationLine: 'line-through' });
-      expect(screen.getByText(`¥${original}`)).toBeTruthy();
+      expect(screen.getByLabelText(`原价${original}元`)).toHaveTextContent(`¥${original}`);
     }
-    expect(screen.getByText('开通31天会员 · ¥38')).toBeTruthy();
+    expect(screen.getByText('开通31天会员 · ¥68')).toBeTruthy();
     await fireEvent.press(screen.getByRole('radio', { name: '7天会员' }));
-    expect(screen.getByText('开通7天会员 · ¥12')).toBeTruthy();
+    expect(screen.getByText('开通7天会员 · ¥28')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('membership-purchase'));
     expect(mockPurchase).toHaveBeenCalledWith('membership_7d_v1');
   });
