@@ -1,3 +1,4 @@
+import { countStatement } from '../performance/request-performance';
 import { Inject, Injectable, OnModuleDestroy } from '@nestjs/common';
 import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import postgres, { type Sql } from 'postgres';
@@ -18,9 +19,9 @@ export class DatabaseService implements OnModuleDestroy {
   private readonly client: Sql;
   readonly db: PostgresJsDatabase<typeof schema>;
 
-  constructor(@Inject(API_CONFIG) config: Pick<ApiConfig, 'databaseUrl'>) {
-    this.client = postgres(config.databaseUrl, { max: 5, prepare: false });
-    this.db = drizzle(this.client, { schema });
+  constructor(@Inject(API_CONFIG) config: Pick<ApiConfig, 'databaseUrl'> & { databaseApplicationName?: 'icao-api' | 'icao-ops-api' }) {
+    this.client = postgres(config.databaseUrl, { max: 5, prepare: false, connection: { application_name: config.databaseApplicationName ?? 'icao-api' } });
+    this.db = drizzle(this.client, { schema, logger: { logQuery: () => countStatement() } });
   }
 
   async ping() {

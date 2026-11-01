@@ -1,0 +1,125 @@
+{
+  "kind": "isolated-service-database-load",
+  "label": "candidate",
+  "commit": "310cbb4e8cf71a6ab954a3a60d8c882081d4b919",
+  "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "environment": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpus": 10,
+    "cpuModel": "Apple M4",
+    "totalMemoryBytes": 17179869184,
+    "node": "v24.4.1",
+    "postgres": "postgres (PostgreSQL) 14.20 (Homebrew)",
+    "dbPool": 5
+  },
+  "model": {
+    "prewarmed": false,
+    "users": 2000,
+    "durationSeconds": 60,
+    "rampSeconds": 10,
+    "downloadRatio": 0.1,
+    "topicIntervalSeconds": 30,
+    "playbackResolveIntervalSeconds": 30,
+    "downloadBatchIntervalSeconds": 10,
+    "batchSize": 24,
+    "maxActive": 256
+  },
+  "fixture": {
+    "banks": [
+      "listening",
+      "sentences900",
+      "radiotelephony",
+      "opi",
+      "storytelling"
+    ],
+    "resourceRows": 10507,
+    "membershipAccounts": 2000,
+    "content": "repository question-bank JSON",
+    "mediaMetadata": "synthetic path hashes and 100000-byte sizes; no audio bytes transferred"
+  },
+  "exclusions": [
+    "HTTP/TLS and Nest guards",
+    "Supabase JWT refresh and identity transactions",
+    "real Storage signing",
+    "internet bandwidth/CDN",
+    "phone decoding/encryption/storage",
+    "sync writes",
+    "real AI/payment/SMS"
+  ],
+  "elapsedMs": 72022.699666,
+  "offered": 9400,
+  "completed": 9400,
+  "dropped": 0,
+  "peakActive": 7,
+  "sqlCount": 46405,
+  "rssPeak": 653770752,
+  "cpuMilliseconds": 16549.457,
+  "eventLoopP95Ms": 11.558911,
+  "measurements": {
+    "download-manifest": {
+      "service": {
+        "count": 200,
+        "p50Ms": 11.960125000000062,
+        "p95Ms": 38.4862920000005,
+        "maxMs": 111.33824999999979
+      },
+      "scheduledToCompletion": {
+        "count": 200,
+        "p50Ms": 25.714624999999614,
+        "p95Ms": 52.428708000000825,
+        "maxMs": 111.89141599999994
+      },
+      "errors": {},
+      "serializedBytes": 191899120
+    },
+    "topic": {
+      "service": {
+        "count": 4000,
+        "p50Ms": 1.1802499999976135,
+        "p95Ms": 3.8760829999955604,
+        "maxMs": 32.1281659999986
+      },
+      "scheduledToCompletion": {
+        "count": 4000,
+        "p50Ms": 12.96362500000032,
+        "p95Ms": 21.31008299998939,
+        "maxMs": 43.184666000001016
+      },
+      "errors": {},
+      "serializedBytes": 807564000
+    },
+    "playback-resolve": {
+      "service": {
+        "count": 4000,
+        "p50Ms": 0.9617500000022119,
+        "p95Ms": 2.2183330000043497,
+        "maxMs": 20.98608299999978
+      },
+      "scheduledToCompletion": {
+        "count": 4000,
+        "p50Ms": 12.789833000002545,
+        "p95Ms": 20.909749999991618,
+        "maxMs": 41.195291
+      },
+      "errors": {},
+      "serializedBytes": 1648000
+    },
+    "download-resolve-24": {
+      "service": {
+        "count": 1200,
+        "p50Ms": 5.626333000000159,
+        "p95Ms": 10.273583000001963,
+        "maxMs": 55.758624999998574
+      },
+      "scheduledToCompletion": {
+        "count": 1200,
+        "p50Ms": 17.894625000000815,
+        "p95Ms": 27.024708000004466,
+        "maxMs": 66.51058299999931
+      },
+      "errors": {},
+      "serializedBytes": 11800560
+    }
+  }
+}

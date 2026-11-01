@@ -1,3 +1,4 @@
+import { observeBackground } from '../performance/request-performance';
 import {
   HttpException,
   Inject,
@@ -45,9 +46,9 @@ export class FeedbackCleanupService implements OnModuleInit, OnModuleDestroy {
 
   onModuleInit() {
     if (this.config.nodeEnv === 'test') return;
-    this.timer = setInterval(() => { void this.runScheduled(); }, DAY_MILLISECONDS);
+    this.timer = setInterval(() => { void observeBackground('feedback_cleanup', () => this.runScheduled(), this.logger); }, DAY_MILLISECONDS);
     this.timer.unref();
-    void this.runScheduled();
+    void observeBackground('feedback_cleanup', () => this.runScheduled(), this.logger);
   }
 
   onModuleDestroy() {

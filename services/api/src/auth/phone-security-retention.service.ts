@@ -1,3 +1,4 @@
+import { observeBackground } from '../performance/request-performance';
 import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { sql } from 'drizzle-orm';
 
@@ -16,7 +17,7 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
 
   onModuleInit() {
     this.cleanupTimer = setInterval(() => {
-      void this.cleanup().catch(() => this.logger.error('phone_security_retention_cleanup_failed'));
+      void observeBackground('phone_retention', () => this.cleanup(), this.logger).catch(() => this.logger.error('phone_security_retention_cleanup_failed'));
     }, CLEANUP_INTERVAL_MS);
     this.cleanupTimer.unref();
   }

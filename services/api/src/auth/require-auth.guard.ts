@@ -1,3 +1,4 @@
+import { timed } from '../performance/request-performance';
 import { Inject, Injectable, UnauthorizedException, type CanActivate, type ExecutionContext } from '@nestjs/common';
 import { AccountIdentityService } from '../account/account-identity.service';
 import { AUTH_VERIFIER, type AuthenticatedRequest, type AuthVerifier } from './auth.types';
@@ -19,9 +20,9 @@ export class RequireAuthGuard implements CanActivate {
 
     const token = authorization.slice('Bearer '.length).trim();
     if (!token) throw new UnauthorizedException('missing_bearer_token');
-    const auth = await this.verifier.verify(token);
-    await this.sessions.assertActive(auth);
-    auth.user = await this.identities.resolve(auth);
+    const auth = await timed('auth.verify', () => this.verifier.verify(token));
+    await timed('auth.session', () => this.sessions.assertActive(auth));
+    auth.user = await timed('auth.identity', () => this.identities.resolve(auth));
     request.auth = auth;
     request.user = auth.user;
     return true;

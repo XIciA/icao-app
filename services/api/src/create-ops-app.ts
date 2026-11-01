@@ -1,3 +1,4 @@
+import { registerRequestPerformance } from './performance/request-performance';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
 
@@ -20,6 +21,7 @@ export async function createOpsApp(config: OpsApiConfig = loadOpsConfig()) {
     }),
     { bufferLogs: true, rawBody: true },
   );
+  registerRequestPerformance(app.getHttpAdapter().getInstance());
   // Nest RouteConfig is Fastify's custom config, not its bodyLimit option.
   // Only the authenticated structured-draft route accepts complete bank payloads.
   app.getHttpAdapter().getInstance().addHook('onRoute', options => {

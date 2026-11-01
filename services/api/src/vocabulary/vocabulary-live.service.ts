@@ -1,3 +1,5 @@
+import { VersionedReadCache } from '../content/versioned-read-cache';
+import { timed, timedSync } from '../performance/request-performance';
 import { BadRequestException, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { canonicalVocabularyJson, vocabularyLivePayload, validateVocabularyLiveContent, type VocabularyLiveContent, type VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
 import { createHash } from 'node:crypto';
@@ -16,6 +18,7 @@ type Reader = Pick<DatabaseService['db'], 'select'>;
 
 @Injectable()
 export class VocabularyLiveService {
+  private readonly offlineContent = new VersionedReadCache<{ paths: string[]; vocabulary: NonNullable<OfflineManifest['vocabulary']>; textBytes: number }>({ maxBytes: 8 * 1024 * 1024 });
   private cached?: VocabularyLiveRelease;
   private bundled?: VocabularyLiveRelease;
   constructor(private readonly database: DatabaseService) {}
@@ -25,9 +28,17 @@ export class VocabularyLiveService {
     const release = await this.get();
     const book = release.dataset.books.find(item => item.id === bookId);
     if (!book) throw new ServiceUnavailableException('vocabulary_book_unavailable');
-    const paths = [...new Set(book.words.flatMap(word => [word.pronunciationText || word.word, word.example].filter(Boolean).map(text =>
-      `/pronunciation-assets/${createHash('sha256').update(normalizeVocabularyPronunciation(text)).digest('hex')}.mp3`)))].sort();
-    const rows = await this.database.db.select().from(resourceObjects).where(and(eq(resourceObjects.status, 'ready'), inArray(resourceObjects.sourcePath, paths))).orderBy(desc(resourceObjects.createdAt));
+    const prepared = await this.offlineContent.get(JSON.stringify([release.version, release.checksum, bookId]), async () =>
+      timedSync('download.vocabulary.content', () => ({
+        paths: [...new Set(book.words.flatMap(word => [word.pronunciationText || word.word, word.example].filter(Boolean).map(text =>
+          `/pronunciation-assets/${createHash('sha256').update(normalizeVocabularyPronunciation(text)).digest('hex')}.mp3`)))].sort(),
+        vocabulary: { bookId: bookId as 'preview' | 'icao4' | 'icao5', wordChecksums: Object.fromEntries(book.words.map(word => [word.id, createHash('sha256').update(canonicalVocabularyJson(word)).digest('hex')])) },
+        textBytes: Buffer.byteLength(JSON.stringify(book)),
+      })));
+    const { paths, vocabulary } = prepared;
+    const rows = paths.length ? await timed('download.vocabulary.resources', () => this.database.db.select({
+      sourcePath: resourceObjects.sourcePath, checksum: resourceObjects.checksum, sizeBytes: resourceObjects.sizeBytes, createdAt: resourceObjects.createdAt,
+    }).from(resourceObjects).where(and(eq(resourceObjects.status, 'ready'), inArray(resourceObjects.sourcePath, paths))).orderBy(desc(resourceObjects.createdAt))) : [];
     const byPath = new Map<string, typeof rows[number]>();
     for (const row of rows) if (!byPath.has(row.sourcePath)) byPath.set(row.sourcePath, row);
     const resources = paths.map(publicPath => {
@@ -35,11 +46,10 @@ export class VocabularyLiveService {
       if (!row) throw new ServiceUnavailableException('download_resource_unavailable');
       return { publicPath, checksum: row.checksum, sizeBytes: row.sizeBytes };
     });
-    const vocabulary = { bookId: bookId as 'preview' | 'icao4' | 'icao5', wordChecksums: Object.fromEntries(book.words.map(word => [word.id, createHash('sha256').update(canonicalVocabularyJson(word)).digest('hex')])) };
     const [published] = await this.database.db.select({ createdAt: vocabularyReleases.createdAt }).from(vocabularyReleases).where(eq(vocabularyReleases.version, release.version)).limit(1);
     return { bankId: 'vocabulary', scope: vocabulary.bookId, vocabulary, version: release.version, checksum: release.checksum,
       publishedAt: contentPublicationTime(published?.createdAt, [...byPath.values()]), topics: [], resources,
-      sizeBytes: Buffer.byteLength(JSON.stringify(book)) + resources.reduce((sum, resource) => sum + resource.sizeBytes, 0),
+      sizeBytes: prepared.textBytes + resources.reduce((sum, resource) => sum + resource.sizeBytes, 0),
       fingerprint: createHash('sha256').update(canonicalVocabularyJson({ vocabulary, resources })).digest('hex') };
   }
 
