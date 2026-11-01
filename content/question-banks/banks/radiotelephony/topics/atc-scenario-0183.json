@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0183",
-  "name": "KLM 88 积冰/防冰 TCAS机动 复飞",
+  "name": "KLM88 [积冰/防冰，TCAS机动，复飞]",
   "declaredCardCount": 20,
   "cards": [
     {

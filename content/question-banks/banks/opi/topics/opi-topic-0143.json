@@ -51,8 +51,52 @@
       "referenceText": "The crew should maintain a good visual scan and immediately report the drone's position and movement to ATC. They should assess the collision risk and request a deviation if necessary. If the drone threatens the approach path, the crew should go around using the standard procedure and continue coordinating with ATC.",
       "referenceTextZh": "机组应保持良好的目视观察，并立即向空中交通管制报告无人机的位置和移动方向。他们应评估相撞风险，必要时请求绕飞。如果无人机威胁进近航迹，机组应按标准程序复飞，并继续与空中交通管制协调。",
       "audioDurationSeconds": 5.328
+    },
+    {
+      "id": "opi-fzy-224610",
+      "audio": "/question-bank-assets/revisions/opi/32a07f1f6cb5f84c68e337f937fc8d5575beb268e0ed8033123dbae073873f08/audio/opi/opi-fzy-224610.mp3",
+      "audioText": "What do you know about UAV?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-13",
+      "audioTextZh": "你知道什么是UAV吗？",
+      "referenceText": "UAV refers to Unmanned Aerial Vehicle, it is an aircraft, or drones, without pilots in the cockpit. They are currently widely used in areas such as aerial photography, agriculture, mapping, logistics and military affairs.",
+      "referenceTextZh": "UAV 指的是无人驾驶飞行器，或无人机，即一种没有飞行员的飞行器。它们目前广泛用于航拍、农业、测绘、物流及军事等领域。",
+      "audioDurationSeconds": 1.704
+    },
+    {
+      "id": "opi-fzy-224612",
+      "audio": "/question-bank-assets/revisions/opi/131400118f9974a07d29d6a5d963dbae0a7fa4fdec69d8a8bc958d345a75b42e/audio/opi/opi-fzy-224612.mp3",
+      "audioText": "What will you do if there is UAV activities in the vicinity of your departure airport?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-15",
+      "audioTextZh": "你起飞的机场如果有无人机活动，你会怎么做？",
+      "referenceText": "I think I should report this situation to the ATC as quickly as possible. Then I will request delay departure, after all, avoiding action is of great importance.",
+      "referenceTextZh": "我认为我应该尽快将这一情况报告给空中交通管制部门。然后我会请求推迟起飞，毕竟避让动作是至关重要的。",
+      "audioDurationSeconds": 4.464
+    },
+    {
+      "id": "opi-fzy-224613",
+      "audio": "/question-bank-assets/revisions/opi/f902d488ca00d64b8457bc21d6f3c41f02be9c78bf4a2e9fc7c97050251d2cc2/audio/opi/opi-fzy-224613.mp3",
+      "audioText": "What actions can be taken to reduce the possible conflicts between scheduled aircraft and UAVs.",
+      "studyTier": 1,
+      "taskTitle": "缩略词-16",
+      "audioTextZh": "可以采取什么样的行动来降低无人机与商业航班的冲突？",
+      "referenceText": "Many parties are involved to reduce the possible conflicts between scheduled aircraft and UAVs, for example, the authorities should introduce relevant policies to enforce the establishment of prohibited areas, and at the same time, height restrictions should be set for the corresponding areas. Secondly, remote identification and monitoring of drones should be carried out through relevant technical means. Moreover, optimizing airspace management is also a good approach. Finally, drone pilots need to enhance their safety awareness and fly in compliance with regulations.",
+      "referenceTextZh": "减少商业航班与无人机之间可能出现的冲突，需要多方参与。局方应出台相关政策，强制设置禁飞区，同时相关区域应设置高度限制。其次，应通过相关技术手段进行无人机远程识别与监视，另外，优化空域管理也是一个好的办法，最后，无人机驾驶员需要提升自身安全意识，合规飞行。",
+      "audioDurationSeconds": 5.544
+    },
+    {
+      "id": "opi-fzy-224611",
+      "audio": "/question-bank-assets/revisions/opi/4e869790496f20295aa2de3f9815f5c416502e9aae174e8992b843250f0fe5fe/audio/opi/opi-fzy-224611.mp3",
+      "audioText": "What are the consequences if there is an UAV in your airspace?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-14",
+      "audioTextZh": "如果在您的空域内出现无人机，将会产生什么样的后果呢？",
+      "referenceText": "If there are UAVs in the airspace, they could pose a potential threat to scheduled flights. For instance, they might cause flight delays, and in some cases, they could even lead to air miss or collisions.",
+      "referenceTextZh": "空域内如果有无人机，将会对定期航班造成潜在的威胁，比如，会造成航班延误，更有甚者可能会导致危险接近甚至相撞。",
+      "audioDurationSeconds": 3.336
     }
   ],
-  "declaredCardCount": 5,
+  "declaredCardCount": 9,
   "categoryId": "opi-category-05"
 }

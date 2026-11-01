@@ -31,8 +31,19 @@
       "referenceText": "Normally, the crew should not make a passenger announcement solely to say that a pilot has become incapacitated. Such an announcement could cause unnecessary panic in the cabin.",
       "referenceTextZh": "通常不应仅为告知一名飞行员已经失能而向旅客广播，因为这可能在客舱内造成不必要的恐慌。",
       "audioDurationSeconds": 6.048
+    },
+    {
+      "id": "opi-fzy-224614",
+      "audio": "/question-bank-assets/revisions/opi/ef777ad43cf176e956e97c4b6eccf199012bce384fc875a7a8e329ca8ed63ec6/audio/opi/opi-fzy-224614.mp3",
+      "audioText": "When will pilots make PA?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-17",
+      "audioTextZh": "飞行员会在什么时候做客舱广播？",
+      "referenceText": "During each critical stage of the flight, the pilot will communicate with the passengers through PA, such as the welcome PA before takeoff and the weather update PA during the cruise phase. When any abnormal situation occurs during the flight, the pilot will also make a PA.",
+      "referenceTextZh": "飞行员在飞行各关键阶段，会通过客舱广播向乘客传递信息，例如起飞前的欢迎广播、巡航阶段的天气广播等，当飞行中出现异常情况时，也会做客舱广播。",
+      "audioDurationSeconds": 1.68
     }
   ],
-  "declaredCardCount": 3,
+  "declaredCardCount": 4,
   "categoryId": "opi-category-05"
 }

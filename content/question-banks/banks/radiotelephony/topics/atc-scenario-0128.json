@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0128",
-  "name": "ACA 219 TCAS机动 复飞 备降/返航",
+  "name": "ACA219 [TCAS机动，复飞，备降/返航]",
   "declaredCardCount": 19,
   "cards": [
     {

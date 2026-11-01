@@ -1,3 +1,4 @@
+import { isDeepStrictEqual } from 'node:util';
 import { createHash } from 'node:crypto';
 
 export const contentChecksum = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -92,9 +93,15 @@ export function selectNativeContentBanks(release, bankIds) {
 
 /** History and annotations refer to this complete tuple. Retire in place instead
  * of deleting/rekeying/moving; old release snapshots and resources stay immutable. */
-export function assertQuestionIdentitiesPreserved(previous, next) {
+export function assertQuestionIdentitiesPreserved(previous, next, relocations = []) {
   const identities = bank => new Map(bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.map(card => [card.id, `${category.id}/${topic.id}`]))));
   const before = identities(previous), after = identities(next);
   if (previous.id !== next.id) throw new Error('existing_bank_identity_must_be_preserved');
-  for (const [id, parent] of before) if (after.get(id) !== parent) throw new Error('existing_question_identity_must_be_preserved');
+  for (const [id, parent] of before) if (after.get(id) !== parent) {
+    const approved = relocations.find(row => row.bankId === previous.id && row.cardId === id
+      && `${row.fromCategoryId}/${row.fromTopicId}` === parent && `${row.toCategoryId}/${row.toTopicId}` === after.get(id));
+    if (!approved) throw new Error('existing_question_identity_must_be_preserved');
+    const card = (bank) => bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)).find(item => item.id === id);
+    if (!isDeepStrictEqual(card(previous), card(next))) throw new Error('relocated_question_content_changed');
+  }
 }

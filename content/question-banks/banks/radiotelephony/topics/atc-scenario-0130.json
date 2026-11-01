@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0130",
-  "name": "ACA 517 发动机失效 颠簸 TCAS机动",
+  "name": "ACA517 [发动机失效，颠簸，TCAS机动]",
   "declaredCardCount": 16,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0168",
-  "name": "UAL 831 增压问题 TCAS机动",
+  "name": "UAL831 [增压问题，TCAS机动]",
   "declaredCardCount": 18,
   "cards": [
     {

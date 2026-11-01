@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0157",
-  "name": "CSN 1310 雷暴绕飞 TCAS机动 延误/加油",
+  "name": "CSN1310 [雷暴绕飞，TCAS机动，延误/加油]",
   "declaredCardCount": 17,
   "cards": [
     {

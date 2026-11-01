@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0049",
-  "name": "ACA 452 偷渡犯 导航，自驾失效",
+  "name": "ACA452 [发现偷渡人员，导航计算机失效，自动驾驶失效]",
   "declaredCardCount": 17,
   "cards": [
     {

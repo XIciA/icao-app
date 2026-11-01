@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0083",
-  "name": "CSN 102 轮挡 左发防冰失效",
+  "name": "CSN102 [轮挡未撤，严重积冰，左发防冰失效]",
   "declaredCardCount": 19,
   "cards": [
     {

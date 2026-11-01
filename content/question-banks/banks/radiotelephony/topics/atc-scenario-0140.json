@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0140",
-  "name": "CES 209 TCAS机动 备降/返航",
+  "name": "CES209 [TCAS机动，备降/返航]",
   "declaredCardCount": 15,
   "cards": [
     {

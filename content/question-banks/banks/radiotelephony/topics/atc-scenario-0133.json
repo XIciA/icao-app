@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0133",
-  "name": "CES 565 缝翼问题 积冰/防冰 TCAS机动",
+  "name": "CES565 [缝翼问题，积冰/防冰，TCAS机动]",
   "declaredCardCount": 18,
   "cards": [
     {

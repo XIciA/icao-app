@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0184",
-  "name": "SIA 323 发动机失效 积冰/防冰 TCAS机动",
+  "name": "SIA323 [发动机失效，积冰/防冰，TCAS机动]",
   "declaredCardCount": 17,
   "cards": [
     {

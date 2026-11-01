@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0091",
-  "name": "CES 529 右空调过热都失效 5乘客重伤",
+  "name": "CES529 [右空调组件过热，双空调组件失效，紧急下降，5名乘客重伤]",
   "declaredCardCount": 15,
   "cards": [
     {

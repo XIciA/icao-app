@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0127",
-  "name": "ACA 331 烟雾 TCAS机动 备降/返航",
+  "name": "ACA331 [烟雾，TCAS机动，备降/返航]",
   "declaredCardCount": 19,
   "cards": [
     {

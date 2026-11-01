@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0068",
-  "name": "CCA 301 刹车超温 一个前轮没气",
+  "name": "CCA301 [刹车超温，一个前轮没气]",
   "declaredCardCount": 20,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0079",
-  "name": "CSN 310 减跑道 地面延误加油",
+  "name": "CSN310 [申请W2道口起飞，地面延误，返坪加油]",
   "declaredCardCount": 17,
   "cards": [
     {

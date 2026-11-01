@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0134",
-  "name": "CES 728 颠簸 积冰/防冰 TCAS机动",
+  "name": "CES728 [颠簸，积冰/防冰，TCAS机动]",
   "declaredCardCount": 18,
   "cards": [
     {

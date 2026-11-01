@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0011",
-  "name": "SIA 323 地面车堵塞 左发EGT超温",
+  "name": "SIA323 [地面车辆故障堵道，左发EGT超温]",
   "declaredCardCount": 18,
   "cards": [
     {

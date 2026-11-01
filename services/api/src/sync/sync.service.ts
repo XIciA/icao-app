@@ -1,3 +1,4 @@
+import { isRelocatedOldLocation } from './relocated-learning';
 import { timed } from '../performance/request-performance';
 import { preserveManagedAnnotations, mergeOfflineAnnotations } from '@icao/contracts/annotation-management';
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
@@ -219,7 +220,7 @@ export class SyncService {
       eq(userCardStates.cardId, mutation.payload.cardId),
     );
     const [current] = await tx.select().from(userCardStates).where(target).limit(1);
-    if (isRetiredCard(mutation.payload.bankId, mutation.payload.cardId)) {
+    if (isRetiredCard(mutation.payload.bankId, mutation.payload.cardId) || isRelocatedOldLocation(mutation.payload.bankId, mutation.payload.topicId, mutation.payload.cardId)) {
       const version = Math.max(mutation.payload.version, (current?.version ?? 0) + 1);
       const updatedAt = new Date();
       const state = emptyRetiredState(updatedAt.toISOString());

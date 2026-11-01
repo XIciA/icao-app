@@ -1,8 +1,8 @@
 {
   "id": "opi-category-03",
   "name": "缩略词",
-  "declaredCardCount": 143,
-  "declaredTopicCount": 23,
+  "declaredCardCount": 136,
+  "declaredTopicCount": 22,
   "topicIds": [
     "opi-topic-0057",
     "opi-topic-0056",
@@ -25,7 +25,6 @@
     "opi-topic-0082",
     "opi-topic-0069",
     "opi-topic-0068",
-    "opi-fzy-1686",
     "opi-topic-0015"
   ]
 }

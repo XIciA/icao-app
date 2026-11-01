@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0095",
-  "name": "CES 151 拖把断了 鸟击一发失效",
+  "name": "CES151 [拖把损坏，鸟击，一台发动机失效]",
   "declaredCardCount": 15,
   "cards": [
     {

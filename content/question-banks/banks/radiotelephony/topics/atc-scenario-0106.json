@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0106",
-  "name": "ACA 412 请求绕飞 左发进水熄火",
+  "name": "ACA412 [请求绕飞，左发进水熄火]",
   "declaredCardCount": 16,
   "cards": [
     {

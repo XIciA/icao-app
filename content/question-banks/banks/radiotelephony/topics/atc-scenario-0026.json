@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0026",
-  "name": "BAW 120 皮托管加温失效 空速不可信",
+  "name": "BAW120 [皮托管加温失效，空速不可信]",
   "declaredCardCount": 16,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0039",
-  "name": "UAL 835 TCAS机动2重伤3轻伤",
+  "name": "UAL835 [TCAS机动，2人重伤3人轻伤]",
   "declaredCardCount": 16,
   "cards": [
     {

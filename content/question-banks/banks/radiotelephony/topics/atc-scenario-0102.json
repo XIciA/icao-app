@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0102",
-  "name": "CSN 426 乘客坐错 翼尖相撞",
+  "name": "CSN426 [乘客坐错，翼尖相撞]",
   "declaredCardCount": 11,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0092",
-  "name": "CES 565 高客舱高警报 缝翼卡阻",
+  "name": "CES565 [引气泄漏，客舱高度告警，缝翼无法放出]",
   "declaredCardCount": 18,
   "cards": [
     {

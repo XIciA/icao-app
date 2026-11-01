@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0055",
-  "name": "管制员与驾驶员数据链通信",
+  "name": "CPDLC管制员与驾驶员数据链通信",
   "cards": [
     {
       "id": "opi-core-626",
@@ -21,8 +21,30 @@
       "referenceText": "CPDLC stands for Controller-Pilot Data Link Communications. It is a data-link system that allows pilots and ATC to exchange text messages such as clearances, requests, and reports. It supplements voice communication and can reduce frequency congestion and misunderstandings.",
       "referenceTextZh": "CPDLC 是管制员与飞行员数据链通信的缩写。它是一种数据链系统，使飞行员和空中交通管制能够交换管制许可、请求和报告等文字信息。它补充话音通信，并能缓解频率拥塞和减少误解。",
       "audioDurationSeconds": 4.392
+    },
+    {
+      "id": "opi-fzy-152980",
+      "audio": "/question-bank-assets/revisions/opi/c47f902789453104e80954246cc40d2f8732a535d988ecde33db587070a1d429/audio/opi/opi-fzy-152980.mp3",
+      "audioText": "What is CPDLC?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-7",
+      "audioTextZh": "CPDLC是什么？",
+      "referenceText": "CPDLC stands for Controller Pilot Data Link Communications. Its main function is to replace the voice communication between the air traffic controller and the pilot with data.",
+      "referenceTextZh": "CPDLC指的是管制员和驾驶员数据链通信，其主要功能是用数据来代替语音进行管制员和飞行员之间的交流。",
+      "audioDurationSeconds": 1.584
+    },
+    {
+      "id": "opi-fzy-152981",
+      "audio": "/question-bank-assets/revisions/opi/f7d2c815216ffbe5907ff445d04e3d3770e3e3549b6fbe955ef9792c72cbda7f/audio/opi/opi-fzy-152981.mp3",
+      "audioText": "Do you have any idea about how we can operate the CPDLC to contact with the ATC or to follow the ATC's instructions when there is a two-way radio failure?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-8",
+      "audioTextZh": "当双向无线电发生故障时，我们如何操作CPDLC与空管取得联系或听从空管的指示？",
+      "referenceText": "As far as I know, the PMF will operate the CPDLC procedure.\nAnd the PMF is responsible to report the information to the captain and carry out the procedure after receiving captain's confirmation.\nThe PF will check and confirm the CPDLC procedure.\nNo matter the captain is the PF or PMF, he must make sure that the CPDLC information is correct.",
+      "referenceTextZh": "据我所知，监督飞行员将进行CPDLC信息的操作。\n监督飞行员有责任将CPDLC信息的操作向机长报告，在得到机长证实后执行。\n操纵飞行员将检查和确认CPDLC信息的操作。\n机长无论是操纵飞行员还是监督飞行员，都必须明确CPDLC信息的正确含义。",
+      "audioDurationSeconds": 9.336
     }
   ],
-  "declaredCardCount": 2,
+  "declaredCardCount": 4,
   "categoryId": "opi-category-03"
 }

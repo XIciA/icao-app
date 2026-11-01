@@ -46,3 +46,14 @@ describe('ordinary publication preserves user history references',()=>{
   expect(()=>assertQuestionIdentitiesPreserved({id:'opi',categories:[{id:'c',topics:[{id:'t',cards:[{id:'old'}]}]}]},{id:'opi',categories:[]})).toThrow('existing_question_identity_must_be_preserved');
  });
 });
+
+it('permits only reviewed exact relocations with unchanged question content',async()=>{
+ const {assertQuestionIdentitiesPreserved}=await import('./native-content-release.mjs');
+ const before={id:'opi',categories:[{id:'c',topics:[{id:'old',cards:[{id:'one',audio:'same',audioText:'Question?'}]}]}]};
+ const after={id:'opi',categories:[{id:'c',topics:[{id:'new',cards:[{audioText:'Question?',audio:'same',id:'one'}]}]}]};
+ const plan=[{bankId:'opi',cardId:'one',fromCategoryId:'c',fromTopicId:'old',toCategoryId:'c',toTopicId:'new'}];
+ expect(()=>assertQuestionIdentitiesPreserved(before,after,plan)).not.toThrow();
+ expect(()=>assertQuestionIdentitiesPreserved(before,after,[])).toThrow('existing_question_identity');
+ after.categories[0].topics[0].cards[0].audioText='Changed?';
+ expect(()=>assertQuestionIdentitiesPreserved(before,after,plan)).toThrow('relocated_question_content_changed');
+});

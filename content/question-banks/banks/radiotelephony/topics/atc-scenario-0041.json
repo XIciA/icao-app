@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0041",
-  "name": "UAL 122 左发失效 重启成功",
+  "name": "UAL122 [左发失效，重启成功]",
   "declaredCardCount": 18,
   "cards": [
     {

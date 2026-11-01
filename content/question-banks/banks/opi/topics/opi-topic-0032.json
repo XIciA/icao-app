@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0032",
-  "name": "缩小垂直间隔",
+  "name": "RVSM缩小垂直间隔",
   "cards": [
     {
       "id": "opi-core-461",
@@ -56,8 +56,41 @@
       "referenceText": "RVSM stands for Reduced Vertical Separation Minimum. It is an airspace standard that reduces the vertical separation between aircraft so that the available airspace can be used more efficiently.",
       "referenceTextZh": "RVSM 是缩小垂直间隔最低标准的缩写。它是一项减小飞机之间垂直间隔的空域标准，使可用空域得到更高效的利用。",
       "audioDurationSeconds": 3.552
+    },
+    {
+      "id": "opi-fzy-152257",
+      "audio": "/question-bank-assets/revisions/opi/8075bb76e7e073d567d951f5febaddf08afe6a5428d585d2366c25d8ae9ce21d/audio/opi/opi-fzy-152257.mp3",
+      "audioText": "What is the advantage of operating RVSM?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-5",
+      "audioTextZh": "实施RVSM的优势有哪些？",
+      "referenceText": "There are many advantages.\nFor example, it can increase airspace capacity and reduce flow control.\nIt can reduce controllers' workload and increase flight safety.\nIt will reduce the fuel consumption, reduce the airline's cost.",
+      "referenceTextZh": "有很多优点。\n例如，它可以提高空域容量减少流量控制。\n它可以减轻管制员工作负荷，保证飞行安全。\n它会减少燃油消耗，降低航空公司的成本。",
+      "audioDurationSeconds": 2.688
+    },
+    {
+      "id": "opi-fzy-152258",
+      "audio": "/question-bank-assets/revisions/opi/1c887167beab25a58d721f88a8e2d5fcb145dff5445a4a51007d2f5f7a629270/audio/opi/opi-fzy-152258.mp3",
+      "audioText": "What is the basic level and top level of RVSM airspace?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-6",
+      "audioTextZh": "RVSM的最低高度和最高高度是多少？",
+      "referenceText": "As I know it's between FL290 and FL410.",
+      "referenceTextZh": "据我所知是从飞行高度层FL290至FL410之间。",
+      "audioDurationSeconds": 3.624
+    },
+    {
+      "id": "opi-fzy-152256",
+      "audio": "/question-bank-assets/revisions/opi/5e4252828cbebdda7b0671dd690b74a81a3e98776cd6db07c450baf2d86505b3/audio/opi/opi-fzy-152256.mp3",
+      "audioText": "What does RVSM stand for?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-4",
+      "audioTextZh": "RVSM指的是什么？",
+      "referenceText": "RVSM stands for Reduced Vertical Separation Minimum.",
+      "referenceTextZh": "RVSM指的是最小垂直间隔。",
+      "audioDurationSeconds": 1.992
     }
   ],
-  "declaredCardCount": 5,
+  "declaredCardCount": 8,
   "categoryId": "opi-category-03"
 }

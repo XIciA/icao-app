@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0180",
-  "name": "QFA 432 积冰/防冰 烟雾 TCAS机动",
+  "name": "QFA432 [积冰/防冰，烟雾，TCAS机动]",
   "declaredCardCount": 20,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0160",
-  "name": "CSN 302 雷暴绕飞 TCAS机动 备降/返航",
+  "name": "CSN302 [雷暴绕飞，TCAS机动，备降/返航]",
   "declaredCardCount": 19,
   "cards": [
     {

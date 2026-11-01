@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0179",
-  "name": "QFA 358 雷暴绕飞 TCAS机动 复飞",
+  "name": "QFA358 [雷暴绕飞，TCAS机动，复飞]",
   "declaredCardCount": 15,
   "cards": [
     {

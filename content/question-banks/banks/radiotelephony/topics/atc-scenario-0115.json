@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0115",
-  "name": "CSN 3102 机翼/控制面损坏 积冰/防冰 TCAS机动",
+  "name": "CSN3102 [机翼/控制面损坏，积冰/防冰，TCAS机动]",
   "declaredCardCount": 19,
   "cards": [
     {

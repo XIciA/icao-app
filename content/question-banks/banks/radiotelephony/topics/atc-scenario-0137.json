@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0137",
-  "name": "CES 5118 雷暴绕飞 TCAS机动 舱门问题",
+  "name": "CES5118 [雷暴绕飞，TCAS机动，舱门问题]",
   "declaredCardCount": 24,
   "cards": [
     {

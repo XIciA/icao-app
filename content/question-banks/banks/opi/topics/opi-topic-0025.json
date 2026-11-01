@@ -273,8 +273,30 @@
       "referenceText": "I began my initial flight training in March last year.",
       "referenceTextZh": "我从去年三月开始初始飞行训练。",
       "audioDurationSeconds": 2.256
+    },
+    {
+      "id": "opi-fzy-224616",
+      "audio": "/question-bank-assets/revisions/opi/4da5488359a3c08cc0769fa3e1a3b6cd13fd9f1df8cc0fc389d9d5fbf6dfeda7/audio/opi/opi-fzy-224616.mp3",
+      "audioText": "What are the advantages of AR and VR applications used in your simulator training?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-19",
+      "audioTextZh": "在模拟机训练中使用AR和VR应用的优势是什么？",
+      "referenceText": "AR and VR technologies can make our simulator training more realistic, improve the quality of our training and flight skills, and better ensure flight safety.",
+      "referenceTextZh": "AR和VR技术可以让我们的模拟机训练更加真实，提升我们的训练质量和飞行技术，更好确保飞行安全。",
+      "audioDurationSeconds": 4.68
+    },
+    {
+      "id": "opi-fzy-224615",
+      "audio": "/question-bank-assets/revisions/opi/7f4bc92e2c56fe374d65c8d16247904fa00cda8430a8b22b64e76c257187e6b0/audio/opi/opi-fzy-224615.mp3",
+      "audioText": "What do you know about AR and VR?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-18",
+      "audioTextZh": "关于AR和VR，你知道什么？",
+      "referenceText": "AR refers to augmented reality and VR refers to virtual reality. Both of them are new technologies and have been used in our simulator training.",
+      "referenceTextZh": "AR指的是增强现实，VR指的是虚拟现实。两者都是很先进的技术，也已经用于我们的模拟机训练。",
+      "audioDurationSeconds": 2.112
     }
   ],
-  "declaredCardCount": 26,
+  "declaredCardCount": 28,
   "categoryId": "opi-category-05"
 }

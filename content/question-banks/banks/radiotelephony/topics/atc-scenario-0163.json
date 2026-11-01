@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0163",
-  "name": "QFA 923 液压问题 积冰/防冰 TCAS机动",
+  "name": "QFA923 [液压问题，积冰/防冰，TCAS机动]",
   "declaredCardCount": 19,
   "cards": [
     {

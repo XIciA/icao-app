@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0006",
-  "name": "驾驶舱话音与飞行数据记录器",
+  "name": "CVR/FDR驾驶舱话音与飞行数据记录器",
   "cards": [
     {
       "id": "opi-core-134",

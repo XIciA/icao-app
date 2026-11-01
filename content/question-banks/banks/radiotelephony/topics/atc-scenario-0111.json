@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0111",
-  "name": "SIA 497 起落架问题 TCAS机动",
+  "name": "SIA497 [起落架问题，TCAS机动]",
   "declaredCardCount": 17,
   "cards": [
     {
