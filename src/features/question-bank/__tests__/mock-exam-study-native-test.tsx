@@ -248,3 +248,82 @@ it('falls back to the catalog only when a deep link has no navigation history', 
   await waitFor(() => expect(mockRouter.replace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'listening' } }));
   expect(mockRouter.back).not.toHaveBeenCalled();
 });
+
+
+const mockReportRender = jest.fn();
+jest.mock('../components/StudyReport.native', () => {
+  const { StudyReport: ActualReport } = jest.requireActual('../components/StudyReport.native');
+  return { StudyReport: (props: React.ComponentProps<typeof ActualReport>) => {
+    mockReportRender();
+    return <ActualReport {...props} />;
+  } };
+});
+
+it.each(['button', 'system', 'embedded'] as const)('Android %s return saves once without mounting the end report during the outgoing transition', async entry => {
+  const original = Platform.OS;
+  Object.defineProperty(Platform, 'OS', { value: 'android', configurable: true });
+  try {
+    const input = paper(false);
+    input.record = { ...input.record, recordType: 'session', mockExam: undefined };
+    const onReturn = jest.fn();
+    const screen = await render(entry === 'embedded'
+      ? <QuestionBankStudyScreen studyPackage={input} onReturn={onReturn} />
+      : practiceScreen());
+    await waitFor(() => expect(screen.getByLabelText('返回题库目录')).toBeTruthy());
+    if (entry === 'system') await act(async () => { mockSystemBack?.(); });
+    else await fireEvent.press(screen.getByLabelText('返回题库目录'));
+    await waitFor(() => expect(entry === 'embedded' ? onReturn : mockRouter.back).toHaveBeenCalledTimes(1));
+    expect(sqliteLearningStore.addRecord).toHaveBeenCalledTimes(1);
+    expect(mockReportRender).not.toHaveBeenCalled();
+    expect(screen.queryByText('本次学习已结束')).toBeNull();
+    await screen.unmount();
+  } finally { Object.defineProperty(Platform, 'OS', { value: original, configurable: true }); }
+});
+
+it.each(['ios', 'android'] as const)('%s explicit End still shows the saved report', async platform => {
+  const original = Platform.OS;
+  Object.defineProperty(Platform, 'OS', { value: platform, configurable: true });
+  try {
+    const screen = await render(practiceScreen());
+    await waitFor(() => expect(screen.getByText('结束')).toBeTruthy());
+    await fireEvent.press(screen.getByText('结束'));
+    await waitFor(() => expect(screen.getByText('本次学习已结束')).toBeTruthy());
+    expect(mockRouter.back).not.toHaveBeenCalled();
+    await screen.unmount();
+  } finally { Object.defineProperty(Platform, 'OS', { value: original, configurable: true }); }
+});
+
+
+it.each(data.map(bank => [bank.id, bank] as const))('Android %s returns directly for every bank', async (_id, source) => {
+  const original = Platform.OS;
+  Object.defineProperty(Platform, 'OS', { value: 'android', configurable: true });
+  try {
+    const dataset = source as QuestionBankDataset;
+    const category = dataset.categories[0];
+    const topic = { ...category.topics[0], cards: category.topics[0].cards.slice(0, 1) };
+    const screen = await render(<QuestionBankStudyScreen dataset={dataset} category={category} topic={topic} />);
+    await waitFor(() => expect(screen.getByLabelText('返回题库目录')).toBeTruthy());
+    await fireEvent.press(screen.getByLabelText('返回题库目录'));
+    await waitFor(() => expect(mockRouter.back).toHaveBeenCalledTimes(1));
+    expect(mockReportRender).not.toHaveBeenCalled();
+    expect(sqliteLearningStore.addRecord).toHaveBeenCalledTimes(1);
+    await screen.unmount();
+  } finally { Object.defineProperty(Platform, 'OS', { value: original, configurable: true }); }
+});
+
+it('Android failed return keeps the question and a later explicit End still shows its report', async () => {
+  const original = Platform.OS;
+  Object.defineProperty(Platform, 'OS', { value: 'android', configurable: true });
+  try {
+    const screen = await render(practiceScreen());
+    await waitFor(() => expect(screen.getByText('结束')).toBeTruthy());
+    jest.mocked(sqliteLearningStore.addRecord).mockRejectedValueOnce(new Error('test_write_failure'));
+    await fireEvent.press(screen.getByLabelText('返回题库目录'));
+    await waitFor(() => expect(screen.getByText('学习记录保存失败，内容仍保留在当前页面，请重试。')).toBeTruthy());
+    expect(mockReportRender).not.toHaveBeenCalled();
+    expect(mockRouter.back).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByText('结束'));
+    await waitFor(() => expect(screen.getByText('本次学习已结束')).toBeTruthy());
+    await screen.unmount();
+  } finally { Object.defineProperty(Platform, 'OS', { value: original, configurable: true }); }
+});
