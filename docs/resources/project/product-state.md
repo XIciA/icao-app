@@ -29,7 +29,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
 | App Store | 正式仍为1.2.1 / 3576434；1.2.2 / 3586478已于10月27日20:39提交，WAITING_FOR_REVIEW | 本轮仅删除课程弹层末尾一行，保留原审核通过后自动发布设置；尚未批准/上架，正式清单未切换。[送审回执](../../records/releases/20261026-audio-session-recovery.md) |
 | Android 测试版 | 1.3.0 / 3593084，独立测试包与官网测试入口已更新 | 修复刷题返回时短暂显示结束页；安卓导航专项 111 项通过，签名与公开摘要通过。iOS 保持不变；真机过渡体验待验。[记录](../../records/releases/20261101-android-navigation-parity-1.3.0.md) |
-| iOS TestFlight | 1.3.0 / 3593083，Apple VALID、IN_BETA_TESTING，内部“测试”组可访问 | 基于1.4.4最新功能，仅修复进度闪烁、交换下载卡片顺序、规范OPI考点标签并保留筛选；源码8669c3bd。未送审，真机验收待完成。[记录](../../records/releases/20261101-lightweight-testflight-1.3.0.md) |
+| iOS TestFlight / 商店审核 | 1.3.0 / 3593083，TestFlight 可用；11 月 1 日 22:12 已提交 App Store，等待审核 | 复用同一已校验构建，审核通过后自动发布；正式更新清单待实际可下载后再切换。[记录](../../records/releases/20261101-lightweight-testflight-1.3.0.md) |
 | EdgeOne 产品 Web | 1.4.3，源码aed11822，deployment dp6h8t31bptd | 网页、收藏与主屏幕图标及随身听锁屏封面统一 App logo；公网图标和脚本摘要一致，iPhone锁屏效果待用户验收。[记录](../../records/releases/20261101-web-brand-logo-1.4.3.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | production-migration-10e2dc48f780，11月1日18:06健康切换 | 0059两索引先恢复演练后迁移，101表指纹一致；19接口、五库音频、旧格式同步与真实AI通过。保留备份及旧镜像。[记录](../../records/releases/20261101-performance-pricing-1.4.4.md) |
