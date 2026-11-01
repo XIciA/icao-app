@@ -21,4 +21,13 @@ Android 普通返回现在保留题目组件直至退出；仍执行原有保存
 - 测试工具的 Android preset 初次运行缺少 Expo 默认 Babel 配置而未启动用例；复用锁定版本默认 Babel 配置后运行通过，没有改动产品依赖。
 - 完整媒体校验通过：复用既有恢复音频库与当前本地 revisions 校验输入，未发布 / 修改内容资源。隔离工作区首次缺少这些输入及内容生成目录，补齐后通过。
 - 候选显示版本 1.3.0；仅 Android versionCode 从 3593082 递增到 3593084。iOS 1.3.0 / 3593083 配置与现有 TestFlight 保持不变。
-- 前端完整检查：267 组 / 1885 项通过；Android 专项已单独通过。`content:check` 完整媒体检查与 `check:ci` 其余检查组合执行，不把纯源码检查冒充媒体校验。API 84 文件 / 802 项通过、3 项按配置跳过；类型检查与构建通过。合并、Android 构建、公开下载验证及最终交付状态在完成后补记。
+- 前端完整检查：267 组 / 1885 项通过；Android 专项已单独通过。`content:check` 完整媒体检查与 `check:ci` 其余检查组合执行，不把纯源码检查冒充媒体校验。API 84 文件 / 802 项通过、3 项按配置跳过；类型检查与构建通过。GitHub 仓库与 EdgeOne 检查通过（run 41313340276）。
+
+## Android 交付
+
+- PR #312；精确源码 `64e6e7c4bd448852efe3828fe917ac28a3eccd0b`，干净 `main = origin/main` 构建。Annotated tag `release/android/v1.3.0-b3593084` 已推送。
+- 独立测试包 `com.readyoufife.app.test`，1.3.0 / 3593084；Release 构建成功，版本、包身份、v2 签名、微信运行时及生产地址检查通过。签名与既有 1.3.0 / 3593082 一致，可覆盖升级。
+- APK 138350237 字节；SHA-256 `a1022328a5d198c8f716830e466d074cd5d3dae391f9b9b27172a946281a9810`。
+- 官网 [Android 测试入口](https://readyoufife.com/download) 已更新至[本次不可变 APK](https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.0-b3593084.apk)；仅更新 `android-test` 清单，其他三渠道保持不变。没有部署 Web、API 或内容，没有生成 iOS 新包。
+- 发布前清单备份：`/opt/icao/backups/app-updates/android-test-130-b3593084/updates-before-20261101T140725379026Z.json`。回滚目标为原 1.3.0 / 3593082 独立测试 APK，已保留原文件。
+- 本地证据与 APK：`.generated/android-navigation-parity-delivery/`。用户真机验收仍待完成；不宣称所有安卓机型的逐屏体验已经验收。
