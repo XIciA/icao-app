@@ -167,7 +167,7 @@ describe('WeChat checkout joins the existing commerce ledger', () => {
   it('rejects new day-pass purchases but settles an existing paid day pass exactly once', () => scenario(async (tx) => {
     const accountId = await owner(tx);
     const { service, paid } = fixture(tx);
-    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[7, 1200], [31, 3800], [93, 9800]]);
+    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[7, 2800], [31, 6800], [93, 16800]]);
     await expect(service.create(accountId, { productKey: 'membership_1d_v1', idempotencyKey: randomUUID() })).rejects.toThrow('wechat_product_unavailable');
     // Represent a pending checkout saved before the offering was retired.
     const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });

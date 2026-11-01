@@ -295,11 +295,11 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 <!-- iap-products:start -->
 | 天数 | Reference Name | Product ID | 简中 Display Name | 简中 Description | 中国大陆目标价 | 服务端权益键 | App Review Screenshot |
 | ---: | --- | --- | --- | --- | ---: | --- | --- |
-| 7 | `Membership 7 Days v1` | `com.readyoufife.ios.membership.7d.v1` | 7天会员 | 解锁会员内容7天 | ¥68 | `membership_7d_v1` | `iap-review-membership-7d.png` |
+| 7 | `Membership 7 Days v1` | `com.readyoufife.ios.membership.7d.v1` | 7天会员 | 解锁会员内容7天 | ¥28 | `membership_7d_v1` | `iap-review-membership-7d.png` |
 | 15 | `Membership 15 Days v1` | `com.readyoufife.ios.membership.15d.v1` | 15天会员 | 解锁会员内容15天 | ¥108 | `membership_15d_v1` | `iap-review-membership-15d.png` |
-| 31 | `Membership 31 Days v1` | `com.readyoufife.ios.membership.31d.v1` | 31天会员 | 解锁会员内容31天 | ¥168 | `membership_31d_v1` | `iap-review-membership-31d.png` |
+| 31 | `Membership 31 Days v1` | `com.readyoufife.ios.membership.31d.v1` | 31天会员 | 解锁会员内容31天 | ¥68 | `membership_31d_v1` | `iap-review-membership-31d.png` |
 | 62 | `Membership 62 Days v1` | `com.readyoufife.ios.membership.62d.v1` | 62天会员 | 解锁会员内容62天 | ¥298 | `membership_62d_v1` | `iap-review-membership-62d.png` |
-| 93 | `Membership 93 Days v1` | `com.readyoufife.ios.membership.93d.v1` | 93天会员 | 解锁会员内容93天 | ¥398 | `membership_93d_v1` | `iap-review-membership-93d.png` |
+| 93 | `Membership 93 Days v1` | `com.readyoufife.ios.membership.93d.v1` | 93天会员 | 解锁会员内容93天 | ¥168 | `membership_93d_v1` | `iap-review-membership-93d.png` |
 <!-- iap-products:end -->
 
 每张审核截图必须来自最终候选 Build，选中对应档位并显示 StoreKit 实际价格和购买按钮；31 天截图

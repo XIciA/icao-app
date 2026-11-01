@@ -310,11 +310,11 @@ const productRows = source.slice(productStart, productEnd).split('\n').filter((l
 if (productRows.length !== 5) fail(`iap_row_count:${productRows.length}`);
 
 const expectedProducts = new Map([
-  [7, ['Membership 7 Days v1', 'com.readyoufife.ios.membership.7d.v1', '7天会员', '解锁会员内容7天', '¥68', 'membership_7d_v1']],
+  [7, ['Membership 7 Days v1', 'com.readyoufife.ios.membership.7d.v1', '7天会员', '解锁会员内容7天', '¥28', 'membership_7d_v1']],
   [15, ['Membership 15 Days v1', 'com.readyoufife.ios.membership.15d.v1', '15天会员', '解锁会员内容15天', '¥108', 'membership_15d_v1']],
-  [31, ['Membership 31 Days v1', 'com.readyoufife.ios.membership.31d.v1', '31天会员', '解锁会员内容31天', '¥168', 'membership_31d_v1']],
+  [31, ['Membership 31 Days v1', 'com.readyoufife.ios.membership.31d.v1', '31天会员', '解锁会员内容31天', '¥68', 'membership_31d_v1']],
   [62, ['Membership 62 Days v1', 'com.readyoufife.ios.membership.62d.v1', '62天会员', '解锁会员内容62天', '¥298', 'membership_62d_v1']],
-  [93, ['Membership 93 Days v1', 'com.readyoufife.ios.membership.93d.v1', '93天会员', '解锁会员内容93天', '¥398', 'membership_93d_v1']],
+  [93, ['Membership 93 Days v1', 'com.readyoufife.ios.membership.93d.v1', '93天会员', '解锁会员内容93天', '¥168', 'membership_93d_v1']],
 ]);
 
 for (const row of productRows) {
