@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0042",
-  "name": "自动终端情报服务",
+  "name": "ATIS自动终端情报服务",
   "cards": [
     {
       "id": "opi-core-526",
@@ -71,8 +71,41 @@
       "referenceText": "ATIS gives pilots essential operational information about the departure or arrival aerodrome. This helps them prepare for takeoff or landing.",
       "referenceTextZh": "ATIS 向飞行员提供离场或到达机场的重要运行信息，帮助他们为起飞或着陆做好准备。",
       "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-fzy-152054",
+      "audio": "/question-bank-assets/revisions/opi/b68c3b721820dbca84ecc11392079969050f49b6088b4a55ad00192e177ddf0d/audio/opi/opi-fzy-152054.mp3",
+      "audioText": "Why is it necessary for pilots to listen to ATIS broadcast? What information is included in ATIS?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-3",
+      "audioTextZh": "飞行员为什么需要收听ATIS广播？ATIS中包含哪些信息？",
+      "referenceText": "It tells us weather information and airport condition, which are very important for arriving and departing aircraft.\nIn ATIS, there are weather information and airport condition. For example, wind, visibility, QNH, runway in use, approach type and so on.",
+      "referenceTextZh": "ATIS告诉我们天气信息和机场情况，这对进场和离场的飞机非常重要。\nATIS中包含有天气信息和机场情况。例如：风、能见度、修正海压、使用跑道、进近类型等。",
+      "audioDurationSeconds": 5.88
+    },
+    {
+      "id": "opi-fzy-152052",
+      "audio": "/question-bank-assets/revisions/opi/7e2dfd928fecb5c3d46ab0ce4d7a2d376bff5b92466a7ca67990b7921f332e46/audio/opi/opi-fzy-152052.mp3",
+      "audioText": "What does ATIS stand for?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-1",
+      "audioTextZh": "ATIS指的是什么？",
+      "referenceText": "ATIS stands for Automatic Terminal Information Service.",
+      "referenceTextZh": "ATIS指的是自动终端情报服务。",
+      "audioDurationSeconds": 1.512
+    },
+    {
+      "id": "opi-fzy-152053",
+      "audio": "/question-bank-assets/revisions/opi/01fde7e8b7343bb209c08eb39b05252aeed290f8a2c58ebf74838f862dd25323/audio/opi/opi-fzy-152053.mp3",
+      "audioText": "When do pilots listen to ATIS?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-2",
+      "audioTextZh": "飞行员什么时候会收听ATIS？",
+      "referenceText": "Pilots need to listen to ATIS before start up and approach.",
+      "referenceTextZh": "飞行员需要在开车和进近前收听ATIS。",
+      "audioDurationSeconds": 1.896
     }
   ],
-  "declaredCardCount": 7,
+  "declaredCardCount": 10,
   "categoryId": "opi-category-03"
 }

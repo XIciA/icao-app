@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0058",
-  "name": "CCA 512 右发失效 重启失败",
+  "name": "CCA512 [右发失效，重启失败]",
   "declaredCardCount": 18,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0006",
-  "name": "QFA 701 前轮转向失效 PAPI灯暗",
+  "name": "QFA701 [前轮转向失效，PAPI灯暗]",
   "declaredCardCount": 17,
   "cards": [
     {

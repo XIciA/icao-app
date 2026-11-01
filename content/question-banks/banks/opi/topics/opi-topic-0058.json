@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0058",
-  "name": "连续下降最后进近",
+  "name": "CDFA连续下降最后进近",
   "cards": [
     {
       "id": "opi-core-636",
@@ -56,8 +56,30 @@
       "referenceText": "CDFA replaces the level segments of a conventional non-precision approach with a continuous descent along a planned vertical path. The crew crosses any step-down fixes at or above their minimum altitudes and reaches the applicable decision point in a stable condition. The decision altitude, any add-on, and the point for starting a missed approach follow the published procedure and operator SOP.",
       "referenceTextZh": "CDFA 用沿计划垂直航径的连续下降取代传统非精密进近中的平飞段。机组在不低于最低高度的条件下飞越各梯级下降定位点，并以稳定状态到达适用的决断点。决断高度、任何附加值以及开始复飞的位置，都应遵循公布程序和运营人标准操作程序。",
       "audioDurationSeconds": 7.08
+    },
+    {
+      "id": "opi-fzy-152987",
+      "audio": "/question-bank-assets/revisions/opi/b46a4f6c39c5ffe438a221827b7c148024fab1db2564b029fdf0d9340cbf5de8/audio/opi/opi-fzy-152987.mp3",
+      "audioText": "What do you know about CDFA?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-9",
+      "audioTextZh": "你知道CDFA吗？",
+      "referenceText": "CDFA stands for continuous descent final approach. It is a technique used in non-precision approach.",
+      "referenceTextZh": "我知道，CDFA指的是连续下降，最后进近。是非精密进近下使用的一种技术。",
+      "audioDurationSeconds": 2.112
+    },
+    {
+      "id": "opi-fzy-152988",
+      "audio": "/question-bank-assets/revisions/opi/05f760053cd723d9c6323196eab2391da52ecf0f6cde33c2fdb1901d9b9574ad/audio/opi/opi-fzy-152988.mp3",
+      "audioText": "What are the advantages of CDFA?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-10",
+      "audioTextZh": "CDFA的优势是什么？",
+      "referenceText": "CDFA can increase pilot's situation awareness and reduce pilot's workload, what's more, it provides more altitude for the pilot to go around and improves flight safety.",
+      "referenceTextZh": "CDFA可以提高飞行员的情景意识，同时也可以减轻飞行员的工作负荷。更重要的是，它为飞行员提供了更多的高度来进行复飞，提升了飞行安全。",
+      "audioDurationSeconds": 2.304
     }
   ],
-  "declaredCardCount": 5,
+  "declaredCardCount": 7,
   "categoryId": "opi-category-03"
 }

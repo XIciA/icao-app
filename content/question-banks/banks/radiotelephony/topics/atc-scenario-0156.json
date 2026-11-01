@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0156",
-  "name": "CSN 7353 TCAS机动 危险品 延误/加油",
+  "name": "CSN7353 [TCAS机动，危险品，延误/加油]",
   "declaredCardCount": 16,
   "cards": [
     {

@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0141",
-  "name": "CES 5277 襟翼问题 TCAS机动 备降/返航",
+  "name": "CES5277 [襟翼问题，TCAS机动，备降/返航]",
   "declaredCardCount": 16,
   "cards": [
     {

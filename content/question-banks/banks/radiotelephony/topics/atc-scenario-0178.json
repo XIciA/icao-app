@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0178",
-  "name": "QFA 160 机翼/控制面损坏 燃油紧急 TCAS机动",
+  "name": "QFA160 [机翼/控制面损坏，燃油紧急，TCAS机动]",
   "declaredCardCount": 18,
   "cards": [
     {

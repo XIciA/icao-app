@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0005",
-  "name": "QFA 358 天气 气象雷达失效",
+  "name": "QFA358 [积雨云绕飞，气象雷达失效，下沉气流复飞]",
   "declaredCardCount": 15,
   "cards": [
     {

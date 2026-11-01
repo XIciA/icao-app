@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0024",
-  "name": "AFR 939 中断起飞 刹车超温",
+  "name": "AFR939 [中断起飞，刹车超温]",
   "declaredCardCount": 16,
   "cards": [
     {

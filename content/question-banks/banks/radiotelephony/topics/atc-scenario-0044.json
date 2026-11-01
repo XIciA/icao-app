@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0044",
-  "name": "JAL 220 转述接收机失效 吸入外来物体 右发超温",
+  "name": "JAL220 [转述接收机失效，吸入外来物体，右发超温]",
   "declaredCardCount": 14,
   "cards": [
     {

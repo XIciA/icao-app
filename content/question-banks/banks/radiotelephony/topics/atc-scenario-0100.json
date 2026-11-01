@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0100",
-  "name": "CCA 102 左发熄火 液压 起落架",
+  "name": "CCA102 [左发熄火，液压，起落架]",
   "declaredCardCount": 16,
   "cards": [
     {

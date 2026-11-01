@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0162",
-  "name": "AFR 941 发动机失效 TCAS机动 延误/加油",
+  "name": "AFR941 [发动机失效，TCAS机动，延误/加油]",
   "declaredCardCount": 18,
   "cards": [
     {

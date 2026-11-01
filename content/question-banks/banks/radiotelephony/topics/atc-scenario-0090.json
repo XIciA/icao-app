@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0090",
-  "name": "CES 232 右主起落架 通场 等待",
+  "name": "CES232 [右主起落架收放异常，低空通场检查，空中等待]",
   "declaredCardCount": 15,
   "cards": [
     {

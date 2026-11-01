@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0151",
-  "name": "CCA 1368 雷暴绕飞 TCAS机动 复飞",
+  "name": "CCA1368 [雷暴绕飞，TCAS机动，复飞]",
   "declaredCardCount": 16,
   "cards": [
     {

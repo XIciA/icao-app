@@ -1,9 +1,12 @@
+import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
 import { assertHotspotReferences, assertImmutableRelease, assertQuestionIdentitiesPreserved, contentChecksum, planNativeContentPublication, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
 import { ensureNativeContentResource } from './native-content-resources.mjs';
+
+const require = createRequire(import.meta.url);
 
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
 const safeJoin = (root, relative) => {
@@ -71,7 +74,7 @@ if (process.argv.includes('--validate')) {
       for (const bank of publication.banks) {
         const [previous] = await tx`select payload, version from question_bank_releases where bank_id = ${bank.id} and active = true`;
         if (previous) {
-          assertQuestionIdentitiesPreserved(previous.payload, bank.payload);
+          assertQuestionIdentitiesPreserved(previous.payload, bank.payload, process.env.APPLY_REVIEWED_RELOCATIONS === '1' ? require('../dist/src/sync/question-relocations.js').questionRelocations : []);
           if (Number(previous.version) > bank.version) throw new Error('content_release_cannot_downgrade');
         }
       }

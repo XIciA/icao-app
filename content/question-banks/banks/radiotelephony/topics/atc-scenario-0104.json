@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0104",
-  "name": "CSN 303 防冰坏 微动开关问题",
+  "name": "CSN303 [防冰坏，微动开关问题]",
   "declaredCardCount": 20,
   "cards": [
     {

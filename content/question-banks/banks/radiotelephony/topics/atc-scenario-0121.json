@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0121",
-  "name": "SIA 852 起落架问题 积冰/防冰 TCAS机动",
+  "name": "SIA852 [起落架问题，积冰/防冰，TCAS机动]",
   "declaredCardCount": 15,
   "cards": [
     {

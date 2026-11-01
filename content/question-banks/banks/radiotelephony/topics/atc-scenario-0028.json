@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0028",
-  "name": "BAW 931 乘客重病 引擎起火",
+  "name": "BAW931 [乘客重病，右发起火，中断起飞，应急撤离]",
   "declaredCardCount": 15,
   "cards": [
     {

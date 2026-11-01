@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0142",
-  "name": "CCA 512 发动机失效 积冰/防冰 TCAS机动",
+  "name": "CCA512 [发动机失效，积冰/防冰，TCAS机动]",
   "declaredCardCount": 18,
   "cards": [
     {

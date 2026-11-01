@@ -1,3 +1,4 @@
+import { clearRelocatedAnnotations, clearRelocatedLearningRecord, clearRelocatedSyncPayload } from './relocated-learning';
 import { vocabularyDocumentSchema, vocabularyDocumentForPolicy } from './vocabulary-document';
 import type { VocabularyMigrationPolicy } from '@icao/contracts/vocabulary-live';
 import { retiredQuestionCards } from './retired-question-cards';
@@ -9,6 +10,7 @@ const retired = new Set(retiredQuestionCards.map(card => `${card.bankId}:${card.
 export function isRetiredCard(bankId: unknown, cardId: unknown) { return retired.has(`${String(bankId)}:${String(cardId)}`); }
 export function emptyRetiredState(updatedAt: string) { return { visited: false, completed: false, note: '', updatedAt }; }
 export function sanitizeRetiredAnnotations(value: Value): Value {
+  value = clearRelocatedAnnotations(value);
   if (!value.entries || typeof value.entries !== 'object') return value;
   const recovered = Array.isArray(value.recoveredNotes) ? [...value.recoveredNotes] : [];
   const entries = Object.fromEntries(Object.entries(object(value.entries)).filter(([key, entry]) => {
@@ -28,6 +30,7 @@ const retiredItem = (value: unknown) => {
   return isRetiredCard(object(item.dataset).id ?? source.bankId, object(item.card).id ?? source.cardId);
 };
 export function sanitizeRetiredLearningRecord(value: Value): Value {
+  value = clearRelocatedLearningRecord(value);
   // Keep history metadata, never a second copy of retired questions or feedback.
   const tombstone = () => Object.fromEntries(Object.entries({ ...value, sourceUnavailable: true }).filter(([key]) =>
     ['schemaVersion', 'id', 'sessionId', 'cardId', 'bankId', 'bankTitle', 'categoryTitle', 'topicTitle', 'completedCount', 'totalCount',
@@ -61,6 +64,7 @@ export function sanitizeRetiredLearningRecord(value: Value): Value {
   return result;
 }
 export function sanitizeRetiredSyncPayload(kind: string, value: Value, policy?: VocabularyMigrationPolicy): Value {
+  value = clearRelocatedSyncPayload(kind, value);
   if (kind === 'card_state' && isRetiredCard(value.bankId, value.cardId)) return { ...value, state: emptyRetiredState(String(value.updatedAt ?? new Date(0).toISOString())) };
   if (kind === 'document' && value.documentKey === 'vocabulary') {
     if (policy) return { ...value, document: vocabularyDocumentForPolicy(value.document, policy) };

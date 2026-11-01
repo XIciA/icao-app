@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0001",
-  "name": "QFA 432 沙暴 1发，2发失效",
+  "name": "QFA432 [沙暴，1号发动机和2号发动机失效]",
   "declaredCardCount": 20,
   "cards": [
     {

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 27,
-  "generatedAt": "2026-10-27T09:33:15.623Z",
+  "releaseVersion": 29,
+  "generatedAt": "2026-11-01T14:48:55.936Z",
   "totals": {
-    "files": 603,
-    "textValues": 62836
+    "files": 602,
+    "textValues": 62835
   },
   "files": [
     {
@@ -168,12 +168,6 @@
       "file": "content/question-banks/banks/opi/topics/opi-fzy-1685.json",
       "textValues": 386,
       "textProjectionSha256": "5e7e5c879bbe2e909cc197a366f0200ae18affcb429c1a5290e0b1e93ddacafa",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-1686.json",
-      "textValues": 96,
-      "textProjectionSha256": "f6315fba09c31ee556a13cf5b38b33f4d6f030fe3b8532684789e3e3d949d174",
       "status": "reviewed"
     },
     {
@@ -851,7 +845,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0006.json",
       "textValues": 86,
-      "textProjectionSha256": "e4835b96810240c6b5f15c04a363ec593343ba20c7ddcfec995010eac554ce25",
+      "textProjectionSha256": "6ff4bbef42e6dadaf8f42e01473506ec324a7fc139c014768f82c654db0cee29",
       "status": "reviewed"
     },
     {
@@ -875,7 +869,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0015.json",
       "textValues": 46,
-      "textProjectionSha256": "32f461a022e34cbffd8b678fa541826662d9bbfe5291775aadeb1af33c331dbc",
+      "textProjectionSha256": "749a89ce7475d4541395928080a1fdc952a17aba070312fe2fb931f51aef1381",
       "status": "reviewed"
     },
     {
@@ -899,7 +893,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0020.json",
       "textValues": 16,
-      "textProjectionSha256": "59136a1f5491043856b1ff00965b02bf915a7fa606309cf096f1afa31e3022a4",
+      "textProjectionSha256": "cb16d2e4bb19d461407d32ef6c256f65983f0ccce6c26038fa61edbde37c1d8e",
       "status": "reviewed"
     },
     {
@@ -928,8 +922,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0025.json",
-      "textValues": 131,
-      "textProjectionSha256": "de719c64abfb315f343e536b8a21a21e1f4053982a3d42f020401bb7c48882ad",
+      "textValues": 141,
+      "textProjectionSha256": "308b0d1547b2292f4a61201bcd56631fbcda0c14e8facde2d728ebd7d16ec954",
       "status": "reviewed"
     },
     {
@@ -970,14 +964,14 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0032.json",
-      "textValues": 26,
-      "textProjectionSha256": "4191af468676817cee4b9bb9dedb7ca0a533e87f9853c8da1f5d4443b342cf44",
+      "textValues": 41,
+      "textProjectionSha256": "270c42461ed9a68fdda53958cbc2db263d9de26f345db5edf3196640fd968d9a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0033.json",
       "textValues": 36,
-      "textProjectionSha256": "e5b1aec03198284005d3b173af391752e61907d3c7599b88b3013f1a074bf5e9",
+      "textProjectionSha256": "0e1ac71f28ccce97031c427848523f1caa5ab527404eb7cb0570774a37671431",
       "status": "reviewed"
     },
     {
@@ -1001,25 +995,25 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0039.json",
       "textValues": 16,
-      "textProjectionSha256": "4c90dfb46668bf1ea03dfd90f37989d3dfc993b5fa33b695b3f91ca8a87193d8",
+      "textProjectionSha256": "a3f2b5e2ea591652f772caa235b78182162e2b7083f624bdbf3fa5a26f92eb75",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0040.json",
       "textValues": 26,
-      "textProjectionSha256": "abd1c77cf072f1ed8f5643bd3c0a81cc24295fb7a0eab8d00f0a92a8066aa233",
+      "textProjectionSha256": "4d07547a0fcd4e22dd6d2b6d740a1307108eb513e7a85f55b78947f353de8466",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0041.json",
       "textValues": 36,
-      "textProjectionSha256": "5d7763614350da8f790b80853421666bdfb48914ed3b6b2f6e72c6f5aa4477ee",
+      "textProjectionSha256": "a2565c42dd34bb9c0f2b49c722cea4418016a60e9a7f537023de2e8704d963b7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0042.json",
-      "textValues": 36,
-      "textProjectionSha256": "d29dbd7eb8601e246924cea838465965a67d26f9aef269da14fc0e9b61a899af",
+      "textValues": 51,
+      "textProjectionSha256": "5cf2607c8280e32025ebf09d980dbfb1d6528f3ee9ff34a672094927db00ad5f",
       "status": "reviewed"
     },
     {
@@ -1079,37 +1073,37 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0053.json",
       "textValues": 41,
-      "textProjectionSha256": "19d4147026ddbf72140b64e35c59588999e49d60fa859300f58835cb01cce547",
+      "textProjectionSha256": "376132b4ab499f03fa356aa2142d6068998548e1321eea80e9719b97e04867c8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0054.json",
       "textValues": 16,
-      "textProjectionSha256": "666e172824199adc3ff5a1445391e804678b5624d487ce3663e2577af75ddaee",
+      "textProjectionSha256": "6c853b24a1ac9099149ef9bc88d34777cc3930e9326b12c82f5f7714881c6993",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0055.json",
-      "textValues": 11,
-      "textProjectionSha256": "a842c607119760836ff9fe3e1eccbd2c6d1da0b1d31c4d3d05fb01e8b166f483",
+      "textValues": 21,
+      "textProjectionSha256": "37998cbaeadfbc1af257891c8cab99734da76650778dc4cc9548c6eccb018f12",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0056.json",
-      "textValues": 16,
-      "textProjectionSha256": "0fda9a3045c14bd63c0be9783ee2c6b62094a37fa4477459a75967d25bc66914",
+      "textValues": 26,
+      "textProjectionSha256": "8d76f52ad6ffc260123a48d24ec953da21f19a8c998112229f41fc099b8087d4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0057.json",
       "textValues": 16,
-      "textProjectionSha256": "c2eebdb944e7fa28f0d4d16edde62ed684c941fa193b2b236c05640ef33974a9",
+      "textProjectionSha256": "ddf321ba2b8e3ce44d0653621f0e4844577cc5e8b8b3ca56ceb1d80bc55f36ec",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0058.json",
-      "textValues": 26,
-      "textProjectionSha256": "0be0ac6477b6b9eb03242400f3f7ed54577552756008a1d0f061b7ad7853dd84",
+      "textValues": 36,
+      "textProjectionSha256": "a795ee897214be900b62c3ff2e79177f8e3d9aa98c7214e4b752f6e065a68800",
       "status": "reviewed"
     },
     {
@@ -1163,13 +1157,13 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0068.json",
       "textValues": 11,
-      "textProjectionSha256": "56372ac2e6d0488df3d26bd916f62ca4ba5de12cc575981c3a7cf44fcc81f650",
+      "textProjectionSha256": "e47569927ebb093ad3544859b2c5021cb37c3c6f2498cd474ecde62834665b94",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0069.json",
       "textValues": 16,
-      "textProjectionSha256": "2b59271ac07a795f45c5269923cb73ea7640a56ae29dfd8094cfd98056405db3",
+      "textProjectionSha256": "a1182530a7c50f72808c7cd44cfb7b272aab599d2ea723f56100df2f8eb06a1a",
       "status": "reviewed"
     },
     {
@@ -1229,7 +1223,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0082.json",
       "textValues": 6,
-      "textProjectionSha256": "f48e823995a6b2d8d09e8fc63e44603b1fe71d85014eb58797b0c9399c082eed",
+      "textProjectionSha256": "d98f79a7dac6e9f55a58eec04ceb3294a56c79e3ebc7703bc8b5897302ccb7e9",
       "status": "reviewed"
     },
     {
@@ -1258,8 +1252,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0087.json",
-      "textValues": 16,
-      "textProjectionSha256": "27631f852c4fc59bca0672e5d30d3ed86bbbdf438fe68fdf5ede8da62b5cf386",
+      "textValues": 21,
+      "textProjectionSha256": "2feb244226e81c6f4ac8bd78606c32f5572c1eb9c49ffb433862af1b01880e11",
       "status": "reviewed"
     },
     {
@@ -1331,7 +1325,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0113.json",
       "textValues": 26,
-      "textProjectionSha256": "aad441992dba1ee5c0ea9b4fc02bb4f1ed871a5ce4898955a90836e2cfb5f813",
+      "textProjectionSha256": "5160cb9327f58a91d60a57b3251f7cfbcb9ad1eb34612f46e366a0c8ee137315",
       "status": "reviewed"
     },
     {
@@ -1457,7 +1451,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0135.json",
       "textValues": 51,
-      "textProjectionSha256": "120f64e24b4210f06f4735c0a1e70113bd61fcd7050d1ce9ec2cc46944630091",
+      "textProjectionSha256": "22ad23b1b804f3ea728968d258aa4484f59290e6e722e8045830e0cfaa53cd0f",
       "status": "reviewed"
     },
     {
@@ -1504,8 +1498,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0143.json",
-      "textValues": 26,
-      "textProjectionSha256": "6b452860dd7a28545d08e0a9718115d31fdca0b0c7fd5eb9bfae3475550a2ba0",
+      "textValues": 46,
+      "textProjectionSha256": "e601f3843b698ebb6c7ef0445bc7424aaad571e4aecb340e2e91c8c4ebdd9ddb",
       "status": "reviewed"
     },
     {
@@ -1517,7 +1511,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0145.json",
       "textValues": 61,
-      "textProjectionSha256": "57502828cff2c5ad0e305b999eeac9b62895c6f80c50d52d0043aaaa85093277",
+      "textProjectionSha256": "860aaa9b6b44ca34d5d89301122ee14be79fee7d85be6cd2fd77fdfacbb0d54a",
       "status": "reviewed"
     },
     {
@@ -1529,7 +1523,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0147.json",
       "textValues": 21,
-      "textProjectionSha256": "5da161e6a7584301ecdef66dcd0a770bc4b4d3adf405b29802a2c70a0f6b8007",
+      "textProjectionSha256": "2b55b955e0347321f56e5601f7753c11ef4fd20925298417568759759a5e39d7",
       "status": "reviewed"
     },
     {
@@ -1655,7 +1649,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1381.json",
       "textValues": 91,
-      "textProjectionSha256": "dc24d28c6e0476a8b1592d469f04e7d9e98a51fdddc4e3b8504d666d1cca1f55",
+      "textProjectionSha256": "5de33e9a719ff6c7f39897dc116980c2635b588a59e8e79bc376d067dc01e84e",
       "status": "reviewed"
     },
     {
@@ -1811,7 +1805,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1515.json",
       "textValues": 76,
-      "textProjectionSha256": "3b86e827bbf3be5c43c8bdae8c596c145d21760e9b9ca74e501c310ed86e7c86",
+      "textProjectionSha256": "6f752aa215b4d926fba16fe7dade353d45ef0181ad5b8ff925bfb5d9438ace32",
       "status": "reviewed"
     },
     {
@@ -1919,13 +1913,13 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1693.json",
       "textValues": 101,
-      "textProjectionSha256": "854e1e27ca1b853fcfa1f8d8d53f3b22949dad06b65a2c6a63b98875c79c2cc7",
+      "textProjectionSha256": "db35b4f4e552a653650c1528a0cb63d9b9e490b8784c8286a148268029bed007",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1694.json",
       "textValues": 141,
-      "textProjectionSha256": "105f3ebf0525678ac310a41c51ebb13af255f81efb90712477a1adb7313b1a8b",
+      "textProjectionSha256": "c2cc1dc4bd9f607e6b6373b7d6f69ec1d7331d99f3206ddbe8cedababae57c2a",
       "status": "reviewed"
     },
     {
@@ -1955,271 +1949,271 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1714.json",
       "textValues": 71,
-      "textProjectionSha256": "d795903d49669d7ef62cea1eaca330570f33c2b7a9a89352991ecfba96e4456a",
+      "textProjectionSha256": "14f6845d187a8a461d07ab2d767f3285ea24eb272a91a6205afccc3357da8eb9",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-599.json",
       "textValues": 86,
-      "textProjectionSha256": "d3375d348eb62fb025892ad571a414504dca919652fb82ac43342eaf0909ccf2",
+      "textProjectionSha256": "3b78207d38c6414c4fcf15ba217da304ff18bae4da8a2b56c3f4c912bcfdd7fb",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-600.json",
       "textValues": 91,
-      "textProjectionSha256": "5e45c8522b9b65d7df60d3dbabd781ea5ae68da465cccf96b9f53cf6c906b8d8",
+      "textProjectionSha256": "ddbb62243ed093bc2872cb3fd10859a27f36ca094fdbda29c7c5e2d7dae02719",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-601.json",
       "textValues": 91,
-      "textProjectionSha256": "9b279c36dad7e6886749c0286006e03c49d026c393ac252a241d25436fadf24a",
+      "textProjectionSha256": "11a1cda12b4b7558aec5c1ba3c804f351a3ffaff9d946a6a02c2051684963c20",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-602.json",
       "textValues": 81,
-      "textProjectionSha256": "408a170568927a127d16a2ea0c5553d8ffa6d74265d1c68d80fc63b03a6cdc24",
+      "textProjectionSha256": "f0cee93940deaab40ab740f9f95a9fb28bb9e4082f1af731446bc43f6de1e21b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-603.json",
       "textValues": 101,
-      "textProjectionSha256": "c6a46102b9990e809133a563c38bac85ac5c7990c07c197ca1042821edcb6904",
+      "textProjectionSha256": "61bf1d430957c84c96e27f1c271eff83b2cc0fa95ffeed2ba99e1abf8e461ebd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-604.json",
       "textValues": 86,
-      "textProjectionSha256": "a8fd1c107067adec774dcc0219a802d915028cf8964fa1e186f96fe48b9eb30e",
+      "textProjectionSha256": "3f61cf606eb9717d7143328283b5eced503a479249eea02622ec663adf33ee34",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-605.json",
       "textValues": 91,
-      "textProjectionSha256": "cfca3c7af30c19c10aca63af2b6a13b7fa930f06e7be7ee02d49f7385ff00890",
+      "textProjectionSha256": "2821738cfa5c48d49f2f5c3599b68479f1008643a6275e7d971b0c9162977e54",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-606.json",
       "textValues": 76,
-      "textProjectionSha256": "4eb091495883fc9f29c1b79ef6daa09f95cc4bda63716a4d9d9fbfaf9ae2e5b2",
+      "textProjectionSha256": "2b5e29f51eb4100429c7df7531b652536a0f9094933389199543c5cfcbd0b52f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-607.json",
       "textValues": 91,
-      "textProjectionSha256": "1e392b1878ea9a4d569a4a6f7775696f09d374bc6aabbdeff43cb26d8a095108",
+      "textProjectionSha256": "c501cde5a5f363d18b535c5e116afce4a296f92fa5aca7f66944f0cd4e3d05fb",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-608.json",
       "textValues": 101,
-      "textProjectionSha256": "8f3ea23521dcab0ed9ec8f1b057164357dd75263d83e5136ccdd390cc02469a0",
+      "textProjectionSha256": "4c79b6cf7559ea52fb2b8e17bcf5f76a64c9ee9b6ba5e73347277d9d0138bf5a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-609.json",
       "textValues": 86,
-      "textProjectionSha256": "91049d0c950a3112813d4b64df3e76ba16067692ab8381c20145b87e496811c7",
+      "textProjectionSha256": "492c316cb7615947c7613f7a141eead719c86ba4794c51b17f81d5a61ddcfdab",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-610.json",
       "textValues": 116,
-      "textProjectionSha256": "04f71c4bfbe470702c6430afc0de736df3cba310f43600bdb934face7673f7ea",
+      "textProjectionSha256": "2973758e7a16a6da7ebea41be9ae7f0162104e1fcee4339c813577319729c1ca",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-611.json",
       "textValues": 91,
-      "textProjectionSha256": "cf812433b4c242899e840cb6ce827928710b5f83f4a9b52a4b783a5cfe3613ca",
+      "textProjectionSha256": "7da2a755eeb39cced543a558505b8c7e0bc5c37ed44256b3f434b00130c633b7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-612.json",
       "textValues": 86,
-      "textProjectionSha256": "53c01af611fcde47b69721cc4bfe5f5428036ff3d4a3f18a041a9d6ba197d986",
+      "textProjectionSha256": "527d3631c55ca3ab091289f121763c70baa6ee55b84f190533cb2a744ceff723",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-614.json",
       "textValues": 91,
-      "textProjectionSha256": "44da709363f343c2a8358bdc0d30d373517d985a26053972c3b5c5a094ae4d55",
+      "textProjectionSha256": "85e3b1f38e53cddbce44a365cfa203a1080b2cb7c6e912bddbc69bd1d3593c9d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-615.json",
       "textValues": 101,
-      "textProjectionSha256": "eb8587b81831d127ee3e42a83fed5e62ec67fee9a71053b33ac35cc61075bcd1",
+      "textProjectionSha256": "aaa68ed7c5cb7da4e21ba2f67627a1150960e702212f75bd3a833e3497ae75bd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-616.json",
       "textValues": 81,
-      "textProjectionSha256": "e762ee298aa9b24c3ef531c33b4e726455c027b9295d666acf5a3bad0b1499f7",
+      "textProjectionSha256": "11e7f9c4a431a640c1e801c4e358ff3fdee84cbab602e5612227c4f7124eec6b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-617.json",
       "textValues": 91,
-      "textProjectionSha256": "0091312c91af0d4ebe041263c6f3b1b1517ffb9408a4801504bda5d6b9b94a6e",
+      "textProjectionSha256": "0766a5a8ee05f7f099553bb24f5914023fe7b9902d6b556827c2d1228b01b370",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-618.json",
       "textValues": 96,
-      "textProjectionSha256": "fb5e8144d440f79a399a26c086d3913bec2e429249ce2d21fc18fbff4f161d4a",
+      "textProjectionSha256": "a73e091691a909bfb0f1f927e7c9443ca71e90b5bf1e72f89aaed6a63014e71d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-619.json",
       "textValues": 81,
-      "textProjectionSha256": "ad1bdffe59ede2580ac563f99e8dd24443980cc67898b0fb9ba26fd6750539af",
+      "textProjectionSha256": "37913a7e51808edb3519cf9a8c3ac84952751e483cb459173e6cdf4454fed892",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-620.json",
       "textValues": 91,
-      "textProjectionSha256": "b1b2d6584f66f646774ce36bb825b131d5413858f981d90a7c9a9586aa3abe69",
+      "textProjectionSha256": "42cc24d510455bc30ce5fed42ea5e7e1f2fb5097d0d31461e0d4520fb37b5d22",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-621.json",
       "textValues": 81,
-      "textProjectionSha256": "8a99b2988ce2d41f49bacf339d4ea31e1dd062803e17239c266c86764e04c38b",
+      "textProjectionSha256": "a1bb3a7b7a24b8290a427c1afaab7f810ec94efff356ab9f29d63a7b6da58c32",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-622.json",
       "textValues": 101,
-      "textProjectionSha256": "0c109df46ad1611a56554d46d9d99ab4513732723dab07cf3d090ce50e9b2b6e",
+      "textProjectionSha256": "9b41e70db759a6e4e8ee59c677830edbce9c89dd7aee56190cf7fe2f82f17af2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-623.json",
       "textValues": 101,
-      "textProjectionSha256": "ca8493ea7cf4121b628ff9b564b020417be00dc34fbb36c41a0a9e51c95fbc7e",
+      "textProjectionSha256": "252750f4723358754a9167e4c518b89ba69f91ec7e47772c6b0fd71ff50703c8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-624.json",
       "textValues": 91,
-      "textProjectionSha256": "a25f17fe4f5d78043dee0f740a5810473a7480a5f233a85b89309d33b5e8cedf",
+      "textProjectionSha256": "835c4b11861b02f7133f719d134b176aa6ce50b4ced41204ad0bcf1f56b49a68",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-625.json",
       "textValues": 121,
-      "textProjectionSha256": "b1507bc74319d0ce010f1fd8b50d831672cf60bfe146935ee378efcef967dd97",
+      "textProjectionSha256": "dfec6a3cc6503682ce95ebc10f6e122723539cd14637243c27884a9db47f526c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-626.json",
       "textValues": 116,
-      "textProjectionSha256": "82b35f5315e93914e1732333af2be283d9b2fc9b2398cfac9eeb95373e7f8c32",
+      "textProjectionSha256": "28f58eb47ebeec5b92dcdab79aafb4dec771328345409eb36b1be2d2b1ec6dd7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-627.json",
       "textValues": 96,
-      "textProjectionSha256": "15fc425bde187e2bfaf1c0160e3640f6ff56ed00420b5adc6abbb2a31cff919b",
+      "textProjectionSha256": "e348b1374933ce38f09037761bdad60cac32aa825a300cfad1d9d1fbed23a2fb",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-628.json",
       "textValues": 76,
-      "textProjectionSha256": "d433e823c8c8b58ee5b61a597db2f1e840fd67889fbd4aa8d602ec850563b4c2",
+      "textProjectionSha256": "82e63c7a90655f1847a843064de541de8e00136d2e1e279d03aa5537cd55f02e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-629.json",
       "textValues": 101,
-      "textProjectionSha256": "991c311f18c9dcd30c9afcb24226d86fab7d2f1cdf0c71abbf072443df825ed3",
+      "textProjectionSha256": "c2bfc656b9090dfee3a390469426d9790473e8a0a56f89b94210d37795817caf",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-630.json",
       "textValues": 86,
-      "textProjectionSha256": "dac5dd8452e8b220d5fd81a3bb2b933f9fe8ef01e3f0c9a9ef47d2a27eb4b396",
+      "textProjectionSha256": "548d371e336aea106bf6e61a659491b21fb52e7c7dd48cf8b3205fe4602f25a6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-631.json",
       "textValues": 106,
-      "textProjectionSha256": "3c7695302dc8311047f05f63a16eabb1b137f25e362af23b3331992aa4a768c8",
+      "textProjectionSha256": "7cc6803432c2665b0e4bd4aa6ebf8b729dc407291f8377036759db21eef74fb1",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-632.json",
       "textValues": 96,
-      "textProjectionSha256": "a6e2c927f9135ee76b6f601fd95b7b3dcce8f4b6637c7f4d33af9c08e3abd269",
+      "textProjectionSha256": "1f065fa320f29dd0c7e96ee3c8e9be442722f24ff7c3aa43490319230bd37e16",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-633.json",
       "textValues": 91,
-      "textProjectionSha256": "ae456712b4e8055742c06f696a4c56287424aa12f64d73a5435536ed84e0b7e8",
+      "textProjectionSha256": "56e5318871f26e332afaabdcd640d55838a68a04a58d1f19048606ad22651895",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-634.json",
       "textValues": 91,
-      "textProjectionSha256": "5024b793aaa69d6b4b6c152e9832627a21d57fa42ae79aec3a0e3ad9ffba1812",
+      "textProjectionSha256": "92ca060ba4120d0cc8aba6b6cedbe8ca134ebece10e6db44cbd297d516228a1b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-635.json",
       "textValues": 91,
-      "textProjectionSha256": "af30a27bd0dd6657273719fb7acc547b8e247a64258da8a4ebc775a130133135",
+      "textProjectionSha256": "62ce793c6f290eb8ff682978292918b93fc6ec5f15756ce4235b3410efef5c2c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-636.json",
       "textValues": 111,
-      "textProjectionSha256": "3dc8a4ec06a427bc33120c15325c34abdf9948856de9a6d960bd1c69631816f4",
+      "textProjectionSha256": "ea8ee4f8d43997bd53592ce18b5262bcbccb039bf6a6eb85bf805edd3164b956",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-637.json",
       "textValues": 76,
-      "textProjectionSha256": "c3a1e6d1aa6e34914f6cf1758bebb93a416751f42cde2cc152d499244783d5ca",
+      "textProjectionSha256": "f9c98459490aa1eda4245346ab6757e62d7e96b40059b05a3fa06cfdae1b769d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-638.json",
       "textValues": 106,
-      "textProjectionSha256": "12af4d170e3979d863240254276162d0609af8a9f2045e12fbf21728c2b5bacd",
+      "textProjectionSha256": "86936a9b629ae1e978e16ff019fda6ae058588ebe79640edc15fa40502236222",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-639.json",
       "textValues": 106,
-      "textProjectionSha256": "c45d6153cc8e5ad05c59da945bc826635e786c3d6afd74cf9f5490f45d3ad61e",
+      "textProjectionSha256": "3cf25fef1da54e7595b6276e7ad7b08c09d85240575c21eef3b8a48740295ae7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-640.json",
       "textValues": 96,
-      "textProjectionSha256": "150c904bb3c9e9893cb1909831fe8718c781a84a277708e4a8ce3afb7bbec821",
+      "textProjectionSha256": "bd2df8718c67d5293ec10c0549b55958e12856cf1c42e42a92c11f4af36d0f00",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-641.json",
       "textValues": 86,
-      "textProjectionSha256": "a5a1c6b5dd075d0a8f019c1e25e621fb10a0ecf7384a262751c7f27d69709fe3",
+      "textProjectionSha256": "05f3dc6e5c7d64e9265ed91589b2d251f97cd044d8d539ac28d5d20eabd3393f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-642.json",
       "textValues": 106,
-      "textProjectionSha256": "234a09d55736411e2cf7eb6a4840c6ad19bdc8adcda5b5bde7f51a33843aabd8",
+      "textProjectionSha256": "d9179944b9a50397885e065a48d3050332583e63bc101005ad50a68015e5ecc6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-643.json",
       "textValues": 91,
-      "textProjectionSha256": "853a89eb3808f1aeb1eba5572a513cd635c7a37262dc5eac2896504d647ecca7",
+      "textProjectionSha256": "5d8678f979de495605d5d0a09ea82e6b63bde6f0a5b56403e9f81b4dac7bfb9b",
       "status": "reviewed"
     },
     {
@@ -2381,7 +2375,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-859.json",
       "textValues": 76,
-      "textProjectionSha256": "b86b689209d66e9661dfc39df02ae941cd01e7829ec1247dd0f83c8ff845c79f",
+      "textProjectionSha256": "8513f212455765db2427914b2ebcfde61060c3f2d166b0f85e0e7fdb2bed0d4d",
       "status": "reviewed"
     },
     {
@@ -2399,19 +2393,19 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-862.json",
       "textValues": 91,
-      "textProjectionSha256": "802df6c9a60c49262af137135e24af35daff84e7069eacbcacbde6db121f310c",
+      "textProjectionSha256": "1d995f81eaad52980564a476d47eb1e3a8d5cf5723dc8e951cd5a0a2c03a6ff2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-865.json",
       "textValues": 86,
-      "textProjectionSha256": "073b3543789ec1a0796b09e8ecc986d102ed9130798dd909e9d86ee2e6ad84aa",
+      "textProjectionSha256": "e2184105a5b35023d0c3076993833360886280a82c098d95c15cc1b86da22712",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-866.json",
       "textValues": 96,
-      "textProjectionSha256": "3848d96e13353c3f826599d7215ac804ae770d75146366ef358b2445493c2643",
+      "textProjectionSha256": "9b0622c8d610769df3bcba84c7c5b1eedbce283ec15c3151a4150b42500da9b9",
       "status": "reviewed"
     },
     {
@@ -2429,13 +2423,13 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-869.json",
       "textValues": 76,
-      "textProjectionSha256": "440a2829643acf174877b8f297d0faca9f2f174f7ca6e3f853ffd85f6e1cab00",
+      "textProjectionSha256": "14e6473e5975f832e772d34999c9106cf92b114f7309a0c08fabb1b9256f4b19",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-870.json",
       "textValues": 76,
-      "textProjectionSha256": "7b77d1aeaa25e73e87ccc66b63b2743719d1fffd815cd5a9fc218e36c9997ce6",
+      "textProjectionSha256": "a59f7cf9e24ed058073ad66de504d2a2329c349411f7d53da48b8850a4a4612d",
       "status": "reviewed"
     },
     {
@@ -2465,1081 +2459,1081 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
       "textValues": 101,
-      "textProjectionSha256": "0379e930a6e64a6f9a45ec3c0294c44eb6dbbf842244579b260085090d0c4f6a",
+      "textProjectionSha256": "49f096b4f1faf594417868f9df459faefd301cbfefb87be998f26958a7f47f85",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
       "textValues": 91,
-      "textProjectionSha256": "dc1def32e0271ee752e1f6305eca8842eb600e854d8dbfbe6c0706e6db2198ca",
+      "textProjectionSha256": "6ea4af4d13341794208567e499764cb56f69cebf1a25eac323d0b44765b9469c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0003.json",
       "textValues": 96,
-      "textProjectionSha256": "14d6bbfe76cd7ef41ef095c66dd6d68dcae59eab172b78217f3d57361ebaae21",
+      "textProjectionSha256": "806aa2abdeaee0a7b8c69c25f20e1b7a12050a2b7b2c11eef2a737d0937fa0f1",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0005.json",
       "textValues": 76,
-      "textProjectionSha256": "1f33031c8f7fb8fba2d839589f5feeed271f2bcd9d85ddc57298ecf6804a959c",
+      "textProjectionSha256": "90080f4aef63832a0dedb4f133f27da4b24e978c82c3028823fac8da8446a2e8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0006.json",
       "textValues": 86,
-      "textProjectionSha256": "3c342ed982dfa3e5bfca2f5be2f50db5a00be73f805ba25d5a850637bbec6c71",
+      "textProjectionSha256": "7c5c7e6f34881b6eabc001f3a4bfb1137ddb22bca1929e5ee4752bf3ffedf726",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0007.json",
       "textValues": 76,
-      "textProjectionSha256": "7b98d5aba11ca545aacf3bfce351f40d4582c4b832cd3ecbdd97777bc63b67dd",
+      "textProjectionSha256": "67bb6287881a2a849c5e117cdfa0136dc77b7840221380fad624d5d8c054b7f2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0008.json",
       "textValues": 81,
-      "textProjectionSha256": "3c9202f2b1e59e8e88e9a019063a247574990d62b62d7580772344100122c674",
+      "textProjectionSha256": "ae811497506327cbf66ef1eacba8e73c60cb95c54d51421dbdd2dd85b7260f90",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0009.json",
       "textValues": 91,
-      "textProjectionSha256": "1a8125d704c18797f4b46b02a948f31d4466b5ecd372244fd6acf16f4188d69c",
+      "textProjectionSha256": "d322cbf81622ae5b3af5b890d777ec5eb70e2ca559231ce65187e1eaa014c8c2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0010.json",
       "textValues": 91,
-      "textProjectionSha256": "cc95b5744eb4285cebe9182ba2e75f60d1de78804234006fb6c663e582acaa67",
+      "textProjectionSha256": "6a1842dead3e4193250a1c18676a3da1047ddfef871a82f43402b478d5627640",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0011.json",
       "textValues": 91,
-      "textProjectionSha256": "4aeed5c524c2cf47492aed1b2d4063269d522e2d622c78e29a330dbd045ad474",
+      "textProjectionSha256": "090aceec34e813f37b13370cde63f32673942d1c4285bd41229b89006ebe91c7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0012.json",
       "textValues": 91,
-      "textProjectionSha256": "a0cecb8f37fa243e3be7f39e2de53dc10630ed4ad43eb022eec38a2412d8724c",
+      "textProjectionSha256": "e310e228380676f854ce2f361c9089545350e88a56cef92fb2865a7b88dd86c4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0013.json",
       "textValues": 86,
-      "textProjectionSha256": "b9304b783067244316efa7e938a38d416c8dff8d3f219d8936a0d5d79bcbc79c",
+      "textProjectionSha256": "2855aabcc1d8c433c7d9293b1e48ef921595d17cdb9447c5080a6e425024335d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0014.json",
       "textValues": 51,
-      "textProjectionSha256": "daba1e9cc70ea61ced1108fe9cdc86fc7687e041157fb1748dde398e1048ec41",
+      "textProjectionSha256": "8248b88c4a7bb0d9fa891dc90ce526c7232347cfb3e2f9d368e4dd7f96faae7c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0015.json",
       "textValues": 96,
-      "textProjectionSha256": "9ec936b593e9642746615324f1ccd83282d56d0fbe0fb3368cce1eeef8e4a7ab",
+      "textProjectionSha256": "403362de136e0a3d3fcb887e04a493fdcf83a45381e957125c26e050380f99da",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0016.json",
       "textValues": 91,
-      "textProjectionSha256": "3b15b32cccaadbbf2d05b566be695010b31adeeb5c309ab5228e83e2bf5c116f",
+      "textProjectionSha256": "39a42bd5c1c4e0fbc187187821defb3685e4f440ba49dc4980568907ba64013f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0017.json",
       "textValues": 91,
-      "textProjectionSha256": "aa60d0af395b5e5b4348ae68ed5c89821f271610c3fef69e9e77cccb3eb05d89",
+      "textProjectionSha256": "79038f7fc4de4593e1a622cd9524cd82e19e6bbd71bdd7bb9d54b2b0fb018522",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0018.json",
       "textValues": 111,
-      "textProjectionSha256": "5f487335972914ed49e19f29050b3ff097c95190fb899f4f2a5dff228a5ad7e4",
+      "textProjectionSha256": "5147ff0895ef1c6652277aefaa505a395ccf1b76351715c8acb9adea193812cf",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0019.json",
       "textValues": 96,
-      "textProjectionSha256": "0b3bf5716578ea42c68ce51f777b0d820740f29043d6d93e05983b4596671667",
+      "textProjectionSha256": "440708c89f419f032fa1f2c41226bc2d5a76a92645cfffe7b544ee81448f2dde",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0020.json",
       "textValues": 101,
-      "textProjectionSha256": "2e2dff52cc75b2656152e4f2e7b10576e8703e5cab76c5213c43e4a2d6f82803",
+      "textProjectionSha256": "3a1a4845df4a8ea078996d1c7638e6292dc5e8e7445d2966c238e3859bde5170",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0021.json",
       "textValues": 86,
-      "textProjectionSha256": "628d2e3867504548659f3232d36f1ed87dcebe994468c9f914e52776c6a145e7",
+      "textProjectionSha256": "711118f4a13b36ae77615953399e4514d6be82c9ae0442e8ae095300fbb600a4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0022.json",
       "textValues": 101,
-      "textProjectionSha256": "04ac80b78698a8dd6b8988b513eec3be8f937b8b6b2efe5624ac4d95694186dc",
+      "textProjectionSha256": "f20b085a513f99cc02b88532d23fd97590fed5e61ecc81848ebc970dfb3b8393",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0023.json",
       "textValues": 81,
-      "textProjectionSha256": "e7d255cfa26bed4b5446ca3a507ec591ab7bdb29b92726c20e5a4bd80e7511e9",
+      "textProjectionSha256": "63490b478b45d421b7596236ecde17ac979bce123df65912b7b8c7ac7512665e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0024.json",
       "textValues": 81,
-      "textProjectionSha256": "0192f83e355c933925c33c54d0817c52d8054ba12169c35e9a80dda09a5f52f9",
+      "textProjectionSha256": "aff05b91c3e2778f0d45fe18d878b1df385950e2d5a1efc52504b87b85526bf3",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0026.json",
       "textValues": 81,
-      "textProjectionSha256": "5e5b676ba755f2494945723917078c6cfa82c4233307c65c537652e797793f3e",
+      "textProjectionSha256": "c62f5696dc76aa8a0356bd23f06e903ac65ba01a61bfa2ae47a00747bc7cc1d5",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0027.json",
       "textValues": 96,
-      "textProjectionSha256": "fc66aedbcefbd9b84da0ae17eafb2dbaa7875b7d430c6b7238b1d73f8418eedc",
+      "textProjectionSha256": "1f41f430de8d9092c237a1893522c42efde8bafbb18e62144fd36e1d6e1d75a8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0028.json",
       "textValues": 76,
-      "textProjectionSha256": "20d7ee0e4ec577e391bae8d471cb1bcb7d570ee103c56b51ab73d515bf2ef78b",
+      "textProjectionSha256": "ed0a4e5ffff30bf7986ec21745547885bceafd1213c8d74e099f2a0c5ed91a41",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0029.json",
       "textValues": 86,
-      "textProjectionSha256": "c8137e1673dc167d5349beb5868c46de516bbdd1a866f47a3fa131f123be163c",
+      "textProjectionSha256": "0c67e23f56de17fcc02e667ebd801a9c59b477e24d964af08f70605542d20516",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0030.json",
       "textValues": 86,
-      "textProjectionSha256": "9d217d7d71f138494d705635489c35a4308d186c31a0267f236ee022369fa78f",
+      "textProjectionSha256": "363b49dc5c37fc7ab14a4ef70bdde7a731b0fc8ade47553189569c59d6afc5ba",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0031.json",
       "textValues": 96,
-      "textProjectionSha256": "fe96f5dc021423cfa417bb0d217302c20581ea325a6ef437ca5d4353b37db99d",
+      "textProjectionSha256": "40a4aa5a0c8384f3c153ac862756149bf4fe44cf5be8056cf387bac8ad4bb668",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0032.json",
       "textValues": 71,
-      "textProjectionSha256": "c7b433ea1fb75a62f1f00bf1d5a474dd59217da32ed8e57c66b959acdd3511e2",
+      "textProjectionSha256": "e82fa341bbdbe2720e8bba66f1e8358d748a38f08f31c4644f834b1ea173e64a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0033.json",
       "textValues": 81,
-      "textProjectionSha256": "91e2a196a63d615ba408511a3ce6d95c7f70f5afce1e4fa0e0ea684f6ce4fd3f",
+      "textProjectionSha256": "8c8e8383b9ce17370bca3289ddc2b7b4fbece1efd7b7dcbfbd5f005ef23d9aa2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0034.json",
       "textValues": 81,
-      "textProjectionSha256": "72db7219108065bd35fc77762a782359b8ea37cfdff9d5a11b0cf7b27accce9a",
+      "textProjectionSha256": "4e5012695c10918ed818d6d860386f8dfb25bae2ab954780d2e1e5919a782aea",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0035.json",
       "textValues": 91,
-      "textProjectionSha256": "958c82ea5866954e67a3b956d4684099f5a073e0585cf13842e614f355af8181",
+      "textProjectionSha256": "3bdfb8a471179f23bd9b178fb3ef4f87b6225a187bd5e9c7c14ccfb0bb50bf01",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0036.json",
       "textValues": 91,
-      "textProjectionSha256": "e2eb585cf8fbf74baaf05ff7bad07470a2e2fd155a0c7159227bb0ff3ba79a3f",
+      "textProjectionSha256": "e79f9d31d73de99bc9ea35f029f085b00da169499bce4acc76e0aa5c70ff9b7b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0037.json",
       "textValues": 81,
-      "textProjectionSha256": "b5f8255fb2bf0cffe6802728d7e95e1ef20375021e48c8f78321ee3544e413cc",
+      "textProjectionSha256": "838c3cd004d221c79dd47d4001849c4ec4bade2b95b4e46b0c67bf3f02f74cf2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0038.json",
       "textValues": 81,
-      "textProjectionSha256": "3a7aecf32bc39f11068457caac3b1e928cc6fb2350e404dbb789b6192f71e641",
+      "textProjectionSha256": "956aaa9878cdbf8e0e132404bf8c1722b4f0f96d2edb8275803f6dc79043ee02",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0039.json",
       "textValues": 81,
-      "textProjectionSha256": "0e1721f0ddfa58bc4bb0e7d5724f28330daf8d4bc4ebda865af7f0708049a7bc",
+      "textProjectionSha256": "c7a08d1b3496c26550a5632b2e3e9c353c414374b4deed9d6a1f5d823671782e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0040.json",
       "textValues": 76,
-      "textProjectionSha256": "d4062a0b556ed8c40a10d24c4f5dd802a37811195f2cc72d73f89aad006895f0",
+      "textProjectionSha256": "961c079900e9fee5854d170c697badcd84e1dc0294466883bbff11ccf67f22ae",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0041.json",
       "textValues": 91,
-      "textProjectionSha256": "673005654ed1d095471289de64cd53b7a57e2b6bac62b2b8d05f123938295718",
+      "textProjectionSha256": "508450702d4e7eb9370862fab86a5f30f0d1296966e8f422a244abb1b9509303",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0042.json",
       "textValues": 101,
-      "textProjectionSha256": "c65b9de717e25a9f016755f0fe3f26a4f37c72cf086282974701d82a86080dbb",
+      "textProjectionSha256": "4a4dd30d56adecb4db8b27ee34e6e4777aafc8442a97dc52bd29eb60c56c6bc1",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0043.json",
       "textValues": 76,
-      "textProjectionSha256": "98dd24635503802151ae367c5f6ba86a84e6a16b54fcb1c7bd93041f113f0ee0",
+      "textProjectionSha256": "9151055707465027f7228eb54bc56bd4e44ca3c3bbae5ec009f0fc5abb6efe9b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0044.json",
       "textValues": 71,
-      "textProjectionSha256": "561526a91947e92e007cf7285a3b33f8213e745a6ed01cc269a46a86ea927dc1",
+      "textProjectionSha256": "02d2e528177c454ddc69e59424f1e089beb28526871f4558bdb0539fb9ca8dba",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0046.json",
       "textValues": 96,
-      "textProjectionSha256": "82b8d0ef328cdec45b170e89eaa6912bc3b53bf2ede00376ea40e8cf2f55169a",
+      "textProjectionSha256": "002ec2f6d8e5912365958392110fb66488c6e3e44016f1d76ccacf82ef2ee609",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0047.json",
       "textValues": 96,
-      "textProjectionSha256": "60f965d862f26f5698a76180a280a69ff193b8ba994195632c04f7e13f673ba3",
+      "textProjectionSha256": "77ae18a95f941a8b77776333e45957a5f02453c017d80edbf48b451431f4a452",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0048.json",
       "textValues": 101,
-      "textProjectionSha256": "2eceaf187e6e72d94f1de7b48324ae00135c96cf92f6a92493748aa5a61b7093",
+      "textProjectionSha256": "b7e10add662f816f7bcdc5d0f11960fba98e2aef8acea8a2dae59cfaa7a66f5e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0049.json",
       "textValues": 86,
-      "textProjectionSha256": "1de87b5ac10237dfc54e2f382a0011cb69453cb54e41bccbaec5586cd9a6ee92",
+      "textProjectionSha256": "e5048ecf52e90ca579e91695082e274b8977b5429170062b8e2ab3228bb117e8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0050.json",
       "textValues": 81,
-      "textProjectionSha256": "b5fdc94399d54ba5596f86639d6aa6104794df932e2e42da45376bfe4fdbcfb8",
+      "textProjectionSha256": "c4cb328a63e6b83061bdc9961495b298ddb710ede5bce9fd2c4100f11e0a5162",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0051.json",
       "textValues": 81,
-      "textProjectionSha256": "633336a25ea0c4815bd8042219ff821fd1473dd52e59f507e935a22e0caeb007",
+      "textProjectionSha256": "57ce0467d299b4a510826197ebe0d89a9535edaad0c421b45f81e710c345d698",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0052.json",
       "textValues": 81,
-      "textProjectionSha256": "6772a144fbf841b7988ba093e7705217366b9714bda6b76ff4b8872ab74104e6",
+      "textProjectionSha256": "d4806e93ce3d9eebfb8f49a7b64cab57137e7424997f3038f2a657fa2cbc3405",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0053.json",
       "textValues": 121,
-      "textProjectionSha256": "f0f9d84c1535a3359807f38e91a91a0a3aa9c4110bc35641b8ffe4830f400889",
+      "textProjectionSha256": "6bda5f7586492188183390f71f266068152c4bbd9bcb0c94f9cf3d67a93b9d38",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0054.json",
       "textValues": 56,
-      "textProjectionSha256": "7d73a22bc28c022238e6f5890142a56c8a09589c716d519775a6486c9a474f0c",
+      "textProjectionSha256": "606640a3021c06a5d338eb1004f7a9c4353325a33bf6fb7b542fb90f9a3f847b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0055.json",
       "textValues": 86,
-      "textProjectionSha256": "a9b005e449cc663d95282412d03f2a3ac92e6a12c44d6c545d00bbff54b17feb",
+      "textProjectionSha256": "fba581c2a40122a3d2a551e1f33d37fdd2cbc4b8b5f6ffa0d26bc5e29e3e18a7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0056.json",
       "textValues": 101,
-      "textProjectionSha256": "faf2335a5618ed2ab23f26b7bc9ed62d2ffb5c2df98b2a81a48b3d9fe3858e29",
+      "textProjectionSha256": "901b8a579e278261dc01934fc5037934a81da65b611517eb67f5276d39c11d27",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0057.json",
       "textValues": 101,
-      "textProjectionSha256": "6cfe85a967d3b15ac032a0759c08a39afa71f0757198a99d4a8fc379db645d5c",
+      "textProjectionSha256": "92407a845432f8f369d7be5e8d3721b02c2b52e62623f2faadb44e14ad2fa4cd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0058.json",
       "textValues": 91,
-      "textProjectionSha256": "1511c1ac593f10b13be8c63b32e0ab68b1516ef262265b4a1797defb154afe6e",
+      "textProjectionSha256": "da48734d0b8b898149f03bb63d8deccec020edfe343df44cab57bb6c28fee1f9",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0059.json",
       "textValues": 86,
-      "textProjectionSha256": "f6f543542a56d8f8eaa0fb1341b7f45a36d4f5863cc4b5f048ad7399f7003298",
+      "textProjectionSha256": "c8e8f5da4d51715a67fb5a75c9b3da797ff92ddbd6a4d4c509835de0ef3f515b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0060.json",
       "textValues": 81,
-      "textProjectionSha256": "d08ef27a9a354b9bcd48ac5532fc16ebea4b2ef3aa486237bf777634f39bf8c4",
+      "textProjectionSha256": "1b025437bff4de3097b7d26f64650c5bb24dc9e820d330d74d68fb0e4fc1a3d4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0061.json",
       "textValues": 86,
-      "textProjectionSha256": "20a173ecb200521dc61df414de17130ef1d225007c8a2793b6078043b83b58eb",
+      "textProjectionSha256": "2f6713c6a14479de0e459421f61e23afe64c395872c2c325b2d338fb5ee68994",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0062.json",
       "textValues": 96,
-      "textProjectionSha256": "fb70e8cc1556aff9796f4f6ce5438a0e713386dce2d3a1d618a1dbe8a99e4920",
+      "textProjectionSha256": "24cc85916abb66295d1db0c8a2c635d7b9b580278da0c6e6d7a92faa6fb14ee5",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0063.json",
       "textValues": 91,
-      "textProjectionSha256": "b77d1e94ffeb6b9ac05c15d5149433a92451e250a2aedc1f599faa955c263b70",
+      "textProjectionSha256": "7a2c273309795ee3836f0692ced8511c5ef145072975c6c6e76dbf9bd06f0c53",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0064.json",
       "textValues": 86,
-      "textProjectionSha256": "5d28f7296008ea5c5394c3f18d1fd07a9dd62e24ea94cb9985c52a2f3eb99008",
+      "textProjectionSha256": "4945b527300c88b966bae6b3c30554ffc46fb3298f2f378802de7ad49e634aab",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0066.json",
       "textValues": 51,
-      "textProjectionSha256": "87b12b3a1b20c8ef91666016a59012bee4af55b73b63ca4431496f5e16c26b86",
+      "textProjectionSha256": "d2a287231d152b47cbe3e2aee4d2262b27f76ac41ab9533a6f7d23ad686399f4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0067.json",
       "textValues": 86,
-      "textProjectionSha256": "4cfa501f0873970e3c52645d32a949621c3db1359cce9310c4d83db75dad17f1",
+      "textProjectionSha256": "5c971df2968c28977f2deb22331646d2d578a5a475e79515939805a48929f18b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0068.json",
       "textValues": 101,
-      "textProjectionSha256": "dd42396028463963a2fb6bb048c86066015a50435fb462ea83207cf6be9153e5",
+      "textProjectionSha256": "4cfc7aac6b0cebd69487e8f5f22f246e41ce9a15e3b38c8992056e69c06ce3b6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0069.json",
       "textValues": 76,
-      "textProjectionSha256": "8d3b9c643a15df01ad035a5d828829333222b4c0adfb4767578e2f2b15344e3f",
+      "textProjectionSha256": "ea46f992435bc5d4d1a77dae99637affbd9d65b5d07c59e53cb5d6a8858fb7df",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0070.json",
       "textValues": 81,
-      "textProjectionSha256": "eee86f9c8d6d373478bd6fd896c18101336d8863848e0e5c3298a66a4d2480f3",
+      "textProjectionSha256": "0ad90c0206ee1a17ce257f08734db45672fbf56ed3e78671b9e49305eb2c8b10",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0071.json",
       "textValues": 101,
-      "textProjectionSha256": "b191ad1d270719b3e3a5313589712ff489d53d992bcaf9688ac9efeea1478c76",
+      "textProjectionSha256": "028b36b6638a2a44b6c533fda54fbf4dfcf44556897471c7e782dca548359f69",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0072.json",
       "textValues": 96,
-      "textProjectionSha256": "aa6dafb747d20702d506d125171e51a8fd36550eb2e01d33ca926f3d808c626d",
+      "textProjectionSha256": "f189887c511e697a8b8eaa39dd9e47dbc289defd7f146631d1ef707c6ac6fe51",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0073.json",
       "textValues": 81,
-      "textProjectionSha256": "07e3465fdabe06ecb08e46a7beea3b96527d35a3f0dbea0342a29e6a379a8241",
+      "textProjectionSha256": "40856703fb63150220c2250b18edae39543237cf348c9b4377e66a425220d41f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0074.json",
       "textValues": 76,
-      "textProjectionSha256": "f92d201e4e65c34916a38d225c876be83a722e780ac88da4c266d58f18146bca",
+      "textProjectionSha256": "0875267f021ec49ea911f85cc364e1e922f99b1c603d6217a79d4bd5ed77fd3c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0075.json",
       "textValues": 91,
-      "textProjectionSha256": "f1d7760a2932f55bfd9a8a27532c22331c97f1335d29517519d24ff880cc0ffa",
+      "textProjectionSha256": "b61c8c480d2c4c67c79c6d9c615359ebaa7ac6777bc6187746f67ff45b201bd2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0076.json",
       "textValues": 91,
-      "textProjectionSha256": "ded4c2bea3e306b96b2d60b19b89f42f11052c153bc9142e6c2afbde9f94131f",
+      "textProjectionSha256": "d2a26c0a9d7e38727c901b2dc1c6da152c8de34cac4afd0c267cb7d5ccf51864",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0077.json",
       "textValues": 76,
-      "textProjectionSha256": "763e3e91f424cb95845b14692d968929b7263c33357e6495bc3d8c8b29bbef9a",
+      "textProjectionSha256": "d4d96a79be7d179da0519d5e3ed62af19dcaae0e6f99bb4fb56ed68db231d8cd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0078.json",
       "textValues": 81,
-      "textProjectionSha256": "88a738c8b1cab966ea42032cc43c102a4b8a3260c9124e80e970953905bbec86",
+      "textProjectionSha256": "bade3446200a4db5003b7940799dc08dd0e89e8fc3c110baab85e750b98c1c12",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0079.json",
       "textValues": 86,
-      "textProjectionSha256": "8370a041487be5275e7545d9ebe9e80fb399ef30b3ebb7d08d327ea839d7418d",
+      "textProjectionSha256": "3a2757ac56f8aa4590c0e0a7fbf368f47169ca9d88e1f3b8be29febe6c13145b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0080.json",
       "textValues": 106,
-      "textProjectionSha256": "df47e8f8d1267414297306c9c6b8bb20901d692338b38fb3842cd452d2cb67c3",
+      "textProjectionSha256": "746704bb65c40310f8407e785f8128fb6e263db5071882c4e9f3dc1797800562",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0081.json",
       "textValues": 81,
-      "textProjectionSha256": "8959e2185c75c758c934f52a35dd17234a9bf35398d8b33084731c06493294ed",
+      "textProjectionSha256": "374d3f3d4c65727866bf8a72334301bc5f5c11aaf96d7d8f305dee1fb0c5d477",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0082.json",
       "textValues": 96,
-      "textProjectionSha256": "88cf88286c4c9af3298c7e10497b2241381ee95b4bd3062b08485c73c08d17d7",
+      "textProjectionSha256": "c23974cf38004ef3dbd9b60ebe757a98fa41f69be1ee38ecaf93d07f887515b4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0083.json",
       "textValues": 96,
-      "textProjectionSha256": "b3c711248406c0eae4cac0aada97267463f20b887e147f03dbcd15e7e66063e2",
+      "textProjectionSha256": "f61cbe513843f432291439fa57587488da428be01351dead5be11a8e0c7e6bbe",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0084.json",
       "textValues": 86,
-      "textProjectionSha256": "815a14f6f4d8cf44324045763021b2d3ca6366b59a82dc99c595a709cdf916d2",
+      "textProjectionSha256": "fec40170f4ca442a77dfb86ff4edeb91e007d3c3c520ab2559e63995fd9d8c2f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0085.json",
       "textValues": 106,
-      "textProjectionSha256": "fdbf6264c18f34ed299a6b2ebbdbc00945966207e68a81715b81519e50207012",
+      "textProjectionSha256": "1544a8cc5bc842641e013d094f6f5c907bba5f11d29e6b03a36911cd1b05731e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0086.json",
       "textValues": 76,
-      "textProjectionSha256": "913c36a34b5bbc2dbf8b0245988c9a22e1686cee58cbdbf949815c968d762f73",
+      "textProjectionSha256": "0b8b99d1a1817af656b6277656ea729c266013e3095a1bc3dde85f67cde4a383",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0087.json",
       "textValues": 86,
-      "textProjectionSha256": "ab9a0f3b900b98e24577575c5c7c19ee568ad5c1f429f36967150b578a11e4aa",
+      "textProjectionSha256": "d2d19b39aa972396909e108c0a7e716509536466067abbc0ee32f5d8af84f11d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0088.json",
       "textValues": 96,
-      "textProjectionSha256": "08588948bc8498283ae160f089b05fa379516a1ff315d5ed23a085bd13f48c92",
+      "textProjectionSha256": "a6c1ca9ec62de63513397d82f877cd5826d3d5bf16c3f7629be30e1742007d98",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0089.json",
       "textValues": 101,
-      "textProjectionSha256": "09b3fb2f88668b02289949d9d8aa7dfb48cb976b25cf67ce9c08e6b631f78ec3",
+      "textProjectionSha256": "de8041df563c0c9d7b74d485bfd3b7cd781800e6c5e8ab8ee427aec65d1005d4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0090.json",
       "textValues": 76,
-      "textProjectionSha256": "794c8bc9de92913a117bc4a69eaa74ea77ecc4269bcf6706fe75432a67136689",
+      "textProjectionSha256": "3ab44869a83b29ce7a7ef750865a9499286833829875ac74eaa04fff49a668a6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0091.json",
       "textValues": 76,
-      "textProjectionSha256": "1c1d20a5cdd742073aedc3dd3888bf348acc19237fc754ad5394727d18c5b089",
+      "textProjectionSha256": "00737bcc661ef36a0486d49224dd1572c74bf2115ee86093fefe1e65ad841409",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0092.json",
       "textValues": 91,
-      "textProjectionSha256": "14805c2a2aedc55825db15bebcf74871eea2375596522b3903190a6428e1e23e",
+      "textProjectionSha256": "59b20ee7b04cb96055c002143e63a8f9104f4447c4d078c6e91a5d326f34b2a0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0093.json",
       "textValues": 91,
-      "textProjectionSha256": "203369682c141c033e2a2e6cf71ce2862a2f666d736f8f65a48ce8b69d05773f",
+      "textProjectionSha256": "add537c7770364b2cdc3023374a8961c0bb0bfdd8af8b5ab89e04de2cd2a232c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0094.json",
       "textValues": 76,
-      "textProjectionSha256": "9d6da3dde9f6f41b84a189ae090be6460d2e5f0301b11d4e310d937d428d4910",
+      "textProjectionSha256": "78d848b137516a31c1b0c55afb662870958eb3fbd45f8a7ea436a76e1e7c7f04",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0095.json",
       "textValues": 76,
-      "textProjectionSha256": "79a38f1e03b348d73b7fab21f3a4564e9196af0def9548205d45d132bdece0ea",
+      "textProjectionSha256": "6684cc926fe94f95aacd0c7b8e3ff0fb62243dd82b72883c21ab70dec3da9a97",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0096.json",
       "textValues": 91,
-      "textProjectionSha256": "a56006e5e6deb25bcac2f7ba5229e96838346179f2cfd6eb00f8d6dacb97f7c7",
+      "textProjectionSha256": "d3a80777b4c539b5fc22526604dc79bdd7190b41e49a29365cc0ee3d2be095bc",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0097.json",
       "textValues": 116,
-      "textProjectionSha256": "039fbd8ed7e2b64af507221e7a4a7393057fe573f81f9c8c9aefa46f6edafaee",
+      "textProjectionSha256": "c6bf0500cc16f17e3dbf82e40484de4916b621acf7959f9a146cd6e13e917f44",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0098.json",
       "textValues": 116,
-      "textProjectionSha256": "40184798923327913d05dfa5c8008202590f1634a408bc1acca58229c208f48f",
+      "textProjectionSha256": "a856a1a3c5f9ec146321be9b9f48491f15c84171c23941102049d296923992ca",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0099.json",
       "textValues": 81,
-      "textProjectionSha256": "b7743b715d96a425b6d52ed1e79c70e52c576d9487e3653224ea6e9571a6faeb",
+      "textProjectionSha256": "f65ffc9825135013694b6ada4265d4e041e21130185494d71cc5501c929c3178",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0100.json",
       "textValues": 81,
-      "textProjectionSha256": "3a105aad2b5c7abe03ff659a3fd20a70c909cc6c788ed8d838edc9c9bab315f6",
+      "textProjectionSha256": "909b22b9961bceb6305768d83db2a085a7484c8fa6b1ccfc4dbcc7ea82641732",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0101.json",
       "textValues": 76,
-      "textProjectionSha256": "9f6de55893cf8e74b2e0f01a83ffa76f83e1b375e6ba213e821ad7a97e19a461",
+      "textProjectionSha256": "e8ebc7355f8bb5173a317697d5ddc108a46aefcd4e5cf356e5f4f117ba81dcbe",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0102.json",
       "textValues": 56,
-      "textProjectionSha256": "92a45eb9e3b0eaedc32b5bdede4c73964734a2fe0848469c744546ade3bfc089",
+      "textProjectionSha256": "9818a4060cdbe3355b76f68fd713bbe8b44203393a4902b3874231a5819bcf46",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0103.json",
       "textValues": 76,
-      "textProjectionSha256": "b138338c49d74bc643ffcd6cdd0fd73688ef4ae296cebf7577bc77df6c2c8eac",
+      "textProjectionSha256": "d345e1649946434d085c38cdea093d751539666a7bceab73d8e7922a249ca81a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0104.json",
       "textValues": 101,
-      "textProjectionSha256": "a740f15e0b7fe9c3d41c8a0cee494fef90eb9acedf789273e2f27e553883bae4",
+      "textProjectionSha256": "00bd4c063c16bb1af292c975a7fc34c2cfb99fa0c91de605bf06ba5c7126a574",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0105.json",
       "textValues": 96,
-      "textProjectionSha256": "9fc66bac5918ea2ed2893ed876005c37cd7cc38abc4266beb57bb0bcd41198d1",
+      "textProjectionSha256": "84561a426ef8cbf058604b25669d8f51d9bdb8487bea550fb76b0b2f6ca1c0dc",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0106.json",
       "textValues": 81,
-      "textProjectionSha256": "910aa1046049f0abb189abdc771446e5bb9176e554f77c765130d2e7635f8c8e",
+      "textProjectionSha256": "62d7789195a29ab365d5f7162e2078e36f5ed3699907c699efcf99f075c752bb",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0107.json",
       "textValues": 71,
-      "textProjectionSha256": "cbcb552b753f3ba3607e44fda3fa35439c0cf2fe65a2b87f7fbbb0a4dd59bceb",
+      "textProjectionSha256": "c910644ec4724b47acbebf42bb30ad5cb3e9ce96230a68000453464150c86150",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0108.json",
       "textValues": 96,
-      "textProjectionSha256": "d67fec47568332c701af2e5b8ed7281d2c4c3bb12cf4809747dc507b21d5000f",
+      "textProjectionSha256": "39d97ee34137ade1380ce27d4eade965489a2daee0d68bdac8e71d7389b11e2c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0109.json",
       "textValues": 81,
-      "textProjectionSha256": "c9f97ed98bacdca51534ef15ad63775a82b60bbda68765a9f0e44abbb2438913",
+      "textProjectionSha256": "e8ac3e882fb71c94f2f89ecad0bc7cd9bcb5562c22ba176e767a17301b84770e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0110.json",
       "textValues": 81,
-      "textProjectionSha256": "704779d8260f21d726ec9d898f955af04b48ec76e9abfc2d684e2c0ac06ded52",
+      "textProjectionSha256": "af8284dd8b3685642f0b5c743e06f0fe4832b3845c2f6f36fd70eda9b4cb6d29",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0111.json",
       "textValues": 86,
-      "textProjectionSha256": "7ebf02b2b1a1c56d02d742d7fea3a6b0f5e3c9547e50ba471eb011bea41aaafa",
+      "textProjectionSha256": "0ab09bc92f92d5e73d6e4fc2e4482c866d08124e7c3a739f28b741162ae1f978",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0112.json",
       "textValues": 91,
-      "textProjectionSha256": "a86ca590fcc431eba6aa103190f28d994a1c32e92b2f08246c6352dffcced600",
+      "textProjectionSha256": "b01ae8e5da8ea19f198c138cfabefc9d14a7b5787112263dda6803b3d665eeec",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0113.json",
       "textValues": 101,
-      "textProjectionSha256": "6ad8f748dd89b828d5c7414df21144b9e1ed71f0096a269487dbf27476a3f31d",
+      "textProjectionSha256": "719d2d5c41ce0393c249153062833f17584e6fcf147f937e5937190fc4016f11",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0114.json",
       "textValues": 101,
-      "textProjectionSha256": "a93c376c25af38ca30263d4fc477d503688bccd202ace0e3665113ceda844a06",
+      "textProjectionSha256": "28c8922be4825afd0a1482df8bc20c80010a82347968e0663e9a5103e2e296a0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0115.json",
       "textValues": 96,
-      "textProjectionSha256": "02108ff56890ac6733532e7791dc6d1ab90604333c7390adb8ca6c8f09562577",
+      "textProjectionSha256": "19b3998ffde1b6ac06922a021511d0f8091d66b5a50ebcffcc4335ad6ffb38e1",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0116.json",
       "textValues": 86,
-      "textProjectionSha256": "b9769f1b230b864962ba137ade9a7a12b6a0ef21abe8e2de409ed4c7162960eb",
+      "textProjectionSha256": "e5e0501405238179a03c4e2ee82293cbd2c237432c86203b710510223035d15d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0117.json",
       "textValues": 86,
-      "textProjectionSha256": "cfe8a330c532f4d0cf6bf5634dce445a7801016fe5b1dc95d59cea8c19f31be5",
+      "textProjectionSha256": "0b5d3178fe5a11f0b469b98fdd503ff2a86e062edbdf7df3a120253eb6038445",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0118.json",
       "textValues": 91,
-      "textProjectionSha256": "f47ddb084ddb50946529540dbfc9aa8711427afa7431c7c22eb19de0cf7d13b1",
+      "textProjectionSha256": "fc4407b5c701e1a338d06acf07945d6b4eaa914976345c90bc6438bfa7f4f641",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0119.json",
       "textValues": 91,
-      "textProjectionSha256": "c4a151847cd303ed6e18427946d2974f1c743aad98423d077773ad5241e3cbfc",
+      "textProjectionSha256": "ce977c5dd11fd40e44435f185907e2e4c9e2909d7b1bdd02a43c232cbf0f9dcd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0120.json",
       "textValues": 101,
-      "textProjectionSha256": "4f16a9ddd80fa68a784d4af0675542d98c481a50cf09a9cee0d7858a2fa75688",
+      "textProjectionSha256": "81f8eca5b75a1befa2d575d0bfd5d971f3ce61e7b47ad7d895c98db79b7d24f6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0121.json",
       "textValues": 76,
-      "textProjectionSha256": "cab0d969ce32f48e31953e718ccf97fd6ef26a32eb0ce059dc336ac6a2091fd3",
+      "textProjectionSha256": "3f520f9b3c001737a50dcf12eb3ce3020f602b25abbf9ddaf538ffdd1689a0c8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0122.json",
       "textValues": 86,
-      "textProjectionSha256": "6036e21dec79d1ef89f4c7922adaac535a678adb34347b3d07423edeea0c0281",
+      "textProjectionSha256": "b7e3160cb38c40edf4c713ca24763479e6585197330471850c712c0f4be2d591",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0123.json",
       "textValues": 76,
-      "textProjectionSha256": "aa2a99e42288d70a6f99d99698169a1738647643f7c7904ab6e583d8aad84b9a",
+      "textProjectionSha256": "e73bd35906421f6587a06a2c76a82959ba9bec7098fdfceeee8680f8be7bb850",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0124.json",
       "textValues": 96,
-      "textProjectionSha256": "1774b37cf44cae041e7678c32794a556d1f4ebdbd308b8101e71d7b2a116099b",
+      "textProjectionSha256": "4b6fd426fcd617ea09765596cddf9301c1778673524b277d51a53c9e2f602d29",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0125.json",
       "textValues": 81,
-      "textProjectionSha256": "b6791705647ef5b9543adc272a7a599783f81b7f39b076585c96fa5d3ed298fc",
+      "textProjectionSha256": "18f8bafe1c1b1d1aba75ab4d77f61512e3d426ef19017d6987e89da720e6f640",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0126.json",
       "textValues": 86,
-      "textProjectionSha256": "0c18554cf9df57bb5cd465912e087ebf4de02f37ba6ab85ce1c18391b1f03c88",
+      "textProjectionSha256": "4f79f0d8a9b84ede6fae5ab922cd12a096093e086a8839460dbfff3dfac1f45c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0127.json",
       "textValues": 96,
-      "textProjectionSha256": "cf338d8dfa3dda5acf982773fbe406fa7de4d68029a618a41f9c80f022b63ef7",
+      "textProjectionSha256": "17f8ab224897356fb3bc03f5a0835ad45a2a11b8b9bf1bcfb4c7a3c6626ba3c6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0128.json",
       "textValues": 96,
-      "textProjectionSha256": "313751178af3cca4ab0f3ecc3df541773aff4893427424c330c37d8bb517ae04",
+      "textProjectionSha256": "03ce103ce11b0a1219a7dd63bd7f94e16a1e325f5c900b34ac98e4cce8c865d7",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0129.json",
       "textValues": 86,
-      "textProjectionSha256": "77295c4340e60d27a64741a434ab2a3bb87827d06c6771afa803efd47838d8a6",
+      "textProjectionSha256": "dc19410947b6af86af95cbb51f6d4708f5dea6b3425d8618879037837b6f3a11",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0130.json",
       "textValues": 81,
-      "textProjectionSha256": "28f0e875a487ded12203065b4efb6f37600f88465e7b54894eee676dd6aa9de3",
+      "textProjectionSha256": "e3c98a0eef5cc2fb9b931ea7f317f6f46d2d5ce0616e542c89e2d23cdf4f9377",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0131.json",
       "textValues": 81,
-      "textProjectionSha256": "83ca59e12dc281d1be98de08b5c915c0055795aa0e5e2b15dcbabb61d185f6ab",
+      "textProjectionSha256": "86ec0bd235a777af8bb7caf7ec6368ea01a43bce425f78c46052e9b9d67a99bd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0132.json",
       "textValues": 81,
-      "textProjectionSha256": "1de020cb30c35b591dfb18f0e569f2cf5b3ae3769bbcc1cf3ef01c7bfd80b26c",
+      "textProjectionSha256": "78161e93ddb2d0dc99fdd0a6b05df3a8c353d5c123537bdfcd28b0eee624b8bd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0133.json",
       "textValues": 91,
-      "textProjectionSha256": "143a506aec51f6af9740b7fb793c0d02972eef08f05f5ced0c892e709dd13baf",
+      "textProjectionSha256": "268e953ca38716e965d9a900ce805997ab5d40b2f1fe20a688d8098853db801a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0134.json",
       "textValues": 91,
-      "textProjectionSha256": "118027cd71559246f6c56c55c461051827159641ac8eaba8dd541612220321d2",
+      "textProjectionSha256": "6c8fbf6dce34bac6dc01fdc35b5e4473b738e678f6650fccc25e6c8474da794a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0135.json",
       "textValues": 101,
-      "textProjectionSha256": "62cae783fe81f8ba3247be63898ae5eedf5e2f5331c6099e50b75e4b5fdfafd9",
+      "textProjectionSha256": "f6f29dfe812c8a40fe636e0c57b7c9ab16cc68a3c12f46a316dce5fc6db80f07",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0136.json",
       "textValues": 76,
-      "textProjectionSha256": "b89ba0691438ad598e34a01e002260da09c3f7edf10b52d22ff89af99a16b105",
+      "textProjectionSha256": "681e6f8894d86e57fd4ffe0066da5ca634988ff67a0c2177ba8909f747dc6bb0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0137.json",
       "textValues": 121,
-      "textProjectionSha256": "6c2e53b3a3dfa5dbe7f3ab33d0538a4a87925782717df70186f2b2bfffc5a294",
+      "textProjectionSha256": "ddc5db4b85f0260ab08e85865fba7cce74afe3fcb8d457a7517f99d23b0967e0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0138.json",
       "textValues": 76,
-      "textProjectionSha256": "a52407733f595969d89651a2c37cb32d28961b9588b2887dd7700317594affab",
+      "textProjectionSha256": "74b2bc4f01d5e825188aaf005ef9e535eb42e61b7d190af8ee57cf72f1d6479b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0139.json",
       "textValues": 76,
-      "textProjectionSha256": "983c88d5510f7c476900926296d47d30bae2f84ab02c7eb76727d8f8ad06fe51",
+      "textProjectionSha256": "b0afbfc13bad45fa05d279f633c2f8b3a4c74b1a1f9464c207b2abdfd3a9b756",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0140.json",
       "textValues": 76,
-      "textProjectionSha256": "a5126b19b1c28ae9177741683023a14f271c8b2b0eefd900523b960c4907c8cc",
+      "textProjectionSha256": "ef7a4bee01471e39a7dbea98c42974f981acc3ec30ebceb8cd3e83577f8a0fb9",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0141.json",
       "textValues": 81,
-      "textProjectionSha256": "62b5fbad5e2341d1812e919216f7f76fb6f2912fc8a4ab7e59f02f1deaf08b66",
+      "textProjectionSha256": "bbcf67d043d8e2e3e92055f86bd9dfb625442f0ef62f722a139c3c7e4e1c2254",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0142.json",
       "textValues": 91,
-      "textProjectionSha256": "bc0a6141c54e0e575e112b4cf57d24f95ad38f31c425501461dae084c450c316",
+      "textProjectionSha256": "89afd7c74570fc5eabe1df65bfe68ed7f8fea018870e52d3c8272c56afbccd83",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0143.json",
       "textValues": 81,
-      "textProjectionSha256": "7220bae136495ebe7bd2d90649b7e5b44e99d1a94904b2de02180f8fb9ff83b7",
+      "textProjectionSha256": "93a6c13eb9faa8bcdb3bcb025eb004890ec085384e7bf0efe5b0b5a459c53f15",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0144.json",
       "textValues": 86,
-      "textProjectionSha256": "4fe201a578e07c8fa65d1e0cb44f453c934cac0329d814fc616c863cebdee1b2",
+      "textProjectionSha256": "6f4383fbfe7e8335934745d0ec1a78f5d6754ccf6dd26b7178c900d090780bab",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0145.json",
       "textValues": 91,
-      "textProjectionSha256": "361071196ae94f27225d3fe64f0da08212bb737871e57bfb475732f9728c5249",
+      "textProjectionSha256": "782dd9c3de74d6e36a4ed84e6b550bddc01284ed99136d24a9a897656e5a5d8f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0146.json",
       "textValues": 96,
-      "textProjectionSha256": "a5fc7d5b80849d554239c13997e1eeadce24c036327b3666240fc6a367289074",
+      "textProjectionSha256": "95d1425f9a32147235358d3e0c05e28a045bafe5691119ef3b8d8274a877778b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0147.json",
       "textValues": 86,
-      "textProjectionSha256": "215b16a6e7cda9865390875e468c46579465e5358cbd06d58462e38a8577657e",
+      "textProjectionSha256": "decd8481d859e93fd751d60b620a4456e1ef13fb6aafd47899e7832a84ce8b6f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0148.json",
       "textValues": 101,
-      "textProjectionSha256": "6628fcb65b84527d9036999001bd7327c75207fed6ba1ce213dd56de21dd270a",
+      "textProjectionSha256": "319bed59a1a8fdd3ca52e91c477fcfb1e500300f0a4a5f5f28b3ee113a566910",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0149.json",
       "textValues": 101,
-      "textProjectionSha256": "a555ef38ed96cefa9c0a0a70740371edbf5f807c34d3046d6427a2ec8089fbf8",
+      "textProjectionSha256": "7c3942b7378d65dd1b193d518b5c3290377588f19a8bb68267b10603c74d6133",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0150.json",
       "textValues": 86,
-      "textProjectionSha256": "64cf230d67b30eabfc1acbaa0a00713f4a1361bcb376bd7f7a457ced08badae6",
+      "textProjectionSha256": "353316079cc6515421ab8908491a37e2900e3239428c5801d30c44ea88adfaae",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0151.json",
       "textValues": 81,
-      "textProjectionSha256": "d4ab30da4efa726b3487da44b7ea67384b674130d3b1d22bc9680e6b2f329adc",
+      "textProjectionSha256": "e2fd4f3cff2b2399d716f0dca06b4238176cf75f2c1216cc078e696083f14474",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0152.json",
       "textValues": 86,
-      "textProjectionSha256": "a182d07ac92500cf2634848334c30808ea3e6ce300cbda426372739f7ad19e33",
+      "textProjectionSha256": "5aad6cf295e6d7b9a3fa10bef33b02bc1468d6e770cce833dd990d1d46b51b84",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0153.json",
       "textValues": 76,
-      "textProjectionSha256": "606c21a6ab6719796fedb42e0f3aacc378d7fc2390d6b014e2feda1fe4f2be92",
+      "textProjectionSha256": "d96fae1cb28c721ddd7bd39adffe6d78e280c06a32b2c1b05e6144dc91182ba0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0154.json",
       "textValues": 81,
-      "textProjectionSha256": "9f024cd2c5b24d8e4362902251f4fe567e7875fdbb6ff219fb628366abd44294",
+      "textProjectionSha256": "0137e4b55feb30b0ce17eadca3aafd2818918253c4d41926022522e2950e9078",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0155.json",
       "textValues": 81,
-      "textProjectionSha256": "df2d66f1095a2986433bf79e790e38d7e10e4907109f28023fe64a2f69812cd1",
+      "textProjectionSha256": "870ad5b8a9c5dac562205fc06ad1a33dfcf54b948d73238bc4b4b03aae1c50af",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0156.json",
       "textValues": 81,
-      "textProjectionSha256": "4c0e92fff09b51d2efc9469e0beca04b149c2ee55e4d28786006b7664a98e0e7",
+      "textProjectionSha256": "74bc9a6df9ec21ec36fb69080cb0efd8346d43a7fd51f27b3f950b53c2458d20",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0157.json",
       "textValues": 86,
-      "textProjectionSha256": "5e7f7c4cc2dad24118f5a4240c98cc77ed0c6dcf2676583d0664a0350f734c76",
+      "textProjectionSha256": "82a6bdaa2939c23e5e81e53a7655aec53d201c4fe00a975977ffb1ad249ddfe3",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0160.json",
       "textValues": 96,
-      "textProjectionSha256": "bae6fc8b5bf8d72f6ae9bc8f80a3919c37ea9c8e532855b486ae1948448fb914",
+      "textProjectionSha256": "5971654da198b4e9ff8063b1fbc39a8c163836d2dcb3a3ede3c3cb39effb9593",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0161.json",
       "textValues": 101,
-      "textProjectionSha256": "f08a5744d82d5345b9c689bfa27a7fa4340cf23fdd68ebc7a5e9ce3416903cf3",
+      "textProjectionSha256": "66ddf2e9496219321141986988320d499ef96b4fcb17034431ada8d3fc11bb77",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0162.json",
       "textValues": 91,
-      "textProjectionSha256": "405d8f0303d696586b7f1054e03ed5208808fc495f152e448fad2b8daa2144c9",
+      "textProjectionSha256": "c979178ec046c9eabcd2efec5e483914e5d370b8347571bfcd9efec503516a49",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0163.json",
       "textValues": 96,
-      "textProjectionSha256": "00b157af3e0e80f39af683d20d295ea68486efb2a3b44aeee8cffe0701a1d778",
+      "textProjectionSha256": "73c10cad945fba1f559ff177caeaa63db17489b18286dd72a515c99f8a8f1c1d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0164.json",
       "textValues": 86,
-      "textProjectionSha256": "0d263339cdf8c18f4db29ed5f53359fd8faf2ebba5fc5ea4efb491170a98a15a",
+      "textProjectionSha256": "9e28a7179d5a0cbd0939dc9b91961d387f324a6db77abc87a4b8f44f6c3804c5",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0165.json",
       "textValues": 81,
-      "textProjectionSha256": "5bb3fdf5bee84e6de36212abc1fdfc4aaca637cf231c20a5aa3c1374545abcfc",
+      "textProjectionSha256": "7a30cfcafb6031fc8c6c05eb4d1577fbfc7a250e14cbdd125ff50a357b39502e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0166.json",
       "textValues": 101,
-      "textProjectionSha256": "89d60cfdd19d146212a21b2d6b8f96b0cbadbed12080e0f48a98dcde1fd66eb5",
+      "textProjectionSha256": "83a19b9721b1199c722b0d1ee8a197bdffead1cda794072c0cba000dab187a2a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0167.json",
       "textValues": 76,
-      "textProjectionSha256": "e4c5e8d31547be02bee44b1b4d2d3e34ffbf38f5759b187cf7895d8f47e8f3a6",
+      "textProjectionSha256": "261677b70726f8ebf9f099a6c06adfef891154e41f5b9f6a8bc86957834cd4b9",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0168.json",
       "textValues": 91,
-      "textProjectionSha256": "a3dae9770160adbea4b2047cb3ecdf3cac3b694b7a4218f944cdbe2e7547abe8",
+      "textProjectionSha256": "a99b83ef01206a13dcd7b88a3f53ccbf73aad1af9bafb982d699cc24f89d0b75",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0169.json",
       "textValues": 91,
-      "textProjectionSha256": "2232d10e18801b1602a5a992abe995c5def796566fa50be8f0059b4e96070a33",
+      "textProjectionSha256": "3d4bacdee54312d480e162bfdb91ac3036addb6ea66eeb108a4d42de776d4cdc",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0170.json",
       "textValues": 81,
-      "textProjectionSha256": "6538feb4c0ca3cafa65795adf7923e27cabaceac496b866b191d9056882de669",
+      "textProjectionSha256": "7ac35b99d7535e9ceb50366d4f9651a2b42271519a30c89a48b10ac9bc235ed4",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0171.json",
       "textValues": 81,
-      "textProjectionSha256": "7d6b8da10e0f7e3cbb7e6ed59f9246be14328af1496453381372289225f10697",
+      "textProjectionSha256": "a193b73dadf04b20ddae646286e7c8243cff63b0ff07e7c1c8668ea7713547ed",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0172.json",
       "textValues": 76,
-      "textProjectionSha256": "7753e29286e3a838f8682703d0e12f7a572c384e5231b7d35b1864d47fbb852d",
+      "textProjectionSha256": "5c4a5ffbe01988514ac18498afadb0f60ae8406205d0bf3377f6a9435864ee8d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0173.json",
       "textValues": 81,
-      "textProjectionSha256": "577dc84f18e51bfba133890a6a630172736fd742e9edb3564274c0a05ea2aa83",
+      "textProjectionSha256": "599423ead255bc0bd2cde2c6a39307454ed366fad5f8c3ae5b957eaeacbe392e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0174.json",
       "textValues": 81,
-      "textProjectionSha256": "3138ae1d9b13189b30002cccd526ed4df5cd46150d42f5f075acb1d28b6c30c9",
+      "textProjectionSha256": "f99cda92459e6b747296853139f351eb31772515f1332c2ecd4fe7991fba73f1",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0175.json",
       "textValues": 86,
-      "textProjectionSha256": "74601a5346a9e72ddc8ecb935a15a6b7a4e496791e17b96575c0beb717707cfd",
+      "textProjectionSha256": "9a3a04cf35a28543e23f94a3877d75fc9b39db0122803e431564a349d7ffdb3c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0176.json",
       "textValues": 81,
-      "textProjectionSha256": "a7b7d01b524f3ba5434d58fb5a94f6b933965cd795e3a9e92e921f75e85f8992",
+      "textProjectionSha256": "8686bd758c1c12e627801cdb7c49fe1534d4465b340a5bcff0d0dfbc6175a301",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0177.json",
       "textValues": 86,
-      "textProjectionSha256": "10117b614ac8f380fe66eb829a3e72d1f2ae4ab3b0b10c067eaa11b66c76e308",
+      "textProjectionSha256": "03c0af66996cb6e14ff0f1aba86448b08acca59fd5ab8595b780b385bc5aaf0c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0178.json",
       "textValues": 91,
-      "textProjectionSha256": "2fd85cd12d5c1adc8bec18d1d5046b844d023682db70e8a315846207b15f009a",
+      "textProjectionSha256": "b7a1f478177a0a6dc7482b718d0b9408b45c2ac72dac157d356c51a06fb8dab3",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0179.json",
       "textValues": 76,
-      "textProjectionSha256": "4fe0af81984974dbd94b64a0b8720a880101d7db1b238832ae2a2d89a46aecab",
+      "textProjectionSha256": "aa1d641f8e0738f7c337ba893c70a37f79762d2441c2f8cdeb65529e7c4f416a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0180.json",
       "textValues": 101,
-      "textProjectionSha256": "fe3829610947b139271d4cd249961d3a88f517cf9a7ec8768eb7a906646a7a10",
+      "textProjectionSha256": "3d7cc7a3dbaa26bb279b912ec95ea31c368ffc27aced53d4f8b34ba35038b423",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0181.json",
       "textValues": 76,
-      "textProjectionSha256": "de8934d3b928e916d95b6c1c218588a7b592d375a8262fd307f2ced975289f96",
+      "textProjectionSha256": "64bce2428c816dd3d000a7f09fac5a8c857b37c0e07d2521bca733d2ffeb75f0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0182.json",
       "textValues": 71,
-      "textProjectionSha256": "373a4185ec6caaf7803b9edd7b6a040abf6316999ec478eed412d77f58e1a11c",
+      "textProjectionSha256": "59a4bf6997a42cac5fa0b521c049f684e5fd11d4fb842e4dab92e12ee1665e9a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0183.json",
       "textValues": 101,
-      "textProjectionSha256": "a0e10b21726af1f78e9b29b21192a2e486bf99d6f87845a4028d2b23cf68544f",
+      "textProjectionSha256": "78ec831437c47cf85b402a675eebff0f4244a2b0965c99d87aa9941e9b0c92ab",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0184.json",
       "textValues": 86,
-      "textProjectionSha256": "3a40cea9b47c965f1f8faeb3a52e83e8fbd0c730282293dc2f5353a396c4b660",
+      "textProjectionSha256": "0f166a48f7becc36f7224ac57ed7d381f08d513448c91b38ac9010d6a52e3617",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0185.json",
       "textValues": 96,
-      "textProjectionSha256": "95936469885591cbaa0588b1b9229c4accce27720fc5e489230e1fb8d03fbeb6",
+      "textProjectionSha256": "e28a6e04b413e1da9d668031a3139343db7825207528fe5d2f70ddee3dd1c694",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0186.json",
       "textValues": 86,
-      "textProjectionSha256": "04177c949db4b40dbff9cca195176a8e4725813da927d4177549617351a5e0ff",
+      "textProjectionSha256": "ffbb4cdca7b3c1c9605c3c96e09a91bfb6cc4f63d099ac8870a18b64b26730a5",
       "status": "reviewed"
     },
     {

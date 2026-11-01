@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0014",
-  "name": "SIA 334 通讯失效 地面延误",
+  "name": "SIA334 [通讯失效，地面延误]",
   "declaredCardCount": 10,
   "cards": [
     {

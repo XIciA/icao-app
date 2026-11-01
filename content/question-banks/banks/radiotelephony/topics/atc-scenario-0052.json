@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0052",
-  "name": "CCA 101 地面障碍 沙暴双发失效",
+  "name": "CCA101 [滑行道障碍物，沙尘暴，1号和2号发动机熄火]",
   "declaredCardCount": 16,
   "cards": [
     {

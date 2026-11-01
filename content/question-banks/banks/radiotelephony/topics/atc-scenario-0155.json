@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0155",
-  "name": "CSN 3109 风挡裂纹 雷暴绕飞 TCAS机动",
+  "name": "CSN3109 [风挡裂纹，雷暴绕飞，TCAS机动]",
   "declaredCardCount": 16,
   "cards": [
     {

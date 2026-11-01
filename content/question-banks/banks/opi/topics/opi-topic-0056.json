@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0056",
-  "name": "可控飞行撞地",
+  "name": "CFIT可控飞行撞地",
   "cards": [
     {
       "id": "opi-core-628-part-2",
@@ -31,8 +31,30 @@
       "referenceText": "The main causes include loss of situational awareness, incorrect navigation settings, failure to follow SOPs, and pilot fatigue.",
       "referenceTextZh": "主要原因包括情景意识丧失、导航设置错误、未遵守标准操作程序和飞行员疲劳。",
       "audioDurationSeconds": 4.68
+    },
+    {
+      "id": "opi-fzy-224608",
+      "audio": "/question-bank-assets/revisions/opi/1a61a07682d9565d11aab2d8190b4a7f7e7ff60d2d105221a1c09f44d489190a/audio/opi/opi-fzy-224608.mp3",
+      "audioText": "What do you know about CFIT?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-11",
+      "audioTextZh": "你知道CFIT吗？",
+      "referenceText": "CFIT stands for controlled flight into terrain, it is an accident in which human errors cause the plane to crash.",
+      "referenceTextZh": "CFIT指的是可控飞行撞地。它是一种飞行事故，指的是由于飞行员自身失误导致的飞机坠毁。",
+      "audioDurationSeconds": 2.136
+    },
+    {
+      "id": "opi-fzy-224609",
+      "audio": "/question-bank-assets/revisions/opi/60e389471af4a1bb93a94a8d474d952d35a03576c2c56c972def355b11fa29df/audio/opi/opi-fzy-224609.mp3",
+      "audioText": "What may be the reasons for the CFIT?",
+      "studyTier": 1,
+      "taskTitle": "缩略词-12",
+      "audioTextZh": "造成CFIT的原因是什么？",
+      "referenceText": "There are many reasons for this accidents, for example, bad weather, navigation system failure, ATC's wrong instructions.",
+      "referenceTextZh": "有很多原因，如：恶劣天气，导航系统失效，管制员的错误指令等。",
+      "audioDurationSeconds": 2.4
     }
   ],
-  "declaredCardCount": 3,
+  "declaredCardCount": 5,
   "categoryId": "opi-category-03"
 }

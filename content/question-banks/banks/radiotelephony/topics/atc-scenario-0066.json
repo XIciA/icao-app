@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0066",
-  "name": "CCA 101 除冰 4号引擎灭火失败",
+  "name": "CCA101 [地面除冰，4号发动机起火，灭火失败，应急撤离]",
   "declaredCardCount": 10,
   "cards": [
     {

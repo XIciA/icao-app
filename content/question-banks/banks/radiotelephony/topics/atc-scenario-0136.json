@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0136",
-  "name": "CES 2151 鸟击 TCAS机动 备降/返航",
+  "name": "CES2151 [鸟击，TCAS机动，备降/返航]",
   "declaredCardCount": 15,
   "cards": [
     {

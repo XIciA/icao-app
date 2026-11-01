@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0099",
-  "name": "CES 277 襟翼卡阻 无法完全放下",
+  "name": "CES277 [襟翼卡阻，无法完全放下]",
   "declaredCardCount": 16,
   "cards": [
     {

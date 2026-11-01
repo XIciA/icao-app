@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0186",
-  "name": "SIA 223 起落架问题 TCAS机动 复飞",
+  "name": "SIA223 [起落架问题，TCAS机动，复飞]",
   "declaredCardCount": 17,
   "cards": [
     {

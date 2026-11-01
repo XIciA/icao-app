@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0060",
-  "name": "CCA 725 一发启动失败 老太太心脏病 前轮转向失效",
+  "name": "CCA725 [一发启动失败，老太太心脏病，前轮转向失效]",
   "declaredCardCount": 16,
   "cards": [
     {

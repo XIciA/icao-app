@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0075",
-  "name": "CSN 557 左主起落架未收回 液压系统漏油",
+  "name": "CSN557 [左主起落架未收回，液压系统漏油]",
   "declaredCardCount": 18,
   "cards": [
     {

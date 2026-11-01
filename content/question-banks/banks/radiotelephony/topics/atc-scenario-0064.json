@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0064",
-  "name": "CCA 321 机长心脏骤停失能 PCR ILS区域非空",
+  "name": "CCA321 [机长心脏骤停失能，CPR，ILS区域有障碍，复飞]",
   "declaredCardCount": 17,
   "cards": [
     {

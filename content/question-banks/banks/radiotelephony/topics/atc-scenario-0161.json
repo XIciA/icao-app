@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0161",
-  "name": "AFR 896 颠簸 积冰/防冰 TCAS机动",
+  "name": "AFR896 [颠簸，积冰/防冰，TCAS机动]",
   "declaredCardCount": 20,
   "cards": [
     {

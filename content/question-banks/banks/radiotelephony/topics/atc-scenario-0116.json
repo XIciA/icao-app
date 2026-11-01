@@ -1,6 +1,6 @@
 {
   "id": "atc-scenario-0116",
-  "name": "CSN 3102 雷暴绕飞 TCAS机动 舱门问题",
+  "name": "CSN3102 [雷暴绕飞，TCAS机动，舱门问题]",
   "declaredCardCount": 17,
   "cards": [
     {
