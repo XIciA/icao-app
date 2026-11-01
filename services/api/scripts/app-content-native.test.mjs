@@ -207,6 +207,33 @@ describe('versioned native media cache', () => {
     const playable = await fixture.repository.resolveOfflineMemberResource(path);
     expect(fixture.files.get(playable)).toEqual(bytes);
   });
+  it('cancels an optional-first transfer after its playback and joined download consumers both expire', async () => {
+    const fixture = mediaFixture(); await start(fixture);
+    const bytes = Buffer.from('shared audio');
+    let finish, playbackCurrent = true, downloadCurrent = true;
+    const pending = new Promise(resolve => { finish = resolve; });
+    const cancel = vi.fn(async () => { finish(undefined); });
+    fixture.nativeTransfers.mockImplementationOnce((_url, uri) => {
+      fixture.files.set(uri, Buffer.from('partial'));
+      return { downloadAsync: () => pending, cancelAsync: cancel };
+    });
+    const playback = fixture.repository.cacheMemberResource(path, 'shared', metadata(bytes), {
+      temporary: true, isCurrent: () => playbackCurrent,
+    });
+    await vi.waitFor(() => expect(fixture.nativeTransfers).toHaveBeenCalledTimes(1));
+    const progress = vi.fn();
+    const download = fixture.repository.cacheMemberResource(path, 'shared', metadata(bytes), {
+      required: true, isCurrent: () => downloadCurrent, onProgress: progress,
+    });
+    await vi.waitFor(() => expect(progress).toHaveBeenCalledWith(0));
+    const completed = Promise.all([playback, download]); let settled = false;
+    void completed.then(() => { settled = true; });
+    playbackCurrent = false; downloadCurrent = false;
+    await vi.waitFor(() => expect(settled).toBe(true), { timeout: 600 });
+    expect(await completed).toEqual([undefined, undefined]);
+    expect(cancel).toHaveBeenCalledTimes(1); expect(fixture.nativeTransfers).toHaveBeenCalledTimes(1);
+    expect(fixture.files.size).toBe(0);
+  });
 });
 
 describe('native legal receipts offline', () => {

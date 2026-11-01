@@ -64,6 +64,29 @@ jest.mock('expo-file-system', () => {
   return { Directory: MockDirectory, File: MockFile, Paths: { document: new MockDirectory('file:///document'), cache: new MockDirectory('file:///cache') } };
 });
 
+// Cancellable native primitive; reuse the fixture's controllable filesystem I/O
+// so the existing late-write/corruption tests exercise the real transfer layer.
+jest.mock('expo-file-system/legacy', () => ({
+  createDownloadResumable: (url: string, uri: string, _options: unknown, progress: (value: { totalBytesWritten: number }) => void) => {
+    const { File: TestFile } = jest.requireMock('expo-file-system');
+    let cancelled = false;
+    let settleCancellation!: (value: undefined) => void;
+    const cancellation = new Promise<undefined>(resolve => { settleCancellation = resolve; });
+    return {
+      cancelAsync: async () => { cancelled = true; settleCancellation(undefined); },
+      downloadAsync: () => Promise.race([
+        TestFile.downloadFileAsync(url, new TestFile(uri)).then(() => {
+          const file = new TestFile(uri);
+          if (cancelled) { if (file.exists) file.delete(); return undefined; }
+          progress({ totalBytesWritten: file.size });
+          return { status: 200, uri };
+        }),
+        cancellation,
+      ]),
+    };
+  },
+}));
+
 import { beginCommerceEntitlementGeneration, publishCommerceEntitlementChange, resetCommerceEntitlementEventsForTests } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { remoteQuestionBankRepository } from '../data/repository.native';
 import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank, questionBankRepository } from '../data/repository';

@@ -30,6 +30,14 @@ PR #304 首次 CI（41277463827）发现 `services/api/scripts/app-content-nativ
 
 聚焦验证：API 跨端文件 **12 tests** 通过，客户端 repository/shared-transfer **58 tests** 通过；脚本语法和 diff check 通过。此次只改测试装配，不修改 API 运行时代码或共享合同。
 
+## 交叉审查：optional-first 取消回归
+
+审查发现首个调用者为可选播放预取时，后加入的正式下载继承了不可取消的 `File.downloadFileAsync`。两方均取消后可能仍等待网络，使模块队列无法排空。新增测试在修复前稳定失败：600ms 后仍未收敛，只有手动完成旧网络请求才能退出。
+
+现所有传输统一使用 `createDownloadResumable`，保留 required/optional 的名额与排队规则；均具有 120 秒超时、100ms 全消费者失效检查，取消调用幂等。仍有有效消费者时不中止传输；正常/失败完成也清理 Expo 进度订阅。账号变化仍报原账号上下文错误，单纯任务取消不保存迟到文件。
+
+增加 optional-first / required-join 两方取消、分别仅取消一方、超时和后续任务可继续的回归，API VM 也运行同一真实实现。客户端相关 78 项通过；同步最新主干后再记录最终检查结果。
+
 ## 本地有界队列 I/O 对照
 
 脚本：`tools/benchmarks/download-resource-workers.ts`，原始 18 次样本：[download-worker-benchmark.json](download-worker-benchmark.json)。

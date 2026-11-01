@@ -53,26 +53,33 @@ export async function acquireResourceTransfer(key: string, url: string, size: nu
       entry.slot = { bulk: required };
       // Keep the slot through processing/release, bounding staging files as well
       // as sockets when hashing or disk writes are slower than the network.
-      {
-        directory.create({ idempotent: true, intermediates: true });
-        if (required) {
-          const task = createDownloadResumable(url, staging.uri, {}, progress => {
-            entry.progress = Math.max(0, Math.min(1, progress.totalBytesWritten / size));
-            for (const subscriber of entry.consumers) notify(subscriber, entry.progress);
-          });
-          const cancel = () => { entry.abandoned = true; void task.cancelAsync().catch(() => undefined); };
-          const timeout = setTimeout(cancel, 120_000);
-          const cancellation = setInterval(() => { if (!current()) cancel(); }, 100);
-          try {
-            const result = await task.downloadAsync();
-            if (!result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
-          } finally { clearTimeout(timeout); clearInterval(cancellation); }
-        } else await File.downloadFileAsync(url, staging, { idempotent: true });
-        if (!current()) return undefined;
-        entry.progress = 1;
-        for (const subscriber of entry.consumers) notify(subscriber, 1);
-        return staging;
+      directory.create({ idempotent: true, intermediates: true });
+      // All consumers share a cancellable native task, regardless of which
+      // caller arrived first. Admission policy must not select a weaker I/O path.
+      const task = createDownloadResumable(url, staging.uri, {}, progress => {
+        entry.progress = Math.max(0, Math.min(1, progress.totalBytesWritten / size));
+        for (const subscriber of entry.consumers) notify(subscriber, entry.progress);
+      });
+      const cancel = () => {
+        if (entry.abandoned) return;
+        entry.abandoned = true;
+        void task.cancelAsync().catch(() => undefined);
+      };
+      const timeout = setTimeout(cancel, 120_000);
+      const cancellation = setInterval(() => { if (!current()) cancel(); }, 100);
+      try {
+        const result = await task.downloadAsync();
+        if (!result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
+      } finally {
+        clearTimeout(timeout); clearInterval(cancellation);
+        // Expo's cancelAsync also removes its JS progress subscription. Once
+        // downloadAsync has settled there is no live I/O left to interrupt.
+        if (!entry.abandoned) void task.cancelAsync().catch(() => undefined);
       }
+      if (!current()) return undefined;
+      entry.progress = 1;
+      for (const subscriber of entry.consumers) notify(subscriber, 1);
+      return staging;
     }).finally(() => { entry.settled = true; cleanup(key, entry); });
   }
   const selected = transfer;

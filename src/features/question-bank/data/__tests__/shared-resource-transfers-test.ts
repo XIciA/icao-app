@@ -30,12 +30,13 @@ test('bulk uses two slots while a playback request can acquire a separate native
   let thirdCurrent = true;
   const third = download('three', { isCurrent: () => thirdCurrent });
   await waitFor(() => expect(mockTasks).toHaveLength(2));
-  const playback = await acquireResourceTransfer('playback', 'https://test/playback', 100, false, { isCurrent: current });
-  expect(playback).toBeDefined(); playback!.release();
+  const playing = acquireResourceTransfer('playback', 'https://test/playback', 100, false, { isCurrent: current, playback: true });
+  await waitFor(() => expect(mockTasks).toHaveLength(3)); mockTasks[2].finish();
+  const playback = await playing; expect(playback).toBeDefined(); playback!.release();
   thirdCurrent = false;
-  mockTasks.forEach(task => task.finish());
+  mockTasks.slice(0, 2).forEach(task => task.finish());
   const results = await Promise.all([one, two, third]); results.forEach(result => result?.release());
-  expect(results[2]).toBeUndefined(); expect(mockTasks).toHaveLength(2); expect(mockFiles.size).toBe(0);
+  expect(results[2]).toBeUndefined(); expect(mockTasks).toHaveLength(3); expect(mockFiles.size).toBe(0);
 });
 test('active audio reduces bulk to one without cancelling already authorized work', async () => {
   const one = download('active-one', { isPlaybackActive: current });
@@ -93,4 +94,51 @@ test('completed network bytes retain their slots until processing consumers rele
   expect(mockTasks).toHaveLength(2);
   leases[0]!.release(); await waitFor(() => expect(mockTasks).toHaveLength(3));
   mockTasks[2].finish(); (await third)!.release(); leases[1]!.release(); expect(mockFiles.size).toBe(0);
+});
+
+test('optional-first shared transfer aborts when playback and joined required download both cancel', async () => {
+  let playbackCurrent = true, downloadCurrent = true, finishLegacy!: () => void;
+  mockOptional.mockImplementation(() => new Promise<void>(resolve => { finishLegacy = resolve; }));
+  const playback = acquireResourceTransfer('optional-first-cancel', 'https://test/playback', 100, false, { isCurrent: () => playbackCurrent, playback: true });
+  await new Promise(resolve => setTimeout(resolve, 0));
+  const required = download('optional-first-cancel', { isCurrent: () => downloadCurrent });
+  const settled = Promise.allSettled([playback, required]); let done = false;
+  void settled.then(() => { done = true; });
+  playbackCurrent = false; downloadCurrent = false;
+  try {
+    await waitFor(() => expect(done).toBe(true), { timeout: 600 });
+    expect(mockTasks).toHaveLength(1); expect(mockTasks[0].cancel).toHaveBeenCalledTimes(1);
+    expect(mockOptional).not.toHaveBeenCalled(); expect(mockFiles.size).toBe(0);
+  } finally { finishLegacy?.(); await settled; }
+  const next = download('after-shared-cancel');
+  await waitFor(() => expect(mockTasks).toHaveLength(2)); mockTasks[1].finish(); (await next)!.release();
+});
+
+test.each(['playback', 'download'])('optional-first sharing keeps the other consumer alive when only %s cancels', async cancelled => {
+  let playbackCurrent = true, downloadCurrent = true;
+  const first = acquireResourceTransfer(`optional-first-${cancelled}`, 'https://test/play', 100, false, { isCurrent: () => playbackCurrent, playback: true });
+  await waitFor(() => expect(mockTasks).toHaveLength(1));
+  const second = download(`optional-first-${cancelled}`, { isCurrent: () => downloadCurrent });
+  if (cancelled === 'playback') playbackCurrent = false; else downloadCurrent = false;
+  await new Promise(resolve => setTimeout(resolve, 180));
+  expect(mockTasks[0].cancel).not.toHaveBeenCalled(); expect(mockOptional).not.toHaveBeenCalled();
+  mockTasks[0].finish(); const results = await Promise.all([first, second]);
+  expect(results[cancelled === 'playback' ? 0 : 1]).toBeUndefined();
+  expect(results[cancelled === 'playback' ? 1 : 0]).toBeDefined();
+  results.forEach(result => result?.release()); expect(mockFiles.size).toBe(0);
+});
+
+test('optional-first transfer has the same timeout even with a joined live download', async () => {
+  jest.useFakeTimers();
+  try {
+    const first = acquireResourceTransfer('optional-timeout', 'https://test/play', 100, false, { isCurrent: current, playback: true });
+    await Promise.resolve();
+    const second = download('optional-timeout');
+    const settled = Promise.allSettled([first, second]);
+    expect(mockTasks).toHaveLength(1);
+    await jest.advanceTimersByTimeAsync(120000);
+    const outcomes = await settled;
+    expect(outcomes.map(outcome => outcome.status)).toEqual(['rejected', 'rejected']);
+    expect(mockTasks[0].cancel).toHaveBeenCalledTimes(1); expect(mockFiles.size).toBe(0);
+  } finally { jest.useRealTimers(); }
 });

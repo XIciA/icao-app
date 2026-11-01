@@ -622,7 +622,11 @@ export async function cacheMemberResource(
     if (cached) return cached;
     const transferKey = JSON.stringify([context, publicPath, expected.checksum, expected.sizeBytes]);
     const transfer = await acquireResourceTransfer(transferKey, signedUrl, expected.sizeBytes, required,
-      { isCurrent: hasCurrentConsumer, onProgress: reportProgress, isPlaybackActive, playback: temporary });
+      { isCurrent: hasCurrentConsumer, onProgress: reportProgress, isPlaybackActive, playback: temporary }).catch(error => {
+      assertMemberContentContextCurrent(context);
+      if (!hasCurrentConsumer()) return undefined;
+      throw error;
+    });
     if (!transfer) { assertMemberContentContextCurrent(context); return undefined; }
     const staging = transfer.file;
     try {
