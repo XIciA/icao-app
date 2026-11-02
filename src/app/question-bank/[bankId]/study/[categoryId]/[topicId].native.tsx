@@ -1,6 +1,7 @@
+import { directoryTopicWasReorganized } from '@/features/question-bank/data/directory-storage-identity';
 import type { ReactNode } from 'react';
 import { contentFailure } from '@/features/question-bank/lib/content-failure';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { peekStudyLogin } from '@/features/question-bank/recording/login-continuation.native';
 import { GuestLearningBoundary } from '@/features/auth/GuestLearningBoundary.native';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
@@ -46,7 +47,16 @@ function NativeQuestionBankStudyRouteBody() {
   const location = rawCatalog && cardId ? createCardDirectory([rawCatalog]).get({ bankId, cardId }) : undefined;
   const effectiveCategoryId = location?.categoryId ?? categoryId;
   const effectiveTopicId = location?.topicId ?? topicId;
-  const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading', resuming ? 'all' : undefined);
+  const reorganizedTopicOnly = Boolean(!cardId && rawCatalog && directoryTopicWasReorganized(bankId, topicId)
+    && !rawCatalog.categories.some(category => category.topics.some(topic => topic.id === topicId)));
+  const redirectedTopic = useRef('');
+  useEffect(() => {
+    const key = `${bankId}/${topicId}`;
+    if (!reorganizedTopicOnly || redirectedTopic.current === key) return;
+    redirectedTopic.current = key;
+    router.replace({ pathname: '/question-bank/[bankId]', params: { bankId } });
+  }, [bankId, topicId, reorganizedTopicOnly, router]);
+  const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading' && !reorganizedTopicOnly, resuming ? 'all' : undefined);
   const refreshOnReturn = useRef(() => {});
   refreshOnReturn.current = () => {
     if (bankState.status === 'error') bankState.retry();
@@ -78,7 +88,7 @@ function NativeQuestionBankStudyRouteBody() {
     </Screen>
   );
 
-  if (bankState.status === 'loading' || topicState.status === 'loading') return stateScreen(<GlobalLoadingScreen />);
+  if (reorganizedTopicOnly || bankState.status === 'loading' || topicState.status === 'loading') return stateScreen(<GlobalLoadingScreen />);
   const category = bankState.status === 'ready'
     ? ((manualTeaching || resuming) ? rawCatalog : bankState.data)?.categories.find((item) => item.id === effectiveCategoryId)
     : undefined;

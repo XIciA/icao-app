@@ -20,3 +20,7 @@ export function storageTopicId(topicId: string, cardId: string) {
 export function storageTopicIds(topic: { id: string; cards: readonly { id: string }[]; scopeCardIds?: { all: string[] } }) {
   return [...new Set([topic.id, ...(topic.scopeCardIds?.all ?? topic.cards.map(c => c.id)).map(id => storageTopicId(topic.id, id))])];
 }
+
+export function directoryTopicWasReorganized(bankId: string, topicId: string) {
+  return rows.some(row => row[0] === bankId && row[2] === topicId);
+}
