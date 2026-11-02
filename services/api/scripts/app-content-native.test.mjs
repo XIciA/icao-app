@@ -151,11 +151,13 @@ function mediaFixture() {
     'expo-file-system/legacy': { createDownloadResumable: nativeTransfers },
     '../downloads/resource-work-queue': evaluate('src/features/question-bank/downloads/resource-work-queue.ts', {}),
   }, { setTimeout, clearTimeout, setInterval, clearInterval });
+  const secureStore = { getItemAsync: async (key) => secure.get(key) ?? null, setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) };
   const repository = evaluate('src/features/question-bank/data/member-content-cache.native.ts', {
     '@icao/contracts': { validContentScopeId },
     './shared-resource-transfers.native': transfers,
     'expo-crypto': crypto, 'expo-file-system': filesystem, '@/platform/storage': kv,
-    'expo-secure-store': { getItemAsync: async (key) => secure.get(key), setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) },
+    'expo-secure-store': secureStore,
+    './offline-clock.native': evaluate('src/features/question-bank/data/offline-clock.native.ts', { 'expo-secure-store': secureStore }),
     '@/features/native-commercial-testflight/commerce-environment': { getNativeCommerceEnvironment: () => 'production', nativeCommerceEnvironmentSnapshot: () => 'production' },
     './content-credential-verifier.native': { verifyContentAccessCredential: () => true, inspectContentAccessCredential: () => 'valid' },
   }, { TextEncoder, TextDecoder, Uint8Array });

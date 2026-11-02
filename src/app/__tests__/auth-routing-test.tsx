@@ -4,8 +4,10 @@ import { Platform, Text } from 'react-native';
 import { AppStack } from '@/app/_layout';
 import { AppStack as NativeAppStack } from '@/app/_layout.native';
 import IndexRoute from '@/app/index';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
+jest.mock('@/features/question-bank/downloads/DownloadRuntime', () => ({ DownloadRuntime: () => null }));
 const mockStackOptions = jest.fn();
 let mockScreenLayout: (props: any) => React.ReactElement;
 let mockRestoring = false;

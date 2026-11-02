@@ -34,6 +34,7 @@ export function StudyAudioPlayer({
   tagColors = [],
   resolving = false,
   resourceError,
+  resourceUnavailable = false,
   onRetry,
   onSeekInteractionChange,
   blockedExternalGesture,
@@ -54,6 +55,7 @@ export function StudyAudioPlayer({
   tagColors?: string[];
   resolving?: boolean;
   resourceError?: string;
+  resourceUnavailable?: boolean;
   onRetry?: () => void;
   onSeekInteractionChange?: (active: boolean) => void;
   blockedExternalGesture?: GestureType;
@@ -561,12 +563,12 @@ export function StudyAudioPlayer({
             </View>
           ) : audioFailed ? (
             <View style={styles.integratedStatus}>
-              <AlertCircle color={colors.destructive} size={18} />
+              <AlertCircle color={resourceUnavailable ? colors.mutedForeground : colors.destructive} size={18} />
               <View style={styles.errorCopy}>
-                <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-                <AppText variant="caption">{resourceError ?? (webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。')}</AppText>
+                <AppText variant="button">{resourceUnavailable ? resourceError ?? '音频暂不可用' : webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+                <AppText variant="caption">{resourceUnavailable ? '可继续查看文字' : resourceError ?? (webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。')}</AppText>
               </View>
-              {uri || onRetry ? (
+              {!resourceUnavailable && (uri || onRetry) ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
                   <RotateCcw color={colors.destructive} size={15} />
                   <AppText color={colors.destructive} variant="caption">重试</AppText>
@@ -632,13 +634,13 @@ export function StudyAudioPlayer({
               </View>
             </View>
           ) : audioFailed ? (
-            <View style={styles.error}>
-              <AlertCircle color={colors.destructive} size={18} />
+            <View style={resourceUnavailable ? styles.generated : styles.error}>
+              <AlertCircle color={resourceUnavailable ? colors.mutedForeground : colors.destructive} size={18} />
               <View style={styles.errorCopy}>
-                <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-                <AppText variant="caption">{resourceError ?? (webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。')}</AppText>
+                <AppText variant="button">{resourceUnavailable ? resourceError ?? '音频暂不可用' : webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+                <AppText variant="caption">{resourceUnavailable ? '可继续查看文字' : resourceError ?? (webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。')}</AppText>
               </View>
-              {uri || onRetry ? (
+              {!resourceUnavailable && (uri || onRetry) ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
                   <RotateCcw color={colors.destructive} size={15} />
                   <AppText color={colors.destructive} variant="caption">重试</AppText>

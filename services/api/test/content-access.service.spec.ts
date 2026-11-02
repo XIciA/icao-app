@@ -248,6 +248,18 @@ describe('versioned content access policy', () => {
     expect(credential.expiresAt).toBe('2026-08-28T00:00:00.000Z');
   });
 
+  it('uses the signed membership expiry only for opted-in clients', async () => {
+    const fixture = service(new Date('2026-09-25T00:00:00.000Z'));
+    const credential = await fixture.service.issueCredential(ACCOUNT_ID, {
+      validity: 'membership',
+      scopes: [{ bankId: 'listening', categoryId: 'listening-category-01', topicId: 'listening-topic-01' }],
+    }, SESSION_ID, 'production', NOW);
+    expect(credential.expiresAt).toBe('2026-09-25T00:00:00.000Z');
+    expect(credential.validity).toBe('membership');
+    const { decodeJwt } = await import('jose');
+    expect(decodeJwt(credential.token).validity).toBe('membership');
+  });
+
   it('rate limits repeated credential issuance by account using retained database records', async () => {
     const fixture = service(new Date('2026-08-26T00:00:00.000Z'), 'production', false, 240);
     await expect(fixture.service.issueCredential(ACCOUNT_ID, {

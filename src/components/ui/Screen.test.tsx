@@ -5,7 +5,7 @@ import { Screen } from './Screen';
 
 jest.mock('react-native-safe-area-context', () => {
   const { View: MockView } = jest.requireActual('react-native');
-  return { SafeAreaView: ({ children, ...props }: { children: React.ReactNode }) => <MockView {...props}>{children}</MockView> };
+  return { useSafeAreaInsets: () => ({ top: 59, bottom: 34, left: 0, right: 0 }), SafeAreaView: ({ children, ...props }: { children: React.ReactNode }) => <MockView {...props}>{children}</MockView> };
 });
 
 describe('<Screen />', () => {

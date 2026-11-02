@@ -525,3 +525,10 @@ describe('StudyAudioPlayer', () => {
     expect(screen.getByTestId('available-recording-controls')).toBeTruthy();
   });
 });
+
+test('expected offline absence stays inline without a failure banner or futile retry', async () => {
+  const screen = await render(<StudyAudioPlayer label="离线题目" playbackKey="offline-question" resourceUnavailable resourceError="音频未下载，联网后可播放" onRetry={jest.fn()} />);
+  expect(screen.getByText('音频未下载，联网后可播放')).toBeTruthy();
+  expect(screen.queryByText('音频加载失败')).toBeNull();
+  expect(screen.queryByLabelText('重试音频')).toBeNull();
+});

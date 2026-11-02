@@ -32,8 +32,8 @@ function refreshVocabulary(base:string,cached?:VocabularyLiveRelease):Promise<Vo
         const previous=currentVocabularyRelease()??cached;
         if(previous&&previous.version<release.version)return result(previous,'cache','vocabulary_remote_unavailable');
       }
-      assertSource();installVocabularyRelease(base,release);
-      return result(release,'remote');
+      assertSource();
+      return result(installVocabularyRelease(base,release),'remote');
     }catch(error){
       assertSource();const fallback=currentVocabularyRelease()??cached;
       if(fallback)return result(fallback,'cache','vocabulary_remote_unavailable');throw error;

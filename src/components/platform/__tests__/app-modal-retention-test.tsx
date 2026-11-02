@@ -3,6 +3,7 @@ import { fireEvent } from '@testing-library/react-native';
 import { render } from '@testing-library/react-native';
 import { Text, View } from 'react-native';
 import { AppModal } from '../AppModal';
+jest.unmock('react-native-safe-area-context');
 jest.mock('react-native',()=>{
  const actual=jest.requireActual('react-native');
  const Modal=({children}:{children:React.ReactNode})=><actual.View>{children}</actual.View>;

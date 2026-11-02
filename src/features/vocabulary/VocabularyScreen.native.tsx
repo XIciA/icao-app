@@ -8,10 +8,12 @@ import { useGuide, useGuideConfirmation, useGuideAvailability } from '@/features
 import { useSaveAction } from './use-save-action.native';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
-import { Screen } from '@/components/ui';
+import { AppText, Screen } from '@/components/ui';
+import { colors, spacing } from '@/theme';
 
 import {
   VocabularyBookDetailView,
@@ -49,7 +51,8 @@ export function VocabularyScreen() {
   const [view, setView] = useState<ViewName>('books');
   const { loadResult, loadError, retry } = useVocabularyCatalog(view === 'books');
   const policy=currentVocabularyPolicy();
-  const allBooks = useMemo(() => (loadResult?.dataset.books ?? []).map(book=>({...book,words:book.words.filter(word=>!Object.hasOwn(policy?.retiredIds??{},word.id))})), [loadResult,policy]);
+  const dataset = loadResult?.dataset;
+  const allBooks = useMemo(() => (dataset?.books ?? []).map(book=>({...book,words:book.words.filter(word=>!Object.hasOwn(policy?.retiredIds??{},word.id))})), [dataset,policy]);
   const availability = useOfflineBooks(allBooks);
   const books = availability.books;
   const router = useAppRouter();
@@ -145,14 +148,17 @@ export function VocabularyScreen() {
   if (progress.error) return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
 
   function content() {
-  if (availability.offline && !availability.loading && (!loadResult || !books.length) && view !== 'study') return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={BookOpen} title="该内容尚未下载" description="可联网下载词书后离线学习。" actionLabel="前往下载管理" onAction={() => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: 'vocabulary' } })} /></Screen>;
+  if (availability.offline && !availability.loading && (!loadResult || !books.length) && view !== 'study') return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={BookOpen} title="内容未下载" description="联网后可学习。" /></Screen>;
   if (!loadResult || !progress.ready || availability.loading && view !== 'study') {
     return (
       <Screen contentStyle={{ paddingHorizontal: 0 }} header={<TopBar title="单词学习" />}>
         {loadError ? (
           <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={retry} tone="destructive" />
         ) : (
-          <CenteredState icon={BookOpen} title="正在准备词汇资源" description="正在读取 ICAO 词书和你的学习进度。" />
+          <View style={{ padding: spacing[5], flexDirection: 'row', alignItems: 'center', gap: spacing[3] }} accessibilityRole="progressbar">
+            <ActivityIndicator color={colors.primary} size="small" />
+            <AppText variant="caption">加载中…</AppText>
+          </View>
         )}
       </Screen>
     );

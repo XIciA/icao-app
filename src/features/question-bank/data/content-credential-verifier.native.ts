@@ -7,10 +7,10 @@ import {
 } from '@icao/contracts';
 import { verifyIcaoEd25519Jws } from '@icao/distribution-environment';
 
-const MAX_OFFLINE_SECONDS = 72 * 60 * 60;
 const CLOCK_SKEW_SECONDS = 5 * 60;
 
 type SignedContentCredentialClaims = {
+  validity?: 'membership';
   aud: string | string[];
   entitlementSegmentId: string;
   environment: CommerceEnvironment;
@@ -62,6 +62,7 @@ function parseClaims(payload: string): SignedContentCredentialClaims | undefined
       || typeof claims.entitlementSegmentId !== 'string'
       || typeof claims.jti !== 'string'
       || claims.policyVersion !== CONTENT_ACCESS_POLICY_VERSION
+      || (claims.validity !== undefined && claims.validity !== 'membership')
       || (claims.environment !== 'production' && claims.environment !== 'sandbox')
       || !Number.isSafeInteger(claims.iat)
       || !Number.isSafeInteger(claims.exp)
@@ -133,8 +134,8 @@ export function inspectContentAccessCredential({
     || claims.environment !== environment
     || claims.iat > nowSeconds + CLOCK_SKEW_SECONDS
     || claims.exp <= claims.iat
-    || claims.exp - claims.iat > MAX_OFFLINE_SECONDS
     || credential.policyVersion !== claims.policyVersion
+    || credential.validity !== claims.validity
     || credential.environment !== claims.environment
     || !matchesSignedSecond(credential.issuedAt, claims.iat)
     || !matchesSignedSecond(credential.expiresAt, claims.exp)

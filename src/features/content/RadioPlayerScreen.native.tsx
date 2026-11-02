@@ -24,7 +24,7 @@ import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter'
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScreenSafeArea as SafeAreaView } from '@/components/platform/ScreenSafeArea';
 
 import { AppText, BottomSheet, Button } from '@/components/ui';
 import { TopBar } from '@/components/navigation/TopBar';

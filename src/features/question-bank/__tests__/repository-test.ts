@@ -896,17 +896,17 @@ describe('embeddedQuestionBankRepository', () => {
       return download(...args);
     });
     const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
-    const pending = Array.from({ length: 4 }, (_, index) => cacheMemberResource(
+    const pending = Array.from({ length: 6 }, (_, index) => cacheMemberResource(
       `/public/${index}.mp3`, 'https://example.test/slow', metadata, { temporary: true },
     ));
     try {
-      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(4));
+      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(6));
       await expect(cacheMemberResource('/public/overflow.mp3', 'https://example.test/slow', metadata, { temporary: true }))
         .resolves.toBeUndefined();
-      expect(downloading).toHaveBeenCalledTimes(4);
+      expect(downloading).toHaveBeenCalledTimes(6);
     } finally { release(); }
     await Promise.all(pending);
-    expect(mockFiles.size).toBe(4);
+    expect(mockFiles.size).toBe(6);
   });
 
   it('applies the temporary byte budget even before reaching the file count limit', async () => {

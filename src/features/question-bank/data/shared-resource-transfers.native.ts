@@ -5,14 +5,19 @@ import { DOWNLOAD_RESOURCE_CONCURRENCY } from '../downloads/resource-work-queue'
 type Consumer = { isCurrent(): boolean; onProgress?(fraction: number): void; isPlaybackActive?(): boolean; playback?: boolean };
 type Transfer = {
   consumers: Set<Consumer>; promise: Promise<File | undefined>; progress: number;
-  settled: boolean; abandoned: boolean; staging: File;
+  settled: boolean; abandoned: boolean; staging: File; size: number;
   slot?: { bulk: boolean };
+  admitted?: boolean;
 };
 const transfers = new Map<string, Transfer>();
 let sequence = 0;
 let active = 0;
 let bulk = 0;
-const MAX_TRANSFERS = 4;
+const MAX_TRANSFERS = 6;
+let staged = 0;
+const MAX_STAGED = 8;
+const MAX_STAGED_BYTES = 80 * 1024 * 1024;
+let stagedBytes = 0;
 
 function notify(consumer: Consumer, fraction: number) {
   if (consumer.isCurrent()) consumer.onProgress?.(fraction);
@@ -22,6 +27,7 @@ function cleanup(key: string, transfer: Transfer) {
   if (transfers.get(key) === transfer) transfers.delete(key);
   try { if (transfer.staging.exists) transfer.staging.delete(); }
   finally {
+    if (transfer.admitted) { staged--; stagedBytes -= transfer.size; transfer.admitted = false; }
     if (transfer.slot) { active--; if (transfer.slot.bulk) bulk--; transfer.slot = undefined; }
   }
 }
@@ -37,22 +43,22 @@ export async function acquireResourceTransfer(key: string, url: string, size: nu
     const directory = new Directory(Paths.cache, 'icao-content-transfers');
     const staging = new File(directory, `${Date.now()}-${++sequence}.part`);
     const entry: Transfer = { consumers: new Set(), progress: 0, settled: false, abandoned: false,
-      staging, promise: Promise.resolve(undefined) };
+      staging, size, promise: Promise.resolve(undefined) };
     transfer = entry;
     transfers.set(key, entry);
     entry.promise = Promise.resolve().then(async () => {
       const current = () => [...entry.consumers].some(value => value.isCurrent());
       const bulkLimit = () => [...entry.consumers].some(value => value.isPlaybackActive?.()) ? 1 : DOWNLOAD_RESOURCE_CONCURRENCY;
-      while (required && current() && (active >= MAX_TRANSFERS || bulk >= bulkLimit())) {
+      while (required && current() && (active >= MAX_TRANSFERS || bulk >= bulkLimit() || staged >= MAX_STAGED || stagedBytes + size > MAX_STAGED_BYTES)) {
         await new Promise(resolve => setTimeout(resolve, 50));
       }
       // Optional prefetch never builds an unbounded native queue.
       const limit = required || consumer.playback ? MAX_TRANSFERS : MAX_TRANSFERS - 1;
-      if (!current() || active >= limit) return undefined;
+      if (!current() || active >= limit || staged >= MAX_STAGED || stagedBytes + size > MAX_STAGED_BYTES) return undefined;
       active++; if (required) bulk++;
+      staged++; stagedBytes += size; entry.admitted = true;
       entry.slot = { bulk: required };
-      // Keep the slot through processing/release, bounding staging files as well
-      // as sockets when hashing or disk writes are slower than the network.
+      // Socket admission and bounded disk staging have separate lifetimes.
       directory.create({ idempotent: true, intermediates: true });
       // All consumers share a cancellable native task, regardless of which
       // caller arrived first. Admission policy must not select a weaker I/O path.
@@ -73,6 +79,7 @@ export async function acquireResourceTransfer(key: string, url: string, size: nu
         if (entry.abandoned || !result || result.status < 200 || result.status >= 300) throw new Error('download_interrupted');
       } finally {
         clearTimeout(timeout); clearInterval(cancellation);
+        if (entry.slot) { active--; if (entry.slot.bulk) bulk--; entry.slot = undefined; }
         // Expo's cancelAsync also removes its JS progress subscription. Once
         // downloadAsync has settled there is no live I/O left to interrupt.
         if (!entry.abandoned) void task.cancelAsync().catch(() => undefined);

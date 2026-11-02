@@ -132,8 +132,8 @@ function NativeQuestionBankStudyRouteBody() {
   const failure = contentFailure(topicState.error ?? bankState.error ?? (targetCardMissing && topic?.offlineContent ? { code: topic.offlineContent === 'outdated' ? 'offline_content_outdated' : 'offline_content_incomplete' } : undefined));
   if (failure) {
     return stateScreen(<CenteredState title={failure.title} description={failure.description}
-      actionLabel={failure.action === 'retry' ? '重试' : '前往下载管理'}
-      onAction={failure.action === 'retry' ? () => { bankState.retry(); topicState.retry(); } : () => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: bankId } })} />);
+      actionLabel={failure.action === 'none' ? undefined : failure.action === 'retry' ? '重试' : '前往下载管理'}
+      onAction={failure.action === 'none' ? undefined : failure.action === 'retry' ? () => { bankState.retry(); topicState.retry(); } : () => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: bankId } })} />);
   }
   if (bankState.status === 'error' || topicState.status === 'error' || !category || !topic || targetCardMissing) {
     return stateScreen(

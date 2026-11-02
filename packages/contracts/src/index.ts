@@ -328,10 +328,13 @@ export type ContentAccessScope = {
 };
 
 export type IssueContentCredentialRequest = {
+  /** Opt-in: older clients only understand the legacy 72-hour window. */
+  validity?: 'membership';
   scopes: ContentAccessScope[];
 };
 
 export type ContentAccessCredential = {
+  validity?: 'membership';
   token: string;
   issuedAt: string;
   expiresAt: string;

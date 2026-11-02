@@ -1,15 +1,24 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { OfflineManifest, VocabularyBook } from '@icao/contracts';
 import { useConnectivity } from '@/features/question-bank/platform/use-connectivity';
-import { downloadAvailabilityVersion, subscribeDownloadAvailability } from '@/features/question-bank/downloads/download-events';
+import { subscribeDownloadAvailability } from '@/features/question-bank/downloads/download-events';
 import { nativeCommerceEnvironmentSnapshot, subscribeNativeCommerceEnvironment } from '@/features/native-commercial-testflight/commerce-environment';
 import { availableOfflineWords } from './offline-content.native';
 
+// Unrelated bank downloads must not blank an already available vocabulary view.
+function vocabularyAvailability() {
+  const { downloadSnapshot } = require('@/features/question-bank/downloads/download-manager.native') as typeof import('@/features/question-bank/downloads/download-manager.native');
+  return JSON.stringify(Object.entries(downloadSnapshot()).filter(([id]) => id.startsWith('vocabulary:')).map(([id, item]) =>
+    [id, item?.saved?.fingerprint, item?.target?.fingerprint, item?.latest?.fingerprint, item?.phase === 'paused', item?.outdated]));
+}
+const onlineAvailability = () => '';
+
 export function useOfflineBooks(books: VocabularyBook[]) {
   const offline = useConnectivity() === 'offline';
-  const version = useSyncExternalStore(subscribeDownloadAvailability, downloadAvailabilityVersion, downloadAvailabilityVersion);
+  const snapshot = offline ? vocabularyAvailability : onlineAvailability;
+  const version = useSyncExternalStore(subscribeDownloadAvailability, snapshot, snapshot);
   const owner = useSyncExternalStore(subscribeNativeCommerceEnvironment, nativeCommerceEnvironmentSnapshot, nativeCommerceEnvironmentSnapshot);
-  const [result, setResult] = useState<{ source: VocabularyBook[]; owner: string; version: number; books: VocabularyBook[] }>();
+  const [result, setResult] = useState<{ source: VocabularyBook[]; owner: string; version: string; books: VocabularyBook[] }>();
   useEffect(() => {
     if (!offline) return;
     let current = true;

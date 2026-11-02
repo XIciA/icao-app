@@ -28,6 +28,7 @@ const scopeLabel = (scope?: OfflineDownloadScope) => scope === 'icao4' ? '四级
 const vocabularyScopeLabel = (scope: OfflineDownloadScope) => currentVocabularyRelease()?.dataset.books.find(book => book.id === scope)?.name ?? (scope === 'preview' ? 'ICAO考前预习' : scope === 'icao4' ? 'ICAO 4 必会' : 'ICAO 5 冲刺');
 function status(item?: DownloadPackage) {
   if (item?.phase === 'queued') return '等待下载';
+  if (item?.phase === 'preparing') return '准备中';
   if (item?.phase === 'downloading') return '下载中';
   if (item?.phase === 'verifying') return '校验中';
   if (item?.phase === 'paused' || item?.phase === 'error') return item.error ? compactError(item.error) : '已暂停';
@@ -76,7 +77,7 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [attempt, setAttempt] = useState(0);
-  const busy = Boolean(item && ['queued', 'downloading', 'verifying'].includes(item.phase));
+  const busy = Boolean(item && ['queued', 'preparing', 'downloading', 'verifying'].includes(item.phase));
   const rangeLocked = !vocabulary && (busy || Boolean(item?.target));
   const shown = manifest?.scope === scope ? manifest : [item?.target, item?.saved, item?.latest].find(m => m?.scope === scope);
   useEffect(() => {
@@ -110,7 +111,7 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
   const included = packageIncludes(item, scope);
   const completed = included && !item?.target && !item?.outdated;
   const progress = completed ? 100 : (item?.target?.scope === scope || item?.saved?.scope === scope) && item?.total ? Math.min(99, Math.floor((item.totalBytes ? (item.downloadedBytes ?? 0) / item.totalBytes : item.completed / item.total) * 100)) : 0;
-  const label = error && !completed ? compactError(error) : item?.target ? status(item) : item?.outdated ? '有更新' : included ? '已下载' : item?.saved ? '可扩展' : '未下载';
+  const label = item?.target ? status(item) : error && !completed ? compactError(error) : item?.outdated ? '有更新' : included ? '已下载' : item?.saved ? '可扩展' : '未下载';
   const Action = busy ? Pause : item?.outdated || !shown ? RefreshCw : item?.target ? Play : Download;
   const actionLabel = busy ? '暂停下载' : item?.outdated ? '更新下载' : !shown ? '重试' : item?.target ? '继续下载' : '下载';
   return <DownloadPackageCard title={bank.title} icon={bank.id === 'vocabulary' ? <BookOpen size={23} color={colors.primary} strokeWidth={1.7} /> : <StudyBankIcon bankId={bank.id} size={23} />} open={open} toggle={toggle}
@@ -118,7 +119,7 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
     scopes={scopes.map(value => ({ value, label: vocabulary ? vocabularyScopeLabel(value) : scopeLabel(value), shortLabel: vocabulary ? value === 'preview' ? '预习' : value === 'icao4' ? '必会' : '冲刺' : scopeLabel(value).replace('题库', '') }))}
     rangeLocked={rangeLocked} onScope={value => { selectionTouched.current = true; setScope(value as OfflineDownloadScope); }}
     action={Action} actionLabel={actionLabel} actionDisabled={loading && !shown || item?.phase === 'verifying'}
-    onAction={() => { if (busy) void cancelDownload(packageId); else if (!shown) setAttempt(value => value + 1); else void begin(); }}
+    onAction={() => { if (busy) void cancelDownload(packageId).catch(() => undefined); else if (!shown) setAttempt(value => value + 1); else void begin(); }}
     canDelete={Boolean(item?.saved || item?.target)} onDelete={remove} />;
 }
 

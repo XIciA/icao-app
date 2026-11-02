@@ -305,11 +305,13 @@ export class ContentAccessService {
       throw new ForbiddenException('membership_required');
     }
     await Promise.all(scopes.map((scope) => this.assertScopeExists(scope)));
-    const expiresAt = new Date(Math.min(membership.expiresAt.getTime(), now.getTime() + 72 * 60 * 60 * 1_000));
+    const expiresAt = input.validity === 'membership' ? membership.expiresAt
+      : new Date(Math.min(membership.expiresAt.getTime(), now.getTime() + 72 * 60 * 60 * 1_000));
     const credentialId = randomUUID();
     const { importPKCS8, SignJWT } = await import('jose');
     await this.assertCredentialRateLimit(accountId, now);
     const token = await new SignJWT({
+      ...(input.validity === 'membership' ? { validity: 'membership' } : {}),
       entitlementSegmentId: membership.segmentId,
       environment: membership.environment,
       policyVersion: CONTENT_ACCESS_POLICY_VERSION,
@@ -337,6 +339,7 @@ export class ContentAccessService {
     });
     return {
       token,
+      ...(input.validity === 'membership' ? { validity: 'membership' as const } : {}),
       issuedAt: now.toISOString(),
       expiresAt: expiresAt.toISOString(),
       policyVersion: CONTENT_ACCESS_POLICY_VERSION,
@@ -458,7 +461,7 @@ export class ContentAccessService {
   }
 
   private validateScopes(input: IssueContentCredentialRequest): ContentAccessScope[] {
-    if (!input || !Array.isArray(input.scopes)) {
+    if (!input || !Array.isArray(input.scopes) || (input.validity !== undefined && input.validity !== 'membership')) {
       throw new BadRequestException('invalid_content_credential_request');
     }
     const scopes = input.scopes.filter((scope): scope is ContentAccessScope => Boolean(

@@ -16,10 +16,15 @@ it('only restores the securely matched identity and accepted legal state', async
   await saveAccountRestore('auth-owner', account, { ...legal, required: true });
   expect(await readAccountRestore('auth-owner')).toBeUndefined();
 });
-it('rejects expired, future-dated and malformed snapshots', async () => {
-  for (const verifiedAt of [Date.now() - 73 * 3600000, Date.now() + 3600000]) {
+it('rejects future-dated and malformed snapshots', async () => {
+  for (const verifiedAt of [Date.now() + 3600000]) {
     mockRaw = JSON.stringify({ userId: 'auth-owner', account, legal, verifiedAt });
     expect(await readAccountRestore('auth-owner')).toBeUndefined();
   }
   mockRaw = '{broken'; expect(await readAccountRestore('auth-owner')).toBeUndefined();
+});
+
+it('restores identity after several days without granting content access', async () => {
+ mockRaw = JSON.stringify({ userId: 'auth-owner', account, legal, verifiedAt: Date.now() - 30 * 86400000 });
+ expect(await readAccountRestore('auth-owner')).toMatchObject({ account });
 });
