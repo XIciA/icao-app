@@ -195,3 +195,9 @@ Production API deployment and inactive candidate import require explicit authori
 Derived vocabulary inventories retain identical lexical entries; only source checksums, evidence locations and deterministic projections were refreshed. ASR hotword terms/weights/text are unchanged; evidence topic paths follow moved card IDs.
 
 API rollout tests: 6 suites, 42 passed and 1 existing skipped. New/legacy capability isolation, pinned historical reads and hotspot re-targeting are covered. Deployment order after authorization: import inactive v30 with reviewed mapping, deploy compatible API, then deliver the client/Web candidate. v29 stays active for legacy clients. No user-table rewrite is required.
+
+## Final verification and authorization
+
+`pnpm check:ci` passed locally: 274 App suites / 1912 cases; API 86 suites / 812 cases passed with 3 existing skipped. `content:check:full` passed with all 12651 media resources. A read-only production comparison found zero card-content hash mismatches between live v29 and candidate v30 (2365/2365). iOS release checks passed. ASC prepared 1.3.1 build 3596168 after uploaded 3596167.
+
+The user explicitly authorized production API deployment and inactive v30 import through the approval reply in this chat. This does not authorize activating the formal directory, rewriting user tables or App Store submission. Production Web stays on v29; Web testing must use a preview deployment.
