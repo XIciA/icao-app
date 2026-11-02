@@ -1,3 +1,4 @@
+import { currentVocabularyRelease } from './live-catalog';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 import { NavigationContext } from '@react-navigation/native';
@@ -10,7 +11,10 @@ export function useVocabularyCatalog(allowRefresh = true) {
   const source = getApiBaseUrl() ?? '';
   const navigation = useContext(NavigationContext);
   const [attempt, setAttempt] = useState(0);
-  const [loadResult, setLoadResult] = useState<VocabularyLoadResult>();
+  const [loadResult, setLoadResult] = useState<VocabularyLoadResult | undefined>(() => {
+    const release = currentVocabularyRelease();
+    return release ? { dataset: release.dataset, release, source: 'cache' } : undefined;
+  });
   const [loadError, setLoadError] = useState(false);
   const initialized = useRef(false);
   const loadedSource = useRef(source);
