@@ -10,7 +10,7 @@ Scope inheritance is preserved in topic-level cardStudyTiers metadata, without e
 
 Validation: identity/scope proof, content CI, hotspot validation, App/API types; focused client tests 9 suites/64 cases, repository/download tests 3 suites/79 cases.
 
-Release pending: no production API deployment, user-data mutation or v30 activation. Old clients lack the new storage mapping: do not activate v30 until the old-client rollout strategy is validated. Another chat owns TestFlight build 3596167; this task will not use that build number.
+Implementation merged through PR #323 (b0785dcaff794dda0862ffaa6156a6569a80095a) and PR #325 (3b558121946af64fa8d27c840949b74fe53765ac). Production API is deployed and v30 is staged inactive; no customer-table rewrite or formal v30 activation occurred. TestFlight 3596167 belongs to the preceding intermediate-state release; this candidate uses 1.3.1 / 3596168.
 
 ## Candidate directory
 
@@ -190,14 +190,46 @@ Release pending: no production API deployment, user-data mutation or v30 activat
 
 New client capability and preview configuration select staged v30 through the existing protected content endpoints. Legacy requests continue v29, including after later v30 activation, using release compatibility metadata. Explicit historical version reads remain checksum-checked. The importer supports --stage and does not change existing active releases or user tables. Current hotspot references are reprojected by card ID at read time; dates, source records and reported wording are retained.
 
-Production API deployment and inactive candidate import require explicit authorization before execution. The candidate payload validates as one OPI bank with 2364 referenced resources. Other bank releases are not part of the content import.
+The user explicitly authorized production API deployment and inactive candidate import in this chat. The candidate payload validates as one OPI bank with 2364 referenced resources. Other bank releases are not part of the content import.
 
 Derived vocabulary inventories retain identical lexical entries; only source checksums, evidence locations and deterministic projections were refreshed. ASR hotword terms/weights/text are unchanged; evidence topic paths follow moved card IDs.
 
-API rollout tests: 6 suites, 42 passed and 1 existing skipped. New/legacy capability isolation, pinned historical reads and hotspot re-targeting are covered. Deployment order after authorization: import inactive v30 with reviewed mapping, deploy compatible API, then deliver the client/Web candidate. v29 stays active for legacy clients. No user-table rewrite is required.
+API rollout tests: 6 suites, 42 passed and 1 existing skipped. New/legacy capability isolation, pinned historical reads and hotspot re-targeting are covered. Executed deployment order: deploy compatible API, import inactive v30 with reviewed mapping, then prepare the client/Web candidate. v29 stays active for legacy clients. No user-table rewrite is required.
 
 ## Final verification and authorization
 
 `pnpm check:ci` passed locally: 274 App suites / 1912 cases; API 86 suites / 812 cases passed with 3 existing skipped. `content:check:full` passed with all 12651 media resources. A read-only production comparison found zero card-content hash mismatches between live v29 and candidate v30 (2365/2365). iOS release checks passed. ASC prepared 1.3.1 build 3596168 after uploaded 3596167.
 
 The user explicitly authorized production API deployment and inactive v30 import through the approval reply in this chat. This does not authorize activating the formal directory, rewriting user tables or App Store submission. Production Web stays on v29; Web testing must use a preview deployment.
+
+## Production API and inactive content delivery
+
+Production API release: `opi-directory-v30-b0785dcaff79`, source `b0785dcaff794dda0862ffaa6156a6569a80095a`, annotated tag `release/api-production/20261102-b0785dca`. Existing schema ledger 0060/0061 was already current; no schema migration ran. Existing content-signing key was retained. Rollback target is the retained previous `production-migration-b46896c0b8be` API release, with OPI v29 still active.
+
+The reviewed one-bank archive SHA-256 is `6c0f650d579784a28258e399085504b32654b26a150c041e9d1c94bda802e0c9`. Imported OPI v30 payload checksum: `37aba6e41b5150a300c7eb8f77826d50fc3ccaee0bd1d15590893632520ec025`. Import completed using `--stage`, explicit reviewed moves and expected-active-release checks. All 2364 referenced resources were already present. No customer tables were rewritten.
+
+Post-deployment read-only checks: ordinary HTTP clients receive v29 / 237 topics; capable preview clients receive v30 / 223 topics. ID sets for all (2361), selected (892), crash (393) and free (23) are identical; image category objects are equal. Database confirms OPI v29 active and v30 inactive. Other active releases remain listening 26, radiotelephony 29, sentences900 27 and storytelling 26.
+
+PR #325 additionally handles reorganized topic-only links by returning to the current directory; card links retain card-ID resolution. Focused storage/route tests: 18 passed, typecheck passed, GitHub CI passed. It changes client code only, so the production API remains at b0785dca.
+
+A fresh real production AI verification passed on this API version, including transcription, grammar, polish, aviation entity preservation and temporary-test-data cleanup. This is server verification, not real-device microphone acceptance.
+
+## User acceptance checklist
+
+- Compare all / selected directories: names are understandable, duplicate supplemental topics are gone, adjacent topics are distinguishable, and names use consistent punctuation.
+- Open moved cards and compare question, answer, translation and media; no card content or selected membership should change.
+- With an existing account, check notes, tags, highlights and completed status before/after moving into the new directory; check cloud sync and a second login without clearing local storage.
+- Check old card links, reorganized topic-only links, history/review entry, downloaded content, offline use and reconnect/update.
+- In TestFlight, confirm audio playback, real microphone recording/replay and AI remain usable. Automatic checks do not replace these device observations.
+
+Formal activation, customer-data rewrites, App Store review and production Web v30 deployment remain outside this delivery. User acceptance is pending.
+
+## TestFlight and Web preview delivered
+
+TestFlight **1.3.1 (3596168)** is uploaded and Apple reports `processingState=VALID`, `internalBuildState=IN_BETA_TESTING`; existing internal group **测试** can access it. App source: `3b558121946af64fa8d27c840949b74fe53765ac`; annotated tag: `release/ios-testflight/v1.3.1-b3596168`. IPA SHA-256: `179546412cc1e21a11b3790c00ee2c69c6bc7f0191beb31806607ffb4127df9d`. Delivery UUID: `f33c70de-dcec-44bf-8a5c-c6bb5556328c`. Prior TestFlight build 3596167 remains the rollback/reference candidate.
+
+The clean-main Release archive, signing, production runtime, privacy manifests, SDK audit, Apple validation and upload passed. Release recording tests: 15 suites / 196 cases; iOS contract tests: 20 suites / 197 cases. This confirms candidate delivery, not user acceptance or real-device microphone success. No App Store submission or formal mobile update-channel change occurred.
+
+Final-source Web export passed (189 files, 39.4 MiB). Local preview: `http://127.0.0.1:8083/question-bank/opi`, served only on localhost. Browser verification confirmed 223 topics; a removed topic-only link returned to the current directory, and a migrated-card old link reached the existing membership gate rather than unavailable content. Authenticated notes/progress and real-device paths remain on the checklist above. Production Web was not redeployed.
+
+Durable local release evidence: `/Users/zhouyide/.codex/artifacts/opi-directory-v30-testflight/`; local Web export: `/Users/zhouyide/.codex/artifacts/opi-directory-v30-web-preview/`. These contain the archived candidate/IPA, audit, fingerprints and Apple status; credentials are not included. Formal OPI remains v29. User acceptance is pending.
