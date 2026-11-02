@@ -7,7 +7,7 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScreenSafeArea as SafeAreaView } from '@/components/platform/ScreenSafeArea';
 
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';

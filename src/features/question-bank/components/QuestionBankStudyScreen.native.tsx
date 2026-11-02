@@ -29,7 +29,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScreenSafeArea as SafeAreaView } from '@/components/platform/ScreenSafeArea';
 
 import { CenteredState } from '@/components/states/CenteredState';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';

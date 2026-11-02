@@ -1,7 +1,8 @@
-jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({useCommerceRuntime:()=>({phase:'ready', entitlement:{membership:{active:false}}})}));
 import { fireEvent, render } from '@testing-library/react-native';
 
 import DiscoverTab from '../(tabs)/discover';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
+jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({useCommerceRuntime:()=>({phase:'ready', entitlement:{membership:{active:false}}})}));
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');

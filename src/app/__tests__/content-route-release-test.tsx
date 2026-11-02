@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 
 import ContentRoute from '../content/[slug]';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 jest.mock('@/features/auth/MemberFeatureGate.native', () => ({ MemberFeatureGate: ({children}: {children: React.ReactNode}) => children }));
 
