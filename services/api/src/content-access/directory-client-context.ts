@@ -16,6 +16,7 @@ export function registerDirectoryClientContext(server: FastifyInstance) {
   });
 }
 export function directoryVersionForClient(bankId: string, metadata: {version:number;compatibility?:{capability:string;fallbackVersion:number}|null}, pinned: boolean) {
+  if (!requests.getStore()) return undefined;
   const client = directoryClient();
   if (!client.stableIdentity && metadata.compatibility?.capability === 'stable-storage-v1') return metadata.compatibility.fallbackVersion;
   const preview = client.stableIdentity ? client.preview[bankId] : undefined;
