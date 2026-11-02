@@ -4,6 +4,7 @@ import { AppState, View } from 'react-native';
 import { AppRuntime } from '../AppRuntime';
 
 jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
+jest.mock('@/features/question-bank/downloads/DownloadRuntime', () => ({ DownloadRuntime: () => null }));
 
 const mockCleanupRecordings = jest.fn();
 const mockPurgeDiagnostics = jest.fn(async () => undefined);

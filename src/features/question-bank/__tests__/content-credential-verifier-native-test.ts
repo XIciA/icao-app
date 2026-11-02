@@ -95,9 +95,14 @@ describe('offline member content credential verification', () => {
     expect(verify({ ...credential(), expiresAt: new Date((NOW_SECONDS + 7_200) * 1_000).toISOString() })).toBeUndefined();
   });
 
-  it('rejects expired, non-finite and longer-than-72-hour credentials', () => {
+  it('rejects expired and non-finite credentials but accepts signed membership validity', () => {
     expect(verify(credential({ exp: NOW_SECONDS }))).toBeUndefined();
-    expect(verify(credential({ exp: NOW_SECONDS + 72 * 60 * 60 + 1 }))).toBeUndefined();
+    expect(verify(credential({ exp: NOW_SECONDS + 90 * 24 * 60 * 60 }))).toBeDefined();
+    const extended = { ...credential({ validity: 'membership', exp: NOW_SECONDS + 90 * 24 * 60 * 60 }), validity: 'membership' as const };
+    expect(verify(extended)).toBeDefined();
+    expect(verify({ ...credential(), validity: 'membership' })).toBeUndefined();
+    expect(verifyContentAccessCredential({ accountId: ACCOUNT_ID, credential: extended, environment: 'production', scope: SCOPE, now: (NOW_SECONDS + 80 * 86400) * 1000 })).toBeDefined();
+    expect(verifyContentAccessCredential({ accountId: ACCOUNT_ID, credential: extended, environment: 'production', scope: SCOPE, now: (NOW_SECONDS + 90 * 86400) * 1000 })).toBeUndefined();
     const malformed = credential();
     const currentPayload = malformed.token.split('.')[1]!
       .replaceAll('-', '+')

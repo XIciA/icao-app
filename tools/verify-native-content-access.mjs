@@ -31,11 +31,16 @@ assert.match(nativeRepository, /question-bank-public\.json/u);
 assert.doesNotMatch(nativeRepository, /from ['"]\.\/question-bank\.json['"]/u);
 assert.match(nativeRepository, /\/v1\/question-banks\/\$\{encodeURIComponent\(bankId\)\}\/categories\//u);
 assert.match(nativeRepository, /\/v1\/content-access\/credentials/u);
-assert.match(nativeRepository, /JSON\.stringify\(\{ scopes: \[scope\] \}\)/u);
+assert.match(nativeRepository, /JSON\.stringify\(\{ validity: 'membership', scopes: \[scope\] \}\)/u);
 assert.doesNotMatch(nativeRepository, /deviceId|getQuestionBankContentDeviceId/u);
 assert.match(nativeStudyRoute, /useQuestionBankTopic/u);
 assert.match(credentialVerifier, /verifyIcaoEd25519Jws/u);
-assert.match(credentialVerifier, /72 \* 60 \* 60/u);
+assert.match(credentialVerifier, /credential\.validity !== claims\.validity/u);
+assert.match(credentialVerifier, /claims\.exp <= nowSeconds/u);
+assert.match(credentialVerifier, /matchesSignedSecond\(credential\.expiresAt, claims\.exp\)/u);
+// Legacy clients retain the 72-hour contract; membership expiry is opt-in and signed.
+assert.match(contentAccessService, /input\.validity === 'membership'/u);
+assert.match(contentAccessService, /72 \* 60 \* 60/u);
 assert.doesNotMatch(credentialVerifier, /\bdid\b|deviceId/u);
 assert.match(contracts, /CONTENT_ACCESS_POLICY_VERSION = 'content-access-v2'/u);
 assert.doesNotMatch(contracts, /deviceId/u);

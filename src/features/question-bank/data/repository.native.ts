@@ -208,7 +208,7 @@ const remoteQuestionBankSource = {
               'content-type': 'application/json',
               [COMMERCE_ENVIRONMENT_HEADER]: environment,
             },
-            body: JSON.stringify({ scopes: [scope] }),
+            body: JSON.stringify({ validity: 'membership', scopes: [scope] }),
           });
           assertContentContextCurrent(context);
           // Verification is still mandatory before any offline cache is

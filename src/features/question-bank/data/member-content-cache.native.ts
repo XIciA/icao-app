@@ -1,3 +1,4 @@
+import { offlineClockIsValid, acceptOnlineCredentialClock, clearOfflineClock } from './offline-clock.native';
 import {
   AESKeySize,
   AESEncryptionKey,
@@ -329,6 +330,8 @@ export async function writeMemberTopicCache(
   ) throw new Error('invalid_content_credential');
   await withAccountContentLock(accountId, async () => {
     assertMemberContentContextCurrent(context);
+    if (!preserveInvalid) await acceptOnlineCredentialClock(accountId, environment, Date.parse(credential.issuedAt));
+    assertMemberContentContextCurrent(context);
     const key = await contentKey(accountId, true);
     assertMemberContentContextCurrent(context);
     const encrypted = await aesEncryptAsync(new TextEncoder().encode(JSON.stringify(topic)), key!, {
@@ -384,6 +387,7 @@ export async function readMemberTopicCache(accountId: string, scope: ContentAcce
     const record = JSON.parse(recordValue) as EncryptedTopic;
     if (
       !verifyContentAccessCredential({ accountId, credential, environment, scope })
+      || !await offlineClockIsValid(accountId, environment)
       || record.schemaVersion !== 2
       || record.accountId !== accountId
       || record.environment !== environment
@@ -440,7 +444,7 @@ export async function inspectOfflineMemberTopicAccess(
       now,
       scope,
     });
-    return inspection.status;
+    return inspection.status === 'valid' && !await offlineClockIsValid(accountId, environment, now) ? 'invalid' : inspection.status;
   } catch {
     return 'invalid';
   }
@@ -461,6 +465,7 @@ export async function clearQuestionBankMemberContent(accountId?: string) {
     await Promise.all([
       ...credentialKeys.filter(validSecureStoreKey).map((key) => SecureStore.deleteItemAsync(key)),
       SecureStore.deleteItemAsync(accountKeyName(accountId)),
+      clearOfflineClock(accountId),
     ]);
     const downloadKeys = (await Storage.getAllKeys()).filter(key => key.startsWith(`icao.downloads.v1.${accountId}.`));
     if (downloadKeys.length) await Storage.multiRemove(downloadKeys);
@@ -555,7 +560,7 @@ export async function cacheMemberResource(
   publicPath: string,
   signedUrl: string,
   expected?: { checksum: string; sizeBytes: number },
-  { temporary = false, publicDownload = false, isCurrent = () => true, required = false, onProgress, isPlaybackActive }: { isPlaybackActive?: () => boolean; publicDownload?: boolean; temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
+  { temporary = false, publicDownload = false, isCurrent = () => true, required = false, onProgress, onVerified, isPlaybackActive }: { onVerified?: () => void; isPlaybackActive?: () => boolean; publicDownload?: boolean; temporary?: boolean; isCurrent?: () => boolean; required?: boolean; onProgress?: (fraction: number) => void } = {},
 ) {
   if (!expected || !/^[a-f0-9]{64}$/.test(expected.checksum) || expected.sizeBytes <= 0 || expected.sizeBytes > 52_428_800) return undefined;
   if (temporary && expected.sizeBytes > TEMPORARY_RESOURCE_MAX_FILE_BYTES) return undefined;
@@ -670,7 +675,9 @@ export async function cacheMemberResource(
             await Storage.removeItem(`${resourceIndexKey(accountId, environment, publicPath)}.invalid`);
             assertMemberContentContextCurrent(context);
           }
-          return file.exists ? file.uri : undefined;
+          if (!file.exists) return undefined;
+          onVerified?.();
+          return file.uri;
         });
       }, temporary);
     } finally { transfer.release(); }
@@ -784,7 +791,11 @@ export async function offlineCredentialNeedsRefresh(scope: ContentAccessScope) {
   if (!activeAccountId) return false;
   try {
     const raw = await SecureStore.getItemAsync(credentialKey(activeAccountId, getNativeCommerceEnvironment(), scope));
-    return !raw || Date.parse((JSON.parse(raw) as ContentAccessCredential).expiresAt) - Date.now() < 24 * 60 * 60 * 1000;
+    if (!raw) return true;
+    const credential = JSON.parse(raw) as ContentAccessCredential;
+    // Upgrade legacy 72-hour credentials on the next online reconciliation,
+    // without waiting until they are almost expired or downloading media again.
+    return credential.validity !== 'membership' || Date.parse(credential.expiresAt) - Date.now() < 24 * 60 * 60 * 1000;
   } catch { return true; }
 }
 export async function renewOfflineCredentials(credential: ContentAccessCredential) {
@@ -792,9 +803,14 @@ export async function renewOfflineCredentials(credential: ContentAccessCredentia
   if (!accountId) return;
   const context = memberContentContext(accountId);
   await withAccountContentLock(accountId, async () => {
+    let clockAccepted = false;
     for (const scope of credential.scopes) {
       assertMemberContentContextCurrent(context);
       if (!verifyContentAccessCredential({ accountId, credential, scope, environment: context.environment })) throw new Error('invalid_content_credential');
+      if (!clockAccepted) {
+        await acceptOnlineCredentialClock(accountId, context.environment, Date.parse(credential.issuedAt));
+        clockAccepted = true;
+      }
       const key = credentialKey(accountId, context.environment, scope);
       await SecureStore.setItemAsync(key, JSON.stringify(credential), secureOptions());
       await registerCredentialKey(accountId, key);

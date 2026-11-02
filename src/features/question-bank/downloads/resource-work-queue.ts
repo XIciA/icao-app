@@ -22,5 +22,6 @@ export async function runResourceWorkers<T>(items: readonly T[], concurrency: nu
   if (!isCurrent()) throw new Error('下载已暂停');
 }
 
-// Two bulk transfers leave room in the shared native limit for playback.
-export const DOWNLOAD_RESOURCE_CONCURRENCY = 2;
+// Four bulk transfers, with two additional bounded workers for sealing on disk.
+export const DOWNLOAD_RESOURCE_CONCURRENCY = 4;
+export const DOWNLOAD_RESOURCE_WORKERS = 6;

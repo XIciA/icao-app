@@ -25,18 +25,22 @@ const current = () => true;
 const download = (key: string, extra = {}) => acquireResourceTransfer(key, 'https://test/audio', 100, true, { isCurrent: current, ...extra });
 beforeEach(() => { mockTasks.length = 0; mockFiles.clear(); mockOptional.mockReset().mockImplementation(async (_url, file) => { mockFiles.add(file.uri); return file; }); });
 
-test('bulk uses two slots while a playback request can acquire a separate native slot', async () => {
-  const one = download('one'), two = download('two');
-  let thirdCurrent = true;
-  const third = download('three', { isCurrent: () => thirdCurrent });
-  await waitFor(() => expect(mockTasks).toHaveLength(2));
+test('four bulk sockets reserve playback capacity and release sockets before sealing finishes', async () => {
+  const requests = ['one', 'two', 'three', 'four'].map(key => download(key));
+  let fifthCurrent = true;
+  const fifth = download('five', { isCurrent: () => fifthCurrent });
+  await waitFor(() => expect(mockTasks).toHaveLength(4));
   const playing = acquireResourceTransfer('playback', 'https://test/playback', 100, false, { isCurrent: current, playback: true });
-  await waitFor(() => expect(mockTasks).toHaveLength(3)); mockTasks[2].finish();
-  const playback = await playing; expect(playback).toBeDefined(); playback!.release();
-  thirdCurrent = false;
-  mockTasks.slice(0, 2).forEach(task => task.finish());
-  const results = await Promise.all([one, two, third]); results.forEach(result => result?.release());
-  expect(results[2]).toBeUndefined(); expect(mockTasks).toHaveLength(3); expect(mockFiles.size).toBe(0);
+  await waitFor(() => expect(mockTasks).toHaveLength(5));
+  mockTasks[0].finish();
+  const first = await requests[0]; // Keep the staged file while processing is pending.
+  await waitFor(() => expect(mockTasks).toHaveLength(6));
+  expect(mockFiles.has(first!.file.uri)).toBe(true);
+  fifthCurrent = false;
+  mockTasks.slice(1).forEach(task => task.finish());
+  const results = await Promise.all([...requests, playing, fifth]);
+  results.forEach(result => result?.release());
+  expect(mockFiles.size).toBe(0);
 });
 test('active audio reduces bulk to one without cancelling already authorized work', async () => {
   const one = download('active-one', { isPlaybackActive: current });
@@ -86,14 +90,15 @@ test('queued playback processing overtakes bulk without interrupting the active 
   release(); await Promise.all([first, bulk, playback]); expect(order).toEqual(['active', 'playback', 'bulk']);
 });
 
-test('completed network bytes retain their slots until processing consumers release staging', async () => {
-  const one = download('staging-one'), two = download('staging-two');
-  await waitFor(() => expect(mockTasks).toHaveLength(2)); mockTasks.forEach(task => task.finish());
-  const leases = await Promise.all([one, two]);
-  const third = download('staging-three'); await new Promise(resolve => setTimeout(resolve, 80));
-  expect(mockTasks).toHaveLength(2);
-  leases[0]!.release(); await waitFor(() => expect(mockTasks).toHaveLength(3));
-  mockTasks[2].finish(); (await third)!.release(); leases[1]!.release(); expect(mockFiles.size).toBe(0);
+test('staging byte budget holds back more work until sealed files release', async () => {
+  const large = (key: string) => acquireResourceTransfer(key, 'https://test/audio', 45 * 1024 * 1024, true, { isCurrent: current });
+  const one = large('large-one'), two = large('large-two');
+  await waitFor(() => expect(mockTasks).toHaveLength(1)); mockTasks[0].finish();
+  const first = await one;
+  await new Promise(resolve => setTimeout(resolve, 60));
+  expect(mockTasks).toHaveLength(1);
+  first!.release(); await waitFor(() => expect(mockTasks).toHaveLength(2));
+  mockTasks[1].finish(); (await two)!.release(); expect(mockFiles.size).toBe(0);
 });
 
 test('optional-first shared transfer aborts when playback and joined required download both cancel', async () => {

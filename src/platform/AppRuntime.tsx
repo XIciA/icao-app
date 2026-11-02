@@ -1,3 +1,4 @@
+import { DownloadRuntime } from '@/features/question-bank/downloads/DownloadRuntime';
 import { AppUpdatePrompt } from '@/features/app-updates/AppUpdatePrompt';
 import { useEffect, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
@@ -29,6 +30,7 @@ export function AppRuntime({ children }: PropsWithChildren) {
 
   return (
     <CommerceRuntimeProvider>
+      <DownloadRuntime key={auth.account?.accountId} />
       {auth.canAccessApp ? <NativeAiRecovery key={auth.account?.accountId} /> : null}
       {auth.canAccessApp ? <AppUpdatePrompt /> : null}
       <RadioPlayerProvider>{children}{auth.canAccessApp ? <RadioMiniPlayer /> : null}</RadioPlayerProvider>

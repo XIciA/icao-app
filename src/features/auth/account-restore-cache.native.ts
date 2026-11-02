@@ -14,7 +14,7 @@ export async function readAccountRestore(userId: string): Promise<Snapshot | und
     const value = JSON.parse(raw) as Snapshot;
     const age = Date.now() - value.verifiedAt;
     if (value.userId !== userId || !value.account?.accountId || value.legal?.accountId !== value.account.accountId
-      || value.legal.required || !Number.isFinite(age) || age < 0 || age > 72 * 60 * 60 * 1000) return undefined;
+      || value.legal.required || !Number.isFinite(age) || age < 0) return undefined;
     return value;
   } catch { return undefined; }
 }
