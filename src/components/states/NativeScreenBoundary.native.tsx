@@ -3,9 +3,7 @@ import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter'
 import { type Href } from 'expo-router';
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
-import { TopBar } from '@/components/navigation/TopBar';
-import { Button, Screen } from '@/components/ui';
-import { spacing } from '@/theme';
+import { Screen } from '@/components/ui';
 import { CenteredState } from './CenteredState';
 
 type Props = PropsWithChildren<{
@@ -34,12 +32,9 @@ function LocalFailure({ title, retry, onExit }: { title: string; retry: () => vo
   return <Failure title={title} retry={retry} exit={exit} allowExit />;
 }
 
-function Failure({ title, retry, exit, allowExit }: { title: string; retry: () => void; exit: () => void; allowExit: boolean }) {
+function Failure({ retry, exit, allowExit }: { title: string; retry: () => void; exit: () => void; allowExit: boolean }) {
   return <Screen contentStyle={styles.screen}>
-    {allowExit ? <TopBar title={title} onBack={exit} /> : null}
-    <CenteredState title="页面暂时无法显示" description="可以重新加载，或返回后再试。"
-      actionLabel="重新加载" onAction={retry}
-      secondary={allowExit ? <Button onPress={exit} style={styles.returnButton} variant="outline">返回</Button> : undefined} />
+    <CenteredState kind="failure" actionLabel="重试" onAction={retry} onReturn={exit} allowReturn={allowExit} />
   </Screen>;
 }
 
@@ -53,4 +48,4 @@ class ScreenBoundary extends Component<PropsWithChildren<{ fallback: (retry: () 
   }
 }
 
-const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 }, returnButton: { marginTop: spacing[3], minWidth: 160 } });
+const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 } });

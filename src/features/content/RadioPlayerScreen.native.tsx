@@ -25,9 +25,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { ScreenSafeArea as SafeAreaView } from '@/components/platform/ScreenSafeArea';
-
 import { AppText, BottomSheet, Button } from '@/components/ui';
-import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { isVercelLegacyWeb } from '@/config/web-runtime';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';
@@ -141,9 +139,7 @@ export function RadioPlayerScreen() {
   if (!isVercelLegacyWeb(Platform.OS) && radio.catalogs.length === 0 && !radio.loading && !radio.catalogLoading) {
     return <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
-        <TopBar title="随身听" onBack={() => Platform.OS === 'web' || router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')} />
-        <CenteredState icon={Headphones} title={radio.catalogError ?? (radio.offline ? '该内容尚未下载' : radio.error || radio.catalogError ? '曲目加载失败' : '当前范围暂无可播放内容')}
-          description={radio.catalogError ? '请联网后重试。' : radio.offline ? '可联网下载对应题库后收听。' : radio.error ?? radio.catalogError ?? '当前考试目标或题库范围内暂无可播放内容，可以调整学习范围后重试。'}
+        <CenteredState  kind={radio.error || radio.catalogError ? 'failure' : radio.offline ? 'download' : 'empty'}
           actionLabel={radio.catalogError ? '重新加载' : radio.offline ? '前往下载管理' : radio.error || radio.catalogError ? '重新加载' : '返回题库'} onAction={radio.catalogError ? radio.retryCatalog ?? radio.retry : radio.offline ? () => router.push('/account/downloads') : radio.error || radio.catalogError ? radio.retryCatalog ?? radio.retry : () => router.push('/(tabs)')} />
       </AppContentFrame>
     </SafeAreaView>;

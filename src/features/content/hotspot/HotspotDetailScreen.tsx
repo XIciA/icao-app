@@ -2,7 +2,6 @@ import { useRouter } from 'expo-router';
 import { Calendar, MapPin, Sparkles } from '@/components/ui/icons';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
@@ -10,7 +9,6 @@ import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { loadQuestionBank } from '@/features/question-bank/data/repository';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { colors, fonts, radii, spacing } from '@/theme';
-
 import { resolveHotspotTopics } from './build-hotspot-session';
 import { getHotspotBrief } from './repository';
 import type { ResolvedOpiHotspotTopic } from './types';
@@ -38,12 +36,12 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
   if (!brief) {
     return (
       <Screen contentStyle={styles.state}>
-        <TopBar onBack={() => router.back()} title="OPI 热点" />
-        <CenteredState description="该热点资讯不存在或已经下线。" title="无法打开热点资讯" tone="destructive" />
+        <CenteredState  kind="unavailable"  />
       </Screen>
     );
   }
-  if (!topics && !error) return <GlobalLoadingScreen />;
+  if (!topics && !error) return <Screen><GlobalLoadingScreen /></Screen>;
+  if (error) return <Screen><CenteredState kind="failure" onAction={() => void load()} /></Screen>;
 
   const totalQuestions = brief.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0);
   return (
@@ -62,9 +60,6 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
           <AppText>本套练习包含 {brief.topics.length} 个考试话题，共 {totalQuestions} 道 OPI 题库精选口语题。</AppText>
         </Card>
 
-        {error ? (
-          <CenteredState actionLabel="重新加载" description={error} onAction={() => void load()} title="热点详情读取失败" tone="destructive" />
-        ) : (
           <View style={styles.topicsSection}>
             <AppText variant="sectionTitle">涵盖话题与问题（{topics?.length ?? 0}）</AppText>
             {topics?.map((topic, topicIndex) => (
@@ -90,7 +85,6 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
               </Card>
             ))}
           </View>
-        )}
 
         <Button
           disabled={Boolean(error) || !topics}

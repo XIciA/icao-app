@@ -7,22 +7,22 @@ import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
-
 import { useResourceEditorial } from './use-editorial';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function ResourceEditorialScreen() {
   const router = useRouter();
   const guide = useGuide();
   const state = useResourceEditorial();
   useGuideAvailability('resources', state.status === 'error' ? '资源加载失败，可在页面重新加载，也可以跳过教学。' : state.status === 'empty' ? '暂时没有资源文章，可跳过教学，稍后再来。' : undefined);
+  if (state.status === 'loading') return <Screen><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'error') return <Screen><CenteredState kind="failure" actionLabel="重试" onAction={state.retry} /></Screen>;
+  if (state.status === 'empty') return <Screen><CenteredState kind="empty" /></Screen>;
   return (
     <Screen scroll contentStyle={styles.screen} header={<TopBar title="资源分享" />}>
       {Platform.OS === 'web' ? <View style={styles.intro}>
         <AppText>经过来源核验和专业编辑的航空英语备考方法与学习资源。</AppText>
       </View> : null}
-      {state.status === 'loading' ? <CenteredState description="正在获取最新资源文章。" title="加载中" /> : null}
-      {state.status === 'empty' ? <CenteredState description="首篇文章正在准备中，请稍后再来。" icon={FileText} title="暂无资源" /> : null}
-      {state.status === 'error' ? <CenteredState actionLabel="重新加载" description="暂时无法连接内容服务，请检查网络后重试。" onAction={state.retry} title="资源加载失败" tone="destructive" /> : null}
       {state.status === 'ready' ? (
         <View style={styles.list}>
           {state.warning ? (

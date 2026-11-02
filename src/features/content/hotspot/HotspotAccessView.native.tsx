@@ -1,18 +1,9 @@
 import { hotspotCenters, hotspotSources } from '@icao/contracts/app-content';
-import {
-  AlertTriangle,
-  Calendar,
-  FileQuestion,
-  MapPin,
-  Shield,
-  WifiOff,
-} from '@/components/ui/icons';
+import { Calendar, MapPin } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
-
 import { CenteredState } from '@/components/states/CenteredState';
-import { AppText, Button, Card, Tag } from '@/components/ui';
+import { AppText, Card, Tag } from '@/components/ui';
 import { colors, fonts, spacing } from '@/theme';
-
 import type { HotspotAccessResult } from './access-state.native';
 import type { OpiHotspotBrief } from './types';
 
@@ -43,69 +34,52 @@ export function HotspotAccessNotice({
   result,
   onMembership,
   onRetry,
+  onReturn,
 }: {
   result: UnavailableResult;
   onMembership: () => void;
   onRetry: () => void;
+  onReturn?: () => void;
 }) {
   if (result.status === 'membership-required') {
     return (
-      <CenteredState
+      <CenteredState onReturn={onReturn}
         actionLabel="查看会员"
-        description="热点摘要可以公开查看；完整题目与练习需要当前账号具备会员权益。"
-        icon={Shield}
         onAction={onMembership}
-        secondary={(
-          <View style={styles.secondaryAction}>
-            <Button accessibilityLabel="刷新热点会员权益" onPress={onRetry} variant="outline">
-              刷新权益
-            </Button>
-          </View>
-        )}
-        title="完整练习需会员"
+        kind="membership"
       />
     );
   }
   if (result.status === 'offline-authorization-expired') {
     return (
-      <CenteredState
-        actionLabel="联网后重新验证"
-        description="本机离线授权已到期。学习记录仍会保留，请联网确认会员状态后继续。"
-        icon={WifiOff}
+      <CenteredState onReturn={onReturn}
+        actionLabel="重新验证"
         onAction={onRetry}
-        title="需要联网验证会员状态"
+        kind="verification"
       />
     );
   }
   if (result.status === 'network-error') {
     return (
-      <CenteredState
-        actionLabel="重新加载"
-        description="暂时无法连接内容服务，请检查网络后重试。"
-        icon={WifiOff}
+      <CenteredState onReturn={onReturn}
+        actionLabel="重试"
         onAction={onRetry}
-        title="网络连接不稳定"
+        kind="failure"
       />
     );
   }
   if (result.status === 'not-found') {
     return (
-      <CenteredState
-        description="该热点资讯不存在、已更新或已经下线。"
-        icon={FileQuestion}
-        title="无法打开热点资讯"
+      <CenteredState onReturn={onReturn}
+        kind="unavailable"
       />
     );
   }
-  const requestId = result.requestId ? ` 服务请求编号：${result.requestId}` : '';
   return (
-    <CenteredState
+    <CenteredState onReturn={onReturn}
       actionLabel="重新检查"
-      description={`内容服务暂时无法提供这期练习，请稍后重试。${requestId}`}
-      icon={AlertTriangle}
       onAction={onRetry}
-      title="热点内容暂不可用"
-      tone="accent"
+      kind="failure"
     />
   );
 }

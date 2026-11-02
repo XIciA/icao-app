@@ -32,7 +32,7 @@ it('routes a confirmed non-member to purchase and retains the original target', 
 it('does not misclassify failed entitlement reads as a non-member', async () => {
   mockCommerce.phase = 'error';
   const screen = await render(<MemberFeatureGate><Child /></MemberFeatureGate>);
-  expect(screen.getByText('暂时无法确认会员状态')).toBeTruthy();
+  expect(screen.getByText('暂时无法加载')).toBeTruthy();
   expect(mockReplace).not.toHaveBeenCalled();
   expect(mockChild).not.toHaveBeenCalled();
 });

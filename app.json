@@ -11,7 +11,7 @@
       "icon": "./assets/images/icon-native.png",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
-      "buildNumber": "3596166",
+      "buildNumber": "3596167",
       "config": {
         "usesNonExemptEncryption": false
       },

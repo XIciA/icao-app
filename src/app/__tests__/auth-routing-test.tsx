@@ -1,5 +1,5 @@
-import { fireEvent, render } from '@testing-library/react-native';
-import { Platform, Text } from 'react-native';
+import { render } from '@testing-library/react-native';
+import { Platform,Text } from 'react-native';
 
 import { AppStack } from '@/app/_layout';
 import { AppStack as NativeAppStack } from '@/app/_layout.native';
@@ -137,7 +137,8 @@ describe('authentication routing', () => {
 
     expect(screen.getByText('暂时无法确认账号状态')).toBeTruthy();
     expect(screen.queryByText('账号正在注销')).toBeNull();
-    expect(screen.getByText(/本机学习数据会保留/u)).toBeTruthy();
+    expect(screen.queryByText(/本机学习数据会保留/u)).toBeNull();
+    expect(screen.getAllByRole('button')).toHaveLength(2);
   });
 
   it('opens app routes without creating an authenticated session in UI acceptance mode', async () => {
@@ -214,14 +215,15 @@ describe('authentication routing', () => {
     expect(mockRememberPendingPath).not.toHaveBeenCalled();
   });
 
-  it('lets a user browse without deleting the session when restoration fails', async () => {
+  it('limits failed account restoration to recheck and explicit sign out', async () => {
     mockPathname = '/auth/login';
     mockAccountRestoreUnavailable = true;
     await render(<NativeAppStack />);
     const screen = await render(mockScreenLayout({ route: { name: 'auth/[slug]', params: { slug: 'login' } }, children: <Text>login</Text>, navigation: {} }));
-    await fireEvent.press(screen.getByText('暂不登录，继续浏览'));
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
-    expect(mockConsumePendingPath).toHaveBeenCalled();
+    expect(screen.queryByText('暂不登录，继续浏览')).toBeNull();
+    expect(screen.getByText('重新检查')).toBeTruthy();
+    expect(screen.getByText('退出登录')).toBeTruthy();
+    expect(screen.getAllByRole('button')).toHaveLength(2);
   });
 
   it('finishes a refreshed login in the question bank regardless of its original destination', async () => {

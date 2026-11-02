@@ -115,7 +115,7 @@ describe('WordFavoritesScreen', () => {
     mockUseWordFavorites.mockReturnValue({ ready: true, state: stateFor([]), setFavorite: mockSetFavorite });
     const screen = await renderScreen();
 
-    await waitFor(() => expect(screen.getByText('还没有收藏单词')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('暂无内容')).toBeTruthy());
   });
 
   it('keeps lookup favorites visible when vocabulary loading fails', async () => {

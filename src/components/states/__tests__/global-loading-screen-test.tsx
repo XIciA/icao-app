@@ -16,7 +16,7 @@ const appConfig = require('../../../../app.json') as {
 describe('<GlobalLoadingScreen />', () => {
   it('shows only the activity indicator and preparation copy without repeating the logo', async () => {
     const screen = await render(<GlobalLoadingScreen />);
-    expect(screen.getByText('正在准备学习空间…')).toBeTruthy();
+    expect(screen.getByText('正在准备学习空间')).toBeTruthy();
     expect(screen.getByTestId('global-loading-spinner')).toBeTruthy();
     expect(screen.queryByTestId('global-loading-mark')).toBeNull();
     expect(screen.queryByTestId('global-loading-logo')).toBeNull();

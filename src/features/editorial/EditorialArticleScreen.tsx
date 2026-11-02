@@ -1,20 +1,19 @@
 import type { EditorialBlock } from '@icao/contracts';
 import { Image } from 'expo-image';
-import { ExternalLink, FileQuestion, WifiOff } from '@/components/ui/icons';
+import { ExternalLink, WifiOff } from '@/components/ui/icons';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
-
 import { useEditorialArticle } from './use-editorial';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function EditorialArticleScreen({ slug }: { slug: string }) {
   const state = useEditorialArticle(slug);
-  if (state.status === 'loading') return <Screen header={<TopBar title="资源文章" />}><CenteredState description="正在加载文章正文。" title="加载中" /></Screen>;
-  if (state.status === 'empty') return <Screen header={<TopBar title="资源文章" />}><CenteredState description="这篇文章不存在或已撤回。" icon={FileQuestion} title="未找到文章" /></Screen>;
-  if (state.status === 'error') return <Screen header={<TopBar title="资源文章" />}><CenteredState actionLabel="重新加载" description="暂时无法获取文章，请检查网络后重试。" onAction={state.retry} title="文章加载失败" tone="destructive" /></Screen>;
+  if (state.status === 'loading') return <Screen ><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'empty') return <Screen ><CenteredState   kind="unavailable" /></Screen>;
+  if (state.status === 'error') return <Screen ><CenteredState actionLabel="重试"  onAction={state.retry} kind="failure"  /></Screen>;
   const article = state.value;
   return (
     <Screen scroll contentStyle={styles.screen} header={<TopBar title="资源文章" />}>

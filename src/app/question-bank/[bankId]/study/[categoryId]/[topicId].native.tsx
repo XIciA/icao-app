@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { contentFailure } from '@/features/question-bank/lib/content-failure';
 import { useCallback, useRef } from 'react';
 import { peekStudyLogin } from '@/features/question-bank/recording/login-continuation.native';
@@ -9,14 +10,11 @@ import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter'
 import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import { useFocusEffect, useLocalSearchParams } from 'expo-router';
-import type { ReactNode } from 'react';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
-import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
-import { BookX, Shield } from '@/components/ui/icons';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen.native';
 import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.native';
 import { useQuestionBankTopic } from '@/features/question-bank/hooks/useQuestionBankTopic.native';
@@ -75,7 +73,7 @@ function NativeQuestionBankStudyRouteBody() {
     else router.replace('/(tabs)');
   };
   const stateScreen = (children: ReactNode) => (
-    <Screen header={<TopBar title="题库学习" onBack={returnToSource} />}>
+    <Screen>
       {children}
     </Screen>
   );
@@ -88,8 +86,8 @@ function NativeQuestionBankStudyRouteBody() {
   const removedCard = bankState.status === 'ready' && bankState.source === 'remote' && rawCatalog
     && directoryHasCompleteBank(rawCatalog) && cardId && !location;
   if (removedCard) {
-    return stateScreen(<CenteredState actionLabel={returnLabel} description="原题内容已更新或不可用，请返回后选择其他内容。" icon={BookX}
-      onAction={returnToSource} title="原题不可用" />);
+    return stateScreen(<CenteredState onReturn={returnToSource} actionLabel={returnLabel}
+      onAction={returnToSource} kind="unavailable" />);
   }
   // Directory IDs are public even for protected questions. Scope exclusion is
   // therefore knowable before a member-only topic request returns its text.
@@ -100,17 +98,15 @@ function NativeQuestionBankStudyRouteBody() {
     || (topicState.status === 'ready' && ((cardId && topicState.scopeExcludedCardIds?.includes(cardId))
       || topicState.topic.declaredCardCount === 0)));
   if (outsideSelection) {
-    return stateScreen(<CenteredState actionLabel="返回题库首页" description="这部分内容不在当前考试目标或题库范围内。可回到首页调整题库范围，或在个人资料中查看考试目标。" icon={BookX}
-      onAction={() => router.dismissTo('/(tabs)')} title="不在当前学习范围" />);
+    return stateScreen(<CenteredState onReturn={returnToSource} actionLabel="返回题库首页"
+      onAction={() => router.dismissTo('/(tabs)')} kind="scope" />);
   }
   if (topicState.status === 'membership-required') {
     return stateScreen(
-      <CenteredState
-        actionLabel="查看会员方案"
-        description="这部分内容属于会员权益。开通后即可在线学习，并可按需保存到本机离线使用。"
-        icon={Shield}
+      <CenteredState onReturn={returnToSource}
+        actionLabel="查看会员"
         onAction={openMembership}
-        title="会员内容"
+        kind="membership"
       />
     );
   }
@@ -120,41 +116,34 @@ function NativeQuestionBankStudyRouteBody() {
 
   if (lockedTarget) {
     return stateScreen(
-      <CenteredState
-        actionLabel="查看会员方案"
-        description="这道题属于会员权益，开通会员后即可继续学习。"
-        icon={Shield}
+      <CenteredState onReturn={returnToSource}
+        actionLabel="查看会员"
         onAction={openMembership}
-        title="会员内容"
+        kind="membership"
       />
     );
   }
   const failure = contentFailure(topicState.error ?? bankState.error ?? (targetCardMissing && topic?.offlineContent ? { code: topic.offlineContent === 'outdated' ? 'offline_content_outdated' : 'offline_content_incomplete' } : undefined));
   if (failure) {
-    return stateScreen(<CenteredState title={failure.title} description={failure.description}
+    return stateScreen(<CenteredState onReturn={returnToSource} kind={failure.kind}
       actionLabel={failure.action === 'none' ? undefined : failure.action === 'retry' ? '重试' : '前往下载管理'}
       onAction={failure.action === 'none' ? undefined : failure.action === 'retry' ? () => { bankState.retry(); topicState.retry(); } : () => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: bankId } })} />);
   }
   if (bankState.status === 'error' || topicState.status === 'error' || !category || !topic || targetCardMissing) {
     return stateScreen(
-      <CenteredState
+      <CenteredState onReturn={returnToSource}
         actionLabel={returnFromRadio ? returnLabel : '重新加载'}
-        description={targetCardMissing ? '原题暂时未能加载。请联网后重新加载；你的标注和学习记录仍保留。' : '学习内容暂时无法读取。请联网后重新加载；你的学习记录仍保留。'}
-        icon={BookX}
         onAction={returnFromRadio ? returnToSource : () => { bankState.retry(); topicState.retry(); }}
-        title="学习内容加载失败"
-        tone="destructive"
+        kind="failure"
       />
     );
   }
   if (topic.cards.length === 0) {
     return stateScreen(
-      <CenteredState
+      <CenteredState onReturn={returnToSource}
         actionLabel={returnLabel}
-        description="题目正在整理中，可以先返回选择其他内容继续学习。"
-        icon={BookX}
         onAction={returnToSource}
-        title="这个主题还没有内容"
+        kind="empty"
       />
     );
   }

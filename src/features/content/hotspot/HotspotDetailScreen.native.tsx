@@ -9,7 +9,6 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
-
 import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
 import { useHotspotOverview } from './use-hotspot-overview.native';
 import { useMemberAction } from '@/features/auth/use-member-action';
@@ -26,8 +25,11 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
   const { retry, state } = useHotspotOverview(briefId);
 
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
-  if (state.status === 'loading') return <Screen contentStyle={styles.screen} header={<TopBar onBack={goBack} title="OPI 热点" />}><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen} ><GlobalLoadingScreen /></Screen>;
 
+  if (state.status !== 'ready') return <Screen><HotspotAccessNotice
+    onReturn={goBack} onRetry={retry} result={state}
+    onMembership={() => router.push({ pathname: '/account/[slug]', params: { slug: 'membership', from: 'learning' } })} /></Screen>;
   const selectedBrief=state.brief?selectHotspotSource(state.brief,selection):undefined;
   const selectedIds=new Set(selectedBrief?.topics.flatMap(t=>t.cardIds));
   const topics=state.status==='ready'?state.topics.map(t=>({...t,cards:t.cards.filter(c=>selectedIds.has(c.id))})).filter(t=>t.cards.length):[];
@@ -37,7 +39,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
       <View style={styles.body}>
         {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
 
-        {state.status === 'ready' ? (
+
           <>
             <View style={styles.filters}>
               <Button size="sm" variant={selection==='all'?'primary':'outline'} onPress={()=>setSelection('all')}>全部考点</Button>
@@ -77,13 +79,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
               <Sparkles size={18} /> 开始学习（共 {totalQuestions} 题）
             </Button>
           </>
-        ) : (
-          <HotspotAccessNotice
-            onMembership={() => router.push({ pathname: '/account/[slug]', params: { slug: 'membership', from: 'learning' } })}
-            onRetry={retry}
-            result={state}
-          />
-        )}
+
       </View>
     </Screen>
   );

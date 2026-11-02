@@ -1,18 +1,16 @@
+import type { Href } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useMemo } from 'react';
 import { selectHotspotSource } from '@icao/contracts/app-content';
 import { buildHotspotStudyPackage } from './build-hotspot-study-package.native';
-import type { Href } from 'expo-router';
 import { useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { Screen } from '@/components/ui';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
 import { spacing } from '@/theme';
-
-import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
+import { HotspotAccessNotice } from './HotspotAccessView.native';
 import { useHotspotAccess } from './use-hotspot-access.native';
 
 export function HotspotStudyScreen({ briefId }: { briefId: string }) {
@@ -31,14 +29,14 @@ function HotspotStudyContent({ briefId }: { briefId: string }) {
     return dataset&&brief.topics.length?buildHotspotStudyPackage(brief,dataset):state.session;
   },[state,center]);
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
-  if (state.status === 'loading') return <Screen contentStyle={styles.screen} header={<TopBar onBack={goBack} title="OPI 热点" />}><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen} ><GlobalLoadingScreen /></Screen>;
 
   if (state.status !== 'ready') {
     return (
-      <Screen contentStyle={styles.screen} scroll header={<TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />}>
-        <View style={styles.body}>
-          {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
+      <Screen contentStyle={styles.screen}>
+        <View style={{ flex: 1 }}>
           <HotspotAccessNotice
+            onReturn={goBack}
             onMembership={() => router.push({ pathname: '/account/[slug]', params: { slug: 'membership', from: 'learning' } })}
             onRetry={retry}
             result={state}

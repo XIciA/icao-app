@@ -41,10 +41,10 @@ it('opens the submitted feedback with public replies and acknowledges only the d
 it('clears previous content on account switch and does not expose it if the new read fails',async()=>{
  const view=await render(screen());await waitFor(()=>expect(view.getByText('我的反馈内容')).toBeTruthy());
  mockAccount='account-b';mockList.mockRejectedValue(new Error('offline'));await view.rerender(screen());
- await waitFor(()=>expect(view.getByText('反馈记录读取失败，请重试。')).toBeTruthy());expect(view.queryByText('我的反馈内容')).toBeNull();
+ await waitFor(()=>expect(view.getByText('暂时无法加载')).toBeTruthy());expect(view.queryByText('我的反馈内容')).toBeNull();
 });
 it('provides a submission action outside the scrollable empty history',async()=>{
- mockList.mockResolvedValue({items:[],nextCursor:null,unread:false});const view=await render(screen());await waitFor(()=>expect(view.getByText('暂无反馈记录')).toBeTruthy());
+ mockList.mockResolvedValue({items:[],nextCursor:null,unread:false});const view=await render(screen());await waitFor(()=>expect(view.getByText('暂无内容')).toBeTruthy());
  await fireEvent.press(view.getByText('提交反馈'));expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({params:expect.objectContaining({compose:'1'})}));
 });
 it('renders existing short records and replies without requiring new fields or resubmission',async()=>{

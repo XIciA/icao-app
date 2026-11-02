@@ -1,12 +1,8 @@
 import { prepareVocabularySession } from './study-session';
 import { useStudyOrder } from './use-study-order';
-import { BookOpen, TriangleAlert } from '@/components/ui/icons';
 import { useCallback, useMemo, useState } from 'react';
-
-import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { Screen } from '@/components/ui';
-
 import {
   VocabularyBookDetailView,
   VocabularyBooksView,
@@ -30,6 +26,7 @@ import type {
   VocabularyWord,
   VocabularyWordStatus,
 } from './types';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 type LibraryView = 'books' | 'detail' | 'list';
 type ReturnView = LibraryView | 'complete' | 'sessionList';
@@ -74,11 +71,10 @@ void progress.saveStudySession(prepared.session).then(() => {
   if (!loadResult || !progress.ready) {
     return (
       <Screen contentStyle={{ paddingHorizontal: 0 }}>
-        <TopBar title="单词学习" />
         {loadError ? (
-          <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={retry} tone="destructive" />
+          <CenteredState  kind="failure"  actionLabel="重试" onAction={retry}  />
         ) : (
-          <CenteredState icon={BookOpen} title="正在准备词汇资源" description="正在读取 ICAO 词书和你的学习进度。" />
+          <GlobalLoadingScreen />
         )}
       </Screen>
     );

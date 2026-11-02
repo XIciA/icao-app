@@ -20,6 +20,6 @@ export function GuestLearningBoundary({ children }: PropsWithChildren) {
     return () => { current = false; };
   }, [guest, attempt]);
   if (auth.canAccessApp || (guest && ready)) return children;
-  if (failed) return <Screen><CenteredState title="本机学习记录暂未准备好" description="原有记录已保留，请重试。" actionLabel="重新检查" onAction={() => setAttempt(value => value + 1)} /></Screen>;
+  if (failed) return <Screen><CenteredState kind="failure"  actionLabel="重新检查" onAction={() => setAttempt(value => value + 1)} /></Screen>;
   return <GlobalLoadingScreen />;
 }

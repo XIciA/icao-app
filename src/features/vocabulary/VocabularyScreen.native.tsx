@@ -6,15 +6,9 @@ import { useStudyOrder } from './use-study-order';
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { useGuide, useGuideConfirmation, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useSaveAction } from './use-save-action.native';
-import { BookOpen, TriangleAlert } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
-
-import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
-import { AppText, Screen } from '@/components/ui';
-import { colors, spacing } from '@/theme';
-
+import { Screen } from '@/components/ui';
 import {
   VocabularyBookDetailView,
   VocabularyBooksView,
@@ -38,6 +32,7 @@ import type {
   VocabularyWord,
   VocabularyWordStatus,
 } from './types';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 type LibraryView = 'books' | 'detail' | 'list';
 type ReturnView = LibraryView | 'complete' | 'sessionList';
@@ -145,20 +140,17 @@ export function VocabularyScreen() {
   };
   const back = useLocalBack(view !== 'books' && !progress.error, backView);
 
-  if (progress.error) return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
+  if (progress.error) return <Screen ><CenteredState  kind="failure"  actionLabel="重试" onAction={progress.retry} /></Screen>;
 
   function content() {
-  if (availability.offline && !availability.loading && (!loadResult || !books.length) && view !== 'study') return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={BookOpen} title="内容未下载" description="联网后可学习。" /></Screen>;
+  if (availability.offline && !availability.loading && (!loadResult || !books.length) && view !== 'study') return <Screen ><CenteredState kind="download" actionLabel="前往下载管理" onAction={() => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: 'vocabulary' } })} /></Screen>;
   if (!loadResult || !progress.ready || availability.loading && view !== 'study') {
     return (
-      <Screen contentStyle={{ paddingHorizontal: 0 }} header={<TopBar title="单词学习" />}>
+      <Screen contentStyle={{ paddingHorizontal: 0 }}>
         {loadError ? (
-          <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={retry} tone="destructive" />
+          <CenteredState  kind="failure"  actionLabel="重试" onAction={retry}  />
         ) : (
-          <View style={{ padding: spacing[5], flexDirection: 'row', alignItems: 'center', gap: spacing[3] }} accessibilityRole="progressbar">
-            <ActivityIndicator color={colors.primary} size="small" />
-            <AppText variant="caption">加载中…</AppText>
-          </View>
+          <GlobalLoadingScreen />
         )}
       </Screen>
     );
@@ -213,7 +205,7 @@ export function VocabularyScreen() {
     return <VocabularyWordListView offline={availability.offline} book={sessionBook} onBack={back} onStart={(words) => startStudy(words, 'sessionList')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
   }
 
-  if (availability.offline && !allDownloaded && ['testIntro', 'testRun'].includes(view)) return <Screen header={<TopBar title="词汇测试" onBack={back} />}><CenteredState title="测试词书尚未下载完整" description="联网或下载三本词书后可进行完整测试。" actionLabel="前往下载管理" onAction={() => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: 'vocabulary' } })} /></Screen>;
+  if (availability.offline && !allDownloaded && ['testIntro', 'testRun'].includes(view)) return <Screen ><CenteredState kind="download"  actionLabel="前往下载管理" onAction={() => router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: 'vocabulary' } })} /></Screen>;
 
   if (view === 'testIntro') {
     return <VocabularyTestIntroView lastTest={progress.state.lastTest} onBack={back} onStart={() => { setTestRunKey((value) => value + 1); setView('testRun'); }} />;

@@ -1,16 +1,15 @@
 import { BookOpen, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
 import { useEffect, useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Card, Screen, Tag } from '@/components/ui';
 import { getStaticWordLookupEntries } from '@/features/question-bank/static-word-lookup/repository';
 import { colors, radii, spacing } from '@/theme';
-
 import { buildWordFavoriteItems, type WordFavoriteItem } from './favorites';
 import { migrateLegacyVocabularyFavorites, useWordFavorites } from './progress-store';
 import { useVocabularyCatalog } from './use-vocabulary-catalog';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function WordFavoritesScreen() {
   const favorites = useWordFavorites();
@@ -31,9 +30,9 @@ export function WordFavoritesScreen() {
 
   return (
     <Screen contentStyle={styles.screen}>
-      <TopBar title="单词收藏" />
+      {favorites.ready && (items.length > 0 || loadError) ? <TopBar title="单词收藏" /> : null}
       {!favorites.ready ? (
-        <CenteredState description="正在读取你收藏的单词。" icon={Star} title="正在准备单词收藏" />
+        <GlobalLoadingScreen />
       ) : items.length || loadError ? (
         <FlatList
           contentContainerStyle={styles.listContent}
@@ -73,9 +72,9 @@ export function WordFavoritesScreen() {
           showsVerticalScrollIndicator={false}
         />
       ) : loadingVocabulary ? (
-        <CenteredState description="正在合并单词学习和题库查词中的收藏。" icon={Star} title="正在准备单词收藏" />
+        <GlobalLoadingScreen />
       ) : (
-        <CenteredState description="在单词学习或题库查词中点亮收藏星标后，会统一显示在这里。" icon={Star} title="还没有收藏单词" />
+        <CenteredState   kind="empty" />
       )}
     </Screen>
   );

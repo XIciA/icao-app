@@ -15,7 +15,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
@@ -28,7 +27,6 @@ import {
   resolveVercelListeningExamRange,
   scoreListeningExam,
 } from '@/features/mock-exam/listening-exam';
-
 import { annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
@@ -626,7 +624,7 @@ export function QuestionBankStudyScreen(props: Props) {
     return <StudyReport interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText></SafeAreaView>;
-  if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /></SafeAreaView>;
+  if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重试"  onAction={session.retryHydration} kind="failure"  /></SafeAreaView>;
 
   const entry = annotations.entry;
   const transcript = card.kind === 'image' ? null : (

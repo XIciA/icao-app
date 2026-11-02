@@ -4,16 +4,15 @@ import { useSaveAction } from './use-save-action.native';
 import { BookOpen, ChevronDown, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
 import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Button, Screen } from '@/components/ui';
 import { getStaticWordLookupEntries } from '@/features/question-bank/static-word-lookup/repository';
 import { colors, radii, spacing } from '@/theme';
-
 import { buildWordFavoriteItems, type WordFavoriteItem } from './favorites';
 import { migrateLegacyVocabularyFavorites, useWordFavorites } from './progress-store.native';
 import { useVocabularyCatalog } from './use-vocabulary-catalog';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function WordFavoritesScreen() {
   const favorites = useWordFavorites();
@@ -38,11 +37,11 @@ export function WordFavoritesScreen() {
   const loadingVocabulary = !loadResult && !loadError;
 
   return save.wrap(
-    <Screen contentStyle={styles.screen} header={<TopBar title="单词收藏" />}>
+    <Screen contentStyle={styles.screen} header={favorites.error || !favorites.ready || (!items.length && !loadError) ? undefined : <TopBar title="单词收藏" />}>
       {favorites.error ? (
-        <CenteredState icon={Star} title="收藏读取失败" description="本机收藏暂时无法读取，记录未被清除。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={favorites.retry} />
+        <CenteredState  kind="failure"  actionLabel="重试" onAction={favorites.retry} />
       ) : !favorites.ready ? (
-        <CenteredState description="正在读取你收藏的单词。" icon={Star} title="正在准备单词收藏" />
+        <GlobalLoadingScreen />
       ) : items.length || loadError ? (
         <FlatList
           contentContainerStyle={styles.listContent}
@@ -82,9 +81,9 @@ export function WordFavoritesScreen() {
           showsVerticalScrollIndicator={false}
         />
       ) : loadingVocabulary ? (
-        <CenteredState description="正在合并单词学习和题库查词中的收藏。" icon={Star} title="正在准备单词收藏" />
+        <GlobalLoadingScreen />
       ) : (
-        <CenteredState description="在单词学习或题库查词中点亮收藏星标后，会统一显示在这里。" icon={Star} title="还没有收藏单词" />
+        <CenteredState   kind="empty" />
       )}
       {removed ? <View style={styles.undo}><AppText variant="caption" style={{flex:1}}>已取消收藏 {removed.item.word}</AppText><Button variant="ghost" size="sm" onPress={() => void save.run(() => favorites.setFavorite({word:removed.item.word,wordId:removed.item.wordIds[0]},true),()=>setRemoved(undefined),removed.context)}>撤销</Button><Button variant="ghost" size="sm" onPress={()=>setRemoved(undefined)}>关闭</Button></View> : null}
     </Screen>
