@@ -41,8 +41,26 @@
       "referenceText": "Poor flight discipline can cause pilots to ignore regulations and SOPs, forget procedures, and make mistakes. Undisciplined behaviour can also reduce situational awareness and lead to poor decisions, creating a serious risk to flight safety.",
       "referenceTextZh": "不良飞行作风会使飞行员忽视规章和标准操作程序、忘记程序并发生差错。不守纪律的行为还会降低情景意识并导致错误决策，对飞行安全造成严重风险。",
       "audioDurationSeconds": 2.688
+    },
+    {
+      "id": "opi-fzy-203067",
+      "audio": "/question-bank-assets/revisions/opi/193cda9bf180dccae9846bead59b44d1e8eaf01a647f40d340af26c02f76b330/audio/opi/opi-fzy-203067.mp3",
+      "audioText": "Could you talk about the flight disciplines in your flight school or your company.",
+      "studyTier": 1,
+      "taskTitle": "问候与自我介绍-18",
+      "audioTextZh": "能谈一谈你们航校或者你们公司的飞行纪律/作风情况吗？",
+      "referenceText": "I'm a student pilot now. So, in my flight school, we need comply a lot of disciplines. For example, we can't drink alcohol 24 hours before the flight. We have to arrive at the airport 3 hours before the flight to get weather information and ATC clearance, etc.",
+      "referenceTextZh": "我现在是一名飞行学员，在我们航校，我们需要遵守很多规则。譬如说，我们在飞行前24小时不能喝酒；我们需要在飞行前3小时到达机场，获取天气信息和管制许可等。",
+      "audioDurationSeconds": 3.744
     }
   ],
-  "declaredCardCount": 4,
-  "categoryId": "opi-category-04"
+  "declaredCardCount": 5,
+  "categoryId": "opi-category-04",
+  "cardStudyTiers": {
+    "opi-core-753": 0,
+    "opi-core-751": 0,
+    "opi-core-754": 0,
+    "opi-core-752": 0,
+    "opi-fzy-203067": 1
+  }
 }

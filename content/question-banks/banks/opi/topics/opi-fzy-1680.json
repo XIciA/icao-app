@@ -287,8 +287,60 @@
       "referenceText": "Usually, I often use flight crew operating manual, navigation chart and so on.",
       "referenceTextZh": "通常，我会使用机组操作手册，导航图等。",
       "audioDurationSeconds": 4.008
+    },
+    {
+      "id": "opi-fzy-224469",
+      "audio": "/question-bank-assets/revisions/opi/78ada63398e0667c744e186ed3e7165b63ae19f3bea044849bc7c8afcb708ce9/audio/opi/opi-fzy-224469.mp3",
+      "audioText": "What do you think weather radar will become in the future?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-51",
+      "audioTextZh": "你认为未来气象雷达将变成什么样？",
+      "referenceText": "In my view, in the future, weather radars will be more intelligent, capable of achieving more precise detection, providing earlier and more direct warnings and decision support, and perhaps will be combined with AI.",
+      "referenceTextZh": "在我看来，未来气象雷达将更智能，能实现更精准的探测、给与更早、更直接的预警和决策支持，或许会和人工智能结合。",
+      "audioDurationSeconds": 2.808
+    },
+    {
+      "id": "opi-fzy-224468",
+      "audio": "/question-bank-assets/revisions/opi/e935ade37982d64456c80c9c22aed422bbd24da7bd4cd6ede7a2eb0cd07afd7a/audio/opi/opi-fzy-224468.mp3",
+      "audioText": "How to use the weather radar en-route?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-50",
+      "audioTextZh": "在航路上，如何使用气象雷达？",
+      "referenceText": "When using weather radar, pilots need to turn it on early and scan ahead by adjusting the antenna. They identify hazardous areas based on echo colors (red/amber indicates severe weather), strictly adhere to detour principles, maintain a safe distance of at least 20 nautical miles.",
+      "referenceTextZh": "使用气象雷达时，飞行员需提前开机扫描，调整天线探测前方天气。根据回波颜色（红/琥珀色表强天气）判断危险区域，严格遵循绕飞原则，至少保持20海里以上安全距离。",
+      "audioDurationSeconds": 2.064
     }
   ],
-  "declaredCardCount": 26,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 28,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-fzy-152075": 1,
+    "opi-fzy-152072": 1,
+    "opi-fzy-209191": 1,
+    "opi-fzy-152074": 1,
+    "opi-fzy-152084": 1,
+    "opi-fzy-164818": 1,
+    "opi-fzy-152069": 1,
+    "opi-fzy-164816": 1,
+    "opi-fzy-152073": 1,
+    "opi-fzy-152081": 2,
+    "opi-fzy-152250": 2,
+    "opi-fzy-152082": 1,
+    "opi-fzy-152251": 1,
+    "opi-fzy-152070": 1,
+    "opi-fzy-152187": 1,
+    "opi-fzy-152083": 1,
+    "opi-fzy-152076": 1,
+    "opi-fzy-152080": 1,
+    "opi-fzy-152077": 1,
+    "opi-fzy-164817": 1,
+    "opi-fzy-152983": 1,
+    "opi-fzy-152071": 1,
+    "opi-fzy-152078": 1,
+    "opi-fzy-152079": 1,
+    "opi-fzy-164814": 1,
+    "opi-fzy-164813": 1,
+    "opi-fzy-224469": 1,
+    "opi-fzy-224468": 1
+  }
 }

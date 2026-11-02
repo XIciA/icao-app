@@ -1,10 +1,12 @@
+import { storageTarget } from '../data/directory-storage-identity';
 import { getEmbeddedQuestionBanks } from '../data/repository.native';
 import { createCardDirectory } from '../data/card-directory';
 import type { QuestionBankCardTarget } from './types';
 
 const directory = createCardDirectory(getEmbeddedQuestionBanks());
 export function questionBankCardTargetKey(target: QuestionBankCardTarget) {
-  return [target.bankId, target.categoryId, target.topicId, target.cardId].join(':');
+  const stable = storageTarget(target);
+  return [stable.bankId, stable.categoryId, stable.topicId, stable.cardId].join(':');
 }
 export const getQuestionBankCardReference = directory.get;
 export const findQuestionBankCardReference = directory.findLegacy;

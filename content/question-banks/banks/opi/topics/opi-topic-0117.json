@@ -56,8 +56,27 @@
       "referenceText": "I am not employed by an airline, so I have not received company hijacking training. At flight school, I have learned the general priorities: maintain control, avoid actions that could increase the danger, use code 7500 when it can be selected safely, and communicate with ATC discreetly. Detailed responses require approved security training and procedures.",
       "referenceTextZh": "我没有在航空公司任职，因此没有接受过公司的劫机处置训练。在航校，我学习过一般原则：保持飞机控制，避免采取可能加剧危险的行动，在能够安全操作时使用应答机代码 7500，并谨慎地与空中交通管制通信。具体处置需要遵循经批准的安保培训和程序。",
       "audioDurationSeconds": 3.888
+    },
+    {
+      "id": "opi-fzy-110110",
+      "audio": "/question-bank-assets/revisions/opi/ea7aa80ec3202629b79d8c2698fc9cb1aeadc86749f8c37f976bbd59651118d6/audio/opi/opi-fzy-110110.mp3",
+      "audioText": "As a captain, what will you do in a hijack?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-11",
+      "audioTextZh": "作为机长，遇到劫持你会怎样做？",
+      "referenceText": "We have detailed procedures to deal with hijack, so if there is hijack, I think I'll follow the procedures in the Operation Manual. I must keep calm and squawk 7500 without being noticed. Then I will report our situation to ATC if possible. If the hijacker wants to destroy the aircraft, I think the most important thing should be making sure the safety of the passengers and aircraft. During the whole process, I will make every command firmly, and every crew member should work well with each other.",
+      "referenceTextZh": "我们有详细的操作程序来应对劫持，所以如果遇到劫持，我想我会按照操作手册中的程序解决。我必须保持镇定并趁其不备发送编码7500。如果可以的话，我会把情况报告给ATC。如果劫机者想要毁坏飞机，我觉得最重要的还是保证乘客及飞机的安全。整个过程中，我会坚决地执行每个命令，机组成员间也应互相合作。",
+      "audioDurationSeconds": 2.64
     }
   ],
-  "declaredCardCount": 5,
-  "categoryId": "opi-category-02"
+  "declaredCardCount": 6,
+  "categoryId": "opi-category-02",
+  "cardStudyTiers": {
+    "opi-extra-097": 2,
+    "opi-extra-105": 2,
+    "opi-extra-103": 2,
+    "opi-extra-098": 2,
+    "opi-extra-096": 2,
+    "opi-fzy-110110": 0
+  }
 }

@@ -1,3 +1,4 @@
+import { storageTopicId, storageTopicIds } from '../data/directory-storage-identity';
 import Storage from '@/platform/storage';
 
 import { assertLearningWriteContext, captureLearningWriteContext, enqueueCardState, enqueueLearningRecord, type LearningWriteContext } from '@/features/sync/learning-sync.native';
@@ -84,7 +85,7 @@ async function readTopicStates(topicId: string) {
   return result;
 }
 
-export async function readTopicStatesBatch(topics: readonly QuestionBankTopic[]) {
+async function readStoredTopicStatesBatch(topics: readonly Pick<QuestionBankTopic, 'id'>[]) {
   const context = captureLearningWriteContext();
   const topicIds = topics.map((topic) => topic.id);
   await Promise.all(topicIds.map((topicId) => (
@@ -126,12 +127,29 @@ export async function readTopicStatesBatch(topics: readonly QuestionBankTopic[])
   return statesByTopic;
 }
 
+/** Project stable stored states into the current visible directory without
+ * copying/deleting user data or resetting sync versions. */
+export async function readTopicStatesBatch(topics: readonly QuestionBankTopic[]) {
+  const ids = [...new Set(topics.flatMap(storageTopicIds))];
+  const stored = await readStoredTopicStatesBatch(ids.map(id => ({ id })));
+  return Object.fromEntries(topics.map(topic => {
+    const states = { ...stored[topic.id] };
+    for (const id of topic.scopeCardIds?.all ?? topic.cards.map(c => c.id)) {
+      const state = stored[storageTopicId(topic.id, id)]?.[id];
+      if (state) states[id] = state;
+    }
+    return [topic.id, states];
+  }));
+}
+
 export const sqliteLearningStore: LearningStore = {
   async getCardState(topicId, cardId) {
+    topicId = storageTopicId(topicId, cardId);
     const states = await readTopicStates(topicId);
     return states[cardId];
   },
   async saveCardState(topicId, cardId, state, bankId, context = captureLearningWriteContext()) {
+    topicId = storageTopicId(topicId, cardId);
     const key = `${TOPIC_PREFIX}${topicId}`;
     const previousWrite = topicWriteQueues.get(key) ?? Promise.resolve();
     const nextWrite = previousWrite
@@ -155,7 +173,14 @@ export const sqliteLearningStore: LearningStore = {
     }
   },
   async getTopicStates(topic) {
-    return readTopicStates(topic.id);
+    const ids = storageTopicIds(topic);
+    const stored = new Map(await Promise.all(ids.map(async id => [id, await readTopicStates(id)] as const)));
+    const states = { ...stored.get(topic.id) };
+    for (const id of topic.scopeCardIds?.all ?? topic.cards.map(c => c.id)) {
+      const state = stored.get(storageTopicId(topic.id, id))?.[id];
+      if (state) states[id] = state;
+    }
+    return states;
   },
   async addRecord(record, context = captureLearningWriteContext()) {
     assertLearningWriteContext(context, record.recordType === 'ai_result');

@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0127",
-  "name": "发动机问题",
+  "name": "发动机系统与故障",
   "cards": [
     {
       "id": "opi-extra-214",
@@ -131,8 +131,83 @@
       "referenceText": "No, I have never experienced an engine problem in flight. However, I have practised engine failure, flameout, fire, and surge scenarios in the simulator.",
       "referenceTextZh": "没有，我从未在飞行中遇到过发动机问题。不过，我在模拟机中练习过发动机失效、熄火、起火和喘振等情景。",
       "audioDurationSeconds": 4.632
+    },
+    {
+      "id": "opi-fzy-152099",
+      "audio": "/question-bank-assets/revisions/opi/4e06181bc3f5b69a166bb7e6e6b1f4106fcbcdb484b7767337f9d5c4c6223d73/audio/opi/opi-fzy-152099.mp3",
+      "audioText": "What are the functions of aircraft engine?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-15",
+      "audioTextZh": "飞机发动机的功能是什么？",
+      "referenceText": "The engines are used to provide thrust.",
+      "referenceTextZh": "发动机的主要作用是提供推力。",
+      "audioDurationSeconds": 2.064
+    },
+    {
+      "id": "opi-fzy-152104",
+      "audio": "/question-bank-assets/revisions/opi/cbbf69b16fe710a74249c07857d8431ac8c9034060a7e3493b08b43026ddbebc/audio/opi/opi-fzy-152104.mp3",
+      "audioText": "What do you know about the thrust reverser? What are the functions of the thrust reverser?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-17",
+      "audioTextZh": "你知道飞机发动机上的反推装置吗？发动机反推装置的作用的是什么？",
+      "referenceText": "During landing, we use it to increase drag, reduce landing speed and reduce landing distance.",
+      "referenceTextZh": "着陆过程中，我们可以使用反推来增加阻力，减小着陆速度，缩短着陆距离。",
+      "audioDurationSeconds": 4.536
+    },
+    {
+      "id": "opi-fzy-152098",
+      "audio": "/question-bank-assets/revisions/opi/53d940e8f2e04821536a9b314d9db05d54841213a0a128dee37a6cf8381e467e/audio/opi/opi-fzy-152098.mp3",
+      "audioText": "What kind of engine does your aircraft use?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-14",
+      "audioTextZh": "你所飞的飞机使用什么类型的发动机？",
+      "referenceText": "I fly DA40 and the engine it uses is piston engine.\nI fly Airbus320, we use turbofan engine.",
+      "referenceTextZh": "我飞钻石40，使用的活塞发动机。\n我飞空客320，我们使用涡轮风扇发动机。",
+      "audioDurationSeconds": 2.4
+    },
+    {
+      "id": "opi-fzy-152102",
+      "audio": "/question-bank-assets/revisions/opi/349cf880589a450e37832724eeba4feceb7303b8bacee92875c890f93bb490ae/audio/opi/opi-fzy-152102.mp3",
+      "audioText": "During flight, which engine parameter do you think is the most important? Why?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-16",
+      "audioTextZh": "在飞行中，你觉得发动机的哪个参数是最重要的？",
+      "referenceText": "I think the EGT is the most important parameter during the flight.\nBecause the EGT provides the basis for the pilot to correctly judge the working state of the engine.",
+      "referenceTextZh": "在飞行中，我认为发动机的排气温度是最重要的参数。\n因为发动机排气温度给飞行员判断发动机工作状态提供了依据。",
+      "audioDurationSeconds": 4.8
+    },
+    {
+      "id": "opi-fzy-209192",
+      "audio": "/question-bank-assets/revisions/opi/f5213c765ae9ff479b007773d149e9846de9ba7dd45cd00be9c9914f272b1b1d/audio/opi/opi-fzy-209192.mp3",
+      "audioText": "What is the procedure for starting the engine?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-39",
+      "audioTextZh": "发动机启动的程序是怎样的？",
+      "referenceText": "In most cases, aircraft engines are started by APU bleed air, but they can also be started by ground air sources or by engine cross-bleed air. I fly A320 and we usually start engine No.2 and then engine No.1. We usually turn the engines into idle to prevent the thrust from causing the aircraft to slide unexpectedly, especially on slippery ground.",
+      "referenceTextZh": "多数情况下，飞机发动机是通过APU引气启动的，同时，也可以通过地面气源或者发动机交输引气启动。我飞的是A320，我们一般先启动2号发动机，然后再启动1号发动机。我们会先将发动机怠速运行，防止因推力造成飞机意外滑动，尤其是在湿滑的地面上。",
+      "audioDurationSeconds": 2.256
     }
   ],
-  "declaredCardCount": 13,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 18,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-extra-214": 0,
+    "opi-extra-214-part-2": 0,
+    "opi-extra-220": 0,
+    "opi-core-336": 0,
+    "opi-core-323": 0,
+    "opi-core-332": 0,
+    "opi-core-322": 0,
+    "opi-core-329": 0,
+    "opi-core-327": 0,
+    "opi-core-326": 0,
+    "opi-core-321": 0,
+    "opi-core-335": 0,
+    "opi-extra-216": 0,
+    "opi-fzy-152099": 1,
+    "opi-fzy-152104": 1,
+    "opi-fzy-152098": 1,
+    "opi-fzy-152102": 1,
+    "opi-fzy-209192": 1
+  }
 }

@@ -1,3 +1,4 @@
+import { registerDirectoryClientContext } from './content-access/directory-client-context';
 import { registerRequestPerformance } from './performance/request-performance';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
 import { NestFactory } from '@nestjs/core';
@@ -20,6 +21,7 @@ export async function createApp(config: ApiConfig = loadConfig()) {
     bufferLogs: true,
     rawBody: true,
   });
+  registerDirectoryClientContext(app.getHttpAdapter().getInstance());
   registerRequestPerformance(app.getHttpAdapter().getInstance());
   app.enableCors(apiCorsOptions(config.corsOrigins));
   app.useGlobalFilters(new HttpErrorFilter());
@@ -39,7 +41,7 @@ export function apiCorsOptions(origins: string[]) {
     origin: origins,
     credentials: false,
     methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match', COMMERCE_ENVIRONMENT_HEADER, 'x-ai-operation-id', 'x-icao-vocabulary-catalog'],
+    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match', COMMERCE_ENVIRONMENT_HEADER, 'x-icao-directory-identity', 'x-icao-directory-preview', 'x-ai-operation-id', 'x-icao-vocabulary-catalog'],
     maxAge: 86_400,
   };
 }

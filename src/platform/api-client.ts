@@ -1,3 +1,4 @@
+import directoryClient from '@/config/directory-client.json';
 import type { ApiErrorEnvelope, ApiSuccessEnvelope } from '@icao/contracts';
 
 let accessTokenProvider: (() => Promise<string | undefined>) | undefined;
@@ -82,6 +83,8 @@ async function fetchOnce(path: string, init: RequestInit, token?: string, timeou
   if (!baseUrl) throw new Error('api_not_configured');
   const headers = new Headers(init.headers);
   headers.set('accept', 'application/json');
+  headers.set('x-icao-directory-identity', directoryClient.capability);
+  headers.set('x-icao-directory-preview', Object.entries(directoryClient.preview).map(([id,version]) => `${id}=${version}`).join(','));
   if (token) headers.set('authorization', `Bearer ${token}`);
   return withApiRequestTimeout(
     (signal) => fetch(`${baseUrl}${path}`, { ...init, headers, signal }),

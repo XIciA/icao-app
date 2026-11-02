@@ -31,8 +31,73 @@
       "referenceText": "The DA-40 I use for training is not pressurised, and this example aircraft does not have a built-in passenger oxygen system. If a flight requires supplemental oxygen, approved portable equipment must be carried and used according to the applicable altitude rules. I check the equipment, quantity, and mask operation before such a flight.",
       "referenceTextZh": "我用于训练的 DA-40 没有增压，这架示例飞机也没有内置的旅客供氧系统。如果某次飞行需要补充供氧，就必须携带获准的便携式设备，并按照适用的高度规定使用。执行此类飞行前，我会检查设备、氧气量和面罩功能。",
       "audioDurationSeconds": 3.576
+    },
+    {
+      "id": "opi-fzy-140774",
+      "audio": "/question-bank-assets/revisions/opi/5326043368b8df194628675db6b75b062ac90219403209c4b5e69a83897bc99f/audio/opi/opi-fzy-140774.mp3",
+      "audioText": "What do you know about oxygen system in an aircraft?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-36",
+      "audioTextZh": "你对氧气系统了解多少？",
+      "referenceText": "As far as I know, the oxygen system on most commercial aircraft consist of the flight crew oxygen system, the passenger oxygen system, and portable oxygen cylinders. If the cabin pressurization system failed and the cabin altitude was above a safe level, oxygen masks will drop down in front of the passenger automatically. Portable oxygen cylinders can be used for first aid.",
+      "referenceTextZh": "据我所知，大多数客机上的氧气系统都包括机组氧气系统，旅客氧气系统，和便携式氧气瓶。一旦座舱增压系统失效，座舱高度高于安全高度，旅客氧气面罩会自动脱落。便携式氧气瓶可用作急救。",
+      "audioDurationSeconds": 3
+    },
+    {
+      "id": "opi-fzy-152062",
+      "audio": "/question-bank-assets/revisions/opi/99e87bc7ed711f8ad2439da389e31873b1b3b961fe6440e6eaefb44c7af08ada/audio/opi/opi-fzy-152062.mp3",
+      "audioText": "Can you tell me the oxygen system on your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-8",
+      "audioTextZh": "你能介绍下你飞机上的氧气系统吗？",
+      "referenceText": "There are 3 kinds of oxygen systems.\nOne kind is for the crew, stowed in the cockpit.\nSecond is for the passengers, stowed over the passengers' seats.\nThe third kind is portable oxygen bottles, for emergency use.",
+      "referenceTextZh": "一共有3套氧气系统。\n一个是给机组使用的，安装在驾驶舱。\n第二个是给乘客使用的，安装在乘客座椅上方。\n第三个是氧气瓶，用于紧急情况下使用。",
+      "audioDurationSeconds": 2.832
+    },
+    {
+      "id": "opi-fzy-152232",
+      "audio": "/question-bank-assets/revisions/opi/209fe7465cde5516c11a2d32a06342eb48cc023afdf9197b15523993f99099d3/audio/opi/opi-fzy-152232.mp3",
+      "audioText": "When does oxygen mask drop during flight?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-32",
+      "audioTextZh": "飞行中，氧气面罩什么时候会掉下？",
+      "referenceText": "If there is depressurization during flight, the oxygen masks will drop.",
+      "referenceTextZh": "如果飞行中出现失压，氧气面罩会掉下。",
+      "audioDurationSeconds": 2.424
+    },
+    {
+      "id": "opi-fzy-152233",
+      "audio": "/question-bank-assets/revisions/opi/8c969ed292df2f3008c9ac986f38531a4ea213e6ce743b4dc0b4ba70fdf6d12f/audio/opi/opi-fzy-152233.mp3",
+      "audioText": "Under what conditions do you use oxygen masks?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-33",
+      "audioTextZh": "什么情况下你会使用氧气面罩？",
+      "referenceText": "If there is depressurization, we will use oxygen masks.\nIf there is smoke or fire in the cockpit, we will use oxygen masks.",
+      "referenceTextZh": "如果出现失压，我们会使用氧气面罩；\n如果驾驶舱出现烟雾或起火，我们将使用氧气面罩。",
+      "audioDurationSeconds": 2.88
+    },
+    {
+      "id": "opi-fzy-152063",
+      "audio": "/question-bank-assets/revisions/opi/d988402e185eb76d7a042553f15c206ff3079a0437a56e4ac028866263e3d293/audio/opi/opi-fzy-152063.mp3",
+      "audioText": "Under what conditions should you use oxygen masks?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-9",
+      "audioTextZh": "在什么情况下，你会使用氧气面罩？",
+      "referenceText": "There are some situations, for example:\nIf there is smoke in the cockpit, we should put on oxygen masks.\nIf depressurization occurs, we should put on oxygen masks.\nIf we take off and land at high elevation airport, we should also put on oxygen masks.",
+      "referenceTextZh": "有这么一些情况，比如：\n如果驾驶舱有烟雾，我们应该戴上氧气面罩。\n发生减压时，应戴上氧气面罩。\n如果我们在高海拔机场起飞和降落，我们也应该戴上氧气面罩。",
+      "audioDurationSeconds": 2.808
     }
   ],
-  "declaredCardCount": 3,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-core-074": 0,
+    "opi-core-059": 0,
+    "opi-core-067": 0,
+    "opi-fzy-140774": 0,
+    "opi-fzy-152062": 1,
+    "opi-fzy-152232": 1,
+    "opi-fzy-152233": 1,
+    "opi-fzy-152063": 1
+  }
 }

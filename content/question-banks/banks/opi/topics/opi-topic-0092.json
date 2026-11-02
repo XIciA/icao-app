@@ -91,8 +91,31 @@
       "referenceText": "The captain should ask the cabin crew and, if one is on board, the air marshal to de-escalate the situation, separate the passenger from others, and maintain cabin order. If the passenger remains dangerous, an air marshal who is present may restrain and monitor the person. If the situation cannot be controlled, the crew should inform ATC and arrange airport security assistance on arrival.",
       "referenceTextZh": "机长应请客舱机组以及机上的空中警察缓和局势、将该旅客与其他人分开并维持客舱秩序。如果旅客仍有危险，在场的空中警察可以对其进行约束和监控。如果无法控制局势，机组应通知空中交通管制，并安排机场安保人员在到达后提供协助。",
       "audioDurationSeconds": 4.152
+    },
+    {
+      "id": "opi-fzy-109927",
+      "audio": "/question-bank-assets/revisions/opi/8eef52733056f1a926e33cdc07ff31cba117b98b181e4e2e07a15c69ead699f7/audio/opi/opi-fzy-109927.mp3",
+      "audioText": "As a captain, how would you handle the drunken passengers or the situation that there are violent conflicts between passengers?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-6",
+      "audioTextZh": "作为机长，你会如何处理醉酒乘客及乘客间的暴力冲突？",
+      "referenceText": "Well, if we encounter such situation on ground, in order to avoid further conflicts and the flight delay to be caused, the flight crew first will try to convince them. However, if their actions are still out of control, according to the Civil Aviation Act, for flight safety, I think I have the right to decline them to board. When\nnecessary, I will ask the ground security for help. While if the situation happens during flight, the in-flight security guard will control them, and as a captain, I will consider if there is a need to land in the alternate or return flight.",
+      "referenceTextZh": "嗯，如果在地面上遇到这种情况，为了避免进一步冲突和飞机延误，机组成员首先会试图劝说他们。但如果仍不能控制他们，根据民航法，为了飞行安全，我认为我有权利拒绝他们登机。必要时，我会向地面安保求助。如果在飞行过程中发生这种情况，机内安全管理人员会控制住他们，作为机长，我会考虑是否需要降落在备降机场或返航。",
+      "audioDurationSeconds": 6.768
     }
   ],
-  "declaredCardCount": 9,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 10,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-core-101": 0,
+    "opi-core-100": 0,
+    "opi-extra-003": 0,
+    "opi-extra-005": 0,
+    "opi-extra-101": 0,
+    "opi-extra-004": 0,
+    "opi-extra-007": 0,
+    "opi-extra-102": 0,
+    "opi-extra-006": 0,
+    "opi-fzy-109927": 0
+  }
 }

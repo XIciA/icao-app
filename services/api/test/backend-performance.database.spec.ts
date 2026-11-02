@@ -66,7 +66,7 @@ it('coalesces payload reads, keeps original summary scalars, and rechecks public
   queries.length = 0;
   const results = await Promise.all(Array.from({ length: 30 }, () => content.getCatalog('listening', undefined, undefined, 'production')));
   expect(results.every(result => result.version === 1)).toBe(true);
-  expect(queries.filter(query => query.startsWith('select') && query.includes('"payload"'))).toHaveLength(1);
+  expect(queries.filter(query => query.startsWith('select') && query.includes('"payload"') && !query.includes("->'directoryCompatibility'"))).toHaveLength(1);
   queries.length = 0;
   expect(await banks.list()).toMatchObject([{ bankId: 'listening', version: 1, checksum: '1'.repeat(64), title: 'bank-1', declaredTopicCount: 1, declaredCardCount: 12 }]);
   expect((await banks.list())[0]?.publishedAt).toBeDefined();

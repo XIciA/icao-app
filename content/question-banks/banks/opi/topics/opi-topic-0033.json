@@ -1,7 +1,18 @@
 {
   "id": "opi-topic-0033",
-  "name": "PBN/RNAV/RNP基于性能的导航与进近",
+  "name": "PBN与RNAV与RNP（基于性能的导航与进近）",
   "cards": [
+    {
+      "id": "opi-fzy-109911",
+      "audio": "/question-bank-assets/revisions/opi/5e2073cfcbc0f150003079e520df41e72ca6a17c5fefc8a6f5d9093cc20d7bf2/audio/opi/opi-fzy-109911.mp3",
+      "audioText": "What is the most significant difference between RNAV and RNP?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-22",
+      "audioTextZh": "RNAV和RNP有哪些主要不同点？",
+      "referenceText": "RNAV (regional area navigation) relies on ground navigation equipment, which cannot provide accurate navigation and requires radar monitoring. Therefore, RNAV is often used in large airports with ground navigation facilities. RNP (required navigation) relies on GNSS, whose onboard equipment must be capable of monitoring and alerting, does not require radar monitoring, and can operate in mountainous or highland airports where ground equipment is lacking.",
+      "referenceTextZh": "RNAV（区域导航）依赖于地面导航设备，不能提供精确导航，需要雷达监控，因此常应用于地面导航设施齐备的大型机场；RNP（所需导航性能）依赖于GNSS（全球导航卫星系统），其机载设备必须具备监视和告警的性能，不需要雷达监控，可以在缺乏地面设备的山区或高原机场运行。",
+      "audioDurationSeconds": 3.744
+    },
     {
       "id": "opi-core-781",
       "audio": "/question-bank-assets/revisions/opi/d7deed2f2249743b1b9991cef196d0fa2c295645b7dccdac00559258c8d05a3f/audio/opi/opi-core-781.mp3",
@@ -79,6 +90,16 @@
       "audioDurationSeconds": 2.808
     }
   ],
-  "declaredCardCount": 7,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-109911": 0,
+    "opi-core-781": 2,
+    "opi-core-782": 2,
+    "opi-core-468": 2,
+    "opi-core-467": 2,
+    "opi-core-783": 0,
+    "opi-core-469": 2,
+    "opi-core-471": 2
+  }
 }

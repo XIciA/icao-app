@@ -25,7 +25,7 @@
   "title": "OPI",
   "nameEn": "Oral Proficiency Interview",
   "enabled": true,
-  "summary": "238 话题 / 2321 卡",
+  "summary": "223 话题 / 2365 卡",
   "cardUnit": "卡",
   "topicUnit": "话题",
   "description": "发音 结构 词汇 流利度 理解能力 应对能力",
@@ -38,7 +38,7 @@
   },
   "categoryUnit": "分类",
   "declaredCardCount": 2365,
-  "declaredTopicCount": 237,
+  "declaredTopicCount": 223,
   "categoryIds": [
     "opi-category-01",
     "opi-category-02",
@@ -48,5 +48,34 @@
     "opi-category-06",
     "opi-category-07",
     "opi-category-08"
-  ]
+  ],
+  "freeCardIds": [
+    "opi-fzy-118195",
+    "opi-fzy-118197",
+    "opi-fzy-118194",
+    "opi-fzy-118198",
+    "opi-fzy-118196",
+    "opi-fzy-118193",
+    "opi-extra-294",
+    "opi-extra-288",
+    "opi-extra-291",
+    "opi-extra-297",
+    "opi-extra-293",
+    "opi-extra-292",
+    "opi-extra-296",
+    "opi-extra-290",
+    "opi-extra-295",
+    "opi-extra-289",
+    "opi-core-002",
+    "opi-core-005",
+    "opi-core-012",
+    "opi-core-003",
+    "opi-core-007",
+    "opi-core-004",
+    "opi-core-001"
+  ],
+  "directoryCompatibility": {
+    "capability": "stable-storage-v1",
+    "fallbackVersion": 29
+  }
 }

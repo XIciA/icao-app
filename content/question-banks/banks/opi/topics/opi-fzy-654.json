@@ -1,73 +1,7 @@
 {
   "id": "opi-fzy-654",
-  "name": "生活习惯",
+  "name": "日常生活与交流",
   "cards": [
-    {
-      "id": "opi-fzy-151973",
-      "audio": "/question-bank-assets/revisions/opi/61fde0bde359183cdaebd427325c6988bd95df1c7a4ebd3eaefb6df5c25ee646/audio/opi/opi-fzy-151973.mp3",
-      "audioText": "Do you like sports? Who is your favorite sport star?",
-      "studyTier": 1,
-      "taskTitle": "Hobbies/生活习惯-4",
-      "audioTextZh": "喜欢运动吗？你最喜欢的运动明星是谁？",
-      "referenceText": "Yes, I like basketball, and my favorite basketball star is Yaoming.",
-      "referenceTextZh": "我喜欢打篮球，我最喜欢的篮球明星是姚明。",
-      "audioDurationSeconds": 3.264
-    },
-    {
-      "id": "opi-fzy-166042",
-      "audio": "/question-bank-assets/revisions/opi/b112746a0ebf772e8c77a7d65daa4773fda8cd993088a38b0acbce3fd09b8940/audio/opi/opi-fzy-166042.mp3",
-      "audioText": "Does your flight instructor smoke?",
-      "studyTier": 1,
-      "taskTitle": "Hobbies/生活习惯-12",
-      "audioTextZh": "你的教员吸烟吗？",
-      "referenceText": "My instructor does not smoke, and he often tells us not to smoke.",
-      "referenceTextZh": "我的教员不吸烟，他也经常告诉我们不要吸烟。",
-      "audioDurationSeconds": 1.848
-    },
-    {
-      "id": "opi-fzy-118186",
-      "audio": "/question-bank-assets/revisions/opi/b0f325287e172a977f5917de913bbc25c39a42588b71e566729f7683c36343fa/audio/opi/opi-fzy-118186.mp3",
-      "audioText": "Do you like sports? / What is your favorite sport game? Who is your favorite sport star?",
-      "studyTier": 0,
-      "taskTitle": "Hobbies/生活习惯-1",
-      "audioTextZh": "你喜欢运动吗？/你最喜欢的体育运动是什么？/你最喜欢的运动员是谁？",
-      "referenceText": "Yes, I like sports. I like playing football/basketball/badminton/volleyball. / I like running/swimming/cycling/skiing. My favorite sport star is Michael Jordan/Kobe Bryant/Messi/ Cristiano Ronaldo.\nNo, I don't like sports, I prefer to stay at home and play games.",
-      "referenceTextZh": "我喜欢运动。我喜欢踢足球/打篮球/打羽毛球/打排球。/我喜欢跑步/游泳/骑自行车/滑雪。我最喜欢的体育明星是乔丹/科比/梅西/C罗。\n\n不，我不喜欢运动，我更喜欢呆在家里玩游戏。",
-      "audioDurationSeconds": 4.68
-    },
-    {
-      "id": "opi-fzy-118187",
-      "audio": "/question-bank-assets/revisions/opi/66cd793ec4e5233a31698622692c804a64c1037d2bc4c2e94c2ce3cbc3aa3a5f/audio/opi/opi-fzy-118187.mp3",
-      "audioText": "Do you like music? / What type (kind) of music do you like best? / Who's your favorite singer? / What's your favorite song?",
-      "studyTier": 0,
-      "taskTitle": "Hobbies/生活习惯-3",
-      "audioTextZh": "你喜欢音乐吗？/你最喜欢哪种类型的音乐？/你最喜欢的歌手是谁？/你最喜欢哪首歌？",
-      "referenceText": "Yes, I like music/listening to music. I like pop music/rock/folk music/jazz/hiphop. My favorite singer is Michael Jackson/Eason Chan. My favorite song is Earth Song/Sleep Alone/Love.",
-      "referenceTextZh": "嗯，我喜欢音乐/听音乐。我喜欢流行/摇滚/民谣/爵士/嘻哈音乐。我最喜欢的歌手是迈克尔•杰克逊/陈奕迅。我最喜欢听的歌是Earth Song/ Sleep Alone/ Love。",
-      "audioDurationSeconds": 6.528
-    },
-    {
-      "id": "opi-fzy-166043",
-      "audio": "/question-bank-assets/revisions/opi/d6304b9b659b0b50c01376c0d75d996682c803ca060cec640e13f55b39a8e6e9/audio/opi/opi-fzy-166043.mp3",
-      "audioText": "Do you think it is right for pilots to smoke?",
-      "studyTier": 1,
-      "taskTitle": "Hobbies/生活习惯-14",
-      "audioTextZh": "你认为飞行员吸烟对吗？",
-      "referenceText": "No, I don't think pilots should smoke, especially in the cockpit. Smoking in the cockpit will not only pollute the cockpit environment, but also cause fire and this would be a great threat to flight safety.",
-      "referenceTextZh": "我觉得飞行员不应该吸烟，特别是在驾驶舱里更不能吸烟。飞行员在驾驶舱吸烟不仅会污染驾驶舱环境，也容易引发火灾，这会极大地威胁飞行安全。",
-      "audioDurationSeconds": 2.472
-    },
-    {
-      "id": "opi-fzy-151972",
-      "audio": "/question-bank-assets/revisions/opi/27d715cf1c2b50e58ed8161b6acc505178914e3e10c1e745c24b11061c742651/audio/opi/opi-fzy-151972.mp3",
-      "audioText": "What do you like to do in your spare time?",
-      "studyTier": 2,
-      "taskTitle": "Hobbies/生活习惯-2",
-      "audioTextZh": "闲暇时间你喜欢做什么？",
-      "referenceText": "In my spare time, I like playing basketball, running, swimming or playing computer games.",
-      "referenceTextZh": "在闲暇时间，我喜欢打篮球，跑步，游泳，或玩游戏。",
-      "audioDurationSeconds": 2.232
-    },
     {
       "id": "opi-fzy-118192",
       "audio": "/question-bank-assets/revisions/opi/880c408af2d98123d5c35a68f556c5287165f8bf32419ee0706ed8f79c9f4c95/audio/opi/opi-fzy-118192.mp3",
@@ -80,83 +14,69 @@
       "audioDurationSeconds": 3.216
     },
     {
-      "id": "opi-fzy-118188",
-      "audio": "/question-bank-assets/revisions/opi/32ef04d7de478b850a2b876a6e60de74b9f23e93206b71744d720a8c43e67258/audio/opi/opi-fzy-118188.mp3",
-      "audioText": "Do you like to go to the theatre/concert? / How often do you go to the cinema? / What's your favorite TV program/TV play?",
+      "id": "opi-fzy-110162",
+      "audio": "/question-bank-assets/revisions/opi/fc1c01123622b0e8482cd62b0ecc71421dfaee0d84c5acda60e1fb6aee42a9a7/audio/opi/opi-fzy-110162.mp3",
+      "audioText": "Do you like your leader to contact you after work hours? Why?",
       "studyTier": 0,
-      "taskTitle": "Hobbies/生活习惯-5",
-      "audioTextZh": "你喜欢去电影院/音乐会吗？/你多久去一次电影院？/你最喜欢的电视节目/电视剧是什么？",
-      "referenceText": "Yes, I like to go to the theatre/concert. I go to the cinema once a month. My favorite TV program is CCTV-5/talk show.\nNo, I don't like to go to the theatre/concert. I don't like to go to the cinema, because I prefer to watch movies at home.",
-      "referenceTextZh": "我喜欢去影院/音乐会。我一个月去一次电影院。我最喜欢的电视节目是中央-5体育频道/脱口秀。\n我不喜欢去影院/听音乐会。我不喜欢去电影院，我更喜欢在家里看电影。",
-      "audioDurationSeconds": 6.336
+      "taskTitle": "补充话题-15",
+      "audioTextZh": "你喜欢领导在下班后联系你吗？为什么？",
+      "referenceText": "Frankly speaking, I don't like to be contacted during my breaks. I want to enjoy the after-work time, but if there are important things, it depends.",
+      "referenceTextZh": "坦白说，我不喜欢别人在休息时间联系我。我希望能享受休息的时间，但如果有重要的事情我会看情况而定。",
+      "audioDurationSeconds": 3.696
     },
     {
-      "id": "opi-fzy-151974",
-      "audio": "/question-bank-assets/revisions/opi/b5f79acf12f7a3c58d053ea69ad59765306a3c34c4a96eb765de002771368dae/audio/opi/opi-fzy-151974.mp3",
-      "audioText": "What type of music do you like best?",
-      "studyTier": 1,
-      "taskTitle": "Hobbies/生活习惯-6",
-      "audioTextZh": "你最喜欢什么样的音乐？",
-      "referenceText": "I like pop music.",
-      "referenceTextZh": "我喜欢流行音乐。",
-      "audioDurationSeconds": 2.136
-    },
-    {
-      "id": "opi-fzy-118190",
-      "audio": "/question-bank-assets/revisions/opi/1286af759bcfa18f598e9a44649ba76e7c5f50d493b0d0f690e8e5976de10ae0/audio/opi/opi-fzy-118190.mp3",
-      "audioText": "What do you like to do in your spare time? Do you like to spend spare time with your family?",
+      "id": "opi-fzy-110164",
+      "audio": "/question-bank-assets/revisions/opi/eedd34cba1fb076548e3047190de848f6d5491b886446bbc86a59e867ab56df6/audio/opi/opi-fzy-110164.mp3",
+      "audioText": "Tell me about a great change that occurred in your life.",
       "studyTier": 0,
-      "taskTitle": "Hobbies/生活习惯-9",
-      "audioTextZh": "你空闲时间喜欢做什么？空闲时，你喜欢跟家人一起吗？",
-      "referenceText": "In my spare time, I like to do sports/go shopping/play games at home. Yes, I like to spend my spare time with my family. It's precious time for me to be with my family.",
-      "referenceTextZh": "空闲时，我喜欢锻炼身体/购物/在家玩游戏。我空闲时间喜欢和家人一起度过，对我来说，和家人一起的时间是非常宝贵的。",
-      "audioDurationSeconds": 5.016
+      "taskTitle": "补充话题-19",
+      "audioTextZh": "讲讲你生活中发生的大改变。",
+      "referenceText": "Honestly I haven't thought about this much, but the topic reminds me of my beginning of the flying career. I was selected from a key university to the Flight College, which changed my whole life and made my childhood dream come true.",
+      "referenceTextZh": "说实话对此我没想过太多，但这个话题让我想起了飞行事业刚开始的阶段。我从一所重点大学被选拔到飞行学院，这改变了我整个人生，实现了我童年时的梦想。",
+      "audioDurationSeconds": 2.64
     },
     {
-      "id": "opi-fzy-118189",
-      "audio": "/question-bank-assets/revisions/opi/79de8bfe91d04d88e9ce9d45d3d782707b87ababddcfa5f44d83fd3569fd423e/audio/opi/opi-fzy-118189.mp3",
-      "audioText": "Do you like reading books/novels? What is your favorite novel?",
+      "id": "opi-fzy-110175",
+      "audio": "/question-bank-assets/revisions/opi/b0dcfa13009a3bca3c602e37b607d238449821324c26400a50c013a330a82b80/audio/opi/opi-fzy-110175.mp3",
+      "audioText": "What is the importance of communication in daily life?",
       "studyTier": 0,
-      "taskTitle": "Hobbies/生活习惯-7",
-      "audioTextZh": "你喜欢看书/看小说吗？你最喜欢的小说是什么？",
-      "referenceText": "Yes, I like reading novels. My favorite novel is The Ordinary World.",
-      "referenceTextZh": "我喜欢看小说。我最喜欢的小说是《平凡的世界》。",
-      "audioDurationSeconds": 3.36
+      "taskTitle": "补充话题-30",
+      "audioTextZh": "交流在日常生活中的重要性是什么？",
+      "referenceText": "Communication is the mode of transferring information from one person to another. It is an essential skill for successful business and personal relationships. Effective communication is a must at work and in daily life.",
+      "referenceTextZh": "交流是人与人之间传递信息的方式。交流是商务和人际关系中的重要技能。高效的交流在工作和生活中都是非常重要的。",
+      "audioDurationSeconds": 2.904
     },
     {
-      "id": "opi-fzy-118191",
-      "audio": "/question-bank-assets/revisions/opi/88e62b9e5243fb3c7dd49f04f787887ef9923740e7a52133ede57107c4497ba8/audio/opi/opi-fzy-118191.mp3",
-      "audioText": "What's your favorite way to relax after work? What kind of outdoor activities do you like?",
+      "id": "opi-fzy-110166",
+      "audio": "/question-bank-assets/revisions/opi/e0760f4385e292044e824da0ba46241a312d6e6a9b8e666177c47f9c036e14c2/audio/opi/opi-fzy-110166.mp3",
+      "audioText": "Have you experienced any awkward things in your life?",
       "studyTier": 0,
-      "taskTitle": "Hobbies/生活习惯-11",
-      "audioTextZh": "下班后你最喜欢的放松方式什么？你喜欢什么样的室外活动？",
-      "referenceText": "Sometimes I like doing sports, while sometimes I like listening to music to relax after work. I like to take a walk with my family.",
-      "referenceTextZh": "我有的时候喜欢去锻炼，有的时候喜欢下了班听听音乐来放松心情。我喜欢和家人一起出去散步。",
-      "audioDurationSeconds": 5.16
+      "taskTitle": "补充话题-21",
+      "audioTextZh": "你人生中遇到过尴尬的事么？",
+      "referenceText": "Yes, there are several funny stories in my life. The most awkward experience in my memory is that once I went into Lady's room and I didn't realize it until I came out.",
+      "referenceTextZh": "遇到过，我有许多有趣的经历。印象中最尴尬的是有一次去厕所，出来之后才意识到我错进了女厕所。",
+      "audioDurationSeconds": 2.784
     },
     {
-      "id": "opi-fzy-151975",
-      "audio": "/question-bank-assets/revisions/opi/62ea36dbd733197a9db995ac2d44b0660ced7cc7c156bcfe5c749d7a668dcdf9/audio/opi/opi-fzy-151975.mp3",
-      "audioText": "How often do you go to cinema?",
-      "studyTier": 1,
-      "taskTitle": "Hobbies/生活习惯-8",
-      "audioTextZh": "多久去看一次电影？",
-      "referenceText": "About once a month.",
-      "referenceTextZh": "大概每个月去一次。",
-      "audioDurationSeconds": 1.752
-    },
-    {
-      "id": "opi-fzy-151976",
-      "audio": "/question-bank-assets/revisions/opi/4dab60dd9cd56341908fa0715327428bb6a673d08e5957cb558e259592ce108c/audio/opi/opi-fzy-151976.mp3",
-      "audioText": "What is your favorite TV program?",
-      "studyTier": 1,
-      "taskTitle": "Hobbies/生活习惯-10",
-      "audioTextZh": "你最喜欢的电视节目是什么？",
-      "referenceText": "My favorite is Talk Show, I like it because it's interesting and humorous.",
-      "referenceTextZh": "我最喜欢脱口秀节目，因为有意思，也很幽默。",
-      "audioDurationSeconds": 1.992
+      "id": "opi-fzy-110171",
+      "audio": "/question-bank-assets/revisions/opi/fff8d7078b3c3428c0fe0adfb1c9fe711bc57281f5a583904a69517850d6f856/audio/opi/opi-fzy-110171.mp3",
+      "audioText": "What are your ambitions in life?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-26",
+      "audioTextZh": "你的追求是什么？",
+      "referenceText": "When I was young, my ambitions were to have a happy family and a desirable career, and both were fulfilled. Now, my ambitions in life are to make a good salary to support my family and keep physical and mental health every day.",
+      "referenceTextZh": "年轻的时候，我希望能有一个幸福的家庭和一份理想的职业，这些都已经实现了。现在，我对生活的追求是用一份可观的收入养家，保持身体健康和好心情。",
+      "audioDurationSeconds": 1.704
     }
   ],
-  "declaredCardCount": 14,
-  "categoryId": "opi-category-07"
+  "declaredCardCount": 6,
+  "categoryId": "opi-category-07",
+  "cardStudyTiers": {
+    "opi-fzy-118192": 0,
+    "opi-fzy-110162": 0,
+    "opi-fzy-110164": 0,
+    "opi-fzy-110175": 0,
+    "opi-fzy-110166": 0,
+    "opi-fzy-110171": 0
+  }
 }

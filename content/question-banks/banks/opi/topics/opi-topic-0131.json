@@ -3,6 +3,17 @@
   "name": "客航与货航",
   "cards": [
     {
+      "id": "opi-fzy-153467",
+      "audio": "/question-bank-assets/revisions/opi/df59ab1e97e1e7cf9a5b0d6bbddcda59fdeba202cce2aaf53743766ba0bbe0cd/audio/opi/opi-fzy-153467.mp3",
+      "audioText": "What are the differences between passenger flight and cargo flight?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-45",
+      "audioTextZh": "客航与货航有什么区别？",
+      "referenceText": "As far as I know, there are some differences between passenger flight and cargo flight. First, for passenger flight, it transports passengers and luggage to their destination; while for cargo flight, it only transports cargo. Second, there are many doors and emergency exits on a passenger flight aircraft, while, there are less doors on a cargo flight aircraft, instead, the doors on the cargo flight aircraft are relatively larger and wider.",
+      "referenceTextZh": "据我所知，货机和客机存在一些区别。首先，对于客航来说，它是将乘客和货物运送到目的地；而对于货航来，它只运输货物，第二，在客航飞机上，有很多的舱门和紧急出口，然而，在货航飞机上，就没有这么多的舱门，相反，货航飞机上的舱门相对更大更宽。",
+      "audioDurationSeconds": 3.576
+    },
+    {
       "id": "opi-extra-274",
       "audio": "/question-bank-assets/revisions/opi/4c59ab8cee24937f6cd8a402c9d28230c22ab8b359a2954c6fa29a4625fc8d60/audio/opi/opi-extra-274.mp3",
       "audioText": "What are the main duties of pilots on a passenger flight?",
@@ -23,6 +34,11 @@
       "audioDurationSeconds": 4.272
     }
   ],
-  "declaredCardCount": 2,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 3,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-153467": 0,
+    "opi-extra-274": 0,
+    "opi-extra-273": 0
+  }
 }

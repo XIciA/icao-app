@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0089",
-  "name": "电力系统失效",
+  "name": "电气系统与故障",
   "cards": [
     {
       "id": "opi-core-882",
@@ -106,8 +106,140 @@
       "referenceText": "No, I have never experienced an aircraft electrical system failure in flight.",
       "referenceTextZh": "没有，我从未在飞行中遇到过飞机电气系统失效。",
       "audioDurationSeconds": 3.672
+    },
+    {
+      "id": "opi-fzy-109915",
+      "audio": "/question-bank-assets/revisions/opi/1d7106065ddcc2057fac6d7625429977e0fdb7d34c5c3fa236b8ba2d3af7ecbc/audio/opi/opi-fzy-109915.mp3",
+      "audioText": "Can you tell me something about the components of electric system in an aircraft?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-26",
+      "audioTextZh": "你能介绍下机上电气系统组件吗？",
+      "referenceText": "Yes. Aircraft are installed with either a 14 or 28 volt direct-current electrical system, and normally aircraft electric system consists of the following parts: generator, battery, battery switch, bus bar, fuses, and circuit breakers, voltage regulator, load meter, associated electrical wiring, etc.",
+      "referenceTextZh": "好的。飞机安装有14或28伏直流电气系统。通常飞机电气系统由以下部件组成：发电机、电池、电池开关、汇流条、保险丝、断路器、稳压器、测力计和关联电线等。",
+      "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-fzy-109917",
+      "audio": "/question-bank-assets/revisions/opi/7b9bb3a6b9adca57b8ef3ee027ac39df14bccbc45cdc772299072a04324cb747/audio/opi/opi-fzy-109917.mp3",
+      "audioText": "What if the electrical system malfunctions?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-28",
+      "audioTextZh": "如果电气系统出现故障该怎样做？",
+      "referenceText": "Electrical failure is not very common but does happen every now and then. Usually a blown fuse or circuit breaker popping indicating a temporarily overload on that device or circuit. If it's circuit breaker tripped, resolve it as the way that nonessential circuit breakers are not to be reset in flight, but essential circuit breakers are to be reset. If it's inverter inoperative, select the other inverter.",
+      "referenceTextZh": "电气系统故障虽不常见但偶尔发生。通常，保险丝熔断或断路器弹出，代表该设备或电路临时超载。若断路器跳闸，不用重置副断路器，但要重置主断路器。若换流器失效，可以选择另一台换流器。",
+      "audioDurationSeconds": 2.424
+    },
+    {
+      "id": "opi-fzy-109899",
+      "audio": "/question-bank-assets/revisions/opi/5d79ec8ab6f8c96b4affae83ff034898af45e7f0a2618beab697c18673f74b11/audio/opi/opi-fzy-109899.mp3",
+      "audioText": "What if the electrical system malfunctions in flight?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-10",
+      "audioTextZh": "飞行中电气系统发生故障应如何应对？",
+      "referenceText": "First I will do some immediate action such as reset alternator/ generator by turning their switches or circuit breakers off, then on again. If problem persists, I will turn alternator/generator off, start conserve battery power and request priority landing at the nearest airport.",
+      "referenceTextZh": "首先我会立即采取一些行动，如通过重启开关或关闭断路器来重置发电机。如果问题仍未解决，我会关闭发电机，节省电量，并请求优先降落在最近的机场。",
+      "audioDurationSeconds": 2.904
+    },
+    {
+      "id": "opi-fzy-109898",
+      "audio": "/question-bank-assets/revisions/opi/bc2600819d9f540e32f8187b3d7741c4bda3c7d2d0c44b014acacda912f86e42/audio/opi/opi-fzy-109898.mp3",
+      "audioText": "Where do airplanes get their electrical supply?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-9",
+      "audioTextZh": "飞机在哪里充电？",
+      "referenceText": "Engines are the main devices that supply electrical power to the aircraft, besides, the ground power and APU can supply power to the aircraft.",
+      "referenceTextZh": "发动机是为飞机提供电能的主要装置，此外地面电源和APU（辅助动力装置）也可以为飞机提供电能。",
+      "audioDurationSeconds": 2.712
+    },
+    {
+      "id": "opi-fzy-109916",
+      "audio": "/question-bank-assets/revisions/opi/a749cdc63ee29a5da03b0e849b271de2c2aede0882abe946ffb4001e8321680f/audio/opi/opi-fzy-109916.mp3",
+      "audioText": "How does the electric system work in aircraft?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-27",
+      "audioTextZh": "飞机上的电气系统如何工作？",
+      "referenceText": "An aircraft electrical system is a self contained network of components that generate, transmit, distribute, utilize and store electrical energy. It can be turned on or off with a battery switch which controls the electrical power to aircraft in a way similar to the master switch. Turning the battery switch to \"ON\" position can provide electrical energy to all the electrical facilities circuits except the ignition system.",
+      "referenceTextZh": "飞机的电气系统是由产生、传输、分配、利用和存储电能的部件组成的封闭网络。它由一电池开关控制，以类似于主开关的方式掌控飞机的电力。将电池开关转到“ON”位置可以向除点火系统外的所有电气设备电路提供电能。",
+      "audioDurationSeconds": 2.544
+    },
+    {
+      "id": "opi-fzy-152220",
+      "audio": "/question-bank-assets/revisions/opi/297647ee8d75cb34546d58c9101e8d292c83af2589f6018fa304e73f368d325e/audio/opi/opi-fzy-152220.mp3",
+      "audioText": "What may cause electrical failure?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-27",
+      "audioTextZh": "什么会导致电气系统故障？",
+      "referenceText": "Many factors may cause electrical failure, for example, lightning strike, electrical short circuit, engine failure, generator failure.",
+      "referenceTextZh": "导致电气故障的因素有很多，如雷击、电气短路、发动机故障、发电机故障等。",
+      "audioDurationSeconds": 1.92
+    },
+    {
+      "id": "opi-fzy-152066",
+      "audio": "/question-bank-assets/revisions/opi/d44ec31ed9424db659bf6fcdff723fa1bc41ddac1a59bd5d2561e048da9c5321/audio/opi/opi-fzy-152066.mp3",
+      "audioText": "What is the function of electrical systems?",
+      "studyTier": 2,
+      "taskTitle": "飞机与飞机系统-11",
+      "audioTextZh": "电气系统的作用是什么？",
+      "referenceText": "It is used to provide electrical power to the aircraft.",
+      "referenceTextZh": "它被用来给飞机提供电力。",
+      "audioDurationSeconds": 2.304
+    },
+    {
+      "id": "opi-fzy-152218",
+      "audio": "/question-bank-assets/revisions/opi/423c57880830366c05adf7994a014403c970ea405739a144a9b6ec01c931c48a/audio/opi/opi-fzy-152218.mp3",
+      "audioText": "If you encounter electrical failure during flight, what will you do?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-25",
+      "audioTextZh": "如果你在飞行过程中遭遇电气失效，你会怎么做？",
+      "referenceText": "If I encounter electrical failure during flight, the alternate electrical system will work automatically.\nIf both electrical systems fail, I can use APU or battery, to provide power to the aircraft.",
+      "referenceTextZh": "如果我在飞行中遇到电气系统故障，备用电力系统将自动工作。\n如果两个电气系统都出现故障，我可以使用APU或电池，为飞机提供电力。",
+      "audioDurationSeconds": 3.84
+    },
+    {
+      "id": "opi-fzy-152221",
+      "audio": "/question-bank-assets/revisions/opi/1808110b361cecdb5e6b4796e3a790003ee4b0dedbf88687ebf39a26f2f5feb1/audio/opi/opi-fzy-152221.mp3",
+      "audioText": "If you encounter display failure because of electrical power, what are you going to do?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-28",
+      "audioTextZh": "如果你遇到因电气系统故障导致的显示故障，你该怎么办？",
+      "referenceText": "In this situation, first we will follow SOP to do checklist;\nThen we will call ATC, report our situation and request radar vectors;\nIf necessary, we will try to land as soon as possible.",
+      "referenceTextZh": "在这种情况下，首先我们会按照标准操作程序来做检查单；\n其次我们将呼叫空中交通管制员，请求雷达引导；\n如有必要，我们将尽快着陆。",
+      "audioDurationSeconds": 4.776
+    },
+    {
+      "id": "opi-fzy-152219",
+      "audio": "/question-bank-assets/revisions/opi/69f1c76792babe410f6190c0b3c626eea1d7526edcafc99297f4ab8d5bd15a59/audio/opi/opi-fzy-152219.mp3",
+      "audioText": "What kind of problems will be caused by electrical failure?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-26",
+      "audioTextZh": "飞机电气系统失效后，会造成什么问题？",
+      "referenceText": "Electrical failure will affect other systems.\nSuch as display, lights and navigation system, and even endanger flight safety.",
+      "referenceTextZh": "电气故障会影响其他系统。\n如显示器、灯光和导航系统等，甚至危及飞行安全。",
+      "audioDurationSeconds": 3.192
     }
   ],
-  "declaredCardCount": 10,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 20,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-core-882": 2,
+    "opi-core-886": 0,
+    "opi-core-883": 2,
+    "opi-core-887": 0,
+    "opi-core-881": 2,
+    "opi-core-889": 0,
+    "opi-core-880": 2,
+    "opi-core-884": 0,
+    "opi-core-885": 0,
+    "opi-core-879": 2,
+    "opi-fzy-109915": 0,
+    "opi-fzy-109917": 0,
+    "opi-fzy-109899": 0,
+    "opi-fzy-109898": 0,
+    "opi-fzy-109916": 0,
+    "opi-fzy-152220": 1,
+    "opi-fzy-152066": 2,
+    "opi-fzy-152218": 1,
+    "opi-fzy-152221": 1,
+    "opi-fzy-152219": 1
+  }
 }

@@ -3,6 +3,50 @@
   "name": "飞行操纵系统",
   "cards": [
     {
+      "id": "opi-fzy-140770",
+      "audio": "/question-bank-assets/revisions/opi/09e427c60a58f1fb866ce5777d852d48a4b369c54a10fb460658f5a6ce1d34a2/audio/opi/opi-fzy-140770.mp3",
+      "audioText": "Can you tell me something about flight control surfaces?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-32",
+      "audioTextZh": "能否介绍一下飞行操纵面？",
+      "referenceText": "Generally, flight control surfaces can be divided into primary flight control surfaces and secondary flight control surfaces. The primary flight control surfaces include rudders, elevators and ailerons. The secondary flight control surfaces include flaps, slats, trim tabs, spoilers and so on.",
+      "referenceTextZh": "飞行操纵面包括主飞行操纵面和辅助飞行操纵面。主飞行操纵面包括方向舵、升降舵和副翼。辅助飞行操纵面包括襟翼、缝翼、配平调整片、扰流板等。",
+      "audioDurationSeconds": 3.096
+    },
+    {
+      "id": "opi-fzy-140773",
+      "audio": "/question-bank-assets/revisions/opi/d97d0926e67490359b936460ba1314fd5d5bf3ca572cda2fd890e6f952cbe864/audio/opi/opi-fzy-140773.mp3",
+      "audioText": "What are the flight control limitations of your aircraft?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-35",
+      "audioTextZh": "你所飞机型的飞行操纵限制有哪些？",
+      "referenceText": "I fly C172 now. As far as I know, the stall speed of C172 is 47 knots, the maximum airspeed of C172 is 163 knots, and the service ceiling of C172 is 4100 meters.",
+      "referenceTextZh": "我现在飞塞斯纳172型飞机。据我所知，塞斯纳172的失速速度是47节，最大空速限制是163节，实用升限是4100米。",
+      "audioDurationSeconds": 2.976
+    },
+    {
+      "id": "opi-fzy-109895",
+      "audio": "/question-bank-assets/revisions/opi/b68a0dff9ac125dafef89b3278bb9c32a86451bb22478078c2e2451f6183ff6a/audio/opi/opi-fzy-109895.mp3",
+      "audioText": "What is the spoiler and what is its function?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-7",
+      "audioTextZh": "扰流板是什么？它有什么功能？",
+      "referenceText": "The spoiler is a device hinged on the upper surface of an airplane wing to break up the airflow around an aerodynamic surface, decrease lift and provide bank or descent control.",
+      "referenceTextZh": "扰流板位于机翼上表面，用来阻断机翼气动面的气流，减少升力，提供坡度或控制下降。",
+      "audioDurationSeconds": 2.208
+    },
+    {
+      "id": "opi-fzy-140771",
+      "audio": "/question-bank-assets/revisions/opi/63a1ff1b5ca9dbc2f553d849b6559e75d6907efcc276c3e64ddcce929f250be8/audio/opi/opi-fzy-140771.mp3",
+      "audioText": "What are positions and functions of flight control surfaces?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-33",
+      "audioTextZh": "飞行操纵面位于哪里？作用是什么？",
+      "referenceText": "Ailerons are located on each wing and used to control the rolling of aircraft. The rudder is located at the trailing edge of the vertical stabilizer and controls the nose yaw to the left and right. The elevator situated on the trailing edge of the horizontal stabilizer controls the pitch.",
+      "referenceTextZh": "副翼位于机翼上，用来控制飞机滚转。方向舵位于垂直安定面后缘，控制机头左右偏转。升降舵位于水平安定面后缘，控制飞机俯仰。",
+      "audioDurationSeconds": 3.264
+    },
+    {
       "id": "opi-extra-204",
       "audio": "/question-bank-assets/revisions/opi/529ff9de59e43634953fb33de0e52031452bcdbf5df95ee11c87152188005483/audio/opi/opi-extra-204.mp3",
       "audioText": "What functions do the main flight control surfaces perform?",
@@ -81,8 +125,58 @@
       "referenceText": "The exact flight-control-system limitations depend on the DA-40 variant and installed equipment. Its conventional primary controls do not have a separate flight-control law or operating mode to select, so I operate within the approved airspeed, load-factor, weight, and centre-of-gravity limits. If an autopilot is installed, I follow its separate engagement and operating limits in the aircraft flight manual.",
       "referenceTextZh": "飞行操纵系统的具体限制取决于 DA-40 的型号和安装设备。它采用传统的主飞行操纵系统，没有需要选择的独立飞行控制律或运行模式，因此我会遵守经批准的空速、载荷系数、重量和重心限制。如果安装了自动驾驶仪，我会遵守飞行手册中单独规定的接通和运行限制。",
       "audioDurationSeconds": 4.272
+    },
+    {
+      "id": "opi-fzy-152058",
+      "audio": "/question-bank-assets/revisions/opi/cb822b9d122fd40282691d9a2419bad4b0449eaa99359b1a1e603a65bf443df2/audio/opi/opi-fzy-152058.mp3",
+      "audioText": "Do you use control column or side stick in your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-4",
+      "audioTextZh": "你使用操作杆还是侧杆？",
+      "referenceText": "I fly C172, I use control column.",
+      "referenceTextZh": "我飞塞斯纳172，使用操纵杆。",
+      "audioDurationSeconds": 3.24
+    },
+    {
+      "id": "opi-fzy-152057",
+      "audio": "/question-bank-assets/revisions/opi/866ed818a7fa17e84658084804b9fd31cfa937e183c0fb5a42b65addfcf7f01b/audio/opi/opi-fzy-152057.mp3",
+      "audioText": "What are the functions of the flight control surfaces?",
+      "studyTier": 2,
+      "taskTitle": "飞机与飞机系统-3",
+      "audioTextZh": "飞行操纵面的功能是什么？",
+      "referenceText": "Rudder is used to change yaw.\nElevator is used to change pitch.\nAilerons are used to change roll.\nFlaps are used to increase lift and drag.\nWe always use these flight control surfaces in flight.",
+      "referenceTextZh": "方向舵用于改变偏航。\n升降舵用于改变俯仰。\n副翼用于改变滚转。\n襟翼用于改变升力和阻力。\n在飞行中，我们会使用这些飞行操纵面。",
+      "audioDurationSeconds": 2.808
+    },
+    {
+      "id": "opi-fzy-152056",
+      "audio": "/question-bank-assets/revisions/opi/7064cca2a8455f60569a977b6bc4835444eb1b2cd85f9129d4c62144081fc29d/audio/opi/opi-fzy-152056.mp3",
+      "audioText": "Can you name some of the flight control surfaces?",
+      "studyTier": 2,
+      "taskTitle": "飞机与飞机系统-2",
+      "audioTextZh": "你能说出一些飞行操纵面吗？",
+      "referenceText": "There are a lot of flight control surfaces on an aircraft.\nFor example, elevator, rudder, aileron, spoiler, flaps, slats, speed brakes and so on.\nWe always use these flight control surfaces in flight.",
+      "referenceTextZh": "飞机上有很多操纵面。\n比如：升降舵，方向舵，副翼，扰流板，襟翼，前缘缝翼，减速板等。\n在飞行中，我们会使用这些飞行操纵面。",
+      "audioDurationSeconds": 2.664
     }
   ],
-  "declaredCardCount": 8,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 15,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-fzy-140770": 0,
+    "opi-fzy-140773": 0,
+    "opi-fzy-109895": 0,
+    "opi-fzy-140771": 0,
+    "opi-extra-204": 0,
+    "opi-extra-203": 0,
+    "opi-extra-209": 0,
+    "opi-extra-126": 0,
+    "opi-extra-202": 0,
+    "opi-extra-125": 0,
+    "opi-extra-205": 0,
+    "opi-extra-206": 0,
+    "opi-fzy-152058": 1,
+    "opi-fzy-152057": 2,
+    "opi-fzy-152056": 2
+  }
 }

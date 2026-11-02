@@ -41,8 +41,26 @@
       "referenceText": "An authorized cabin crew member may need to enter during meal service to bring food, coffee, or other refreshments to the pilots.",
       "referenceTextZh": "在供餐期间，经授权的客舱机组成员可能需要进入驾驶舱，为飞行员送餐、咖啡或其他饮品。",
       "audioDurationSeconds": 3.816
+    },
+    {
+      "id": "opi-fzy-109926",
+      "audio": "/question-bank-assets/revisions/opi/d6aabee984b3642ec5b9452c42fe9c140bcd97642b52f1b538321a0a93942c5f/audio/opi/opi-fzy-109926.mp3",
+      "audioText": "What are your airline's cockpit entry policies? Who could be allowed to enter the cockpit?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-52",
+      "audioTextZh": "你们公司关于进入驾驶舱的规定是什么？谁可以允许进入驾驶舱呢？",
+      "referenceText": "There are some limitations for entry into the cockpit in my company, for example, if the pilot wants to leave the cockpit, he must make a phone call to the purser to make sure there is no passenger around the cockpit door. And while he is away, the pilot has to shut the door. When returning to the cockpit, the pilot\nhas also to make sure there's no passenger around. As for the person who can be allowed to enter the cockpit, according to the regulation, only the flight crew members, designated duty supervisors by CAAC and cabin crew members with permission of captain can enter the cockpit.",
+      "referenceTextZh": "我们公司关于进入驾驶舱有一些规定，例如，在飞行员想离开驾驶舱时，他必须先给乘务长打电话，确认驾驶舱门口没有乘客逗留。在他离开期间，飞行员需要把驾驶舱们锁住；当他返回驾驶舱时，仍需要确保驾驶舱门口无乘客逗留才可以返回。关于可以进入驾驶舱的人员，根据规章规定，只有飞行机组成员、局方指定的值班监察员以及经机长允许的客舱组成员可以进入驾驶舱。",
+      "audioDurationSeconds": 4.872
     }
   ],
-  "declaredCardCount": 4,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 5,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-extra-082": 0,
+    "opi-extra-084": 0,
+    "opi-extra-081": 0,
+    "opi-extra-083": 0,
+    "opi-fzy-109926": 0
+  }
 }

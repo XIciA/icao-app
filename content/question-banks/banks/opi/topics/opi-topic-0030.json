@@ -61,8 +61,40 @@
       "referenceText": "The crew should work together to complete the rejected-takeoff checklist, maintain directional control, and stop the aircraft on the runway. They should advise ATC and request emergency services. The cabin crew should prepare passengers and be ready for an evacuation if the captain decides that one is necessary.",
       "referenceTextZh": "机组应合作完成中断起飞检查单，保持方向控制，并将飞机停在跑道上。他们应通知空中交通管制并申请应急服务。如果机长认为需要撤离，客舱机组应让旅客做好准备并随时执行撤离。",
       "audioDurationSeconds": 4.224
+    },
+    {
+      "id": "opi-fzy-109928",
+      "audio": "/question-bank-assets/revisions/opi/8acd8a521af9745a2cff112b58b9f77a37f91370429cd41e4ca0afa1dbd100a7/audio/opi/opi-fzy-109928.mp3",
+      "audioText": "What are the possible reasons for a pilot to abort takeoff?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-7",
+      "audioTextZh": "飞行员中止起飞的可能原因有哪些？",
+      "referenceText": "A pilot rejects takeoff resulting from many reasons, such as system failure, engine fire, engine flame out, wind shear, master warning light illuminated, incorrect aircraft configuration, runway intrusion and ATC's instruction.",
+      "referenceTextZh": "飞行员中止起飞有多种原因，如系统故障、发动机着火、发动机熄火、风切变、主警告灯照明、飞机配置误差、跑道侵入和ATC指令出错。",
+      "audioDurationSeconds": 3.168
+    },
+    {
+      "id": "opi-fzy-109929",
+      "audio": "/question-bank-assets/revisions/opi/2533ea8314e885e5d7710264827141d30a0779684196c9a45db8df2f86e54b40/audio/opi/opi-fzy-109929.mp3",
+      "audioText": "What may happen if the pilot rejects takeoff after V1?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-8",
+      "audioTextZh": "如果飞行员在飞机达到起飞决断速度后中止起飞可能会发生什么？",
+      "referenceText": "If the takeoff is rejected after V1, there will be not enough runway distance for the aircraft to stop and the aircraft may run out the runway which will cause aircraft damage and passenger injuries.",
+      "referenceTextZh": "如果飞行员在飞机达到起飞决断速度后中止起飞，将没有足够的跑道距离让飞机停下，有可能会冲出跑道，这会造成机身毁坏和乘客受伤。",
+      "audioDurationSeconds": 3.36
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-core-450": 0,
+    "opi-core-452": 0,
+    "opi-core-448": 0,
+    "opi-core-449": 0,
+    "opi-core-454": 0,
+    "opi-core-446": 0,
+    "opi-fzy-109928": 0,
+    "opi-fzy-109929": 0
+  }
 }

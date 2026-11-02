@@ -3,6 +3,72 @@
   "name": "应急设备",
   "cards": [
     {
+      "id": "opi-fzy-109957",
+      "audio": "/question-bank-assets/revisions/opi/94abfdd762083ddd08e5c964c927905d5d9148572f24e562dfe66dae1a5f5b56/audio/opi/opi-fzy-109957.mp3",
+      "audioText": "Why are the pilots required to be familiar with emergency equipment?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-32",
+      "audioTextZh": "为什么飞行员必须熟悉紧急设备？",
+      "referenceText": "Pilots are essential personnel to control the aircraft. When aircraft encounter emergency situations, the duty of pilots is assisting passengers to quickly evacuate from the aircraft. Passengers also need cabin crew's help to use emergency equipment so the personal and property loss can be decreased.",
+      "referenceTextZh": "飞行员是控制飞机的重要人员。飞机遇到紧急情况时，飞行员的职责是协助乘客迅速撤离飞机。乘客还需在机组成员的帮助下使用应急设备，以减少人员和财产的损失。",
+      "audioDurationSeconds": 3.792
+    },
+    {
+      "id": "opi-fzy-224311",
+      "audio": "/question-bank-assets/revisions/opi/b1440d2d9590d92719454453b18304b2c2b96577e5cf4878fc4106f1dca530f9/audio/opi/opi-fzy-224311.mp3",
+      "audioText": "Do yo have emergency axe on your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-46",
+      "audioTextZh": "你的飞机上有应急斧吗？",
+      "referenceText": "Yes, I currently fly the Airbus A320, and there are two emergency axes on board: one is stored in the cockpit, and the other is placed near the emergency exit in the cabin.",
+      "referenceTextZh": "是的，我目前飞的是A320，我们飞机上有2把应急斧，一把置在驾驶舱，一把在客舱的应急出口旁。",
+      "audioDurationSeconds": 2.472
+    },
+    {
+      "id": "opi-fzy-152268",
+      "audio": "/question-bank-assets/revisions/opi/15e0cc03dfa4f1905b8aa493abf60bdc60b994a9261e5631d5c9e21aafbdb06e/audio/opi/opi-fzy-152268.mp3",
+      "audioText": "How many emergency slides are there on your aircraft? What are they used for?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-34",
+      "audioTextZh": "你的飞机上有几个紧急逃生滑梯？它们的作用是什么？",
+      "referenceText": "I fly C172, we don't have emergency slides on our aircraft.\nBut as far I know, there are 4 or more slides on big aircraft.\nThey are used for emergency evacuation.",
+      "referenceTextZh": "我飞的是塞斯纳C172，我们的飞机上没有紧急滑梯。\n但据我所知，大飞机上有4个或更多的滑梯。\n它们用于紧急撤离。",
+      "audioDurationSeconds": 4.224
+    },
+    {
+      "id": "opi-fzy-224314",
+      "audio": "/question-bank-assets/revisions/opi/f971f42f7046b1001e5fed2d8a0b47c61831040693ca7f2f85b794f3d92e9511/audio/opi/opi-fzy-224314.mp3",
+      "audioText": "When will the ELT be automatically activated?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-49",
+      "audioTextZh": "ELT什么时候将自动触发？",
+      "referenceText": "As far as I know, when an aircraft experiences a severe impact (such as a crash) or a ditching, the ELT can be automatically activated via its built-in impact sensor.",
+      "referenceTextZh": "据我所知，当飞机遭遇剧烈撞击（如坠毁）或者水上迫降时，ELT 可通过内置冲击传感器自动激活。",
+      "audioDurationSeconds": 2.4
+    },
+    {
+      "id": "opi-fzy-224313",
+      "audio": "/question-bank-assets/revisions/opi/0c43f91a489cb830d9e1ba7e161d7ef051bdd86ecd70b3d7a86171b09725b236/audio/opi/opi-fzy-224313.mp3",
+      "audioText": "What is ELT?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-48",
+      "audioTextZh": "ELT是什么？",
+      "referenceText": "ELT is short for Emergency Locator Transmitter. It is an important safety device on aircraft, used to automatically or manually send radio distress signals in the event of an accident, helping search and rescue teams quickly locate the aircraft's position.",
+      "referenceTextZh": "ELT指的是应急定位发射机，它是飞机上的重要安全设备，用于在发生事故时自动或手动发送无线电求救信号，帮助搜救队伍快速定位飞机位置。",
+      "audioDurationSeconds": 0.792
+    },
+    {
+      "id": "opi-fzy-224312",
+      "audio": "/question-bank-assets/revisions/opi/32222f70dba7397e0a00d62a13e51f93e216aa030e660f4033a51450ba13e358/audio/opi/opi-fzy-224312.mp3",
+      "audioText": "What are the functions of emergency axe?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-47",
+      "audioTextZh": "应急斧的作用是什么？",
+      "referenceText": "The emergency axe is a crash and rescue tool on aircraft, mainly used in emergencies to break through obstacles, clear escape routes, assist in fire control, or respond to security threats. It is reserved for use by crew members only.",
+      "referenceTextZh": "应急斧是飞机上的紧急破拆工具，主要用于紧急情况下劈开障碍物、开辟逃生通道、辅助处理火情或应对安全威胁，由机组人员专用。",
+      "audioDurationSeconds": 2.208
+    },
+    {
       "id": "opi-core-064",
       "audio": "/question-bank-assets/revisions/opi/9817181df205a01e10698df67c6e2c8c04b10c139a7585d2587e130f128c386d/audio/opi/opi-core-064.mp3",
       "audioText": "Why are pilots required to be familiar with emergency equipment?",
@@ -96,6 +162,23 @@
       "audioDurationSeconds": 4.2
     }
   ],
-  "declaredCardCount": 9,
-  "categoryId": "opi-category-02"
+  "declaredCardCount": 15,
+  "categoryId": "opi-category-02",
+  "cardStudyTiers": {
+    "opi-fzy-109957": 0,
+    "opi-fzy-224311": 1,
+    "opi-fzy-152268": 1,
+    "opi-fzy-224314": 1,
+    "opi-fzy-224313": 1,
+    "opi-fzy-224312": 1,
+    "opi-core-064": 0,
+    "opi-core-058-part-2": 0,
+    "opi-core-062": 0,
+    "opi-intake-20261019-slide-risks": 0,
+    "opi-core-072": 0,
+    "opi-core-063": 0,
+    "opi-core-060": 0,
+    "opi-core-068": 0,
+    "opi-core-061": 0
+  }
 }

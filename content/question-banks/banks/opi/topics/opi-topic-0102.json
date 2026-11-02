@@ -126,8 +126,58 @@
       "referenceText": "No, I have never found an abnormal condition during a preflight check. If I found a problem with the aircraft, I would report it to the mechanics for a maintenance inspection.",
       "referenceTextZh": "没有，我在飞行前检查中从未发现异常。如果发现飞机存在问题，我会向机务人员报告并申请维修检查。",
       "audioDurationSeconds": 5.544
+    },
+    {
+      "id": "opi-fzy-109925",
+      "audio": "/question-bank-assets/revisions/opi/a4c29c6a43502d3c6f5ef1341f8b2d3efbf4c011b9ebc589dea3a9f3f9bdf91a/audio/opi/opi-fzy-109925.mp3",
+      "audioText": "What information is necessary for a flight? Which department is responsible for providing pilots with information?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-5",
+      "audioTextZh": "飞行必需的信息有哪些？哪一部门负责为飞行员提供信息？",
+      "referenceText": "Lots of information are necessary for a flight such as CG, Person on Board (POB), weight and balance of dangerous cargo, weather, flight plan, NOTAM, etc. The dispatch office is responsible for providing pilots with information.",
+      "referenceTextZh": "飞行有许多必需信息，如重心、机上人员（POB）、危险货物的平衡载重、天气情况、飞行计划、航行通告等。调度办公室负责为飞行员提供信息。",
+      "audioDurationSeconds": 6.432
+    },
+    {
+      "id": "opi-fzy-140776",
+      "audio": "/question-bank-assets/revisions/opi/805b477ee993441c7e7e49da7710f6798f6adf4f4fe5f890128f48c66874c89a/audio/opi/opi-fzy-140776.mp3",
+      "audioText": "What do you usually do in the briefing room before you board the aircraft each flight?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-33",
+      "audioTextZh": "每次飞行，上飞机前，在讲评室你们通常都做些什么？",
+      "referenceText": "Before flight, we will have a short meeting with cabin crew in the briefing room. We will discuss the flight schedule, the alternate airport, task sharing, weather information, possible abnormal or emergency situations and so on.",
+      "referenceTextZh": "飞行前，机组和乘务组会在讲评室开个小会，讲一下飞行计划，备降机场，各自职责，天气情况，可能出现的非正常或紧急情况等。",
+      "audioDurationSeconds": 4.32
+    },
+    {
+      "id": "opi-fzy-110125",
+      "audio": "/question-bank-assets/revisions/opi/bdac622e8d9f48e0a40c0bf75c30f087ae34d77eadb1239c6ee4168c34476c3a/audio/opi/opi-fzy-110125.mp3",
+      "audioText": "Assume that you are going to fly tomorrow, will you make any preparations today?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-19",
+      "audioTextZh": "假设明天你有飞行任务，你今天会做哪些准备吗？",
+      "referenceText": "If I will fly tomorrow, I will ask for the following information of destination airport: the condition of airport, the location, the runway condition, the departure and approach frequency. I also need to know the condition of surrounding alternate airport, the route, the alternate airport of departure/destination airport and the weather condition en route.",
+      "referenceTextZh": "如果明天我有航班任务，我首先会要了解一下目的地机场的情况，地理位置，跑道情况，进离场以及一些频率。周边备降机场的情况，所飞的航路。以及起飞机场备降机场和目的地机场以及航路上的天气情况。",
+      "audioDurationSeconds": 4.608
     }
   ],
-  "declaredCardCount": 12,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 15,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-extra-051": 0,
+    "opi-extra-014": 0,
+    "opi-extra-033": 0,
+    "opi-extra-054": 0,
+    "opi-extra-050": 0,
+    "opi-extra-041": 0,
+    "opi-extra-037": 0,
+    "opi-extra-030": 0,
+    "opi-extra-039": 0,
+    "opi-extra-029": 0,
+    "opi-extra-018": 0,
+    "opi-extra-045": 0,
+    "opi-fzy-109925": 0,
+    "opi-fzy-140776": 0,
+    "opi-fzy-110125": 0
+  }
 }

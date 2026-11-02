@@ -67,8 +67,52 @@
       "referenceText": "Yes, I think some pilots have become too dependent on automation. Automated systems perform much of the routine aircraft control, so pilots may spend more time monitoring and managing those systems.",
       "referenceTextZh": "是的，我认为一些飞行员已经过度依赖自动化。自动化系统承担了大量日常飞机操纵任务，因此飞行员可能把更多时间用于监控和管理这些系统。",
       "audioDurationSeconds": 4.08
+    },
+    {
+      "id": "opi-fzy-224308",
+      "audio": "/question-bank-assets/revisions/opi/c17cd864ea17b49c6b0036edf738b1f5b12da8dee521331d28105ae4ccde1047/audio/opi/opi-fzy-224308.mp3",
+      "audioText": "Can you talk about the automation system on your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-40",
+      "audioTextZh": "你能介绍下你飞机上的自动系统吗？",
+      "referenceText": "The aircraft I now fly is the A320, and it is equipped with many automation systems such as autopilot, auto brakes, auto-throttle, and so on.",
+      "referenceTextZh": "我目前飞的机型是空客A320，在我们的飞机上，有很多自动设备，比如自动驾驶，自动刹车，自动油门等。",
+      "audioDurationSeconds": 3.048
+    },
+    {
+      "id": "opi-fzy-224309",
+      "audio": "/question-bank-assets/revisions/opi/3c565da16fefbdd67bdc7391c36bedd288b8ef4bcace55ebfafaa6a476ee0a95/audio/opi/opi-fzy-224309.mp3",
+      "audioText": "What are the advantages and disadvantages of the automation system?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-42",
+      "audioTextZh": "自动系统的优势和劣势是什么？",
+      "referenceText": "Advantages: Automation system can significantly reduce pilot workload, improve operational precision and fuel efficiency, enhance flight safety, and increase passenger comfort.\nDisadvantages: It may lead to reduced situational awareness and manual flying skills if pilots rely on the automation system too much; pilot's workload may increase during system failure.",
+      "referenceTextZh": "优势：显著减轻飞行员工作负荷，提升操作精确性与燃油效率，增强飞行安全性，改善乘坐舒适性。\n劣势：可能导致飞行员情境意识下降、手动飞行技能生疏，过度依赖自动化；系统故障时可能加剧工作负荷。",
+      "audioDurationSeconds": 3.696
+    },
+    {
+      "id": "opi-fzy-224310",
+      "audio": "/question-bank-assets/revisions/opi/2a6f2f7cff6d600d9e0ea438bc35dca6cb26bc4831e98cd3e7801aec979aa35c/audio/opi/opi-fzy-224310.mp3",
+      "audioText": "Do you think the automation system will reduce pilot's flying skills?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-44",
+      "audioTextZh": "你认为自动化系统会降低飞行员的飞行技能吗？",
+      "referenceText": "Yes, prolonged overreliance on automation may lead to a decline in pilots' manual flying skills and situational awareness. However, these skills can be maintained through regular simulator training and strict procedures.",
+      "referenceTextZh": "是的，长期过度依赖自动化可能导致飞行员手动操作技能生疏和情境意识下降，但通过定期模拟机训练和严格规程，技能可得到保持。",
+      "audioDurationSeconds": 3.768
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 9,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-intake-20261019-automation-definition": 0,
+    "opi-extra-329": 0,
+    "opi-extra-326": 0,
+    "opi-intake-20261019-automation-degradation": 0,
+    "opi-extra-327": 0,
+    "opi-extra-329-part-2": 0,
+    "opi-fzy-224308": 1,
+    "opi-fzy-224309": 1,
+    "opi-fzy-224310": 1
+  }
 }

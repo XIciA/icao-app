@@ -3,6 +3,17 @@
   "name": "绕机检查",
   "cards": [
     {
+      "id": "opi-fzy-224483",
+      "audio": "/question-bank-assets/revisions/opi/0edb6aa135df092f109064541507e191035333e68464c11c70536531033572c8/audio/opi/opi-fzy-224483.mp3",
+      "audioText": "Which part of the aircraft would you pay special attention to during the walk-around check if you are going to take off in extremely cold winter?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-64",
+      "audioTextZh": "如果你要在极冷的冬季起飞，在绕机检查时你会特别注意飞机的哪个部分？",
+      "referenceText": "I will pay extra attention to the control surfaces of the aircraft and the air intakes of the aircraft engines to prevent ice accumulation in these areas.",
+      "referenceTextZh": "我会格外检查飞机的操纵面和飞机发动机进气道，避免这些地方产生积冰。",
+      "audioDurationSeconds": 7.296
+    },
+    {
       "id": "opi-extra-043",
       "audio": "/question-bank-assets/revisions/opi/2a00121906a9e78662c16ec2415e221316fd96ed3383c01de2451fccceb06505/audio/opi/opi-extra-043.mp3",
       "audioText": "Why is a walk-around inspection important?",
@@ -77,8 +88,78 @@
       "referenceText": "The engines, landing gear, wings, flight-control surfaces, and pitot tubes require careful attention. Each of these areas is important to the aircraft's safe operation, although the entire aircraft should still be inspected thoroughly.",
       "referenceTextZh": "发动机、起落架、机翼、飞行操纵面和空速管需要重点检查。这些区域都关系到飞机安全运行，但整架飞机仍须全面检查。",
       "audioDurationSeconds": 5.952
+    },
+    {
+      "id": "opi-fzy-109922",
+      "audio": "/question-bank-assets/revisions/opi/68818e93ceb58154e77488fd91296722e63793702aad30f4e2b2598359200b81/audio/opi/opi-fzy-109922.mp3",
+      "audioText": "Do you think preflight walk around inspection is very important? Why?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-3",
+      "audioTextZh": "你认为飞行前巡检很重要吗？为什么？",
+      "referenceText": "Yes, I think it's very important for flight safety. We can check if there are any cracks, loosed screws or other hidden trouble in the fuselage. Also, preflight walk around inspection can help us discover problems maintainers didn't see before. We can ensure the security and avoid delay by solving those problems.",
+      "referenceTextZh": "是的，我认为飞行前绕机检查对飞行安全很重要。我们可以检查机身是否有裂痕、螺丝松动或其它隐患。另外，绕机检查能帮助我们发现维护人员遗漏的问题。我们可以通过解决这些问题来确保安全性并避免延误。",
+      "audioDurationSeconds": 4.224
+    },
+    {
+      "id": "opi-fzy-153480",
+      "audio": "/question-bank-assets/revisions/opi/3fa2814825bf5e922f43c859705a73d43651a8a26d6ae65701c6740357d7ab80/audio/opi/opi-fzy-153480.mp3",
+      "audioText": "What should you pay spacial attention to when you perform the walk-around inspection in extreme cold winter weather?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-49",
+      "audioTextZh": "在极其寒冷的冬天做饶机检查时，你应该注意什么？",
+      "referenceText": "When having walk-around inspection in extreme cold winter weather, I will check the airframe to see if there is ice accumulation and we will check the pitot tube to see if they are blocked by ice.",
+      "referenceTextZh": "在极其寒冷的冬天做饶机检查时，我们会检查机体是否结冰，皮托管是否被冰堵住。",
+      "audioDurationSeconds": 5.712
+    },
+    {
+      "id": "opi-fzy-109923",
+      "audio": "/question-bank-assets/revisions/opi/8872493e3249d341bc5fa75afebe992bdda326e6bb998521c52490a03b120462/audio/opi/opi-fzy-109923.mp3",
+      "audioText": "What are the walk-around procedures of your aircraft?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-4",
+      "audioTextZh": "你所驾驶飞机的巡检程序有哪些？",
+      "referenceText": "The walk-around procedures may vary from one type aircraft to another. I'm flying A320, and we usually inspect the aircraft from the left side of the nose first. Then we'll follow the clockwise direction to check all outside components of the aircraft to ensure that they are all in good conditions. We must make sure\nthat all the covers and pins have been removed from the aircraft. After finishing the inspection, we'll take the covers and pins to the cockpit.",
+      "referenceTextZh": "绕机检查程序因飞机而异。我飞A320，通常我们从机头左侧开始，之后沿顺时针检查机身外部所有部件，以确保它们都处于良好状态。我们必须确认所有的盖板和销已经从机身上移除。完成检查后，我们会把盖板和销带到驾驶舱。",
+      "audioDurationSeconds": 2.64
+    },
+    {
+      "id": "opi-fzy-109956",
+      "audio": "/question-bank-assets/revisions/opi/98fedb5553f92e3f6224d3599b49a068dd6573dbc1fde5113cce2c08f3929e0e/audio/opi/opi-fzy-109956.mp3",
+      "audioText": "What do you do during your pre-flight preparation?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-31",
+      "audioTextZh": "你在飞行前检查时都会做什么？",
+      "referenceText": "For the exterior of the aircraft, we will check if there is any damage or leakage, the tire and the landing gear. For the interior of the aircraft, we will check the working conditions of systems, for instance, if all systems are at operating conditions, lights are damaged, warning system and display system are normal.",
+      "referenceTextZh": "对于飞机外部，我们将检查外部是否有任何损坏或泄漏，检查轮胎和起落架。对于飞机内部，我们将检查系统的工作状况，如是否所有系统都处于运行状态、灯光是否损坏、警报系统和显示系统是否工作正常。",
+      "audioDurationSeconds": 2.736
+    },
+    {
+      "id": "opi-fzy-110094",
+      "audio": "/question-bank-assets/revisions/opi/65c9043ce7344db1647ed96ace6433bd1320639c1ada1a1c21d28f50b51c7072/audio/opi/opi-fzy-110094.mp3",
+      "audioText": "How do you think of preflight inspection of the pilot?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-4",
+      "audioTextZh": "你怎样看待飞行员的飞行前检查？",
+      "referenceText": "I think preflight inspection of the pilot is just as important as preflight inspection of the aircraft. It is vital to ensure pilots' health at the highest possible level. Having a cold or other illness or taking prescription medicine can seriously affect pilots'ability to concentrate, thus affecting the flight safety.",
+      "referenceTextZh": "我认为飞行员的飞行前检查和飞机的检查同等重要。在尽可能高的高度飞行，确保飞行员的健康是至关重要的。感冒及其它疾病，或是服用处方药都可能严重地影响飞行员的注意力，从而影响飞行安全。",
+      "audioDurationSeconds": 2.928
     }
   ],
-  "declaredCardCount": 7,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 13,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-224483": 1,
+    "opi-extra-043": 2,
+    "opi-extra-022": 2,
+    "opi-extra-024": 2,
+    "opi-extra-047": 2,
+    "opi-extra-053": 0,
+    "opi-extra-027": 2,
+    "opi-extra-026": 2,
+    "opi-fzy-109922": 0,
+    "opi-fzy-153480": 0,
+    "opi-fzy-109923": 0,
+    "opi-fzy-109956": 0,
+    "opi-fzy-110094": 0
+  }
 }

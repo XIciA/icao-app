@@ -1,7 +1,29 @@
 {
   "id": "opi-topic-0032",
-  "name": "RVSM缩小垂直间隔",
+  "name": "RVSM（缩小垂直间隔）",
   "cards": [
+    {
+      "id": "opi-fzy-109935",
+      "audio": "/question-bank-assets/revisions/opi/0c8e2215a0f9b908576f80cc4e9ebdb21c76dca17446edf898af0a9539492d82/audio/opi/opi-fzy-109935.mp3",
+      "audioText": "Do you know something about RVSM?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-14",
+      "audioTextZh": "你了解RVSM吗？",
+      "referenceText": "Yes. It is shorted for Reduced Vertical Separation Minimum, which aims to increase the capacity of the same routes to deal with increasing traffic, it's a permanent solution.",
+      "referenceTextZh": "了解。RVSM是缩小最小垂直间隔的英文简称，用来增加相同航线的空域容量，解决交通量增加带来的问题，是一个长久之计。",
+      "audioDurationSeconds": 2.256
+    },
+    {
+      "id": "opi-fzy-109936",
+      "audio": "/question-bank-assets/revisions/opi/41f90271927e2f72819b75d79c9e6bcd2de97973735c36fd11bdc38568770499/audio/opi/opi-fzy-109936.mp3",
+      "audioText": "Do you agree with RVSM? Why or why not?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-15",
+      "audioTextZh": "你同意实行RVSM吗？为什么？",
+      "referenceText": "Yes, I suppose it is an effective way to improve the operation efficiency. As we all know, the airspace is not fully open to public in China and civil aviation is developing so fast that the flight routes are getting more and more crowded, which leads to more traffic congestion. While the introduction of RVSM increases air traffic flow, reduces flight delays and also saves company's cost, so the traffic situation would be improved greatly after the implementation of RVSM.",
+      "referenceTextZh": "我同意，我认为这是一个提高操作效率的有效途径。众所周知，中国的空域并不完全开放，民航业发展如此之快，航线越来越多，导致越来越多的交通拥堵。而引进RVSM虽然增加了空中交通流量，也减少了航班延误，节约了航空公司的成本，因此实施RVSM后交通状况将大大改善。",
+      "audioDurationSeconds": 3.096
+    },
     {
       "id": "opi-core-461",
       "audio": "/question-bank-assets/revisions/opi/42037d4cd7edef6215102e88e6c22ff7458e894187a6093b6b772e6cd138b746/audio/opi/opi-core-461.mp3",
@@ -91,6 +113,18 @@
       "audioDurationSeconds": 1.992
     }
   ],
-  "declaredCardCount": 8,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 10,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-109935": 0,
+    "opi-fzy-109936": 0,
+    "opi-core-461": 2,
+    "opi-core-466": 2,
+    "opi-core-463": 2,
+    "opi-core-462": 2,
+    "opi-core-460": 2,
+    "opi-fzy-152257": 1,
+    "opi-fzy-152258": 1,
+    "opi-fzy-152256": 1
+  }
 }

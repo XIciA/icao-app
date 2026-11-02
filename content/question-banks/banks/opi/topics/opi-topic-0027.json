@@ -3,6 +3,28 @@
   "name": "机场安检与航空安保",
   "cards": [
     {
+      "id": "opi-fzy-152024",
+      "audio": "/question-bank-assets/revisions/opi/2934d4e9e0c741bbb55fa6a6d7375c36d68fab4aceeb34baa62aeb7f8a561eab/audio/opi/opi-fzy-152024.mp3",
+      "audioText": "What can airport and airlines do to improve/strengthen the airport security?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-8",
+      "audioTextZh": "机场和航空公司可以采取哪些措施提高机场安检？",
+      "referenceText": "Many measures can be taken to improve the airport security.\nFor example, improve security check, use more advanced technology, increase security staff and provide more training.",
+      "referenceTextZh": "可以采取很多措施来提高机场的安全。\n例如，改进安全检查，使用更先进的技术，增加安全人员和提供更多的培训。",
+      "audioDurationSeconds": 4.128
+    },
+    {
+      "id": "opi-fzy-152023",
+      "audio": "/question-bank-assets/revisions/opi/f3b05bec2c1df2cfd07f5fe16c21a068d4413ad05d621c0f93c8d693d20ec55d/audio/opi/opi-fzy-152023.mp3",
+      "audioText": "What are the purposes of airport security check?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-7",
+      "audioTextZh": "机场安检的目的是什么？",
+      "referenceText": "The purpose of the airport security check is to prevent terrorist activities and improve flight safety.",
+      "referenceTextZh": "机场安检的目的是防止恐怖分子，提高飞行安全。",
+      "audioDurationSeconds": 2.664
+    },
+    {
       "id": "opi-core-423",
       "audio": "/question-bank-assets/revisions/opi/4e89260ac9e2540dda90779ddf3645848cce044d5d983c9059c5b355c147cb35/audio/opi/opi-core-423.mp3",
       "audioText": "Do you think airport security has improved over the past decade? Why or why not?",
@@ -73,6 +95,17 @@
       "audioDurationSeconds": 3.024
     }
   ],
-  "declaredCardCount": 7,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 9,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-152024": 1,
+    "opi-fzy-152023": 1,
+    "opi-core-423": 0,
+    "opi-core-174": 0,
+    "opi-core-426": 0,
+    "opi-core-736": 0,
+    "opi-core-421": 0,
+    "opi-core-422": 0,
+    "opi-core-419": 0
+  }
 }

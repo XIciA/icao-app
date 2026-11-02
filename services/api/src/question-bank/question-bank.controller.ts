@@ -44,6 +44,7 @@ export class QuestionBankController {
     const access = (release.dataset as { access?: { membershipActive?: unknown } }).access;
     const accessState = access?.membershipActive === true ? 'member' : 'free';
     const etag = `"${release.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${FREE_CONTENT_SELECTION_VERSION}.${QUESTION_BANK_CATALOG_VERSION}.${accessState}"`;
+    reply.header('vary', 'x-icao-directory-identity, x-icao-directory-preview, x-icao-commerce-environment');
     reply.header('etag', etag).header('cache-control', 'private, max-age=300');
     if (ifNoneMatch === etag) {
       reply.status(304);

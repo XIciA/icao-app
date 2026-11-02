@@ -1,3 +1,4 @@
+import relocationRows from '../data/directory-relocations.json';
 import Storage from 'expo-sqlite/kv-store';
 
 import { resetLearningStoreForTests, sqliteLearningStore } from '../platform/learning-store.native';
@@ -162,3 +163,16 @@ describe('learning store migration', () => {
     expect(records).toContainEqual(expect.objectContaining({ id: 'legacy-summary' }));
   });
 });
+
+ it('reads and edits migrated questions at their existing cloud/offline identity without duplicating state', async () => {
+  const [, , oldTopic, , nextTopic, ids] = relocationRows[0] as [string,string,string,string,string,string[]];
+  const id = ids[0];
+  const old = { visited:true, completed:true, note:'保留旧笔记',updatedAt:'2026-11-01T00:00:00Z' };
+  await Storage.setItem(`icao.learning.v2.topic.${oldTopic}`,JSON.stringify({[id]:old}));
+  const current = {id:nextTopic,name:'moved',declaredCardCount:1,cards:[{id,taskTitle:'unchanged',audioText:'unchanged'}]};
+  expect((await sqliteLearningStore.getTopicStates(current))[id]).toEqual(old);
+  await sqliteLearningStore.saveCardState(nextTopic,id,{...old,note:'updated'});
+  expect((await sqliteLearningStore.getCardState(oldTopic,id))?.note).toBe('updated');
+  expect((await sqliteLearningStore.getCardState(nextTopic,id))?.note).toBe('updated');
+  expect(await Storage.getItem(`icao.learning.v2.topic.${nextTopic}`)).toBeNull();
+ });

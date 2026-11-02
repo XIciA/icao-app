@@ -70,6 +70,12 @@ assert.match(nativeRadioProvider, /hydrateFollowingTrackTopic/u);
 const expectedFreeCounts = sourceBanks.map(bank => {
   const topics = bank.categories.flatMap(category => category.topics);
   const live = topic => topic.cards.filter(card => !card.retired);
+  if (bank.freeCardIds) {
+    const valid = new Set(topics.flatMap(live).map(card => card.id));
+    assert.equal(new Set(bank.freeCardIds).size, bank.freeCardIds.length);
+    assert(bank.freeCardIds.every(id => valid.has(id)));
+    return bank.freeCardIds.length;
+  }
   if (bank.id === 'sentences900') return topics.flatMap(live).length;
   if (bank.id === 'listening') return bank.categories.reduce((sum, category) => sum + Math.min(10, category.topics.flatMap(live).length), 0);
   if (bank.id === 'radiotelephony') return topics.filter(topic => live(topic).length).slice(0, 1).flatMap(live).length;

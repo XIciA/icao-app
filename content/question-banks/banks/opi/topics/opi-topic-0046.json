@@ -3,6 +3,50 @@
   "name": "航空发展与新技术",
   "cards": [
     {
+      "id": "opi-fzy-203088",
+      "audio": "/question-bank-assets/revisions/opi/ad83c92fc2e18b1d45aa2721ce54f2f4f5c0e261def90feccc859b13fe912d17/audio/opi/opi-fzy-203088.mp3",
+      "audioText": "Do you know anything about C919?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-6",
+      "audioTextZh": "你了解C919吗？",
+      "referenceText": "It is designed by Commercial Aircraft Corporation of China (COMAC), and it's the first big jet that we design and produce in our country. I'm so proud that China has its own big aircraft now.",
+      "referenceTextZh": "C919是中国商飞设计的，它是中国自己设计和生产的第一款大飞机，对于中国能有自己的大飞机，我感到非常自豪。",
+      "audioDurationSeconds": 2.88
+    },
+    {
+      "id": "opi-fzy-224162",
+      "audio": "/question-bank-assets/revisions/opi/4236edc84923ca33889742f79b5eb29df38091d92a10d8274a69098f0edccba9/audio/opi/opi-fzy-224162.mp3",
+      "audioText": "Do you know which domestic airlines operate the C919?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-18",
+      "audioTextZh": "您知道哪些国内航空公司运营 C919 客机吗？",
+      "referenceText": "As far as I know, there are many airlines operating the C919 domestically, such as Air China, China Eastern Airlines and China Southern Airlines.",
+      "referenceTextZh": "据我所知，国内运营C919 的航司有很多，比如，国航、东航、南航。",
+      "audioDurationSeconds": 4.104
+    },
+    {
+      "id": "opi-fzy-203090",
+      "audio": "/question-bank-assets/revisions/opi/0cdf8fea913fba09700999a824591788edf844f5160f5b90f54622b830fd86c0/audio/opi/opi-fzy-203090.mp3",
+      "audioText": "Do you have any outlook about China's aviation in the next decade?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-10",
+      "audioTextZh": "你对中国航空未来十年发展有何展望？",
+      "referenceText": "The future must be bright, and I hope our own aircraft will be better and better.",
+      "referenceTextZh": "前景一定是好的，我相信我们自己的大飞机也一定会越来越好。",
+      "audioDurationSeconds": 3.672
+    },
+    {
+      "id": "opi-fzy-203089",
+      "audio": "/question-bank-assets/revisions/opi/92e035189b8806dde7641c65d6bcf628f3396f8ed06901c41a37e813147eae77/audio/opi/opi-fzy-203089.mp3",
+      "audioText": "What's the difference between C919 and other big jet?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-8",
+      "audioTextZh": "C919和其他大飞机有哪些不同？",
+      "referenceText": "C919 is another step in the development of Chinese technology, marking that China's big jet can enter the world's advanced level. There are many advanced functions in C919, it has low noise, it is fuel saving, and passengers will feel more comfortable on board, but compared with Boeing and Airbus, it has lower passenger capacity.",
+      "referenceTextZh": "C919是中国科技进步的又一次提升，标志着中国大飞机制造进入到世界先进水平行列。目前C919有很多先进的功能，比如低噪音、省燃油，乘客有更舒适的乘机体验，但相较于波音和空客，它的载客量较低。",
+      "audioDurationSeconds": 3.696
+    },
+    {
       "id": "opi-extra-388",
       "audio": "/question-bank-assets/revisions/opi/9d73d92758a835311803384822ea6e9a2aef4a183a2962fb9bdfc9f7439aefb3/audio/opi/opi-extra-388.mp3",
       "audioText": "What are the main advantages of SAF compared with conventional jet fuel?",
@@ -200,8 +244,192 @@
       "referenceText": "SAF can play an important role by reducing lifecycle emissions from aircraft that are already in service. Because it can be used with the existing fleet, it offers a more immediate option than technologies that require completely new aircraft designs. Wider use will still require major investment, greater production capacity, lower costs, and more feedstock.",
       "referenceTextZh": "SAF 可以通过降低现役飞机的全生命周期排放发挥重要作用。由于它能用于现有机队，与需要全新飞机设计的技术相比，可以更快投入使用。扩大应用仍需要大量投资、更高产能、更低成本和更多原料。",
       "audioDurationSeconds": 4.848
+    },
+    {
+      "id": "opi-fzy-224771",
+      "audio": "/question-bank-assets/revisions/opi/970837c6f22c68ceb9abde573f7045580aa47a6ce11298e892ec6e99961416b2/audio/opi/opi-fzy-224771.mp3",
+      "audioText": "What modern equipment and technologies have been used by China's civil aviation industry?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-3",
+      "audioTextZh": "中国民航使用了哪些新设备和新技术？",
+      "referenceText": "China's civil aviation has adopted many new technologies and equipment, such as TCAS, BDS, HUD, AR and VR, etc.",
+      "referenceTextZh": "中国民航采用了很多新技术和新设备，比如TCAS，BDS，HUD，AR和VR等。",
+      "audioDurationSeconds": 4.896
+    },
+    {
+      "id": "opi-fzy-224773",
+      "audio": "/question-bank-assets/revisions/opi/7ca4ccdce1d14e0a4d5b2e1f61d92a3eb2515028faa54d4a21584efba21122d8/audio/opi/opi-fzy-224773.mp3",
+      "audioText": "How should pilots respond to developments in modern civil aviation?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-5",
+      "audioTextZh": "飞行员应如何应对现代民用航空的发展？",
+      "referenceText": "First of all, we should embrace the development of civil aviation and maintain a positive attitude towards new technologies and equipment. Secondly, we should conduct relevant theoretical studies. Thirdly, we need to take simulator training to enhance our flight skills.",
+      "referenceTextZh": "首先，我们应积极看待民航的发展，对新技术和设备保持积极态度。其次，我们应进行相关理论学习。第三，我们需要通过模拟机训练提高飞行技能。",
+      "reportedPrompts": {
+        "hotspot-2026-10-16-4235b14d8b8d": [
+          "How should pilots respond to developments in modern civil aviation?"
+        ]
+      },
+      "audioDurationSeconds": 3.84
+    },
+    {
+      "id": "opi-fzy-224769",
+      "audio": "/question-bank-assets/revisions/opi/f4b9eb80a07ba329ba707b8a5e63dd4dda847386b53dc22d49aee59c6f3eb28d/audio/opi/opi-fzy-224769.mp3",
+      "audioText": "What progress or developments has China's civil aviation industry made in the last decade?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-1",
+      "audioTextZh": "中国民航在过去十年取得了哪些进步或发展？",
+      "referenceText": "The progress or development made by China's civil aviation in the past decade has been rapid. We independently developed the C919 large aircraft, built the Daxing Airport, opened up more and more international and domestic routes, and traveling by plane has become increasingly popular and common.",
+      "referenceTextZh": "中国民航在过去十年取得的进步或发展是飞快的，我们独立研制了C919大飞机，建造了大兴机场，开辟了越来越多的国际、国内航线，乘坐飞机出行变得越来越受欢迎，越来越普遍。",
+      "audioDurationSeconds": 4.896
+    },
+    {
+      "id": "opi-fzy-224770",
+      "audio": "/question-bank-assets/revisions/opi/efe0c0b755713d5e73ba82431e289c58e80b514de1aa1b0bd029d72776a7f163/audio/opi/opi-fzy-224770.mp3",
+      "audioText": "What's your opinions about the progress of China's aircraft industry?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-2",
+      "audioTextZh": "你对我国航空制造业的发展情况有何看法？",
+      "referenceText": "Our country's aircraft industry has made huge development. We independently developed the C909 and C919 aircraft, and at the same time, we have also made great progress in engine research.",
+      "referenceTextZh": "我国的航空制造业取得了很大的发展，我们独立研制了C909和C919，同时，我们在发动机研究方面也取得了巨大的进步。",
+      "audioDurationSeconds": 3.6
+    },
+    {
+      "id": "opi-fzy-224772",
+      "audio": "/question-bank-assets/revisions/opi/2674e44c5acc7e6c690864eb4ff301d6eabda7f9681a6034fb6daa267b58167c/audio/opi/opi-fzy-224772.mp3",
+      "audioText": "How do you deal with the challenges brought by the new equipment and technologies?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-4",
+      "audioTextZh": "如何应对来自新技术和新设备的挑战？",
+      "referenceText": "In my opinion, we should conduct relevant theoretical studies and take relevant simulator training.",
+      "referenceTextZh": "在我看来，我们应当进行相关的理论学习，其次，我们需要通过相关的模拟机训练。",
+      "audioDurationSeconds": 4.296
+    },
+    {
+      "id": "opi-fzy-224154",
+      "audio": "/question-bank-assets/revisions/opi/d7143951f65575c72d67ad8c2fa2e90bf488c497f766ca6b21b97eb086fb738b/audio/opi/opi-fzy-224154.mp3",
+      "audioText": "What new technologies or equipment has China's civil aviation adopted?",
+      "studyTier": 1,
+      "taskTitle": "现代技术-14",
+      "audioTextZh": "中国民航采用了哪些新技术或新设备？",
+      "referenceText": "As far as I know, the Chinese civil aviation industry has adopted many new technologies and equipment to enhance flight safety and reduce the workload of pilots. These include: TCAS, HUD, AR and VR, etc.",
+      "referenceTextZh": "据我所知，中国民航采用了很多新技术和新设备来提升飞行安全，降低飞行员工作载荷，这包括：TCAS、HUD、AR和VR等。",
+      "audioDurationSeconds": 4.104
+    },
+    {
+      "id": "opi-fzy-118210",
+      "audio": "/question-bank-assets/revisions/opi/24d2ac90e7bb216893e01e16e7f64ff9377bad6d9644bf74afbbc4604f1b9fa0/audio/opi/opi-fzy-118210.mp3",
+      "audioText": "Do you think the application of VR and AR technologies can improve the flight safety?",
+      "studyTier": 0,
+      "taskTitle": "现代技术-7",
+      "audioTextZh": "你认为VR和AR技术的应用能够提高飞行安全吗？",
+      "referenceText": "Yes, VR can be used in artificial intelligence, education, training, medicine and many other areas. With the help of AR and VR, people can experience surreal atmospheres indoors as well as outdoors. Virtual reality can be used for flight training and help pilots understand how to control the aircraft especially in emergency situation. While using VR doesn't replace flight time in real flight, it gives student pilots more chances to exercise their maneuverability.",
+      "referenceTextZh": "是的，虚拟现实技术可以广泛应用于人工智能、教育、培训、医疗等其他领域。通过增强现实和虚拟现实技术，人们可以在室内感受到室外的超真实环境。虚拟现实可以应用在飞行培训中，帮助飞行员更好地了解如何操纵飞机，尤其在紧急情况下。虽然增强现实不能够代替实际飞行时间，但是通过它能够让飞行学员更好地练习飞行中的机动性。",
+      "audioDurationSeconds": 4.896
+    },
+    {
+      "id": "opi-fzy-203075",
+      "audio": "/question-bank-assets/revisions/opi/20fda20e5d83dc21539be7b5925c218abab7bf7edc9b3c88e780ed0c90d97cd5/audio/opi/opi-fzy-203075.mp3",
+      "audioText": "Do you think AI will replace pilot?",
+      "studyTier": 1,
+      "taskTitle": "现代技术-4",
+      "audioTextZh": "你认为人工智能会取代飞行员吗？",
+      "referenceText": "No, I don't think so. Pilots not only need to control the aircraft well, but also need to respond to complex situations timely and make reasonable decisions. These actions cannot be replaced by computers.",
+      "referenceTextZh": "飞行员不仅需要操纵好飞机，更需要对复杂情况及时作出反应，合理作出决策。这些都是计算机无法取代的。",
+      "audioDurationSeconds": 2.112
+    },
+    {
+      "id": "opi-fzy-203074",
+      "audio": "/question-bank-assets/revisions/opi/2235402e9a2ee36582ed77425b9682f60016e638dabbd0623d6c2105b80fb09e/audio/opi/opi-fzy-203074.mp3",
+      "audioText": "What do you know about AI?",
+      "studyTier": 1,
+      "taskTitle": "现代技术-2",
+      "audioTextZh": "你知道AI吗？",
+      "referenceText": "AI stands for Artificial Intelligence. A major goal of artificial intelligence research is to make machines capable of performing complex tasks that normally require human intelligence.",
+      "referenceTextZh": "AI指的是人工智能。人工智能研究的一个主要目标是使机器能够胜任一些通常需要人类智能才能完成的复杂工作。",
+      "audioDurationSeconds": 1.656
+    },
+    {
+      "id": "opi-fzy-224153",
+      "audio": "/question-bank-assets/revisions/opi/b7b4987cbaca81e16c2824065669db48b3dce596b069a45edb9d6e3592097efe/audio/opi/opi-fzy-224153.mp3",
+      "audioText": "Could you briefly describe the progress that China's civil aviation has made over the past decade?",
+      "studyTier": 1,
+      "taskTitle": "现代技术-12",
+      "audioTextZh": "你能简单描述下，中国民航在过去10年间取得了哪些进步吗？",
+      "referenceText": "The development of China's civil aviation over the past 10 years has been rapid. We have independently designed and manufactured the C919 aircraft, built the Daxing Airport, and our international and domestic flight routes have become increasingly complex. Travel by air has become more and more common.",
+      "referenceTextZh": "中国民航在过去10年的发展是飞快的。我们自行设计并制造了C919大飞机，建造了大兴机场，我们的国际、国内航线也日益复杂，乘坐飞机旅行越来越普遍。",
+      "audioDurationSeconds": 5.112
+    },
+    {
+      "id": "opi-fzy-224155",
+      "audio": "/question-bank-assets/revisions/opi/72674235f99861322bb50dc0d79c9d66a849ee0c5b5fc704fbb523cb1c81f513/audio/opi/opi-fzy-224155.mp3",
+      "audioText": "How can you deal with the challenges brought by the new technologies or equipment?",
+      "studyTier": 1,
+      "taskTitle": "现代技术-16",
+      "audioTextZh": "您如何应对新科技或新设备所带来的挑战呢？",
+      "referenceText": "As a pilot, first of all, we need to embrace new technologies and equipment with a positive attitude. At the same time, we need to continuously enhance our theoretical learning on the ground. Additionally, we also need to strengthen the training in related simulators. Moreover, we also need to enhance the CRM.",
+      "referenceTextZh": "作为一名飞行员，首先，我们需要以积极的态度迎合新技术和新设备，同时，我们需要不断加强地面理论学习，同时，也需要强化相关模拟机训练，同时，我们也需要加强驾驶舱资源管理。",
+      "audioDurationSeconds": 4.152
+    },
+    {
+      "id": "opi-fzy-118209",
+      "audio": "/question-bank-assets/revisions/opi/d1ba44c610036fe4a0af5ed15675ce7275a1f24ff27717f952783da7395eeeaa/audio/opi/opi-fzy-118209.mp3",
+      "audioText": "Do you know VR and AR? How can they be used in flight?",
+      "studyTier": 0,
+      "taskTitle": "现代技术-5",
+      "audioTextZh": "你了解VR和AR吗？它们如何应用在飞行中呢？",
+      "referenceText": "VR stands for virtual reality, and AR means augment reality. They can be used in the flight training, such as the simulator training.",
+      "referenceTextZh": "VR是虚拟现实，AR是增强现实。它们可应用于飞行训练中，如模拟机训练。",
+      "audioDurationSeconds": 3.384
+    },
+    {
+      "id": "opi-extra-134",
+      "audio": "/question-bank-assets/revisions/opi/e2f51690ba531dc2361e28aa8ca64bd6352358a38b3ebe081fdc588d17437ec0/audio/opi/opi-extra-134.mp3",
+      "audioText": "What is your opinion of large commercial aircraft designed and manufactured in China?",
+      "taskTitle": "其它-机型与职业-12",
+      "audioTextZh": "你如何看待中国设计和制造的大型商用飞机？",
+      "referenceText": "I have a positive opinion of Chinese-designed commercial aircraft such as the ARJ21 and C919. They use advanced equipment and systems designed to support safe and comfortable operations. I am proud of their development and would be interested in flying one in the future.",
+      "referenceTextZh": "我对 ARJ21 和 C919 等中国设计的商用飞机持积极看法。它们采用先进的设备和系统，旨在支持安全、舒适的运行。我为它们的发展感到自豪，也有兴趣将来驾驶其中一种机型。",
+      "audioDurationSeconds": 4.416
     }
   ],
-  "declaredCardCount": 18,
-  "categoryId": "opi-category-07"
+  "declaredCardCount": 35,
+  "categoryId": "opi-category-07",
+  "cardStudyTiers": {
+    "opi-fzy-203088": 1,
+    "opi-fzy-224162": 1,
+    "opi-fzy-203090": 1,
+    "opi-fzy-203089": 1,
+    "opi-extra-388": 2,
+    "opi-core-574": 2,
+    "opi-core-567": 2,
+    "opi-intake-20261019-technology-interest": 0,
+    "opi-extra-389": 2,
+    "opi-core-579": 0,
+    "opi-core-758": 0,
+    "opi-core-573": 2,
+    "opi-core-760": 0,
+    "opi-intake-20261019-recent-development": 0,
+    "opi-core-577": 2,
+    "opi-core-761": 2,
+    "opi-core-576": 2,
+    "opi-core-572": 2,
+    "opi-core-570": 2,
+    "opi-core-762": 2,
+    "opi-extra-387": 2,
+    "opi-extra-390": 0,
+    "opi-fzy-224771": 1,
+    "opi-fzy-224773": 1,
+    "opi-fzy-224769": 1,
+    "opi-fzy-224770": 1,
+    "opi-fzy-224772": 1,
+    "opi-fzy-224154": 1,
+    "opi-fzy-118210": 0,
+    "opi-fzy-203075": 1,
+    "opi-fzy-203074": 1,
+    "opi-fzy-224153": 1,
+    "opi-fzy-224155": 1,
+    "opi-fzy-118209": 0,
+    "opi-extra-134": 0
+  }
 }

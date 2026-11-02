@@ -46,7 +46,7 @@
         },
         {
           "topicId": "opi-topic-0040",
-          "topicTitle": "GPS全球定位系统",
+          "topicTitle": "GPS（全球定位系统）",
           "cardIds": [
             "opi-core-515",
             "opi-core-519"
@@ -62,7 +62,7 @@
         },
         {
           "topicId": "opi-topic-0063",
-          "topicTitle": "飞行记录本与手册文件",
+          "topicTitle": "飞行记录本、检查单与手册",
           "cardIds": [
             "opi-core-669",
             "opi-core-671"
@@ -86,7 +86,7 @@
         },
         {
           "topicId": "opi-topic-0025",
-          "topicTitle": "训练与复训",
+          "topicTitle": "飞行训练与复训",
           "cardIds": [
             "opi-core-386",
             "opi-core-388",
@@ -122,7 +122,7 @@
         },
         {
           "topicId": "opi-topic-0039",
-          "topicTitle": "GNSS全球导航卫星系统",
+          "topicTitle": "GNSS（全球导航卫星系统）",
           "cardIds": [
             "opi-core-513",
             "opi-core-514"
@@ -164,7 +164,7 @@
         },
         {
           "topicId": "opi-topic-0005",
-          "topicTitle": "紧急情况遇险",
+          "topicTitle": "紧急情况与遇险处置",
           "cardIds": [
             "opi-core-078",
             "opi-core-103",
@@ -244,7 +244,7 @@
       "topics": [
         {
           "topicId": "opi-topic-0147",
-          "topicTitle": "VASI目视进近坡度指示系统",
+          "topicTitle": "VASI（目视进近坡度指示系统）",
           "cardIds": [
             "opi-extra-370",
             "opi-extra-369",
@@ -264,7 +264,7 @@
         },
         {
           "topicId": "opi-topic-0005",
-          "topicTitle": "紧急情况遇险",
+          "topicTitle": "紧急情况与遇险处置",
           "cardIds": [
             "opi-core-078",
             "opi-core-079",
@@ -296,7 +296,7 @@
         },
         {
           "topicId": "opi-topic-0015",
-          "topicTitle": "SOP标准操作程序",
+          "topicTitle": "SOP（标准操作程序）",
           "cardIds": [
             "opi-core-232",
             "opi-core-233",
@@ -306,7 +306,7 @@
         },
         {
           "topicId": "opi-topic-0041",
-          "topicTitle": "GPWS/EGPWS近地警告与增强型近地警告系统",
+          "topicTitle": "GPWS与EGPWS（近地警告与增强型近地警告系统）",
           "cardIds": [
             "opi-core-520",
             "opi-core-521",
@@ -316,7 +316,7 @@
         },
         {
           "topicId": "opi-topic-0020",
-          "topicTitle": "QAR快速存取记录器",
+          "topicTitle": "QAR（快速存取记录器）",
           "cardIds": [
             "opi-core-310",
             "opi-core-311",
@@ -357,7 +357,7 @@
         },
         {
           "topicId": "opi-topic-0033",
-          "topicTitle": "PBN/RNAV/RNP基于性能的导航与进近",
+          "topicTitle": "PBN与RNAV与RNP（基于性能的导航与进近）",
           "cardIds": [
             "opi-core-467",
             "opi-core-468",
@@ -436,7 +436,7 @@
       "topics": [
         {
           "topicId": "opi-topic-0005",
-          "topicTitle": "紧急情况遇险",
+          "topicTitle": "紧急情况与遇险处置",
           "cardIds": [
             "opi-core-084",
             "opi-core-085",
@@ -447,7 +447,7 @@
         },
         {
           "topicId": "opi-topic-0135",
-          "topicTitle": "EBT循证训练",
+          "topicTitle": "EBT（循证训练）",
           "cardIds": [
             "opi-extra-298",
             "opi-extra-299",
@@ -466,7 +466,7 @@
         },
         {
           "topicId": "opi-topic-0015",
-          "topicTitle": "SOP标准操作程序",
+          "topicTitle": "SOP（标准操作程序）",
           "cardIds": [
             "opi-core-232",
             "opi-core-233",
@@ -477,7 +477,7 @@
         },
         {
           "topicId": "opi-topic-0058",
-          "topicTitle": "CDFA连续下降最后进近",
+          "topicTitle": "CDFA（连续下降最后进近）",
           "cardIds": [
             "opi-core-633",
             "opi-core-634",
@@ -634,7 +634,7 @@
         },
         {
           "topicId": "opi-topic-0039",
-          "topicTitle": "GNSS全球导航卫星系统",
+          "topicTitle": "GNSS（全球导航卫星系统）",
           "cardIds": [
             "opi-core-513",
             "opi-core-514",
@@ -679,7 +679,7 @@
         },
         {
           "topicId": "opi-topic-0005",
-          "topicTitle": "紧急情况遇险",
+          "topicTitle": "紧急情况与遇险处置",
           "cardIds": [
             "opi-core-078",
             "opi-core-079",
@@ -723,7 +723,7 @@
         },
         {
           "topicId": "opi-topic-0015",
-          "topicTitle": "SOP标准操作程序",
+          "topicTitle": "SOP（标准操作程序）",
           "cardIds": [
             "opi-core-232",
             "opi-core-233",
@@ -756,7 +756,7 @@
         },
         {
           "topicId": "opi-topic-0039",
-          "topicTitle": "GNSS全球导航卫星系统",
+          "topicTitle": "GNSS（全球导航卫星系统）",
           "cardIds": [
             "opi-core-513",
             "opi-core-514",
@@ -765,7 +765,7 @@
         },
         {
           "topicId": "opi-topic-0016",
-          "topicTitle": "复杂/特殊机场运行",
+          "topicTitle": "复杂与特殊机场运行",
           "cardIds": [
             "opi-core-190",
             "opi-core-191",
@@ -830,7 +830,7 @@
         },
         {
           "topicId": "opi-topic-0147",
-          "topicTitle": "VASI目视进近坡度指示系统",
+          "topicTitle": "VASI（目视进近坡度指示系统）",
           "cardIds": [
             "opi-extra-370",
             "opi-extra-369",
@@ -862,7 +862,7 @@
         },
         {
           "topicId": "opi-topic-0089",
-          "topicTitle": "电力系统失效",
+          "topicTitle": "电气系统与故障",
           "cardIds": [
             "opi-core-880",
             "opi-core-881",
@@ -873,7 +873,7 @@
         },
         {
           "topicId": "opi-topic-0135",
-          "topicTitle": "EBT循证训练",
+          "topicTitle": "EBT（循证训练）",
           "cardIds": [
             "opi-extra-298",
             "opi-extra-300",
@@ -906,7 +906,7 @@
         },
         {
           "topicId": "opi-topic-0040",
-          "topicTitle": "GPS全球定位系统",
+          "topicTitle": "GPS（全球定位系统）",
           "cardIds": [
             "opi-core-516",
             "opi-core-518",
@@ -916,7 +916,7 @@
         },
         {
           "topicId": "opi-topic-0016",
-          "topicTitle": "复杂/特殊机场运行",
+          "topicTitle": "复杂与特殊机场运行",
           "cardIds": [
             "opi-core-190",
             "opi-core-191",
@@ -998,7 +998,7 @@
         },
         {
           "topicId": "opi-topic-0025",
-          "topicTitle": "训练与复训",
+          "topicTitle": "飞行训练与复训",
           "cardIds": [
             "opi-core-386",
             "opi-core-387",
@@ -1041,7 +1041,7 @@
       "topics": [
         {
           "topicId": "opi-topic-0016",
-          "topicTitle": "复杂/特殊机场运行",
+          "topicTitle": "复杂与特殊机场运行",
           "cardIds": [
             "opi-core-242",
             "opi-core-248",
@@ -1094,7 +1094,7 @@
         },
         {
           "topicId": "opi-topic-0016",
-          "topicTitle": "复杂/特殊机场运行",
+          "topicTitle": "复杂与特殊机场运行",
           "cardIds": [
             "opi-core-190",
             "opi-core-191",
@@ -1105,7 +1105,7 @@
         },
         {
           "topicId": "opi-topic-0149",
-          "topicTitle": "禁区、危险区、限制区",
+          "topicTitle": "禁区、危险区与限制区",
           "cardIds": [
             "opi-extra-381",
             "opi-extra-385",
@@ -1138,7 +1138,7 @@
         },
         {
           "topicId": "opi-topic-0058",
-          "topicTitle": "CDFA连续下降最后进近",
+          "topicTitle": "CDFA（连续下降最后进近）",
           "cardIds": [
             "opi-core-633",
             "opi-core-634",
@@ -1200,7 +1200,7 @@
         },
         {
           "topicId": "opi-topic-0016",
-          "topicTitle": "复杂/特殊机场运行",
+          "topicTitle": "复杂与特殊机场运行",
           "cardIds": [
             "opi-core-190",
             "opi-core-191",
@@ -1210,7 +1210,7 @@
         },
         {
           "topicId": "opi-topic-0147",
-          "topicTitle": "VASI目视进近坡度指示系统",
+          "topicTitle": "VASI（目视进近坡度指示系统）",
           "cardIds": [
             "opi-extra-370",
             "opi-extra-369",
@@ -1254,7 +1254,7 @@
         },
         {
           "topicId": "opi-topic-0016",
-          "topicTitle": "复杂/特殊机场运行",
+          "topicTitle": "复杂与特殊机场运行",
           "cardIds": [
             "opi-core-190",
             "opi-core-191",
@@ -1276,7 +1276,7 @@
         },
         {
           "topicId": "opi-topic-0032",
-          "topicTitle": "RVSM缩小垂直间隔",
+          "topicTitle": "RVSM（缩小垂直间隔）",
           "cardIds": [
             "opi-core-463",
             "opi-core-460",
@@ -1287,7 +1287,7 @@
         },
         {
           "topicId": "opi-topic-0149",
-          "topicTitle": "禁区、危险区、限制区",
+          "topicTitle": "禁区、危险区与限制区",
           "cardIds": [
             "opi-extra-381",
             "opi-extra-385",

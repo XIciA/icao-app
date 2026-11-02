@@ -77,8 +77,41 @@
       "referenceText": "Selecting or extending flaps above their approved speed can overload and damage the flap system or supporting structure. An incorrect flap setting can also reduce climb performance, increase drag, or produce an unexpected change in lift and handling. These effects can lead to loss of control, a runway overrun, or an unstable approach.",
       "referenceTextZh": "在超过批准速度时选择或放出襟翼，会使襟翼系统或支撑结构过载并受损。襟翼设置错误还会降低爬升性能、增大阻力，或使升力和操纵特性意外改变。这些影响可能导致失去控制、冲出跑道或进近不稳定。",
       "audioDurationSeconds": 4.44
+    },
+    {
+      "id": "opi-fzy-152210",
+      "audio": "/question-bank-assets/revisions/opi/d31c8a22895bf373a7099876ff8a792f5e81d1d7831e672ad3de7e21050b94b7/audio/opi/opi-fzy-152210.mp3",
+      "audioText": "How to make a successful landing without flaps or with partial flaps?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-19",
+      "audioTextZh": "如何在无襟翼或者部分襟翼情况下进行成功着陆？",
+      "referenceText": "If the flaps are jammed, we will reset the flaps.\nIf we can't fix the problem, we will report to ATC and request flapless landing.\nWe will request the longest runway and emergency equipment.",
+      "referenceTextZh": "如果襟翼卡住，我们将重置襟翼。\n如果我们不能解决这个问题，我们将向空中交通管制中心报告并请求无襟翼着陆。\n我们将申请最长的跑道和应急设备。",
+      "audioDurationSeconds": 3.912
+    },
+    {
+      "id": "opi-fzy-152209",
+      "audio": "/question-bank-assets/revisions/opi/0335e68cb7f681ff7ae909518d2f67f15e448e63e87327c05fd7d454a6361116/audio/opi/opi-fzy-152209.mp3",
+      "audioText": "What are the possible consequences if flaps are jammed during approach?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-18",
+      "audioTextZh": "进近过程中襟翼卡阻的后果是什么？",
+      "referenceText": "As you know, if flaps are jammed during approach, we will have to make a flapless landing.\nIn this case, we will have higher approach speed and landing speed, this means that we will need longer runway to stop the aircraft.\nIf runway length is not enough for our aircraft to stop, we may overrun the runway.",
+      "referenceTextZh": "众所周知，如果在进近过程中襟翼卡阻，我们将不得不进行无襟翼着陆。\n在这种情况下，我们将有更高的进近速度和着陆速度，这意味着我们将需要更长的跑道来停下飞机。\n如果跑道长度不足以让我们的飞机停下，我们可能会冲出跑道。",
+      "audioDurationSeconds": 3.84
     }
   ],
-  "declaredCardCount": 7,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 9,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-core-646": 2,
+    "opi-core-648": 2,
+    "opi-core-652": 0,
+    "opi-core-651": 2,
+    "opi-core-644": 2,
+    "opi-core-645": 2,
+    "opi-core-647": 2,
+    "opi-fzy-152210": 1,
+    "opi-fzy-152209": 1
+  }
 }

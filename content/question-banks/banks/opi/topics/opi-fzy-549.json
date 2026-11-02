@@ -1,7 +1,60 @@
 {
   "id": "opi-fzy-549",
-  "name": "考试",
+  "name": "ICAO英语考试",
   "cards": [
+    {
+      "id": "opi-extra-141",
+      "audio": "/question-bank-assets/revisions/opi/654c38a175197d5ad3f362e8c1161c4138492f0a427d854a327891ef69975016/audio/opi/opi-extra-141.mp3",
+      "audioText": "What are you going to do after this test?",
+      "taskTitle": "其它-问好-5",
+      "audioTextZh": "这次考试结束后你打算做什么？",
+      "referenceText": "After the test, I will review the main topics and identify the areas I need to improve. I will also continue practising spoken aviation English to prepare for future flight work.",
+      "referenceTextZh": "考试后，我会复习主要话题，找出自己需要提高的方面。我也会继续练习航空英语口语，为今后的飞行工作做准备。",
+      "audioDurationSeconds": 2.256
+    },
+    {
+      "id": "opi-extra-145",
+      "audio": "/question-bank-assets/revisions/opi/2126d40073b446a8da08a7f5921ee22813902c8f8dea0ffc0f20d0490a3d33a9/audio/opi/opi-extra-145.mp3",
+      "audioText": "Which part of the ICAO English test do you find most difficult, and why?",
+      "taskTitle": "其它-问好-6",
+      "audioTextZh": "你觉得 ICAO 英语考试的哪个部分最难？为什么？",
+      "referenceText": "I find the interactive communication section the most difficult, especially when discussing complex emergency situations. It requires fluent expression, accurate aviation terminology, and a quick response to the examiner's questions.",
+      "referenceTextZh": "我觉得互动交流部分最难，尤其是讨论复杂紧急情况时。它要求表达流利、航空术语准确，并能迅速回答考官的问题。",
+      "audioDurationSeconds": 4.536
+    },
+    {
+      "id": "opi-fzy-152274",
+      "audio": "/question-bank-assets/revisions/opi/73672cf8c9e7f69f963bf38a5d861194db8e65dd7e29821463a91b6ac9ed4c27/audio/opi/opi-fzy-152274.mp3",
+      "audioText": "What are you going to do right after this test?",
+      "studyTier": 1,
+      "taskTitle": "补充话题-4",
+      "audioTextZh": "这次考试结束后，你会干什么？",
+      "referenceText": "Maybe I will have a good rest, because I have prepared for this test for a long time and I feel a little bit tired.",
+      "referenceTextZh": "我可能会好好休息下，因为我已经为这次考试准备了很久，感觉有一点点累，",
+      "audioDurationSeconds": 2.472
+    },
+    {
+      "id": "opi-fzy-110139",
+      "audio": "/question-bank-assets/revisions/opi/ea080a31b214de51685c68820701241b3c056c0dc11369dfef57df9750d86124/audio/opi/opi-fzy-110139.mp3",
+      "audioText": "Is this your first time to have an English test?",
+      "studyTier": 0,
+      "taskTitle": "英语学习-3",
+      "audioTextZh": "这是你第一次参加英语考试吗？",
+      "referenceText": "Yes, it's my first time to have the English test. / No, it isn't. I have taken many English tests in middle school and university. / This is the fifth time for me to attend the English test.",
+      "referenceTextZh": "是的，这是我第一次参加英语考试。/ 不是，我在中学和大学时参加过很多英语考试。/ 这是我第五次参加英语考试。",
+      "audioDurationSeconds": 2.52
+    },
+    {
+      "id": "opi-fzy-110140",
+      "audio": "/question-bank-assets/revisions/opi/ed893b69040629e84f0c102975a7eafa603b82c54b136a2d79ed8002669eac75/audio/opi/opi-fzy-110140.mp3",
+      "audioText": "Have you taken any aviation English test before?",
+      "studyTier": 0,
+      "taskTitle": "英语学习-5",
+      "audioTextZh": "你之前参加过航空英语考试吗？",
+      "referenceText": "Yes, I have. Before PEPEC test, I have to take Basic English Test and Radiotelephony English Test, which we call double-certificate English test, and Airline Transport Pilot License (ATPL) test. They are all aviation English tests.",
+      "referenceTextZh": "参加过，在PEPEC考试前，我参加过基础英语考试和无线电通话考试，这两个考试被称为双证书英语考试。我还参加过航线运输飞行员执照，以上考试都是航空英语考试。",
+      "audioDurationSeconds": 2.904
+    },
     {
       "id": "opi-fzy-110136",
       "audio": "/question-bank-assets/revisions/opi/bdcd8aded51d99febd7564df806b12d69beb61b78915ff9dc8f34aa925de067b/audio/opi/opi-fzy-110136.mp3",
@@ -146,6 +199,26 @@
       "audioDurationSeconds": 1.944
     }
   ],
-  "declaredCardCount": 13,
-  "categoryId": "opi-category-07"
+  "declaredCardCount": 18,
+  "categoryId": "opi-category-07",
+  "cardStudyTiers": {
+    "opi-extra-141": 0,
+    "opi-extra-145": 0,
+    "opi-fzy-152274": 1,
+    "opi-fzy-110139": 0,
+    "opi-fzy-110140": 0,
+    "opi-fzy-110136": 0,
+    "opi-fzy-110131": 0,
+    "opi-fzy-110137": 0,
+    "opi-fzy-203070": 1,
+    "opi-fzy-110130": 0,
+    "opi-fzy-110132": 0,
+    "opi-fzy-203086": 1,
+    "opi-fzy-110133": 0,
+    "opi-fzy-110134": 0,
+    "opi-fzy-203087": 1,
+    "opi-fzy-110129": 0,
+    "opi-fzy-110135": 0,
+    "opi-fzy-203071": 1
+  }
 }

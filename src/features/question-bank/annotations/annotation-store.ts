@@ -1,3 +1,4 @@
+import { storageTarget } from '../data/directory-storage-identity';
 import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
 import Storage from '@/platform/storage';
 
@@ -242,6 +243,7 @@ export function createEmptyAnnotationEntry(target: QuestionBankCardTarget): Ques
 }
 
 export function setAnnotationEntry(store: QuestionBankAnnotationStore, target: QuestionBankCardTarget, entry: QuestionAnnotationEntry) {
+  target = storageTarget(target);
   const entries = { ...store.entries };
   const key = questionBankCardTargetKey(target);
   if (!entry.tagIds.length && !entry.highlights.length && !entry.note.trim()) delete entries[key];

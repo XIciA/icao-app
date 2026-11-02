@@ -1,7 +1,18 @@
 {
   "id": "opi-topic-0083",
-  "name": "模拟/数字仪表与驾驶舱",
+  "name": "传统与数字驾驶舱",
   "cards": [
+    {
+      "id": "opi-fzy-140769",
+      "audio": "/question-bank-assets/revisions/opi/9b8bb4c63a8a925020bb2fa166db71632ce47cfa9d932bf3bf5c09dd2831db4d/audio/opi/opi-fzy-140769.mp3",
+      "audioText": "What are the differences between traditional cockpits and modern cockpits?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-31",
+      "audioTextZh": "传统驾驶舱和现代驾驶舱有什么不同？",
+      "referenceText": "Traditional cockpits use analog instrument to show flight information, such as ADI (Attitude Direction Indicator), HSI (Horizontal Situation Indicator), ASI (Airspeed Indicator), and so on. These analog instruments are more reliable, they can be used even in case of electrical failure. However, each indicator only shows one single flight data, so it may cost more time for pilots to monitor the instrument. Modern cockpits are equipped with digital displays like PFD and MFD. Various important flight information can be shown in a single display. It can save the time of scanning instrument for flight information and thus greatly reduce pilots workload.",
+      "referenceTextZh": "传统驾驶舱使用模拟仪表指示飞行数据，例如ADI（姿态指引仪），HSI（水平状态指示器），ASI（空速表）等。传统仪表更可靠，即便电力故障也依然可用，但每块指示器仅显示单个飞行数据，可能需要消耗更多时间监视仪表。现代驾驶舱装有数字显示例如PFD和MFD。各类重要的飞行数据都可以显示在单块仪表上，有助于节省使用仪表查看信息的时间，减轻飞行员的工作负荷。",
+      "audioDurationSeconds": 3.864
+    },
     {
       "id": "opi-core-836",
       "audio": "/question-bank-assets/revisions/opi/a74f484a2d923cf2a8899527ebb7aad46965692f17284aa705b547acdd990f3e/audio/opi/opi-core-836.mp3",
@@ -83,6 +94,17 @@
       "audioDurationSeconds": 3.696
     }
   ],
-  "declaredCardCount": 8,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 9,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-fzy-140769": 0,
+    "opi-core-836": 0,
+    "opi-core-843": 0,
+    "opi-core-841": 0,
+    "opi-core-847": 0,
+    "opi-core-846": 0,
+    "opi-core-835": 0,
+    "opi-core-837": 0,
+    "opi-core-840": 0
+  }
 }

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 29,
-  "generatedAt": "2026-11-01T14:48:55.936Z",
+  "releaseVersion": 30,
+  "generatedAt": "2026-11-02T12:16:12.568Z",
   "totals": {
-    "files": 602,
-    "textValues": 62835
+    "files": 588,
+    "textValues": 62821
   },
   "files": [
     {
@@ -65,7 +65,7 @@
     {
       "file": "content/question-banks/banks/opi/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "727b75a2035477a59f03fa8df9f5dbcd1a2d6bee53e81fce46523a4bcfe265e8",
+      "textProjectionSha256": "9fb0635d1f7caee2c92a0859bcd8d76658bc3d42334a8410f03eb92b96f471ca",
       "status": "reviewed"
     },
     {
@@ -107,7 +107,7 @@
     {
       "file": "content/question-banks/banks/opi/categories/opi-category-07.json",
       "textValues": 1,
-      "textProjectionSha256": "1170946996b09a41cfaa98dde310c50232a8b85794c573906f63d62fa3805459",
+      "textProjectionSha256": "498a763b12a79c5ca1e8a4374d3e5c98e55e86daa790528b158c7944a3867c9e",
       "status": "reviewed"
     },
     {
@@ -124,20 +124,14 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-1678.json",
-      "textValues": 116,
-      "textProjectionSha256": "01c10402ded571600adb57754abe62a67b4da36db3131dc79790f76ad4b54562",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-1679.json",
-      "textValues": 256,
-      "textProjectionSha256": "0539e6e42dcc483766c35c04df71f45935ac5f2faca1dfb29156b8cd6101681b",
+      "textValues": 126,
+      "textProjectionSha256": "267a3d99951de006786aa841614615ebcc6d81b6ffb181f9c456fbdb63869888",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-1680.json",
-      "textValues": 131,
-      "textProjectionSha256": "8e8676ddfaa555154fe443c34c03253ab8b2f1b349dfa86b7bf6facc21582c44",
+      "textValues": 141,
+      "textProjectionSha256": "4447f72031605df771108af8314c25fad05a480636d7379b84148f0a8d65d17a",
       "status": "reviewed"
     },
     {
@@ -148,14 +142,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-1682.json",
-      "textValues": 351,
-      "textProjectionSha256": "959afc9131aabdf592a31b8a68a132bcab12f2eadddc56f4797190637dc768ed",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-1683.json",
-      "textValues": 116,
-      "textProjectionSha256": "7f70c7602567b63812c7a8e4a06613a0c95227f819b167ce36517fa5340f630e",
+      "textValues": 61,
+      "textProjectionSha256": "eb025ebce5f23c536a3665bc39c28da82337581e46adb455d41b333e13d665d1",
       "status": "reviewed"
     },
     {
@@ -168,12 +156,6 @@
       "file": "content/question-banks/banks/opi/topics/opi-fzy-1685.json",
       "textValues": 386,
       "textProjectionSha256": "5e7e5c879bbe2e909cc197a366f0200ae18affcb429c1a5290e0b1e93ddacafa",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-1687.json",
-      "textValues": 26,
-      "textProjectionSha256": "abce8f30080f9f5678ad69c8ab1b13fc7c4fe061d3093a4e3901d130d9ef381e",
       "status": "reviewed"
     },
     {
@@ -196,26 +178,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-540.json",
-      "textValues": 71,
-      "textProjectionSha256": "e1e2cdcac26694b86015d0279ee453b3fb44f479c4ac866ed8af37fbffa4b0b6",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-541.json",
-      "textValues": 186,
-      "textProjectionSha256": "c459d8ed9e6bf464f6d3f9cfd2e55d7372e3fae8b8cae5ed002b50a92d93a66e",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-542.json",
-      "textValues": 196,
-      "textProjectionSha256": "a0c0ce1dee57534ca0e3e56f51ea829d7433ed37e7bfa9a279c9704f4b736877",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-543.json",
-      "textValues": 101,
-      "textProjectionSha256": "bed1bc012365cdecf1bdde905f823fe8ee469922c13c9b3fed9d169604e96f18",
+      "textValues": 191,
+      "textProjectionSha256": "e01bae6cfc942aa72c0dd25fa05398effb1087035885eedd9e9f8732766ad28d",
       "status": "reviewed"
     },
     {
@@ -225,45 +189,15 @@
       "status": "reviewed"
     },
     {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-545.json",
-      "textValues": 66,
-      "textProjectionSha256": "a02fc2df16c6aedd97156ed4ecd975a03199e6019e2642940a04e3bf78af1a4d",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-546.json",
-      "textValues": 136,
-      "textProjectionSha256": "69f810727ef03aa4e6d14f3976bfa89bde760f0379fee308dc53dc62a24ae898",
-      "status": "reviewed"
-    },
-    {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-547.json",
-      "textValues": 101,
-      "textProjectionSha256": "404b67e4577958a71bd9e473df04915d84152b34ccc3e9fa2121565c4bf4cc42",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-548.json",
-      "textValues": 101,
-      "textProjectionSha256": "c9b69fbde465afcda3dcf0a9c0c3964760bcfaa4ff852dc63dc09a8893b520b1",
+      "textValues": 106,
+      "textProjectionSha256": "4f1bf949703df56ef29e38930465f37125e69caf9c56bca793f08da4e3f50ccb",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-549.json",
-      "textValues": 66,
-      "textProjectionSha256": "1f4d28814e4b73790ed870e3705446304c4951f1500e26c7f1f878c31ddecec5",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-550.json",
-      "textValues": 96,
-      "textProjectionSha256": "71fd7edde424819265d7fe360333ff32817af0ddd22cd76a538402a9cc35af59",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-551.json",
-      "textValues": 151,
-      "textProjectionSha256": "5714c32763ad789e06cef931996e7caa21e1ae37c53961717677dc92a620be07",
+      "textValues": 91,
+      "textProjectionSha256": "a458926b6ece2cda5fa601634616bc3c307c68c1e362d2309c73ad2a52215dba",
       "status": "reviewed"
     },
     {
@@ -502,44 +436,38 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-651.json",
-      "textValues": 96,
-      "textProjectionSha256": "ff3302b89e87896556e62539aeef55b90367e87bfb3e76f4f14d3e1f83f3bba1",
+      "textValues": 31,
+      "textProjectionSha256": "91ab0536a121bdb37617c513d9316a1b23848757519aef180b5a36dc5eae9228",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-652.json",
-      "textValues": 61,
-      "textProjectionSha256": "7f1f114ab3ca9a4f2d7f67710f48c2d4aff336280819a970277d4a72eab1eec2",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-fzy-653.json",
-      "textValues": 46,
-      "textProjectionSha256": "67481a55af12479e5e01d44cf3696c547b6ba5b3ee6deeda5bdd371f542ace03",
+      "textValues": 116,
+      "textProjectionSha256": "20b9661257d6072ac5249a230a51f22da9e92dc96ce543bdb6e112235c1b1f90",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-654.json",
-      "textValues": 71,
-      "textProjectionSha256": "95bf24bccac72bfebf8b4afa640dc61848118a05ee23c03ad1feb10d509e55ca",
+      "textValues": 31,
+      "textProjectionSha256": "a22924b46a555315e68e83cfc468fee7017f241cafd9e1dd2cdb528e8d3b614a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-655.json",
-      "textValues": 31,
-      "textProjectionSha256": "74f7afe2da58b882d237b8e6e9cb131a497df5df9d4c2e8c2d204aac21748551",
+      "textValues": 36,
+      "textProjectionSha256": "b7e5e367a7046aa2d080bb8f347bb60e0f3f82053037526b369afc1cb7e19324",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-656.json",
-      "textValues": 66,
-      "textProjectionSha256": "ce4bfc920fc8f69042cacc72451c8897520ffc32b86a36b3642c73a1d1c661df",
+      "textValues": 86,
+      "textProjectionSha256": "2013bc3c61ee78656b814f0c3aa6237a24f63b733a1da63e0ea21e0c9715a6bd",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-fzy-657.json",
-      "textValues": 66,
-      "textProjectionSha256": "8ccdc8e250f03516509427f8007e4adeff9738678a2ef22ad5e7d719acc82c0b",
+      "textValues": 36,
+      "textProjectionSha256": "ce14af53d2526f2748bbdc2de1682a46c6d065167b5a27e404c44709668b052d",
       "status": "reviewed"
     },
     {
@@ -826,38 +754,38 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0003.json",
-      "textValues": 96,
-      "textProjectionSha256": "07c94d6727c6823eab86c4ec2982b7a1095bc4c3178c88b1e10fa9334c344874",
+      "textValues": 111,
+      "textProjectionSha256": "547a7d4fa93661780c33fcd6394f7e413277c50dbf6c6160142b36dfc48cd164",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0004.json",
-      "textValues": 46,
-      "textProjectionSha256": "dd3c73a5599e83e6f6d1ce71096414bcccaac4ce1a7322b0d4972e8139727ca2",
+      "textValues": 76,
+      "textProjectionSha256": "469f6a124635660c5c3d46bf6c776c5c2b5e36d08be087e517853036896c9b5d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0005.json",
-      "textValues": 76,
-      "textProjectionSha256": "f8f473beb8fedb59ea0b3dea81b1a9e2abc8bd13ce629958d8e051c43b122235",
+      "textValues": 221,
+      "textProjectionSha256": "dfb20b6b11be9cd1e9587120e5e481214cc98c199dfc528914a043a02883b532",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0006.json",
       "textValues": 86,
-      "textProjectionSha256": "6ff4bbef42e6dadaf8f42e01473506ec324a7fc139c014768f82c654db0cee29",
+      "textProjectionSha256": "e92b7e7fe74b6159ef547a488d4d93a544ea7f673a0824f1d9d2a27e5bffe9db",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0007.json",
-      "textValues": 181,
-      "textProjectionSha256": "78103017fcab5227343b19517f50f2208ae0d91648d26b7116bfd0a5ad57939d",
+      "textValues": 256,
+      "textProjectionSha256": "6c1d0d78934ecac3c88e442f9655b53aeb668330e8462b25dd90a9c734349506",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0010.json",
-      "textValues": 56,
-      "textProjectionSha256": "64fbd2b363b56288832e9c202445b8d25e6f2a91149bf104fe563fd0efda4207",
+      "textValues": 86,
+      "textProjectionSha256": "7d0198aec8d7b86a278b5838dfc5b45d1d24902ad8ea4629ee464a8e3ff482c8",
       "status": "reviewed"
     },
     {
@@ -868,32 +796,32 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0015.json",
-      "textValues": 46,
-      "textProjectionSha256": "749a89ce7475d4541395928080a1fdc952a17aba070312fe2fb931f51aef1381",
+      "textValues": 66,
+      "textProjectionSha256": "b06affa933a9e836949738fc77610582bb827e050b69fa23ee849f9a0ed529cc",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0016.json",
-      "textValues": 126,
-      "textProjectionSha256": "0e82233c4b2e21b88e3197badc06c48df454c1247fcada2a1312939bbf9c996b",
+      "textValues": 151,
+      "textProjectionSha256": "67dbb295cb016366a562491cfa20356a2fc0ee62bdfc4d3de6b955763323ef72",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0018.json",
-      "textValues": 161,
-      "textProjectionSha256": "284428773f1e057929a4ce764eb345b6cd5c222ae89f7d080ff7eae62b84c699",
+      "textValues": 311,
+      "textProjectionSha256": "d7c0be7057110594f9083d282a89c976d8a327d980fc203e67372b4dafeb9717",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0019.json",
-      "textValues": 21,
-      "textProjectionSha256": "6840c5017c9613b7bbeb68c32db4e8820a94de954b773c0d8289f1e33f7febbf",
+      "textValues": 41,
+      "textProjectionSha256": "a068a915489bcebb2ac55f486cd988747b8df44ce1208cb4c357dd6bb0f0c9e2",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0020.json",
       "textValues": 16,
-      "textProjectionSha256": "cb16d2e4bb19d461407d32ef6c256f65983f0ccce6c26038fa61edbde37c1d8e",
+      "textProjectionSha256": "1b8a5ad5821964d5f04d9d1a44cb34325661cef81e4ac03e4d7eb6dd02274fe9",
       "status": "reviewed"
     },
     {
@@ -916,14 +844,14 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0024.json",
-      "textValues": 91,
-      "textProjectionSha256": "3564e51e3cbf0b1048944ab7f96217c9012223305166a9703ed444cba8bf7164",
+      "textValues": 116,
+      "textProjectionSha256": "41a65ade588a098d766213dfec1cc9e37479537e4efd767a14131c496605578e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0025.json",
-      "textValues": 141,
-      "textProjectionSha256": "308b0d1547b2292f4a61201bcd56631fbcda0c14e8facde2d728ebd7d16ec954",
+      "textValues": 356,
+      "textProjectionSha256": "d2b257ed6ac84cd3ded1051088e6181b187020d815ef2f7b8b63e63707549d9e",
       "status": "reviewed"
     },
     {
@@ -934,8 +862,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0027.json",
-      "textValues": 36,
-      "textProjectionSha256": "d624e78aeb69b7aa3849d1e8588fef8c8439e9970028fadde765838a297c476f",
+      "textValues": 46,
+      "textProjectionSha256": "75711ce0f284983bd39706ea679b3bd03720d4cff33ccc6b2fef86a52ed41830",
       "status": "reviewed"
     },
     {
@@ -946,14 +874,14 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0029.json",
-      "textValues": 26,
-      "textProjectionSha256": "3e21cf9f4f12a8443dce29f7d4e66ff577bc39e2317669f5ffd8ab4711949708",
+      "textValues": 41,
+      "textProjectionSha256": "a42535b5147ab73529d16c6d3de03383806780985ae20abcb7ae97c055cad15e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0030.json",
-      "textValues": 31,
-      "textProjectionSha256": "987cc903aaaed174b79e6b31f6bc99fd880d21b1fa6033a8d0e702fd4faaf2d8",
+      "textValues": 41,
+      "textProjectionSha256": "2ba63c4dba0ccf64f32d6d2b05ecb62f3eb63a74f1e6457df159b068a914a3b9",
       "status": "reviewed"
     },
     {
@@ -964,26 +892,26 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0032.json",
-      "textValues": 41,
-      "textProjectionSha256": "270c42461ed9a68fdda53958cbc2db263d9de26f345db5edf3196640fd968d9a",
+      "textValues": 51,
+      "textProjectionSha256": "55a69f42f9024f6a6890a479b85b9f93e3124296207f680107e00e90f6450e3f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0033.json",
-      "textValues": 36,
-      "textProjectionSha256": "0e1ac71f28ccce97031c427848523f1caa5ab527404eb7cb0570774a37671431",
+      "textValues": 41,
+      "textProjectionSha256": "6161416b8a142f2d00f0ff5cdab91943dbc493ce09e444c1823435e708e7c4a9",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0035.json",
-      "textValues": 41,
-      "textProjectionSha256": "d73c0d63ae030cddb5506f6da552e371e59cdfcd1ff9a714c429f42c31deb127",
+      "textValues": 71,
+      "textProjectionSha256": "4d481325b9d8d7b6d2fa7a277666b60fb5c551c0d00ce13f091d822b33e75e34",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0036.json",
-      "textValues": 41,
-      "textProjectionSha256": "8e1c7865a3daef9bc9f185ce189f250f2b4827da0bb547f45831810e5bf8625b",
+      "textValues": 51,
+      "textProjectionSha256": "3979fb3ef5806c45f62c2c9a52e253b3f533eb32274e036ac2a9396b1c6ab5af",
       "status": "reviewed"
     },
     {
@@ -995,31 +923,31 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0039.json",
       "textValues": 16,
-      "textProjectionSha256": "a3f2b5e2ea591652f772caa235b78182162e2b7083f624bdbf3fa5a26f92eb75",
+      "textProjectionSha256": "26702e857f9d80ac8f86d4fb2071e0b9382446dbc390ac6f1eb6df12f196ae3f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0040.json",
       "textValues": 26,
-      "textProjectionSha256": "4d07547a0fcd4e22dd6d2b6d740a1307108eb513e7a85f55b78947f353de8466",
+      "textProjectionSha256": "d7f549d5337ad3323a95cf042d6f42476b0e55995aaa1fcca093e860c5aee954",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0041.json",
       "textValues": 36,
-      "textProjectionSha256": "a2565c42dd34bb9c0f2b49c722cea4418016a60e9a7f537023de2e8704d963b7",
+      "textProjectionSha256": "862094e341f45654f8292390ee6768f276774ebf4a0d5a93206dd1061d149ef1",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0042.json",
-      "textValues": 51,
-      "textProjectionSha256": "5cf2607c8280e32025ebf09d980dbfb1d6528f3ee9ff34a672094927db00ad5f",
+      "textValues": 56,
+      "textProjectionSha256": "358c17919a531c84ed0b7eb38f3547b2e19f7c859a137dbd743744ab31b73866",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0043.json",
-      "textValues": 61,
-      "textProjectionSha256": "e7f2a2dcfacf1adec8c9040041109f26ad8f891e2cb311882b9f875f03c2560f",
+      "textValues": 91,
+      "textProjectionSha256": "27a901252f9ca35acbc43f7cfd242f136d5f50bce687b66698a664b453a832b7",
       "status": "reviewed"
     },
     {
@@ -1030,20 +958,20 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0045.json",
-      "textValues": 46,
-      "textProjectionSha256": "1ee31777a98fce21b0fa84bb7bfcdd5da2ee26e267f76b480d13ca855bf7155d",
+      "textValues": 56,
+      "textProjectionSha256": "ae2e1b251e66faa999d61e5d416d4b1675e45f2cc06bad6b5e52958bcb6f829c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0046.json",
-      "textValues": 91,
-      "textProjectionSha256": "e183365e7b19d1925db3a6d29e575df11b35b931f07487f2fc8fa27392d0c48c",
+      "textValues": 176,
+      "textProjectionSha256": "236313c6793aa5e58b65bc2150622196a0d62178fd3690bc2da3edf2e1542755",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0048.json",
-      "textValues": 36,
-      "textProjectionSha256": "43ff42f4fbc41a01b5372a7df58c60d2b203034d6329b8694d06ad6fb1489bd3",
+      "textValues": 61,
+      "textProjectionSha256": "a8c48cb40dab9c612705d78c58c1c8c5d454b17675447688b916bb9c4d5f8dd9",
       "status": "reviewed"
     },
     {
@@ -1060,8 +988,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0051.json",
-      "textValues": 11,
-      "textProjectionSha256": "3f19151365d4148f0cdffc76c2fd74530051d37a7bc54cd313d84c85af96203d",
+      "textValues": 16,
+      "textProjectionSha256": "0485b706feb7660b1f3c3dac3c0fd7000bb41791671f619e8508bca47f9d2f66",
       "status": "reviewed"
     },
     {
@@ -1073,37 +1001,37 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0053.json",
       "textValues": 41,
-      "textProjectionSha256": "376132b4ab499f03fa356aa2142d6068998548e1321eea80e9719b97e04867c8",
+      "textProjectionSha256": "498c930c4412f806b994bdb86a73aa299f08d1cf9eb2edbab110b85cece0c45f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0054.json",
       "textValues": 16,
-      "textProjectionSha256": "6c853b24a1ac9099149ef9bc88d34777cc3930e9326b12c82f5f7714881c6993",
+      "textProjectionSha256": "54427d51fa08d1d39be40af673eb57f18ebda4f0a2859ccbb79b72d79e9a32c9",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0055.json",
       "textValues": 21,
-      "textProjectionSha256": "37998cbaeadfbc1af257891c8cab99734da76650778dc4cc9548c6eccb018f12",
+      "textProjectionSha256": "4499d15b2245ccc792c2b30252662e4364fb6d11660ad1d98af07935f6c21245",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0056.json",
       "textValues": 26,
-      "textProjectionSha256": "8d76f52ad6ffc260123a48d24ec953da21f19a8c998112229f41fc099b8087d4",
+      "textProjectionSha256": "3c4d28acfad6e81a9798ac264625b5d422b045e8899f94452e525ba31a288cce",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0057.json",
-      "textValues": 16,
-      "textProjectionSha256": "ddf321ba2b8e3ce44d0653621f0e4844577cc5e8b8b3ca56ceb1d80bc55f36ec",
+      "textValues": 26,
+      "textProjectionSha256": "f6d0c38be8399988e055cd2195f465fb5ae4f1a6bfbd7069e7f0d2c4855ab129",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0058.json",
       "textValues": 36,
-      "textProjectionSha256": "a795ee897214be900b62c3ff2e79177f8e3d9aa98c7214e4b752f6e065a68800",
+      "textProjectionSha256": "8643b93b4c18f5ffb752346a5129fa2c8e9d143b4740bae2a05e58332bcffd4b",
       "status": "reviewed"
     },
     {
@@ -1114,26 +1042,26 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0060.json",
-      "textValues": 36,
-      "textProjectionSha256": "f8111b41976ee4a347795c69faaef8730e968c090b835972d55f7f34415822bf",
+      "textValues": 46,
+      "textProjectionSha256": "e2b7104956bc6ff1df95139eea4921f1476705dcd98ce44342859af13a13731d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0061.json",
-      "textValues": 21,
-      "textProjectionSha256": "ff1651f59ba16f925a8fb3db8dfd4b4fc7c00518fa7e489a010f19024a5283da",
+      "textValues": 41,
+      "textProjectionSha256": "77e4878e5138bb4de9597e100774112ad92218f13b727e9910d27777fd0313ec",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0062.json",
-      "textValues": 31,
-      "textProjectionSha256": "88a9409cf4be61dff2c4f014ff27a96be0e27f0eea81041fff2a2a594bb64a93",
+      "textValues": 41,
+      "textProjectionSha256": "a6bcafe1dc6dae9109e1b5b9083fcf76f3c0dc26c57382b7db39550b60ee0843",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0063.json",
-      "textValues": 96,
-      "textProjectionSha256": "9dc35c8b34e2f6677379a9b2a6a02d8017e3abddeb4846547763f6c2ef62675c",
+      "textValues": 151,
+      "textProjectionSha256": "c3817d4dc3d93d14115938afd53f3b23ad79ee9e34c2b8014169be8f973def94",
       "status": "reviewed"
     },
     {
@@ -1150,20 +1078,20 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0067.json",
-      "textValues": 61,
-      "textProjectionSha256": "f1a7d870775138aafa04a7f5cd6451333350772c6f5ead776ff0003a9de8d316",
+      "textValues": 71,
+      "textProjectionSha256": "2c8818c0167211ddbda357f1cce2ae46d4a286d243b91463dfb7aa49a4757772",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0068.json",
-      "textValues": 11,
-      "textProjectionSha256": "e47569927ebb093ad3544859b2c5021cb37c3c6f2498cd474ecde62834665b94",
+      "textValues": 16,
+      "textProjectionSha256": "1d89e44dd9f9823e40424fd7edd7f535ff250f3a3f4df09705e1e0d1d7864fa5",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0069.json",
-      "textValues": 16,
-      "textProjectionSha256": "a1182530a7c50f72808c7cd44cfb7b272aab599d2ea723f56100df2f8eb06a1a",
+      "textValues": 26,
+      "textProjectionSha256": "04b5bb6bd5da97d1b7591f960093289e2bb66de57891a116c7de5c2bdd2740d1",
       "status": "reviewed"
     },
     {
@@ -1180,8 +1108,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0072.json",
-      "textValues": 31,
-      "textProjectionSha256": "79320ddf0c3e770442bd9fd6ffd9d53acfab6377700179ad07897626868b4bae",
+      "textValues": 51,
+      "textProjectionSha256": "02b1ea44191c94adc03e50c035515aaf755fa36096a177dd34c31a45d4edd122",
       "status": "reviewed"
     },
     {
@@ -1192,8 +1120,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0074.json",
-      "textValues": 21,
-      "textProjectionSha256": "71c748888848385944109b3682c71463b7258a060de4fd0e0b592f09dcb0e1a4",
+      "textValues": 26,
+      "textProjectionSha256": "1b716319ed69d7549901602dd80d62f9221a95279896b1bbe145c061d9aebf9a",
       "status": "reviewed"
     },
     {
@@ -1223,19 +1151,13 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0082.json",
       "textValues": 6,
-      "textProjectionSha256": "d98f79a7dac6e9f55a58eec04ceb3294a56c79e3ebc7703bc8b5897302ccb7e9",
+      "textProjectionSha256": "9ba7be0c5cc29a7d1d5828b4a13391b75bc4065f2f79e728c6217e7d53eb9803",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0083.json",
-      "textValues": 41,
-      "textProjectionSha256": "94085413cd88458316c69a2646916bdda8830169126200c33ef112f40f5a7b3b",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-topic-0084.json",
-      "textValues": 36,
-      "textProjectionSha256": "abfafb7296b9d6e7de6f9e7f10c5343b3e46db521701367b8bda53a1db2d6c32",
+      "textValues": 46,
+      "textProjectionSha256": "539804e0b30a137e51cf9fc96b748f73087e5d45022900d81a93c0adac3d113f",
       "status": "reviewed"
     },
     {
@@ -1258,26 +1180,26 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0088.json",
-      "textValues": 51,
-      "textProjectionSha256": "3c3ca9c9ed15f34c4f300fdf6fe9ff9fcc485df5e57270500921f28aca9584f1",
+      "textValues": 56,
+      "textProjectionSha256": "030f10b112543a21f31df3f8d7b2a4b17fd788fec7c90e34b74dbc8c62d6a0a6",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0089.json",
-      "textValues": 51,
-      "textProjectionSha256": "f8feac2b6c6354ccff50ef0202a9c28dd5c55aee0c61735d2661f3de99bd0c2b",
+      "textValues": 101,
+      "textProjectionSha256": "c05f0de4cfc3b78effa0240488d27be12ab85f90d1f25a7b7a1bd4674c9ac122",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0090.json",
       "textValues": 16,
-      "textProjectionSha256": "1911a524cfec6735513afdf65de3fcc5b83dd53f717a5296aa175a13b76e06b8",
+      "textProjectionSha256": "73190954c7c7d28909d9668d4960b14d48d47321a91ad314ad2d7043e5fbac97",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0092.json",
-      "textValues": 46,
-      "textProjectionSha256": "db99a41f566214e36f360b5a40fd54f25dbca4506bb0d036ae0e0a5fbff24772",
+      "textValues": 51,
+      "textProjectionSha256": "764cc883e50ab07ebeede9c0afff31d31b12a7888ac282716524decd25ed4396",
       "status": "reviewed"
     },
     {
@@ -1288,68 +1210,68 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0094.json",
-      "textValues": 46,
-      "textProjectionSha256": "ffa124e1c52f2d1f1f170f9044a7ced392f338e6300ebf532e5b38a6a8b3f243",
+      "textValues": 61,
+      "textProjectionSha256": "25b77c2a90ac6ccf745b6f65182345174667393ae010fb2f4f940e784842a140",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0099.json",
-      "textValues": 36,
-      "textProjectionSha256": "bdf8161d038a75b17594af84d751cd7bff73da22547b8876442f53f7dc0608e5",
+      "textValues": 66,
+      "textProjectionSha256": "d07686bb29528d60029ec15fc7830fc2f2d4bbb637a6692abfc71f9ac095a6bf",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0102.json",
-      "textValues": 61,
-      "textProjectionSha256": "b778bba392d072b2a551b63b12e2363e1ccbc13ebd48a838f1ae475345d6fbad",
+      "textValues": 76,
+      "textProjectionSha256": "a69730ed4693cb76b5ec808a700eae5dff313a8f63f4645cc32cdcbab0e5cc96",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0110.json",
-      "textValues": 11,
-      "textProjectionSha256": "25b08c061446e627f6f39490f56073e256599a12ac3e3d6fa42d848d9fe9cf23",
+      "textValues": 16,
+      "textProjectionSha256": "bca39d0a65d1337975e0c26bd7e63c8fea20d7cdf8d1d972f8f824e253cd9c1a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0111.json",
-      "textValues": 31,
-      "textProjectionSha256": "9d339afe5e080a599948d0a404d0cea6e2b3dfa74aebbd456f6bf4bf40eba797",
+      "textValues": 51,
+      "textProjectionSha256": "0f3af4166a4475798f40e78c87b7540e70c1374d0a154531e96d84fb56d2b085",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0112.json",
-      "textValues": 36,
-      "textProjectionSha256": "52cba139201878fe6588737ac3384d5fabecfd81816befa4e910690c94b53c70",
+      "textValues": 131,
+      "textProjectionSha256": "b043be6078a6f236dd279bfcc17564fb2e881bc73fed562c4fda0099a0ff53ad",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0113.json",
-      "textValues": 26,
-      "textProjectionSha256": "5160cb9327f58a91d60a57b3251f7cfbcb9ad1eb34612f46e366a0c8ee137315",
+      "textValues": 31,
+      "textProjectionSha256": "40c854f2fa91225b78b3ec464fdec9911d59de9fbc09da7b31cbb2ccfde1013e",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0114.json",
-      "textValues": 21,
-      "textProjectionSha256": "9b5a641cc322bb62c4aa2a68b33ae0944940ffc81ee7f4d901711a874005c609",
+      "textValues": 26,
+      "textProjectionSha256": "9c64916d20b1429a288f7e1ec43e832b8dfe0601c7ee870d74944ebded8bc91f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0115.json",
-      "textValues": 41,
-      "textProjectionSha256": "b177b98f769e6469108e8de7891c7b40f06e012f13a7351cd049e42dd38d2856",
+      "textValues": 46,
+      "textProjectionSha256": "37f5dbcb4d45514c5d0903d670fd59dae64909a5a4eacb043de9088b55056c7f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0116.json",
-      "textValues": 11,
-      "textProjectionSha256": "c486e72a19b5ed5f06979af8e6c91a46e6c7a95a1ad1d5ef04261371d8e8b1c5",
+      "textValues": 16,
+      "textProjectionSha256": "19cc9be244967db06b435e213eb4b63b540fa4413309ebff88f3af5368d8e942",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0117.json",
-      "textValues": 26,
-      "textProjectionSha256": "28b8b54bfb3af7ab80526a45ceebec0786371d081de6fa8abe667dd9e1d38495",
+      "textValues": 31,
+      "textProjectionSha256": "d896bc690f9e22cff3425d4afe3f7efb1d1342e0262a714ae7e584a37efc7769",
       "status": "reviewed"
     },
     {
@@ -1372,68 +1294,62 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0121.json",
-      "textValues": 96,
-      "textProjectionSha256": "98d7515a8290434b4bee265bbe74330f99892fd9f992db06d82a3c1667e2db00",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/opi/topics/opi-topic-0122.json",
-      "textValues": 31,
-      "textProjectionSha256": "8960df3f83907cef8fb1cf34967a039223fa0824e37574e78c3950d035db1b02",
+      "textValues": 121,
+      "textProjectionSha256": "4a58b4a1abdaef70bad5d13864c1a85773e7984ee78dd7889e6cc0e976c77693",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0123.json",
-      "textValues": 101,
-      "textProjectionSha256": "f9ae4574c65d225bab48dc5d62de1cc0ac67597dd3aba332a1eb0876df50206d",
+      "textValues": 51,
+      "textProjectionSha256": "8caf7efe0c52ab6ce66e04c613161d112e3cc71cf9d6844d2d23f3fb928c57d8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0124.json",
-      "textValues": 111,
-      "textProjectionSha256": "f136ea95ddc7a685737cbea968fe1291023628e8023b754122205fd9020f6f1c",
+      "textValues": 171,
+      "textProjectionSha256": "927e0984f4742b2973882392763b3124e6aa8730177156277055e6802fccbaff",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0126.json",
-      "textValues": 41,
-      "textProjectionSha256": "bab7ad32a888530f3c4ee0228b53fc5951d790c2568a6692fd99e5b9f4471fcd",
+      "textValues": 76,
+      "textProjectionSha256": "d0ec8ed705b5e47be02f3f82f2332024a4a69b88bbca271e7cd7f33b5a3707b0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0127.json",
-      "textValues": 66,
-      "textProjectionSha256": "04a5e4c473ca4f4713c308475aeb1dab99cfac769a0777962784b2fae6975371",
+      "textValues": 91,
+      "textProjectionSha256": "33a724ee6b13c78545c3b28153a137383f7a76fde26a28d91f64385fbdd77fb0",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0128.json",
-      "textValues": 16,
-      "textProjectionSha256": "76bcd0036db890c7a5a7d347d5382a2aea13846c0c17505bf48292ebc0922322",
+      "textValues": 41,
+      "textProjectionSha256": "21faf6d8f7f032fbb3fa778bc738bb16b67819f442c6a69c1ad2229376027f1d",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0129.json",
-      "textValues": 36,
-      "textProjectionSha256": "88e7127fdc762b528cb713917ee68b0f1dbb3237b443db83b71a76b11fb6c1fd",
+      "textValues": 76,
+      "textProjectionSha256": "657a6902a7f1951a3d7ea8a94323b7991cb5a14596993f3f66ae883222734b59",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0130.json",
-      "textValues": 186,
-      "textProjectionSha256": "3b23f31dbc0b7413d7aa0efd398f4f0c8bf77b20965f10ed99bc81409e56efc3",
+      "textValues": 221,
+      "textProjectionSha256": "53a26d16cf9e306e2bdf1803a01cc6a4439f6a711b7b7b5c352713f1f5dd104a",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0131.json",
-      "textValues": 11,
-      "textProjectionSha256": "eb61108811a9a36459f471dd0c010868d7fa93b5ec435de55e5b47614f6516c8",
+      "textValues": 16,
+      "textProjectionSha256": "4fb711d3b181fe4ac905d2b6c251721cf1faed2ab3025f0c9648c6d5dc98e02f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0132.json",
-      "textValues": 16,
-      "textProjectionSha256": "addbc7566ba565e78d64e7d3d9448bd4b071e4aa7a4a5d23ec3d6dbe0782b924",
+      "textValues": 21,
+      "textProjectionSha256": "6e8266aac9b5980fd5d0389756ee3b8c2730aca786b4ac955cf7a276ff614f93",
       "status": "reviewed"
     },
     {
@@ -1450,8 +1366,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0135.json",
-      "textValues": 51,
-      "textProjectionSha256": "22ad23b1b804f3ea728968d258aa4484f59290e6e722e8045830e0cfaa53cd0f",
+      "textValues": 71,
+      "textProjectionSha256": "2843ed4f4bd57601736c61b23fcbd0715f21bc741d222747c36442783248a170",
       "status": "reviewed"
     },
     {
@@ -1474,14 +1390,14 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0139.json",
-      "textValues": 31,
-      "textProjectionSha256": "8fa804c5e9b8313ac461ca237e053f1c5613cd09770ea8f3dd0f49196cb09927",
+      "textValues": 46,
+      "textProjectionSha256": "2cdf20c0e19644a4ee741e9f06817b5738c7d7d444492462f6e7a7239857021c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0140.json",
-      "textValues": 46,
-      "textProjectionSha256": "c3397a8cc1a30731c64b3bc85c0a4ad991522ea7faa91456733b63cd715286ff",
+      "textValues": 56,
+      "textProjectionSha256": "89cd9812517ba5b9dcfc58ffa3f38156309536383e377f33e83c8d72b0d79b10",
       "status": "reviewed"
     },
     {
@@ -1492,8 +1408,8 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0142.json",
-      "textValues": 16,
-      "textProjectionSha256": "f8f232defbcb440a60b951e852bdf21f1d0aaef7b67255b9a1dd69a07bf2e489",
+      "textValues": 31,
+      "textProjectionSha256": "b7e1110c3239925f6d7c5371d55101341e531a1013cc4f089e270871dbbd7ebf",
       "status": "reviewed"
     },
     {
@@ -1504,14 +1420,14 @@
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0144.json",
-      "textValues": 31,
-      "textProjectionSha256": "bd16b151c3c0e6f1255e1063012d34d49933be4415300c9409e39bc110c71942",
+      "textValues": 46,
+      "textProjectionSha256": "a8d11b23620bde79b0ce0cb32a3c38e7edcc059258c0113e7ebea810ca4c444b",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0145.json",
       "textValues": 61,
-      "textProjectionSha256": "860aaa9b6b44ca34d5d89301122ee14be79fee7d85be6cd2fd77fdfacbb0d54a",
+      "textProjectionSha256": "bf954bf0f943275800825df3a8f73424ebf80b475f05bdfd0b8909b1e6881ccb",
       "status": "reviewed"
     },
     {
@@ -1523,7 +1439,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0147.json",
       "textValues": 21,
-      "textProjectionSha256": "2b55b955e0347321f56e5601f7753c11ef4fd20925298417568759759a5e39d7",
+      "textProjectionSha256": "73f7b589868d4196489c8943506a7bbb0835c31ba89e6e7a18ee1624486d6e6b",
       "status": "reviewed"
     },
     {
@@ -1535,7 +1451,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0149.json",
       "textValues": 36,
-      "textProjectionSha256": "7249cc4ea92d6b475d0d54e634f4c30c11c1f42ca0a6eb40dede4203b1e361b8",
+      "textProjectionSha256": "4809ff15058883a9b5c3cc0f7406d07ef6829519470d5b502f6330c5a99d88f4",
       "status": "reviewed"
     },
     {

@@ -1029,7 +1029,7 @@
         },
         {
           "id": "opi-fzy-224313",
-          "source": "content/question-banks/banks/opi/topics/opi-fzy-1679.json",
+          "source": "content/question-banks/banks/opi/topics/opi-topic-0004.json",
           "context": "What is ELT?\nELT is short for Emergency Locator Transmitter. It is an important safety device on aircraft, used to aut"
         }
       ]
@@ -1893,7 +1893,7 @@
         },
         {
           "id": "opi-fzy-109905",
-          "source": "content/question-banks/banks/opi/topics/opi-fzy-541.json",
+          "source": "content/question-banks/banks/opi/topics/opi-topic-0129.json",
           "context": "s, for instance, automatic direction finder (ADF), inertial navigation, compasses, radar navigation, VHF omnidirectional range (VOR) and global navigation "
         }
       ]
@@ -4679,7 +4679,7 @@
         },
         {
           "id": "opi-fzy-109888",
-          "source": "content/question-banks/banks/opi/topics/opi-fzy-541.json",
+          "source": "content/question-banks/banks/opi/topics/opi-topic-0121.json",
           "context": "ft did you fly in your flight school?\nI flew TB-20 and PA-42 in my flight school. TB-20 is light, single engine, pistonpowered aircraft designed in the lat"
         }
       ]

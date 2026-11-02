@@ -1,29 +1,20 @@
 {
   "id": "opi-category-07",
-  "name": "其它",
-  "declaredCardCount": 324,
-  "declaredTopicCount": 21,
+  "name": "日常与职业交流",
+  "declaredCardCount": 244,
+  "declaredTopicCount": 12,
   "topicIds": [
-    "opi-fzy-1687",
-    "opi-fzy-547",
-    "opi-fzy-551",
     "opi-topic-0112",
-    "opi-fzy-548",
     "opi-fzy-540",
     "opi-topic-0123",
     "opi-fzy-651",
     "opi-fzy-654",
     "opi-fzy-657",
     "opi-fzy-549",
-    "opi-fzy-543",
     "opi-fzy-652",
     "opi-fzy-656",
-    "opi-topic-0122",
     "opi-topic-0121",
     "opi-topic-0124",
-    "opi-fzy-545",
-    "opi-topic-0084",
-    "opi-fzy-550",
     "opi-topic-0046"
   ]
 }

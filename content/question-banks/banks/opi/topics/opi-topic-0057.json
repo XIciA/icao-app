@@ -1,7 +1,29 @@
 {
   "id": "opi-topic-0057",
-  "name": "FCTM飞行机组训练手册",
+  "name": "FCTM（飞行机组训练手册）",
   "cards": [
+    {
+      "id": "opi-fzy-152978",
+      "audio": "/question-bank-assets/revisions/opi/fc5e5a6fd80773ec9f4155d6c8bc4472b13ed3b7cdf765e38ac40994ffab15a3/audio/opi/opi-fzy-152978.mp3",
+      "audioText": "What do you know about the FCTM?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-43",
+      "audioTextZh": "你知道FCTM吗？",
+      "referenceText": "Yes, FCTM stands for Flight Crew Training Manual, it provides information and advice on maneuvering flights and techniques, and it covers the whole process of a flight. The procedures listed in the FCTM are very important for the whole crew members.",
+      "referenceTextZh": "是的，FCTM指的是机组训练手册，它提供了针对机动飞行和技巧的信息和建议，内容涵盖了飞行的整个过程。机组训练手册中列出的程序对整个机组而言都很重要。",
+      "audioDurationSeconds": 2.28
+    },
+    {
+      "id": "opi-fzy-152979",
+      "audio": "/question-bank-assets/revisions/opi/e9a36c7e473593cca2d632d5649259e76a3f5a7e194013046231aaa89cbc9b80/audio/opi/opi-fzy-152979.mp3",
+      "audioText": "Do you use FCTM in your work?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-44",
+      "audioTextZh": "你在工作中会使用机组训练手册吗？",
+      "referenceText": "Yes, we will use FCTM in our work, because some procedures listed in the FCTM are important for the flight safety. We should consult it when where is abnormal situation.",
+      "referenceTextZh": "是的，我们在工作中会使用机组训练手册，因为机组训练手册中列出的许多程序对飞行安全很重要，当出现特情时，我们应该参阅机组训练手册。",
+      "audioDurationSeconds": 2.112
+    },
     {
       "id": "opi-core-630",
       "audio": "/question-bank-assets/revisions/opi/4bfcd4e1eaf17006b5c8399df48a60e17aabd7178487aeb9d5b12ecc2b6fd446/audio/opi/opi-core-630.mp3",
@@ -33,6 +55,13 @@
       "audioDurationSeconds": 3.264
     }
   ],
-  "declaredCardCount": 3,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 5,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-152978": 1,
+    "opi-fzy-152979": 1,
+    "opi-core-630": 0,
+    "opi-core-631": 0,
+    "opi-core-629": 0
+  }
 }

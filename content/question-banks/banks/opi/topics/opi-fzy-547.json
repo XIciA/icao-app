@@ -221,8 +221,42 @@
       "referenceText": "Pilots should do a thorough plan before flight. pilots should strictly follow ATC's instructions. Every crew member should cooperate with each other during flight. I think these are the most important things for flight safety.",
       "referenceTextZh": "首先飞行前飞行员应做一个完整的计划。同时他们应严格执行ATC的指令。飞行时机组成员应互相配合。我觉得这些对飞行安全来说是最重要的。",
       "audioDurationSeconds": 2.232
+    },
+    {
+      "id": "opi-fzy-110108",
+      "audio": "/question-bank-assets/revisions/opi/55684b70d7347e2ff8748aba5a8b9a781b9b87afc97f7dbf34d35df94905dd9a/audio/opi/opi-fzy-110108.mp3",
+      "audioText": "What would you suggest for flight safety?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-10",
+      "audioTextZh": "你对维护飞行安全有什么建议？",
+      "referenceText": "Now we are too busy with flight duty and always feel tired. As we all know, fatigue will endanger flight safety, I want to have more time to relax myself, and it's good for my health. So, I think more holidays should be arranged for pilots.",
+      "referenceTextZh": "目前我们忙于飞行任务，总会觉得累。大家都知道，疲劳驾驶会危及飞行安全，我想要有更多的时间放松自己，这对我的健康也是有益处的。我认为应该为飞行员安排更多的假期。",
+      "audioDurationSeconds": 2.112
     }
   ],
-  "declaredCardCount": 20,
-  "categoryId": "opi-category-07"
+  "declaredCardCount": 21,
+  "categoryId": "opi-category-04",
+  "cardStudyTiers": {
+    "opi-fzy-110075": 0,
+    "opi-fzy-110069": 0,
+    "opi-fzy-110080": 0,
+    "opi-fzy-110073": 0,
+    "opi-fzy-110066": 0,
+    "opi-fzy-110049": 0,
+    "opi-fzy-110050": 0,
+    "opi-fzy-110076": 0,
+    "opi-fzy-110057": 0,
+    "opi-fzy-110051": 0,
+    "opi-fzy-110078": 0,
+    "opi-fzy-110056": 0,
+    "opi-fzy-110070": 0,
+    "opi-fzy-110077": 0,
+    "opi-fzy-110048": 0,
+    "opi-fzy-110071": 0,
+    "opi-fzy-110079": 0,
+    "opi-fzy-110074": 0,
+    "opi-fzy-110061": 0,
+    "opi-fzy-110067": 0,
+    "opi-fzy-110108": 0
+  }
 }

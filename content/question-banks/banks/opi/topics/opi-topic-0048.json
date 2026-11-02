@@ -3,6 +3,61 @@
   "name": "起飞着陆性能",
   "cards": [
     {
+      "id": "opi-fzy-224472",
+      "audio": "/question-bank-assets/revisions/opi/3db0c184c1afeb8b9356254048ee7df458aae909413685b49ba3a7879b20cf7f/audio/opi/opi-fzy-224472.mp3",
+      "audioText": "Do you make takeoff and landing performance assessment for each flight?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-56",
+      "audioTextZh": "每次飞行时，你都会做起飞着陆性能评估吗？",
+      "referenceText": "Yes, we conduct takeoff and landing performance assessments before every takeoff or landing. This is one of our company's safety operational requirements.",
+      "referenceTextZh": "是的，每次起飞或者着陆之前，我们都会进行起飞着陆性能评估，这是我们公司安全运行的要求之一。",
+      "audioDurationSeconds": 3.72
+    },
+    {
+      "id": "opi-fzy-224474",
+      "audio": "/question-bank-assets/revisions/opi/ca3828178adc4d6917d973ad117d1d656f21c6620180f562a83489fb2563af1e/audio/opi/opi-fzy-224474.mp3",
+      "audioText": "Can you tell me the takeoff and landing performance assessment for your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-58",
+      "audioTextZh": "你能告诉我你的飞机上是怎么进行起飞着陆性能评估的吗？",
+      "referenceText": "I currently fly the A320. When conducting takeoff and landing performance assessments, we check the standard performance manual for the basic data. We then combine this with airport conditions (runway, slope, obstacles), weather (temperature, wind), aircraft status (weight, configuration), and regulatory requirements to calculate and verify takeoff speeds, required runway length, and landing distance.",
+      "referenceTextZh": "我目前飞的飞机是A320，在进行起飞着陆性能评估时，我们会查询标准性能手册获取基础数据，结合机场条件（跑道、坡度、障碍物）、气象条件（温度、风）、飞机状态（重量、构型、设备）及规章要求，进行起飞速度、跑道需求距离及着陆距离的详细计算与校核。",
+      "audioDurationSeconds": 4.032
+    },
+    {
+      "id": "opi-fzy-224473",
+      "audio": "/question-bank-assets/revisions/opi/b5f2664cb0983b0463e012639754f2c300961626fab10c140cb60effa0113a24/audio/opi/opi-fzy-224473.mp3",
+      "audioText": "Why should pilots make takeoff and landing performance assessment?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-57",
+      "audioTextZh": "飞行员为什么要进行起飞着陆性能评估？",
+      "referenceText": "The purpose of takeoff and landing performance assessment is to ensure that under existing environmental conditions and aircraft state, there is enough runway length to complete a safe takeoff or landing, and to provide adequate safety margins for potential failures, such as engine failure.",
+      "referenceTextZh": "起飞着陆性能评估的目的，是确保在现有环境和飞机状态下，有足够的跑道长度完成安全的起飞或着陆，并为潜在故障（如发动机失效）提供充分的安全裕度。",
+      "audioDurationSeconds": 3.48
+    },
+    {
+      "id": "opi-fzy-224475",
+      "audio": "/question-bank-assets/revisions/opi/e86c84b2a82f092fd56269937c0e14b00ce598c57fa3d3439967c25646ed54bc/audio/opi/opi-fzy-224475.mp3",
+      "audioText": "What factors should be taken into consideration during the takeoff and landing performance assessment?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-59",
+      "audioTextZh": "在进行起飞着陆性能评估时，你需要考虑的因素都有哪些？",
+      "referenceText": "We will take lots of information into consideration, such as runway condition (runway length, runway slope), weather condition (wind speed and direction, temperature)\naircraft status (thrust setting, weight and balance), because these factors are vital to the safety of takeoff and landing.",
+      "referenceTextZh": "我们将综合考虑诸多因素，比如跑道状况（跑道长度、坡度）、天气状况（风速和风向、温度）、飞机状态（推力设置、重量和平衡），因为这些因素对于飞机的起飞和降落安全至关重要。",
+      "audioDurationSeconds": 5.16
+    },
+    {
+      "id": "opi-fzy-109950",
+      "audio": "/question-bank-assets/revisions/opi/e4841f02081de36b9de8ce72e84ff95070d92be0520ade2b61db6f44a3f0dcff/audio/opi/opi-fzy-109950.mp3",
+      "audioText": "According to your own experience, how do you make good landing?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-27",
+      "audioTextZh": "根据你的经验，怎样可以顺利着陆？",
+      "referenceText": "First, I should follow the required procedures before landing. Next, I will handle the plane properly, make it fly at the right speed, and use flaps and spoilers to control the speed. I have to ensure that the plane touches the runway steadily and firmly. Then, I will follow the center line after touch down and stop the plane\nwithin the runway. I think all that can make a good landing.",
+      "referenceTextZh": "首先，我应在着陆前完成所要求的检查项目。接下来，我会正确操控飞机，让飞机以适当的速度飞行，并使用襟翼和扰流板来控制速度。我要确保飞机能稳定着陆。然后，我会在着陆时对准中心线，并在跑道上停下飞机。我想这些程序可以完成一次正常的着陆。",
+      "audioDurationSeconds": 3.576
+    },
+    {
       "id": "opi-intake-20261019-tyre-speed",
       "kind": "text",
       "audio": "/question-bank-assets/revisions/opi/3b7a10293174a9a6d12c57156d4c4ac958a3c98c00fc7d0660e9595fc6180473/audio/opi/opi-intake-20261019-tyre-speed.mp3",
@@ -86,6 +141,20 @@
       "audioDurationSeconds": 3.144
     }
   ],
-  "declaredCardCount": 7,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 12,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-224472": 1,
+    "opi-fzy-224474": 1,
+    "opi-fzy-224473": 1,
+    "opi-fzy-224475": 1,
+    "opi-fzy-109950": 0,
+    "opi-intake-20261019-tyre-speed": 0,
+    "opi-intake-20261019-contaminated-runway": 0,
+    "opi-core-581": 2,
+    "opi-intake-20261019-runway-condition-report": 0,
+    "opi-core-552": 2,
+    "opi-core-580": 2,
+    "opi-core-582": 2
+  }
 }

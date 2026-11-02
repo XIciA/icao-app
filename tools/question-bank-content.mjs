@@ -127,6 +127,7 @@ function validate({ registry, banks, resources }, { full = false, requireResourc
       let categoryCards = 0;
       if (category.topics.length !== category.declaredTopicCount) fail(`category_topic_count:${bank.id}:${category.id}`);
       for (const topic of category.topics) {
+        if (topic.cardStudyTiers !== undefined && (typeof topic.cardStudyTiers !== 'object' || Array.isArray(topic.cardStudyTiers) || Object.entries(topic.cardStudyTiers).some(([id, tier]) => !topic.cards.some(card => card.id === id) || ![0, 1, 2].includes(tier)))) fail(`invalid_card_study_tiers:${topic.id}`);
         if (topic.studyTier !== undefined && ![0, 1, 2].includes(topic.studyTier)) fail(`invalid_study_tier:${topic.id}`);
         if (topic.practiceKind !== undefined && !['scenario', 'scoring-points'].includes(topic.practiceKind)) fail(`invalid_practice_kind:${topic.id}`);
         assertString(topic.id, `${bank.id}/${category.id}.topic.id`);
@@ -171,6 +172,10 @@ function validate({ registry, banks, resources }, { full = false, requireResourc
         }
       }
       if (categoryCards !== category.declaredCardCount) fail(`category_card_count:${bank.id}:${category.id}`);
+    }
+    if (bank.freeCardIds) {
+      const activeIds = new Set(bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.filter(card => !card.retired).map(card => card.id))));
+      if (!Array.isArray(bank.freeCardIds) || new Set(bank.freeCardIds).size !== bank.freeCardIds.length || bank.freeCardIds.some(id => !activeIds.has(id))) fail(`invalid_free_card_ids:${bank.id}`);
     }
     if (bankTopics !== bank.declaredTopicCount) fail(`bank_topic_count:${bank.id}`);
     if (bankCards !== bank.declaredCardCount) fail(`bank_card_count:${bank.id}`);

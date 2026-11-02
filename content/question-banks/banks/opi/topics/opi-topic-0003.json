@@ -3,6 +3,39 @@
   "name": "风切变",
   "cards": [
     {
+      "id": "opi-fzy-109914",
+      "audio": "/question-bank-assets/revisions/opi/539a9efb6a60a97b0b51f11c3a1124c2029ba341003d5b8fbeb492d2c47b05b2/audio/opi/opi-fzy-109914.mp3",
+      "audioText": "How does the wind shear warning system work?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-25",
+      "audioTextZh": "风切变预警系统如何工作？",
+      "referenceText": "The wind shear warning system is initiated whenever the energy level of aircraft falls below a predetermined threshold. The airborne wind shear detection and alert system, fitted in an aircraft, detects and alerts the pilot both visually and aurally of a wind shear condition. In reactive wind shear detection system, the detection takes place when the aircraft penetrates a wind shear condition of sufficient force, which can pose a hazard to the aircraft. While in predictive wind shear detection system, the detection takes place, if such wind shear condition is ahead of the aircraft.",
+      "referenceTextZh": "飞机的能量水平低于预定阈值时，风切变预警系统将会启动。风切变探测和预警系统安装在飞机内部，为飞行员在视觉和听觉上提供风切变警告。反应性风切变预警系统在飞机进入强力风切变区域时发出警告，这可能对飞机造成危害。而预测性风切变预警系统在飞机前方出现风切变状况就会进行预警。",
+      "audioDurationSeconds": 2.304
+    },
+    {
+      "id": "opi-fzy-109913",
+      "audio": "/question-bank-assets/revisions/opi/ffd30361fbd1d449ba3e8f833a92efbc3e7b590cdd4ab87bd6e421136b60fe2e/audio/opi/opi-fzy-109913.mp3",
+      "audioText": "Are there wind shear detection radar system deployed at airplanes?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-24",
+      "audioTextZh": "飞机上是否有风切变探测系统？",
+      "referenceText": "Yes. In the predictive wind shear detection mode, the weather radar processor of the aircraft detects the presence of the microburst. To complement the reactive wind shear system and provide an early warning of potential wind shear activity, some weather radars feature the capability to detect wind shear areas ahead of\nthe aircraft.",
+      "referenceTextZh": "有。预测风切变检测模式下，机上的天气雷达处理器检测出是否存在微爆流。为了弥补反应性风切变系统的不足，并提供潜在风切变活动预警，一些天气雷达具有检测飞机前方是否有风切变区域的能力。",
+      "audioDurationSeconds": 3.624
+    },
+    {
+      "id": "opi-fzy-109900",
+      "audio": "/question-bank-assets/revisions/opi/3fc00215c61ee99001aabaa30ae460fc9ed478a70453e5bd0d9d85022a0aed91/audio/opi/opi-fzy-109900.mp3",
+      "audioText": "Can you briefly say something about the wind shear warning system?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-11",
+      "audioTextZh": "你能否简单地介绍下飞机上的风切变预警系统？",
+      "referenceText": "As far as I know, Boeing and Airbus are equipped with two kinds of aircraft wind shear systems, predictive wind shear (PWS) and reactive wind shear systems (RWS). Comparatively speaking, the alerting time of PWS is much longer than that of the RWS.",
+      "referenceTextZh": "据我所知，波音和空客飞机都配备了两种风切变系统，分别是预测性风切变系统（PWS）和反应式切变系统（RWS）。相比而言，预测性风切变系统的报警时间比反应式风切变系统要长。",
+      "audioDurationSeconds": 3.336
+    },
+    {
       "id": "opi-core-045",
       "audio": "/question-bank-assets/revisions/opi/90c4f914a112dbad37faee43c461663226ee8b5e568e9aaef3082790d3c06bba/audio/opi/opi-core-045.mp3",
       "audioText": "How can wind shear cause an aircraft to deviate from the glide slope during approach?",
@@ -193,6 +226,30 @@
       "audioDurationSeconds": 4.728
     }
   ],
-  "declaredCardCount": 19,
-  "categoryId": "opi-category-01"
+  "declaredCardCount": 22,
+  "categoryId": "opi-category-01",
+  "cardStudyTiers": {
+    "opi-fzy-109914": 0,
+    "opi-fzy-109913": 0,
+    "opi-fzy-109900": 0,
+    "opi-core-045": 0,
+    "opi-core-040": 0,
+    "opi-core-044": 0,
+    "opi-core-039": 0,
+    "opi-core-041": 0,
+    "opi-core-051": 0,
+    "opi-core-055": 0,
+    "opi-core-057": 0,
+    "opi-core-049": 0,
+    "opi-core-038": 0,
+    "opi-core-050": 0,
+    "opi-core-052": 0,
+    "opi-core-035": 0,
+    "opi-core-037": 0,
+    "opi-core-036": 0,
+    "opi-core-043": 0,
+    "opi-core-048": 0,
+    "opi-core-053": 0,
+    "opi-core-042": 0
+  }
 }

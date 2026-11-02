@@ -3,6 +3,50 @@
   "name": "控酒政策",
   "cards": [
     {
+      "id": "opi-fzy-209632",
+      "audio": "/question-bank-assets/revisions/opi/6edd392639be6cd02a0a0b88ffe0c53d639813a546423d21c3c0c5137fd151ff/audio/opi/opi-fzy-209632.mp3",
+      "audioText": "Why pilots are not allowed to drink alcohol before flights?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-54",
+      "audioTextZh": "飞行员在飞行前为什么不允许喝酒？",
+      "referenceText": "It is very dangerous for a pilot to drink alcohol before a flight because alcohol can affect the pilot's judgment and reaction capacity. For pilots, who need to make quick, accurate decisions at high speeds and in extreme situations, drinking alcohol can cause incapacitation and threaten flight safety.",
+      "referenceTextZh": "飞行员在飞行前饮酒是非常危险的，因为酒精会影响飞行员的判断和反应能力。对于飞行员来说，他们需要在高速飞行、极端情况下做出快速、准确的决策，饮酒可能会造成失能，威胁飞行安全。",
+      "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-fzy-152004",
+      "audio": "/question-bank-assets/revisions/opi/c8c2f726e085a622c3667f5a707fb72ca358aae0674198c1741ebf97faadc5bf/audio/opi/opi-fzy-152004.mp3",
+      "audioText": "Why is it necessary to have the limit of the alcohol intake?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-2",
+      "audioTextZh": "为什么限制飞行员的酒精摄入是有必要的？",
+      "referenceText": "Drinking will reduce spatial orientation and decision making.\nAnd then may influence the flight safety.",
+      "referenceTextZh": "饮酒会降低飞行员的空间方向感和判断能力。\n进而会影响飞行安全。",
+      "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-fzy-209633",
+      "audio": "/question-bank-assets/revisions/opi/a9f8f5207f94e24ca3519327baebd18d6ed73dc2d61842c848ec680855b3d316/audio/opi/opi-fzy-209633.mp3",
+      "audioText": "How is alcohol test carried out at your flight school or company?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-55",
+      "audioTextZh": "在你们航校或公司，酒精检查是如何执行的？",
+      "referenceText": "According to the regulations of our flight school and company, pilots cannot drink alcohol within 12 hours before each flight mission, so we will conduct a breathalyzer/alcohol test before each flight, and the relevant equipment will check the alcohol concentration of the pilot's breath to ensure that the pilot has not drunk alcohol before the flight.",
+      "referenceTextZh": "根据我们航校和公司的规定，飞行员在飞行任务前12小时内不能饮酒，因此，我们在每次飞行前都会进行酒精测试，相关设备会对飞行员呼出气体中的酒精浓度进行检查，确保飞行员在飞行前没有饮酒。",
+      "audioDurationSeconds": 3.48
+    },
+    {
+      "id": "opi-fzy-152003",
+      "audio": "/question-bank-assets/revisions/opi/76d094517c521949cb2990bc30d76481e4ec363413cadaf798d2239139ebea3e/audio/opi/opi-fzy-152003.mp3",
+      "audioText": "Can you drink alcohol before flight? why?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-1",
+      "audioTextZh": "你可以在飞行前饮酒吗？为什么？",
+      "referenceText": "No, we can't drink any alcohol.\nAccording to regulations, a pilot cannot drink any alcohol 8 hours before each flight.",
+      "referenceTextZh": "不，我们不能。\n根据规定，飞行员在航班开始8小时前不能饮酒。",
+      "audioDurationSeconds": 2.4
+    },
+    {
       "id": "opi-core-657",
       "audio": "/question-bank-assets/revisions/opi/c83d18955a4fdd039055460dc023d13e2b84f479b816b360bb1df42d340aa2c1/audio/opi/opi-core-657.mp3",
       "audioText": "Should flight crew be tested for alcohol before every flight, and why?",
@@ -43,6 +87,16 @@
       "audioDurationSeconds": 2.976
     }
   ],
-  "declaredCardCount": 4,
-  "categoryId": "opi-category-04"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-04",
+  "cardStudyTiers": {
+    "opi-fzy-209632": 1,
+    "opi-fzy-152004": 1,
+    "opi-fzy-209633": 1,
+    "opi-fzy-152003": 1,
+    "opi-core-657": 0,
+    "opi-core-653": 0,
+    "opi-core-655": 0,
+    "opi-core-656": 0
+  }
 }

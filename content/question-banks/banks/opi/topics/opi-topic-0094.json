@@ -91,8 +91,55 @@
       "referenceText": "During a diversion, the pilots should first coordinate within the flight crew. They should then contact ATC for clearance and guidance, keep the company dispatcher informed, and coordinate the revised plan with the alternate airport.",
       "referenceTextZh": "备降期间，飞行员应先在飞行机组内部协调，然后联系空中交通管制获取许可和引导，通知公司签派员，并与备降机场协调修改后的计划。",
       "audioDurationSeconds": 3
+    },
+    {
+      "id": "opi-fzy-109947",
+      "audio": "/question-bank-assets/revisions/opi/ea1a97d23076431b77e513f2f0a13a588b80dbaba0d4582f283ef504f9754596/audio/opi/opi-fzy-109947.mp3",
+      "audioText": "Do you consider potential diversion airport before each departure?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-24",
+      "audioTextZh": "每次离场前你会考虑备用机场么？",
+      "referenceText": "We usually have the diversion airport in our flight plan. We also consider the weather information of the airport before departure.",
+      "referenceTextZh": "我们通常会在飞行计划中列出改航机场。离场前我们还会考虑机场的天气状况。",
+      "audioDurationSeconds": 3.72
+    },
+    {
+      "id": "opi-fzy-109949",
+      "audio": "/question-bank-assets/revisions/opi/ad99da7609829f0ef02cfdadb8afc9125e8bd531a0d6c0e106ff90fc573eddf9/audio/opi/opi-fzy-109949.mp3",
+      "audioText": "What are some considerations in making a decision to divert?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-26",
+      "audioTextZh": "决定改航前需要考虑哪些因素？",
+      "referenceText": "When we make a decision to divert, we may consider the fuel endurance, the situation of the aircraft, the weather condition and the ground services in our alternate, etc.",
+      "referenceTextZh": "决定改航前，我们会考虑燃料续航能力、飞机的状况、天气情况和备降机场的地面服务等。",
+      "audioDurationSeconds": 3.168
+    },
+    {
+      "id": "opi-fzy-109948",
+      "audio": "/question-bank-assets/revisions/opi/c20b92e8b6d6edbe395472f3b317b7d859fe5eda2f533c3008046b0f22e5c9ad/audio/opi/opi-fzy-109948.mp3",
+      "audioText": "Have you ever diverted?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-25",
+      "audioTextZh": "你遇到过不得不改航的情况吗？",
+      "referenceText": "Yes, I remember I encountered a severe thunderstorm last summer. We were flying from Beijing to Guangzhou. From the onboard radar I could see thunderstorm ahead of us. I knew it was dangerous to fly through it, so I contacted ATC and requested to divert to our alternate airport.",
+      "referenceTextZh": "遇到过，去年夏天我在飞行时遭遇严重的雷暴。在北京飞往广州途中，雷达探测到前方有雷暴。穿过雷暴非常危险，所以我联系ATC并申请改航至备降机场。",
+      "audioDurationSeconds": 1.32
     }
   ],
-  "declaredCardCount": 9,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 12,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-extra-023": 0,
+    "opi-extra-038": 0,
+    "opi-extra-015": 0,
+    "opi-extra-021": 0,
+    "opi-extra-019": 0,
+    "opi-extra-025": 0,
+    "opi-extra-028": 0,
+    "opi-extra-013": 0,
+    "opi-extra-017": 0,
+    "opi-fzy-109947": 0,
+    "opi-fzy-109949": 0,
+    "opi-fzy-109948": 0
+  }
 }
