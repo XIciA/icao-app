@@ -3,6 +3,61 @@
   "name": "飞行员与管制员通信",
   "cards": [
     {
+      "id": "opi-fzy-109902",
+      "audio": "/question-bank-assets/revisions/opi/605b87ac767ecb4de9e03dbc4b903d438dab744ab07d865b4053ac10837e7129/audio/opi/opi-fzy-109902.mp3",
+      "audioText": "In what situations may the radio communication failure happen?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-13",
+      "audioTextZh": "在何种情况下会发生无线电通信故障？",
+      "referenceText": "Although the complete loss of communication is an extremely rare event due to duplication of equipment in modern aircraft, there are still situations which contribute to full or partial communication breakdown, such as airborne or ground radio equipment malfunction, radio interference, stuck microphone selector, English language skills below the required level, etc. So pilots and controllers should be well prepared to manage it.",
+      "referenceTextZh": "由于现代飞机上安装了双套通信设备，无线电通信完全故障极其罕见，但仍存在导致通信完全或部分故障的情况，如机载或地面无线电设备故障、无线电干扰、麦克风故障，以及英语能力不达标等。因此飞行员和管制员应为无线电通讯故障做好充足的准备。",
+      "audioDurationSeconds": 3.72
+    },
+    {
+      "id": "opi-fzy-140775",
+      "audio": "/question-bank-assets/revisions/opi/4bb803fbd2a8c5bc015f600cbef6cc66f76e20a830b0541ee26552758163a463/audio/opi/opi-fzy-140775.mp3",
+      "audioText": "What are the methods to communicate with ATC during flight?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-37",
+      "audioTextZh": "飞行中与管制通信的方法有哪些？",
+      "referenceText": "The most common communication system in use today is the VHF system. In addition to VHF equipment, large aircraft are usually equipped with HF communication systems and CPDLC (Controller-Pilot Data Link\nCommunications).",
+      "referenceTextZh": "当今应用最广泛的通信系统是甚高频（VHF）系统。除了VHF以外，大型飞机通常还装有高频通信（HF）系统和管制员—飞行员数据链通信（CPDLC）。",
+      "audioDurationSeconds": 3.216
+    },
+    {
+      "id": "opi-fzy-109904",
+      "audio": "/question-bank-assets/revisions/opi/0f05d0f970d32c7b5ac6db7b203be35f9e9840c33085aba569d8a52663c344d0/audio/opi/opi-fzy-109904.mp3",
+      "audioText": "Do you know some incidents caused by the radio communication failure? If yes, can you tell me one of them?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-15",
+      "audioTextZh": "你知道一些由无线电通信故障引发的事故吗？如果知道，能否告诉我其中一件？",
+      "referenceText": "Yes. Although I have never encountered the situation by myself, I heard about some. For example, in 2012, an airplane flown by Spanish carrier Vueling from Malaga to Amsterdam lost radio contact with ATC, as soon as the plane landed at Schiphol airport, it was surrounded by security forces and a negotiator was sent to talk to the crew. After speaking to the captain the negotiator was certain there were no hijackers on the plane. The Netherlands intercepted it with two fighter planes and then sent security forces to surround it at Amsterdam airport in a hijack scare caused by a loss of radio contact.",
+      "referenceTextZh": "知道。我未亲身经历过，但听说过。例如，2012年，西班牙伏林航空公司运营的一架从马拉加飞往阿姆斯特丹的飞机和ATC失去了联系，飞机降落在史基浦机场上时，安全部队立刻包围了飞机，一名谈判代表被指派前往和机组人员交涉。谈判代表和机长交涉后确认机上没有劫持者。荷兰空管因无法与该飞机进行无线电通信，怀疑其被劫持，因而派出两架战斗机拦截了这架飞机，并派遣安全部队在阿姆斯特丹机场包围了它。",
+      "audioDurationSeconds": 6.312
+    },
+    {
+      "id": "opi-fzy-109901",
+      "audio": "/question-bank-assets/revisions/opi/dc8158cfaa98c096968c3f10c3fbd12a18bc32f0400bebb148b569364fa8a4ea/audio/opi/opi-fzy-109901.mp3",
+      "audioText": "Is the phraseology important to the radio communication for pilots? Why?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-12",
+      "audioTextZh": "飞行员在无线电通讯中使用术语是否重要？",
+      "referenceText": "Yes. Radio phraseologe is critical, it can avoid the misunderstanding in the communication between pilots and controllers. Proper phraseology enhances safety and is also the performance of a professional pilot.",
+      "referenceTextZh": "是的，无线电术语非常关键，可以避免飞行员与管制员通信中的误解。使用标准术语可提高安全性，也是专业飞行员的表现。",
+      "audioDurationSeconds": 4.704
+    },
+    {
+      "id": "opi-fzy-109903",
+      "audio": "/question-bank-assets/revisions/opi/e167ced04b61a559b64ef0e79f6d26478324e9ce2ac9c64a7a22be0543945094/audio/opi/opi-fzy-109903.mp3",
+      "audioText": "How should you perform when the radio communication failure happens?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-14",
+      "audioTextZh": "无线电通信故障发生时你应如何应对？",
+      "referenceText": "First I will try to contact ATC on 121.5MHz, if it doesn't work, I will squawk 7600 and continue the route last assigned by ATC. If I can receive ATC instruction but I can't transmit out, I will squawk ident to confirm the instructions.",
+      "referenceTextZh": "首先我会尝试通过调频121.5和ATC联系，若无法联系，我会把应答机拨到7600编码并按照ATC上一指令继续航程。若可以收到ATC的指令但无法回复，我会按下通讯窗口的【IDENT】键以确认指令。",
+      "audioDurationSeconds": 3.696
+    },
+    {
       "id": "opi-core-384",
       "audio": "/question-bank-assets/revisions/opi/37ab9ce4e7251d6044e735e5104bd6ca589e813ced14f8b4486ade3847b92d5c/audio/opi/opi-core-384.mp3",
       "audioText": "How should pilots respond if ATC uses non-standard phraseology?",
@@ -186,6 +241,31 @@
       "audioDurationSeconds": 3.168
     }
   ],
-  "declaredCardCount": 18,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 23,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-109902": 0,
+    "opi-fzy-140775": 0,
+    "opi-fzy-109904": 0,
+    "opi-fzy-109901": 0,
+    "opi-fzy-109903": 0,
+    "opi-core-384": 0,
+    "opi-core-365": 0,
+    "opi-core-377": 0,
+    "opi-core-376": 0,
+    "opi-core-374": 0,
+    "opi-core-385": 0,
+    "opi-core-360": 0,
+    "opi-intake-20261019-atc-handover": 0,
+    "opi-core-367": 0,
+    "opi-core-363": 0,
+    "opi-core-362": 0,
+    "opi-core-382": 0,
+    "opi-core-361": 0,
+    "opi-core-359": 0,
+    "opi-core-643": 0,
+    "opi-core-366": 0,
+    "opi-core-383": 0,
+    "opi-core-371": 0
+  }
 }

@@ -1,7 +1,51 @@
 {
   "id": "opi-topic-0135",
-  "name": "EBT循证训练",
+  "name": "EBT（循证训练）",
   "cards": [
+    {
+      "id": "opi-fzy-224158",
+      "audio": "/question-bank-assets/revisions/opi/fa0fdd892a74e506166953ee1370b7ee698681bb8de39fe4fec0c009aa65727d/audio/opi/opi-fzy-224158.mp3",
+      "audioText": "What do you know about EBT?",
+      "studyTier": 1,
+      "taskTitle": "理论学习与飞行训练-22",
+      "audioTextZh": "关于循证训练，你知道多少？",
+      "referenceText": "Evidence-based training refers to training and evaluation based on operational data, characterized by the development and assessment of trainees' comprehensive capabilities including a series of core competencies, rather than measuring their performance in a single event or flight. Broadly speaking, training and evaluation based on multiple data sources such as operation, discipline assessment, and psychological evaluation all fall under evidence-based training.",
+      "referenceTextZh": "循证训练是指基于运行数据的训练和评估，其特点是开发和评估学员含一系列核心胜任力的全面能力，而不是衡量其在某一事件或机动飞行中的绩效表现。广义来看，基于运行、作风评价和心理测评等多数据源的训练和评估均属于循证训练。",
+      "audioDurationSeconds": 1.8
+    },
+    {
+      "id": "opi-fzy-224161",
+      "audio": "/question-bank-assets/revisions/opi/401ac80108c06fce25461a094a555be0874044a850df7a0a07ea2bb54e1bab51/audio/opi/opi-fzy-224161.mp3",
+      "audioText": "What are the advantages of EBT compared to traditional training methods?",
+      "studyTier": 1,
+      "taskTitle": "理论学习与飞行训练-26",
+      "audioTextZh": "相较于传统训练方法，循证训练的优势是什么？",
+      "referenceText": "Compared with traditional training methods, evidence-based training can better enhance pilots' competence, that is, their comprehensive ability to perform tasks by applying relevant knowledge and skills under specific conditions, and improve training efficiency.",
+      "referenceTextZh": "相较于传统训练方法，循证训练能够更好地提升飞行员胜任力，即飞行员在特定条件下运用相关知识、技能执行任务的综合能力，提高培训效率。",
+      "audioDurationSeconds": 4.008
+    },
+    {
+      "id": "opi-fzy-224160",
+      "audio": "/question-bank-assets/revisions/opi/d56423eb44da8797a4e69299685613816e9a314320488c2ecd11c73a7a519b86/audio/opi/opi-fzy-224160.mp3",
+      "audioText": "What are the purpose of EBT?",
+      "studyTier": 1,
+      "taskTitle": "理论学习与飞行训练-25",
+      "audioTextZh": "循证训练的目的是什么？",
+      "referenceText": "The purpose of the EBT training program is to cultivate and assess the ability of pilots to operate safely and effectively in commercial air transport environments, as well as the ability required to handle the most relevant threats based on the evidence collected in accidents, symptoms, flight operations and training.",
+      "referenceTextZh": "EBT训练方案的目的在于培养和评估飞行员在商业航空运输环境中安全、有效运行的能力，以及根据在事故、征候、飞行运行以及训练中收集的证据，处理最相关威胁所需的能力。",
+      "audioDurationSeconds": 1.656
+    },
+    {
+      "id": "opi-fzy-224159",
+      "audio": "/question-bank-assets/revisions/opi/9729694fe0b20ddebb8c606fcabbdd7fbe5e7c53833cefcdd26f8289b5a4e499/audio/opi/opi-fzy-224159.mp3",
+      "audioText": "What topics do you have in the EBT?",
+      "studyTier": 1,
+      "taskTitle": "理论学习与飞行训练-24",
+      "audioTextZh": "在循证训练中，你们有哪些训练主题？",
+      "referenceText": "We have many training topics, such as CRM, bad weather, unstable approach, landing, navigation, go-around, etc.",
+      "referenceTextZh": "我们有很多训练主题，比如CRM，恶劣天气、不稳定进近、着陆、导航、复飞等。",
+      "audioDurationSeconds": 2.184
+    },
     {
       "id": "opi-extra-300",
       "audio": "/question-bank-assets/revisions/opi/d7dbf944dfeeca8d3fdffc1fc239eabcc373816e458a0c5409c0f38dad0b359c/audio/opi/opi-extra-300.mp3",
@@ -108,6 +152,22 @@
       "audioDurationSeconds": 3.864
     }
   ],
-  "declaredCardCount": 10,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 14,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-224158": 1,
+    "opi-fzy-224161": 1,
+    "opi-fzy-224160": 1,
+    "opi-fzy-224159": 1,
+    "opi-extra-300": 2,
+    "opi-extra-304": 0,
+    "opi-extra-306": 0,
+    "opi-extra-298": 2,
+    "opi-extra-301": 2,
+    "opi-extra-307": 0,
+    "opi-extra-308": 0,
+    "opi-extra-299": 2,
+    "opi-extra-309": 0,
+    "opi-extra-302": 2
+  }
 }

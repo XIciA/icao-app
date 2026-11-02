@@ -3,6 +3,46 @@
   "name": "交通",
   "cards": [
     {
+      "id": "opi-extra-139",
+      "audio": "/question-bank-assets/revisions/opi/49ce15916791b7e71c0621f65951d398864f8f572ab4e2f3cdc80e7c6c84b514/audio/opi/opi-extra-139.mp3",
+      "audioText": "How did you get to the test center today?",
+      "taskTitle": "其它-问好-3",
+      "audioTextZh": "你今天是怎么到达考试中心的？",
+      "referenceText": "I came to the test center by subway. It was convenient and punctual, and I avoided the road traffic.",
+      "referenceTextZh": "我是乘地铁到考试中心的。地铁方便准时，也让我避开了道路交通。",
+      "audioDurationSeconds": 2.256
+    },
+    {
+      "id": "opi-extra-157",
+      "audio": "/question-bank-assets/revisions/opi/9f97ede14d398aeab465294ca7ff48a484b494d156bfc0f0f9d16c9653053b7e/audio/opi/opi-extra-157.mp3",
+      "audioText": "What is the traffic like where you live now?",
+      "taskTitle": "其它-基本情况-8",
+      "audioTextZh": "你目前居住地的交通状况怎么样？",
+      "referenceText": "I currently live in Xi'an. Traffic is often busy, and there are frequent traffic jams because it is a large city.",
+      "referenceTextZh": "我目前住在西安。作为一座大城市，这里的交通经常很繁忙，也时常堵车。",
+      "audioDurationSeconds": 2.208
+    },
+    {
+      "id": "opi-extra-168",
+      "audio": "/question-bank-assets/revisions/opi/1710f8fc256d1cc9e2e4177aa7bec25fe11360f4d35c7ec1707217d0f06120fc/audio/opi/opi-extra-168.mp3",
+      "audioText": "Do you think owning a car is necessary in your hometown, and why?",
+      "taskTitle": "其它-基本情况-15",
+      "audioTextZh": "你认为在家乡拥有一辆汽车有必要吗？为什么？",
+      "referenceText": "It depends on a person's needs. A car is useful for families in suburban areas or people who often travel to remote places. For someone living downtown with convenient public transport, owning a car may not be necessary.",
+      "referenceTextZh": "这取决于个人需求。对住在郊区的家庭或经常前往偏远地区的人来说，汽车很有用。对住在市中心且公共交通便利的人来说，可能没有必要拥有汽车。",
+      "audioDurationSeconds": 3.816
+    },
+    {
+      "id": "opi-extra-167",
+      "audio": "/question-bank-assets/revisions/opi/722a4940cf45f412ca7eca08fae7b5fcb7494cb25ac104e5c49b7a1d0593393a/audio/opi/opi-extra-167.mp3",
+      "audioText": "What is your preferred mode of transportation, and why?",
+      "taskTitle": "其它-基本情况-14",
+      "audioTextZh": "你最喜欢哪种交通方式？为什么？",
+      "referenceText": "I prefer to travel by air because it is fast and efficient, especially over long distances. It also lets me experience aviation directly.",
+      "referenceTextZh": "我更喜欢乘飞机旅行，因为它快捷高效，尤其适合长途出行。乘飞机也能让我直接感受航空。",
+      "audioDurationSeconds": 3.12
+    },
+    {
       "id": "opi-fzy-151978",
       "audio": "/question-bank-assets/revisions/opi/0caccfce455b8c6bb2d4b5a859de5eddc461cb451a15b1249abf9c566ce6ac0e/audio/opi/opi-fzy-151978.mp3",
       "audioText": "What's the traffic like in your hometown?",
@@ -146,6 +186,25 @@
       "audioDurationSeconds": 3.264
     }
   ],
-  "declaredCardCount": 13,
-  "categoryId": "opi-category-07"
+  "declaredCardCount": 17,
+  "categoryId": "opi-category-07",
+  "cardStudyTiers": {
+    "opi-extra-139": 0,
+    "opi-extra-157": 0,
+    "opi-extra-168": 0,
+    "opi-extra-167": 0,
+    "opi-fzy-151978": 1,
+    "opi-fzy-118205": 0,
+    "opi-fzy-118206": 0,
+    "opi-fzy-118199": 0,
+    "opi-fzy-151977": 1,
+    "opi-fzy-118204": 0,
+    "opi-fzy-151981": 1,
+    "opi-fzy-151979": 1,
+    "opi-fzy-151980": 1,
+    "opi-fzy-118201": 0,
+    "opi-fzy-118202": 0,
+    "opi-fzy-118200": 0,
+    "opi-fzy-118203": 0
+  }
 }

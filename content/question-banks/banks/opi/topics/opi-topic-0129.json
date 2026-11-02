@@ -3,6 +3,50 @@
   "name": "导航",
   "cards": [
     {
+      "id": "opi-fzy-110170",
+      "audio": "/question-bank-assets/revisions/opi/e9489dd011daa62fcb22f3447cf7d50fae5bd19038a8a372814a3ba57572c89f/audio/opi/opi-fzy-110170.mp3",
+      "audioText": "Tell me about the different approaches you can fly.",
+      "studyTier": 0,
+      "taskTitle": "补充话题-25",
+      "audioTextZh": "告诉我你会哪些进近方式。",
+      "referenceText": "I can fly ILS or LOC approach.",
+      "referenceTextZh": "我会盲降和LOC进近。",
+      "audioDurationSeconds": 2.616
+    },
+    {
+      "id": "opi-fzy-109905",
+      "audio": "/question-bank-assets/revisions/opi/0e1c62ba88ba0614586588e9d6a174f25d35eca5c9d79bf8f89d3993ab84b0be/audio/opi/opi-fzy-109905.mp3",
+      "audioText": "What do you know about the navigation aids in aircraft?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-16",
+      "audioTextZh": "你对飞机上的导航系统了解多少？",
+      "referenceText": "As far as I know, aircraft are installed with several navigation aids, for instance, automatic direction finder (ADF), inertial navigation, compasses, radar navigation, VHF omnidirectional range (VOR) and global navigation satellite system (GNSS).",
+      "referenceTextZh": "据我所知，飞机上安装了多种导航系统，例如，自动测向仪（ADF）、惯性导航、罗盘、雷达导航、全向导航（VOR）和全球导航卫星系统（GNSS）。",
+      "audioDurationSeconds": 2.976
+    },
+    {
+      "id": "opi-fzy-109906",
+      "audio": "/question-bank-assets/revisions/opi/2967ae2d246dab6eea448ebb80bdef487f27aee5d180a05f546ca5302a5c4392/audio/opi/opi-fzy-109906.mp3",
+      "audioText": "Will an aircraft totally lose navigation aids?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-17",
+      "audioTextZh": "飞机的导航系统会完全失效吗？",
+      "referenceText": "As far as I know, total navigation aids failure of aircraft will never happen, since there are several independently navigation operating instruments, pilots can generally get some sort of directions. The plane has its magnetic compass and hopefully gyro compass as well, and pilots also can look through windows to look for landmarks during low level flight, so normally an aircraft won't totally lose navigation aids.",
+      "referenceTextZh": "据我所知，飞机导航系统不会完全失效，因为飞机上有几个独立的导航操控仪器，飞行员大体上可以辨别出方向。飞机上有磁罗盘及陀螺仪，并且在较低高度飞行时，飞行员可以窗外寻找路标，所以飞机一般不会完全失去导航系统。",
+      "audioDurationSeconds": 2.808
+    },
+    {
+      "id": "opi-fzy-109907",
+      "audio": "/question-bank-assets/revisions/opi/84d95d21ed957377f048e14f01b70634e7e021314903653f043522bdbc6d34a4/audio/opi/opi-fzy-109907.mp3",
+      "audioText": "What will you do if you find your navigation system is inaccurate during flight? Have you heard such malfunction that caused an incident?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-18",
+      "audioTextZh": "如果发现导航系统不准确，你会怎样做？你知道这一故障引起的事故吗？",
+      "referenceText": "I will ask for ATC assistance to confirm my current position and heading, then I will disengage autopilot and change to manual control, meanwhile I will request direct route for quick landing. I've heard such accident before, which was Adam Air Flight 574 in 2007. The pilots lost control of the aircraft after they became preoccupied with troubleshooting the inertial navigation system and inadvertently disconnected the autopilot. In this accident, the aircraft crashed with all 102 people on board died.",
+      "referenceTextZh": "我会请ATC协助确认当前位置和航向，之后我会解除自动驾驶状态，手动操纵飞机，同时我会请求较短航线尽快着陆。我曾听过这种事故，2007年发生在亚当航空574号航班上。飞行员专注于处理机上惯性导航系统故障，无意解除了自动驾驶系统，无法控制飞机。这次事故中，这架飞机坠毁，机上全部102名人员遇难。",
+      "audioDurationSeconds": 7.2
+    },
+    {
       "id": "opi-extra-229-part-2",
       "audio": "/question-bank-assets/revisions/opi/c26614efaa198088dddff850debefc69b2425fde33368c63bf174710529b63dd/audio/opi/opi-extra-229-part-2.mp3",
       "audioText": "Which type of approach do you prefer, an ILS approach or a VOR approach, and why?",
@@ -79,8 +123,69 @@
       "referenceText": "The example DA-40 at my flight school has a GPS navigation display, VOR and ILS receivers, and a magnetic compass. I normally use GPS for route guidance and situational awareness, while cross-checking it with charts, radio aids, and visual landmarks when available. I confirm the actual installed and serviceable equipment before each flight.",
       "referenceTextZh": "我所在航校的示例 DA-40 配有 GPS 导航显示器、VOR 和 ILS 接收机，以及磁罗盘。我通常使用 GPS 进行航路引导和保持情景意识，同时在条件允许时用航图、无线电导航设施和目视地标进行交叉核对。每次飞行前，我都会确认飞机实际安装且可以正常使用的设备。",
       "audioDurationSeconds": 6.168
+    },
+    {
+      "id": "opi-fzy-152068",
+      "audio": "/question-bank-assets/revisions/opi/168d6a4056e32d816e6c313c4318d5de3b8b355c621fd27ef5afc7abcda7e8e3/audio/opi/opi-fzy-152068.mp3",
+      "audioText": "What are the advantages of ILS approach compared with VOR approach?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-13",
+      "audioTextZh": "与VOR进近相比，ILS进近有什么优势吗？",
+      "referenceText": "ILS approach is precision approach, while VOR approach is non-precision approach.\nILS approach can provide both localizer and glide slope, but VOR approach only provide localizer.",
+      "referenceTextZh": "ILS进近是精密进近，VOR进近是非精密进近。\nILS进近既提供航向道又提供下滑道，VOR进近只提供航向道。",
+      "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-fzy-153343",
+      "audio": "/question-bank-assets/revisions/opi/eaec3e36d88da12418297d6fc759b1b2256cbb7e0a3ee986f6cbb3c2a17ede7d/audio/opi/opi-fzy-153343.mp3",
+      "audioText": "Which do you think is more difficult, the ILS approach or the VOR/DME approach?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-38",
+      "audioTextZh": "你认为盲降难还是VOR难？",
+      "referenceText": "I think VOR/DME is more difficult. First of all, VOR/DME is a non-precision approach and a lot of data of the aircraft needs to be calculated by the pilot himself. While ILS approach is a kind of precision approach, the pilot can clearly know some flight parameters through the instrument in the cockpit, so the pilot's workload is relatively light. So, I think VOR/DME is harder.",
+      "referenceTextZh": "我认为VOR/DME更难，首先，VOR/DME是非精密进近，飞机的许多数据需要飞行员自己计算。而ILS进近则是一种精密进近，飞行员可以通过驾驶舱中的仪表直观地得知飞行的一些参数，因此，飞行员的任务也比较轻。所以，我觉得 VOR/DME更难。",
+      "audioDurationSeconds": 4.92
+    },
+    {
+      "id": "opi-fzy-152067",
+      "audio": "/question-bank-assets/revisions/opi/f9824b6c3624078b4818891dbd05bdf19bac6be66bd061554fdcba25bfd672b9/audio/opi/opi-fzy-152067.mp3",
+      "audioText": "What navigation aids are there on your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-12",
+      "audioTextZh": "你所飞机型的导航设备有哪些？",
+      "referenceText": "There are GPS, VOR, ILS and so on.",
+      "referenceTextZh": "有GPS，VOR，ILS等。",
+      "audioDurationSeconds": 2.472
+    },
+    {
+      "id": "opi-fzy-152222",
+      "audio": "/question-bank-assets/revisions/opi/69399f5438f30bd08f7622a515b8876bb4dcc269f4836ba4aaf31772ede176fa/audio/opi/opi-fzy-152222.mp3",
+      "audioText": "If you encounter navigation failure, what should you do?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-29",
+      "audioTextZh": "如果你遇到导航系统故障，你会怎么做？",
+      "referenceText": "I will maintain my present heading and position, contact ATC, request radar vectors.",
+      "referenceTextZh": "我将保持当前航向和位置，联系管制员，请求雷达引导。",
+      "audioDurationSeconds": 3.24
     }
   ],
-  "declaredCardCount": 7,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 15,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-fzy-110170": 0,
+    "opi-fzy-109905": 0,
+    "opi-fzy-109906": 0,
+    "opi-fzy-109907": 0,
+    "opi-extra-229-part-2": 0,
+    "opi-extra-233": 0,
+    "opi-report-202610-advanced-navigation": 0,
+    "opi-extra-227": 0,
+    "opi-extra-229": 0,
+    "opi-extra-231": 0,
+    "opi-extra-226": 0,
+    "opi-fzy-152068": 1,
+    "opi-fzy-153343": 1,
+    "opi-fzy-152067": 1,
+    "opi-fzy-152222": 1
+  }
 }

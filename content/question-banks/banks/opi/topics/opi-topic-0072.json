@@ -3,6 +3,50 @@
   "name": "红眼航班",
   "cards": [
     {
+      "id": "opi-fzy-152986",
+      "audio": "/question-bank-assets/revisions/opi/52c0f415d9238d3987cafd0b0a83234fc65894446fa38fcfb438abd4470e5665/audio/opi/opi-fzy-152986.mp3",
+      "audioText": "Have you ever flown red-eye flight?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-48",
+      "audioTextZh": "你飞过红眼航班吗？",
+      "referenceText": "No, I have never flown red-eye flight, because I am a student pilot now. But I have some experience of flying at night.",
+      "referenceTextZh": "不，我没有飞过红眼航班，因为我现在是一名飞行学员，但是我经历或夜航。",
+      "audioDurationSeconds": 1.872
+    },
+    {
+      "id": "opi-fzy-224512",
+      "audio": "/question-bank-assets/revisions/opi/69521bc282b157b4daf8aa8f4a5ca7e9620e63103564e3d13a11ee412454d62c/audio/opi/opi-fzy-224512.mp3",
+      "audioText": "Do you think red-eye flight will be the trend in the future?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-66",
+      "audioTextZh": "你认为红眼航班在未来会变成趋势吗？",
+      "referenceText": "I believe red-eye flights remain necessary but won't become a trend. High-speed rail's advantages in short to medium distances are increasingly obvious. International long-haul and low-cost carriers will continue using them to fill schedules and reduce costs, but their overall share may remain stable.",
+      "referenceTextZh": "我认为红眼航班依然是刚需，但不会成为普遍趋势。高铁在中短途的优势越来越明显。国际远程和低成本航空还会继续用它来填满时刻、降低成本，但总体比重可能会保持稳定。",
+      "audioDurationSeconds": 2.904
+    },
+    {
+      "id": "opi-fzy-152985",
+      "audio": "/question-bank-assets/revisions/opi/3119810d325dba9e0c98fe430eec558da6f40104626d9c583c9be47849413896/audio/opi/opi-fzy-152985.mp3",
+      "audioText": "What's your opinion about red-eye flight?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-47",
+      "audioTextZh": "你怎么看待红眼航班？",
+      "referenceText": "On the one hand, I think red-eye flight can improve the utilization rate of the aircraft and increase the income of the airline company.\nAt the same time, the red-eye flight is cheap and can benefit more people.\nOn the other hand, for the pilot, the red-eye flight will increase the work load and bring adverse effects on the health of the pilot.",
+      "referenceTextZh": "一方面，我认为红眼航班可以提高飞机的利用率，增加航空公司的收入。\n同时，红眼航班价格低廉，可以照顾到更多的人群。\n另一方面，红眼航班对飞行员而言，会增加飞行员的工作负担，给飞行员的身体健康带来不利影响。",
+      "audioDurationSeconds": 2.088
+    },
+    {
+      "id": "opi-fzy-152984",
+      "audio": "/question-bank-assets/revisions/opi/8d2aa2a5b425a945b711c59626ba772ca672d4be58144db8994048c42ab0b682/audio/opi/opi-fzy-152984.mp3",
+      "audioText": "Do you know red-eye flight?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-46",
+      "audioTextZh": "你知道红眼航班吗？",
+      "referenceText": "Yes, I know, red-eye flight refers to flights that operate from late night to early morning and arrive at their destination in the morning of the next day.",
+      "referenceTextZh": "是的，我知道，红眼航班指的是在深夜至凌晨时段运行，并于第二天清晨至早上抵达目的地的航班。",
+      "audioDurationSeconds": 1.464
+    },
+    {
       "id": "opi-core-745",
       "audio": "/question-bank-assets/revisions/opi/3958680fdfe6a691bb92d879ba3b8fbc6acacadfe1686d92c84c4f76a72f7de6/audio/opi/opi-core-745.mp3",
       "audioText": "How can a pilot recover after a red-eye flight?",
@@ -63,6 +107,18 @@
       "audioDurationSeconds": 2.064
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-04"
+  "declaredCardCount": 10,
+  "categoryId": "opi-category-04",
+  "cardStudyTiers": {
+    "opi-fzy-152986": 1,
+    "opi-fzy-224512": 1,
+    "opi-fzy-152985": 1,
+    "opi-fzy-152984": 1,
+    "opi-core-745": 0,
+    "opi-core-744": 0,
+    "opi-core-742": 0,
+    "opi-core-743": 0,
+    "opi-core-746": 0,
+    "opi-core-741": 0
+  }
 }

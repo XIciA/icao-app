@@ -81,8 +81,42 @@
       "referenceText": "The landing gear supports the aircraft during taxi, the takeoff roll, and landing. It absorbs touchdown loads, allows ground steering, and supports braking after landing.",
       "referenceTextZh": "起落架在滑行、起飞滑跑和着陆过程中支撑飞机。它吸收接地载荷，支持地面转向，并在着陆后配合制动。",
       "audioDurationSeconds": 1.872
+    },
+    {
+      "id": "opi-fzy-152216",
+      "audio": "/question-bank-assets/revisions/opi/216edc69df36ecc8ef0ac3854a0cf65a48316467e296ffa2f3aec6a7749e5bca/audio/opi/opi-fzy-152216.mp3",
+      "audioText": "How do you determine whether the landing gears are extended or not?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-23",
+      "audioTextZh": "你如何确定起落架是否放下？",
+      "referenceText": "I fly C172, our landing gear is fixed/non-retractable landing gear.\nAs far as I know, there are green lights indication on the panel to show the landing gear conditions.",
+      "referenceTextZh": "我飞塞斯纳172，我们的起落架是固定式的起落架。\n据我所知，在显示面板上会有绿灯显示起落架状态。",
+      "audioDurationSeconds": 3.384
+    },
+    {
+      "id": "opi-fzy-152215",
+      "audio": "/question-bank-assets/revisions/opi/03527c9b24ec58c8048cb12a1ef2710f00f8f9570fd979c1f2c846af03104779/audio/opi/opi-fzy-152215.mp3",
+      "audioText": "If your landing gears can not be extended, what should you do?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-22",
+      "audioTextZh": "如果起落架不能放下，你会怎么做？",
+      "referenceText": "If the landing gears can't be extended, I will check landing gear and try manual extension.\nI will also report this situation to ATC, and request low pass for visual check.\nIf the landing gears are still not extended, I will make a belly landing.",
+      "referenceTextZh": "如果起落架不能放下，我将检查起落架和尝试手动放下。\n我会向管制员报告这个情况，并请求低空通场进行目视检查。\n如果起落架还没有放下，我必须做机腹着陆。",
+      "audioDurationSeconds": 3.336
     }
   ],
-  "declaredCardCount": 8,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 10,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-core-486": 0,
+    "opi-core-487": 0,
+    "opi-core-488": 0,
+    "opi-core-491": 0,
+    "opi-core-482": 0,
+    "opi-core-492": 0,
+    "opi-core-490": 0,
+    "opi-core-485": 0,
+    "opi-fzy-152216": 1,
+    "opi-fzy-152215": 1
+  }
 }

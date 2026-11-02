@@ -11,6 +11,7 @@ const proofPath = 'docs/records/workstreams/question-bank-standardization-202610
 const displayChanges = read('docs/workstreams/next-round-2026-10/display-field-changes.json');
 const finalPolishChanges = read('docs/workstreams/next-round-2026-10/final-polish-card-changes.json');
 const relocations = read('content/question-banks/relocations-20261101.json');
+const directoryMoves = read('content/question-banks/opi-directory-20261102.json').moves;
 const resources = read('content/question-banks/resources/manifest.source.json');
 const sourceBanks = read('src/features/question-bank/data/question-bank.json');
 const release = prepareNativeContentRelease(
@@ -45,9 +46,12 @@ function proof(bank) {
       else if (Array.isArray(content[field])) content[field] = content[field].map(text => lexicalSignature(text, { bankId: bank.id, field }));
     }
     if (content.reportedPrompts) content.reportedPrompts = Object.fromEntries(Object.entries(content.reportedPrompts).map(([id, prompts]) => [id, prompts.map(text => lexicalSignature(text, { bankId: bank.id, field: 'audioText' }))]));
+    const directoryMove = directoryMoves.find(row => row.bankId === bank.id && row.cardId === card.id && row.toCategoryId === category.id && row.toTopicId === topic.id);
+    const previousCategory = directoryMove?.fromCategoryId ?? category.id;
+    const previousTopic = directoryMove?.fromTopicId ?? topic.id;
     const relocation = relocations.find(row => row.bankId === bank.id && row.cardId === card.id
-      && row.toCategoryId === category.id && row.toTopicId === topic.id);
-    return { categoryId: relocation?.fromCategoryId ?? category.id, topicId: relocation?.fromTopicId ?? topic.id, content };
+      && row.toCategoryId === previousCategory && row.toTopicId === previousTopic);
+    return { categoryId: relocation?.fromCategoryId ?? previousCategory, topicId: relocation?.fromTopicId ?? previousTopic, content };
   }))).sort((a, b) => a.content.id.localeCompare(b.content.id));
   return { cards: tuples.length, checksum: createHash('sha256').update(JSON.stringify(stable(tuples))).digest('hex'), dependentSequenceChecksum: createHash('sha256').update(JSON.stringify(dependentSequences)).digest('hex') };
 }

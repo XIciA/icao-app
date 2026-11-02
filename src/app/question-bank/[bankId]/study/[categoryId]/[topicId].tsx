@@ -1,3 +1,4 @@
+import { createCardDirectory } from '@/features/question-bank/data/card-directory';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
@@ -18,8 +19,9 @@ export default function QuestionBankStudyRoute() {
   const state = useQuestionBank(bankId);
 
   if (state.status === 'loading') return <GlobalLoadingScreen />;
-  const category = state.status === 'ready' ? state.data.categories.find((item) => item.id === categoryId) : undefined;
-  const topic = category?.topics.find((item) => item.id === topicId);
+  const location = state.status === 'ready' && cardId ? createCardDirectory([state.data]).get({ bankId, cardId }) : undefined;
+  const category = state.status === 'ready' ? state.data.categories.find((item) => item.id === (location?.categoryId ?? categoryId)) : undefined;
+  const topic = category?.topics.find((item) => item.id === (location?.topicId ?? topicId));
 
   const targetCardMissing = Boolean(cardId && topic && !topic.cards.some((card) => card.id === cardId));
   const returnFromRadio = returnTo === 'radio';

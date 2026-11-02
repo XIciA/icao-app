@@ -31,8 +31,49 @@
       "referenceText": "The pitot tube collects total air pressure and provides an input used to measure the aircraft's airspeed.",
       "referenceTextZh": "空速管收集全压，并提供用于测量飞机空速的输入信号。",
       "audioDurationSeconds": 1.896
+    },
+    {
+      "id": "opi-fzy-152991",
+      "audio": "/question-bank-assets/revisions/opi/6a3ca0b5846810e28cdd805df59373beaa604e4194e57a8809b9ea5e08452565/audio/opi/opi-fzy-152991.mp3",
+      "audioText": "What do you know about pitot tube?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-35",
+      "audioTextZh": "你知道皮托管吗？",
+      "referenceText": "Pitot tube is a very important measuring tool on aircraft. It must be installed outside the aircraft in an area where the airflow is less affected by the aircraft, usually directly in front of the nose, the tail or in front of the wing tip.",
+      "referenceTextZh": "空速管是飞机上极为重要的测量工具。它的安装位置一定要在飞机外面气流较少受到飞机影响的区域，一般在机头正前方，垂尾或翼尖前方。",
+      "audioDurationSeconds": 1.992
+    },
+    {
+      "id": "opi-fzy-152992",
+      "audio": "/question-bank-assets/revisions/opi/1754cdeb0643aff0b2cf9562ed3ecf03fe0b844c20bdfcc439030c09e3f79912/audio/opi/opi-fzy-152992.mp3",
+      "audioText": "Is there any indication if the pitot tube is blocked?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-36",
+      "audioTextZh": "皮托管堵塞有什么提示（迹象）吗？",
+      "referenceText": "In general, if our speed and altitude readings are significantly different from what they were when we were flying, it could because the pitot tube is blocked. So we can use this information to determine if this is the case or not.",
+      "referenceTextZh": "一般来说，如果我们的速度和高度读数与飞行时明显不同，可能是因为皮托管堵塞了。所以我们可以用这些信息来判断是否出现了这样的情况。",
+      "audioDurationSeconds": 2.832
+    },
+    {
+      "id": "opi-fzy-152993",
+      "audio": "/question-bank-assets/revisions/opi/0eaec7c869b1e50081e36c51c1eb6c778ee4a363ff9f709a3ad904c468fd1b5e/audio/opi/opi-fzy-152993.mp3",
+      "audioText": "If the pitot tube is blocked during flying, what is the procedure of dealing with it?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-37",
+      "audioTextZh": "如果皮托管在飞行中堵塞，处理的程序是什么？",
+      "referenceText": "Usually, during flight, pitot tube blockage is caused by ice accumulation, so we will turn on the pitot tube heating system. If the problem remains unsolved, we will perform the checklist, inform the controller and request the necessary assistance.",
+      "referenceTextZh": "通常情况，在飞行中皮托管堵塞是由于积冰引起的，因此我们会开启皮托管加热系统。如果问题依旧无法解决，我们会执行检查单，然后告知管制员，并申请必要的帮助",
+      "audioDurationSeconds": 4.464
     }
   ],
-  "declaredCardCount": 3,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 6,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-extra-335": 0,
+    "opi-extra-336": 0,
+    "opi-extra-334": 0,
+    "opi-fzy-152991": 1,
+    "opi-fzy-152992": 1,
+    "opi-fzy-152993": 1
+  }
 }

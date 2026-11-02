@@ -3,6 +3,28 @@
   "name": "禁烟政策",
   "cards": [
     {
+      "id": "opi-fzy-166042",
+      "audio": "/question-bank-assets/revisions/opi/b112746a0ebf772e8c77a7d65daa4773fda8cd993088a38b0acbce3fd09b8940/audio/opi/opi-fzy-166042.mp3",
+      "audioText": "Does your flight instructor smoke?",
+      "studyTier": 1,
+      "taskTitle": "Hobbies/生活习惯-12",
+      "audioTextZh": "你的教员吸烟吗？",
+      "referenceText": "My instructor does not smoke, and he often tells us not to smoke.",
+      "referenceTextZh": "我的教员不吸烟，他也经常告诉我们不要吸烟。",
+      "audioDurationSeconds": 1.848
+    },
+    {
+      "id": "opi-fzy-166043",
+      "audio": "/question-bank-assets/revisions/opi/d6304b9b659b0b50c01376c0d75d996682c803ca060cec640e13f55b39a8e6e9/audio/opi/opi-fzy-166043.mp3",
+      "audioText": "Do you think it is right for pilots to smoke?",
+      "studyTier": 1,
+      "taskTitle": "Hobbies/生活习惯-14",
+      "audioTextZh": "你认为飞行员吸烟对吗？",
+      "referenceText": "No, I don't think pilots should smoke, especially in the cockpit. Smoking in the cockpit will not only pollute the cockpit environment, but also cause fire and this would be a great threat to flight safety.",
+      "referenceTextZh": "我觉得飞行员不应该吸烟，特别是在驾驶舱里更不能吸烟。飞行员在驾驶舱吸烟不仅会污染驾驶舱环境，也容易引发火灾，这会极大地威胁飞行安全。",
+      "audioDurationSeconds": 2.472
+    },
+    {
       "id": "opi-core-664",
       "audio": "/question-bank-assets/revisions/opi/fb505ef745acf06ce7e2547a99fdf85e9b8f1a04a387c98972f9a2d546c09d1a/audio/opi/opi-core-664.mp3",
       "audioText": "Should flight instructors avoid smoking in front of trainees, and why?",
@@ -63,6 +85,16 @@
       "audioDurationSeconds": 3.384
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-04"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-04",
+  "cardStudyTiers": {
+    "opi-fzy-166042": 1,
+    "opi-fzy-166043": 1,
+    "opi-core-664": 0,
+    "opi-core-663": 0,
+    "opi-core-665": 0,
+    "opi-core-666": 0,
+    "opi-core-660": 0,
+    "opi-core-662": 0
+  }
 }

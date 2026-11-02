@@ -3,6 +3,28 @@
   "name": "冬夏季运行",
   "cards": [
     {
+      "id": "opi-fzy-224484",
+      "audio": "/question-bank-assets/revisions/opi/2341ed3dfd15e151ba0a8ef215c99f30c3482456c5bd7aa49c8bea6757d4ffd6/audio/opi/opi-fzy-224484.mp3",
+      "audioText": "How can you make a safe takeoff or landing on compact snow?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-65",
+      "audioTextZh": "在紧实的雪面，如何安全起飞着陆？",
+      "referenceText": "When taking off and landing on a compact snow surface, it is necessary to ensure that the runway braking action meets the standards and to conduct a controlled approach with reduced speed. Maintain a stable configuration, avoid forceful operations, use maximum braking and reverse thrust to reduce speed promptly, and prevent any runway excursion throughout the process.",
+      "referenceTextZh": "在紧实雪面起飞着陆，需确认跑道刹车性能达标并减速进近。严格保持稳定姿态，避免猛烈操作，利用最大刹车和反推及时减速，并全程防冲出跑道。",
+      "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-fzy-224481",
+      "audio": "/question-bank-assets/revisions/opi/5bf796efe948782dcabbe698cc16b5cc02d535bccc29e84bb660211d11551619/audio/opi/opi-fzy-224481.mp3",
+      "audioText": "What are the differences of operating your aircraft in summer and in winter?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-63",
+      "audioTextZh": "在冬季和夏季运行的区别是什么？",
+      "referenceText": "During summer operations, pilots may encounter high temperatures, thunderstorms, and severe convective weather, which can reduce engine performance and require careful management of severe turbulence. In winter operations, pilots need to focus on low temperatures, icing, snow accumulation, and low visibility, with emphasis on de-icing/anti-icing procedures and cold-weather starts.",
+      "referenceTextZh": "飞机在夏季运行时，飞行员可能会遇到高温、雷暴和强对流天气，因此发动机性能会降低，同时也需要注意严重颠簸管理；冬季运行时，飞行员则需要重点关注低温、积冰、积雪和低能见度，侧重除防冰程序和低温启动。",
+      "audioDurationSeconds": 3.696
+    },
+    {
       "id": "opi-intake-20261019-snow-protection",
       "kind": "text",
       "audio": "/question-bank-assets/revisions/opi/be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e/audio/opi/opi-intake-20261019-snow-protection.mp3",
@@ -113,6 +135,19 @@
       "audioDurationSeconds": 3.408
     }
   ],
-  "declaredCardCount": 9,
-  "categoryId": "opi-category-01"
+  "declaredCardCount": 11,
+  "categoryId": "opi-category-01",
+  "cardStudyTiers": {
+    "opi-fzy-224484": 1,
+    "opi-fzy-224481": 1,
+    "opi-intake-20261019-snow-protection": 0,
+    "opi-supplement-20260926-winter-delay": 2,
+    "opi-intake-20261019-hot-ground": 0,
+    "opi-intake-20261019-snowstorm": 0,
+    "opi-supplement-20260926-cold-check": 2,
+    "opi-supplement-20260926-winter-training": 2,
+    "opi-supplement-20260926-winter-pressure": 2,
+    "opi-extra-331": 2,
+    "opi-extra-330": 2
+  }
 }

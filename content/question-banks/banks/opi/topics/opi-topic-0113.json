@@ -1,7 +1,18 @@
 {
   "id": "opi-topic-0113",
-  "name": "EFIS电子飞行仪表系统",
+  "name": "EFIS（电子飞行仪表系统）",
   "cards": [
+    {
+      "id": "opi-fzy-140768",
+      "audio": "/question-bank-assets/revisions/opi/3ce35352a2e459e563e6afafdf7725e922c8632e123f44c9a4e5267182ec647d/audio/opi/opi-fzy-140768.mp3",
+      "audioText": "What does EFIS stand for? What is the use of EFIS?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-30",
+      "audioTextZh": "EFIS代表的意思是什么？EFIS的作用是什么？",
+      "referenceText": "EFIS stands for electronic flight instrument system. It consists of PFD and MFD. PFD shows primary flight data, such as altitude, heading, attitude, airspeed, vertical speed and yaw. MFD is used to display navigation information, weather information, flight plan and other important information. All the data are displayed on EFIS vividly and accurately. It helps to reduce our workload, improve situation awareness, and enhance flight safety.",
+      "referenceTextZh": "EFIS代表电子飞行仪表系统，它由主要飞行显示器（PFD）和多功能飞行显示器（MFD）组成。PFD显示主要飞行数据，例如高度、航向、姿态、速度、垂直速度、转弯；MFD用来显示导航信息、天气信息、飞行计划以及其他重要信息。所有这些信息都生动准确地显示在EFIS上，EFIS有助于减轻工作负荷，提高情景意识，增强飞行安全。",
+      "audioDurationSeconds": 3.024
+    },
     {
       "id": "opi-extra-080-part-2",
       "audio": "/question-bank-assets/revisions/opi/0954f33909504895396355feb8cce2757ca5960954850e4709f4f2ba8df07641/audio/opi/opi-extra-080-part-2.mp3",
@@ -53,6 +64,14 @@
       "audioDurationSeconds": 1.512
     }
   ],
-  "declaredCardCount": 5,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 6,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-140768": 0,
+    "opi-extra-080-part-2": 0,
+    "opi-extra-075": 0,
+    "opi-extra-076": 0,
+    "opi-extra-078": 0,
+    "opi-extra-080": 0
+  }
 }

@@ -1,3 +1,4 @@
+import { storageTarget } from '../data/directory-storage-identity';
 import { normalizeAnnotationDefinitions } from '@icao/contracts/annotation-management';
 import Storage from '@/platform/storage';
 
@@ -208,6 +209,7 @@ export function createEmptyAnnotationEntry(target: QuestionBankCardTarget): Ques
 }
 
 export function setAnnotationEntry(store: QuestionBankAnnotationStore, target: QuestionBankCardTarget, entry: QuestionAnnotationEntry) {
+  target = storageTarget(target);
   const entries = { ...store.entries };
   const key = questionBankCardTargetKey(target);
   const deletedEntries = { ...store.deletedEntries };

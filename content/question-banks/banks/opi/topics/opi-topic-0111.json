@@ -3,6 +3,17 @@
   "name": "空调系统",
   "cards": [
     {
+      "id": "opi-fzy-109896",
+      "audio": "/question-bank-assets/revisions/opi/7cf80331eb1cc600a8c43cdab3e80c9b2f04988c0141da23c7b275b79adc6e7a/audio/opi/opi-fzy-109896.mp3",
+      "audioText": "What's the function of the air conditioning system and what would you do if you experienced air conditioning system malfunction in flight?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-8",
+      "audioTextZh": "空气调节系统的功能是什么？飞行中如果遇到空气调节系统失灵怎么办？",
+      "referenceText": "As far as I know, the air conditioning system is applied to heat and cool the cabin and cockpit to desired temperature settings. If I encountered air conditioning\nmalfunction in flight, I would first do trouble shooting according to the SOPs, and if it's hard to solve the problem, I will descend to a low altitude to assure safety and request to land at the neatest airport as soon as possible.",
+      "referenceTextZh": "据我所知，空气调节系统用于加热或冷却客舱和座舱温度到所需温度值。若飞行中空气调节系统失灵，首先我会按照操作程序进行故障排查，如不能解决问题，我会操控飞机较低高度以确保安全，并迅速向最近的机场发送降落请求。",
+      "audioDurationSeconds": 6.768
+    },
+    {
       "id": "opi-extra-062",
       "audio": "/question-bank-assets/revisions/opi/a5005d5f4fd886a5c3d4bf58870ed2be4b0df96aa83e4b2436730e5da2e4ee7f/audio/opi/opi-extra-062.mp3",
       "audioText": "What are the main functions of an aircraft's air-conditioning system?",
@@ -64,8 +75,53 @@
       "referenceText": "The crew should follow the SOP and checklist and determine whether cabin temperature or pressurization is affected. They should use oxygen masks if required by a pressurization problem. If temperature cannot be controlled or safety is threatened, they should inform ATC and divert to a suitable airport.",
       "referenceTextZh": "机组应遵循标准操作程序和检查单，并判断客舱温度或增压是否受到影响。如果增压问题要求使用氧气面罩，就应及时使用。如果无法控制温度或安全受到威胁，应通知空中交通管制并改航至合适机场。",
       "audioDurationSeconds": 3.984
+    },
+    {
+      "id": "opi-fzy-152061",
+      "audio": "/question-bank-assets/revisions/opi/52223aca4ba4bef1fa54aa436898b9aea81f87e0e68f578612f7d76218596d3d/audio/opi/opi-fzy-152061.mp3",
+      "audioText": "What are the functions of air conditioning system?",
+      "studyTier": 2,
+      "taskTitle": "飞机与飞机系统-7",
+      "audioTextZh": "空调系统的作用是什么？",
+      "referenceText": "Air conditioning system is used to provide cool air and warm air to adjust the temperature.\nAnd make persons on board safe and comfortable.",
+      "referenceTextZh": "空调系统用来提供冷暖气，调节温度。\n使机上人员舒适安全。",
+      "audioDurationSeconds": 2.496
+    },
+    {
+      "id": "opi-fzy-152230",
+      "audio": "/question-bank-assets/revisions/opi/f01e8a78c1943faf7f938aabac36a58d9a18de8c26f20c6943a211a72b95dc0e/audio/opi/opi-fzy-152230.mp3",
+      "audioText": "If air conditioning system fails, will it affect flight safety?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-30",
+      "audioTextZh": "如果空调系统失效，会影响飞行安全吗？",
+      "referenceText": "If the air conditioning system fails, the temperature will be too high or too low;\nThe pressurization system may be out of work, so it will affect flight safety.",
+      "referenceTextZh": "如果空调系统失效，温度会太高或太低；\n增压系统也有可能失效，因此会影响飞行安全。",
+      "audioDurationSeconds": 3.768
+    },
+    {
+      "id": "opi-fzy-152231",
+      "audio": "/question-bank-assets/revisions/opi/7e48740be9935525bbf363345a635249718bf883212198d08b17ed95f582a138/audio/opi/opi-fzy-152231.mp3",
+      "audioText": "What will you do when air conditioning system fails?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-31",
+      "audioTextZh": "空调系统失效后，你会怎么做？",
+      "referenceText": "If the air conditioning system fails during takeoff, we will return to land.\nBecause if the air conditioning system fails, the temperature will be too high or too low;\nAnd the pressurization system may be out of work, it may affect flight safety.",
+      "referenceTextZh": "如果空调系统起飞时失效，我们将返场着陆。\n因为空调系统失效，机内温度会过高或过低；\n增压系统也会失效，会影响飞行安全。",
+      "audioDurationSeconds": 2.76
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 10,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-fzy-109896": 0,
+    "opi-extra-062": 0,
+    "opi-extra-060": 0,
+    "opi-extra-063": 0,
+    "opi-extra-061": 0,
+    "opi-intake-20261019-packs-takeoff": 0,
+    "opi-extra-064": 0,
+    "opi-fzy-152061": 2,
+    "opi-fzy-152230": 1,
+    "opi-fzy-152231": 1
+  }
 }

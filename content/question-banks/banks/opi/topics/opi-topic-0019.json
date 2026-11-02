@@ -3,6 +3,28 @@
   "name": "舱单",
   "cards": [
     {
+      "id": "opi-fzy-152096",
+      "audio": "/question-bank-assets/revisions/opi/437284965d0ec1d31e455353c03f1e0a0913218a79997d1195cb72584f850987/audio/opi/opi-fzy-152096.mp3",
+      "audioText": "What do you know about the loading sheet? What information is included in the loading sheet?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-20",
+      "audioTextZh": "你知道舱单吗？舱单中都有哪些信息？",
+      "referenceText": "Loading sheet records the weight and balance of aircraft and other related data, it is very important for flight performance.\nThe loading sheet includes POB, weight of cargo and baggage, zero fuel weight, takeoff weight, landing weight, CG and so on.",
+      "referenceTextZh": "舱单记录了飞机的重量平衡等相关数据，对飞行性能非常重要。\n舱单包括机上人员、货物和行李重量、零燃油重量、起飞重量、着陆重量、重心等。",
+      "audioDurationSeconds": 4.728
+    },
+    {
+      "id": "opi-fzy-152097",
+      "audio": "/question-bank-assets/revisions/opi/65a405f7ebece211af5442bf020e3cbe12e85102e03a65ade19d2d27461a8d9c/audio/opi/opi-fzy-152097.mp3",
+      "audioText": "Which department is responsible to provide loading sheet to pilots?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-21",
+      "audioTextZh": "哪个部门负责向飞行员提供舱单？",
+      "referenceText": "Usually the company operation or dispatcher will provide the loading sheet to pilots.",
+      "referenceTextZh": "通常情况下，公司运营或者签派会给飞行员提供舱单。",
+      "audioDurationSeconds": 3.72
+    },
+    {
       "id": "opi-core-305",
       "audio": "/question-bank-assets/revisions/opi/cde7a052c87d67376a49e1a55c878493d9d570d370b735ba378550514068c331/audio/opi/opi-core-305.mp3",
       "audioText": "What information is included on a load sheet?",
@@ -41,8 +63,40 @@
       "referenceText": "A load sheet provides weight-and-balance information for preflight preparation. It helps the pilot check passenger and cargo loads, fuel quantity, and center of gravity and confirm that the aircraft is properly balanced.",
       "referenceTextZh": "载重平衡表为飞行前准备提供重量和平衡信息。它帮助飞行员核对旅客和货物载荷、燃油量及重心，并确认飞机配载平衡正确。",
       "audioDurationSeconds": 1.8
+    },
+    {
+      "id": "opi-fzy-140782",
+      "audio": "/question-bank-assets/revisions/opi/4cd01b8abb7f7e3d80e611c4de5b293e3d0ff0016407cd5858c728c713a3bfdb/audio/opi/opi-fzy-140782.mp3",
+      "audioText": "What is the function of loading sheet?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-39",
+      "audioTextZh": "舱单的作用是什么？",
+      "referenceText": "Loading sheet is very important, it includes all information about weight and balance, such as gross weight, CG, POB (persons on board), cargo, fuel quantity and so on.",
+      "referenceTextZh": "舱单非常重要，它包含所有与载重和平衡相关的信息，例如总重，重心（CG），机上人员（POB），货物，燃油重量等。",
+      "audioDurationSeconds": 1.872
+    },
+    {
+      "id": "opi-fzy-140783",
+      "audio": "/question-bank-assets/revisions/opi/13d1685d18e27e4879a3740bb69078356755ab59355ffe467a28a8bd52721a44/audio/opi/opi-fzy-140783.mp3",
+      "audioText": "Which department is responsible for providing the loading sheet?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-40",
+      "audioTextZh": "哪个部门负责提供舱单？",
+      "referenceText": "The dispatch department is responsible for the provision of the loading sheet.",
+      "referenceTextZh": "签派部门负责提供舱单。",
+      "audioDurationSeconds": 3.384
     }
   ],
-  "declaredCardCount": 4,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-152096": 1,
+    "opi-fzy-152097": 1,
+    "opi-core-305": 0,
+    "opi-core-307": 0,
+    "opi-core-303": 0,
+    "opi-core-304": 0,
+    "opi-fzy-140782": 0,
+    "opi-fzy-140783": 0
+  }
 }

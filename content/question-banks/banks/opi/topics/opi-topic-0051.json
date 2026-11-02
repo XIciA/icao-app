@@ -3,6 +3,17 @@
   "name": "航食",
   "cards": [
     {
+      "id": "opi-fzy-110155",
+      "audio": "/question-bank-assets/revisions/opi/56033ab60d49e8c66d0968e53fb5c5a5be898768c3327524168a88b46d9da84b/audio/opi/opi-fzy-110155.mp3",
+      "audioText": "Which do you like better, in-flight meal or home cooking?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-5",
+      "audioTextZh": "你更喜欢飞机餐还是家常菜？",
+      "referenceText": "I prefer home cooking. Airline menus are often high in energy, fat and sodium, and I could not consume as much energy as the meals offer. Apart from that, being a pilot, flying in the sky most time, I prefer the feeling at home.",
+      "referenceTextZh": "我更喜欢家常菜。通常飞机餐的能量、脂肪和钠较高，我无法消耗飞机餐提供的能量。此外，作为飞行员，大部分时间都在空中飞行，我更喜欢在家的感觉。",
+      "audioDurationSeconds": 3.12
+    },
+    {
       "id": "opi-core-606",
       "audio": "/question-bank-assets/revisions/opi/e5bbc4208f136e22fade57431e9803765677e880f043f906c8c6ccd3bf5ae58d/audio/opi/opi-core-606.mp3",
       "audioText": "Should the captain and first officer avoid eating the same meal, and why?",
@@ -23,6 +34,11 @@
       "audioDurationSeconds": 3.48
     }
   ],
-  "declaredCardCount": 2,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 3,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-110155": 0,
+    "opi-core-606": 0,
+    "opi-core-604": 0
+  }
 }

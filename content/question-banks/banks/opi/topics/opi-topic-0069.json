@@ -1,7 +1,29 @@
 {
   "id": "opi-topic-0069",
-  "name": "QRH快速检查单",
+  "name": "QRH（快速检查单）",
   "cards": [
+    {
+      "id": "opi-fzy-152091",
+      "audio": "/question-bank-assets/revisions/opi/03b8b8a54f95e609602528aacd3244e3477353b329bb31bb0f2fceab201e721d/audio/opi/opi-fzy-152091.mp3",
+      "audioText": "What is QRH? Why is it helpful to the pilot?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-15",
+      "audioTextZh": "QRH是什么？为什么对飞行员有很大的帮助？",
+      "referenceText": "QRH refers to quick reference handbook.\nQRH will reduce workload, avoid human errors and improve flight safety.",
+      "referenceTextZh": "QRH指的是快速检查单。\nQRH可以降低工作负荷，减少人为失误，提高飞行安全。",
+      "audioDurationSeconds": 3.12
+    },
+    {
+      "id": "opi-fzy-109934",
+      "audio": "/question-bank-assets/revisions/opi/9d43482729d689b3498d6442ae14d7808572ef6d99400b79d111ea860e99fb22/audio/opi/opi-fzy-109934.mp3",
+      "audioText": "Can you give me a brief introduction of QRH?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-13",
+      "audioTextZh": "能否简单地介绍下QRH？",
+      "referenceText": "Yes. QRH is short for Quick Reference Handbook. It includes normal checklist and abnormal checklist used in abnormal situations, such as engine failure and system malfunction. The main purpose of QRH is to remind pilots of relevant procedures. Moreover, using QRH reduces human errors and increases efficiency.",
+      "referenceTextZh": "好的。QRH是快速检查清单的英文简称。它包括正常检查单和在异常情况下使用的非正常检查单，如发动机故障和系统故障。QRH的主要作用是提醒飞行员相关程序。此外，使用快速检查单能够减少人为错误并提高效率。",
+      "audioDurationSeconds": 2.784
+    },
     {
       "id": "opi-core-725",
       "audio": "/question-bank-assets/revisions/opi/15ab9462efef0cf1b7d292846fe37c9acc774830063c5bd3f4250593cfd89221/audio/opi/opi-core-725.mp3",
@@ -33,6 +55,13 @@
       "audioDurationSeconds": 2.88
     }
   ],
-  "declaredCardCount": 3,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 5,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-152091": 1,
+    "opi-fzy-109934": 0,
+    "opi-core-725": 0,
+    "opi-core-727": 0,
+    "opi-core-724": 0
+  }
 }

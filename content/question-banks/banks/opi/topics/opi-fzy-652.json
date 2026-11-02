@@ -1,7 +1,110 @@
 {
   "id": "opi-fzy-652",
-  "name": "居住与工作地点",
+  "name": "家乡、居住与旅行",
   "cards": [
+    {
+      "id": "opi-fzy-110167",
+      "audio": "/question-bank-assets/revisions/opi/3072d97544fe309e354f60efa0ef95aaebae26cdecdfcd214c70d09d0cf788be/audio/opi/opi-fzy-110167.mp3",
+      "audioText": "Which country do you like to visit most in the world?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-22",
+      "audioTextZh": "你最想去哪个国家旅行？",
+      "referenceText": "I would like to visit Egypt, which is one of the four civilized ancient countries in the world just like China. It is a famous tourist resort with its fabulous natural environment and attractive customs which will actually relax me.",
+      "referenceTextZh": "我想去埃及，和中国一样，埃及是四大文明古国之一。埃及是著名的旅游胜地，有着极好的自然环境和吸引人的风俗文化，在那里我可以放松身心。",
+      "audioDurationSeconds": 2.688
+    },
+    {
+      "id": "opi-fzy-110176",
+      "audio": "/question-bank-assets/revisions/opi/72c6c5b1d56c5d33d73a75c7e1520f689996646d754997a06bc3410d0a44dcc3/audio/opi/opi-fzy-110176.mp3",
+      "audioText": "Will you have a vacation recently?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-31",
+      "audioTextZh": "你最近有假期吗？",
+      "referenceText": "Yes, next week I will have a five days vacation with my wife. / No, being a pilot means rare vacation time.",
+      "referenceTextZh": "下周我有五天假期，我会和妻子一起度假。/ 没有，飞行员的假期很少。",
+      "audioDurationSeconds": 1.944
+    },
+    {
+      "id": "opi-fzy-110154",
+      "audio": "/question-bank-assets/revisions/opi/69707fdc43026b2e8b2c90a5153aed7aebeae15238c816d58f1d9b24e068d60d/audio/opi/opi-fzy-110154.mp3",
+      "audioText": "What problems you may have when being abroad?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-3",
+      "audioTextZh": "你在国外时会遇到什么样的问题？",
+      "referenceText": "I am afraid the language barrier will come first, and another problem is that I'm not used to foreign food.",
+      "referenceTextZh": "首先要考虑的就是语言障碍，另一个问题就是我不习惯国外的食物。",
+      "audioDurationSeconds": 2.208
+    },
+    {
+      "id": "opi-extra-166",
+      "audio": "/question-bank-assets/revisions/opi/6eec8af7e91ebb5a15581df34ff989213963a2140d75ab56e616ec9ceca74a80/audio/opi/opi-extra-166.mp3",
+      "audioText": "What interesting places can visitors see in your hometown?",
+      "taskTitle": "其它-基本情况-13",
+      "audioTextZh": "游客可以在你的家乡参观哪些有趣的地方？",
+      "referenceText": "Visitors can see giant pandas at the Chengdu Research Base of Giant Panda Breeding. They can also visit Jinli Ancient Street to experience traditional Sichuan culture and the Dujiangyan Irrigation System to see remarkable ancient engineering.",
+      "referenceTextZh": "游客可以在成都大熊猫繁育研究基地看到大熊猫。他们也可以到锦里古街体验传统四川文化，或参观都江堰水利工程，了解非凡的古代工程技术。",
+      "audioDurationSeconds": 3.144
+    },
+    {
+      "id": "opi-extra-163",
+      "audio": "/question-bank-assets/revisions/opi/c3ff9bfe1c66c2475afb2b1c804bdeb3409471d47eb1bd13fbffdba8daaa7e0e/audio/opi/opi-extra-163.mp3",
+      "audioText": "What is your hometown famous for?",
+      "taskTitle": "其它-基本情况-10",
+      "audioTextZh": "你的家乡因什么而闻名？",
+      "referenceText": "My hometown is Chengdu in Sichuan Province. It is famous for Sichuan food, especially hot pot and mapo tofu, and for attractions such as the Chengdu Research Base of Giant Panda Breeding.",
+      "referenceTextZh": "我的家乡是四川省成都市。那里以川菜闻名，尤其是火锅和麻婆豆腐，还有成都大熊猫繁育研究基地等景点。",
+      "audioDurationSeconds": 1.824
+    },
+    {
+      "id": "opi-extra-156",
+      "audio": "/question-bank-assets/revisions/opi/404c70b9c677da326b9799799fc3f8787b197234e12dd3727225abb6fd201d68/audio/opi/opi-extra-156.mp3",
+      "audioText": "What is your favorite city, and why?",
+      "taskTitle": "其它-基本情况-7",
+      "audioTextZh": "你最喜欢哪座城市？为什么？",
+      "referenceText": "My favourite city is Chengdu because it is my hometown and my family lives there. I enjoy its relaxed atmosphere, Sichuan food, and green public spaces. It also has many interesting places to visit, including the giant panda research base.",
+      "referenceTextZh": "我最喜欢的城市是成都，因为那里是我的家乡，我的家人也住在那里。我喜欢成都悠闲的氛围、川菜和绿意盎然的公共空间。那里还有许多有趣的景点，包括大熊猫繁育研究基地。",
+      "audioDurationSeconds": 2.112
+    },
+    {
+      "id": "opi-extra-164",
+      "audio": "/question-bank-assets/revisions/opi/236580cde3d57e50bfc9df4fd8b260b172e1f3b866751a1fb6ed3f5b5932ae1c/audio/opi/opi-extra-164.mp3",
+      "audioText": "What is the weather usually like in your hometown?",
+      "taskTitle": "其它-基本情况-11",
+      "audioTextZh": "你的家乡通常是什么天气？",
+      "referenceText": "The weather in my hometown is usually mild and humid. Summers are not extremely hot, winters are relatively warm, and most of the rain falls in summer and autumn.",
+      "referenceTextZh": "我的家乡通常气候温和湿润。夏天不会极端炎热，冬天相对温暖，降雨大多集中在夏季和秋季。",
+      "audioDurationSeconds": 2.424
+    },
+    {
+      "id": "opi-extra-158",
+      "audio": "/question-bank-assets/revisions/opi/e68776751a72a57a96488a3aaeeb0b6342bf05619be4f915274b080e8b915689/audio/opi/opi-extra-158.mp3",
+      "audioText": "Which do you prefer, your hometown or the city where you live now, and why?",
+      "taskTitle": "其它-基本情况-9",
+      "audioTextZh": "你的家乡和目前居住的城市相比，你更喜欢哪一个？为什么？",
+      "referenceText": "I prefer my hometown because I grew up there and know it very well. My family still lives there, which makes it especially important to me.",
+      "referenceTextZh": "我更喜欢自己的家乡，因为我在那里长大，对那里非常熟悉。我的家人现在仍住在那里，所以家乡对我格外重要。",
+      "audioDurationSeconds": 4.368
+    },
+    {
+      "id": "opi-extra-169",
+      "audio": "/question-bank-assets/revisions/opi/0db189c4509605e66b876afbe2698364872f01443d61b2f67105eb633eeca77c/audio/opi/opi-extra-169.mp3",
+      "audioText": "Which place abroad would you most like to visit, and why?",
+      "taskTitle": "其它-基本情况-16",
+      "audioTextZh": "你最想去国外的哪个地方？为什么？",
+      "referenceText": "I have not travelled abroad yet, but I would most like to visit the United States. I would like to see its aviation museums and training institutions and learn more about aviation technology and training concepts.",
+      "referenceTextZh": "我还没有出国旅行过，但最想去美国。我想参观那里的航空博物馆和训练机构，进一步了解航空技术和训练理念。",
+      "audioDurationSeconds": 3.072
+    },
+    {
+      "id": "opi-extra-165",
+      "audio": "/question-bank-assets/revisions/opi/935284e91bcdc7fc5e36c3cf47ca9f655d8e101c41bbee1a7f5f0aa08b964273/audio/opi/opi-extra-165.mp3",
+      "audioText": "How does your hometown compare with the city where you live now?",
+      "taskTitle": "其它-基本情况-12",
+      "audioTextZh": "你的家乡与目前居住的城市相比如何？",
+      "referenceText": "My hometown is more relaxed, with a strong cultural atmosphere and a slower pace of life. The city where I live now is a busy aviation hub with a faster working rhythm and more convenient transport, especially for air travel.",
+      "referenceTextZh": "我的家乡生活节奏较慢，氛围更轻松，也有浓厚的文化气息。我现在居住的城市是一座繁忙的航空枢纽，工作节奏更快，交通也更便利，尤其是航空出行。",
+      "audioDurationSeconds": 3.096
+    },
     {
       "id": "opi-fzy-118174",
       "audio": "/question-bank-assets/revisions/opi/cb721e806bc07e7f8b3a6b73f39e57f99393439b2fac7e371bbec6d0e391752a/audio/opi/opi-fzy-118174.mp3",
@@ -133,8 +236,44 @@
       "referenceText": "I come from Shenyang and now i am living in Guanghan, compared with Guanghan, my hometown is colder in winter, and drier in spring. I like Guanghan better, because the weather is comfortable and there are many delicious food here.",
       "referenceTextZh": "我来自沈阳，现在在广汉。和广汉相比，我家乡的冬天更寒冷，春天更干燥。我更喜欢广汉，因为这儿的天气很舒服，而且这里有很多美食。",
       "audioDurationSeconds": 3.696
+    },
+    {
+      "id": "opi-fzy-153334",
+      "audio": "/question-bank-assets/revisions/opi/90aa82a0511db549f140e6499bb5ba6121f5a72ec6a2a6af1492703ea61ac563/audio/opi/opi-fzy-153334.mp3",
+      "audioText": "How do you usually spend your holiday?",
+      "studyTier": 1,
+      "taskTitle": "问候与自我介绍-8",
+      "audioTextZh": "你的假期怎么过？",
+      "referenceText": "Generally speaking, I prefer to spend the holiday with my family, we may choose to travel together.",
+      "referenceTextZh": "一般而言，假期我会选择和家人一起度过，我们可能会选择一起出去旅游。",
+      "audioDurationSeconds": 2.184
     }
   ],
-  "declaredCardCount": 12,
-  "categoryId": "opi-category-07"
+  "declaredCardCount": 23,
+  "categoryId": "opi-category-07",
+  "cardStudyTiers": {
+    "opi-fzy-110167": 0,
+    "opi-fzy-110176": 0,
+    "opi-fzy-110154": 0,
+    "opi-extra-166": 0,
+    "opi-extra-163": 0,
+    "opi-extra-156": 0,
+    "opi-extra-164": 0,
+    "opi-extra-158": 0,
+    "opi-extra-169": 0,
+    "opi-extra-165": 0,
+    "opi-fzy-118174": 0,
+    "opi-fzy-118177": 0,
+    "opi-fzy-203072": 1,
+    "opi-fzy-151971": 1,
+    "opi-fzy-118171": 0,
+    "opi-fzy-151970": 2,
+    "opi-fzy-118176": 0,
+    "opi-fzy-118173": 0,
+    "opi-fzy-118178": 0,
+    "opi-fzy-118175": 0,
+    "opi-fzy-118170": 0,
+    "opi-fzy-203073": 1,
+    "opi-fzy-153334": 1
+  }
 }

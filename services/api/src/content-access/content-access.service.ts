@@ -1,3 +1,5 @@
+import { retargetHotspotBrief } from '@icao/contracts/app-content';
+import { directoryVersionForClient } from './directory-client-context';
 import { VersionedReadCache } from '../content/versioned-read-cache';
 import { timed, timedSync } from '../performance/request-performance';
 import { contentPublicationTime } from './publication-time';
@@ -16,7 +18,7 @@ import {
   type QuestionBankAccessSummary,
   type QuestionBankContentAccess,
 } from '@icao/contracts';
-import { and, count, desc, eq, gt, gte, inArray, lte } from 'drizzle-orm';
+import { and, count, desc, eq, gt, gte, inArray, lte, sql } from 'drizzle-orm';
 import { createHash, createHmac, randomUUID } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -266,6 +268,7 @@ export class ContentAccessService {
 
   async hotspotOverview(brief: AppContentHotspotBrief): Promise<AppContentHotspotOverview> {
     const release = await this.activeRelease('opi');
+    brief = retargetHotspotBrief(brief, new Map(release.dataset.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.map(card => [card.id,{topicId:topic.id,topicTitle:String(topic.name)}] as const)))));
     const available = new Map(release.dataset.categories.flatMap(category => category.topics.map(topic => [topic.id, topic] as const)));
     return { brief, topics: brief.topics.map(reference => {
       const topic = available.get(reference.topicId);
@@ -423,12 +426,21 @@ export class ContentAccessService {
   }
 
   private async preparedRelease(bankId: string, expected?: { version: number; checksum?: string }): Promise<PreparedBank> {
-    const [metadata] = await timed('content.metadata', () => this.database.db.select({
+    let [metadata] = await timed('content.metadata', () => this.database.db.select({
       bankId: questionBankReleases.bankId, version: questionBankReleases.version, checksum: questionBankReleases.checksum,
+      compatibility: sql<{capability:string;fallbackVersion:number}|null>`${questionBankReleases.payload}->'directoryCompatibility'`,
     }).from(questionBankReleases)
       .where(and(eq(questionBankReleases.bankId, bankId), expected ? eq(questionBankReleases.version, expected.version) : eq(questionBankReleases.active, true)))
       .orderBy(desc(questionBankReleases.version)).limit(1));
     if (!metadata) throw new NotFoundException('question_bank_not_found');
+    const version = directoryVersionForClient(bankId, metadata, Boolean(expected));
+    if (version && version !== metadata.version) {
+      const [compatible] = await this.database.db.select({bankId:questionBankReleases.bankId,version:questionBankReleases.version,checksum:questionBankReleases.checksum,compatibility:sql<{capability:string;fallbackVersion:number}|null>`${questionBankReleases.payload}->'directoryCompatibility'`})
+        .from(questionBankReleases).where(and(eq(questionBankReleases.bankId,bankId),eq(questionBankReleases.version,version))).limit(1);
+      if (!compatible) throw new NotFoundException('question_bank_not_found');
+      metadata = compatible;
+    }
+
     if (expected?.checksum && metadata.checksum !== expected.checksum) throw new BadRequestException('content_release_mismatch');
     return this.releases.get(JSON.stringify([bankId, metadata.version, metadata.checksum]), async () => {
       const [row] = await timed('content.payload', () => this.database.db.select().from(questionBankReleases)

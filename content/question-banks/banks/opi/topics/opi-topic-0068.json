@@ -1,7 +1,18 @@
 {
   "id": "opi-topic-0068",
-  "name": "MEL最低设备清单",
+  "name": "MEL（最低设备清单）",
   "cards": [
+    {
+      "id": "opi-fzy-152092",
+      "audio": "/question-bank-assets/revisions/opi/c0e9533a94efe663a0321e12f4161c6a7527b5c91c736f1ae890137f99e1af21/audio/opi/opi-fzy-152092.mp3",
+      "audioText": "What is MEL? What does MEL stand for? Why is MEL important for flight safety?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-16",
+      "audioTextZh": "MEL是什么？为什么MEL对飞行安全很重要？",
+      "referenceText": "MEL stands for minimum equipment list.\nMEL is important for flight safety.\nThere are many items in the MEL, they are the minimum requirements of the flight.\nIf we are going to fly the aircraft, the aircraft must meet the MEL requirements, or our flight will be canceled.",
+      "referenceTextZh": "MEL指的是最低设备清单。\nMEL对于飞行安全很重要。\nMEL里面有很多项目，他们是飞行的最低要求。如果我们要飞，飞机必须满足MEL要求，否则航班就会取消。",
+      "audioDurationSeconds": 5.328
+    },
     {
       "id": "opi-core-723",
       "audio": "/question-bank-assets/revisions/opi/af4aecb870b2429d034fa67062542834cbe3580b1a9bd694425df05d8abe7ce0/audio/opi/opi-core-723.mp3",
@@ -23,6 +34,11 @@
       "audioDurationSeconds": 2.592
     }
   ],
-  "declaredCardCount": 2,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 3,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-152092": 1,
+    "opi-core-723": 0,
+    "opi-core-721": 0
+  }
 }

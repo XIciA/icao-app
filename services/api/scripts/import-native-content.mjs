@@ -8,6 +8,9 @@ import { ensureNativeContentResource } from './native-content-resources.mjs';
 
 const require = createRequire(import.meta.url);
 
+const stageOnly = process.argv.includes('--stage');
+const directoryMoves = process.env.REVIEWED_DIRECTORY_MOVES_PATH ? JSON.parse(readFileSync(process.env.REVIEWED_DIRECTORY_MOVES_PATH,'utf8')).moves : [];
+const { retargetHotspotBrief } = require('../../../packages/contracts/dist/app-content.js');
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
 const safeJoin = (root, relative) => {
   const file = resolve(root, relative);
@@ -74,20 +77,23 @@ if (process.argv.includes('--validate')) {
       for (const bank of publication.banks) {
         const [previous] = await tx`select payload, version from question_bank_releases where bank_id = ${bank.id} and active = true`;
         if (previous) {
-          assertQuestionIdentitiesPreserved(previous.payload, bank.payload, process.env.APPLY_REVIEWED_RELOCATIONS === '1' ? require('../dist/src/sync/question-relocations.js').questionRelocations : []);
+          assertQuestionIdentitiesPreserved(previous.payload, bank.payload, [...directoryMoves, ...(process.env.APPLY_REVIEWED_RELOCATIONS === '1' ? require('../dist/src/sync/question-relocations.js').questionRelocations : [])]);
           if (Number(previous.version) > bank.version) throw new Error('content_release_cannot_downgrade');
         }
       }
       const [appContent] = await tx`select payload from app_content_releases where active = true limit 1`;
       const opi = release.banks.find((bank) => bank.id === 'opi');
-      if (appContent && opi) assertHotspotReferences(appContent.payload.hotspots, opi.payload);
+      if (appContent && opi) {
+        const locations = new Map(opi.payload.categories.flatMap(category=>category.topics.flatMap(topic=>topic.cards.map(card=>[card.id,{topicId:topic.id,topicTitle:topic.name}]))));
+        assertHotspotReferences(retargetHotspotBrief(appContent.payload.hotspots,locations), opi.payload);
+      }
       for (const bank of publication.banks) {
         const [existing] = await tx`select checksum from question_bank_releases where bank_id = ${bank.id} and version = ${bank.version}`;
         assertImmutableRelease(existing, bank);
-        await tx`update question_bank_releases set active = false where bank_id = ${bank.id} and active = true`;
+        if (!stageOnly) await tx`update question_bank_releases set active = false where bank_id = ${bank.id} and active = true`;
         await tx`insert into question_bank_releases (bank_id, version, checksum, payload, active)
-          values (${bank.id}, ${bank.version}, ${bank.checksum}, ${tx.json(bank.payload)}, true)
-          on conflict (bank_id, version) do update set active = true`;
+          values (${bank.id}, ${bank.version}, ${bank.checksum}, ${tx.json(bank.payload)}, ${!stageOnly})
+          on conflict (bank_id, version) do update set active = case when ${stageOnly} then question_bank_releases.active else true end`;
       }
       for (const file of release.files) {
         await tx`insert into resource_objects (object_key, module, storage_bucket, source_path, checksum, size_bytes, mime_type, status)

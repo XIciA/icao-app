@@ -135,8 +135,93 @@
       "referenceText": "I receive dangerous goods transportation training every two years.",
       "referenceTextZh": "我每两年接受一次危险品运输培训。",
       "audioDurationSeconds": 2.784
+    },
+    {
+      "id": "opi-fzy-152022",
+      "audio": "/question-bank-assets/revisions/opi/ae0479e93142ef69b36465904dc883547710918191f05cb58caeea3b9d4e753f/audio/opi/opi-fzy-152022.mp3",
+      "audioText": "If some dangerous goods are leaked during flight, what should you do?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-6",
+      "audioTextZh": "在飞行中，如果出现危险品泄漏，你会怎么做？",
+      "referenceText": "I will separate them from passengers and other goods.\nThen contact ATC, report my situation.\nDeclare emergency, request priority landing.\nRequest ground assistance if necessary.",
+      "referenceTextZh": "我会将危险品与乘客和其他货物分离。\n接下来联系管制员，报告我的情况。\n宣布紧急状况，申请优先着陆。\n如必要，申请地面援助。",
+      "audioDurationSeconds": 3.528
+    },
+    {
+      "id": "opi-fzy-152021",
+      "audio": "/question-bank-assets/revisions/opi/e22aaddbd9d45000d567241501b272e5d16cb1ed5980bd8255f75c4e9c3061f4/audio/opi/opi-fzy-152021.mp3",
+      "audioText": "What precautions should you take if you are informed of transporting dangerous goods?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-5",
+      "audioTextZh": "如果你被通知进行危险品运输，你会采取什么预防措施？",
+      "referenceText": "I should know the name, quantity, and position of dangerous goods in advance.\nReview SOP of emergencies.",
+      "referenceTextZh": "我会提前了解危险品的名称、数量、位置。\n回顾紧急情况下的标准运行手册。",
+      "audioDurationSeconds": 4.32
+    },
+    {
+      "id": "opi-fzy-152019",
+      "audio": "/question-bank-assets/revisions/opi/58a04655e9ea68d17e53bdedd045102390e86435ec08a2df92fe6212353a62a1/audio/opi/opi-fzy-152019.mp3",
+      "audioText": "What can be regarded as dangerous goods in aviation industry?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-3",
+      "audioTextZh": "在民航业，哪些物品可以被视为是危险品？",
+      "referenceText": "In aviation industry, many things can be regarded as dangerous goods.\nFor example, lighters, fireworks, oil, bombs, weapons, like guns, knifes...",
+      "referenceTextZh": "在民航业，有很多物品都可以被视为是危险品。\n比如：火机，烟花，油，炸弹，武器，比如：枪支，刀具等。",
+      "audioDurationSeconds": 3.36
+    },
+    {
+      "id": "opi-fzy-152020",
+      "audio": "/question-bank-assets/revisions/opi/ba04efe7b04ac44b7690b5cf6deb794681486532d7a30ba138783a21f0b534a6/audio/opi/opi-fzy-152020.mp3",
+      "audioText": "Why is some liquid not allowed to be carried into cabin?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-4",
+      "audioTextZh": "为什么一些液体不允许带进客舱？",
+      "referenceText": "Because some liquid like alcohol may cause fire or explosion.",
+      "referenceTextZh": "因为诸如酒精类的液体会造成火灾或者爆炸。",
+      "audioDurationSeconds": 2.904
+    },
+    {
+      "id": "opi-fzy-109932",
+      "audio": "/question-bank-assets/revisions/opi/0547ba329613d6be3be0542930f77e1794768828498ed21b366ddadc7dafb26c/audio/opi/opi-fzy-109932.mp3",
+      "audioText": "If there were a leakage of dangerous liquid in flight, what would you do?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-11",
+      "audioTextZh": "如果飞行中有危险液体泄漏，你会怎么做？",
+      "referenceText": "Firstly, I need to identify what kind of liquid substances it is and its location, and then follow the appropriate procedures to deal with it. If the situation becomes hard to control, I have to request an emergency landing.",
+      "referenceTextZh": "首先我需要确认是何种液体和泄漏位置，之后执行适当的程序来处理。如果泄漏情况难以控制，我将请求紧急降落。",
+      "audioDurationSeconds": 3.768
+    },
+    {
+      "id": "opi-fzy-109931",
+      "audio": "/question-bank-assets/revisions/opi/31d54a31aa5edc1f53477ef370ad6a348c2feb7737b91ac19c58535e210ef5e4/audio/opi/opi-fzy-109931.mp3",
+      "audioText": "Which kinds of dangerous goods are forbidden to be brought on the plane?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-10",
+      "audioTextZh": "哪些危险物品禁止带上飞机？",
+      "referenceText": "The following kinds of dangerous goods are forbidden to be brought on the plane, firstly, explosive cargo such as bombs is not allowed to be taken into the airplanes. Secondly, combustible cargo is also dangerous and may lead to fires on board. Thirdly, other things like guns, knives are also forbidden in the aircraft.\n(Dangerous goods/cargoes include explosive material, flammable material/liquid/ solid, corrosive liquid, radioactive material, magnetic solid, and so on.)",
+      "referenceTextZh": "以下危险物品禁止带上飞机。首先，炸弹等易爆物品禁止带进机舱。其次，易燃物品也很危险可能引起机上火灾。最后，枪支、刀等物品也禁止带上飞机。（危险物品包括易爆物品、易燃物品/易燃液体/易燃固体、腐蚀性液体、放射性材料、磁性物品等。）",
+      "audioDurationSeconds": 3.408
     }
   ],
-  "declaredCardCount": 11,
-  "categoryId": "opi-category-02"
+  "declaredCardCount": 17,
+  "categoryId": "opi-category-02",
+  "cardStudyTiers": {
+    "opi-core-173": 2,
+    "opi-core-182": 0,
+    "opi-core-178": 2,
+    "opi-core-171": 2,
+    "opi-core-168": 2,
+    "opi-intake-20261019-dg-classification": 0,
+    "opi-intake-20261019-notoc": 0,
+    "opi-core-167": 2,
+    "opi-core-175": 2,
+    "opi-core-176": 2,
+    "opi-core-177": 2,
+    "opi-fzy-152022": 1,
+    "opi-fzy-152021": 1,
+    "opi-fzy-152019": 1,
+    "opi-fzy-152020": 1,
+    "opi-fzy-109932": 0,
+    "opi-fzy-109931": 0
+  }
 }

@@ -83,6 +83,8 @@ export type QuestionBankImageCard = QuestionBankCardBase & {
 export type QuestionBankCard = QuestionBankTextCard | QuestionBankImageCard;
 
 export type QuestionBankTopic = {
+  /** Explicit scope ranks preserved when directory topics are merged. */
+  cardStudyTiers?: Record<string, StudyTier>;
   /** Native cache projection only; never grants access or changes the release. */
   offlineContent?: 'partial' | 'outdated';
   id: string;

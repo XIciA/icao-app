@@ -1,7 +1,51 @@
 {
   "id": "opi-topic-0015",
-  "name": "SOP标准操作程序",
+  "name": "SOP（标准操作程序）",
   "cards": [
+    {
+      "id": "opi-fzy-153346",
+      "audio": "/question-bank-assets/revisions/opi/2e232b19edc9f128c819c137336c77349ab6a0f60d7ea7f3d89ef56fb278b4e1/audio/opi/opi-fzy-153346.mp3",
+      "audioText": "Does your company provide any training to address and improve strict adherence to SOPs?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-50",
+      "audioTextZh": "你们公司是否提供任何培训，来使飞行员严格遵守标准操作程序？",
+      "referenceText": "Yes, as we all know, SOP is very important for flight safety, so our company will organize relevant training regularly.",
+      "referenceTextZh": "是的，众所周知，SOP对于飞行安全来说非常重要，因此，我们公司会定期组织相关培训。",
+      "audioDurationSeconds": 4.536
+    },
+    {
+      "id": "opi-fzy-152094",
+      "audio": "/question-bank-assets/revisions/opi/778d31a191f561e4704ea95d766972a2171b0da50a6577fed46adc4c5185aa18/audio/opi/opi-fzy-152094.mp3",
+      "audioText": "What may be the results if a pilot doesn't follow SOP?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-18",
+      "audioTextZh": "如果飞行员没有遵守SOP，会发生什么后果？",
+      "referenceText": "Not following SOP will cause human errors and affect flight safety.",
+      "referenceTextZh": "不遵守SOP将导致人为失误，影响飞行安全。",
+      "audioDurationSeconds": 3.24
+    },
+    {
+      "id": "opi-fzy-152095",
+      "audio": "/question-bank-assets/revisions/opi/b1a2465c45a3d238cefadb22e47833b575df238a1d82eb29b992da5f74af86e7/audio/opi/opi-fzy-152095.mp3",
+      "audioText": "What factors and conditions may affect the compliance with SOP?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-19",
+      "audioTextZh": "哪些因素会影响飞行员遵守SOP？",
+      "referenceText": "There are many factors, for example, high pilot workload, time stress, improper training and so on.",
+      "referenceTextZh": "因素很多，比如飞行员工作量大，时间压力，训练不当等。",
+      "audioDurationSeconds": 3.648
+    },
+    {
+      "id": "opi-fzy-152093",
+      "audio": "/question-bank-assets/revisions/opi/589aefa683790c991a002d757ca79cf0e3f7ea026dcf151136f4896f0f82209f/audio/opi/opi-fzy-152093.mp3",
+      "audioText": "What's SOP? Why is SOP important for flight safety?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-17",
+      "audioTextZh": "SOP是什么？为什么说SOP对飞行安全很重要？",
+      "referenceText": "SOP stands for standard operation procedures.\nIt is the standard we should follow when the captain and co-pilot have different opinions.\nSOP can largely improve work efficiency and avoid human errors.",
+      "referenceTextZh": "SOP指的是标准操作程序。\n它是在机长和副驾驶之间有不同意见时需要参考的标准。\nSOP可以有效提高工作效率，避免人为失误。",
+      "audioDurationSeconds": 3.696
+    },
     {
       "id": "opi-core-233",
       "audio": "/question-bank-assets/revisions/opi/fdf09e41bba9078d716c32e1a4ba497f7c711a30704cca291c82cd76ec7a7570/audio/opi/opi-core-233.mp3",
@@ -98,6 +142,21 @@
       "audioDurationSeconds": 5.352
     }
   ],
-  "declaredCardCount": 9,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 13,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-fzy-153346": 1,
+    "opi-fzy-152094": 1,
+    "opi-fzy-152095": 1,
+    "opi-fzy-152093": 1,
+    "opi-core-233": 2,
+    "opi-core-234": 2,
+    "opi-core-236-part-2": 0,
+    "opi-core-236": 2,
+    "opi-core-237": 0,
+    "opi-core-232": 2,
+    "opi-core-235": 2,
+    "opi-core-240": 0,
+    "opi-core-238": 0
+  }
 }

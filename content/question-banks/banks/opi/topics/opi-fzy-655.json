@@ -3,6 +3,17 @@
   "name": "季节",
   "cards": [
     {
+      "id": "opi-fzy-110156",
+      "audio": "/question-bank-assets/revisions/opi/990adf8e8c889e81d3c0f4d934bd8f50cb4b6901eb58fafe09f1cf97eae7fc4c/audio/opi/opi-fzy-110156.mp3",
+      "audioText": "Which season do you prefer? Why?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-7",
+      "audioTextZh": "你最喜欢哪个季节？为什么？",
+      "referenceText": "I prefer autumn because it is a beautiful and comfortable season. It is not too hot or too cold and the scenery is pretty good in autumn. In addition, it is a good season for travel.",
+      "referenceTextZh": "我最喜欢秋季，因为秋季是个优美宜人的季节。秋季的天气既不太热也不太冷，并且景色很美。此外秋季还是旅行的好季节。",
+      "audioDurationSeconds": 2.28
+    },
+    {
       "id": "opi-fzy-118195",
       "audio": "/question-bank-assets/revisions/opi/be37b368a7bda49bdc226d8161ad7ddcc14391fc1c27a7252537e8df2c7fe67c/audio/opi/opi-fzy-118195.mp3",
       "audioText": "What weather conditions do you think are good/favorable for flight?",
@@ -69,6 +80,15 @@
       "audioDurationSeconds": 3.36
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-01"
+  "declaredCardCount": 7,
+  "categoryId": "opi-category-01",
+  "cardStudyTiers": {
+    "opi-fzy-110156": 0,
+    "opi-fzy-118195": 0,
+    "opi-fzy-118197": 0,
+    "opi-fzy-118194": 0,
+    "opi-fzy-118198": 0,
+    "opi-fzy-118196": 0,
+    "opi-fzy-118193": 0
+  }
 }

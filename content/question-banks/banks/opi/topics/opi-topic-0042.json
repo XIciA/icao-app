@@ -1,6 +1,6 @@
 {
   "id": "opi-topic-0042",
-  "name": "ATIS自动终端情报服务",
+  "name": "ATIS（自动终端情报服务）",
   "cards": [
     {
       "id": "opi-core-526",
@@ -104,8 +104,32 @@
       "referenceText": "Pilots need to listen to ATIS before start up and approach.",
       "referenceTextZh": "飞行员需要在开车和进近前收听ATIS。",
       "audioDurationSeconds": 1.896
+    },
+    {
+      "id": "opi-fzy-109930",
+      "audio": "/question-bank-assets/revisions/opi/da5d77874eb422da1e118cd57ad2046d19388449c7afa8c5c245162eaccddfef/audio/opi/opi-fzy-109930.mp3",
+      "audioText": "Do you know ATIS? Please say something about it.",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-9",
+      "audioTextZh": "你知道ATIS吗？请介绍一下。",
+      "referenceText": "ATIS is short for Automatic Terminal Information Service, it is a continuous broadcast of recorded non-control aeronautical information in the airport. ATIS includes essential information, such as visibility, weather information, temperature, available approaches, and any other information required by the pilots. In order to reduce the controllers' workload and relieve frequency congestion, pilots usually listen to an available ATIS broadcast before contacting the local control unit.",
+      "referenceTextZh": "ATIS是自动终端情报服务的英文简称，它是机场自动连续播放的信息服务。ATIS包括基本信息，如可见度、天气情况、温度、可用跑道和飞行员需要的任何其它信息。为了减少管制员的工作量和缓解频道拥挤，飞行员通常在联系当地管制单位前收听可用ATIS广播。",
+      "audioDurationSeconds": 2.76
     }
   ],
-  "declaredCardCount": 10,
-  "categoryId": "opi-category-03"
+  "declaredCardCount": 11,
+  "categoryId": "opi-category-03",
+  "cardStudyTiers": {
+    "opi-core-526": 0,
+    "opi-core-525-part-4": 0,
+    "opi-core-527": 0,
+    "opi-core-528": 0,
+    "opi-core-525": 0,
+    "opi-core-525-part-3": 0,
+    "opi-core-525-part-2": 0,
+    "opi-fzy-152054": 2,
+    "opi-fzy-152052": 1,
+    "opi-fzy-152053": 1,
+    "opi-fzy-109930": 0
+  }
 }

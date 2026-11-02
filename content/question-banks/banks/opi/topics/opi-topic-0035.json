@@ -3,6 +3,17 @@
   "name": "液压系统",
   "cards": [
     {
+      "id": "opi-fzy-109919",
+      "audio": "/question-bank-assets/revisions/opi/4c8224f58d3aeca14ba6e051117282c236188ccb38d2f339a67e24806b220157/audio/opi/opi-fzy-109919.mp3",
+      "audioText": "What's the function of hydraulic system?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-29",
+      "audioTextZh": "液压系统的作用是什么？",
+      "referenceText": "Hydraulic system is one of the core systems in the aircraft, it's used to provide hydraulic power to operate many aircraft units such as landing gears, nose wheel steering, brakes and flight control surfaces.",
+      "referenceTextZh": "液压系统是飞机中的核心系统之一，它用于给飞机上的许多系统如起落架系统、前轮转弯系统、刹车系统以及飞行操纵面提供液压以完成操纵。",
+      "audioDurationSeconds": 2.136
+    },
+    {
       "id": "opi-core-475",
       "audio": "/question-bank-assets/revisions/opi/a82394e49556eeba4a04f309f3040c286745a28eed79438f9f3917ff7bdbc81c/audio/opi/opi-core-475.mp3",
       "audioText": "How should a flight crew respond to the failure of one hydraulic system?",
@@ -81,8 +92,79 @@
       "referenceText": "Depending on the aircraft, hydraulics may power the landing gear, nose-wheel steering, brakes, ailerons, elevators, rudder, flaps, and slats.",
       "referenceTextZh": "根据机型不同，液压系统可能驱动起落架、前轮转向、刹车、副翼、升降舵、方向舵、襟翼和缝翼。",
       "audioDurationSeconds": 4.104
+    },
+    {
+      "id": "opi-fzy-109952",
+      "audio": "/question-bank-assets/revisions/opi/980786c16997c3a01459545c15a9a5642e5bf967fb77ef110e89b37d27484246/audio/opi/opi-fzy-109952.mp3",
+      "audioText": "What are the consequences of hydraulic system failure in flight?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-28",
+      "audioTextZh": "机上液压系统故障会有什么后果？",
+      "referenceText": "There is auxiliary system in the aircraft, so if hydraulic system failed, we would use auxiliary system to control the aircraft. If hydraulic oil leakage happened, we could still use hinge to link the control surface.",
+      "referenceTextZh": "飞机上有辅助系统，因此如果液压系统故障，我们将使用辅助系统来控制飞机。如果液压泄漏，我们仍可以使用铰链连接操纵面来控制飞机。",
+      "audioDurationSeconds": 3.576
+    },
+    {
+      "id": "opi-fzy-152059",
+      "audio": "/question-bank-assets/revisions/opi/178756137d04d0931a5f2b8d9d1f8bc0dc494fba85bb3402b5117328776f93bf/audio/opi/opi-fzy-152059.mp3",
+      "audioText": "How many hydraulic systems are there on your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-5",
+      "audioTextZh": "你飞的飞机上有几套液压系统？",
+      "referenceText": "Normally, there are 3 sets of hydraulic systems.\nThey are system A, B and standby.",
+      "referenceTextZh": "通常有3套液压系统。\n他们是系统A，系统B和备用系统。",
+      "audioDurationSeconds": 2.88
+    },
+    {
+      "id": "opi-fzy-152214",
+      "audio": "/question-bank-assets/revisions/opi/65950f8226c39e4dfb0d0ef220bd20a0fba81b6d1de03d2e032932d6d61e3e37/audio/opi/opi-fzy-152214.mp3",
+      "audioText": "If there is hydraulic fluid leak, what would you do?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-21",
+      "audioTextZh": "如果液压油泄漏，你会怎么做？",
+      "referenceText": "If there is a fluid leak, first, we must find out the problem.\nThen we should take actions according to the checklist.\nAfter that, we will report the situation to ATC and request ground assistance if necessary.",
+      "referenceTextZh": "如果有液压油泄漏，首先我们必须找出问题所在。\n然后我们应该根据检查单采取行动。\n之后，我们将向管制报告情况，并在必要时请求地面援助。",
+      "audioDurationSeconds": 2.88
+    },
+    {
+      "id": "opi-fzy-152060",
+      "audio": "/question-bank-assets/revisions/opi/bcbc7ec747fe235fa2247fe43420c68d0ea3090c2706cc85d162e41f5dda7d58/audio/opi/opi-fzy-152060.mp3",
+      "audioText": "What are the functions of hydraulic systems?",
+      "studyTier": 2,
+      "taskTitle": "飞机与飞机系统-6",
+      "audioTextZh": "液压系统的功能是什么？",
+      "referenceText": "We use hydraulic pressure to operate aircraft control surfaces, braking system, landing gear.\nFor example the operation of elevator, rudder, aileron; flaps, slats, spoilers, nose wheel steering and so on.",
+      "referenceTextZh": "我们用液压操纵飞机操纵面。\n例如操作升降舵、方向舵、副翼、襟翼、缝翼、扰流板、刹车系统、起落架、前轮转向等。",
+      "audioDurationSeconds": 2.328
+    },
+    {
+      "id": "opi-fzy-152213",
+      "audio": "/question-bank-assets/revisions/opi/767d6d058f2237e6429b23a671d3a7556f8186e4f32424ebd8e57fccda3173e2/audio/opi/opi-fzy-152213.mp3",
+      "audioText": "If one hydraulic system fails, will it affect flight safety?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-20",
+      "audioTextZh": "如果一套液压系统失效，会影响飞行安全吗？",
+      "referenceText": "No. If only one hydraulic system fails, the other two will continue to work.\nFor example, if system A fails, system B will continue to work, if system B fails, system standby will continue to work.",
+      "referenceTextZh": "不。如果只有一个液压系统出现故障，其他两个系统将继续工作。\n例如，如果系统A失效，系统B将继续工作，如果系统B失效，系统备用将继续工作。",
+      "audioDurationSeconds": 3.768
     }
   ],
-  "declaredCardCount": 8,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 14,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-fzy-109919": 0,
+    "opi-core-475": 0,
+    "opi-core-479": 0,
+    "opi-core-480": 0,
+    "opi-core-474": 0,
+    "opi-core-473": 0,
+    "opi-core-472": 0,
+    "opi-core-481": 0,
+    "opi-core-477": 0,
+    "opi-fzy-109952": 0,
+    "opi-fzy-152059": 1,
+    "opi-fzy-152214": 1,
+    "opi-fzy-152060": 2,
+    "opi-fzy-152213": 1
+  }
 }

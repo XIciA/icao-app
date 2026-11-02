@@ -133,7 +133,7 @@
       "rationale": "本轮只调整格式，原有听音疑点、词句、大小写、重复内容和选项含义保持原样；不扩大为内容纠错。"
     },
     {
-      "key": "content/question-banks/banks/opi/topics/opi-fzy-651.json#/cards/12/referenceText#ADJACENT_DUPLICATE_WORD",
+      "key": "content/question-banks/banks/opi/topics/opi-fzy-651.json#/cards/4/referenceText#ADJACENT_DUPLICATE_WORD",
       "rule": "ADJACENT_DUPLICATE_WORD",
       "textSha256": "a3dbcdbc7e999dfcde97424868e509b016846fefd2e799abea635e8a03ba3772",
       "bankId": "opi",

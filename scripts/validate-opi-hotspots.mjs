@@ -29,6 +29,13 @@ assert(Array.isArray(index.briefs) && index.briefs.length > 0, 'empty_briefs');
 
 const titleChanges = JSON.parse(fs.readFileSync(path.resolve(scriptDir, '../docs/workstreams/next-round-2026-10/topic-name-changes.json'), 'utf8'));
 function validateIndex(index, allowHistoricalTitles = false) {
+const directoryProof = JSON.parse(fs.readFileSync(path.join(contentRoot, 'opi-directory-20261102.json'), 'utf8'));
+const historicalTopics = new Map(directoryProof.beforeTopics.map(topic => [topic.id, { ...topic, cards: [] }]));
+if (allowHistoricalTitles) for (const topic of topics.values()) for (const card of topic.cards) {
+  const move = directoryProof.moves.find(row => row.cardId === card.id);
+  historicalTopics.get(move?.fromTopicId ?? topic.id)?.cards.push(card);
+}
+const lookup = allowHistoricalTitles ? historicalTopics : topics;
 const briefIds = new Set();
 const briefDates = [];
 const dateCenters = new Set();
@@ -48,7 +55,7 @@ for (const brief of index.briefs) {
   const topicIds = new Set();
   const cardIds = new Set();
   for (const hotspotTopic of brief.topics) {
-    const sourceTopic = topics.get(hotspotTopic.topicId);
+    const sourceTopic = lookup.get(hotspotTopic.topicId);
     assert(sourceTopic && !topicIds.has(hotspotTopic.topicId), `missing_or_duplicate_topic:${brief.id}:${hotspotTopic.topicId}`);
     assert(sourceTopic.name === hotspotTopic.topicTitle || (allowHistoricalTitles && titleChanges.some(change => change.id === sourceTopic.id && change.before === hotspotTopic.topicTitle && change.after === sourceTopic.name)), `topic_title_mismatch:${brief.id}:${hotspotTopic.topicId}`);
     assert(Array.isArray(hotspotTopic.cardIds) && hotspotTopic.cardIds.length > 0, `empty_topic:${brief.id}:${hotspotTopic.topicId}`);

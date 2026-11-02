@@ -102,8 +102,32 @@
       "referenceText": "No. A minor or slowly developing pressurization problem may first be handled by checking the system and following the applicable checklist. A rapid or severe depressurization requires an emergency descent, and the crew may also need to divert and land.",
       "referenceTextZh": "不一定。轻微或缓慢发展的增压问题，可以先检查系统并执行适用检查单。快速或严重失压需要紧急下降，机组还可能需要改航并着陆。",
       "audioDurationSeconds": 4.944
+    },
+    {
+      "id": "opi-fzy-152064",
+      "audio": "/question-bank-assets/revisions/opi/50e20052c38623d7ceae50293f20e5a2a6d3cf763a2c10fc75a215b2162d2381/audio/opi/opi-fzy-152064.mp3",
+      "audioText": "Why does the aircraft have pressurization system?",
+      "studyTier": 2,
+      "taskTitle": "飞机与飞机系统-10",
+      "audioTextZh": "飞机为什么需要增压系统？",
+      "referenceText": "As you know, the higher we fly, the lower the air density is.\nAnd now the aircraft is flying higher and faster, pressure differential is very large, and it will be bad for the passenger's body.\nSo we need to use pressurization system to make passengers feel comfortable.",
+      "referenceTextZh": "如你所知，我们飞得越高，空气密度就越低。\n现在飞机飞得更高更快了，压差很大，这对乘客的身体不好。\n所以我们需要使用增压系统，让乘客舒适。",
+      "audioDurationSeconds": 2.88
     }
   ],
-  "declaredCardCount": 10,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 11,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-core-868": 0,
+    "opi-core-867": 0,
+    "opi-core-871": 0,
+    "opi-core-876": 0,
+    "opi-core-874": 0,
+    "opi-core-870": 0,
+    "opi-core-878": 0,
+    "opi-core-875": 0,
+    "opi-core-869": 1,
+    "opi-core-877": 0,
+    "opi-fzy-152064": 2
+  }
 }

@@ -131,8 +131,46 @@
       "referenceText": "Increasing congestion raises the workload of both pilots and air traffic controllers. It also increases the risk of communication misunderstandings and mid-air collisions.",
       "referenceTextZh": "拥堵加剧会增加飞行员和空中交通管制员的工作负荷，也会提高通信误解和空中相撞的风险。",
       "audioDurationSeconds": 4.656
+    },
+    {
+      "id": "opi-fzy-110101",
+      "audio": "/question-bank-assets/revisions/opi/cf0ca6c07dbef003ded11117ac0357c119a7fd4ee03ba89c05d2b933dbd2a73e/audio/opi/opi-fzy-110101.mp3",
+      "audioText": "What action would you perform if your TCAS is out of work during flight?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-7",
+      "audioTextZh": "飞行中如果交通警告和防撞系统失灵你会怎样做？",
+      "referenceText": "I will fly away from RVSM airspace and request a lower altitude to operate. Meanwhile I will ask ATC for special assistance and request a safer separation to assure flight safety.",
+      "referenceTextZh": "我会飞离RVSM空域，并请求在较低高度飞行。同时，我会像ATC请求特别援助，并要求安全隔离，以确保飞行安全。",
+      "audioDurationSeconds": 3.744
+    },
+    {
+      "id": "opi-fzy-110099",
+      "audio": "/question-bank-assets/revisions/opi/c4194a09d54de768a5f94f69fa407503378790884bb03f6b1328721a00b70674/audio/opi/opi-fzy-110099.mp3",
+      "audioText": "Can you make a brief introduction of TCAS?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-6",
+      "audioTextZh": "能否简单地介绍下TCAS？",
+      "referenceText": "Yes. TCAS is shorted for traffic collision avoidance system, which is an aircraft collision avoidance system aimed to reduce the incidence of mid-air collisions. Most big airplanes use TCAS. It automatically monitors the airspace to avoid conflicting traffic by vertical movement or level change. TCAS reduces the pilot's workload and the rate of aviation accidents, and it has greatly improved flight safety.",
+      "referenceTextZh": "好的。TCAS是空中防撞系统的英文缩写，是旨在减少中空碰撞的飞机防撞系统。大多数大型飞机都使用TCAS。它可以自动监控空域，以避免因垂直或水平变化引起的交通冲突。TCAS减少了飞行员的工作量及航空事故的概率，大大地提高了飞行安全。",
+      "audioDurationSeconds": 2.472
     }
   ],
-  "declaredCardCount": 12,
-  "categoryId": "opi-category-02"
+  "declaredCardCount": 14,
+  "categoryId": "opi-category-02",
+  "cardStudyTiers": {
+    "opi-intake-20261019-tcas-types": 0,
+    "opi-core-718": 0,
+    "opi-core-717-part-2": 2,
+    "opi-core-714": 0,
+    "opi-core-715": 0,
+    "opi-core-338": 2,
+    "opi-core-337": 2,
+    "opi-core-719": 0,
+    "opi-core-352": 2,
+    "opi-core-717": 2,
+    "opi-core-353": 2,
+    "opi-core-464": 0,
+    "opi-fzy-110101": 0,
+    "opi-fzy-110099": 0
+  }
 }

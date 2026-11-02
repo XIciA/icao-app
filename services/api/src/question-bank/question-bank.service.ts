@@ -1,3 +1,4 @@
+import { directoryVersionForClient } from '../content-access/directory-client-context';
 import type { OfflineDownloadScope } from '@icao/contracts';
 import { VersionedReadCache } from '../content/versioned-read-cache';
 import { timed } from '../performance/request-performance';
@@ -32,13 +33,22 @@ export class QuestionBankService {
   }
 
   async list(): Promise<QuestionBankReleaseSummary[]> {
-    const rows = await timed('content.summary.metadata', () => this.database.db.select({
+    const selection = {
       bankId: questionBankReleases.bankId, version: questionBankReleases.version, checksum: questionBankReleases.checksum,
       createdAt: questionBankReleases.createdAt,
+      compatibility: sql<{capability:string;fallbackVersion:number}|null>`${questionBankReleases.payload}->'directoryCompatibility'`,
       title: sql<unknown>`${questionBankReleases.payload}->'title'`,
       declaredTopicCount: sql<unknown>`${questionBankReleases.payload}->'declaredTopicCount'`,
       declaredCardCount: sql<unknown>`${questionBankReleases.payload}->'declaredCardCount'`,
-    }).from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId));
+    };
+    const activeRows = await timed('content.summary.metadata', () => this.database.db.select(selection).from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId));
+    const rows = await Promise.all(activeRows.map(async row => {
+      const version = directoryVersionForClient(row.bankId,row,false);
+      if (!version || version === row.version) return row;
+      const [compatible] = await this.database.db.select(selection).from(questionBankReleases).where(and(eq(questionBankReleases.bankId,row.bankId),eq(questionBankReleases.version,version))).limit(1);
+      if (!compatible) throw new NotFoundException('question_bank_not_found');
+      return compatible;
+    }));
     const pathsByBank = await Promise.all(rows.map(row => this.releasePaths.get(JSON.stringify([row.bankId, row.version, row.checksum]), async () => {
       const [release] = await timed('content.summary.paths', () => this.database.db.select({ payload: questionBankReleases.payload })
         .from(questionBankReleases).where(and(eq(questionBankReleases.bankId, row.bankId), eq(questionBankReleases.version, row.version), eq(questionBankReleases.checksum, row.checksum))).limit(1));

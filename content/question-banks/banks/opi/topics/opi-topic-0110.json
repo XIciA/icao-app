@@ -3,6 +3,17 @@
   "name": "失控",
   "cards": [
     {
+      "id": "opi-fzy-140772",
+      "audio": "/question-bank-assets/revisions/opi/4b759d2cf5ca37f71100deb424fc9ac0b2d3cb38be8d3138e0d0dcbc8736ea6b/audio/opi/opi-fzy-140772.mp3",
+      "audioText": "What are possible reasons that may cause the aircraft out of control?",
+      "studyTier": 0,
+      "taskTitle": "飞机与系统-34",
+      "audioTextZh": "飞机失控的原因有哪些？",
+      "referenceText": "There are many reasons for the aircraft out of control, such as flight control system failure, hydraulic system failure, engine failure, stall, structural damage, and adverse weather like clear air turbulence, micro-burst, wind shear and icing.",
+      "referenceTextZh": "导致飞机失控的原因有很多，比如飞行操纵失效、液压失效、发动机失效、失速、飞机结构损伤，以及恶劣天气像晴空颠簸、微下击暴流、风切变和积冰。",
+      "audioDurationSeconds": 3.648
+    },
+    {
       "id": "opi-extra-056",
       "audio": "/question-bank-assets/revisions/opi/f476a5edd5e92cea4e2256b77e50833836ac3b66b8780ac6712caaac748020c9/audio/opi/opi-extra-056.mp3",
       "audioText": "What should a flight crew do if they lose control of the aircraft during flight?",
@@ -23,6 +34,11 @@
       "audioDurationSeconds": 2.856
     }
   ],
-  "declaredCardCount": 2,
-  "categoryId": "opi-category-02"
+  "declaredCardCount": 3,
+  "categoryId": "opi-category-02",
+  "cardStudyTiers": {
+    "opi-fzy-140772": 0,
+    "opi-extra-056": 0,
+    "opi-extra-055": 0
+  }
 }

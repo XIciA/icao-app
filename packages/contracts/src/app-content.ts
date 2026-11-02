@@ -249,3 +249,25 @@ export type AppContentHotspotOverview = {
     cards: { id: string; prompt: string; reportedPrompts?: Record<string, string[]> }[];
   }[];
 };
+
+/** Retarget navigation only; reported wording, dates, origins and card IDs survive. */
+export function retargetHotspotBrief<T>(brief: T, locations: ReadonlyMap<string, { topicId: string; topicTitle: string }>): T {
+  const visit = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      if (value.length && value.every(v => v && typeof v === 'object' && typeof v.topicId === 'string' && Array.isArray(v.cardIds))) {
+        const groups = new Map<string, Record<string, unknown> & {cardIds:string[]}>();
+        for (const row of value) for (const id of row.cardIds as string[]) {
+          const location = locations.get(id);
+          if (!location) throw new Error('hotspot_question_unavailable');
+          const group = groups.get(location.topicId) ?? {...row,...location,cardIds:[]};
+          if (!group.cardIds.includes(id)) group.cardIds.push(id);
+          groups.set(location.topicId,group);
+        }
+        return [...groups.values()];
+      }
+      return value.map(visit);
+    }
+    return value && typeof value === 'object' ? Object.fromEntries(Object.entries(value).map(([key,item])=>[key,visit(item)])) : value;
+  };
+  return visit(brief) as T;
+}

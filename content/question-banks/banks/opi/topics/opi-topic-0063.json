@@ -1,7 +1,95 @@
 {
   "id": "opi-topic-0063",
-  "name": "飞行记录本与手册文件",
+  "name": "飞行记录本、检查单与手册",
   "cards": [
+    {
+      "id": "opi-fzy-152088",
+      "audio": "/question-bank-assets/revisions/opi/ddcd21185212fc50da8e7cf20555f0977109016ce2792fa91bd5561153313912/audio/opi/opi-fzy-152088.mp3",
+      "audioText": "Do you think that the paper manuals will be replaced by electronic manuals?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-12",
+      "audioTextZh": "你认为纸质手册会被电子手册取代吗？",
+      "referenceText": "I don't think so, because paper manuals can be used at any time, even in case of electrical failure．",
+      "referenceTextZh": "我认为纸质手册不会被电子手册替代，因为纸质手册可以在任何时候使用，即使在电气失效情况下也可以使用。",
+      "audioDurationSeconds": 4.272
+    },
+    {
+      "id": "opi-fzy-152085",
+      "audio": "/question-bank-assets/revisions/opi/0872aa226112019a8785ff15118f672ff79703f69d5d3cc64a61e97a22a01356/audio/opi/opi-fzy-152085.mp3",
+      "audioText": "Are there any manuals or handbooks in your cockpit?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-9",
+      "audioTextZh": "你们驾驶舱里有手册吗？",
+      "referenceText": "①I now fly C172, in my cockpit, we only have C172 operation handbook.\n②I now fly B737, in my cockpit, we have normal checklist, emergency checklist, QRH, MEL, FOM and so on.",
+      "referenceTextZh": "①我现在飞塞斯172，我们只有172操作手册。\n②我现在飞波音737，在我们驾驶舱中，有正常检查单，紧急检查单，快速检查单，最低设备清单，飞行操作手册（FOM：Flight Operations Manual）等。",
+      "audioDurationSeconds": 2.664
+    },
+    {
+      "id": "opi-fzy-152086",
+      "audio": "/question-bank-assets/revisions/opi/f0b34393a601d839e7ff7ac62ea85618e8fec229dd46a2c2d19c4b3eb73995ca/audio/opi/opi-fzy-152086.mp3",
+      "audioText": "Do you often consult these manuals in flight",
+      "studyTier": 1,
+      "taskTitle": "运行相关-10",
+      "audioTextZh": "在飞行中，你经常查阅这些手册吗？",
+      "referenceText": "Yes, I often use these manuals in my flight, especially the normal checklist, I use it nearly every day.",
+      "referenceTextZh": "是的，我经常使用这些手册，尤其是正常检查单，基本每天都用。",
+      "audioDurationSeconds": 2.616
+    },
+    {
+      "id": "opi-fzy-152087",
+      "audio": "/question-bank-assets/revisions/opi/77202dbb184abac2c02481b0cd334394c7ea6086d7ec241fcc7f31e6ff7e9a08/audio/opi/opi-fzy-152087.mp3",
+      "audioText": "Compared with paper manuals, what are the advantages and disadvantages of electronic manuals?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-11",
+      "audioTextZh": "与纸质手册相比，电子手册的优缺点有哪些？",
+      "referenceText": "Advantages: the electronic manuals are cheaper, eco-friendly, easy to update, more portable and interactive..\nDisadvantages: it needs to charge and it is not good for our eyesight. What's moire, it has no copy.",
+      "referenceTextZh": "优点：电子手册更便宜，对环境友好，容易更新，更便携，更具交互性。\n缺点：需要充电，对眼睛不利，同时，也没有副本。",
+      "audioDurationSeconds": 5.736
+    },
+    {
+      "id": "opi-fzy-152089",
+      "audio": "/question-bank-assets/revisions/opi/eaa860fa3983c67fa5fb49492f3eae1676d41780397cb4e9d114a6c91194598f/audio/opi/opi-fzy-152089.mp3",
+      "audioText": "What are the normal checklists and what are included in it? When do you use it?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-13",
+      "audioTextZh": "正常检查点包含什么？什么时候使用正常检查单？",
+      "referenceText": "Normal checklist includes cockpit checklist; pre-start checklist and pre-taxi checklist and so on.\nWe will use the normal checklist at every stage of flight.",
+      "referenceTextZh": "正常检查单包含驾驶舱检查单、开车前检查单、滑行前检查单等。\n我们在飞行的任何阶段都会使用检查单。",
+      "audioDurationSeconds": 3.936
+    },
+    {
+      "id": "opi-fzy-152982",
+      "audio": "/question-bank-assets/revisions/opi/bcc08ed802b9ed2978a2f1c8d4355dc8327f10feb9e86d9c476ad617381bedf9/audio/opi/opi-fzy-152982.mp3",
+      "audioText": "Do you know about flight log? What is the function of flight log?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-45",
+      "audioTextZh": "你知道飞行记录簿吗？飞行记录簿的功能是什么？",
+      "referenceText": "Flight log, also know as aircraft flight log, records an aircraft's recent flight history.\nThere are many information in the flight log, for example, aircraft flight time, landings and other crew information.\nThe flight log provides supplementary flight information that is accurate and up-to-date.",
+      "referenceTextZh": "飞行记录簿，又称飞机飞行日志，记录了飞机最近的飞行历史。\n飞行记录簿中有很多信息，例如，飞机的飞行时间信息，着陆信息和其他机组人员信息。\n飞行日志提供一些补充的飞行信息，这些信息是准确和最新的。",
+      "audioDurationSeconds": 3.528
+    },
+    {
+      "id": "opi-fzy-152090",
+      "audio": "/question-bank-assets/revisions/opi/3217f0ce415a8106ffae08970f0e9286c5cc3904ac816482bccbac7bbcf1d0f8/audio/opi/opi-fzy-152090.mp3",
+      "audioText": "How do crew members cooperate with each other to carry out the checklist procedure?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-14",
+      "audioTextZh": "机组人员如何相互配合执行检查单的？",
+      "referenceText": "The pilot not flying will read out the checklist.\nThe pilot flying will check the terms in the checklist.\nAt the same time, both pilots will cross check each other to ensure flight safety.",
+      "referenceTextZh": "未把杆飞行员大声朗读检查单。\n把杆飞行员检查检查单里的项目。\n同时，两个飞行员要相互检查确保飞行安全。",
+      "audioDurationSeconds": 4.44
+    },
+    {
+      "id": "opi-fzy-153336",
+      "audio": "/question-bank-assets/revisions/opi/cf99d62bd4c0fd8385b04dd5c47241719acfbb568195a3bb6f90e1aceb482410/audio/opi/opi-fzy-153336.mp3",
+      "audioText": "Which one do you think is more difficult, the English manual or the Chinese manual?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-49",
+      "audioTextZh": "你觉得哪一个更难，英文手册还是中文手册？",
+      "referenceText": "I think the English manual is more difficult, because my mother tongue is Chinese, so I think it is a little difficult to understand some English sentences.",
+      "referenceTextZh": "我觉得英文手册更难，因为我的母语是汉语，所以，在理解一些英文句子上，我觉得还是有一些难度的。",
+      "audioDurationSeconds": 4.872
+    },
     {
       "id": "opi-core-678",
       "audio": "/question-bank-assets/revisions/opi/1b839b367796d0700da64e9c8326365bb6333caf3a7f3ba86141e915ec97912d/audio/opi/opi-core-678.mp3",
@@ -198,8 +286,73 @@
       "referenceText": "I prefer to read the original English manuals because they save time and help improve my aviation English. Reading the original text also avoids possible errors in a translation.",
       "referenceTextZh": "我更喜欢阅读英文原版手册，因为这样节省时间，也有助于提高我的航空英语。阅读原文还能避免译文中可能出现的错误。",
       "audioDurationSeconds": 4.296
+    },
+    {
+      "id": "opi-fzy-109933",
+      "audio": "/question-bank-assets/revisions/opi/0f0de12a506622cfbee8c05b766a595de0c9a22e0d79fc0a54a8a843fb4fb871/audio/opi/opi-fzy-109933.mp3",
+      "audioText": "What is a normal checklist composed of?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-12",
+      "audioTextZh": "正常检查单包括哪些内容？",
+      "referenceText": "A normal checklist includes the standard procedures for normal operation containing preflight checklist, taxi checklist, before and after takeoff checklist, descent and approach checklist, before landing checklist etc.",
+      "referenceTextZh": "正常检查单包括正常操作的标准程序，包括飞行前检查单、滑行检查单、起飞前后检查单、下降和进近检查单和着陆前检查单等。",
+      "audioDurationSeconds": 2.088
+    },
+    {
+      "id": "opi-fzy-140780",
+      "audio": "/question-bank-assets/revisions/opi/5c7bfa7f631db999d4eeadb32c1320b37dcb67cc34627ee2dc917e25d34c67d6/audio/opi/opi-fzy-140780.mp3",
+      "audioText": "Are there any manuals or handbooks in your cockpit? Can you name a few?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-37",
+      "audioTextZh": "你们驾驶舱内有手册吗？能否列举一些？",
+      "referenceText": "Yes, there are several manuals in the cockpit, such as Airplane Flight Manual, Flight Crew Operation Manual, Flight Operation Manual, Quick Reference Handbook (QRH), Minimum Equipment List (MEL) and so on.",
+      "referenceTextZh": "是的，驾驶舱内有很多手册，例如飞机飞行手册，机组操作手册，飞行运行手册，快速检查单（QRH），最低设备清单（MEL）等。",
+      "audioDurationSeconds": 3.936
+    },
+    {
+      "id": "opi-fzy-110102",
+      "audio": "/question-bank-assets/revisions/opi/3ac682e66655b6474fc3a324e7d565f65da9e1a9a3888085f77307893e48968f/audio/opi/opi-fzy-110102.mp3",
+      "audioText": "What is the role of normal checklists?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-8",
+      "audioTextZh": "正常检查单的作用是什么？",
+      "referenceText": "Normal checklists enhance flight safety by providing an opportunity to confirm that the safety critical aspects of the systems and aircraft configuration are correctly set. By following normal checklists, any mistakes in settings will be identified and corrected before they may cause safety problems. Normal checklist actions, as with all SOPs, are intended to check or verify actions that were accomplished from memory. A defined flow pattern should be employed for each cockpit panel. Safety-critical points should be cross-checked through the use of normal checklists.",
+      "referenceTextZh": "正常检查单通过检查系统的安全关键部分和飞机配置是否设置正确来加强飞行安全。按照正常检查单，设置中出现任何错误都会在其造成安全问题前被发现并纠正。按照标准运行程序执行正常检查单是为了检查或确认是否所有记忆的项目都已经完成。驾驶舱操作面板应配备标准巡视流程。为了保证飞行安全应对正常检查单进行交叉检查。",
+      "audioDurationSeconds": 2.04
     }
   ],
-  "declaredCardCount": 19,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 30,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-152088": 1,
+    "opi-fzy-152085": 1,
+    "opi-fzy-152086": 1,
+    "opi-fzy-152087": 1,
+    "opi-fzy-152089": 1,
+    "opi-fzy-152982": 1,
+    "opi-fzy-152090": 1,
+    "opi-fzy-153336": 1,
+    "opi-core-678": 0,
+    "opi-core-684": 0,
+    "opi-core-675": 0,
+    "opi-core-681": 0,
+    "opi-core-677": 0,
+    "opi-core-671": 2,
+    "opi-core-683": 0,
+    "opi-core-682": 0,
+    "opi-core-672": 0,
+    "opi-core-667": 0,
+    "opi-core-679": 0,
+    "opi-core-668": 0,
+    "opi-core-669": 2,
+    "opi-core-673": 0,
+    "opi-core-670": 0,
+    "opi-core-674": 0,
+    "opi-core-676": 0,
+    "opi-core-678-part-2": 0,
+    "opi-core-675-part-2": 0,
+    "opi-fzy-109933": 0,
+    "opi-fzy-140780": 0,
+    "opi-fzy-110102": 0
+  }
 }

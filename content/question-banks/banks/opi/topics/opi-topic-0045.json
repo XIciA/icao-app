@@ -91,8 +91,43 @@
       "referenceText": "Air traffic flow control can be caused by adverse weather such as thunderstorms, military activity, VIP flights, or an emergency that reduces available capacity.",
       "referenceTextZh": "雷暴等恶劣天气、军事活动、要客航班，或降低可用容量的紧急情况，都可能导致空中交通流量控制。",
       "audioDurationSeconds": 2.952
+    },
+    {
+      "id": "opi-fzy-110124",
+      "audio": "/question-bank-assets/revisions/opi/0e83c9ce4b8f3affc5891bc6307e2852b6ac6edaba9ffa701a0d7896d3121df3/audio/opi/opi-fzy-110124.mp3",
+      "audioText": "If your flight is delayed, how do you comfort passengers?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-18",
+      "audioTextZh": "如果你的航班延误了，你如何安抚你的旅客？",
+      "referenceText": "If my flight is delayed, I will tell passengers the situation through PA. I will try to take off as soon as possible so I will ask passengers to wait patiently.",
+      "referenceTextZh": "如果航班延误，我会做个机长广播告知旅客我们现在遇到的问题，我们会尽最大努力尽快起飞，请耐心等待。",
+      "audioDurationSeconds": 3.288
+    },
+    {
+      "id": "opi-fzy-110112",
+      "audio": "/question-bank-assets/revisions/opi/a49705279af171b9549036395b25ebed61bc047f8a9eed25aafd1bb4fed1b28b/audio/opi/opi-fzy-110112.mp3",
+      "audioText": "How do you think delays are more common at larger airports than smaller ones?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-12",
+      "audioTextZh": "你怎样看待大型机场比小型机场更容易发生延误的情况？",
+      "referenceText": "I think it is understandable that there are more flight delays at larger airports than smaller ones, because there is too much traffic at larger airports and too many passengers to handle every day.",
+      "referenceTextZh": "我认为大型机场比小型机场更容易延误是很合理的，因为大型机场交通流量大，每天都要处理很多乘客事宜。",
+      "audioDurationSeconds": 4.224
     }
   ],
-  "declaredCardCount": 9,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 11,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-core-557": 0,
+    "opi-core-554": 0,
+    "opi-core-555": 0,
+    "opi-core-556": 0,
+    "opi-core-561": 0,
+    "opi-core-558": 0,
+    "opi-core-562": 0,
+    "opi-core-563": 0,
+    "opi-core-560": 0,
+    "opi-fzy-110124": 0,
+    "opi-fzy-110112": 0
+  }
 }

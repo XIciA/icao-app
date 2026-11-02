@@ -1,15 +1,14 @@
 {
   "id": "opi-category-05",
   "name": "运行",
-  "declaredCardCount": 488,
-  "declaredTopicCount": 39,
+  "declaredCardCount": 499,
+  "declaredTopicCount": 37,
   "topicIds": [
     "opi-topic-0118",
     "opi-topic-0141",
     "opi-topic-0131",
     "opi-fzy-1681",
     "opi-topic-0065",
-    "opi-fzy-542",
     "opi-topic-0025",
     "opi-fzy-1682",
     "opi-topic-0136",
@@ -41,7 +40,6 @@
     "opi-topic-0116",
     "opi-topic-0019",
     "opi-topic-0149",
-    "opi-topic-0029",
-    "opi-fzy-1683"
+    "opi-topic-0029"
   ]
 }

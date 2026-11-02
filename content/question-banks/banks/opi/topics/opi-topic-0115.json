@@ -3,6 +3,21 @@
   "name": "不利天气",
   "cards": [
     {
+      "id": "opi-extra-138",
+      "audio": "/question-bank-assets/revisions/opi/9eb1baec61fbe565fd4c76635580ae96c8a8b9c3bf339bf6a3798b2750112787/audio/opi/opi-extra-138.mp3",
+      "audioText": "What is the weather like today, and is it suitable for flying?",
+      "taskTitle": "其它-问好-2",
+      "audioTextZh": "今天天气怎么样？适合飞行吗？",
+      "referenceText": "The sky is clear, visibility is acceptable, and the wind is calm. There is plenty of sunshine, so it is a good day for flying.",
+      "referenceTextZh": "天空晴朗，能见度可以接受，风也很小。阳光充足，因此今天很适合飞行。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "Is the weather suitable for flying today?"
+        ]
+      },
+      "audioDurationSeconds": 3.264
+    },
+    {
       "id": "opi-extra-087",
       "audio": "/question-bank-assets/revisions/opi/16739af80510aa5d5f163248f53d6d10db9eda6283e4d3452207f5f3994053d3/audio/opi/opi-extra-087.mp3",
       "audioText": "How can adverse weather conditions other than cumulonimbus clouds and turbulence affect flight safety?",
@@ -83,6 +98,17 @@
       "audioDurationSeconds": 3.336
     }
   ],
-  "declaredCardCount": 8,
-  "categoryId": "opi-category-01"
+  "declaredCardCount": 9,
+  "categoryId": "opi-category-01",
+  "cardStudyTiers": {
+    "opi-extra-138": 0,
+    "opi-extra-087": 0,
+    "opi-extra-088": 0,
+    "opi-extra-089": 0,
+    "opi-extra-086": 0,
+    "opi-extra-092": 0,
+    "opi-core-512": 0,
+    "opi-core-553": 0,
+    "opi-extra-090": 0
+  }
 }

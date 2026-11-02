@@ -346,11 +346,17 @@ export type ContentAccessCredential = {
 /** Release order is authoritative; filtering/search never recalculates free access. */
 export type FreeAccessBank = {
   id: string;
+  /** Explicit release selection when directory moves must preserve free access. */
+  freeCardIds?: readonly string[];
   categories: readonly { topics: readonly { id: string; cards: readonly { id: string; retired?: unknown }[] }[] }[];
 };
 export function freeQuestionBankCardIds(bank: FreeAccessBank): Set<string> {
   const topics = bank.categories.flatMap(category => category.topics);
   const active = (topic: typeof topics[number]) => topic.cards.filter(card => card.retired !== true);
+  if (bank.freeCardIds) {
+    const ids = new Set(topics.flatMap(topic => active(topic).map(card => card.id)));
+    return new Set(bank.freeCardIds.filter(id => ids.has(id)));
+  }
   if (bank.id === 'sentences900') return new Set(topics.flatMap(topic => active(topic).map(card => card.id)));
   if (bank.id === 'listening') return new Set(bank.categories.flatMap(category =>
     category.topics.flatMap(topic => active(topic)).slice(0, 10).map(card => card.id)));
@@ -1048,11 +1054,11 @@ export function normalizeStudyScope(value: unknown): StudyScope {
 
 /** Derived catalog projection only; the authoritative rank stays on the card
  * (or complete scenario). IDs carry no protected question/answer text. */
-export function studyScopeCardIds(bankId: string, topic: { studyTier?: unknown; cards: readonly { id: string; studyTier?: unknown; retired?: boolean; examReported?: boolean }[] }): StudyScopeCardIds {
+export function studyScopeCardIds(bankId: string, topic: { studyTier?: unknown; cardStudyTiers?: Record<string, unknown>; cards: readonly { id: string; studyTier?: unknown; retired?: boolean; examReported?: boolean }[] }): StudyScopeCardIds {
   const selected: string[] = [], crash: string[] = [];
   for (const card of topic.cards) {
     if (card.retired) continue;
-    const tier = bankId === 'sentences900' ? 2 : topic.studyTier ?? card.studyTier ?? 0;
+    const tier = bankId === 'sentences900' ? 2 : topic.cardStudyTiers?.[card.id] ?? topic.studyTier ?? card.studyTier ?? 0;
     if (tier === 1 || tier === 2) selected.push(card.id);
     if (tier === 2 || card.examReported === true) crash.push(card.id);
   }

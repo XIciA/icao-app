@@ -67,8 +67,52 @@
       "referenceText": "In the Northern Hemisphere, acceleration on an east or west heading can create a false turn toward north, while deceleration can indicate a turn toward south. When turning from a northerly heading, the compass tends to lag, and when turning from a southerly heading, it tends to lead. Magnetic dip can also make the card tilt and oscillate during maneuvers or turbulence.",
       "referenceTextZh": "在北半球，飞机沿东向或西向航向加速时，磁罗盘会产生向北转弯的假指示；减速时则会指示向南转弯。从北向航向开始转弯时，罗盘指示往往滞后；从南向航向开始转弯时，指示往往超前。在机动或颠簸期间，磁倾角还会使罗盘卡倾斜和摆动。",
       "audioDurationSeconds": 6.216
+    },
+    {
+      "id": "opi-fzy-224164",
+      "audio": "/question-bank-assets/revisions/opi/c00148e8d934ff8a764c4e2bab76fc46f5b2df52866f14ded3ee44dd39893a2f/audio/opi/opi-fzy-224164.mp3",
+      "audioText": "Where is the compass on your plane?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-43",
+      "audioTextZh": "你飞机上的指南针在哪里？",
+      "referenceText": "I fly C 172, we have a overhead compass. It is usually installed in the central position above the cockpit windshield, directly in front of the two pilot seats, and is closely attached to the windshield.",
+      "referenceTextZh": "我飞的是塞斯纳172，我们有一个顶窗罗盘。它通常安装在驾驶舱风挡玻璃的上方中央位置，位于两个飞行员座位的正前方，紧贴风挡玻璃。",
+      "audioDurationSeconds": 1.704
+    },
+    {
+      "id": "opi-fzy-224165",
+      "audio": "/question-bank-assets/revisions/opi/565273f6c83e82a2a5d8603097d1508b187bbb0f787f5331b7a8f13c0fef1c8a/audio/opi/opi-fzy-224165.mp3",
+      "audioText": "What functions does the compass have?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-45",
+      "audioTextZh": "指南针的功能是什么？",
+      "referenceText": "It is the most important, fundamental and essential backup navigation indication device on an aircraft. Even if the power supply on the aircraft completely fails and all electronic equipment stops functioning, the magnetic compass can still rely on the Earth's magnetic field to provide pilots with basic course reference.",
+      "referenceTextZh": "它是飞机上最主要、最基础、且必须的备份航向指示设备。即使飞机上的电力完全失效，所有电子设备都停止工作，磁罗盘依然可以依靠地球磁场为飞行员提供基本的航向参考。",
+      "audioDurationSeconds": 1.896
+    },
+    {
+      "id": "opi-fzy-224163",
+      "audio": "/question-bank-assets/revisions/opi/1fa53537169cfdaa34b706fb5d6d2aebfbf2359d148eb142700269f1cdc0b378/audio/opi/opi-fzy-224163.mp3",
+      "audioText": "Do you have any compass on your aircraft?",
+      "studyTier": 1,
+      "taskTitle": "飞机与飞机系统-41",
+      "audioTextZh": "你知道飞机上的指南针吗？",
+      "referenceText": "The aircraft compass system consists of a magnetic compass and a heading indicator. The magnetic compass points to magnetic north but is prone to in-flight interference, while the heading indicator provides stable directional data via a gyroscope and requires periodic calibration. Together, they deliver reliable heading information as essential navigation instruments in modern aircraft.",
+      "referenceTextZh": "飞机指南针系统由磁罗盘和航向指示器组成。磁罗盘指向磁北，但在飞行中容易受到干扰，而航向指示器通过陀螺仪提供稳定的方向数据，需要定期校准。它们共同提供可靠的航向信息，是现代飞机必不可少的导航仪器。",
+      "audioDurationSeconds": 2.16
     }
   ],
-  "declaredCardCount": 6,
-  "categoryId": "opi-category-06"
+  "declaredCardCount": 9,
+  "categoryId": "opi-category-06",
+  "cardStudyTiers": {
+    "opi-extra-345": 2,
+    "opi-extra-348": 2,
+    "opi-extra-347": 2,
+    "opi-extra-345-part-2": 2,
+    "opi-extra-344": 2,
+    "opi-extra-346": 2,
+    "opi-fzy-224164": 1,
+    "opi-fzy-224165": 1,
+    "opi-fzy-224163": 1
+  }
 }

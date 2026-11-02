@@ -1,3 +1,4 @@
+import { storageTarget } from '../data/directory-storage-identity';
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankCard } from '../types';
 import type { QuestionBankCardTarget } from './types';
@@ -11,10 +12,12 @@ export type IndexedQuestionBankCard = QuestionBankCardTarget & {
 };
 
 export function questionBankCardTargetKey(target: QuestionBankCardTarget) {
-  return [target.bankId, target.categoryId, target.topicId, target.cardId].join(':');
+  const stable = storageTarget(target);
+  return [stable.bankId, stable.categoryId, stable.topicId, stable.cardId].join(':');
 }
 
 const cardIndex = new Map<string, IndexedQuestionBankCard>();
+const stableCardIndex = new Map<string, IndexedQuestionBankCard>();
 const topicCardIndex = new Map<string, IndexedQuestionBankCard>();
 
 getEmbeddedQuestionBanks().forEach((bank) => {
@@ -32,6 +35,7 @@ getEmbeddedQuestionBanks().forEach((bank) => {
           cardIndex: index,
           card,
         };
+        stableCardIndex.set(card.id, value);
         cardIndex.set(questionBankCardTargetKey(value), value);
         topicCardIndex.set(`${topic.id}:${card.id}`, value);
       });
@@ -44,7 +48,7 @@ export function getQuestionBankCardReference(target: QuestionBankCardTarget) {
 }
 
 export function findQuestionBankCardReference(topicId: string, cardId: string) {
-  return topicCardIndex.get(`${topicId}:${cardId}`);
+  return topicCardIndex.get(`${topicId}:${cardId}`) ?? stableCardIndex.get(cardId);
 }
 
 export function getQuestionBankCardSource(target: QuestionBankCardTarget) {

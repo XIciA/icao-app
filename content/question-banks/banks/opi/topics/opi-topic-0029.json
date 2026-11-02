@@ -3,6 +3,39 @@
   "name": "夜航",
   "cards": [
     {
+      "id": "opi-fzy-224514",
+      "audio": "/question-bank-assets/revisions/opi/2b4537c29893e2afe07edc1c167f39b461f301e41b372adcf21e7ad3d2874703/audio/opi/opi-fzy-224514.mp3",
+      "audioText": "Do you prefer day flight or night flight?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-67",
+      "audioTextZh": "你喜欢飞日间航班还是夜间航班？",
+      "referenceText": "I prefer flying in day time, because the visibility is good in day time, and it is more safely to fly under good visibility, also, we can have a better and regular rest in the day flight. I prefer flying in night time, because there are few planes at night and we don't need to wait or delay, especially for the pilots of cargo planes, time always comes first.",
+      "referenceTextZh": "我喜欢飞日间航班，因为白天能见度较好，在这样的情况下飞行更安全，同时飞飞日间航班，我们能够更好更规律地休息。我喜欢飞夜间航班，因为晚上飞机少，我们不需要等待或延误，尤其对于货机飞行员来说，时间总是排在第一位的。",
+      "audioDurationSeconds": 2.28
+    },
+    {
+      "id": "opi-fzy-224515",
+      "audio": "/question-bank-assets/revisions/opi/b3236a742448fdf20a490c26ae482e5ddc333c31a24b0b1809ec0e51694df6b3/audio/opi/opi-fzy-224515.mp3",
+      "audioText": "What are the differences between day flight and night flight?",
+      "studyTier": 1,
+      "taskTitle": "运行相关-68",
+      "audioTextZh": "白天飞行与夜间飞行有什么不同？",
+      "referenceText": "There are some differences between day flight and night flight. During day flight, we will have better visual reference. During night flight, it will be difficult for the pilots to have visual contact with runway, as a result, pilots needs to use ground equipment to have a safe landing.",
+      "referenceTextZh": "白天飞行和夜间飞行有一些不同。白天飞行期间，我们有更多的目视参考。夜间飞行期间，飞行员很难对跑道建立目视参考，因此，飞行员需要使用地面设备进行安全着陆。",
+      "audioDurationSeconds": 3.024
+    },
+    {
+      "id": "opi-fzy-153468",
+      "audio": "/question-bank-assets/revisions/opi/43cc21e727d620d7af4a0a1140d5972d564a0fdfb8ecace5d7e372ba008faf33/audio/opi/opi-fzy-153468.mp3",
+      "audioText": "What are the difference between day flight and night flight?",
+      "studyTier": 0,
+      "taskTitle": "飞行运行-45",
+      "audioTextZh": "白天飞行与夜间飞行有什么不同？",
+      "referenceText": "There are some differences between day flight and night flight. During day flight, we will have better visual reference. During night flight, it will be difficult for the pilots to have visual contact with runway, as a result, pilots needs to use ground equipment to have a safe landing.",
+      "referenceTextZh": "白天飞行和夜间飞行有一些不同。白天飞行期间，我们有更多的目视参考。夜间飞行期间，飞行员很难对跑道建立目视参考，因此，飞行员需要使用地面设备进行安全着陆。",
+      "audioDurationSeconds": 2.784
+    },
+    {
       "id": "opi-core-442",
       "audio": "/question-bank-assets/revisions/opi/d3950dfcf78522dfa97ed3497b96b84b7de3681e8ec8a80ea5ea5f815dca52cb/audio/opi/opi-core-442.mp3",
       "audioText": "What are the main differences between flying during the day and flying at night?",
@@ -56,6 +89,16 @@
       "audioDurationSeconds": 3.648
     }
   ],
-  "declaredCardCount": 5,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 8,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-fzy-224514": 1,
+    "opi-fzy-224515": 1,
+    "opi-fzy-153468": 0,
+    "opi-core-442": 0,
+    "opi-core-444": 0,
+    "opi-core-441": 0,
+    "opi-intake-20261019-navigation-lights": 0,
+    "opi-core-445": 0
+  }
 }

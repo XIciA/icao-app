@@ -21,8 +21,24 @@
       "referenceText": "The center of gravity at takeoff is affected by the amount and location of fuel, passengers, baggage, and cargo. The way these loads are distributed through the aircraft determines the final center-of-gravity position.",
       "referenceTextZh": "飞机起飞时的重心受燃油、旅客、行李和货物的数量及其位置影响。这些载荷在飞机上的分布方式决定了最终的重心位置。",
       "audioDurationSeconds": 3.72
+    },
+    {
+      "id": "opi-fzy-110089",
+      "audio": "/question-bank-assets/revisions/opi/364b193072cfa4bed63995aebe43003f984067967bf00cc4edb22de1792cecbf/audio/opi/opi-fzy-110089.mp3",
+      "audioText": "What will happen if CG is put a little bit forward of aircraft?",
+      "studyTier": 0,
+      "taskTitle": "补充话题-3",
+      "audioTextZh": "如果飞机重心略靠前会发生什么？",
+      "referenceText": "If CG is put a little bit forward, the aircraft nose would be too heavy and it would be hard to operate the aircraft.",
+      "referenceTextZh": "如果重心略靠前，机头过重，飞机将很难操纵。",
+      "audioDurationSeconds": 3.408
     }
   ],
-  "declaredCardCount": 2,
-  "categoryId": "opi-category-05"
+  "declaredCardCount": 3,
+  "categoryId": "opi-category-05",
+  "cardStudyTiers": {
+    "opi-extra-094": 0,
+    "opi-extra-093": 0,
+    "opi-fzy-110089": 0
+  }
 }
