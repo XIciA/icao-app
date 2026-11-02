@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { directoryTopicWasReorganized } from '@/features/question-bank/data/directory-storage-identity';
 import { createCardDirectory } from '@/features/question-bank/data/card-directory';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { CenteredState } from '@/components/states/CenteredState';
@@ -18,7 +20,17 @@ export default function QuestionBankStudyRoute() {
   }>();
   const state = useQuestionBank(bankId);
 
-  if (state.status === 'loading') return <GlobalLoadingScreen />;
+  const reorganizedTopicOnly = Boolean(!cardId && state.status === 'ready' && directoryTopicWasReorganized(bankId, topicId)
+    && !state.data.categories.some(category => category.topics.some(topic => topic.id === topicId)));
+  const redirectedTopic = useRef('');
+  useEffect(() => {
+    const key = `${bankId}/${topicId}`;
+    if (!reorganizedTopicOnly || redirectedTopic.current === key) return;
+    redirectedTopic.current = key;
+    router.replace({ pathname: '/question-bank/[bankId]', params: { bankId } });
+  }, [bankId, topicId, reorganizedTopicOnly, router]);
+
+  if (reorganizedTopicOnly || state.status === 'loading') return <GlobalLoadingScreen />;
   const location = state.status === 'ready' && cardId ? createCardDirectory([state.data]).get({ bankId, cardId }) : undefined;
   const category = state.status === 'ready' ? state.data.categories.find((item) => item.id === (location?.categoryId ?? categoryId)) : undefined;
   const topic = category?.topics.find((item) => item.id === (location?.topicId ?? topicId));

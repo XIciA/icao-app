@@ -74,6 +74,25 @@ describe('Native study route recovery', () => {
     expect(screen.queryByText('不在当前学习范围')).toBeNull();
   });
 
+  it('returns a reorganized topic-only bookmark to the current directory without a false content error', async () => {
+    mockParams.topicId = 'opi-fzy-1679';
+    mockTopicState = { status: 'error', retry: mockTopicRetry, error: new Error('question_bank_not_found') };
+    const screen = await render(<Page />);
+    expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'opi' } });
+    expect(screen.queryByText('重新加载')).toBeNull();
+  });
+
+  it('keeps the legacy topic usable while the current catalog still contains it', async () => {
+    const legacy = {...topic,id:'opi-fzy-1679'};
+    const bank = {...dataset,categories:[{...dataset.categories[0],topics:[legacy]}]};
+    mockParams.topicId = legacy.id;
+    mockBankState = {status:'ready',data:bank,catalog:bank,source:'remote',retry:mockBankRetry};
+    mockTopicState = {status:'ready',topic:legacy,retry:mockTopicRetry};
+    const screen = await render(<Page />);
+    expect(screen.getByTestId('existing-study-screen')).toBeTruthy();
+    expect(mockReplace).not.toHaveBeenCalled();
+  });
+
   it('keeps the existing study screen for available questions', async () => {
     const screen = await render(<Page />);
     expect(screen.getByTestId('existing-study-screen')).toBeTruthy();
