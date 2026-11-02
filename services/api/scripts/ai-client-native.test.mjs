@@ -15,7 +15,7 @@ const failure = (code, status) => new Response(JSON.stringify({ error: { code } 
 function fixture() {
   const fetch = vi.fn(); const storage = new Map(); const listeners = new Set(); let token = 'token-a';
   let owner = { accountId: 'a', generation: 1, status: 'active', environment: 'sandbox' };
-  const api = evaluate('src/platform/api-client.ts', {}, { process: { env: { EXPO_PUBLIC_ICAO_API_URL: 'https://api.test' } }, fetch });
+  const api = evaluate('src/platform/api-client.ts', { '@/config/directory-client.json': JSON.parse(readFileSync(new URL('src/config/directory-client.json', root), 'utf8')) }, { process: { env: { EXPO_PUBLIC_ICAO_API_URL: 'https://api.test' } }, fetch });
   api.setApiAccessTokenProvider(async () => token);
   const errors = evaluate('src/features/ai/ai-operation-failure.native.ts', { '@/platform/api-client': api });
   const client = evaluate('src/features/ai/ai-client.native.ts', {
