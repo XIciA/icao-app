@@ -1106,7 +1106,8 @@ export const contentAccessCredentials = pgTable('content_access_credentials', {
     name: 'content_access_credentials_entitlement_fk',
   }).onDelete('restrict').onUpdate('cascade'),
   check('content_access_credentials_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
-  check('content_access_credentials_window_check', sql`${table.expiresAt} > ${table.issuedAt} AND ${table.expiresAt} <= ${table.issuedAt} + interval '72 hours'`),
+  // The issuer bounds expiry by the verified entitlement; legacy requests retain their 72-hour cap.
+  check('content_access_credentials_window_check', sql`${table.expiresAt} > ${table.issuedAt}`),
   check('content_access_credentials_retention_check', sql`${table.retentionAt} >= ${table.expiresAt}`),
 ]).enableRLS();
 

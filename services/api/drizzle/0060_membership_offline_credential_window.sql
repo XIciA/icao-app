@@ -1,0 +1,2 @@
+ALTER TABLE "content_access_credentials" DROP CONSTRAINT "content_access_credentials_window_check";--> statement-breakpoint
+ALTER TABLE "content_access_credentials" ADD CONSTRAINT "content_access_credentials_window_check" CHECK ("content_access_credentials"."expires_at" > "content_access_credentials"."issued_at");

@@ -421,6 +421,13 @@
       "when": 1793385442851,
       "tag": "0059_resource_lookup_indexes",
       "breakpoints": true
+    },
+    {
+      "idx": 60,
+      "version": "7",
+      "when": 1793614540349,
+      "tag": "0060_membership_offline_credential_window",
+      "breakpoints": true
     }
   ]
 }

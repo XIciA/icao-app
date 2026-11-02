@@ -10,7 +10,8 @@ import test, { after, before } from 'node:test';
 import { and, eq, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { exportJWK, SignJWT } from 'jose';
+import { exportJWK, jwtVerify, SignJWT } from 'jose';
+import { ContentAccessService } from '../src/content-access/content-access.service.ts';
 
 import { RecentAuthService } from '../src/auth/recent-auth.service.ts';
 import { SessionSecurityService } from '../src/auth/session-security.service.ts';
@@ -637,6 +638,88 @@ test('content access credentials do not retain a stable device digest column', (
     `),
     '0',
   );
+});
+
+test('offline credentials persist membership validity across all banks and retain legacy limits', async () => {
+  const accountId = randomUUID();
+  const orderId = randomUUID();
+  const segmentId = randomUUID();
+  const productKey = `offline-regression-${randomUUID()}`;
+  const now = new Date('2026-11-02T10:00:00.000Z');
+  const expiry = new Date(now.getTime() + 90 * 86400000);
+  const keys = generateKeyPairSync('ed25519');
+  const service = new ContentAccessService({
+    contentCredentialSigningSecret: 'offline-regression-test-secret-32-bytes',
+    contentCredentialSigningPrivateKey: keys.privateKey.export({ format: 'pem', type: 'pkcs8' }).toString(),
+  }, { db: serviceDatabase });
+  const bankIds = ['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'];
+  const releases = bankIds.map(bankId => ({
+    id: randomUUID(), bankId, version: 99999, checksum: createHash('sha256').update(`${accountId}:${bankId}`).digest('hex'),
+    active: true, payload: { id: bankId, categories: [{ id: 'offline-category', topics: [{ id: 'offline-topic', cards: [{ id: 'offline-card' }] }] }] },
+  }));
+  try {
+    await serviceDatabase.insert(databaseSchema.commerceProducts).values({
+      productKey, displayName: 'Offline regression fixture', durationDays: 90, basePriceCnyFen: 1,
+      aiPointRuleVersion: 'test', aiPointBatchCount: 1, aiPointBatchIntervalDays: 30, aiPointsPerBatch: 1,
+    });
+    await serviceDatabase.insert(databaseSchema.commerceOrders).values({
+      id: orderId, environment: 'production', channel: 'apple_app_store', externalOrderId: orderId,
+      accountId, originalAccountId: accountId, productKey, externalProductId: productKey,
+      durationDays: 90, aiPointRuleVersion: 'test', membershipGrantSource: 'purchase_discovery',
+      membershipEffectiveAt: now, membershipContributionMs: 90 * 86400000, purchasedAt: now,
+    });
+    await serviceDatabase.insert(databaseSchema.membershipEntitlementSegments).values({
+      id: segmentId, environment: 'production', accountId, orderId, revision: 1, startsAt: now, endsAt: expiry,
+    });
+    await serviceDatabase.insert(databaseSchema.questionBankReleases).values(releases);
+    const scopes = bankIds.map(bankId => ({ bankId, categoryId: 'offline-category', topicId: 'offline-topic', version: 99999 }));
+    const legacy = await service.issueCredential(accountId, { scopes }, undefined, 'production', now);
+    assert.equal(legacy.expiresAt, new Date(now.getTime() + 72 * 3600000).toISOString());
+    for (const scope of scopes) {
+      const credential = await service.issueCredential(accountId, { scopes: [scope], validity: 'membership' }, undefined, 'production', now);
+      assert.equal(credential.expiresAt, expiry.toISOString());
+      const { payload } = await jwtVerify(credential.token, keys.publicKey, {
+        issuer: 'icao-api', audience: 'icao-content-offline', currentDate: now,
+      });
+      assert.equal(payload.sub, accountId);
+      assert.equal(payload.entitlementSegmentId, segmentId);
+      assert.equal(payload.exp, expiry.getTime() / 1000);
+      assert.deepEqual(payload.scopes, [scope]);
+      const [stored] = await serviceDatabase.select().from(databaseSchema.contentAccessCredentials)
+        .where(eq(databaseSchema.contentAccessCredentials.id, payload.jti));
+      assert.equal(stored.expiresAt.toISOString(), credential.expiresAt);
+      assert.equal(stored.credentialDigest, createHash('sha256').update(credential.token).digest('hex'));
+    }
+    const shortExpiry = new Date(now.getTime() + 3600000);
+    await serviceDatabase.update(databaseSchema.membershipEntitlementSegments).set({ endsAt: shortExpiry })
+      .where(eq(databaseSchema.membershipEntitlementSegments.id, segmentId));
+    for (const validity of [undefined, 'membership']) {
+      const credential = await service.issueCredential(accountId, { scopes, validity }, undefined, 'production', now);
+      assert.equal(credential.expiresAt, shortExpiry.toISOString());
+    }
+    await assert.rejects(() => service.issueCredential(accountId, { scopes, validity: 'membership' }, undefined, 'production', shortExpiry), /membership_required/u);
+    await assert.rejects(() => service.issueCredential(randomUUID(), { scopes, validity: 'membership' }, undefined, 'production', now), /membership_required/u);
+    const base = { accountId, entitlementSegmentId: segmentId, environment: 'production', scopes,
+      policyVersion: 'content-access-v2', issuedAt: now, expiresAt: expiry, retentionAt: expiry };
+    for (const [override, constraint] of [
+      [{ expiresAt: now }, 'content_access_credentials_window_check'],
+      [{ expiresAt: new Date(now.getTime() - 1) }, 'content_access_credentials_window_check'],
+      [{ retentionAt: now }, 'content_access_credentials_retention_check'],
+      [{ accountId: randomUUID() }, 'content_access_credentials_entitlement_fk'],
+      [{ environment: 'sandbox' }, 'content_access_credentials_entitlement_fk'],
+    ]) {
+      await assert.rejects(
+        () => serviceDatabase.insert(databaseSchema.contentAccessCredentials).values({ ...base, ...override, credentialDigest: randomUUID() }),
+        error => error.cause?.constraint_name === constraint,
+      );
+    }
+  } finally {
+    await serviceDatabase.delete(databaseSchema.contentAccessCredentials).where(eq(databaseSchema.contentAccessCredentials.accountId, accountId));
+    await serviceDatabase.delete(databaseSchema.membershipEntitlementSegments).where(eq(databaseSchema.membershipEntitlementSegments.id, segmentId));
+    await serviceDatabase.delete(databaseSchema.commerceOrders).where(eq(databaseSchema.commerceOrders.id, orderId));
+    await serviceDatabase.delete(databaseSchema.commerceProducts).where(eq(databaseSchema.commerceProducts.productKey, productKey));
+    for (const release of releases) await serviceDatabase.delete(databaseSchema.questionBankReleases).where(eq(databaseSchema.questionBankReleases.id, release.id));
+  }
 });
 
 test('every public API-owned table is classified and private to client roles', () => {
