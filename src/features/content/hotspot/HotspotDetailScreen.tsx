@@ -40,7 +40,8 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
       </Screen>
     );
   }
-  if (!topics && !error) return <GlobalLoadingScreen />;
+  if (!topics && !error) return <Screen><GlobalLoadingScreen /></Screen>;
+  if (error) return <Screen><CenteredState kind="failure" onAction={() => void load()} /></Screen>;
 
   const totalQuestions = brief.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0);
   return (
@@ -59,9 +60,6 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
           <AppText>本套练习包含 {brief.topics.length} 个考试话题，共 {totalQuestions} 道 OPI 题库精选口语题。</AppText>
         </Card>
 
-        {error ? (
-          <CenteredState actionLabel="重试"  onAction={() => void load()} kind="failure"  />
-        ) : (
           <View style={styles.topicsSection}>
             <AppText variant="sectionTitle">涵盖话题与问题（{topics?.length ?? 0}）</AppText>
             {topics?.map((topic, topicIndex) => (
@@ -87,7 +85,6 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
               </Card>
             ))}
           </View>
-        )}
 
         <Button
           disabled={Boolean(error) || !topics}

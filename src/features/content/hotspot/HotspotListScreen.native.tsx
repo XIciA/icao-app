@@ -1,3 +1,5 @@
+import { CenteredState } from '@/components/states/CenteredState';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { hotspotCenters } from '@icao/contracts/app-content';
@@ -22,21 +24,26 @@ function HotspotListContent() {
   const router = useRouter();
   const guide = useGuide();
   const [briefs, setBriefs] = useState(loadHotspotBriefs);
+  const [loading, setLoading] = useState(true);
   const [warning, setWarning] = useState(false);
   const [attempt, setAttempt] = useState(0);
   useFocusEffect(useCallback(() => {
     let active = true;
-    void refreshHotspotDirectory().then((result) => { if (active) { setBriefs(result.briefs); setWarning(!!result.warning); } }).catch(() => { if (active) setWarning(true); });
+    setLoading(true);
+    void refreshHotspotDirectory().then((result) => { if (active) { setBriefs(result.briefs); setWarning(!!result.warning); } }).catch(() => { if (active) setWarning(true); }).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
   // Manual retry intentionally recreates the focus effect.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attempt]));
 
+  if (!briefs.length && loading) return <Screen><GlobalLoadingScreen /></Screen>;
+  if (!briefs.length && warning) return <Screen><CenteredState kind="failure" onAction={() => setAttempt(n => n + 1)} /></Screen>;
+  if (!briefs.length) return <Screen><CenteredState kind="empty" /></Screen>;
+
   return (
     <Screen contentStyle={styles.screen} scroll header={<TopBar title="OPI 热点" />}>
       <View style={styles.list}>
         {warning ? <View><AppText>暂时无法更新热点，正在显示本机已有内容，可能缺少最新考点。请联网后重试。</AppText><Button variant="outline" onPress={() => setAttempt(n => n + 1)}>重新加载热点</Button></View> : null}
-        {briefs.length === 0 ? <AppText style={{ padding: spacing[4] }}>暂无热点内容</AppText> : null}
         {briefs.map((brief) => {
           const totalQuestions = brief.topics.reduce((sum, t) => sum + t.cardIds.length, 0);
 

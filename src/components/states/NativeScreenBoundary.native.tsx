@@ -4,7 +4,6 @@ import { type Href } from 'expo-router';
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
 import { Screen } from '@/components/ui';
-import { spacing } from '@/theme';
 import { CenteredState } from './CenteredState';
 
 type Props = PropsWithChildren<{
@@ -49,4 +48,4 @@ class ScreenBoundary extends Component<PropsWithChildren<{ fallback: (retry: () 
   }
 }
 
-const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 }, returnButton: { marginTop: spacing[3], minWidth: 160 } });
+const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 } });
