@@ -6,12 +6,12 @@ import postgres, { type Sql } from 'postgres';
 import { API_CONFIG, type ApiConfig } from '../config';
 import * as schema from './schema';
 
-// This API requires the account, content, AI allowance and payment tables through
-// 0058_feedback_exam_details. Bind startup to the exact migration, not a table-count guess.
-export const MINIMUM_DATABASE_SCHEMA_VERSION = 58;
+// Membership-length offline credentials require the 0060 persistence constraint.
+// Bind startup to the exact migration so an API cannot serve against the old 72-hour window.
+export const MINIMUM_DATABASE_SCHEMA_VERSION = 60;
 export const MINIMUM_DATABASE_MIGRATION = {
-  createdAt: 1793082585168,
-  hash: '1f5bf28299e024084f781bdf499f80f9c58f9ec155f014c81645d2ddf5d70ba3',
+  createdAt: 1793614540349,
+  hash: '34a60c1f037a6c6321ddffc6afff958ba1b0a2fa50fabab4923d3463d190d341',
 } as const;
 
 @Injectable()
