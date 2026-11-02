@@ -24,4 +24,18 @@
 
 与“记录离线与页面切换问题”聊天协调：对方负责 services/api 凭证迁移，本任务负责客户端；对方已完成生产操作，版本配置与后续客户端交付由本任务串行处理。
 
-营销版本保持 1.3.1；通过 App Store Connect 核对后准备 iOS build 3596167。候选包上传及产品 Web 上线结果待补记；未提交 App Store 审核、不交付 Android。
+- PR #322 已合入主干 `5532e8916c594cb88d8ea157094472b280965538`，最终 GitHub CI 通过。清理了旧状态页不再使用的两个图标导出，网页导出检查通过。
+- 产品 Web 已部署 `dps49uaqpgrg`，tag `release/web-edgeone/20261102-5532e891`；首页与题库深链接 HTTP 200，线上入口脚本 SHA-256 与发布产物一致，手机尺寸浏览器启动无 page error。回滚参考为上一部署 `dp6h8t31bptd`。
+- 2026-11-02 19:51 按用户要求在 iOS 依赖安装阶段停止，未归档、未上传；20:00 用户要求继续并统筹其他任务后恢复。营销版本保持 1.3.1，3596167 经 App Store Connect 核对未使用。
+- 与正在实施的 OPI 目录迁移任务隔离；本候选只包含已合入的状态页改动，不夹带未完成的目录与数据迁移。测试交付不代表用户真机验收通过；未提交 App Store 审核、不交付 Android。
+- 当前 API `production-migration-b46896c0b8be` 的真实 AI 三能力及临时数据清理验证于 11 月 2 日 19:29 通过；本任务没有部署后端。
+
+## 最终交付（2026-11-02，北京时间）
+
+- TestFlight **1.3.1（3596167）** 已上传；20:25 App Store Connect 复核 `processingState=VALID`、`internalBuildState=IN_BETA_TESTING`，既有内部“测试”组可访问。
+- iOS 与 Web 均来自 `5532e8916c594cb88d8ea157094472b280965538`；iOS annotated tag 为 `release/ios-testflight/v1.3.1-b3596167`。归档、IPA 导出、签名、生产运行时、隐私清单、SDK 审计和 Apple 校验全部通过。
+- IPA SHA-256：`b92cf50e0e0b4e1efa7858b6ca7594887bc84d4298f31fe62f347fab3b505924`。上一测试构建为 1.3.1（3596166），保留为回退参考；本轮没有切换正式移动端更新清单。
+- 本机证据保存在 `.generated/intermediate-delivery-20261102/`，包含全量检查、候选指纹、归档审计、Web 摘要和 Apple 测试组回执。十态实际组件预览位于 `.generated/intermediate-review-20261102/implemented/gallery.html`。
+- 已向离线任务与 OPI 目录任务回传交付结果；3596167 已占用，后续候选须重新核对并递增。任务原实现分支/worktree 已清理，原主目录的无关未提交修改保留。
+
+待用户在该 TestFlight 构建验收：题库/词汇/热点等入口加载是否居中一致、往返是否仍有额外过渡闪烁、断网与未下载时的重试/返回、会员及账号提示最多两个可点击按钮。自动检查与上传成功不代替真机体验验收。
