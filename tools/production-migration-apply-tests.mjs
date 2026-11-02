@@ -182,25 +182,20 @@ test('derives the target from the immutable journal and binds 0034 through 0041 
   }), /entry_invalid/u);
 });
 
-test('binds minimumSchemaVersion to the exact required 0058 journal entry', async () => {
+test('binds minimumSchemaVersion to the required membership offline credential migration', async () => {
   const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
     readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
-    readFile(new URL('../services/api/drizzle/0058_feedback_exam_details.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0060_membership_offline_credential_window.sql', import.meta.url), 'utf8'),
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
-  // Later additive performance indexes do not raise the functional startup floor.
-  const entry = journal.entries.find(candidate => candidate.idx === 58);
-  assert.equal(journal.entries.at(-1).tag, '0059_resource_lookup_indexes');
-  const indexes = await readFile(new URL('../services/api/drizzle/0059_resource_lookup_indexes.sql', import.meta.url), 'utf8');
-  assert.equal(indexes.split('--> statement-breakpoint').filter(statement => /^CREATE INDEX /u.test(statement.trim())).length, 2);
-  assert.doesNotMatch(indexes, /ALTER TABLE|DROP |DELETE |UPDATE |INSERT /u);
+  const entry = journal.entries.find(candidate => candidate.idx === 60);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
-  assert.equal(entry.idx, 58);
-  assert.equal(entry.tag, '0058_feedback_exam_details');
-  assert.equal(entry.when, 1793082585168);
+  assert.equal(entry.idx, 60);
+  assert.equal(entry.tag, '0060_membership_offline_credential_window');
+  assert.equal(entry.when, 1793614540349);
   assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
-  assert.ok(databaseServiceSource.includes('createdAt: 1793082585168'));
+  assert.ok(databaseServiceSource.includes('createdAt: 1793614540349'));
   assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 
