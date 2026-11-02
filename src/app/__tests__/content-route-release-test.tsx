@@ -71,7 +71,7 @@ describe('<ContentRoute /> Native 1.0.0 gates', () => {
     mockSlug.mockReturnValue('unknown-private-content');
     const screen = await render(<ContentRoute />);
 
-    expect(screen.getByText('无法打开此内容')).toBeTruthy();
+    expect(screen.getByText('内容不可用')).toBeTruthy();
     expect(screen.queryByText('library:unknown-private-content')).toBeNull();
     await fireEvent.press(screen.getByText('返回发现'));
     expect(mockDismissTo).toHaveBeenCalledWith('/(tabs)/discover');

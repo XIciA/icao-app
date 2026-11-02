@@ -1,9 +1,7 @@
 import { useLocalBack } from '@/components/navigation/useLocalBack';
-import { TopBar } from '@/components/navigation/TopBar';
-import { AppText, Screen } from '@/components/ui';
-
-/** A nested view must retain its local back target even before its chunk loads. */
-export function LocalBackLoadingScreen({ title, onBack }: { title: string; onBack: () => void }) {
-  const back = useLocalBack(true, onBack);
-  return <Screen header={<TopBar title={title} onBack={back} />}><AppText>正在打开记录…</AppText></Screen>;
+import { GlobalLoadingScreen } from './GlobalLoadingScreen';
+/** Retains local system-back ownership; uses the single shared loading surface. */
+export function LocalBackLoadingScreen({ onBack }: { title?: string; onBack: () => void }) {
+  useLocalBack(true, onBack);
+  return <GlobalLoadingScreen />;
 }

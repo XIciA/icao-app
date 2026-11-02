@@ -1,19 +1,14 @@
 import type { Href } from 'expo-router';
-import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-
-import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
-
 import { buildHotspotSession, type HotspotSessionResult } from './build-hotspot-session';
 import { loadHotspotDataset } from './HotspotDetailScreen';
 import { getHotspotBrief } from './repository';
 
 export function HotspotStudyScreen({ briefId }: { briefId: string }) {
-  const router = useRouter();
   const brief = getHotspotBrief(briefId);
   const [session, setSession] = useState<HotspotSessionResult>();
   const [error, setError] = useState<string>();
@@ -33,16 +28,14 @@ export function HotspotStudyScreen({ briefId }: { briefId: string }) {
   if (!brief) {
     return (
       <Screen>
-        <TopBar onBack={() => router.back()} title="OPI 热点" />
-        <CenteredState description="该热点资讯不存在或已经下线。" title="无法开始热点学习" tone="destructive" />
+        <CenteredState  kind="unavailable"  />
       </Screen>
     );
   }
   if (error) {
     return (
       <Screen>
-        <TopBar onBack={() => router.back()} title={brief.title} />
-        <CenteredState actionLabel="重新加载" description={error} onAction={() => void load()} title="热点练习包读取失败" tone="destructive" />
+        <CenteredState actionLabel="重试"  onAction={() => void load()} kind="failure"  />
       </Screen>
     );
   }

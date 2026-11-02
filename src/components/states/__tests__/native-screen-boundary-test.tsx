@@ -1,8 +1,8 @@
-import { LocalBackLoadingScreen } from '../LocalBackLoadingScreen.native';
-import { act, fireEvent, render } from '@testing-library/react-native';
+import { act,fireEvent,render } from '@testing-library/react-native';
 import { useEffect } from 'react';
 import { Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LocalBackLoadingScreen } from '../LocalBackLoadingScreen.native';
 import { NativeScreenBoundary } from '../NativeScreenBoundary.native';
 
 let mockSystemBack: (() => void) | undefined;
@@ -35,7 +35,7 @@ it('unmounts failed page effects and provides a return path without exposing err
   fail = true;
   await view.rerender(screen());
   expect(cleanup).toHaveBeenCalled();
-  expect(view.getByText('页面暂时无法显示')).toBeTruthy();
+  expect(view.getByText('暂时无法加载')).toBeTruthy();
   expect(view.queryByText(/private_details/)).toBeNull();
   await fireEvent.press(view.getByText('返回'));
   expect(mockBack).toHaveBeenCalledTimes(1);
@@ -44,7 +44,7 @@ it('unmounts failed page effects and provides a return path without exposing err
 it('returns a deep-linked failed screen to its safe parent when no back stack exists', async () => {
   fail = true; mockCanGoBack = false;
   const view = await render(screen());
-  await fireEvent.press(view.getByLabelText('返回'));
+  await fireEvent.press(view.getByText('返回'));
   expect(mockReplace).toHaveBeenCalledWith('/(tabs)/profile');
 });
 
@@ -55,9 +55,9 @@ it('prefers the existing inline history return callback and can retry the origin
   await fireEvent.press(view.getByText('返回'));
   expect(onExit).toHaveBeenCalledTimes(1); expect(mockBack).not.toHaveBeenCalled();
   fail = false;
-  await fireEvent.press(view.getByText('重新加载'));
+  await fireEvent.press(view.getByText('重试'));
   expect(view.getByText('原页面')).toBeTruthy();
-  expect(view.queryByText('页面暂时无法显示')).toBeNull();
+  expect(view.queryByText('暂时无法加载')).toBeNull();
 });
 
 it('does not carry the error state to another route identity', async () => {
@@ -74,17 +74,18 @@ it('never offers an exit that bypasses required login', async () => {
   expect(view.queryByText('返回')).toBeNull();
   expect(view.queryByLabelText('返回')).toBeNull();
   fail = false;
-  await fireEvent.press(view.getByText('重新加载'));
+  await fireEvent.press(view.getByText('重试'));
   expect(view.getByText('原页面')).toBeTruthy();
   expect(mockBack).not.toHaveBeenCalled(); expect(mockReplace).not.toHaveBeenCalled();
 });
 
 
-it('keeps a loading nested view on its local return target for swipe and button', async () => {
+it('keeps the local system-back target while loading without any visible navigation', async () => {
   const onBack = jest.fn();
   const view = await render(<LocalBackLoadingScreen title="学习记录" onBack={onBack} />);
+  expect(view.queryByText('学习记录')).toBeNull();
+  expect(view.queryByRole('button')).toBeNull();
   await act(async () => mockSystemBack?.());
-  await fireEvent.press(view.getByLabelText('返回'));
   expect(onBack).toHaveBeenCalledTimes(1);
   expect(mockBack).not.toHaveBeenCalled();
 });

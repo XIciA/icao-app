@@ -4,14 +4,13 @@ import { useEffect, useRef } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
 import { EdgeOneAlertHost } from '@/components/platform/EdgeOneAlertHost';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AppText } from '@/components/ui';
-import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
+import { includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
 import { useAppFonts } from '@/platform/use-app-fonts';
@@ -77,20 +76,14 @@ export function AppStack() {
     return (
       <CenteredState
         actionLabel="重新检查"
-        description="暂时无法读取本机安全登录状态，或无法向服务器确认账号请求。为保护账号与本机数据，确认成功前不会进入业务页面。"
         onAction={() => { void auth.retryAccountRestore().catch(() => undefined); }}
-        title="暂时无法确认账号状态"
+        kind="account"
       />
     );
   }
   if (auth.accountDeletionPending && !publicDownload) {
     return (
-      <CenteredState
-        actionLabel="重新检查"
-        description="删除任务正在安全处理。完成前此账号不能继续使用；你可以关闭 App，稍后重新打开会自动继续检查。"
-        onAction={() => { void auth.resumeAccountDeletion().catch(() => undefined); }}
-        title="账号正在注销"
-      />
+      <CenteredState kind="account-deletion" actionLabel="重新检查" onAction={() => { void auth.resumeAccountDeletion(); }} />
     );
   }
 
@@ -159,16 +152,14 @@ function UiAcceptanceBadge() {
   );
 }
 
-export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
   return (
     <SafeAreaProvider>
       <View style={styles.errorRoot}>
-        <CenteredState
-          actionLabel="重新加载"
-          description={appErrorBoundaryDescription(error)}
+        <CenteredState allowReturn={false}
+          actionLabel="重试"
           onAction={retry}
-          title="页面加载失败"
-          tone="destructive"
+          kind="failure"
         />
       </View>
     </SafeAreaProvider>

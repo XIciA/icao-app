@@ -1,7 +1,6 @@
 import { Clock3, History, Sparkles, Target, Trash2 } from '@/components/ui/icons';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { Alert, Platform, Pressable, StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { isVercelLegacyWeb } from '@/config/web-runtime';
@@ -10,11 +9,11 @@ import { colors, fonts, spacing } from '@/theme';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { deleteAiResult } from '@/features/account/privacy-self-service';
 import { AiGeneratedContentLabel } from '@/features/ai/AiGeneratedContentLabel';
-
 import { loadLearningRecordReview } from '../platform/learning-record-storage';
 import { sqliteLearningStore } from '../platform/learning-store';
 import type { LearningRecord, QuestionBankStudyPackage } from '../types';
 import { AiReviewResultView } from './AiReviewResultView';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 const StudyHistoryScreen = lazy(() => import('./QuestionBankStudyScreen').then((module) => ({ default: module.QuestionBankStudyScreen })));
 
@@ -109,7 +108,7 @@ export function LearningRecordsScreen() {
   }
 
   if (vercelLegacyWeb && reviewPackage) return (
-    <Suspense fallback={<Screen><AppText>正在打开学习复盘…</AppText></Screen>}>
+    <Suspense fallback={<GlobalLoadingScreen />}>
       <StudyHistoryScreen key={reviewPackage.id} onReturn={() => setReviewPackage(undefined)} returnLabel="返回学习记录" sourceRoute="/learning-records" studyPackage={reviewPackage} />
     </Suspense>
   );

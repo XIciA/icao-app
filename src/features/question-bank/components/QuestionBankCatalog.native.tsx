@@ -1,6 +1,5 @@
 import { contentFailure } from '../lib/content-failure';
 import { CenteredState } from '@/components/states/CenteredState';
-import { TopBar } from '@/components/navigation/TopBar';
 import { useSentenceBrowseMode } from '../lib/use-sentence-browse-mode';
 import { contentReleaseOf } from '../data/content-version.native';
 import { sqliteLearningStore } from '../platform/learning-store';
@@ -16,7 +15,6 @@ import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter'
 import { hasAirlineMark } from './AirlineMark';
 import { QuestionBankCategoryIcon } from './QuestionBankCategoryIcon';
 import { SentenceExportScreen } from '../export/SentenceExportScreen';
-
 import {
   Download,
   SlidersHorizontal,
@@ -31,17 +29,16 @@ import {
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, RefreshControl, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
 import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
-
 import { loadCatalogProgress, type CatalogProgressMap } from '../lib/catalog-progress';
 import type { QuestionBankCategory, QuestionBankDataset, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 import { useStudyCatalog } from '../hooks/useStudyCatalog.native';
 import { useProfile } from '@/features/account/profile-store.native';
 import { normalizeStudyScope } from '@icao/contracts';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 
 
@@ -87,7 +84,7 @@ export function QuestionBankCatalog({ dataset, onRetry }: { dataset: QuestionBan
         login('/account/membership', '登录后查看会员题库'); return;
       }
       setScenePackage(next);
-    } catch (error) { if (generation === sceneGeneration.current) setSceneError(contentFailure(error) ?? { title: '学习内容加载失败', description: '请联网后重新选择场景。', action: 'retry' }); }
+    } catch (error) { if (generation === sceneGeneration.current) setSceneError(contentFailure(error) ?? { title: '学习内容加载失败', description: '请联网后重新选择场景。', action: 'retry', kind: 'failure' }); }
     finally { if (generation === sceneGeneration.current) setSceneBusy(false); }
   }
   const guide = useGuide();
@@ -152,8 +149,8 @@ export function QuestionBankCatalog({ dataset, onRetry }: { dataset: QuestionBan
     return undefined;
   }
 
-  if (sceneError) return <Screen header={<TopBar title="题库学习" onBack={() => setSceneError(undefined)} />}><CenteredState title={sceneError.title} description={sceneError.description} actionLabel={sceneError.action === 'download' ? '前往下载管理' : '返回目录'} onAction={() => { const download = sceneError.action === 'download'; setSceneError(undefined); if (download) router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: dataset.id } }); }} /></Screen>;
-  if (scenePackage) return <Suspense fallback={<Screen><AppText>正在打开场景…</AppText></Screen>}><ScenarioStudyScreen studyPackage={scenePackage} onReturn={() => setScenePackage(undefined)} returnLabel="返回场景目录" returnHref="/question-bank/sentences900" /></Suspense>;
+  if (sceneError) return <Screen ><CenteredState onReturn={() => setSceneError(undefined)} kind={sceneError.kind}  actionLabel={sceneError.action === 'download' ? '前往下载管理' : '返回目录'} onAction={() => { const download = sceneError.action === 'download'; setSceneError(undefined); if (download) router.push({ pathname: '/account/[slug]', params: { slug: 'downloads', bank: dataset.id } }); }} /></Screen>;
+  if (scenePackage) return <Suspense fallback={<GlobalLoadingScreen />}><ScenarioStudyScreen studyPackage={scenePackage} onReturn={() => setScenePackage(undefined)} returnLabel="返回场景目录" returnHref="/question-bank/sentences900" /></Suspense>;
   if (exporting) return <SentenceExportScreen dataset={dataset} initialBrowseMode={sceneMode ? 'scene' : 'level'} onBack={() => { if (guide?.current === 'export') guide.pause(); setExporting(false); }} />;
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>

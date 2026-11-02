@@ -11,6 +11,8 @@ import { TopBar } from '@/components/navigation/TopBar';
 import { colors, motion, radii, spacing } from '@/theme';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { getMyFeedback, listMyFeedback, markFeedbackRead } from './feedback-history-client.native';
+import { CenteredState } from '@/components/states/CenteredState';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 const category: Record<string,string> = feedbackCategories;
 const status: Record<string,string> = { received: '待处理', processing: '处理中', resolved: '已处理' };
@@ -87,6 +89,9 @@ function History({account}:{account?:string}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[account,selected,page,attempt,kind]));
   const back = () => { if (router.canGoBack()) router.back(); else router.replace(selected ? '/info/feedback' : '/(tabs)/profile'); };
+  const hasContent = selected ? !!detail : items.length > 0;
+  if (!hasContent && busy) return <Screen><GlobalLoadingScreen /></Screen>;
+  if (!hasContent && error) return <Screen><CenteredState kind="failure" onAction={() => setAttempt(v => v + 1)} onReturn={back} /></Screen>;
   return <Screen contentStyle={styles.screen} header={<TopBar title={selected?'反馈详情':feedbackTitle(kind)} onBack={back}/>}>
     <ScrollView style={styles.body} contentContainerStyle={[styles.content, { paddingBottom: spacing[4] + (selected ? insets.bottom : 0) }]} showsVerticalScrollIndicator={false}>
       {error ? <Card style={styles.error}>

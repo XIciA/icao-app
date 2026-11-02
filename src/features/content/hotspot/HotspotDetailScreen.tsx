@@ -2,7 +2,6 @@ import { useRouter } from 'expo-router';
 import { Calendar, MapPin, Sparkles } from '@/components/ui/icons';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
@@ -10,7 +9,6 @@ import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { loadQuestionBank } from '@/features/question-bank/data/repository';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { colors, fonts, radii, spacing } from '@/theme';
-
 import { resolveHotspotTopics } from './build-hotspot-session';
 import { getHotspotBrief } from './repository';
 import type { ResolvedOpiHotspotTopic } from './types';
@@ -38,8 +36,7 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
   if (!brief) {
     return (
       <Screen contentStyle={styles.state}>
-        <TopBar onBack={() => router.back()} title="OPI 热点" />
-        <CenteredState description="该热点资讯不存在或已经下线。" title="无法打开热点资讯" tone="destructive" />
+        <CenteredState  kind="unavailable"  />
       </Screen>
     );
   }
@@ -63,7 +60,7 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
         </Card>
 
         {error ? (
-          <CenteredState actionLabel="重新加载" description={error} onAction={() => void load()} title="热点详情读取失败" tone="destructive" />
+          <CenteredState actionLabel="重试"  onAction={() => void load()} kind="failure"  />
         ) : (
           <View style={styles.topicsSection}>
             <AppText variant="sectionTitle">涵盖话题与问题（{topics?.length ?? 0}）</AppText>

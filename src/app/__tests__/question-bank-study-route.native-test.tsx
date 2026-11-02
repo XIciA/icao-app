@@ -80,22 +80,22 @@ describe('Native study route recovery', () => {
     expect(screen.queryByText('题库学习')).toBeNull();
   });
 
-  it('lets the user leave while the topic is still loading', async () => {
+  it('keeps topic loading free of headers and buttons', async () => {
     mockTopicState = { status: 'loading', retry: mockTopicRetry };
     const screen = await render(<Page />);
-    expect(screen.getByText('正在准备学习空间…')).toBeTruthy();
-    await fireEvent.press(screen.getByRole('button', { name: '返回' }));
-    expect(mockBack).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('正在准备学习空间')).toBeTruthy();
+    expect(screen.queryByText('题库学习')).toBeNull();
+    expect(screen.queryByRole('button')).toBeNull();
   });
 
-  it('falls back to home when launched directly before the directory loads', async () => {
+  it('keeps a direct-link wait on the same loading surface before the directory loads', async () => {
     mockCanGoBack = false;
     mockBankState = { status: 'loading', retry: mockBankRetry };
     mockTopicState = { status: 'loading', retry: mockTopicRetry };
     const screen = await render(<Page />);
-    await fireEvent.press(screen.getByRole('button', { name: '返回' }));
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
-    expect(mockBack).not.toHaveBeenCalled();
+    expect(screen.getByText('正在准备学习空间')).toBeTruthy();
+    expect(screen.queryByRole('button')).toBeNull();
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 
   it.each(['membership-required', 'locked-card'] as const)('offers a return independently of the %s purchase action', async (state) => {
@@ -107,7 +107,7 @@ describe('Native study route recovery', () => {
       mockBankState = { status: 'ready', data: { ...dataset, declaredCardCount: 2, categories: [{ ...dataset.categories[0], topics: [lockedTopic] }], access: { ...dataset.access!, membershipActive: false } }, source: 'remote', retry: mockBankRetry };
     }
     const screen = await render(<Page />);
-    await fireEvent.press(screen.getByText('查看会员方案'));
+    await fireEvent.press(screen.getByText('查看会员'));
     expect(mockPush).toHaveBeenCalledWith(`/account/membership?next=${encodeURIComponent('/question-bank/opi/study/category/topic' + (state === 'locked-card' ? '?cardId=unavailable' : ''))}`, '登录后查看会员题库');
     await fireEvent.press(screen.getByRole('button', { name: '返回' }));
     expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'opi' } });
@@ -129,7 +129,7 @@ describe('Native study route recovery', () => {
     mockParams.cardId = 'removed';
     mockBankState = { status: 'ready', data: dataset, catalog: { ...dataset, declaredCardCount: 2, categories: [{ ...dataset.categories[0], topics: [{ ...topic, declaredCardCount: 2, scopeCardIds: { all: ['card', 'removed'], selected: ['card', 'removed'], crash: ['card', 'removed'] } }] }] }, source: 'remote', retry: mockBankRetry };
     const screen = await render(<Page />);
-    expect(screen.getByText('学习内容加载失败')).toBeTruthy();
+    expect(screen.getByText('暂时无法加载')).toBeTruthy();
     await fireEvent.press(screen.getByText('重新加载'));
     expect(mockTopicRetry).toHaveBeenCalled();
     await fireEvent.press(screen.getByRole('button', { name: '返回' }));
@@ -142,7 +142,7 @@ describe('Native study route recovery', () => {
     mockTopicState = { status: 'ready', topic, scopeExcludedCardIds: ['outside'], retry: mockTopicRetry };
     const screen = await render(<Page />);
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();
-    expect(screen.queryByText('查看会员方案')).toBeNull();
+    expect(screen.queryByText('查看会员')).toBeNull();
     await fireEvent.press(screen.getByText('返回题库首页'));
     expect(mockDismissTo).toHaveBeenCalledWith('/(tabs)');
   });
@@ -153,8 +153,8 @@ describe('Native study route recovery', () => {
     mockBankState = { status: 'ready', data: { ...dataset, categories: [{ ...dataset.categories[0], topics: [indexed] }], access: { ...dataset.access!, membershipActive: false } }, source: 'remote', retry: mockBankRetry };
     mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
     const screen = await render(<Page />);
-    expect(screen.getByText('原题不可用')).toBeTruthy();
-    expect(screen.queryByText('查看会员方案')).toBeNull();
+    expect(screen.getByText('内容不可用')).toBeTruthy();
+    expect(screen.queryByText('查看会员')).toBeNull();
   });
 
   it('does not suggest paying for an excluded protected topic', async () => {
@@ -162,7 +162,7 @@ describe('Native study route recovery', () => {
     mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
     const screen = await render(<Page />);
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();
-    expect(screen.queryByText('查看会员方案')).toBeNull();
+    expect(screen.queryByText('查看会员')).toBeNull();
   });
 
   it('uses public scope identities when an excluded card belongs to a protected topic', async () => {
@@ -172,7 +172,7 @@ describe('Native study route recovery', () => {
     mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
     const screen = await render(<Page />);
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();
-    expect(screen.queryByText('查看会员方案')).toBeNull();
+    expect(screen.queryByText('查看会员')).toBeNull();
   });
 
   it.each([
@@ -185,8 +185,6 @@ describe('Native study route recovery', () => {
     const screen = await render(<Page />);
     await fireEvent.press(screen.getByText(label));
     expect(mockReplace).toHaveBeenCalledWith(destination);
-    mockReplace.mockClear();
-    await fireEvent.press(screen.getByRole('button', { name: '返回' }));
-    expect(mockReplace).toHaveBeenCalledWith(destination);
+    expect(screen.getAllByRole('button')).toHaveLength(1);
   });
 });

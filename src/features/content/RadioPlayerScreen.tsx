@@ -25,9 +25,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { AppText, BottomSheet, Button, TextField } from '@/components/ui';
-import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { isVercelLegacyWeb } from '@/config/web-runtime';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';
@@ -164,9 +162,7 @@ export function RadioPlayerScreen() {
   if (!isVercelLegacyWeb(Platform.OS) && radio.catalogs.length === 0 && !radio.loading && !radio.catalogLoading) {
     return <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
-        <TopBar title="随身听" onBack={() => router.back()} />
-        <CenteredState icon={Headphones} title={radio.error || radio.catalogError ? '曲目加载失败' : '当前范围暂无可播放内容'}
-          description={radio.error ?? '随身听包含听力、语句复诵和故事复述。当前考试目标或题库范围内没有这些内容，可以返回题库继续练习。'}
+        <CenteredState  kind={radio.error || radio.catalogError ? 'failure' : 'empty'}
           actionLabel={radio.error || radio.catalogError ? '重新加载' : '返回题库'} onAction={radio.error || radio.catalogError ? radio.retryCatalog ?? radio.retry : () => router.push('/(tabs)')} />
       </AppContentFrame>
     </SafeAreaView>;

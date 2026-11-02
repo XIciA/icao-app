@@ -3,7 +3,7 @@ import { createSentenceReplayLedger } from '@/features/mock-exam/sentence-replay
 import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
 import { listeningAnswerResults } from '../lib/listening-answer-results';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
-import { useRouter as useExitRouter } from 'expo-router';
+import { useRouter as useExitRouter, useFocusEffect, type Href } from 'expo-router';
 import { answerCardMarkers } from '../annotations/answer-card-markers.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
@@ -15,7 +15,6 @@ import { readAnnotationStore } from '../annotations/annotation-store.native';
 import { useSaveAction } from '@/features/vocabulary/use-save-action.native';
 import { setClickStudyContext, trackProductClick } from '@/platform/product-clicks.native';
 import { usePreventRemove } from '@react-navigation/native';
-import { type Href, useFocusEffect } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { ActivityIndicator, Alert, Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -31,7 +30,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenSafeArea as SafeAreaView } from '@/components/platform/ScreenSafeArea';
-
 import { CenteredState } from '@/components/states/CenteredState';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';
@@ -46,7 +44,6 @@ import { colors, fonts, motion, radii, spacing } from '@/theme';
 import { useWordFavorites } from '@/features/vocabulary/progress-store.native';
 import { resolveListeningExamRange } from '@/features/mock-exam/listening-session.native';
 import { ExamQuestionAudio } from './ExamQuestionAudio.native';
-
 import { annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations-with-save.native';
@@ -75,6 +72,7 @@ import { StudyCardStack } from './StudyCardStack';
 import { StudyReport } from './StudyReport.native';
 import { StudyTaskRenderer } from './StudyTaskRenderer.native';
 import { StudyWorkbench, type StudyWorkbenchHandle, type StudyWorkbenchFeedbackCache } from './StudyWorkbench.native';
+import { Screen } from '@/components/ui/Screen';
 
 type NavigationProps = {
   onReturn?: () => void;
@@ -746,8 +744,8 @@ function StudyContent(props: Props) {
     return <StudyReport answerScope={!session.examMode && !session.historyRecord ? { items: session.items, current: session.currentIndex } : undefined} localReturn={Boolean(onReturn)} interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (listeningCheckpoint) return <StudyReport record={listeningCheckpoint} noteCount={0} interaction="choices" onReturn={navigateAfterStudy} busy={finishing} error={finishError} onExitWithoutSave={canLeaveWithoutSave ? confirmExitWithoutSave : undefined} onEnd={() => { void finish('abort'); }} onContinue={() => { if (!finishing && listeningExamRange) { session.goTo(listeningExamRange.endIndex + 1); setListeningCheckpoint(undefined); } }} />;
-  if (!session.hydrated) return <SafeAreaView style={styles.state}><GlobalLoadingScreen /><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
-  if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
+  if (!session.hydrated) return <Screen><GlobalLoadingScreen /></Screen>;
+  if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState onReturn={() => { void leaveStudy(); }} actionLabel="重试"  onAction={session.retryHydration} kind="failure"  /></SafeAreaView>;
 
   const entry = annotations.entry ? { ...annotations.entry, highlights: annotations.entry.highlights.filter((highlight) => highlight.contentFingerprint === contentFingerprint(annotationBlockText(card, highlight.blockId))) } : undefined;
   const transcript = card.kind === 'image' ? null : (

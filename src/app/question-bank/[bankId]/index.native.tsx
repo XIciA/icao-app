@@ -1,7 +1,5 @@
 import { GuestLearningBoundary } from '@/features/auth/GuestLearningBoundary.native';
 import { useLocalSearchParams } from 'expo-router';
-import { LibraryBig } from '@/components/ui/icons';
-
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
@@ -20,12 +18,9 @@ function QuestionBankCatalogRouteBody() {
     return (
       <Screen>
         <CenteredState
-          actionLabel="重新加载"
-          description="题库数据暂时无法读取，请重试。"
-          icon={LibraryBig}
+          actionLabel="重试"
           onAction={state.retry}
-          title="题库加载失败"
-          tone="destructive"
+          kind="failure"
         />
       </Screen>
     );

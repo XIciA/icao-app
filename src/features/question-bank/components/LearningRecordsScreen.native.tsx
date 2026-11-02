@@ -13,6 +13,7 @@ import { deleteLearningHistory } from '@/features/sync/learning-sync.native';
 import { getLearningRecordPage, loadLearningRecordReview, subscribeLearningRecords } from '../platform/learning-record-storage.native';
 import { toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningRecord, QuestionBankStudyPackage } from '../types';
+import { CenteredState } from '@/components/states/CenteredState';
 
 const StudyHistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then((module) => ({ default: module.QuestionBankStudyScreen })));
 const pageSize = 20;
@@ -117,6 +118,8 @@ function LearningRecordsContent() {
   </NativeScreenBoundary>;
 
   const busy = Boolean(openingId || deletingId);
+  if (!records.length && loading) return <Screen><GlobalLoadingScreen /></Screen>;
+  if (!records.length && error) return <Screen><CenteredState kind="failure" onAction={() => { void loadPage(); }} /></Screen>;
   return <Screen contentStyle={styles.screen} header={<TopBar title="学习记录" />}>
     <FlatList
       ref={listRef}

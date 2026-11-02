@@ -9,17 +9,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
 import { EdgeOneAlertHost } from '@/components/platform/EdgeOneAlertHost';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { StartupBrandScreen } from '@/components/states/StartupBrandScreen';
-import { AppText, Button, Screen } from '@/components/ui';
+import { AppText, Screen } from '@/components/ui';
 import { AccountRestoreState } from '@/features/auth/AccountRestoreState.native';
 import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen, postLoginDestination } from '@/features/auth/guest-access';
-import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
+import { includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
 import { useAppFonts } from '@/platform/use-app-fonts';
@@ -60,12 +59,11 @@ export function AppStack() {
   const searchParams = useGlobalSearchParams();
   const router = useRouter();
   const [checking, setChecking] = useState(false);
-  const [checkFailed, setCheckFailed] = useState(false);
   const checkPending = useRef(false);
   async function checkAccount(action: () => Promise<void>) {
     if (checkPending.current) return;
-    checkPending.current = true; setChecking(true); setCheckFailed(false);
-    try { await action(); } catch { setCheckFailed(true); }
+    checkPending.current = true; setChecking(true);
+    try { await action(); } catch { /* The retry action remains available. */ }
     finally { checkPending.current = false; setChecking(false); }
   }
   const authRedirectInFlightRef = useRef(false);
@@ -120,13 +118,12 @@ export function AppStack() {
   // Keep the navigator mounted while account checks fail or run. This makes
   // “continue browsing” usable even on a cold-start private deep link.
   const accountState = auth.restoring ? <GlobalLoadingScreen />
-    : auth.accountRestoreUnavailable ? <AccountRestoreState retry={auth.retryAccountRestore} signOut={auth.signOut} onBrowse={continueBrowsing} />
+    : auth.accountRestoreUnavailable ? <AccountRestoreState retry={auth.retryAccountRestore} signOut={auth.signOut} />
     : auth.accountDeletionPending ? <Screen><CenteredState
         actionLabel={checking ? "正在检查…" : "重新检查"}
-        description="删除任务正在安全处理。完成前此账号不能继续使用；你可以先浏览题库目录。"
         onAction={() => { void checkAccount(auth.resumeAccountDeletion); }}
-        title={checkFailed ? "检查未完成，请稍后重试" : "账号正在注销"}
-        secondary={<Button onPress={continueBrowsing} variant="ghost">继续浏览题库</Button>}
+        kind="account-deletion"
+        secondaryLabel="继续浏览题库" onSecondary={continueBrowsing}
       /></Screen> : undefined;
 
   return (
@@ -200,16 +197,14 @@ function UiAcceptanceBadge() {
   );
 }
 
-export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
   return (
     <SafeAreaProvider>
       <View style={styles.errorRoot}>
-        <CenteredState
-          actionLabel="重新加载"
-          description={appErrorBoundaryDescription(error)}
+        <CenteredState allowReturn={false}
+          actionLabel="重试"
           onAction={retry}
-          title="页面加载失败"
-          tone="destructive"
+          kind="failure"
         />
       </View>
     </SafeAreaProvider>
