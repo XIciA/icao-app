@@ -1,4 +1,6 @@
-import { fireEvent, render, within } from '@testing-library/react-native';
+import { notifyLearningProgress } from '@/features/sync/learning-progress-events';
+import { loadCatalogProgress } from '../lib/catalog-progress';
+import { act, fireEvent, render, waitFor, within } from '@testing-library/react-native';
 
 import type { QuestionBankDataset } from '../types';
 import { QuestionBankCatalog } from '../components/QuestionBankCatalog.native';
@@ -141,4 +143,14 @@ it('switches sentence browsing from the icon menu while retaining the export act
   expect(screen.getByText('会员话题')).toBeTruthy();
   await fireEvent.press(screen.getByLabelText('导出900句 PDF'));
   expect(screen.getByText('关闭测试导出')).toBeTruthy();
+});
+
+it('reloads a focused catalog after a durable remote progress change', async () => {
+  const screen = await render(<QuestionBankCatalog dataset={dataset} />);
+  const load = jest.mocked(loadCatalogProgress);
+  await waitFor(() => expect(load).toHaveBeenCalled());
+  const count = load.mock.calls.length;
+  await act(async () => { notifyLearningProgress(); await new Promise(resolve => setTimeout(resolve, 80)); });
+  await waitFor(() => expect(load.mock.calls.length).toBeGreaterThan(count));
+  await screen.unmount();
 });

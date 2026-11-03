@@ -1,3 +1,4 @@
+import { useWordLookupUpdates } from '@/features/question-bank/static-word-lookup/use-word-lookup';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { captureLearningWriteContext } from '@/features/sync/learning-sync.native';
 import { useSaveAction } from './use-save-action.native';
@@ -15,6 +16,7 @@ import { useVocabularyCatalog } from './use-vocabulary-catalog';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function WordFavoritesScreen() {
+  const lookupRevision = useWordLookupUpdates();
   const favorites = useWordFavorites();
   const auth = useAuth();
   const [expanded, setExpanded] = useState<string>();
@@ -32,7 +34,7 @@ export function WordFavoritesScreen() {
     books,
     lookupEntries: getStaticWordLookupEntries(),
     state: favorites.state,
-  }), [books, favorites.state]);
+  }), [books, favorites.state, lookupRevision]);
 
   const loadingVocabulary = !loadResult && !loadError;
 

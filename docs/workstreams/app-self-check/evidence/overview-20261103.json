@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-11-03T10:11:10.665Z",
+  "headers": {
+    "x-icao-directory-identity": "stable-storage-v1",
+    "x-icao-directory-preview": "opi=30"
+  },
+  "contentVersion": 33,
+  "contentChecksum": "d36e57da27fc11037dd7fd1635374f0fb4988561d5c07eb03847747b2dce7463",
+  "scope": "public overview IDs and topic locations versus current complete local v30 bank; not device/member authorization/audio playback",
+  "results": [
+    {
+      "id": "hotspot-2026-10-16-4235b14d8b8d",
+      "date": "2026-10-16",
+      "count": 11,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-10-15-29023a596778",
+      "date": "2026-10-15",
+      "count": 17,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-28",
+      "date": "2026-09-28",
+      "count": 25,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-26",
+      "date": "2026-09-26",
+      "count": 34,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-24",
+      "date": "2026-09-24",
+      "count": 27,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-15",
+      "date": "2026-09-15",
+      "count": 9,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-11",
+      "date": "2026-09-11",
+      "count": 22,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-10",
+      "date": "2026-09-10",
+      "count": 24,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-08",
+      "date": "2026-09-08",
+      "count": 16,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-09-04",
+      "date": "2026-09-04",
+      "count": 6,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-07-10",
+      "date": "2026-07-10",
+      "count": 18,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-07-09",
+      "date": "2026-07-09",
+      "count": 12,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-06-26",
+      "date": "2026-06-26",
+      "count": 21,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-06-25",
+      "date": "2026-06-25",
+      "count": 40,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-06-23",
+      "date": "2026-06-23",
+      "count": 42,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-06-11",
+      "date": "2026-06-11",
+      "count": 37,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-06-01",
+      "date": "2026-06-01",
+      "count": 25,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-05-29",
+      "date": "2026-05-29",
+      "count": 39,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-05-15",
+      "date": "2026-05-15",
+      "count": 33,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-28",
+      "date": "2026-04-28",
+      "count": 38,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-16",
+      "date": "2026-04-16",
+      "count": 39,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-15",
+      "date": "2026-04-15",
+      "count": 22,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-14",
+      "date": "2026-04-14",
+      "count": 38,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-10",
+      "date": "2026-04-10",
+      "count": 15,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-02",
+      "date": "2026-04-02",
+      "count": 39,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-04-01",
+      "date": "2026-04-01",
+      "count": 19,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-03-19",
+      "date": "2026-03-19",
+      "count": 37,
+      "status": 200
+    },
+    {
+      "id": "hotspot-2026-01-14",
+      "date": "2026-01-14",
+      "count": 29,
+      "status": 200
+    }
+  ]
+}

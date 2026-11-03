@@ -327,3 +327,5 @@ it('Android failed return keeps the question and a later explicit End still show
     await screen.unmount();
   } finally { Object.defineProperty(Platform, 'OS', { value: original, configurable: true }); }
 });
+
+jest.mock('@/features/question-bank/static-word-lookup/use-word-lookup', () => ({ useWordLookupUpdates: () => 0 }));

@@ -1,3 +1,4 @@
+import { useWordLookupUpdates } from '@/features/question-bank/static-word-lookup/use-word-lookup';
 import { normalizeStaticLookupWord } from '../static-word-lookup/normalize';
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -14,6 +15,7 @@ import { LookupPronunciation } from './LookupPronunciation';
 import type { LearningRecord } from '../types';
 import { objectiveReview } from '../lib/session-recap';
 export function SessionRecapList({kind,record,onBack,onOpen}:{kind:'annotations'|'words'|'wrong';record:LearningRecord;onBack:()=>void;onOpen:(id:string)=>void}) {
+  useWordLookupUpdates();
   const [onlyFavorites,setOnlyFavorites]=useState(false);const favorites=useWordFavorites();const save=useSaveAction();const annotations=useQuestionAnnotations();
   const title=kind==='words'?'查词与收藏':kind==='annotations'?'标注题目':'错题回顾';
   const selected=new Set(kind==='annotations'?record.sessionRecap?.annotatedCardIds:objectiveReview(record.studyReview).wrongIds);

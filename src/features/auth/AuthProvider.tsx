@@ -1,3 +1,4 @@
+import { getConnectivity, subscribeConnectivity } from '@/features/question-bank/platform/network-service';
 import { readProfile } from '@/features/account/profile-store.native';
 import { clearAccountRestore, readAccountRestore, saveAccountRestore } from './account-restore-cache';
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
@@ -8,7 +9,7 @@ import type { AppContentLegalDocument, LegalConsentStatus } from '@icao/contract
 
 import { clearLocalAiConsent } from '@/features/ai/ai-client';
 import { ApiClientError, apiRequest, apiRequestWithAccessToken, setApiAccessTokenProvider, setApiAuthRecovery } from '@/platform/api-client';
-import { runLearningSync, setLearningSyncActiveUser, switchLearningSyncAccount } from '@/features/sync/learning-sync.native';
+import { runLearningSync, setLearningSyncAvailability, setLearningSyncActiveUser, switchLearningSyncAccount } from '@/features/sync/learning-sync.native';
 
 import { getAuthService, type AppSession, type PhoneBindingChallenge } from './auth-service';
 import { clearDeletedAccountLocalData } from './account-deletion-local-cleanup';
@@ -463,8 +464,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
     });
     void restorePersistedAccount().finally(() => { if (active) setRestoring(false); });
+    let foreground = AppState.currentState === 'active';
+    let online = true;
+    const updateSyncAvailability = () => { if (active) setLearningSyncAvailability(foreground, online); };
+    updateSyncAvailability();
+    let networkObserved = false;
+    const unsubscribeNetwork = subscribeConnectivity(state => {
+      networkObserved = true;
+      online = state !== 'offline';
+      updateSyncAvailability();
+    });
+    void getConnectivity().then(state => {
+      if (!networkObserved) { online = state !== 'offline'; updateSyncAvailability(); }
+    });
     if (AppState.currentState === 'active') service.startAutoRefresh();
     const appState = AppState.addEventListener('change', (state) => {
+      foreground = state === 'active';
+      updateSyncAvailability();
       if (state === 'active') {
         service.startAutoRefresh();
         void restorePersistedAccount();
@@ -475,6 +491,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       active = false;
       unsubscribe();
       appState.remove();
+      unsubscribeNetwork();
+      setLearningSyncAvailability(false, false);
       service.stopAutoRefresh();
       setLearningSyncActiveUser(undefined);
       setApiAccessTokenProvider(undefined);

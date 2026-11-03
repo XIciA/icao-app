@@ -147,3 +147,5 @@ describe('study word lookup interaction', () => {
     }
   });
 });
+
+jest.mock('@/features/question-bank/static-word-lookup/use-word-lookup', () => ({ useWordLookupUpdates: () => 0 }));

@@ -148,7 +148,7 @@ trap 'exit 1' HUP INT TERM
   git archive --format=tar HEAD -- \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
     modules/icao-distribution-environment modules/icao-wechat-auth \
-    apps/ops packages/contracts services/api content/vocabulary infra/ops infra/gateway \
+    apps/ops packages/contracts services/api content/vocabulary content/word-lookup/dataset.json infra/ops infra/gateway \
     | gzip -n > "$archive"
 )
 archive_sha=$(shasum -a 256 "$archive" | awk '{ print $1 }')

@@ -1079,3 +1079,5 @@ export { migrateVocabularyDocument, vocabularyDocumentForLegacyClient } from './
 export { vocabularyRetiredIds, vocabularyRetiredFavoriteKeys } from './vocabulary-migration-data.ts';
 
 export * from './offline-download.ts';
+
+export * from './word-lookup.ts';

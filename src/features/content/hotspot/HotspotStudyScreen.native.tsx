@@ -6,6 +6,7 @@ import { buildHotspotStudyPackage } from './build-hotspot-study-package.native';
 import { useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { CenteredState } from '@/components/states/CenteredState';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { Screen } from '@/components/ui';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
@@ -26,7 +27,7 @@ function HotspotStudyContent({ briefId }: { briefId: string }) {
     if(!center||center==='all')return state.session;
     const brief=selectHotspotSource(state.brief,center);
     const dataset=state.session.items[0]?.dataset;
-    return dataset&&brief.topics.length?buildHotspotStudyPackage(brief,dataset):state.session;
+    return dataset&&brief.topics.length?buildHotspotStudyPackage(brief,dataset):undefined;
   },[state,center]);
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
   if (state.status === 'loading') return <Screen contentStyle={styles.screen} ><GlobalLoadingScreen /></Screen>;
@@ -50,6 +51,7 @@ function HotspotStudyContent({ briefId }: { briefId: string }) {
     pathname: '/content/hotspot/[briefId]',
     params: { briefId: state.brief.id, ...(center?{center}:{}) },
   };
+  if (!studyPackage) return <Screen contentStyle={styles.screen}><CenteredState kind="scope" actionLabel="重新选择考点" onAction={() => router.replace(returnHref)} onReturn={goBack} /></Screen>;
   return (
     <QuestionBankStudyScreen
       returnHref={returnHref}

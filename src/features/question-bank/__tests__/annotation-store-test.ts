@@ -23,6 +23,7 @@ jest.mock('expo-sqlite/kv-store', () => {
     __esModule: true,
     default: {
       clear: jest.fn(async () => values.clear()),
+      multiSet: jest.fn(async (entries: [string, string][]) => { entries.forEach(([key, value]) => values.set(key, value)); }),
       getItem: jest.fn(async (key: string) => values.get(key) ?? null),
       setItem: jest.fn(async (key: string, value: string) => { values.set(key, value); }),
     },

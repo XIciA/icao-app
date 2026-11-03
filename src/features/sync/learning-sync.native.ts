@@ -1,3 +1,5 @@
+import { notifyLearningProgress } from './learning-progress-events';
+import { createSyncScheduler } from './sync-scheduler';
 import { mergeOfflineAnnotations } from '@icao/contracts/annotation-management';
 import type {
   CardStateMutation,
@@ -70,7 +72,9 @@ let writeQueue = Promise.resolve();
 let accountSwitchQueue = Promise.resolve();
 let running: Promise<LearningSyncStatus> | undefined;
 let runningUserId: string | undefined;
-let retryTimer: ReturnType<typeof setTimeout> | undefined;
+let syncForeground = true;
+let syncOnline = true;
+const scheduler = createSyncScheduler(() => runLearningSync(), () => Boolean(activeUserId) && syncForeground && syncOnline);
 let activeUserId: string | undefined;
 let identityEpoch = 0;
 let learningResetEpoch = 0;
@@ -101,8 +105,7 @@ export function setLearningSyncActiveUser(userId?: string) {
   if (activeUserId === userId) return;
   activeUserId = userId;
   identityEpoch += 1;
-  if (retryTimer) clearTimeout(retryTimer);
-  retryTimer = undefined;
+  scheduler.cancel();
 }
 
 function parseJson<T>(raw: string | null, fallback: T): T {
@@ -115,7 +118,12 @@ function defaultMeta(): SyncMeta {
 }
 
 async function readMeta() {
-  const parsed = parseJson<Partial<SyncMeta>>(await Storage.getItem(META_KEY), defaultMeta());
+  const raw = await Storage.getItem(META_KEY);
+  const parsed: Partial<SyncMeta> = raw ? JSON.parse(raw) : defaultMeta();
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)
+    || (parsed.versions !== undefined && (!parsed.versions || typeof parsed.versions !== 'object' || Array.isArray(parsed.versions)))) {
+    throw new Error('learning_sync_metadata_invalid');
+  }
   return {
     ...defaultMeta(),
     ...parsed,
@@ -127,7 +135,13 @@ async function readMeta() {
 }
 
 async function readOutbox() {
-  return parseJson<SyncMutation[]>(await Storage.getItem(OUTBOX_KEY), []);
+  const raw = await Storage.getItem(OUTBOX_KEY);
+  const outbox: SyncMutation[] = raw ? JSON.parse(raw) : [];
+  if (!Array.isArray(outbox) || outbox.some(item => !item || typeof item.mutationId !== 'string'
+    || !['card_state', 'learning_record', 'document'].includes(item.kind) || !item.payload || typeof item.payload !== 'object')) {
+    throw new Error('learning_sync_outbox_invalid');
+  }
+  return outbox;
 }
 
 function mutationId(prefix: string) {
@@ -142,13 +156,16 @@ function recordVersionKey(recordId: string) {
   return `record:${recordId}`;
 }
 
-async function queuedUpdate(updater: (meta: SyncMeta, outbox: SyncMutation[]) => Promise<void> | void) {
+type LocalWrites = [string, string][];
+
+async function queuedUpdate(updater: (meta: SyncMeta, outbox: SyncMutation[]) => Promise<void | LocalWrites> | void | LocalWrites) {
   const next = writeQueue.catch(() => undefined).then(async () => {
     const meta = await readMeta();
     const outbox = await readOutbox();
-    await updater(meta, outbox);
-    await Storage.setItem(META_KEY, JSON.stringify(meta));
-    await Storage.setItem(OUTBOX_KEY, JSON.stringify(outbox));
+    const localWrites = await updater(meta, outbox);
+    await Storage.multiSet([...(localWrites ?? []),
+      [META_KEY, JSON.stringify(meta)], [OUTBOX_KEY, JSON.stringify(outbox)],
+    ]);
   });
   writeQueue = next;
   await next;
@@ -567,12 +584,14 @@ export async function applyPrivacyLearningDataReset(response: { aiResultGenerati
   scheduleLearningSync();
 }
 
-export async function enqueueCardState(topicId: string, cardId: string, state: CardLearningState, bankId?: string, context = captureLearningWriteContext()) {
+export async function enqueueCardState(topicId: string, cardId: string, state: CardLearningState, bankId?: string, context = captureLearningWriteContext(), prepareLocalWrite?: () => Promise<LocalWrites>) {
   assertLearningWriteContext(context);
   const reference = bankId ? { bankId } : findQuestionBankCardReference(topicId, cardId);
-  await queuedUpdate((meta, outbox) => {
+  await queuedUpdate(async (meta, outbox) => {
     assertLearningWriteContext(context);
-    if (!meta.boundUserId) return;
+    const localWrites = await prepareLocalWrite?.();
+    assertLearningWriteContext(context);
+    if (!meta.boundUserId) return localWrites;
     if (!reference) throw new Error('学习记录尚无法关联题库，请联网后重试。');
     const versionKey = cardVersionKey(reference.bankId, topicId, cardId);
     const version = (meta.versions[versionKey] ?? 0) + 1;
@@ -583,14 +602,15 @@ export async function enqueueCardState(topicId: string, cardId: string, state: C
       payload: { bankId: reference.bankId, topicId, cardId, state, version, updatedAt: state.updatedAt },
     };
     outbox.push(mutation);
+    return localWrites;
   });
   scheduleLearningSync();
 }
 
-export async function enqueueLearningRecord(record: LearningRecord, context = captureLearningWriteContext()) {
+export async function enqueueLearningRecord(record: LearningRecord, context = captureLearningWriteContext(), localWrites: LocalWrites = []) {
   await queuedUpdate((meta, outbox) => {
     assertLearningWriteContext(context, record.recordType === 'ai_result');
-    if (!meta.boundUserId) return;
+    if (!meta.boundUserId) return localWrites;
     const versionKey = recordVersionKey(record.id);
     const version = (meta.versions[versionKey] ?? 0) + 1;
     meta.versions[versionKey] = version;
@@ -611,19 +631,15 @@ export async function enqueueLearningRecord(record: LearningRecord, context = ca
       },
     };
     outbox.push(mutation);
+    return localWrites;
   });
   scheduleLearningSync();
 }
 
-export async function deleteLearningHistory(recordId: string) {
-  const context = captureLearningWriteContext();
-  const records = await getLearningRecords();
-  const record = records.find((item) => item.id === recordId && item.recordType !== 'ai_result');
-  if (!record) return;
-  const removed = records.filter((item) => item.id === recordId || (record.sessionId && item.sessionId === record.sessionId));
-  await queuedUpdate(async (meta, outbox) => {
+export async function deleteLearningHistory(recordId: string, context = captureLearningWriteContext()) {
+  assertLearningWriteContext(context);
+  await deleteLearningRecord(recordId, undefined, (entries, removed) => queuedUpdate((meta, outbox) => {
     assertLearningWriteContext(context);
-    await deleteLearningRecord(recordId);
     for (const item of removed) {
       const key = recordVersionKey(item.id);
       const version = (meta.versions[key] ?? 0) + 1;
@@ -638,7 +654,8 @@ export async function deleteLearningHistory(recordId: string) {
           occurredAt: item.createdAt, version, updatedAt: new Date().toISOString() },
       });
     }
-  });
+    return entries;
+  }));
   scheduleLearningSync();
 }
 
@@ -689,7 +706,10 @@ export async function mutateAnnotationsInCurrentWorkspace(context: LearningWrite
     const store = await update();
     // Once accepted, this operation still owns the previous workspace even if
     // activeUserId has changed. The next swap must archive its complete outbox.
-    await queuedUpdate((meta, outbox) => appendAnnotationStore(meta, outbox, store));
+    await queuedUpdate((meta, outbox) => {
+      appendAnnotationStore(meta, outbox, store);
+      return [[ANNOTATIONS_KEY, JSON.stringify(store)]];
+    });
     return store;
   });
   scheduleLearningSync();
@@ -723,10 +743,18 @@ export async function enqueueVocabularyDocument(state: VocabularyState, context 
   scheduleLearningSync();
 }
 
-export async function mutateVocabularyInCurrentWorkspace(context: LearningWriteContext, update: () => Promise<VocabularyState>, shouldEnqueue: () => boolean = () => true) {
+export async function mutateVocabularyInCurrentWorkspace(context: LearningWriteContext, update: (commit: (state: VocabularyState) => Promise<void>) => Promise<VocabularyState>, shouldEnqueue: () => boolean = () => true) {
   const result = await inCurrentLearningWorkspace(context, async () => {
-    const state = await update();
-    if (shouldEnqueue()) await queuedUpdate((meta, outbox) => appendVocabularyDocument(meta, outbox, state));
+    let committed = false;
+    const commit = async (state: VocabularyState) => {
+      await queuedUpdate((meta, outbox) => {
+        if (shouldEnqueue()) appendVocabularyDocument(meta, outbox, state);
+        return [[VOCABULARY_STORAGE_KEY, JSON.stringify(state)]];
+      });
+      committed = true;
+    };
+    const state = await update(commit);
+    if (!committed && shouldEnqueue()) await commit(state);
     return state;
   });
   scheduleLearningSync();
@@ -746,16 +774,46 @@ function nextSyncBatch(outbox: SyncMutation[]) {
   return batch;
 }
 
-async function applyChange(change: SyncChange, meta: SyncMeta) {
+function preservePendingChanges(meta: SyncMeta, outbox: SyncMutation[], key: string, remoteVersion: number, acknowledged: ReadonlySet<string>) {
+  let version = Math.max(remoteVersion, meta.versions[key] ?? 0);
+  let pending = false;
+  for (const mutation of outbox) {
+    const mutationKey = mutation.kind === 'card_state'
+      ? cardVersionKey(mutation.payload.bankId, mutation.payload.topicId, mutation.payload.cardId)
+      : mutation.kind === 'learning_record' ? recordVersionKey(mutation.payload.recordId) : `document:${mutation.payload.documentKey}`;
+    if (mutationKey !== key || acknowledged.has(mutation.mutationId)) continue;
+    pending = true;
+    // This local edit was not acknowledged by this response. Keep its payload,
+    // but rebase it above the server revision rather than discard it as stale.
+    if ((mutation.payload.version ?? 1) <= remoteVersion) {
+      mutation.payload.version = ++version;
+      mutation.mutationId = mutationId(`rebase:${key}`);
+    }
+  }
+  meta.versions[key] = version;
+  return pending;
+}
+
+async function applyChange(change: SyncChange, meta: SyncMeta, acknowledged: ReadonlySet<string> = new Set()) {
   if (change.kind === 'card_state') {
     const payload = change.payload as unknown as CardStateMutation['payload'];
     const versionKey = cardVersionKey(payload.bankId, payload.topicId, payload.cardId);
-    if (payload.version < (meta.versions[versionKey] ?? 0)) return;
-    const key = `${TOPIC_PREFIX}${payload.topicId}`;
-    const states = parseJson<Record<string, CardLearningState>>(await Storage.getItem(key), {});
-    states[payload.cardId] = payload.state;
-    await Storage.setItem(key, JSON.stringify(states));
-    meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
+    let changed = false;
+    await queuedUpdate(async (latestMeta, outbox) => {
+      if (preservePendingChanges(latestMeta, outbox, versionKey, payload.version, acknowledged)) {
+        meta.versions[versionKey] = latestMeta.versions[versionKey];
+        return;
+      }
+      if (payload.version < Math.max(latestMeta.versions[versionKey] ?? 0, meta.versions[versionKey] ?? 0)) return;
+      const key = `${TOPIC_PREFIX}${payload.topicId}`;
+      const states = parseJson<Record<string, CardLearningState>>(await Storage.getItem(key), {});
+      changed = JSON.stringify(states[payload.cardId]) !== JSON.stringify(payload.state);
+      states[payload.cardId] = payload.state;
+      latestMeta.versions[versionKey] = payload.version;
+      meta.versions[versionKey] = payload.version;
+      return [[key, JSON.stringify(states)]];
+    });
+    if (changed) notifyLearningProgress();
   } else if (change.kind === 'learning_record') {
     const payload = change.payload as unknown as LearningRecordMutation['payload'];
     const isAiResult = payload.deleted !== true && payload.record?.recordType === 'ai_result';
@@ -764,7 +822,11 @@ async function applyChange(change: SyncChange, meta: SyncMeta) {
     const versionKey = recordVersionKey(payload.recordId);
     if (version < (meta.versions[versionKey] ?? 0)) return;
     if (payload.deleted === true) await deleteLearningRecord(payload.recordId, payload.record as Pick<LearningRecord, 'recordType' | 'sessionId'> | undefined);
-    else await upsertLearningRecord(payload.record as unknown as LearningRecord);
+    else await upsertLearningRecord(payload.record as unknown as LearningRecord, () => undefined, entries => queuedUpdate((latestMeta, outbox) => {
+      const pending = preservePendingChanges(latestMeta, outbox, versionKey, version, acknowledged);
+      meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, latestMeta.versions[versionKey]);
+      if (!pending && version >= latestMeta.versions[versionKey]) return entries;
+    }));
     meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, version);
   } else if (change.kind === 'document') {
     const payload = change.payload as unknown as DocumentMutation['payload'];
@@ -787,7 +849,7 @@ async function applyChange(change: SyncChange, meta: SyncMeta) {
   }
 }
 
-async function applyAuthoritative(result: SyncPushResponse['results'][number], meta: SyncMeta) {
+async function applyAuthoritative(result: SyncPushResponse['results'][number], meta: SyncMeta, acknowledged: ReadonlySet<string>) {
   const value = result.authoritative;
   if (!value) return;
   if (value.bankId && value.topicId && value.cardId && value.state) {
@@ -798,7 +860,7 @@ async function applyAuthoritative(result: SyncPushResponse['results'][number], m
       payload: value as unknown as Record<string, unknown>,
       version: value.version,
       changedAt: value.updatedAt,
-    }, meta);
+    }, meta, acknowledged);
   } else if (value.recordId && (value.record || value.deleted) && value.occurredAt) {
     await applyChange({
       cursor: meta.cursor,
@@ -815,7 +877,7 @@ async function applyAuthoritative(result: SyncPushResponse['results'][number], m
       },
       version: value.version,
       changedAt: value.updatedAt,
-    }, meta);
+    }, meta, acknowledged);
   } else if (value.documentKey && value.document) {
     await applyChange({
       cursor: meta.cursor,
@@ -824,7 +886,7 @@ async function applyAuthoritative(result: SyncPushResponse['results'][number], m
       payload: value as unknown as Record<string, unknown>,
       version: value.version,
       changedAt: value.updatedAt,
-    }, meta);
+    }, meta, acknowledged);
   }
 }
 
@@ -883,11 +945,11 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
             await clearAiResultRecords();
             meta.aiResultGeneration = responseAiResultGeneration;
           }
+          const processed = new Set(response.results.map((result) => result.mutationId));
           for (const result of response.results) {
             assertSyncIdentity(expectedUserId, epoch);
-            await applyAuthoritative(result, meta);
+            await applyAuthoritative(result, meta, processed);
           }
-          const processed = new Set(response.results.map((result) => result.mutationId));
           await queuedUpdate((latestMeta, latestOutbox) => {
             assertSyncIdentity(expectedUserId, epoch);
             mergeSyncProgress(latestMeta, meta);
@@ -973,17 +1035,14 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
   }
 }
 
-export function scheduleLearningSync() {
-  if (retryTimer) clearTimeout(retryTimer);
-  const userId = activeUserId;
-  if (!userId) {
-    retryTimer = undefined;
-    return;
-  }
-  retryTimer = setTimeout(() => {
-    retryTimer = undefined;
-    if (activeUserId === userId) void runLearningSync(userId).catch(() => undefined);
-  }, 800);
+export function scheduleLearningSync() { scheduler.schedule(); }
+
+export function setLearningSyncAvailability(foreground: boolean, online: boolean) {
+  const changed = syncForeground !== foreground || syncOnline !== online;
+  syncForeground = foreground;
+  syncOnline = online;
+  if (!foreground || !online) scheduler.cancel();
+  else if (changed) scheduler.schedule(0);
 }
 
 export async function getLearningSyncStatus(): Promise<LearningSyncStatus> {
@@ -1001,11 +1060,12 @@ export async function getLearningSyncStatus(): Promise<LearningSyncStatus> {
 export function resetLearningSyncForTests() {
   writeQueue = Promise.resolve();
   accountSwitchQueue = Promise.resolve();
+  syncForeground = true;
+  syncOnline = true;
   running = undefined;
   runningUserId = undefined;
   activeUserId = undefined;
   setProfileAccount(undefined);
   identityEpoch += 1;
-  if (retryTimer) clearTimeout(retryTimer);
-  retryTimer = undefined;
+  scheduler.cancel();
 }

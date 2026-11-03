@@ -10,7 +10,7 @@ export const WEB_PAY_REHEARSAL_EVIDENCE = '/opt/icao/runtime/migration-rehearsal
 export const WEB_PAY_REHEARSAL_ARCHIVE = 'cb3b17070cf583acd187da8539d0a7fa0a06a5b9ebe6d9ca7bb35dc7c202b8e4';
 export const MIGRATION_PAYLOAD_PATHS = ['package.json','pnpm-lock.yaml','pnpm-workspace.yaml','patches',
   'modules/icao-distribution-environment','modules/icao-wechat-auth','packages/contracts','services/api',
-  'content/vocabulary','content/app-content/text.json','content/question-banks/opi-hotspots.json','infra/api'];
+  'content/vocabulary', 'content/word-lookup/dataset.json','content/app-content/text.json','content/question-banks/opi-hotspots.json','infra/api'];
 const reviewedTestPath = 'services/api/scripts/vocabulary-storage-role-tests.mjs';
 const reviewedTestBefore = 'd6fdc30447306c06046677c9d01d62f894460bc4';
 const reviewedTestAfter = '3e674d452cdddc8f27b3d46234ba4aeb03b2c58f';

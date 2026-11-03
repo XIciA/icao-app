@@ -1,3 +1,4 @@
+jest.mock('@/features/question-bank/platform/network-service', () => ({ getConnectivity: jest.fn(async () => 'online'), subscribeConnectivity: jest.fn(() => () => {}) }));
 import { act, render, waitFor } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
@@ -110,6 +111,7 @@ jest.mock('@/features/sync/learning-sync.native', () => ({
   inspectLearningSyncBinding: jest.fn().mockResolvedValue({ needsConfirmation: false }),
   runLearningSync: jest.fn(),
   setLearningSyncActiveUser: jest.fn(),
+  setLearningSyncAvailability: jest.fn(),
 }));
 
 const mockApiRequest = apiRequest as jest.MockedFunction<typeof apiRequest>;

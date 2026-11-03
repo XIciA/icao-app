@@ -8,6 +8,9 @@
 
 ## 现存材料
 
+- [学习保存与内容链路修复](app-self-check/implementation.md)：2026-11-03 用户授权执行，包含可靠保存、三端同步与新 TestFlight；实际进度和验证边界在执行记录。
+- [新题与查词联动历史调查](content-workflow/word-lookup-follow-up-2026-10-22.md)：检查标准统一归入项目长期边界，不再维护第二套规则。
+
 - [三本词书全题库整理](vocabulary-three-books/README.md)：1833词、学习状态兼容迁移、频次/乱序及新增音频交接；待统一合并与测试交付。
 
 - [听力答题卡与维护经验文档方案](listening-answer-card/README.md)：待用户确认；听力答对绿、答错红，未答沿用已学/未学，并拟定长期规则与经验文档安排；尚未修改产品代码。
@@ -19,7 +22,7 @@
 - [会员定价与后续统一提审](membership-pricing/README.md)：2026-10-22 三档长期售价与划线价、苹果后台调价结果；本轮不构建、不提审，待其他任务完成后统一提交。
 - [使用指南与首次使用引导](guide-and-onboarding-2026-10/requirements.md)：统一教学逻辑、极简细线聚光灯；[执行记录](guide-and-onboarding-2026-10/execution.md)。
 
-- [内容发布完整链路核验](content-workflow/chain-audit-2026-10-19.md)：题库、音频、历史热点兼容能力与当前差距；执行标准统一引用内容处理规则。
+- [内容发布完整链路核验](content-workflow/chain-audit-2026-10-19.md)：题库、音频、历史热点兼容能力与当前差距；历史证据；执行标准统一引用项目长期边界的全链路标准及内容处理规则。
 
 - [2026 年 10 月功能更新](feature-update-2026-10/requirements.md)：本轮已确认需求；[执行记录](feature-update-2026-10/execution.md)与[内容工单操作](feature-update-2026-10/content-operations.md)。
 - [App 异常输出与逻辑缺陷排查](app-bug-audit/README.md)：本次长任务的目标、证据、方案和接续记录；非音频修复与本地回归已完成；[完成记录](app-bug-audit/completion-2026-10-17.md)列明证据和剩余真机风险，该任务未构建或发布版本。

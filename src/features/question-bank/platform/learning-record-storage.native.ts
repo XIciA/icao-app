@@ -91,7 +91,8 @@ export async function loadLearningAiRecord(recordId: string): Promise<LearningRe
   return withDetail(record);
 }
 
-async function writeLearningRecord(record: LearningRecord, assertCurrent: () => void): Promise<boolean> {
+type CommitRecord = (entries: [string, string][]) => Promise<void>;
+async function writeLearningRecord(record: LearningRecord, assertCurrent: () => void, commit: CommitRecord = entries => Storage.multiSet(entries)): Promise<boolean> {
   assertCurrent();
   if (await Storage.getItem(deletedKey(record.id))
     || (record.sessionId && await Storage.getItem(deletedSessionKey(record.sessionId)))) return false;
@@ -110,7 +111,7 @@ async function writeLearningRecord(record: LearningRecord, assertCurrent: () => 
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
   assertCurrent();
   // expo-sqlite's multiSet commits the detail and index in one transaction.
-  await Storage.multiSet([
+  await commit([
     ...(review ? [[detailKey(record.id), JSON.stringify(review)] as [string, string]] : []),
     ...(clean.aiResult ? [[aiDetailKey(record.id), JSON.stringify(clean.aiResult)] as [string, string]] : []),
     [LEARNING_RECORDS_KEY, JSON.stringify(next)],
@@ -118,8 +119,8 @@ async function writeLearningRecord(record: LearningRecord, assertCurrent: () => 
   return true;
 }
 
-export async function upsertLearningRecord(record: LearningRecord, assertCurrent: () => void = () => undefined) {
-  return queued(async () => { await writeLearningRecord(record, assertCurrent); });
+export async function upsertLearningRecord(record: LearningRecord, assertCurrent: () => void = () => undefined, commit?: CommitRecord) {
+  return queued(async () => { await writeLearningRecord(record, assertCurrent, commit); });
 }
 
 /** Compare and update the pending operation inside the same history write queue. */
@@ -140,18 +141,20 @@ export async function updatePendingLearningAiRecord(
   });
 }
 
-export async function deleteLearningRecord(recordId: string, descriptor?: Pick<LearningRecord, 'recordType' | 'sessionId'>) {
+export async function deleteLearningRecord(recordId: string, descriptor?: Pick<LearningRecord, 'recordType' | 'sessionId'>, commit?: (entries: [string, string][], removed: LearningRecord[]) => Promise<void>) {
   return queued(async () => {
     const records = await readSummaries();
     const record = records.find((item) => item.id === recordId) ?? descriptor;
     const sessionId = record?.recordType !== 'ai_result' ? record?.sessionId : undefined;
     const removed = records.filter((item) => item.id === recordId || (sessionId && item.sessionId === sessionId));
     const ids = new Set([recordId, ...removed.map((item) => item.id)]);
-    await Storage.multiSet([
+    const entries: [string, string][] = [
       [LEARNING_RECORDS_KEY, JSON.stringify(records.filter((item) => !ids.has(item.id)))],
       ...Array.from(ids, (id) => [deletedKey(id), '1'] as [string, string]),
       ...(sessionId ? [[deletedSessionKey(sessionId), '1'] as [string, string]] : []),
-    ]);
+    ];
+    if (commit) await commit(entries, removed);
+    else await Storage.multiSet(entries);
     await Storage.multiRemove(Array.from(ids).flatMap((id) => [detailKey(id), aiDetailKey(id)]));
   });
 }

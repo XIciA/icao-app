@@ -58,7 +58,7 @@ git archive --format=tar "$SOURCE_SHA" \
   package.json pnpm-lock.yaml pnpm-workspace.yaml \
   patches modules/icao-distribution-environment modules/icao-wechat-auth \
   packages/contracts services/api \
-  content/vocabulary content/app-content/text.json content/question-banks/opi-hotspots.json infra/api infra/backup \
+  content/vocabulary content/word-lookup/dataset.json content/app-content/text.json content/question-banks/opi-hotspots.json infra/api infra/backup \
   | gzip -n > "$ARCHIVE"
 node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 shasum -a 256 "$ARCHIVE" > "$ARCHIVE.sha256"

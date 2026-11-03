@@ -1,3 +1,4 @@
+import { mergeCardProgress } from './card-progress';
 import { isRelocatedOldLocation } from './relocated-learning';
 import { timed } from '../performance/request-performance';
 import { preserveManagedAnnotations, mergeOfflineAnnotations } from '@icao/contracts/annotation-management';
@@ -234,15 +235,14 @@ export class SyncService {
 
     if (current && mutation.payload.version <= current.version) {
       const currentState = current.state as CardStateMutation['payload']['state'];
-      const gainedProgress = (mutation.payload.state.visited && !currentState.visited)
-        || (mutation.payload.state.completed && !currentState.completed);
+      const merged = mergeCardProgress(currentState, mutation.payload.state, false);
+      const gainedProgress = merged.visited !== currentState.visited
+        || merged.completed !== currentState.completed || merged.lastVisitedAt !== currentState.lastVisitedAt;
       if (gainedProgress) {
         const updatedAt = new Date();
         const version = current.version + 1;
         const state = {
-          ...currentState,
-          visited: currentState.visited || mutation.payload.state.visited,
-          completed: currentState.completed || mutation.payload.state.completed,
+          ...merged,
           updatedAt: updatedAt.toISOString(),
         };
         await tx.update(userCardStates).set({ state, version, updatedAt }).where(target);
@@ -278,15 +278,9 @@ export class SyncService {
     }
 
     const updatedAt = new Date(mutation.payload.updatedAt);
-    const state = current ? {
-      ...mutation.payload.state,
-      // Older installed clients do not send the new resume field. Their valid
-      // progress writes must not erase a position recorded by an updated client.
-      lastVisitedAt: mutation.payload.state.lastVisitedAt ?? (current.state as CardStateMutation['payload']['state']).lastVisitedAt,
-      visited: (current.state as CardStateMutation['payload']['state']).visited || mutation.payload.state.visited,
-      completed: (current.state as CardStateMutation['payload']['state']).completed || mutation.payload.state.completed,
-      updatedAt: updatedAt.toISOString(),
-    } : mutation.payload.state;
+    const state = current
+      ? { ...mergeCardProgress(current.state as CardStateMutation['payload']['state'], mutation.payload.state, true), updatedAt: updatedAt.toISOString() }
+      : mergeCardProgress(mutation.payload.state, mutation.payload.state, true);
     const values = {
       userId,
       bankId: mutation.payload.bankId,

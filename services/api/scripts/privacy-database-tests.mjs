@@ -467,3 +467,30 @@ test('mixed-version content publication respects checksum uniqueness and resets 
   assert.equal(queryScalar('SELECT count(*) FROM question_bank_releases WHERE active'), '5');
   assert.equal(queryScalar("SELECT version FROM question_bank_releases WHERE bank_id = 'sentences900' AND active"), '13');
 });
+
+test('three device streams converge after offline updates, retries and older-version visits', async () => {
+  const accountId = '61000000-0000-4000-8000-000000000099';
+  await createAccount(accountId);
+  const ios = cardMutation('ios-visit', 'shared-question', 5);
+  ios.payload.state.lastVisitedAt = '2026-11-02T00:00:00.000Z';
+  const android = cardMutation('android-offline-visit', 'shared-question', 1);
+  android.payload.state.lastVisitedAt = '2026-11-03T00:00:00.000Z';
+  const web = cardMutation('web-other-question', 'another-question', 1);
+  await push(accountId, [ios]);
+  const merged = await push(accountId, [android]);
+  assert.equal(merged.results[0].authoritative.state.lastVisitedAt, android.payload.state.lastVisitedAt);
+  assert.equal(merged.results[0].authoritative.state.completed, true);
+  const duplicate = await push(accountId, [android]);
+  assert.equal(duplicate.results[0].status, 'duplicate');
+  await push(accountId, [web]);
+  const clients = await Promise.all([0, 1, 2].map(() => sync.pull(accountId, '0', accountId)));
+  const latest = changes => {
+    const values = new Map();
+    for (const change of changes) if (change.kind === 'card_state') values.set(change.entityKey, change.payload);
+    return [...values.values()].sort((a, b) => a.cardId.localeCompare(b.cardId));
+  };
+  assert.deepEqual(latest(clients[0].changes), latest(clients[1].changes));
+  assert.deepEqual(latest(clients[1].changes), latest(clients[2].changes));
+  assert.equal(latest(clients[0].changes).length, 2);
+  assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${accountId}'`), '2');
+});

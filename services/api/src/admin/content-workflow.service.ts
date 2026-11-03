@@ -9,6 +9,7 @@ import { contentWorkOrders, questionBankReleases, appContentReleases, editorialR
 import { AdminAuditService } from './admin-audit.service';
 import type { OpsAuthenticatedRequest } from './admin.types';
 import { bankSchema, cardsOf, parseDraft, validateBank } from './content-workflow-validation';
+import { validateLookupCoverage } from '../app-content/word-lookup';
 import { prepareAttachments, attachmentMetadata, type StoredAttachment } from './content-attachments';
 import { rebaseBank, containsBankChanges } from './content-workflow-rebase';
 import { replaceHistoricalHotspots, validateHotspotReferences, validateExclusions } from './content-workflow-history';
@@ -195,7 +196,8 @@ export class ContentWorkflowService {
         change.baseChecksum=old.checksum;
       }
       if(change.payload.id!==change.bankId) throw new BadRequestException('bank_id_mismatch');
-      validateBank(change.payload,old.payload);
+      const bank = validateBank(change.payload,old.payload);
+      validateLookupCoverage(change.bankId, cardsOf(bank).map(entry => entry.card), cardsOf(bankSchema.parse(old.payload)).map(entry => entry.card));
     }
     validateExclusions(draft,available);
     const opi=draft.banks.find(b=>b.bankId==='opi')?.payload??available.find(b=>b.bankId==='opi')?.payload;

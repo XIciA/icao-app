@@ -137,3 +137,5 @@ describe('WordFavoritesScreen', () => {
     expect(screen.getByText(/来源：.*题库查词/)).toBeTruthy();
   });
 });
+
+jest.mock('@/features/question-bank/static-word-lookup/use-word-lookup', () => ({ useWordLookupUpdates: () => 0 }));

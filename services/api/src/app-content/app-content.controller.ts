@@ -6,11 +6,23 @@ import type { AppContentRelease } from '@icao/contracts/app-content';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
 import { AppContentService } from './app-content.service';
+import { wordLookupRelease } from './word-lookup';
+import type { WordLookupRelease } from '@icao/contracts';
 
 /** Public legal/content metadata and hotspot question overviews; protected study data stays in topic APIs. */
 @Controller('v1/app-content')
 export class AppContentController {
   constructor(private readonly content: AppContentService, private readonly access: ContentAccessService) {}
+
+  @Get('word-lookup')
+  lookup(@Headers('if-none-match') ifNoneMatch: string | undefined, @Req() request: FastifyRequest,
+    @Res({ passthrough: true }) reply: FastifyReply): ApiSuccessEnvelope<WordLookupRelease> | undefined {
+    const data = wordLookupRelease();
+    const etag = `"${data.checksum}"`;
+    reply.header('etag', etag).header('cache-control', 'public, max-age=0, must-revalidate');
+    if (ifNoneMatch === etag) { reply.status(304); return undefined; }
+    return { requestId: request.id, data };
+  }
 
   @Get('hotspots/:briefId/overview')
   async overview(@Param('briefId') briefId: string, @Req() request: FastifyRequest,

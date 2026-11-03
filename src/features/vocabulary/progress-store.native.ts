@@ -30,7 +30,7 @@ async function mutateVocabularyState(updater: (state: VocabularyState) => Vocabu
   const context = captureLearningWriteContext();
   let changed = false;
   let result = createEmptyVocabularyState();
-  const next = mutationQueue.catch(() => undefined).then(() => mutateVocabularyInCurrentWorkspace(context, async () => {
+  const next = mutationQueue.catch(() => undefined).then(() => mutateVocabularyInCurrentWorkspace(context, async commit => {
     const original = await readVocabularyState({ migrate: false });
     const current = migrateCurrentVocabulary(original);
     const updated = updater(current);
@@ -39,7 +39,7 @@ async function mutateVocabularyState(updater: (state: VocabularyState) => Vocabu
       return current;
     }
     changed = true;
-    result = await writeVocabularyState(updated);
+    result = await writeVocabularyState(updated, commit);
     return result;
   }, () => changed));
   mutationQueue = next.then(() => undefined, () => undefined);

@@ -1,3 +1,4 @@
+import { subscribeLearningProgress } from '@/features/sync/learning-progress-events';
 import { contentFailure } from '../lib/content-failure';
 import { CenteredState } from '@/components/states/CenteredState';
 import { useSentenceBrowseMode } from '../lib/use-sentence-browse-mode';
@@ -107,15 +108,21 @@ export function QuestionBankCatalog({ dataset, onRetry }: { dataset: QuestionBan
 
   useFocusEffect(useCallback(() => {
     let active = true;
-    setProgressReady(false); setProgressError(false);
-    if (dataset.id === 'sentences900') void Promise.all(dataset.categories.flatMap(category => category.topics).map(async topic => {
-      const states = await sqliteLearningStore.getTopicStates(topic);
-      return (topic.scopeCardIds?.all ?? topic.cards.map(card => card.id)).filter(id => states[id]?.completed);
-    })).then(groups => { if (!active) return; const counts: Record<string, number> = {}; for (const id of groups.flat()) { const scene = sentenceScenario(id); if (scene) counts[scene.id] = (counts[scene.id] ?? 0) + 1; } setSceneProgress(counts); }).catch(() => { if (active) setProgressError(true); });
-    void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics), scope).then((next) => {
-      if (active) { setProgress(next); setProgressReady(true); }
-    }).catch(() => { if (active) setProgressError(true); });
-    return () => { active = false; };
+    let revision = 0;
+    const reload = () => {
+      const request = ++revision;
+      setProgressError(false);
+      if (dataset.id === 'sentences900') void Promise.all(dataset.categories.flatMap(category => category.topics).map(async topic => {
+        const states = await sqliteLearningStore.getTopicStates(topic);
+        return (topic.scopeCardIds?.all ?? topic.cards.map(card => card.id)).filter(id => states[id]?.completed);
+      })).then(groups => { if (!active || request !== revision) return; const counts: Record<string, number> = {}; for (const id of groups.flat()) { const scene = sentenceScenario(id); if (scene) counts[scene.id] = (counts[scene.id] ?? 0) + 1; } setSceneProgress(counts); }).catch(() => { if (active && request === revision) setProgressError(true); });
+      void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics), scope).then((next) => {
+        if (active && request === revision) { setProgress(next); setProgressReady(true); }
+      }).catch(() => { if (active && request === revision) setProgressError(true); });
+    };
+    reload();
+    const unsubscribe = subscribeLearningProgress(reload);
+    return () => { active = false; unsubscribe(); };
   // Manual retry reloads progress while the catalog remains focused.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataset, scope, progressAttempt, account, scenePackage?.id]));
