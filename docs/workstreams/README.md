@@ -8,7 +8,7 @@
 
 ## 现存材料
 
-- [学习保存与内容链路修复](app-self-check/implementation.md)：2026-11-03 用户授权执行，包含可靠保存、三端同步与新 TestFlight；实际进度和验证边界在执行记录。
+- [学习保存与内容链路修复](app-self-check/implementation.md)：2026-11-04 修复与 API/后台/Web 已交付，TestFlight 1.3.1 / 3596169 内部测试组可用；用户真机验收待完成，证据与边界见执行记录。
 - [新题与查词联动历史调查](content-workflow/word-lookup-follow-up-2026-10-22.md)：检查标准统一归入项目长期边界，不再维护第二套规则。
 
 - [三本词书全题库整理](vocabulary-three-books/README.md)：1833词、学习状态兼容迁移、频次/乱序及新增音频交接；待统一合并与测试交付。

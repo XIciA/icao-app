@@ -1,6 +1,6 @@
 # 本轮修复执行记录
 
-2026-11-03 用户授权执行 N-01～N-05、题目更新链路及学习保存三端同步优化，并交付新 TestFlight；随后明确授权本轮必要 API 生产部署。版本保持 1.3.1，构建号待核对 Apple 后递增。不提交 App Store 正式审核。
+2026-11-03 用户授权执行 N-01～N-05、题目更新链路及学习保存三端同步优化，并交付新 TestFlight；随后明确授权本轮必要 API 生产部署。版本保持 1.3.1，核对 Apple 后递增为 3596169。不提交 App Store 正式审核。
 
 基线 origin/main：1ddd5e50。隔离 worktree：`/Users/zhouyide/.codex/worktrees/icao-learning-reliability`，分支 `codex/learning-reliability`。原工作区既有删除、锁文件和文档修改保持原样。
 
@@ -14,7 +14,13 @@
 
 本轮用户认可的六项体验和安全边界见 [同步梳理](learning-save-sync-review-2026-11-03.md)。代码检查、候选交付、用户真机验收分别记录，不相互替代。
 
-## 当前进展
+## 最终交付状态
+
+修复由 PR #327 合入 main（98fd7236）。全量本地检查与 GitHub CI 通过；生产 API、内容后台及产品 Web 已部署，线上同步、AI 和浏览器验证通过。TestFlight 1.3.1 / 3596169 已完成 Apple VALID / IN_BETA_TESTING，内部“测试”组可用；用户真机验收待完成。交付证据、回滚和真机待验边界见[发布记录](../../records/releases/20261104-learning-reliability-1.3.1.md)。
+
+## 分阶段执行历史
+
+以下保留实施时的检查过程，其中“尚未合并”“继续进行”等只表示该阶段当时的状态；当前结论以顶部最终状态和发布记录为准。
 
 - 已修改：学习入口复用 API 详情的 `retargetHotspotBrief` 合同，按完整目录中的稳定题目 ID 加载当前话题；保留权限校验。
 - 已修改：失效考点不再回退全部题；来源失效历史允许确认删除；文章外链拒绝可重试。
