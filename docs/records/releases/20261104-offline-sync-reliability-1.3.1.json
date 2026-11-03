@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "commit": "c841dbaebfd02784db679d50ed289903417b597d",
+  "pullRequest": "https://github.com/XIciA/icao-app/pull/330",
+  "coordinatedChanges": [
+    "offline audio / download / sync reliability",
+    "study recap and shared annotation / word collection rows",
+    "download appearance and six membership benefits"
+  ],
+  "checks": {
+    "sourceCommit": "4d3e7319ea5f09ef5c79bcc400271920c282a0bf",
+    "fullCheck": {
+      "command": "QUESTION_BANK_AUDIO_ROOT=<verified-external-media> pnpm check",
+      "exitCode": 0,
+      "clientSuites": 283,
+      "clientTests": 1986,
+      "releaseSuites": 20,
+      "releaseTests": 197,
+      "apiFiles": 89,
+      "apiTests": 823,
+      "apiSkippedFiles": 1,
+      "apiSkippedTests": 3,
+      "lintErrors": 0,
+      "lintExistingWarnings": 74
+    },
+    "webExport": {
+      "exitCode": 0,
+      "files": 189,
+      "sizeMiB": 39.4
+    },
+    "sqliteComparison": {
+      "iterations": 100,
+      "savesPassed": 100,
+      "audioResolutionPassed": 100,
+      "downloadChecksPassed": 100,
+      "lockErrors": 0,
+      "rawControlStillReproducesLockConflict": true,
+      "realDevicePlayback": false
+    },
+    "deviceAcceptance": "pending; original iPhone unavailable",
+    "databaseConstraintTests": {
+      "passed": 68,
+      "failed": 0
+    },
+    "candidateBrowserSmoke": {
+      "browser": "Chrome",
+      "pages": [
+        "home",
+        "OPI v30 directory",
+        "guest profile"
+      ],
+      "consoleErrors": 0,
+      "authenticatedFlow": false,
+      "nativePlayback": false
+    }
+  },
+  "ci": {
+    "url": "https://github.com/XIciA/icao-app/actions/runs/41691921530",
+    "conclusion": "success"
+  },
+  "api": {
+    "releaseId": "offline-sync-reliability-20261104-c841dbae",
+    "ready": true,
+    "image": "sha256:620ae95d05eb35155ec557e8768f7c78973437fa8131feefd9a1a440d8e7aa04",
+    "rollbackImage": "sha256:9bc21330e3664c80152ae60415e5a9689856108aad427c23980a256945fddb2f",
+    "schema": {
+      "applied": 61,
+      "pending": 0,
+      "drift": 0,
+      "migrationsExecuted": false
+    },
+    "tag": "release/api-production/20261104-c841dbae",
+    "liveVerification": {
+      "status": "passed",
+      "checks": [
+        {
+          "bankId": "listening",
+          "version": 26,
+          "credentialScopes": 4,
+          "topicChecksum": true,
+          "audioBytes": 372446,
+          "audioChecksum": true
+        },
+        {
+          "bankId": "sentences900",
+          "version": 27,
+          "credentialScopes": 3,
+          "topicChecksum": true,
+          "audioBytes": 65927,
+          "audioChecksum": true
+        },
+        {
+          "bankId": "radiotelephony",
+          "version": 29,
+          "credentialScopes": 24,
+          "topicChecksum": true,
+          "audioBytes": 126623,
+          "audioChecksum": true
+        },
+        {
+          "bankId": "storytelling",
+          "version": 26,
+          "credentialScopes": 4,
+          "topicChecksum": true,
+          "audioBytes": 520172,
+          "audioChecksum": true
+        },
+        {
+          "bankId": "opi",
+          "version": 30,
+          "credentialScopes": 24,
+          "topicChecksum": true,
+          "audioBytes": 36524,
+          "audioChecksum": true
+        }
+      ],
+      "rateLimit": {
+        "status": 429,
+        "code": "content_credential_rate_limited",
+        "retryAfterSeconds": 898,
+        "afterWindow": true
+      },
+      "cleanupComplete": true,
+      "cleanupErrors": []
+    }
+  },
+  "web": {
+    "deploymentId": "dph7hstgf9hz",
+    "projectId": "makers-4khvzoj9ywnq",
+    "origin": "https://readyoufife.com",
+    "entryScript": "/_expo/static/js/web/index-6a584767b55c436975ccbd300fddcc8d.js",
+    "sha256": "7fe461636dbaca5404812f2da0fdfa5cab3a483678daf04f02412433d876c765",
+    "publicHashVerified": true,
+    "tag": "release/web-edgeone/20261104-c841dbae",
+    "rollbackDeploymentId": "dpw5fsht0wtk",
+    "browserSmoke": {
+      "browser": "Chrome",
+      "pages": [
+        "home",
+        "OPI v30 directory"
+      ],
+      "consoleErrors": 0
+    }
+  },
+  "preservedContent": [
+    {
+      "path": "/v1/app-content",
+      "status": 200,
+      "api": null,
+      "keys": [
+        "version",
+        "checksum",
+        "payload"
+      ],
+      "version": 33,
+      "checksum": "e5e7a523d7b82eddf0dd5616717a7a091eb7ebccf01183d947d3b7a4865f3578",
+      "preserved": true
+    },
+    {
+      "path": "/v1/app-content/word-lookup",
+      "status": 200,
+      "api": null,
+      "keys": [
+        "checksum",
+        "entries"
+      ],
+      "checksum": "542fcb493a1d2d048b21ba9924749df9a80623354f8f379f6f0dd87b02f80d9b",
+      "preserved": true
+    },
+    {
+      "path": "/v1/question-banks/opi",
+      "label": "current",
+      "status": 200,
+      "version": 30,
+      "checksum": "37aba6e41b5150a300c7eb8f77826d50fc3ccaee0bd1d15590893632520ec025",
+      "preserved": true
+    },
+    {
+      "path": "/v1/question-banks/opi",
+      "label": "legacy",
+      "status": 200,
+      "version": 29,
+      "checksum": "eadfe06f1fd3ee5f4bdfceb48a49fcf6140f5f95380f4b043ae14f0ea3173fda",
+      "preserved": true
+    }
+  ],
+  "aiLive": {
+    "schemaVersion": 1,
+    "kind": "ai-live",
+    "status": "passed",
+    "apiVersion": "offline-sync-reliability-20261104-c841dbae",
+    "apiOrigin": "https://api.readyoufife.com",
+    "verifierFingerprint": "a679c49b56b71d035de13f72064c40e991279bcf554a4c7f70dd223a7bde14a5",
+    "verifiedAt": "2026-11-03T18:36:54.822Z",
+    "checks": {
+      "transcribe": true,
+      "grammar": true,
+      "polish": true,
+      "aviationTerms": true,
+      "temporaryAudioRemoved": true
+    }
+  },
+  "testflight": {
+    "version": "1.3.1",
+    "build": 3596170,
+    "status": "available",
+    "bundleIdentifier": "com.readyoufife.ios",
+    "ipaSha256": "841c131c69e4e9df280168c1710f04424d0a995cffa32f1fb72d0c8e0de90eec",
+    "archiveAuditSha256": "464741ea02bbbd0b6cdfda4d65ec9c7721947ced070133f17fd21bc147d617fc",
+    "archivePassed": true,
+    "exportPassed": true,
+    "appleValidationPassed": true,
+    "privacyManifests": 11,
+    "embeddedCode": 3,
+    "recordingRegressionTests": 196,
+    "bundleId": "com.readyoufife.ios",
+    "buildId": "e7fe507e-4031-4d0f-bdf2-8b446e384d76",
+    "uploadedDate": "2026-11-03T10:57:57-08:00",
+    "processingState": "VALID",
+    "expired": false,
+    "internalBuildState": "IN_BETA_TESTING",
+    "groups": [
+      {
+        "id": "dc1ad61b-d8b0-4418-b5ec-f97d2fe116ba",
+        "name": "测试",
+        "internal": true
+      }
+    ],
+    "verifiedAt": "2026-11-03T19:00:39.022Z",
+    "tag": "release/ios-testflight/v1.3.1-b3596170",
+    "updateChannel": {
+      "channel": "ios-testflight",
+      "version": "1.3.1",
+      "build": 3596170,
+      "url": "https://testflight.apple.com/",
+      "backup": "/opt/icao/backups/app-updates-offline-sync-20261104/updates-before-20261103T190132513001Z.json"
+    },
+    "otherUpdateChannelsPreserved": true
+  },
+  "android": {
+    "sharedImplementationUpdated": true,
+    "newPackagePublished": false
+  },
+  "appStoreSubmission": false,
+  "deviceAcceptance": "pending",
+  "mainCi": {
+    "url": "https://github.com/XIciA/icao-app/actions/runs/41694849770",
+    "commit": "c841dbaebfd02784db679d50ed289903417b597d",
+    "conclusion": "success"
+  }
+}

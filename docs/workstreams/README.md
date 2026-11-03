@@ -8,9 +8,9 @@
 
 ## 现存材料
 
-- [学习结束页与下载状态优化](experience-optimization-2026-11/study-recap-and-status-design.md)：已实施“左上集中”，我的标注、单词收藏、结束页标注题目与查词共用列表和条目组件；10 个套件／55 个测试通过，增量交由统筹任务统一整合和交付。
+- [学习结束页与下载状态优化](experience-optimization-2026-11/study-recap-and-status-design.md)：四入口共用列表与条目，已纳入统一 PR #330，并随 TestFlight 3596170 与受影响 Web 交付；真机待验。
 
-- [学习保存与内容链路修复](app-self-check/implementation.md)：2026-11-04 修复与 API/后台/Web 已交付，TestFlight 1.3.1 / 3596169 内部测试组可用；用户真机验收待完成，证据与边界见执行记录。
+- [学习保存与内容链路修复](app-self-check/implementation.md)：下载／离线音频回归及三个任务增量已由 PR #330 统一交付，API/Web 已上线，TestFlight 1.3.1 / 3596170 内部测试组可用；用户真机验收待完成。
 - [新题与查词联动历史调查](content-workflow/word-lookup-follow-up-2026-10-22.md)：检查标准统一归入项目长期边界，不再维护第二套规则。
 
 - [三本词书全题库整理](vocabulary-three-books/README.md)：1833词、学习状态兼容迁移、频次/乱序及新增音频交接；待统一合并与测试交付。

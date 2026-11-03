@@ -1,6 +1,6 @@
 # 项目管理概览与产品状态
 
-核对日期：2026-11-04（北京时间；本轮核对学习保存与内容链路交付）
+核对日期：2026-11-04（北京时间；本轮核对下载／离线音频与协调界面交付）
 
 本页汇总管理所需的产品状态、交付和待验事项。依据是仓库实现与已保存的发布证据，
 各渠道按各自最近证据更新；本轮核对学习保存、内容链路、API、内容后台、产品 Web 和 iOS 测试交付；其他渠道与基础监控保留各自最近记录；
@@ -29,17 +29,17 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
 | App Store | 正式仍为1.2.1 / 3576434；1.2.2 / 3586478已于10月27日20:39提交，WAITING_FOR_REVIEW | 本轮仅删除课程弹层末尾一行，保留原审核通过后自动发布设置；尚未批准/上架，正式清单未切换。[送审回执](../../records/releases/20261026-audio-session-recovery.md) |
 | Android 测试版 | 1.3.0 / 3593084，独立测试包与官网测试入口已更新 | 修复刷题返回时短暂显示结束页；安卓导航专项 111 项通过，签名与公开摘要通过。iOS 保持不变；真机过渡体验待验。[记录](../../records/releases/20261101-android-navigation-parity-1.3.0.md) |
-| iOS TestFlight | 1.3.1 / 3596169，源码 `98fd7236`；11 月 4 日 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 学习可靠保存、离线重试、同步刷新和热点/查词链路；归档/签名/Apple 校验通过。真机验收待完成，未提交正式审核。[本轮记录](../../records/releases/20261104-learning-reliability-1.3.1.md) |
-| EdgeOne 产品 Web | 源码 `98fd7236`，deployment `dpw5fsht0wtk`，11 月 3 日已上线 | 共享保存/同步及内容链路修复；公网脚本摘要一致，Chrome 首页、我的页和 OPI 目录无运行错误。[本轮记录](../../records/releases/20261104-learning-reliability-1.3.1.md) |
+| iOS TestFlight | 1.3.1 / 3596170，源码 `c841dbae`；11 月 4 日 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 下载／离线音频、共享存储协调及三个任务界面统一；测试提示已更新，真机待验，未提交正式审核。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
+| EdgeOne 产品 Web | 源码 `c841dbae`，deployment `dph7hstgf9hz`，11 月 4 日已上线 | 共享学习界面与会员六项展示；公网脚本摘要、Chrome 首页与 OPI 目录启动通过。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
-| ECS API | `learning-reliability-20261103-98fd7236`，源码 `98fd7236`，11 月 3 日经用户授权部署 | 线上同步去重/合并/删除重放、真实 AI 和健康检查通过；schema 无待迁移项，未执行迁移；热点版本 33 保持。[本轮记录](../../records/releases/20261104-learning-reliability-1.3.1.md) |
+| ECS API | `offline-sync-reliability-20261104-c841dbae`，源码 `c841dbae`，11 月 4 日经授权部署 | 五题库凭据／音频、限流冷却及真实 AI 验证通过；无迁移，热点 v33、OPI v29／预览 v30 及词表保持。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
 | 题库 | 正式 OPI、陆空通话仍 v29；OPI v30 已导入为不激活测试候选 | 237→223 话题、443 卡迁移；2365 卡内容/ID、最全/精选/冲刺及免费范围、图片题保持。无用户表改写，正式 active 仍 v29；本轮新 Web 与 iOS 候选按已有请求头使用 v30 预览，其他题库版本不变；目录及旧数据体验待用户验收。[记录](../../records/2026-11-02-opi-directory-v30.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
 | 内容运营后台 | `learning-reliability-20261103-98fd7236`，源码 `98fd7236`，11 月 4 日 00:05 已上线 | 新增题目词汇覆盖检查已随后台部署；词表资产在镜像中。隔离备份恢复、公网健康、普通 API 隔离通过；未发布题目/词义内容。[本轮记录](../../records/releases/20261104-learning-reliability-1.3.1.md) |
 
 ## 当前关注与下一步
 
-- **学习保存与内容链路候选（11 月 4 日）**：代码与 API/后台/Web 已交付，TestFlight 3596169 已完成 Apple 处理并向内部“测试”组开放。优先验收自动保存、离线恢复、同账号跨端进度、并发与删除、切账号隔离；Android 共享代码已修复但本轮未发新 APK。历史 1,224 个未覆盖词形不属于已补齐内容。[本轮记录](../../records/releases/20261104-learning-reliability-1.3.1.md)。
+- **下载／离线音频与学习界面统一候选（11 月 4 日）**：三项任务已随 PR #330、API/Web 和 TestFlight 3596170 交付。重点验收保留旧下载后的断网首次播放、切题并保存、离开下载页继续下载、限流／断网恢复，以及同账号进度最终一致。四入口标注／查词、收藏撤销和字体长列表一并验收；Android 共享代码已修复但未发新 APK，未提交 App Store。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md)。
 
 - **OPI 目录整理候选（11 月 2 日）**：实现已通过 PR #323/#325 进入 main，配套 API、不激活 v30 和 TestFlight 1.3.1（3596168）已交付。重点验收目录名称、最全/精选范围、迁移题的笔记/标记/进度、旧链接和离线重连；生产正式目录仍 v29，不提交 App Store。[记录](../../records/2026-11-02-opi-directory-v30.md)。
 
