@@ -354,3 +354,75 @@ test('a failed package does not stop the next queued bank', async () => {
   expect(downloadSnapshot().listening?.saved).toBeUndefined();
   expect(downloadSnapshot().storytelling?.phase).toBe('idle');
 });
+
+test('a rate-limited download resumes after its cooldown without a page or a new network event', async () => {
+  jest.useFakeTimers();
+  const value = prepareMulti();
+  const normalRequest = mockRequest.getMockImplementation()!;
+  mockRequest.mockRejectedValueOnce(Object.assign(new Error('content_credential_rate_limited'), { code: 'content_credential_rate_limited', status: 429, retryAfterSeconds: 5 })).mockImplementation(normalRequest);
+  const stop = observeDownloadRuntime();
+  try {
+    await startDownload(value); await jest.advanceTimersByTimeAsync(0);
+    expect(downloadSnapshot().listening).toMatchObject({ phase: 'paused', autoResume: true, error: '稍后重试', errorCode: 'content_credential_rate_limited' });
+    expect(mockRequest).toHaveBeenCalledTimes(1);
+    await jest.advanceTimersByTimeAsync(4999); expect(mockRequest).toHaveBeenCalledTimes(1);
+    await jest.advanceTimersByTimeAsync(1);
+    expect(downloadSnapshot().listening?.saved).toEqual(value);
+    expect(downloadSnapshot().listening?.target).toBeUndefined();
+  } finally { stop(); jest.useRealTimers(); }
+});
+
+test.each(['pause', 'delete', 'account'] as const)('a scheduled retry cannot undo %s', async action => {
+  jest.useFakeTimers(); const value = prepareMulti();
+  mockRequest.mockRejectedValue(Object.assign(new Error('content_credential_rate_limited'), { status: 429, retryAfterSeconds: 5 }));
+  const stop = observeDownloadRuntime();
+  try {
+    await startDownload(value); await jest.advanceTimersByTimeAsync(0);
+    if (action === 'pause') await cancelDownload('listening');
+    else if (action === 'delete') await deleteDownload('listening');
+    else { mockAccount += '-switched'; await prepareDownloads(); }
+    await jest.advanceTimersByTimeAsync(6000);
+    expect(mockRequest).toHaveBeenCalledTimes(1);
+    if (action === 'pause') expect(downloadSnapshot().listening?.autoResume).toBe(false);
+    else expect(downloadSnapshot().listening).toBeUndefined();
+  } finally { stop(); jest.useRealTimers(); }
+});
+
+test('restart preserves the cooldown without resuming manual pauses', async () => {
+  jest.useFakeTimers(); const value = prepareMulti(); mockAccount += '-cooldown';
+  mockValues.set(`icao.downloads.v1.${mockAccount}.production`, JSON.stringify({
+    listening: { phase: 'paused', target: value, autoResume: true, retryAt: Date.now() + 5000, error: '稍后重试' },
+    storytelling: { phase: 'paused', target: { ...value, bankId: 'storytelling' }, autoResume: false },
+  }));
+  const stop = observeDownloadRuntime();
+  try {
+    await jest.advanceTimersByTimeAsync(0); expect(mockRequest).not.toHaveBeenCalled();
+    await jest.advanceTimersByTimeAsync(5000);
+    expect(downloadSnapshot().listening?.saved).toBeDefined();
+    expect(downloadSnapshot().storytelling?.autoResume).toBe(false);
+  } finally { stop(); jest.useRealTimers(); }
+});
+
+test('an update check does not call an unfinished download up to date', async () => {
+  mockAccount += '-unfinished';
+  mockValues.set(`icao.downloads.v1.${mockAccount}.production`, JSON.stringify({ listening: { phase: 'paused', target: manifest(), autoResume: false } }));
+  await prepareDownloads();
+  expect(await checkDownloadUpdates()).toBe('有未完成下载');
+  expect(downloadSnapshot().listening?.autoResume).toBe(false);
+});
+
+
+test('3596169 credential failures recover once while explicit manual pauses remain paused', async () => {
+  const value = prepareMulti(); mockAccount += '-legacy';
+  mockValues.set(`icao.downloads.v1.${mockAccount}.production`, JSON.stringify({
+    listening: { phase: 'paused', target: value, autoResume: false, error: '待验证' },
+    storytelling: { phase: 'paused', target: { ...value, bankId: 'storytelling' }, autoResume: false },
+  }));
+  await prepareDownloads();
+  expect(downloadSnapshot().listening).toMatchObject({ autoResume: true, errorCode: 'legacy_credential_failure' });
+  const stop = observeDownloadRuntime();
+  try {
+    await waitFor(() => expect(downloadSnapshot().listening?.saved).toBeDefined());
+    expect(downloadSnapshot().storytelling?.autoResume).toBe(false);
+  } finally { stop(); }
+});

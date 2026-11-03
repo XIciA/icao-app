@@ -39,7 +39,7 @@ export async function retryResourceTransfer<T>(work: () => Promise<T>, isCurrent
     try { return await work(); } catch (error) {
       const status = (error as { status?: number })?.status;
       const message = error instanceof Error ? error.message : '';
-      if (attempt >= 2 || !isCurrent() || !(status === 408 || status === 429 || status && status >= 500
+      if (attempt >= 2 || !isCurrent() || !(status === 408 || status && status >= 500
         || /^(download_interrupted|network_failed)$|network request failed|fetch failed|timed? ?out/i.test(message))) throw error;
       await new Promise(resolve => setTimeout(resolve, 250 * 2 ** attempt));
     }

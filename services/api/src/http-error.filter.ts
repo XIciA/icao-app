@@ -25,10 +25,13 @@ export class HttpErrorFilter implements ExceptionFilter {
     const code = typeof message === 'string' && /^[a-z0-9_]+$/.test(message)
       ? message
       : status === HttpStatus.INTERNAL_SERVER_ERROR ? 'internal_error' : 'request_failed';
+    const retryAfter = status === 429 && response && typeof response === 'object' && 'retryAfterSeconds' in response
+      ? response.retryAfterSeconds : undefined;
 
     reply.status(status).send({
       requestId: request.id,
-      error: { code, message: code, status },
+      error: { code, message: code, status, ...(typeof retryAfter === 'number' && Number.isFinite(retryAfter) && retryAfter > 0
+        ? { retryAfterSeconds: Math.ceil(retryAfter) } : {}) },
     });
   }
 }

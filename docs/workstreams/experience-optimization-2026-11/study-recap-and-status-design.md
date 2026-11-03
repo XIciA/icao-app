@@ -4,13 +4,13 @@
 
 ## 当前执行状态
 
-用户已明确要求“开始统一修改”。本轮界面实现与聚焦验证已完成，待创建 PR 并交由“讨论检查问题清单修复”统筹任务协调合并和统一 TestFlight；本任务不独立调整版本或构建号，不单独打包、上传或部署。下文“暂不执行”为方案讨论阶段的历史授权状态，已被本次开始实施的指令替代。
+用户已明确要求“开始统一修改”。本轮界面实现与聚焦验证已完成，已由“讨论检查问题清单修复”统筹任务本地整合，继续完成统一回归、PR 与 TestFlight；本任务不独立调整版本或构建号，不单独打包、上传或部署。下文“暂不执行”为方案讨论阶段的历史授权状态，已被本次开始实施的指令替代。
 
 - 工作区：`/private/tmp/icao-study-recap`；分支：`codex/study-recap-design`；基线：`5db843c5`。
 - 已实现连续列表、原文高亮与紧凑标签叠放、题下笔记、查词改名、实时收藏筛选、轻量来源及多来源展开、列表筛选与滚动位置恢复；历史明细未加载时先读取再进入。
 - `AnnotationMarkers.tsx` 和 `AnnotationText.tsx` 由结束页与正式 Native／EdgeOne 的“我的标注”共用。保留高亮列表短横条，标签圆点移到左侧，其余“我的标注”结构不变。
 - 下载卡片接入独立 `downloads/download-status-colors.ts`，导出 `downloadStatusTone` 与 `downloadStatusColors`；支持等待／暂停／稍后重试等黄色、真正失败红色及成功绿色。所有题库与单词继续使用同一卡片。
-- 协作边界：未修改统筹任务负责的 `download-manager.native.ts`、`download-feedback.ts`、`DownloadManagementScreen.native.tsx`、凭据或存储逻辑。顶部检查更新按钮可由统筹任务使用同一 `downloadStatusColors(check)`；其状态文案与最终接入由统筹任务合并时协调。
+- 协作边界：未修改统筹任务负责的 `download-manager.native.ts`、`download-feedback.ts`、`DownloadManagementScreen.native.tsx`、凭据或存储逻辑。顶部检查更新按钮已由统筹任务接入同一 `downloadStatusColors(check)`，并覆盖“有未完成下载／已下载项为最新／暂无下载”新反馈；状态含义由统筹任务的下载实现决定。
 - 验证：TypeScript 检查通过；变更文件 ESLint 通过；8 个聚焦测试套件、54 个测试通过；`git diff --check` 通过。
 - 视觉验证：通过真实 React Native 组件在浏览器的 390px／320px 渲染检查，未发现横向溢出，收藏筛选可用。使用隔离的示例数据和服务替身，不属于真机或完整线上会话验收。截图见 [标注 390px](evidence/recap-annotations-390.png)、[标注 320px](evidence/recap-annotations-320.png)、[查词 390px](evidence/recap-words-390.png)、[查词 320px](evidence/recap-words-320.png)。
 - 待统一交付后验证：iOS 真机的返回滚动恢复、字体放大及实际发音；顶部检查更新状态与统筹任务的新反馈文案一致性。尚未构建、发布或宣称用户验收通过。

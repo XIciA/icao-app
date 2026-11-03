@@ -18,7 +18,7 @@ import {
   type QuestionBankAccessSummary,
   type QuestionBankContentAccess,
 } from '@icao/contracts';
-import { and, count, desc, eq, gt, gte, inArray, lte, sql } from 'drizzle-orm';
+import { and, count, desc, eq, gt, gte, inArray, lte, min, sql } from 'drizzle-orm';
 import { createHash, createHmac, randomUUID } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -384,12 +384,14 @@ export class ContentAccessService {
 
   private async assertCredentialRateLimit(accountId: string, now: Date) {
     const windowStart = new Date(now.getTime() - 15 * 60 * 1_000);
-    const [accountWindow] = await this.database.db.select({ total: count() }).from(contentAccessCredentials).where(and(
+    const [accountWindow] = await this.database.db.select({ total: count(), oldest: min(contentAccessCredentials.issuedAt) }).from(contentAccessCredentials).where(and(
       eq(contentAccessCredentials.accountId, accountId),
       gte(contentAccessCredentials.issuedAt, windowStart),
     )).limit(1);
     if (Number(accountWindow?.total ?? 0) >= 240) {
-      throw new HttpException('content_credential_rate_limited', 429);
+      const oldest = accountWindow?.oldest ? new Date(accountWindow.oldest).getTime() : now.getTime();
+      const retryAfterSeconds = Math.max(1, Math.min(900, Math.ceil((oldest + 15 * 60_000 - now.getTime()) / 1000)));
+      throw new HttpException({ message: 'content_credential_rate_limited', retryAfterSeconds }, 429);
     }
   }
 

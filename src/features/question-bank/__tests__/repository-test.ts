@@ -87,6 +87,7 @@ jest.mock('expo-file-system/legacy', () => ({
   },
 }));
 
+import NativeStorage from 'expo-sqlite/kv-store';
 import { beginCommerceEntitlementGeneration, publishCommerceEntitlementChange, resetCommerceEntitlementEventsForTests } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { remoteQuestionBankRepository } from '../data/repository.native';
 import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank, questionBankRepository } from '../data/repository';
@@ -777,7 +778,7 @@ describe('embeddedQuestionBankRepository', () => {
   it('keeps authorized online audio playable when the optional local URL cache cannot be written', async () => {
     await authenticatedContentApi();
     const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
-    jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_full'));
+    jest.mocked(NativeStorage.setItem).mockRejectedValueOnce(new Error('disk_full'));
     await expect(resolveRemoteQuestionBankAsset(topic!.cards[0].audio!)).resolves.toMatch(/^https:\/\/cloud.readyoufife.com\//);
   });
 

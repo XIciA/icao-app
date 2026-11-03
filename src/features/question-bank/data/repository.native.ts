@@ -1,3 +1,4 @@
+import { requestContentCredentials } from './content-credential-client.native';
 import { getConnectivity } from '../platform/network-service';
 import { Platform } from 'react-native';
 import { orderQuestionBanks } from '../lib/bank-order';
@@ -9,7 +10,6 @@ import publicRelease from './question-bank-public-release.json';
 import Storage from '@/platform/storage';
 import type {
   ApiSuccessEnvelope,
-  ContentAccessCredential,
   ContentAccessScope,
   QuestionBankRelease,
   QuestionBankTopicRelease,
@@ -202,14 +202,7 @@ const remoteQuestionBankSource = {
       }
       if (Platform.OS !== 'web' && accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
         try {
-          const credential = await apiRequest<ContentAccessCredential>('/v1/content-access/credentials', {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              [COMMERCE_ENVIRONMENT_HEADER]: environment,
-            },
-            body: JSON.stringify({ validity: 'membership', scopes: [scope] }),
-          });
+          const [credential] = await requestContentCredentials([scope], { isCurrent: () => contentContextIsCurrent(context) });
           assertContentContextCurrent(context);
           // Verification is still mandatory before any offline cache is
           // written. Online topic access was separately authorized by the API.

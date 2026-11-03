@@ -1,9 +1,10 @@
 /** UI feedback has one fixed status slot; transport errors are not membership facts. */
 export function compactDownloadError(error: unknown): string {
   const message = typeof error === 'string' ? error : (error as { code?: string })?.code ?? (error instanceof Error ? error.message : '');
-  if (['等待网络', '等待 Wi-Fi', '已暂停', '待登录', '待验证', '需会员', '资源未就绪', '网络中断', '空间不足', '校验失败', '有更新', '下载失败', '删除失败', '保存失败', '验证失败'].includes(message)) return message;
+  if (['稍后重试', '等待网络', '等待 Wi-Fi', '已暂停', '待登录', '待验证', '需会员', '资源未就绪', '网络中断', '空间不足', '校验失败', '有更新', '下载失败', '删除失败', '保存失败', '验证失败'].includes(message)) return message;
   if (message === 'membership_required') return '需会员';
   if (message === 'unauthorized' || (error as { status?: number })?.status === 401) return '待登录';
+  if (message === 'content_credential_rate_limited' || (error as { status?: number })?.status === 429) return '稍后重试';
   if (message === 'download_resource_unavailable' || message === 'resource_not_found' || /资源暂不可用/.test(message)) return '资源未就绪';
   if (/credential|验证|会员权限|sandbox_environment/.test(message)) return '待验证';
   if (/校验|checksum|size_mismatch/.test(message)) return '校验失败';
@@ -14,4 +15,20 @@ export function compactDownloadError(error: unknown): string {
   if (/暂停/.test(message)) return '已暂停';
   if (/网络|联网|network|timeout|fetch failed/i.test(message)) return '网络中断';
   return '下载失败';
+}
+
+/** Waiting is distinct from a user pause. A server cooldown survives screen
+ * changes/restarts; permanent access or persistence failures never loop. */
+export function downloadRetryDelay(error: unknown, attempts: number): number | undefined {
+  const value = error as { status?: number; code?: string; message?: string; retryAfterSeconds?: number } | undefined;
+  if (value?.status === 429 || value?.code === 'content_credential_rate_limited') {
+    const seconds = value?.retryAfterSeconds;
+    return typeof seconds === 'number' && Number.isFinite(seconds) && seconds > 0 ? Math.min(900, Math.ceil(seconds)) * 1000 : 60_000;
+  }
+  if (attempts >= 3) return undefined;
+  if (value?.status === 408 || value?.status && value.status >= 500
+    || /network request failed|fetch failed|network_failed|timed? ?out/i.test(value?.message ?? '')) {
+    return Math.min(30_000, 2_000 * 2 ** attempts);
+  }
+  return undefined;
 }

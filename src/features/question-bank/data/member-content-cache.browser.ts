@@ -28,3 +28,5 @@ export async function suspendQuestionBankMemberAccess(_accountId: string) {}
 export async function invalidateOfflineTopic(_scope: ContentAccessScope) {}
 
 export async function isOfflineTopicInvalid(_scope: ContentAccessScope) { return false; }
+
+export async function readReusableContentCredential(_scope: ContentAccessScope): Promise<ContentAccessCredential | undefined> { return undefined; }

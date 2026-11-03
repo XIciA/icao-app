@@ -21,6 +21,8 @@ it('distinguishes update checks, real failures and unknown status text without m
   expect(downloadStatusTone('3 项有更新')).toBe('waiting');
   expect(downloadStatusTone('检查中')).toBe('waiting');
   expect(downloadStatusTone('已是最新')).toBe('success');
+  expect(downloadStatusTone('已下载项为最新')).toBe('success');
+  expect(downloadStatusTone('有未完成下载')).toBe('waiting');
   expect(downloadStatusTone('部分检查失败')).toBe('error');
   expect(downloadStatusTone('恢复中')).toBe('neutral');
   expect(downloadStatusColors('校验失败')).not.toEqual(downloadStatusColors('已暂停'));

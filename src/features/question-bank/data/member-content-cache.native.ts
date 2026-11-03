@@ -795,8 +795,29 @@ export async function offlineCredentialNeedsRefresh(scope: ContentAccessScope) {
     const credential = JSON.parse(raw) as ContentAccessCredential;
     // Upgrade legacy 72-hour credentials on the next online reconciliation,
     // without waiting until they are almost expired or downloading media again.
-    return credential.validity !== 'membership' || Date.parse(credential.expiresAt) - Date.now() < 24 * 60 * 60 * 1000;
+    return credential.validity !== 'membership' || Date.parse(credential.expiresAt) <= Date.now()
+      || Date.parse(credential.expiresAt) - Date.now() < 24 * 60 * 60 * 1000
+        && Date.now() - Date.parse(credential.issuedAt) > 60 * 60 * 1000;
   } catch { return true; }
+}
+
+/** Reuse only a signed, current-account membership credential. Text and media
+ * integrity are still checked by their existing cache owners. */
+export async function readReusableContentCredential(scope: ContentAccessScope) {
+  const accountId = activeAccountId;
+  if (!accountId) return undefined;
+  const context = memberContentContext(accountId);
+  const raw = await SecureStore.getItemAsync(credentialKey(accountId, context.environment, scope));
+  assertMemberContentContextCurrent(context);
+  if (!raw) return undefined;
+  try {
+    const credential = JSON.parse(raw) as ContentAccessCredential;
+    if (credential.validity !== 'membership'
+      || !verifyContentAccessCredential({ accountId, credential, scope, environment: context.environment })
+      || !await offlineClockIsValid(accountId, context.environment)) return undefined;
+    assertMemberContentContextCurrent(context);
+    return credential;
+  } catch { return undefined; }
 }
 export async function renewOfflineCredentials(credential: ContentAccessCredential) {
   const accountId = activeAccountId;

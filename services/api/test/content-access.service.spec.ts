@@ -53,7 +53,7 @@ function database(
       return [{ bankId: content.id, version: 7, checksum: 'a'.repeat(64), payload: content, active: true }];
     }
     if (table === contentEnvironmentSessionGrants && sandboxGrant) return [{ id: 'grant-1' }];
-    if (table === contentAccessCredentials) return [{ total: credentialCount }];
+    if (table === contentAccessCredentials) return [{ total: credentialCount, oldest: new Date(NOW.getTime() - 10 * 60 * 1000) }];
     if (table === membershipEntitlementSegments && membershipExpiresAt) {
       return [{ endsAt: membershipExpiresAt, environment: membershipEnvironment, id: '00000000-0000-4000-8000-000000000099' }];
     }
@@ -271,6 +271,7 @@ describe('versioned content access policy', () => {
     }, SESSION_ID, 'production', NOW)).rejects.toMatchObject({
       message: 'content_credential_rate_limited',
       status: 429,
+      response: { message: 'content_credential_rate_limited', retryAfterSeconds: 300 },
     });
   });
 });

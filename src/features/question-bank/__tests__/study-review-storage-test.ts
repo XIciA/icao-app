@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
+import NativeStorage from 'expo-sqlite/kv-store';
 import data from '../data/question-bank.json';
 import { captureStudyReview, toStudyReviewPackage } from '../lib/study-review';
 import { clearLearningRecords, getLearningRecords, loadLearningRecordReview, resetLearningRecordStorageForTests, upsertLearningRecord } from '../platform/learning-record-storage';
@@ -41,11 +42,11 @@ afterEach(() => { Object.defineProperty(Platform, 'OS', { configurable: true, va
 it('loads only a summary for the list and retrieves the immutable detail on demand', async () => {
   const saved = record();
   await upsertLearningRecord(saved);
-  jest.mocked(Storage.getItem).mockClear();
+  jest.mocked(NativeStorage.getItem).mockClear();
   const [summary] = await getLearningRecords();
   expect(summary.vercelStudyReviewSaved).toBe(true);
   expect(summary.vercelStudyReview).toBeUndefined();
-  expect(Storage.getItem).toHaveBeenCalledTimes(1);
+  expect(NativeStorage.getItem).toHaveBeenCalledTimes(1);
   expect(await loadLearningRecordReview(summary)).toMatchObject(saved);
   expect(toStudyReviewPackage(await loadLearningRecordReview(summary), 'web')?.items).toHaveLength(2);
   expect(saved.vercelStudyReview?.items[0].dataset.categories).toEqual([]);
@@ -53,7 +54,7 @@ it('loads only a summary for the list and retrieves the immutable detail on dema
 });
 
 it('does not publish a summary when the detail transaction fails; retries are idempotent', async () => {
-  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('quota'));
+  jest.mocked(NativeStorage.multiSet).mockRejectedValueOnce(new Error('quota'));
   await expect(upsertLearningRecord(record())).rejects.toThrow('quota');
   expect(await getLearningRecords()).toEqual([]);
   await upsertLearningRecord(record());

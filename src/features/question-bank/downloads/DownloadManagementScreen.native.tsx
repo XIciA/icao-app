@@ -1,3 +1,4 @@
+import { downloadStatusColors } from './download-status-colors';
 import { compactDownloadError as compactError } from './download-feedback';
 import { audioSessionOrchestrator } from '@/platform/audio/audio-session-orchestrator';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
@@ -40,6 +41,7 @@ export function DownloadManagementScreen() {
   const state = useSyncExternalStore(subscribeDownloads, downloadSnapshot, downloadSnapshot);
   const [check, setCheck] = useState('检查更新');
   const [checking, setChecking] = useState(false);
+  const checkColors = downloadStatusColors(check);
   const [date, setDate] = useState('—');
   useEffect(() => {
     let current = true;
@@ -57,11 +59,11 @@ export function DownloadManagementScreen() {
     const [metadata, downloads] = await Promise.allSettled([refreshDownloadReleaseMetadata(), checkDownloadUpdates()]);
     if (!current()) return;
     if (metadata.status === 'fulfilled') setDate(downloadPublicationDate(metadata.value));
-    setCheck(metadata.status === 'rejected' || downloads.status === 'rejected' ? '检查失败' : downloads.value === '暂无下载' ? '已是最新' : downloads.value);
+    setCheck(metadata.status === 'rejected' || downloads.status === 'rejected' ? '检查失败' : downloads.value);
     setChecking(false);
   }
   return <Screen scroll contentStyle={{ paddingHorizontal: 16 }} header={<TopBar title="下载管理" actionSize={44} style={{ minHeight: 60, paddingHorizontal: 8, borderBottomWidth: 1 }} titleStyle={{ fontSize: 20, lineHeight: 26 }} />}>
-    <View style={styles.toolbar}><View style={{ gap: 2 }}><AppText variant="micro" style={styles.date}>题库更新时间</AppText><AppText variant="micro" style={styles.date}>{date}</AppText></View><Pressable accessibilityRole="button" accessibilityLabel={check} disabled={checking} onPress={() => { void inspect(); }} style={styles.check}><RefreshCw size={16} color={colors.foreground} /><AppText variant="micro" style={styles.small}>{check}</AppText></Pressable></View>
+    <View style={styles.toolbar}><View style={{ gap: 2 }}><AppText variant="micro" style={styles.date}>题库更新时间</AppText><AppText variant="micro" style={styles.date}>{date}</AppText></View><Pressable accessibilityRole="button" accessibilityLabel={check} disabled={checking} onPress={() => { void inspect(); }} style={[styles.check, { backgroundColor: checkColors.backgroundColor }]}><RefreshCw size={16} color={checkColors.color} /><AppText variant="micro" style={[styles.small, { color: checkColors.color }]}>{check}</AppText></Pressable></View>
     {banks.map(bank => <DownloadCard key={bank.id} bank={bank} state={state} open={expanded === bank.id} toggle={() => setExpanded(expanded === bank.id ? undefined : bank.id)} />)}
   </Screen>;
 }
@@ -125,7 +127,7 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
 
 const styles = StyleSheet.create({
   toolbar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingBottom: 14 },
-  check: { minHeight: 44, width: 112, borderWidth: 1, borderColor: colors.border, borderRadius: 13, backgroundColor: colors.card, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 7 },
+  check: { minHeight: 44, minWidth: 112, paddingHorizontal: 10, borderWidth: 1, borderColor: colors.border, borderRadius: 13, backgroundColor: colors.card, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 7 },
   date: { fontSize: 12, lineHeight: 18, fontFamily: fonts.sansRegular, color: colors.foreground },
   small: { fontSize: 13, lineHeight: 19, fontFamily: fonts.sansRegular, color: colors.foreground },
 });

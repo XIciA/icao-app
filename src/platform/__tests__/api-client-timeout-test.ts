@@ -89,4 +89,11 @@ describe('API client cancellation and timeout boundary', () => {
 
     expect(removeListener).toHaveBeenCalledWith('abort', expect.any(Function));
   });
+  it('preserves a server cooldown in normal and explicit-token requests', async () => {
+    mockFetch.mockResolvedValue({ ok: false, status: 429, json: async () => ({ requestId: 'rate-limit', error: { code: 'content_credential_rate_limited', retryAfterSeconds: 300 } }) });
+    const { apiRequest, apiRequestWithAccessToken } = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
+    await expect(apiRequest('/v1/content-access/credentials')).rejects.toMatchObject({ code: 'content_credential_rate_limited', status: 429, retryAfterSeconds: 300 });
+    await expect(apiRequestWithAccessToken('/v1/content-access/credentials', 'fixture-token')).rejects.toMatchObject({ code: 'content_credential_rate_limited', status: 429, retryAfterSeconds: 300 });
+  });
+
 });

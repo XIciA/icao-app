@@ -2,6 +2,7 @@ export type ApiErrorBody = {
   code: string;
   message: string;
   status: number;
+  retryAfterSeconds?: number;
 };
 
 export type ApiErrorEnvelope = {

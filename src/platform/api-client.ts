@@ -13,15 +13,16 @@ export class ApiClientError extends Error {
     public readonly code: string,
     public readonly status: number,
     public readonly requestId?: string,
+    public readonly retryAfterSeconds?: number,
   ) {
     super(code);
     this.name = 'ApiClientError';
   }
 }
 
-export function rememberApiError(code: string, status: number, requestId?: string) {
+export function rememberApiError(code: string, status: number, requestId?: string, retryAfterSeconds?: number) {
   recentApiError = { code, requestId, occurredAt: Date.now() };
-  return new ApiClientError(code, status, requestId);
+  return new ApiClientError(code, status, requestId, retryAfterSeconds);
 }
 
 export function getRecentApiError(maxAgeMilliseconds = 10 * 60 * 1_000) {
@@ -187,7 +188,9 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}, timeou
   if (!body) throw rememberApiError(`api_http_${response.status}`, response.status);
   if (!response.ok || 'error' in body) {
     const code = 'error' in body ? body.error.code : `api_http_${response.status}`;
-    throw rememberApiError(code, response.status, body.requestId);
+    const retryAfter = 'error' in body ? body.error.retryAfterSeconds : undefined;
+    throw rememberApiError(code, response.status, body.requestId,
+      typeof retryAfter === 'number' && Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter : undefined);
   }
   return body.data;
 }
@@ -199,7 +202,9 @@ export async function apiRequestWithAccessToken<T>(path: string, accessToken: st
   if (!body) throw rememberApiError(`api_http_${response.status}`, response.status);
   if (!response.ok || 'error' in body) {
     const code = 'error' in body ? body.error.code : `api_http_${response.status}`;
-    throw rememberApiError(code, response.status, body.requestId);
+    const retryAfter = 'error' in body ? body.error.retryAfterSeconds : undefined;
+    throw rememberApiError(code, response.status, body.requestId,
+      typeof retryAfter === 'number' && Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter : undefined);
   }
   return body.data;
 }
