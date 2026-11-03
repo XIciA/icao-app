@@ -8,6 +8,8 @@
 
 ## 现存材料
 
+- [学习结束页与下载状态优化](experience-optimization-2026-11/study-recap-and-status-design.md)：连续列表、标注模块复用、查词收藏筛选及下载卡片颜色已实现，54 个聚焦测试通过；待统筹任务协调合并与统一 TestFlight，未独立发布。
+
 - [学习保存与内容链路修复](app-self-check/implementation.md)：2026-11-04 修复与 API/后台/Web 已交付，TestFlight 1.3.1 / 3596169 内部测试组可用；用户真机验收待完成，证据与边界见执行记录。
 - [新题与查词联动历史调查](content-workflow/word-lookup-follow-up-2026-10-22.md)：检查标准统一归入项目长期边界，不再维护第二套规则。
 
