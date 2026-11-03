@@ -1,12 +1,11 @@
-import { AnnotationMarkers } from './AnnotationMarkers';
-import { HighlightSentence } from './AnnotationText';
-import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
+import { AnnotationQuestionRow } from './AnnotationQuestionRow.native';
+import { CollectionList, CollectionRow } from '@/components/learning/CollectionList.native';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
-import { BookOpenText, ChevronRight, Highlighter, NotebookPen, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
+import { BookOpenText, Highlighter, NotebookPen, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Screen } from '@/components/ui';
@@ -18,7 +17,6 @@ import { annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index.native';
 import { useCardReferences } from '../annotations/use-card-references.native';
 import { cardIdentityKey, type CardReference } from '../data/card-references.native';
-import { sentenceWordRangeAt } from '../annotations/text';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationDefinition, QuestionAnnotationEntry } from '../annotations/types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
@@ -141,14 +139,14 @@ export function MyAnnotationsScreen() {
         {colorOptions.length ? (
           <View style={styles.filters}>
             <Pressable accessibilityState={{ selected: colorFilter.length === 0 }} onPress={() => setColorFilter([])} style={[styles.allFilter, colorFilter.length === 0 ? styles.filterActive : null]}>
-              <AppText color={colorFilter.length === 0 ? colors.primary : colors.mutedForeground} variant="button">全部</AppText>
+              <AppText color={colorFilter.length === 0 ? colors.primary : colors.mutedForeground} variant="caption">全部</AppText>
             </Pressable>
             {colorOptions.map((option) => {
               const active = selectedColors.has(option.id);
               return (
                 <Pressable accessibilityLabel={`筛选${option.label}`} accessibilityState={{ selected: active }} key={option.id} onPress={() => toggleColor(option.id)} style={[styles.colorFilter, active ? styles.filterActive : null]}>
                   <View style={[segment === 'highlights' ? styles.filterLine : styles.filterDot, { backgroundColor: annotationToneColors[option.tone] }]} />
-                  <AppText color={active ? colors.primary : colors.foreground} variant="button">{option.label}</AppText>
+                  <AppText color={active ? colors.primary : colors.foreground} variant="caption">{option.label}</AppText>
                 </Pressable>
               );
             })}
@@ -157,14 +155,15 @@ export function MyAnnotationsScreen() {
 
         {!annotations.hydrated ? <LoadingState /> : annotations.loadErrorMessage ? (
           <StateCard icon={Search} title="本机标注读取失败" description={annotations.loadErrorMessage} action={<Button onPress={() => void annotations.refresh()} variant="outline">重试</Button>} />
-        ) : visibleEntries.length || segment === 'notes' && recoveredNotes.length ? (
-          <View style={styles.list}>
-            {segment === 'tags' ? visibleTagEntries.map((entry) => <TagRow definitions={tagDefinitionMap} entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
-            {segment === 'highlights' ? visibleHighlightEntries.map((entry) => <HighlightRow colorFilter={selectedColors} definitions={highlightDefinitionMap} entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
-            {segment === 'notes' ? noteEntries.map((entry) => <NoteRow entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
-          </View>
-        ) : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}
-        {segment === 'notes' ? recoveredNotes.map(note => <View style={styles.rowCard} key={note.id}><View style={styles.rowCopy}><AppText selectable>{note.note}</AppText><AppText variant="micro">{note.reason === 'retired' ? '原题已不可用' : '冲突副本'}</AppText></View></View>) : null}
+        ) : visibleEntries.length ? (
+          <CollectionList style={styles.list}>
+            {visibleEntries.map((entry, index) => <PersonalAnnotationRow entry={entry} segment={segment}
+              tagDefinitions={tagDefinitionMap} highlightDefinitions={highlightDefinitionMap} colorFilter={selectedColors}
+              resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)}
+              last={index === visibleEntries.length - 1} onPress={() => openEntry(entry)} />)}
+          </CollectionList>
+        ) : segment === 'notes' && recoveredNotes.length ? null : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}
+        {segment === 'notes' && recoveredNotes.length ? <CollectionList style={styles.list}>{recoveredNotes.map((note, index) => <CollectionRow key={note.id} last={index === recoveredNotes.length - 1}><AppText selectable>{note.note}</AppText><AppText variant="micro">{note.reason === 'retired' ? '原题已不可用' : '冲突副本'}</AppText></CollectionRow>)}</CollectionList> : null}
       </ScrollView>
 
     </Screen>
@@ -177,60 +176,23 @@ function referenceMessage(value?: CardReference) {
   return `${value.message}${value.status === 'unavailable' ? ' 点击重试' : value.status === 'membership-required' ? ' 点击查看会员权限' : ''}`;
 }
 
-function TagRow({ definitions, entry, onPress, resolution }: { definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
-  const reference = resolution?.location;
-  const available = resolution?.status !== 'not-found';
-  const tags = entry.tagIds.flatMap((id) => definitions.get(id) ? [definitions.get(id)!] : []);
-  return (
-    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
-      <AnnotationMarkers definitions={tags} />
-      <View style={styles.rowCopy}>
-        <AppText numberOfLines={2}>{reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)}</AppText>
-        <AppText variant="micro">{referenceMessage(resolution)} · {tags.map((tag) => tag.label).join('、')}</AppText>
-      </View>
-      {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
-    </Pressable>
-  );
-}
-
-function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: { colorFilter: Set<string>; definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
-  const available = resolution?.status !== 'not-found';
-  const visible = entry.highlights.filter((highlight) => {
-    if (!colorFilter.size) return true;
-    const definition = definitions.get(highlight.colorId);
-    return definition ? colorFilter.has(definition.id) : false;
-  });
-  const first = visible[0] ?? entry.highlights[0];
-  const uniqueDefinitions = Array.from(new Map(visible.flatMap((highlight) => {
-    const definition = definitions.get(highlight.colorId);
-    return definition ? [[definition.id, definition] as const] : [];
-  })).values());
-  const reference = resolution?.location;
-  const sourceText = annotationBlockText(reference?.card, first.blockId);
-  const sentenceRange = sentenceWordRangeAt(sourceText, first.wordIndex);
-  const shownIndexes = sentenceRange ? new Set(visible.filter((highlight) => highlight.blockId === first.blockId && highlight.wordIndex >= sentenceRange.startWordIndex && highlight.wordIndex <= sentenceRange.endWordIndex).map((highlight) => highlight.wordIndex)) : new Set<number>();
-  const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
-  return (
-    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
-      <AnnotationMarkers definitions={uniqueDefinitions} shape="line" />
-      <View style={styles.rowCopy}>
-        <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)} highlights={visible} sourceText={sourceText} target={first} />
-        <AppText variant="micro">{referenceMessage(resolution)} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>
-      </View>
-      {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
-    </Pressable>
-  );
-}
-
-function NoteRow({ entry, onPress, resolution }: { entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
-  const available = resolution?.status !== 'not-found';
-  return (
-    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
-      <View style={styles.noteIcon}><NotebookPen color={colors.primary} size={16} /></View>
-      <View style={styles.rowCopy}><AppText numberOfLines={3}>{entry.note}</AppText><AppText variant="micro">{referenceMessage(resolution)} · {formatRelativeTime(entry.updatedAt)}</AppText></View>
-      {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
-    </Pressable>
-  );
+function PersonalAnnotationRow({ entry, segment, colorFilter, tagDefinitions, highlightDefinitions, onPress, resolution, last }: {
+  entry: QuestionAnnotationEntry; segment: AnnotationSegment; colorFilter: Set<string>; tagDefinitions: Map<string, AnnotationDefinition>;
+  highlightDefinitions: Map<string, AnnotationDefinition>; resolution?: CardReference; onPress(): void; last: boolean;
+}) {
+  const card = resolution?.status === 'ready' ? resolution.location?.card : undefined;
+  const tags = entry.tagIds.flatMap(id => tagDefinitions.get(id) ? [tagDefinitions.get(id)!] : []);
+  const shownEntry = segment === 'highlights' && colorFilter.size ? { ...entry, highlights: entry.highlights.filter(item => colorFilter.has(item.colorId)) } : entry;
+  const highlightMarkers = Array.from(new Set(shownEntry.highlights.map(item => item.colorId)))
+    .flatMap(id => highlightDefinitions.get(id) ? [highlightDefinitions.get(id)!] : []);
+  const first = shownEntry.highlights[0];
+  return <AnnotationQuestionRow title={card?.taskTitle || resolution?.location?.topicTitle || '原题'} card={card} entry={shownEntry}
+    mode={segment} markers={segment === 'highlights' ? highlightMarkers : tags} definitions={highlightDefinitions}
+    last={last} onPress={onPress} disabled={resolution?.status === 'not-found'}
+    fallback={segment === 'highlights' ? first?.sentence || first?.quote : undefined}
+    feedback={resolution?.status !== 'ready' ? referenceMessage(resolution) : undefined}
+    updatedLabel={segment === 'notes' ? `更新于 ${formatRelativeTime(entry.updatedAt)}` : undefined}
+    anchor={<GuideAnchor id="recap-question" />} />;
 }
 
 function formatRelativeTime(value: string) {
@@ -271,18 +233,13 @@ const styles = StyleSheet.create({
   count: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, minWidth: 20, paddingHorizontal: 5, paddingVertical: 2 },
   countActive: { backgroundColor: colors.primary10 },
   countText: { fontFamily: fonts.monoRegular },
-  filters: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2], marginTop: spacing[3] },
-  allFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 34, paddingHorizontal: spacing[3] },
-  colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] },
+  filters: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[1.5], marginTop: spacing[3] },
+  allFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 34, paddingHorizontal: spacing[2] },
+  colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1], minHeight: 34, paddingHorizontal: spacing[2] },
   filterActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   filterLine: { borderRadius: radii.full, height: 6, width: 16 },
   filterDot: { borderRadius: radii.full, height: 14, width: 14 },
-  list: { marginTop: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1, borderRadius: radii.xl, paddingHorizontal: spacing[4], overflow: 'hidden' },
-  rowCard: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', gap: spacing[3], minHeight: 82, paddingVertical: spacing[4] },
-  rowCopy: { flex: 1, gap: spacing[2] },
-  noteIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 34, justifyContent: 'center', width: 34 },
-  pressed: { opacity: 0.8, transform: [{ scale: 0.98 }] },
-  unavailable: { opacity: 0.58 },
+  list: { marginTop: spacing[4] },
   stateCard: { alignItems: 'center', borderStyle: 'dashed', gap: spacing[3], marginTop: spacing[8], paddingHorizontal: spacing[6], paddingVertical: spacing[8] },
   stateIcon: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, height: 54, justifyContent: 'center', width: 54 },
   stateDescription: { maxWidth: 260, textAlign: 'center' },

@@ -1,4 +1,5 @@
 import { Text } from 'react-native';
+import { colors } from '@/theme';
 import { AppText } from '@/components/ui';
 import { annotationHighlightBackgrounds } from '../annotations/colors';
 import { contentFingerprint, sentenceWordRangeAt, tokenizeStudyText } from '../annotations/text';
@@ -23,7 +24,7 @@ export function AnnotationText({ sourceText, blockId, highlights, definitions, n
   const last = range && allTokens.find(token => token.wordIndex === range.endWordIndex);
   const tokens = first && last ? allTokens.filter(token => token.start >= first.start && token.end <= last.end) : allTokens;
   const toneForWord = (index?: number) => index === undefined ? undefined : definitions.get(active.get(index)?.colorId ?? '')?.color;
-  return <AppText numberOfLines={numberOfLines}>
+  return <AppText color={colors.mutedForeground} numberOfLines={numberOfLines}>
     {tokens.map((token, index) => {
       if (token.whitespace) {
         const previous = toneForWord(tokens[index - 1]?.wordIndex);

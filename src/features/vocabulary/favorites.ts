@@ -15,6 +15,7 @@ export type WordFavoriteItem = {
   key: string;
   word: string;
   meaning: string;
+  ipa?: string;
   aviationMeaning?: string;
   generalMeaning?: string;
   example?: string;
@@ -116,7 +117,7 @@ export function buildWordFavoriteItems({
       key: favoriteKeyForWord(canonicalWord)!,
       word: vocabulary?.word.word ?? lookup!.word,
       meaning: vocabulary?.word.meaning ?? lookup!.aviationMeaning,
-      ...(lookup ? { aviationMeaning: lookup.aviationMeaning, generalMeaning: lookup.generalMeaning } : {}),
+      ...(lookup ? { ipa: lookup.ipa, aviationMeaning: lookup.aviationMeaning, generalMeaning: lookup.generalMeaning } : {}),
       ...(vocabulary?.word.example ? { example: vocabulary.word.example } : {}),
       ...(vocabulary?.word.exampleTranslation ? { exampleTranslation: vocabulary.word.exampleTranslation } : {}),
       bookNames: vocabulary ? Array.from(vocabulary.bookNames) : [],
