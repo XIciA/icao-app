@@ -1,3 +1,4 @@
+import { useWordLookupUpdates } from '@/features/question-bank/static-word-lookup/use-word-lookup';
 import { OfflineBadge } from './OfflineBadge';
 import { createSentenceReplayLedger } from '@/features/mock-exam/sentence-replay';
 import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
@@ -98,6 +99,7 @@ type Props = NavigationProps & ({
 });
 
 export function QuestionBankStudyScreen(props: Props) {
+  useWordLookupUpdates();
   const fallbackHref: Href = props.returnHref ?? (props.returnTo === 'annotations' ? '/annotations' : props.returnTo === 'radio' ? '/content/radio' : props.dataset ? { pathname: '/question-bank/[bankId]', params: { bankId: props.dataset.id } } : '/(tabs)');
   return <NativeScreenBoundary title={props.studyPackage?.studyReviewRecord ? '学习记录' : props.studyPackage?.record.recordType === 'mock_exam' ? '模拟考试' : '题库学习'} onExit={props.onReturn} fallbackHref={fallbackHref} resetKey={props.studyPackage?.id ?? `${props.dataset?.id}/${props.category?.id}/${props.topic?.id}`}><StudyContent {...props} /></NativeScreenBoundary>;
 }

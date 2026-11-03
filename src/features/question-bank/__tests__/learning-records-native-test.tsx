@@ -78,3 +78,16 @@ it('registers a real empty-state target for the independent records guide',async
  await waitFor(()=>expect(screen.getByTestId('guide-anchor-recap-records-empty')).toBeTruthy());
  expect(checkpoint).toHaveBeenCalledWith({recordsEmpty:true});
 });
+
+it('allows deleting history whose source is unavailable', async () => {
+  jest.mocked(getLearningRecordPage).mockResolvedValue({ records: [{ ...record, sourceUnavailable: true }], hasMore: false });
+  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
+  const screen = await render(<LearningRecordsScreen />);
+  await waitFor(() => expect(screen.getByTestId('history-swipe-history-1')).toBeTruthy());
+  await fireEvent(screen.getByTestId('history-swipe-history-1'), 'swipe');
+  await fireEvent.press(screen.getByLabelText(/^\u5220\u9664/));
+  const remove = alert.mock.calls[0][2]?.find(button => button.style === 'destructive');
+  await act(async () => remove?.onPress?.());
+  await waitFor(() => expect(deleteLearningHistory).toHaveBeenCalledWith('history-1'));
+  alert.mockRestore();
+});

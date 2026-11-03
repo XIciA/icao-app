@@ -11,6 +11,7 @@ import { loadHotspotBriefs } from '../repository';
 const mockBack = jest.fn();
 const mockReplace = jest.fn();
 let mockCanGoBack = true;
+let mockCenter: string | undefined;
 const mockPush = jest.fn();
 const mockRetry = jest.fn();
 const mockUseHotspotAccess = jest.fn();
@@ -23,7 +24,7 @@ jest.mock('lucide-react-native', () => {
 });
 
 jest.mock('expo-router', () => ({
-  useLocalSearchParams: () => ({}),
+  useLocalSearchParams: () => ({ center: mockCenter }),
   useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, replace: mockReplace, push: mockPush }),
 }));
 
@@ -53,6 +54,7 @@ describe('OPI hotspot restricted states', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockCanGoBack = true;
+    mockCenter = undefined;
     mockState = { status: 'loading' };
   });
 
@@ -138,4 +140,15 @@ it('shows full public questions and routes Start learning through the member act
   await fireEvent.press(screen.getByText(/开始学习/));
   expect(mockPush).toHaveBeenCalledWith(`/content/hotspot/${encodeURIComponent(brief.id)}/study`);
   expect(mockUseHotspotAccess).not.toHaveBeenCalled();
+});
+
+it('does not expand an obsolete center selection to all questions', async () => {
+  const brief = loadHotspotBriefs()[0];
+  mockCenter = 'obsolete-center';
+  mockState = { status: 'ready', brief, topics: [], session: { items: [] } } as unknown as HotspotAccessResult;
+  const screen = await render(withSafeArea(<HotspotStudyScreen briefId={brief.id} />));
+  expect(screen.queryByText('question-bank-study')).toBeNull();
+  await fireEvent.press(screen.getByLabelText('\u91cd\u65b0\u9009\u62e9\u8003\u70b9'));
+  expect(mockReplace).toHaveBeenCalledWith(expect.objectContaining({ pathname: '/content/hotspot/[briefId]' }));
+  mockCenter = undefined;
 });

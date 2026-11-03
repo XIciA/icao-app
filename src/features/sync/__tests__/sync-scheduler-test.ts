@@ -1,0 +1,51 @@
+import { createSyncScheduler } from '../sync-scheduler';
+beforeEach(() => jest.useFakeTimers());
+afterEach(() => jest.useRealTimers());
+it('automatically retries a failed request, then polls for changes without another local write', async () => {
+  const run = jest.fn().mockRejectedValueOnce(new Error('offline')).mockResolvedValue(undefined);
+  const scheduler = createSyncScheduler(run, () => true);
+  scheduler.schedule();
+  await jest.advanceTimersByTimeAsync(800);
+  expect(run).toHaveBeenCalledTimes(1);
+  await jest.advanceTimersByTimeAsync(2000);
+  expect(run).toHaveBeenCalledTimes(2);
+  await jest.advanceTimersByTimeAsync(30000);
+  expect(run).toHaveBeenCalledTimes(3);
+  scheduler.cancel();
+});
+it('does not starve uploads during continuous edits and stops when cancelled', async () => {
+  const run = jest.fn().mockResolvedValue(undefined);
+  const scheduler = createSyncScheduler(run, () => true);
+  scheduler.schedule();
+  await jest.advanceTimersByTimeAsync(500);
+  scheduler.schedule();
+  await jest.advanceTimersByTimeAsync(300);
+  expect(run).toHaveBeenCalledTimes(1);
+  scheduler.cancel();
+  await jest.advanceTimersByTimeAsync(120000);
+  expect(run).toHaveBeenCalledTimes(1);
+});
+it('does not restart a stale account timer when an old in-flight request finishes', async () => {
+  let resolve!: () => void;
+  const run = jest.fn(() => new Promise<void>(done => { resolve = done; }));
+  const scheduler = createSyncScheduler(run, () => true);
+  scheduler.schedule(0);
+  await jest.advanceTimersByTimeAsync(0);
+  scheduler.cancel();
+  resolve();
+  await jest.advanceTimersByTimeAsync(120000);
+  expect(run).toHaveBeenCalledTimes(1);
+});
+it('does not issue requests while unavailable', async () => {
+  let enabled = false;
+  const run = jest.fn().mockResolvedValue(undefined);
+  const scheduler = createSyncScheduler(run, () => enabled);
+  scheduler.schedule(0);
+  await jest.advanceTimersByTimeAsync(60000);
+  expect(run).not.toHaveBeenCalled();
+  enabled = true;
+  scheduler.schedule(0);
+  await jest.advanceTimersByTimeAsync(0);
+  expect(run).toHaveBeenCalledTimes(1);
+  scheduler.cancel();
+});

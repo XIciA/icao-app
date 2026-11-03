@@ -1,3 +1,4 @@
+import { useWordLookupUpdates } from '@/features/question-bank/static-word-lookup/use-word-lookup';
 import { BookOpen, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
 import { useEffect, useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
@@ -12,6 +13,7 @@ import { useVocabularyCatalog } from './use-vocabulary-catalog';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function WordFavoritesScreen() {
+  const lookupRevision = useWordLookupUpdates();
   const favorites = useWordFavorites();
   const { loadResult, loadError, retry } = useVocabularyCatalog();
   const books = useMemo(() => loadResult?.dataset.books ?? [], [loadResult]);
@@ -24,7 +26,7 @@ export function WordFavoritesScreen() {
     books,
     lookupEntries: getStaticWordLookupEntries(),
     state: favorites.state,
-  }), [books, favorites.state]);
+  }), [books, favorites.state, lookupRevision]);
 
   const loadingVocabulary = !loadResult && !loadError;
 

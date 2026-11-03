@@ -15,3 +15,10 @@ await copyFile(new URL('../../../content/vocabulary/live/release.json', import.m
 const opsDestination = new URL('../dist-ops/vocabulary/', import.meta.url);
 await mkdir(opsDestination, { recursive: true });
 await copyFile(new URL('../../../content/vocabulary/live/release.json', import.meta.url), new URL('live.json', opsDestination));
+
+// The API and content publisher use the same dictionary as the app bundle.
+for (const directory of ['../dist/src/app-content/', '../dist-ops/app-content/']) {
+  const target = new URL(directory, import.meta.url);
+  await mkdir(target, { recursive: true });
+  await copyFile(new URL('../../../content/word-lookup/dataset.json', import.meta.url), new URL('word-lookup.json', target));
+}

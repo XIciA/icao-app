@@ -157,7 +157,6 @@ export async function updateAnnotationStore(updater: (store: QuestionBankAnnotat
     // Keep a failed local write available to the existing Retry action, scoped
     // to this owner. A reset or account restoration replaces this same cache.
     publishStore(next, context);
-    await Storage.setItem(ANNOTATION_STORAGE_KEY, JSON.stringify(next));
     return next;
   });
   // Observe the existing workspace operation; do not introduce another queue.

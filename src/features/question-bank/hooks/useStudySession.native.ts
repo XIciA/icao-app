@@ -153,6 +153,9 @@ export function useStudySession(options: UseStudySessionOptions) {
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [loadError, setLoadError] = useState<string>();
   const [saveFailure, setSaveFailure] = useState<SaveFailure>();
+  const pendingProgress = useRef(new Map<string, Promise<void>>());
+  const failedProgress = useRef(new Set<string>());
+  const progressRetryDelay = useRef(1000);
   const [currentIndex, setCurrentIndex] = useState(startingIndex);
   const committedIndex = useRef(startingIndex);
   const [visitedIndexes, setVisitedIndexes] = useState<Set<number>>(() => new Set([startingIndex]));
@@ -235,6 +238,34 @@ export function useStudySession(options: UseStudySessionOptions) {
       ?? items.find((candidate) => candidate.card.id === itemOrCardId);
   }, [item, items]);
 
+  const saveProgress = useCallback((id: string, progress: CardLearningState) => {
+    const target = resolveItem(id);
+    if (!target) return Promise.resolve();
+    const operation = store.saveCardState(target.topic.id, target.card.id, progress, target.dataset.id, writeContext)
+      .then(() => {
+        if (pendingProgress.current.get(id) !== operation) return;
+        failedProgress.current.delete(id);
+        if (!failedProgress.current.size) { setSaveFailure(undefined); progressRetryDelay.current = 1000; }
+      }, () => {
+        if (pendingProgress.current.get(id) !== operation) return;
+        failedProgress.current.add(id);
+        setSaveFailure({ cardId: id, message: '保存失败，内容仍保留在当前页面。' });
+      }).finally(() => {
+        if (pendingProgress.current.get(id) === operation) pendingProgress.current.delete(id);
+      });
+    pendingProgress.current.set(id, operation);
+    return operation;
+  }, [resolveItem, store, writeContext]);
+
+  const flushProgress = useCallback(async () => {
+    assertLearningWriteContext(writeContext);
+    await Promise.all(pendingProgress.current.values());
+    await Promise.all([...failedProgress.current].map(id => saveProgress(id, persistentStates.current[id])));
+    await Promise.all(pendingProgress.current.values());
+    assertLearningWriteContext(writeContext);
+    if (failedProgress.current.size) throw new Error('learning_progress_save_failed');
+  }, [saveProgress, writeContext]);
+
   const persistCard = useCallback((itemOrCardId: string, patch: Partial<CardLearningState>) => {
     const target = resolveItem(itemOrCardId);
     if (!target) return undefined;
@@ -255,17 +286,14 @@ export function useStudySession(options: UseStudySessionOptions) {
     const nextStates = { ...statesRef.current, [target.id]: next };
     statesRef.current = nextStates;
     setStates(nextStates);
-    setSaveFailure(undefined);
     if (progressMode === 'persistent') {
       const previous = persistentStates.current[target.id];
       const progress = { ...previous, ...next, completed: Boolean(previous?.completed || next.completed) };
       persistentStates.current[target.id] = progress;
-      void store.saveCardState(target.topic.id, target.card.id, progress, target.dataset.id, writeContext).catch(() => {
-        setSaveFailure({ cardId: target.id, message: '保存失败，内容仍保留在当前页面。' });
-      });
+      void saveProgress(target.id, progress);
     }
     return next;
-  }, [progressMode, resolveItem, store, writeContext]);
+  }, [progressMode, resolveItem, saveProgress, writeContext]);
 
   useEffect(() => {
     if (!hydrated || loadError || !item) return;
@@ -277,15 +305,17 @@ export function useStudySession(options: UseStudySessionOptions) {
   }, [historyRecord, hydrated, item, loadError, packageInput, persistCard]);
 
   const retrySave = useCallback(() => {
-    if (!saveFailure || progressMode !== 'persistent') return;
-    const target = resolveItem(saveFailure.cardId);
-    const latest = statesRef.current[saveFailure.cardId];
-    if (!target || !latest) return;
-    setSaveFailure(undefined);
-    void store.saveCardState(target.topic.id, target.card.id, latest, target.dataset.id, writeContext).catch(() => {
-      setSaveFailure({ cardId: saveFailure.cardId, message: '再次保存失败，请稍后重试。' });
-    });
-  }, [progressMode, resolveItem, saveFailure, store, writeContext]);
+    void flushProgress().catch(() => undefined);
+  }, [flushProgress]);
+
+  useEffect(() => {
+    if (!saveFailure) return;
+    const timer = setTimeout(() => {
+      progressRetryDelay.current = Math.min(progressRetryDelay.current * 2, 30000);
+      retrySave();
+    }, progressRetryDelay.current);
+    return () => clearTimeout(timer);
+  }, [saveFailure, retrySave]);
 
   const markCompleted = useCallback((itemOrCardId: string) => {
     const target = resolveItem(itemOrCardId);
@@ -396,6 +426,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (!hydrated || loadError || !items.length) return undefined;
     if (committedReport.current) return committedReport.current;
     if (checkpoint && examMode && !listeningResult.current) return undefined;
+    await flushProgress();
     const sessionItemIds = new Set(
       historyRecord ? items.map(entry => entry.id) : Array.from(visitedIndexes).flatMap((index) => items[index]?.id ?? []),
     );
@@ -458,7 +489,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     setReport(nextReport);
     recordingRepository.cleanupSession(sessionId);
     return nextReport;
-  }, [examMode, feedbackCardIds.size, historyRecord, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, recordDescriptor, sessionId, startedAt, store, visitedIndexes, writeContext, hydrated, loadError]);
+  }, [examMode, feedbackCardIds.size, historyRecord, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, recordDescriptor, sessionId, startedAt, store, visitedIndexes, writeContext, hydrated, loadError, flushProgress]);
 
   const saveCheckpoint = useCallback((): Promise<void> => {
     if (examMode || committedReport.current || savingReport.current) return Promise.reject(new Error('study_checkpoint_unavailable'));

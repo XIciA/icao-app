@@ -104,7 +104,7 @@ function LearningRecordsContent() {
     }).finally(() => { if (mounted.current) setDeletingId(undefined); });
   }
   function confirmDelete(record: LearningRecord) {
-    if (record.sourceUnavailable || openingRef.current || deletingId) return;
+    if (openingRef.current || deletingId) return;
     Alert.alert('删除这次学习记录？', '将删除本次作答和 AI 反馈，保留题目笔记、标签和学习进度。', [
       { text: '取消', style: 'cancel' },
       { text: '删除', style: 'destructive', onPress: () => remove(record) },

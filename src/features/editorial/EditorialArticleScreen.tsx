@@ -2,6 +2,7 @@ import type { EditorialBlock } from '@icao/contracts';
 import { Image } from 'expo-image';
 import { ExternalLink, WifiOff } from '@/components/ui/icons';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Screen, Tag } from '@/components/ui';
@@ -11,6 +12,11 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function EditorialArticleScreen({ slug }: { slug: string }) {
   const state = useEditorialArticle(slug);
+  const [failedSource, setFailedSource] = useState<string>();
+  const openSource = async (url: string) => {
+    try { await Linking.openURL(url); setFailedSource(undefined); }
+    catch { setFailedSource(url); }
+  };
   if (state.status === 'loading') return <Screen ><GlobalLoadingScreen /></Screen>;
   if (state.status === 'empty') return <Screen ><CenteredState   kind="unavailable" /></Screen>;
   if (state.status === 'error') return <Screen ><CenteredState actionLabel="重试"  onAction={state.retry} kind="failure"  /></Screen>;
@@ -36,10 +42,10 @@ export function EditorialArticleScreen({ slug }: { slug: string }) {
           <View style={styles.sources}>
             <AppText variant="sectionTitle">官方资料</AppText>
             {article.sourceLinks.map((source) => (
-              <Pressable accessibilityRole="link" key={source.url} onPress={() => { void Linking.openURL(source.url); }} style={styles.source}>
+              <Pressable accessibilityRole="link" key={source.url} onPress={() => { void openSource(source.url); }} style={styles.source}>
                 <View style={styles.grow}>
                   <AppText color={colors.foreground} variant="caption">{source.title}</AppText>
-                  <AppText variant="micro">{source.publisher}</AppText>
+                  <AppText variant="micro">{failedSource === source.url ? '暂时无法打开，点击重试' : source.publisher}</AppText>
                 </View>
                 <ExternalLink color={colors.primary} size={16} />
               </Pressable>

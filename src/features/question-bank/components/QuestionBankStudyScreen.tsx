@@ -1,3 +1,4 @@
+import { useWordLookupUpdates } from '@/features/question-bank/static-word-lookup/use-word-lookup';
 import { OfflineBadge } from './OfflineBadge';
 import { usePreventRemove } from '@react-navigation/native';
 import { type Href, useRouter } from 'expo-router';
@@ -79,6 +80,7 @@ type Props = NavigationProps & ({
 });
 
 export function QuestionBankStudyScreen(props: Props) {
+  useWordLookupUpdates();
   const { onReturn, returnTo, returnHref, returnLabel, sourceRoute } = props;
   const router = useRouter();
   const insets = useSafeAreaInsets();

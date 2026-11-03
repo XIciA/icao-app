@@ -73,9 +73,10 @@ export async function replaceVocabularyStateFromSync(value: unknown) {
   return state;
 }
 
-export async function writeVocabularyState(state: VocabularyState) {
+export async function writeVocabularyState(state: VocabularyState, commit?: (state: VocabularyState) => Promise<void>) {
   const normalized = normalizeVocabularyState(state);
-  await Storage.setItem(VOCABULARY_STORAGE_KEY, JSON.stringify(normalized));
+  if (commit) await commit(normalized);
+  else await Storage.setItem(VOCABULARY_STORAGE_KEY, JSON.stringify(normalized));
   listeners.forEach((listener) => listener(normalized));
   return normalized;
 }

@@ -156,13 +156,13 @@ export const sqliteLearningStore: LearningStore = {
       .catch(() => undefined)
       .then(async () => {
         assertLearningWriteContext(context);
-        const states = normalizeTopicStates(
-          parseJson<Record<string, Partial<CardLearningState>>>(await Storage.getItem(key), {}),
-        );
-        assertLearningWriteContext(context);
         const normalized = migrateLegacyCardState(state);
-        await Storage.setItem(key, JSON.stringify({ ...states, [cardId]: normalized }));
-        await enqueueCardState(topicId, cardId, normalized, bankId, context);
+        await enqueueCardState(topicId, cardId, normalized, bankId, context, async () => {
+          const states = normalizeTopicStates(
+            parseJson<Record<string, Partial<CardLearningState>>>(await Storage.getItem(key), {}),
+          );
+          return [[key, JSON.stringify({ ...states, [cardId]: normalized })]];
+        });
       });
 
     topicWriteQueues.set(key, nextWrite);
@@ -184,9 +184,8 @@ export const sqliteLearningStore: LearningStore = {
   },
   async addRecord(record, context = captureLearningWriteContext()) {
     assertLearningWriteContext(context, record.recordType === 'ai_result');
-    await upsertLearningRecord(record, () => assertLearningWriteContext(context, record.recordType === 'ai_result'));
-    assertLearningWriteContext(context, record.recordType === 'ai_result');
-    await enqueueLearningRecord(record, context);
+    await upsertLearningRecord(record, () => assertLearningWriteContext(context, record.recordType === 'ai_result'),
+      entries => enqueueLearningRecord(record, context, entries));
   },
   async getRecords() {
     return getLearningRecords();

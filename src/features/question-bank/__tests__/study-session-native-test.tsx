@@ -283,3 +283,37 @@ it('restores the actual RecordingAsset and answer after the guest study screen u
   expect(restored.result.current.answerText).toBe('My recorded answer');
   expect(restored.result.current.sessionId).toBe(previousSession);
 });
+
+it('retries progress before completion and never commits a report while local progress remains unsaved', async () => {
+  const persistence = store();
+  jest.mocked(persistence.saveCardState).mockRejectedValue(new Error('disk_busy'));
+  const hook = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence }));
+  await waitFor(() => expect(hook.result.current.saveFailure).toBeDefined());
+  await act(async () => {
+    await expect(hook.result.current.finish('complete')).rejects.toThrow('learning_progress_save_failed');
+  });
+  expect(persistence.addRecord).not.toHaveBeenCalled();
+  expect(hook.result.current.report).toBeUndefined();
+  jest.mocked(persistence.saveCardState).mockResolvedValue(undefined);
+  await act(async () => { await hook.result.current.finish('complete'); });
+  expect(persistence.addRecord).toHaveBeenCalledTimes(1);
+  expect(hook.result.current.saveFailure).toBeUndefined();
+  expect(hook.result.current.report).toBeDefined();
+});
+
+it('keeps failed progress for earlier cards when a later card saves successfully', async () => {
+  const persistence = store();
+  jest.mocked(persistence.saveCardState).mockImplementation(async (_topic, id) => {
+    if (id === topic.cards[0].id) throw new Error('disk_busy');
+  });
+  const hook = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence }));
+  await waitFor(() => expect(hook.result.current.saveFailure).toBeDefined());
+  await act(async () => hook.result.current.goTo(1));
+  await act(async () => {
+    await expect(hook.result.current.finish('complete')).rejects.toThrow('learning_progress_save_failed');
+  });
+  expect(persistence.addRecord).not.toHaveBeenCalled();
+  jest.mocked(persistence.saveCardState).mockResolvedValue(undefined);
+  await act(async () => { await hook.result.current.finish('complete'); });
+  expect(persistence.addRecord).toHaveBeenCalledTimes(1);
+});

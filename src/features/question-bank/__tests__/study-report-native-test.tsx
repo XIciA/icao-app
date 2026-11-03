@@ -177,3 +177,5 @@ it('refreshes listening results from the same live progress owner when reopening
   await waitFor(() => expect(screen.getByLabelText('第 1 题').props.accessibilityHint).toBe('答对'));
   progress.mockRestore();
 });
+
+jest.mock('@/features/question-bank/static-word-lookup/use-word-lookup', () => ({ useWordLookupUpdates: () => 0 }));

@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-03T10:12:40.603Z",
+  "bundledDefinitions": 7807,
+  "banks": [
+    {
+      "bankId": "listening",
+      "words": 4689,
+      "missing": 259
+    },
+    {
+      "bankId": "sentences900",
+      "words": 1526,
+      "missing": 2
+    },
+    {
+      "bankId": "radiotelephony",
+      "words": 2184,
+      "missing": 93
+    },
+    {
+      "bankId": "opi",
+      "words": 5641,
+      "missing": 915
+    },
+    {
+      "bankId": "storytelling",
+      "words": 3973,
+      "missing": 8
+    }
+  ],
+  "missingUnique": 1224,
+  "scope": "Historical coverage gap; no definitions or question content changed by the synchronization code repair. New publication validation rejects newly introduced uncovered words."
+}

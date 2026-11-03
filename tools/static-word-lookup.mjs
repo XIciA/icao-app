@@ -1,3 +1,4 @@
+import { WORD_LOOKUP_SCOPE, normalizeLookupWord } from '../packages/contracts/src/word-lookup.ts';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -10,15 +11,7 @@ const datasetPath = resolve(root, 'content/word-lookup/dataset.json');
 const runtimeDatasetPath = resolve(root, 'src/features/question-bank/static-word-lookup/data/dataset.json');
 const batchesPath = resolve(root, 'content/word-lookup/batches');
 
-const scope = {
-  listening: ['audioText', 'choices'],
-  sentences900: ['audioText'],
-  radiotelephony: ['audioText', 'referenceText'],
-  opi: ['audioText', 'referenceText'],
-  storytelling: ['audioText'],
-};
-
-const englishWord = /^[A-Za-z]+(?:[’'-][A-Za-z]+)*$/;
+const scope = WORD_LOOKUP_SCOPE;
 
 function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
@@ -28,11 +21,7 @@ function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
 
-function normalizeWord(token) {
-  const trimmed = token.replace(/^[\p{P}\p{S}]+|[\p{P}\p{S}]+$/gu, '');
-  if (!englishWord.test(trimmed)) return undefined;
-  return trimmed.toLocaleLowerCase('en-US');
-}
+const normalizeWord = normalizeLookupWord;
 
 function tokens(text) {
   return text.split(/(\s+)/).filter(Boolean).flatMap((token) => {

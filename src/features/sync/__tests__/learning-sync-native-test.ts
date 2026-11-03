@@ -24,7 +24,7 @@ import Storage from '@/platform/storage';
 import { ANNOTATION_STORAGE_KEY, createEmptyAnnotationEntry, createEmptyAnnotationStore, flushPendingAnnotationSaves, readAnnotationStore, updateAnnotationStore, retryAnnotationStoreWrite, setAnnotationEntry, resetAnnotationStoreCacheForTests } from '@/features/question-bank/annotations/annotation-store.native';
 import { questionBankCardTargetKey } from '@/features/question-bank/annotations/card-index';
 import { readProfile } from '@/features/account/profile-store.native';
-import { readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
+import { sqliteLearningStore, readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
 import { getLearningRecords, loadLearningRecordReview, upsertLearningRecord, resetLearningRecordStorageForTests } from '@/features/question-bank/platform/learning-record-storage.native';
 import { captureStudyReview } from '@/features/question-bank/lib/study-review.native';
 import data from '@/features/question-bank/data/question-bank.json';
@@ -153,9 +153,9 @@ function deferred() {
 it('archives an accepted annotation write and its outbox before restoring the next account', async () => {
   await switchLearningSyncAccount('A');
   const started = deferred(); const gate = deferred();
-  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
-  jest.mocked(Storage.setItem).mockImplementationOnce(async (key, value) => {
-    expect(key).toBe(ANNOTATION_STORAGE_KEY); started.release(); await gate.promise; await original(key, value);
+  const original = jest.mocked(Storage.multiSet).getMockImplementation()!;
+  jest.mocked(Storage.multiSet).mockImplementationOnce(async (entries) => {
+    expect(entries.some(([key]) => key === ANNOTATION_STORAGE_KEY)).toBe(true); started.release(); await gate.promise; await original(entries);
   });
   const saving = saveNote('A 的最后一条笔记');
   await started.promise;
@@ -167,7 +167,7 @@ it('archives an accepted annotation write and its outbox before restoring the ne
   expect((await readAnnotationStore()).entries[annotationKey].note).toBe('A 的最后一条笔记');
   const outbox = JSON.parse(mockValues.get('icao.learning.v3.sync.outbox')!);
   expect(outbox).toHaveLength(1); expect(outbox[0].payload.document.entries[annotationKey].note).toBe('A 的最后一条笔记');
-  jest.mocked(Storage.setItem).mockImplementation(original);
+  jest.mocked(Storage.multiSet).mockImplementation(original);
 });
 it('keeps annotation reads and clear-learning in one workspace order without reviving the old cache', async () => {
   await switchLearningSyncAccount('A');
@@ -213,7 +213,7 @@ it('preserves rapid annotation updates and retries only the current owner cache'
   const second = updateAnnotationStore(store => setAnnotationEntry(store, annotationTarget, { ...store.entries[annotationKey], tagIds: ['good'] }));
   await Promise.all([first, second]);
   expect((await readAnnotationStore()).entries[annotationKey]).toMatchObject({ note: '正在学习', tagIds: ['good'] });
-  jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_busy'));
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
   await expect(saveNote('重试保存')).rejects.toThrow('disk_busy');
   await retryAnnotationStoreWrite();
   expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey].note).toBe('重试保存');
@@ -231,12 +231,12 @@ it('waits for every in-flight annotation edit in the existing workspace queue', 
   await switchLearningSyncAccount('A');
   const firstStarted = deferred(); const firstGate = deferred();
   const secondStarted = deferred(); const secondGate = deferred();
-  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
+  const original = jest.mocked(Storage.multiSet).getMockImplementation()!;
   let documentWrites = 0;
-  jest.mocked(Storage.setItem).mockImplementation(async (key, value) => {
-    if (key === ANNOTATION_STORAGE_KEY && ++documentWrites === 1) { firstStarted.release(); await firstGate.promise; }
-    else if (key === ANNOTATION_STORAGE_KEY && documentWrites === 2) { secondStarted.release(); await secondGate.promise; }
-    await original(key, value);
+  jest.mocked(Storage.multiSet).mockImplementation(async (entries) => {
+    if (entries.some(([key]) => key === ANNOTATION_STORAGE_KEY) && ++documentWrites === 1) { firstStarted.release(); await firstGate.promise; }
+    else if (entries.some(([key]) => key === ANNOTATION_STORAGE_KEY) && documentWrites === 2) { secondStarted.release(); await secondGate.promise; }
+    await original(entries);
   });
   const first = saveNote('保留本次笔记');
   await firstStarted.promise;
@@ -250,11 +250,11 @@ it('waits for every in-flight annotation edit in the existing workspace queue', 
   expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey]).toMatchObject({ note: '保留本次笔记', tagIds: ['good'] });
   const outbox = JSON.parse(mockValues.get('icao.learning.v3.sync.outbox')!);
   expect(outbox.at(-1).payload.document.entries[annotationKey]).toMatchObject({ note: '保留本次笔记', tagIds: ['good'] });
-  jest.mocked(Storage.setItem).mockImplementation(original);
+  jest.mocked(Storage.multiSet).mockImplementation(original);
 });
 it('reports a failed annotation save until the existing retry persists its retained edits', async () => {
   await switchLearningSyncAccount('A');
-  jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_busy'));
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
   await expect(saveNote('尚未落盘')).rejects.toThrow('disk_busy');
   await expect(flushPendingAnnotationSaves()).resolves.toBe(false);
   expect((await readAnnotationStore()).entries[annotationKey].note).toBe('尚未落盘');
@@ -262,28 +262,29 @@ it('reports a failed annotation save until the existing retry persists its retai
   await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
   expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey].note).toBe('尚未落盘');
 });
-it('does not claim success when the annotation document saved but its sync outbox failed', async () => {
+it('atomically retains the old annotation document when the outbox transaction fails', async () => {
   await switchLearningSyncAccount('A');
-  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
+  const original = jest.mocked(Storage.multiSet).getMockImplementation()!;
   let failOutbox = true;
-  jest.mocked(Storage.setItem).mockImplementation(async (key, value) => {
-    if (key === 'icao.learning.v3.sync.outbox' && failOutbox) { failOutbox = false; throw new Error('outbox_busy'); }
-    await original(key, value);
+  jest.mocked(Storage.multiSet).mockImplementation(async (entries) => {
+    if (entries.some(([key]) => key === 'icao.learning.v3.sync.outbox') && failOutbox) { failOutbox = false; throw new Error('outbox_busy'); }
+    await original(entries);
   });
   await expect(saveNote('等待同步入队')).rejects.toThrow('outbox_busy');
-  expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey].note).toBe('等待同步入队');
+  expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey]).toBeUndefined();
+  expect((await readAnnotationStore()).entries[annotationKey].note).toBe('等待同步入队');
   await expect(flushPendingAnnotationSaves()).resolves.toBe(false);
   await retryAnnotationStoreWrite();
   await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
   expect((await getLearningSyncStatus()).pendingCount).toBe(1);
-  jest.mocked(Storage.setItem).mockImplementation(original);
+  jest.mocked(Storage.multiSet).mockImplementation(original);
 });
 it('does not let a completed old-owner save authorize departure for a changed account', async () => {
   await switchLearningSyncAccount('A');
   const context = captureLearningWriteContext();
   const started = deferred(); const gate = deferred();
-  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
-  jest.mocked(Storage.setItem).mockImplementationOnce(async (key, value) => { started.release(); await gate.promise; await original(key, value); });
+  const original = jest.mocked(Storage.multiSet).getMockImplementation()!;
+  jest.mocked(Storage.multiSet).mockImplementationOnce(async (entries) => { started.release(); await gate.promise; await original(entries); });
   const saving = saveNote('留在 A');
   await started.promise;
   const flushing = flushPendingAnnotationSaves(context);
@@ -296,7 +297,7 @@ it('does not let a completed old-owner save authorize departure for a changed ac
 it('does not carry a failed annotation-save result across a learning-data reset', async () => {
   await switchLearningSyncAccount('A');
   const context = captureLearningWriteContext();
-  jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_busy'));
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
   await expect(saveNote('已放弃的数据')).rejects.toThrow('disk_busy');
   await applyPrivacyLearningDataReset({ dataGeneration: 1, aiResultGeneration: 1 });
   await expect(flushPendingAnnotationSaves(context)).resolves.toBe(false);
@@ -416,4 +417,102 @@ it('removes protected local history details when synchronized source becomes una
   expect(mockValues.has(reviewKey)).toBe(false);
   expect(mockValues.has(aiKey)).toBe(false);
   expect(await getLearningRecords()).toEqual([expect.objectContaining({ id: 'history-one', sourceUnavailable: true })]);
+});
+
+it('commits card progress and upload responsibility together or neither', async () => {
+  await switchLearningSyncAccount('A');
+  const before = new Map(mockValues);
+  const persist = jest.mocked(Storage.multiSet).getMockImplementation()!;
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
+  const state = { visited: true, completed: true, note: '', updatedAt: '2026-11-03T00:00:00.000Z' };
+  await expect(sqliteLearningStore.saveCardState(topic.id, card.id, state, bank.id)).rejects.toThrow('disk_busy');
+  expect(mockValues).toEqual(before);
+  jest.mocked(Storage.multiSet).mockImplementation(persist);
+  await sqliteLearningStore.saveCardState(topic.id, card.id, state, bank.id);
+  expect(JSON.parse(mockValues.get(`icao.learning.v2.topic.${topic.id}`)!)[card.id]).toMatchObject(state);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+});
+
+it('commits a history detail, summary and outbox atomically and keeps failed deletions retryable', async () => {
+  await switchLearningSyncAccount('A');
+  const before = new Map(mockValues);
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
+  await expect(sqliteLearningStore.addRecord(history())).rejects.toThrow('disk_busy');
+  expect(mockValues).toEqual(before);
+  await sqliteLearningStore.addRecord(history());
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+  const saved = new Map(mockValues);
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
+  await expect(deleteLearningHistory(history().id)).rejects.toThrow('disk_busy');
+  expect(mockValues).toEqual(saved);
+  await deleteLearningHistory(history().id);
+  expect(await getLearningRecords()).toEqual([]);
+  expect(JSON.parse(mockValues.get('icao.learning.v3.sync.outbox')!)).toEqual([
+    expect.objectContaining({ payload: expect.objectContaining({ recordId: history().id, deleted: true }) }),
+  ]);
+});
+
+it('preserves a newer local answer while an older upload response arrives with a higher server version', async () => {
+  await switchLearningSyncAccount('A');
+  const first = { visited: true, completed: true, note: '', selectedChoiceIndex: 0, updatedAt: '2026-11-03T00:00:00.000Z' };
+  await sqliteLearningStore.saveCardState(topic.id, card.id, first, bank.id);
+  const started = deferred(); const gate = deferred();
+  const uploaded: { version: number; state: typeof first }[] = [];
+  mockApiRequest.mockImplementation(async (path, options) => {
+    if (!String(path).includes('/push')) return { cursor: 1, hasMore: false, changes: [] };
+    const mutation = JSON.parse(options.body).mutations[0];
+    uploaded.push(mutation.payload);
+    if (uploaded.length === 1) { started.release(); await gate.promise; }
+    return { cursor: 1, results: [{ mutationId: mutation.mutationId, status: 'accepted', authoritative: { ...mutation.payload, version: uploaded.length === 1 ? 50 : mutation.payload.version } }] };
+  });
+  const syncing = runLearningSync('A');
+  await started.promise;
+  await sqliteLearningStore.saveCardState(topic.id, card.id, { ...first, selectedChoiceIndex: 2, updatedAt: '2026-11-03T00:01:00.000Z' }, bank.id);
+  gate.release(); await syncing;
+  expect(uploaded).toHaveLength(2);
+  expect(uploaded[1]).toMatchObject({ state: { selectedChoiceIndex: 2 } });
+  expect(uploaded[1].version).toBeGreaterThan(50);
+  expect(JSON.parse(mockValues.get(`icao.learning.v2.topic.${topic.id}`)!)[card.id].selectedChoiceIndex).toBe(2);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+});
+
+it('preserves a newer same-session report when an older checkpoint upload finishes', async () => {
+  await switchLearningSyncAccount('A');
+  await sqliteLearningStore.addRecord(history());
+  const started = deferred(); const gate = deferred();
+  const uploaded: { version: number; record: LearningRecord }[] = [];
+  mockApiRequest.mockImplementation(async (path, options) => {
+    if (!String(path).includes('/push')) return { cursor: 1, hasMore: false, changes: [] };
+    const mutation = JSON.parse(options.body).mutations[0]; uploaded.push(mutation.payload);
+    if (uploaded.length === 1) { started.release(); await gate.promise; }
+    return { cursor: 1, results: [{ mutationId: mutation.mutationId, status: 'accepted', authoritative: { ...mutation.payload, version: uploaded.length === 1 ? 50 : mutation.payload.version } }] };
+  });
+  const syncing = runLearningSync('A'); await started.promise;
+  await sqliteLearningStore.addRecord({ ...history(), durationSeconds: 100, updatedAt: '2026-11-03T00:01:00.000Z' });
+  gate.release(); await syncing;
+  expect(uploaded).toHaveLength(2);
+  expect(uploaded[1].version).toBeGreaterThan(50);
+  expect((await getLearningRecords())[0].durationSeconds).toBe(100);
+});
+
+it('commits a vocabulary update and its outbox together, without publishing a failed transaction', async () => {
+  await switchLearningSyncAccount('A');
+  const before = new Map(mockValues);
+  const state = { ...createEmptyVocabularyState(), words: { pilot: { status: 'known' as const, favorite: true, updatedAt: '2026-11-03T00:00:00.000Z' } } };
+  const save = () => mutateVocabularyInCurrentWorkspace(captureLearningWriteContext(), commit => writeVocabularyState(state, commit));
+  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_busy'));
+  await expect(save()).rejects.toThrow('disk_busy');
+  expect(mockValues).toEqual(before);
+  await save();
+  expect((await readVocabularyState()).words.pilot.favorite).toBe(true);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+});
+
+it('preserves unreadable pending sync bytes instead of replacing them with an empty queue', async () => {
+  await switchLearningSyncAccount('A');
+  const damaged = '[{"mutationId":"unfinished"';
+  mockValues.set('icao.learning.v3.sync.outbox', damaged);
+  await expect(sqliteLearningStore.saveCardState(topic.id, card.id, { visited: true, completed: true, note: '', updatedAt: new Date().toISOString() }, bank.id)).rejects.toThrow();
+  expect(mockValues.get('icao.learning.v3.sync.outbox')).toBe(damaged);
+  expect(mockValues.get(`icao.learning.v2.topic.${topic.id}`)).toBeUndefined();
 });

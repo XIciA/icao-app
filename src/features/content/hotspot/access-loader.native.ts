@@ -1,3 +1,4 @@
+import { retargetHotspotBrief } from '@icao/contracts/app-content';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import type { ContentAccessScope } from '@icao/contracts';
 
@@ -117,6 +118,10 @@ export async function loadHotspotAccess(briefId: string): Promise<HotspotAccessR
   try {
     const result = await loadQuestionBank('opi');
     if (!result?.dataset) return { status: 'content-unavailable', brief };
+    // Match the API overview using the complete directory, including member IDs.
+    brief = retargetHotspotBrief(brief, new Map(result.dataset.categories.flatMap(category =>
+      category.topics.flatMap(topic => (topic.scopeCardIds?.all ?? topic.cards.map(card => card.id))
+        .map(id => [id, { topicId: topic.id, topicTitle: topic.name }] as const)))));
     targets = resolveTopicTargets(result.dataset, brief);
     if (!targets) return { status: 'content-unavailable', brief };
 

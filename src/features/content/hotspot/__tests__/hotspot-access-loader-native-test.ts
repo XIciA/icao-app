@@ -1,3 +1,6 @@
+import liveHotspots from '../../../../../docs/workstreams/app-self-check/evidence/hotspots-20261103.json';
+import type { OpiHotspotBrief } from '../types';
+import * as nativeHotspotRepository from '../repository.native';
 import completeQuestionBanks from '@/features/question-bank/data/question-bank.json';
 import {
   inspectOfflineMemberTopicAccess,
@@ -42,7 +45,7 @@ describe('native OPI hotspot access loader', () => {
       categories: completeOpiDataset.categories.map((category) => ({
         ...category,
         topics: category.topics.map((topic) => (
-          requestedTopicIds.has(topic.id) ? { ...topic, cards: [] } : topic
+          requestedTopicIds.has(topic.id) ? { ...topic, scopeCardIds: { crash: [], ...topic.scopeCardIds, all: topic.cards.map(card => card.id), selected: topic.cards.map(card => card.id) }, cards: [] } : topic
         )),
       })),
     };
@@ -58,6 +61,20 @@ describe('native OPI hotspot access loader', () => {
 
   afterEach(() => jest.restoreAllMocks());
 
+  it('resolves all 28 published daily hotspots against the current complete bank, including old topic references', async () => {
+    if (!completeOpiDataset) throw new Error('missing_opi_fixture');
+    mockLoadQuestionBank.mockResolvedValue({ dataset: completeOpiDataset, source: 'remote' });
+    const read = jest.spyOn(nativeHotspotRepository, 'loadHotspotBrief');
+    for (const published of liveHotspots.briefs) {
+      read.mockResolvedValue(published as OpiHotspotBrief);
+      const result = await loadHotspotAccess(published.id);
+      expect({ id: published.id, status: result.status }).toEqual({ id: published.id, status: 'ready' });
+      if (result.status !== 'ready') continue;
+      const expected = [...new Set(published.topics.flatMap(topic => topic.cardIds))].sort();
+      expect([...new Set(result.session.items.map(item => item.card.id))].sort()).toEqual(expected);
+    }
+  });
+
   it('returns ready only after resolving the requested questions', async () => {
     expect(completeOpiDataset).toBeDefined();
     if (!completeOpiDataset) return;
@@ -72,6 +89,25 @@ describe('native OPI hotspot access loader', () => {
       brief.topics.reduce((count, topic) => count + topic.cardIds.length, 0),
     );
     expect(mockGetTopic).not.toHaveBeenCalled();
+  });
+
+  it('retargets old hotspot topic references using stable card IDs before authorized loading', async () => {
+    if (!completeOpiDataset) throw new Error('missing_opi_fixture');
+    const requested = new Set(brief.topics.map(topic => topic.topicId));
+    const relocated = {
+      ...completeOpiDataset,
+      categories: completeOpiDataset.categories.map(category => ({ ...category,
+        topics: category.topics.map(topic => requested.has(topic.id)
+          ? { ...topic, id: `${topic.id}-moved` } : topic),
+      })),
+    };
+    mockLoadQuestionBank.mockResolvedValue({ dataset: relocated, source: 'remote' });
+    const result = await loadHotspotAccess(brief.id);
+    expect(result.status).toBe('ready');
+    if (result.status !== 'ready') return;
+    expect(result.brief.topics.every(topic => topic.topicId.endsWith('-moved'))).toBe(true);
+    expect(result.session.items.map(item => item.card.id).sort()).toEqual(
+      brief.topics.flatMap(topic => topic.cardIds).sort());
   });
 
   it('preserves the public brief when membership is required and does not expose the API code', async () => {
