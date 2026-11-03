@@ -2,11 +2,13 @@
 
 记录日期：2026-11-04。
 
+当前交付：全部界面增量已随统一 PR #330 合入 main（`c841dbae`），与下载／同步修复一同交付 TestFlight 1.3.1（3596170）和受影响 Web；真机视觉与操作验收待用户完成。原 PR #329 已被完整纳入并关闭，两个临时工作树及任务分支已清理。下文保留各阶段过程；当前发布状态见[统一记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md)。
+
 ## 当前增量：四个入口共用“左上集中”体系
 
 2026-11-04 用户选定 `annotation-family.html` 的“左上集中”方案，并明确授权直接修改“我的标注、单词收藏、结束页标注题目、查词”，要求视觉和代码共用一套体系。此授权替代本任务此前“我的标注只左移圆点、其他不变”的小改动限制。
 
-- 本次独立工作区：`/private/tmp/icao-annotation-family`，分支 `codex/annotation-family`。从最新 `origin/main`（`5db843c5`）建立，并以 `9ca90ab9` 引入上一阶段 `733d1316` 的相同改动作为依赖；原提交和原 worktree 未重写。
+- 实施时独立工作区：`/private/tmp/icao-annotation-family`，分支 `codex/annotation-family`。从最新 `origin/main`（`5db843c5`）建立，并以 `9ca90ab9` 引入上一阶段 `733d1316` 的相同改动作为依赖；原提交和原 worktree 未重写。
 - 统筹任务已整合上一阶段及本次增量提交；本任务不独立推送、创建 PR、合并、调整构建号或发布。本次没有修改下载代码、状态配色、凭据和存储逻辑。
 - 四个入口复用 `CollectionList.native.tsx` 的连续列表容器、条目间距和分隔线。单词收藏保留虚拟列表，使用相同表面样式和条目组件。
 - “我的标注”和结束页复用 `AnnotationQuestionRow.native.tsx`，包含左上标记与题目来源、原文文本块、题下 `AnnotationNote`。继续复用 `AnnotationMarkers` / `AnnotationText` 的紧凑圆点与内容指纹检查；高亮仍用短横条。窄屏题号与标记名称可分行，正文不随标记数缩进。
