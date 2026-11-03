@@ -1,7 +1,10 @@
 /* eslint-disable import/first */
+import { Platform } from 'react-native';
 import type { QuestionBankDataset, QuestionBankTopic } from '@/features/question-bank/types';
 
 const mockGetTopic = jest.fn();
+const mockCredentials = jest.fn(async () => []);
+jest.mock('@/features/question-bank/data/content-credential-client.native', () => ({ requestContentCredentials: (...args: unknown[]) => (mockCredentials as Function)(...args) }));
 
 jest.mock('@/features/question-bank/data/repository.native', () => ({
   questionBankRepository: { getTopic: (...args: unknown[]) => mockGetTopic(...args) },
@@ -64,7 +67,7 @@ const dataset = {
 } satisfies QuestionBankDataset;
 
 describe('Native radio catalog hydration', () => {
-  beforeEach(() => mockGetTopic.mockReset());
+  beforeEach(() => { mockGetTopic.mockReset(); mockCredentials.mockClear(); });
 
   it('uses the same nested scope and examination-goal projection as daily study', () => {
     const full = { ...dataset, categories: [{ ...dataset.categories[0], topics: [{ ...publicTopic, cards: [
@@ -226,7 +229,7 @@ describe('Native radio catalog hydration', () => {
 
 
 describe('complete authorized radio directory', () => {
-  beforeEach(() => mockGetTopic.mockReset());
+  beforeEach(() => { mockGetTopic.mockReset(); mockCredentials.mockClear(); });
   const topics = Array.from({ length: 6 }, (_, index) => ({ ...publicTopic, id: `topic-${index}`, cards: [] }));
   const bank = { ...dataset, categories: [{ ...dataset.categories[0], topics }] };
 
@@ -328,4 +331,21 @@ it('continues past failed topics, preserves other banks, and retries transient f
   expect(mockGetTopic).toHaveBeenCalledTimes(18);
   expect(updates.some(banks => deriveRadioCatalogs(banks).find(bank => bank.bankId === 'opi')?.complete)).toBe(true);
   expect(deriveRadioCatalogs(result).every(bank => bank.complete)).toBe(true);
+});
+
+
+describe('catalog credential batching boundary', () => {
+  it.each(['ios', 'web'] as const)('keeps native credential batches bounded and web online-only: %s', async platform => {
+    const original = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
+    mockCredentials.mockClear();
+    const topics = Array.from({ length: 57 }, (_, i) => ({ ...publicTopic, id: `topic-${i}` }));
+    mockGetTopic.mockImplementation(async (_bank, _category, topicId) => ({ ...publicTopic, id: topicId, cards: [publicTopic.cards[0], { ...publicTopic.cards[0], id: 'member' }] }));
+    try {
+      const result = await hydrateRadioCatalogDatasets([{ ...dataset, categories: [{ ...dataset.categories[0], topics }] }]);
+      expect(result[0].categories[0].topics.every(topic => topic.cards.length === 2)).toBe(true);
+      if (platform === 'web') expect(mockCredentials).not.toHaveBeenCalled();
+      else expect(mockCredentials.mock.calls.map(call => (call as unknown as [unknown[]])[0].length)).toEqual([24, 24, 9]);
+    } finally { Object.defineProperty(Platform, 'OS', { configurable: true, value: original }); }
+  });
 });

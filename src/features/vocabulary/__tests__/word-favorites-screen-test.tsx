@@ -6,6 +6,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import type { VocabularyBook, VocabularyDataset, VocabularyState } from '../types';
 
+const mockSpeak = jest.fn(async (_word: string) => true);
+jest.mock('../speech.native', () => ({ speakVocabulary: (word: string) => mockSpeak(word), stopVocabularySpeech: jest.fn(async () => undefined) }));
 const mockSetFavorite = jest.fn(async () => undefined);
 const mockMigrateFavorites = jest.fn(async (_books: VocabularyBook[]) => undefined);
 const mockLoadVocabulary = jest.fn();
@@ -81,7 +83,7 @@ async function renderScreen(width = 375) {
 
 describe('WordFavoritesScreen', () => {
   beforeEach(() => {
-    mockSetFavorite.mockClear();
+    mockSetFavorite.mockClear(); mockSpeak.mockClear();
     mockMigrateFavorites.mockClear();
     mockLoadVocabulary.mockReset();
     mockUseWordFavorites.mockReset();
@@ -101,11 +103,14 @@ describe('WordFavoritesScreen', () => {
     await fireEvent.press(screen.getByLabelText('查看 deviation 释义'));
     expect(screen.getByText(/词书：/)).toBeTruthy();
     expect(screen.getAllByText('deviation')).toHaveLength(1);
+    expect(screen.getByText('/ˌdiːviˈeɪʃən/')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    expect(mockSpeak).toHaveBeenCalledWith('deviation');
     expect(screen.getByText(/来源：.*单词学习/)).toBeTruthy();
-    expect(screen.getByText(/来源：.*题库查词/)).toBeTruthy();
+    expect(screen.getAllByText(/来源：.*题库查词/)).toHaveLength(2);
     expect(mockMigrateFavorites).toHaveBeenCalledWith([book]);
 
-    await fireEvent.press(screen.getByLabelText('取消收藏deviation'));
+    await fireEvent.press(screen.getByLabelText('取消收藏 deviation'));
     expect(mockSetFavorite).toHaveBeenCalledWith({ word: 'deviation', wordId: 'preview-0001' }, false);
     await fireEvent.press(screen.getByText('撤销'));
     expect(mockSetFavorite).toHaveBeenLastCalledWith({ word: 'deviation', wordId: 'preview-0001' }, true);
@@ -123,7 +128,7 @@ describe('WordFavoritesScreen', () => {
     mockUseWordFavorites.mockReturnValue({ ready: true, state: stateFor(['clearance']), setFavorite: mockSetFavorite });
     const screen = await renderScreen();
 
-    await waitFor(() => expect(screen.getByText('词书资源暂时不可用')).toBeTruthy());
+    await waitFor(() => expect(screen.getByLabelText('词书资源暂时不可用，重试加载；查词收藏仍可查看')).toBeTruthy());
     expect(screen.getByText('clearance')).toBeTruthy();
     expect(screen.getByText('n. 管制许可')).toBeTruthy();
   });
@@ -134,7 +139,7 @@ describe('WordFavoritesScreen', () => {
     await waitFor(() => expect(mockMigrateFavorites).toHaveBeenCalledWith([book]));
     await fireEvent.press(screen.getByLabelText('查看 deviation 释义'));
     expect(screen.getByText(/来源：.*单词学习/)).toBeTruthy();
-    expect(screen.getByText(/来源：.*题库查词/)).toBeTruthy();
+    expect(screen.getAllByText(/来源：.*题库查词/)).toHaveLength(2);
   });
 });
 

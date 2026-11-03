@@ -1,8 +1,9 @@
 import { forwardRef, type ComponentProps } from 'react';
 import Svg, { Path } from 'react-native-svg';
+import { StyleSheet, View } from 'react-native';
 import { BookAudio, Headphones, MessagesSquare, RadioTower, type LucideIcon } from '@/components/ui/icons';
 import type { QuestionBankDataset, QuestionBankId } from '@/features/question-bank/types';
-import { colors } from '@/theme';
+import { colors, radii } from '@/theme';
 
 /** The approved outlined numeral, shared by every 900-sentence entry. */
 const SentenceNine = forwardRef<SVGSVGElement, ComponentProps<LucideIcon>>(function SentenceNine({ size = 23, color = colors.primary, ...props }, _ref) {
@@ -23,3 +24,11 @@ export function StudyBankIcon({ bankId, size = 23 }: { bankId: QuestionBankId; s
   const Icon = studyBankIcons[bankId];
   return <Icon size={size} strokeWidth={1.7} color={colors.primary} />;
 }
+
+/** The question-bank home icon and base, reused by download management. */
+export function StudyBankIconBadge({ icon: Icon }: { icon: LucideIcon }) {
+  return <View style={badgeStyles.base}><Icon color={colors.primary} size={21} strokeWidth={2} /></View>;
+}
+const badgeStyles = StyleSheet.create({
+  base: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.xl, height: 44, justifyContent: 'center', width: 44 },
+});

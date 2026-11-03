@@ -81,7 +81,7 @@ describe('Native membership purchase page', () => {
 
   it('shows member-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
     const screen = await render(<Page />);
-    for (const title of ['解锁会员题库', '每周 AI 学习额度', '会员音频', '模拟练习', 'OPI 热点']) expect(screen.getByText(title)).toBeTruthy();
+    for (const title of ['完整会员题库', '每周 AI 学习额度', '随身听会员音频', '模拟考试练习', 'OPI 热点练习', '题库离线下载']) expect(screen.getByText(title)).toBeTruthy();
     expect(screen.getByText('会员权益')).toBeTruthy();
     expect(screen.queryByText('权益相同，仅时长不同')).toBeNull();
     expect(screen.queryByText(/到期不自动续费/u)).toBeNull();

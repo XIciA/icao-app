@@ -7,20 +7,13 @@ import { useLocalSearchParams, type Href } from 'expo-router';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
-import { Flame, Headphones, Library, Mic, Sparkles, type LucideIcon } from '@/components/ui/icons';
+import type { LucideIcon } from '@/components/ui/icons';
+import { membershipBenefits } from './membership-benefits';
 import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 import { useCommerceRuntime } from './CommerceRuntimeProvider';
 import { listMembershipProducts } from './membership-products.native';
 import type { CommerceRuntimeOffering } from './commerce-runtime-types';
-
-const benefits: { icon: LucideIcon; title: string; detail: string }[] = [
-  { icon: Library, title: '解锁会员题库', detail: '完整会员题库内容' },
-  { icon: Sparkles, title: '每周 AI 学习额度', detail: '转写、语法纠错与表达优化' },
-  { icon: Headphones, title: '会员音频', detail: '随身听解锁会员音频与跟听' },
-  { icon: Mic, title: '模拟练习', detail: '按题目练习与作答' },
-  { icon: Flame, title: 'OPI 热点', detail: '参考答案、音频与作答练习；热点概览免费' },
-];
 
 function displayDate(value: string | number | undefined | null) {
   if (value == null) return undefined;
@@ -94,7 +87,7 @@ function MembershipContent() {
     <Card style={styles.benefits}>
       <AppText color={colors.mutedForeground} variant="caption">会员权益</AppText>
       <View style={styles.benefitGrid}>
-        {benefits.map((benefit) => <View key={benefit.title} style={styles.half}><Benefit {...benefit} /></View>)}
+        {membershipBenefits.map((benefit) => <View key={benefit.title} style={styles.half}><Benefit {...benefit} /></View>)}
       </View>
     </Card>
     <View accessibilityRole="radiogroup" style={styles.plans}>

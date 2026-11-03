@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { StudyBankIconBadge } from '@/features/profile/StudyBankIcon';
 import { useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
@@ -6,9 +6,10 @@ import { AppText } from '@/components/ui';
 import { Check, ChevronDown, ChevronUp, Trash2, type LucideIcon } from '@/components/ui/icons';
 import { colors } from '@/theme';
 import { fonts } from '@/theme/font-families';
+import { downloadStatusColors } from './download-status-colors';
 
 type Props = {
-  title: string; icon: ReactNode; open: boolean; toggle(): void;
+  title: string; icon: LucideIcon; open: boolean; toggle(): void;
   status: string; completed: boolean; progress: number; size: string;
   scope: string; scopes: { value: string; label: string; shortLabel: string }[];
   rangeLocked: boolean; onScope(value: string): void;
@@ -21,13 +22,13 @@ export function DownloadPackageCard(props: Props) {
   const anchor = useRef<View>(null);
   const [menu, setMenu] = useState<{ x: number; y: number }>();
   const selected = props.scopes.find(item => item.value === props.scope)!;
-  const neutral = ['未下载', '下载中', '校验中', '等待下载', '等待中'].includes(props.status);
+  const statusColors = downloadStatusColors(props.status);
   const Action = props.action;
   const small = width < 360;
   return <View style={styles.card}>
     <Pressable accessibilityRole="button" accessibilityState={{ expanded: props.open }} onPress={props.toggle} style={[styles.heading, small && styles.smallHeading]}>
-      <View style={styles.icon}>{props.icon}</View><AppText variant="cardTitle" style={styles.title}>{props.title}</AppText>
-      <View style={[styles.badge, { backgroundColor: props.status === '已下载' ? '#E0F5E9' : neutral ? colors.secondary : '#FBE7E7' }]}><AppText variant="micro" style={styles.status} accessibilityLiveRegion="polite">{props.status}</AppText></View>
+      <StudyBankIconBadge icon={props.icon} /><AppText variant="cardTitle" style={styles.title}>{props.title}</AppText>
+      <View style={[styles.badge, { backgroundColor: statusColors.backgroundColor }]}><AppText variant="micro" style={[styles.status, { color: statusColors.color }]} accessibilityLiveRegion="polite">{props.status}</AppText></View>
       {props.open ? <ChevronUp size={17} strokeWidth={1.7} color={colors.foreground} /> : <ChevronDown size={17} strokeWidth={1.7} color={colors.foreground} />}
     </Pressable>
     {props.open ? <View style={styles.body}>
@@ -60,7 +61,6 @@ export function DownloadPackageCard(props: Props) {
 const styles = StyleSheet.create({
   card: { backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1, borderRadius: 22, marginBottom: 12 },
   heading: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, minHeight: 74 }, smallHeading: { gap: 8, padding: 12 },
-  icon: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.secondary, borderRadius: 16 },
   title: { flex: 1, fontSize: 20, lineHeight: 26 }, badge: { borderRadius: 10, paddingVertical: 4, paddingHorizontal: 7 },
   status: { fontFamily: fonts.sansRegular, fontSize: 12, lineHeight: 17, color: colors.foreground },
   small: { fontFamily: fonts.sansRegular, fontSize: 13, lineHeight: 19, color: colors.foreground },

@@ -1,8 +1,9 @@
+import { StudyBankIconBadge } from '@/features/profile/StudyBankIcon';
 import { ChevronRight, type LucideIcon } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { colors, radii, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 
 import { AppText, PressableCard, Screen, Tag } from '../ui';
 import { SoftGlow } from '../visual/SoftGlow';
@@ -68,9 +69,7 @@ export function TabPlaceholderScreen({ title, subtitle, eyebrow, headerLeading, 
               style={!enabled ? styles.disabled : null}
             >
               <View style={styles.row}>
-                <View style={styles.iconBox}>
-                  <Icon color={colors.primary} size={21} strokeWidth={2} />
-                </View>
+                <StudyBankIconBadge icon={Icon} />
                 <View style={styles.copy}>
                   <View style={styles.titleLine}>
                     <AppText variant="cardTitle">{entry.title}</AppText>
@@ -102,14 +101,6 @@ const styles = StyleSheet.create({
   subtitle: { marginTop: spacing[2], maxWidth: 330 },
   list: { gap: spacing[2.5] },
   row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3.5] },
-  iconBox: {
-    alignItems: 'center',
-    backgroundColor: colors.primary08,
-    borderRadius: radii.xl,
-    height: 44,
-    justifyContent: 'center',
-    width: 44,
-  },
   copy: { flex: 1, minWidth: 0 },
   titleLine: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   description: { marginTop: 2 },

@@ -2,7 +2,7 @@ import { useWordLookupUpdates } from '@/features/question-bank/static-word-looku
 import { useAuth } from '@/features/auth/AuthProvider';
 import { captureLearningWriteContext } from '@/features/sync/learning-sync.native';
 import { useSaveAction } from './use-save-action.native';
-import { BookOpen, ChevronDown, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
+import { BookOpen, RefreshCw } from '@/components/ui/icons';
 import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
@@ -13,6 +13,8 @@ import { colors, radii, spacing } from '@/theme';
 import { buildWordFavoriteItems, type WordFavoriteItem } from './favorites';
 import { migrateLegacyVocabularyFavorites, useWordFavorites } from './progress-store.native';
 import { useVocabularyCatalog } from './use-vocabulary-catalog';
+import { WordCollectionRow } from './components/WordCollectionRow.native';
+import { collectionStyles } from '@/components/learning/CollectionList.native';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 
 export function WordFavoritesScreen() {
@@ -34,51 +36,53 @@ export function WordFavoritesScreen() {
     books,
     lookupEntries: getStaticWordLookupEntries(),
     state: favorites.state,
+  // The lookup repository is an external snapshot; its revision invalidates this projection.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [books, favorites.state, lookupRevision]);
 
   const loadingVocabulary = !loadResult && !loadError;
 
+  const resourceAction = items.length && (loadError || loadingVocabulary) ? <Pressable
+    accessibilityRole="button" accessibilityLabel={loadError ? '词书资源暂时不可用，重试加载；查词收藏仍可查看' : '正在补充词书收藏内容'}
+    disabled={!loadError} onPress={retry} style={styles.resourceAction}>
+    <RefreshCw size={16} color={loadError ? colors.accent : colors.mutedForeground} />
+    <AppText variant="micro" color={loadError ? colors.accent : colors.mutedForeground}>{loadError ? '词书重试' : '加载词书'}</AppText>
+  </Pressable> : undefined;
+
   return save.wrap(
-    <Screen contentStyle={styles.screen} header={favorites.error || !favorites.ready || (!items.length && !loadError) ? undefined : <TopBar title="单词收藏" />}>
+    <Screen contentStyle={styles.screen} header={favorites.error || !favorites.ready || (!items.length && !loadError) ? undefined : <TopBar title="单词收藏" right={resourceAction} actionWidth={resourceAction ? 92 : undefined} />}>
       {favorites.error ? (
         <CenteredState  kind="failure"  actionLabel="重试" onAction={favorites.retry} />
       ) : !favorites.ready ? (
         <GlobalLoadingScreen />
       ) : items.length || loadError ? (
         <FlatList
-          contentContainerStyle={styles.listContent}
+          style={styles.listContent}
+          contentContainerStyle={items.length ? collectionStyles.surface : undefined}
           extraData={expanded}
           data={items}
           keyExtractor={(item) => item.key}
-          ListHeaderComponent={loadError || loadingVocabulary ? (
-            <View style={styles.header}>
-              {loadError ? (
-                <View style={styles.warning}>
-                  <WifiOff color={colors.accent} size={18} />
-                  <View style={styles.warningCopy}>
-                    <AppText variant="button">词书资源暂时不可用</AppText>
-                    <AppText variant="caption">查词收藏仍可查看；联网后重试可恢复词书收藏释义。</AppText>
-                  </View>
-                  <Pressable accessibilityLabel="重新加载词书收藏" onPress={retry} style={({ pressed }) => [styles.retry, pressed ? styles.pressed : null]}>
-                    <RefreshCw color={colors.accent} size={18} />
-                  </Pressable>
-                </View>
-              ) : loadingVocabulary ? <AppText variant="micro">正在补充词书收藏内容…</AppText> : null}
-            </View>
-          ) : null}
           ListEmptyComponent={(
             <View style={styles.partialEmpty}>
               <BookOpen color={colors.mutedForeground} size={28} />
-              <AppText style={styles.center}>暂时没有可显示的查词收藏</AppText>
-              <AppText style={styles.center} variant="caption">词书资源恢复后会自动补齐其中的收藏。</AppText>
+              <AppText style={styles.center}>暂时没有可显示的收藏</AppText>
+              <AppText style={styles.center} variant="caption">词书资源恢复后会自动补齐其中的收藏。</AppText><Button variant="outline" onPress={retry}>重试加载词书</Button>
             </View>
           )}
           renderItem={({ item, index }) => (
-            <FavoriteWordCard
-              item={item} expanded={expanded === item.key} first={index === 0} last={index === items.length - 1}
-              onToggle={() => setExpanded(current => current === item.key ? undefined : item.key)}
-              onRemove={() => { const context = captureLearningWriteContext(); return save.run(() => favorites.setFavorite({ word: item.word, wordId: item.wordIds[0] }, false), () => setRemoved({ item, context }), context); }}
-            />
+            <WordCollectionRow word={item.word} ipa={item.ipa} meaning={item.aviationMeaning || item.meaning} favorite saving={save.saving}
+              last={index === items.length - 1} expanded={expanded === item.key}
+              onToggleDetails={() => setExpanded(current => current === item.key ? undefined : item.key)}
+              onFavoriteChange={value => { const context = captureLearningWriteContext(); void save.run(() => favorites.setFavorite({ word: item.word, wordId: item.wordIds[0] }, value), () => setRemoved({ item, context }), context); }}
+              details={item.generalMeaning || item.example || item.exampleTranslation || item.bookNames.length || item.aviationMeaning && item.meaning !== item.aviationMeaning ? <>
+                {item.aviationMeaning && item.meaning !== item.aviationMeaning ? <AppText variant="caption">词书释义：{item.meaning}</AppText> : null}
+                {item.generalMeaning ? <AppText variant="caption">常用释义：{item.generalMeaning}</AppText> : null}
+                {item.example ? <AppText variant="caption">{item.example}</AppText> : null}
+                {item.exampleTranslation ? <AppText variant="caption">{item.exampleTranslation}</AppText> : null}
+                {item.bookNames.length ? <AppText variant="micro">词书：{item.bookNames.join('、')}</AppText> : null}
+              </> : undefined}>
+              <AppText variant="micro" color={colors.mutedForeground}>来源：{item.sources.map(source => source === 'lookup' ? '题库查词' : '单词学习').join('、')}</AppText>
+            </WordCollectionRow>
           )}
           showsVerticalScrollIndicator={false}
         />
@@ -92,39 +96,11 @@ export function WordFavoritesScreen() {
   );
 }
 
-function FavoriteWordCard({ item, expanded, first, last, onToggle, onRemove }: { item: WordFavoriteItem; expanded: boolean; first: boolean; last: boolean; onToggle: () => void; onRemove: () => Promise<unknown> | unknown }) {
-  return <View style={[styles.card, first && styles.first, last && styles.last]}>
-    <View style={styles.titleRow}>
-      <Pressable accessibilityRole="button" accessibilityLabel={`查看 ${item.word} 释义`} accessibilityState={{expanded}} onPress={onToggle} style={styles.expand}>
-        <View style={styles.titleCopy}><AppText variant="cardTitle">{item.word}</AppText><AppText variant="caption">{item.meaning}</AppText></View>
-        {expanded ? <ChevronDown size={16} color={colors.mutedForeground} style={{transform:[{rotate:'180deg'}]}}/> : <ChevronDown size={16} color={colors.mutedForeground}/>}
-      </Pressable>
-      <Pressable accessibilityLabel={`取消收藏${item.word}`} onPress={() => { void onRemove(); }} style={styles.favoriteButton}><Star color={colors.accent} fill={colors.accent} size={20}/></Pressable>
-    </View>
-    {expanded ? <View style={styles.detail}>
-      {item.aviationMeaning ? <AppText variant="caption">航空释义：{item.aviationMeaning}</AppText> : null}
-      {item.generalMeaning ? <AppText variant="caption">常用释义：{item.generalMeaning}</AppText> : null}
-      <AppText variant="micro">来源：{item.sources.map(source => source === 'lookup' ? '题库查词' : '单词学习').join('、')}</AppText>
-      {item.bookNames.length ? <AppText variant="micro">词书：{item.bookNames.join('、')}</AppText> : null}
-    </View> : null}
-  </View>;
-}
-
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
-  listContent: { padding: spacing[5], paddingBottom: spacing[8] },
-  header: { gap: spacing[2], paddingBottom: spacing[2] },
-  warning: { alignItems: 'center', backgroundColor: 'rgba(183,118,16,0.10)', borderRadius: radii.lg, flexDirection: 'row', gap: spacing[3], marginTop: spacing[2], padding: spacing[3] },
-  warningCopy: { flex: 1 },
-  retry: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 },
-  card: { gap: spacing[2], padding: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: StyleSheet.hairlineWidth },
-  first: {borderTopLeftRadius:radii.xl,borderTopRightRadius:radii.xl},last:{borderBottomLeftRadius:radii.xl,borderBottomRightRadius:radii.xl},
-  expand:{flex:1,flexDirection:'row',alignItems:'center',gap:spacing[2],minHeight:44},detail:{gap:spacing[2],borderTopWidth:1,borderTopColor:colors.border,paddingTop:spacing[3]},
+  listContent: { marginHorizontal: spacing[5], marginTop: spacing[5], marginBottom: spacing[8] },
+  resourceAction: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: spacing[1], minHeight: 44 },
   undo:{flexDirection:'row',alignItems:'center',gap:spacing[2],padding:spacing[3],backgroundColor:colors.card},
-  titleRow: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between' },
-  titleCopy: { flex: 1, gap: spacing[2] },
-  tags: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
-  favoriteButton: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },
   pressed: { backgroundColor: colors.secondary, transform: [{ scale: 0.95 }] },
   partialEmpty: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.xl, borderStyle: 'dashed', borderWidth: 1, gap: spacing[2], marginTop: spacing[3], padding: spacing[8] },
   center: { textAlign: 'center' },

@@ -53,12 +53,12 @@ it('links a looked-up word back to its saved source question using the existing 
   const saved = { ...record, id: 'word-recap', recordType: 'session' as const, sessionRecap: { annotatedCardIds: [], words: [{ word: 'maintaining', favorited: true }] }, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) };
   jest.mocked(loadLearningRecordReview).mockResolvedValueOnce(saved);
   const screen = await render(<StudyReport record={saved} noteCount={0} interaction="speaking" onReturn={jest.fn()} />);
-  await fireEvent.press(screen.getByText('查词与收藏'));
-  await fireEvent.press(screen.getByText(`回到 ${card.taskTitle}`));
-  await waitFor(() => expect(screen.getByText('返回查词与收藏')).toBeTruthy());
+  await fireEvent.press(screen.getByText('查词'));
+  await fireEvent.press(screen.getByText(`来源：${card.taskTitle}`));
+  await waitFor(() => expect(screen.getByText('返回查词')).toBeTruthy());
   expect(loadLearningRecordReview).toHaveBeenLastCalledWith(saved);
-  await fireEvent.press(screen.getByText('返回查词与收藏'));
-  expect(screen.getByText(`回到 ${card.taskTitle}`)).toBeTruthy();
+  await fireEvent.press(screen.getByText('返回查词'));
+  expect(screen.getByText(`来源：${card.taskTitle}`)).toBeTruthy();
 });
 
 it('returns from an embedded exam result to setup on system back', async () => {
@@ -179,3 +179,16 @@ it('refreshes listening results from the same live progress owner when reopening
 });
 
 jest.mock('@/features/question-bank/static-word-lookup/use-word-lookup', () => ({ useWordLookupUpdates: () => 0 }));
+
+it('loads an externalized review before opening its annotation list', async () => {
+  const dataset = data.find(bank => bank.id === 'sentences900') as QuestionBankDataset;
+  const category = dataset.categories[0], topic = category.topics[0], card = topic.cards[0];
+  const summary = { ...record, sessionRecap: { annotatedCardIds: [card.id], words: [] }, studyReview: undefined };
+  const loaded = { ...summary, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) };
+  jest.mocked(loadLearningRecordReview).mockResolvedValueOnce(loaded);
+  const screen = await render(<StudyReport record={summary} noteCount={0} interaction="speaking" onReturn={jest.fn()} />);
+  await fireEvent.press(screen.getByText('标注题目'));
+  await waitFor(() => expect(screen.getByLabelText(`查看标注题目 ${card.taskTitle}`)).toBeTruthy());
+  expect(loadLearningRecordReview).toHaveBeenLastCalledWith(summary);
+  expect(screen.queryByText('本次没有标注题目')).toBeNull();
+});

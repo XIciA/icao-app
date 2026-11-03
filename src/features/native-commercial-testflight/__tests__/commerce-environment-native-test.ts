@@ -1,6 +1,7 @@
 import { getIcaoDistributionEnvironment } from '@icao/distribution-environment';
 import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
+import NativeStorage from 'expo-sqlite/kv-store';
 
 import {
   activateNativeCommerceEnvironment,
@@ -73,10 +74,10 @@ describe('Native commerce environment isolation', () => {
   });
 
   it('does not let a delayed activation from an old account replace the current environment', async () => {
-    const originalGetItem = jest.mocked(Storage.getItem).getMockImplementation();
+    const originalGetItem = jest.mocked(NativeStorage.getItem).getMockImplementation();
     expect(originalGetItem).toBeDefined();
     let releaseOldRead: ((value: string | null) => void) | undefined;
-    const getItem = jest.mocked(Storage.getItem)
+    const getItem = jest.mocked(NativeStorage.getItem)
       .mockImplementationOnce(() => new Promise((resolve) => {
         releaseOldRead = resolve;
       }))
@@ -101,10 +102,10 @@ describe('Native commerce environment isolation', () => {
   });
 
   it('does not let a hung storage read for one account block a different account', async () => {
-    const originalGetItem = jest.mocked(Storage.getItem).getMockImplementation();
+    const originalGetItem = jest.mocked(NativeStorage.getItem).getMockImplementation();
     expect(originalGetItem).toBeDefined();
     let releaseHungRead!: (value: string | null) => void;
-    const getItem = jest.mocked(Storage.getItem)
+    const getItem = jest.mocked(NativeStorage.getItem)
       .mockImplementationOnce(() => new Promise((resolve) => { releaseHungRead = resolve; }))
       .mockImplementation((key) => originalGetItem?.(key) ?? Promise.resolve(null));
     getItem.mockClear();
@@ -129,8 +130,8 @@ describe('Native commerce environment isolation', () => {
     expect(getNativeCommerceEnvironment()).toBe('sandbox');
 
     let releaseRead!: (value: string | null) => void;
-    const originalGetItem = jest.mocked(Storage.getItem).getMockImplementation();
-    jest.mocked(Storage.getItem).mockImplementationOnce(
+    const originalGetItem = jest.mocked(NativeStorage.getItem).getMockImplementation();
+    jest.mocked(NativeStorage.getItem).mockImplementationOnce(
       () => new Promise((resolve) => { releaseRead = resolve; }),
     );
     try {
@@ -148,7 +149,7 @@ describe('Native commerce environment isolation', () => {
       await expect(activation).resolves.toBe('production');
       expect(getNativeCommerceEnvironment()).toBe('production');
     } finally {
-      if (originalGetItem) jest.mocked(Storage.getItem).mockImplementation(originalGetItem);
+      if (originalGetItem) jest.mocked(NativeStorage.getItem).mockImplementation(originalGetItem);
     }
   });
 
@@ -156,8 +157,8 @@ describe('Native commerce environment isolation', () => {
     mockedDistributionEnvironment.mockReturnValue('sandbox');
     await Storage.setItem(`icao.commerce.environment.v1.${ACCOUNT_ID}`, 'sandbox');
     await activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
-    const originalGetItem = jest.mocked(Storage.getItem).getMockImplementation();
-    jest.mocked(Storage.getItem).mockRejectedValueOnce(new Error('storage unavailable'));
+    const originalGetItem = jest.mocked(NativeStorage.getItem).getMockImplementation();
+    jest.mocked(NativeStorage.getItem).mockRejectedValueOnce(new Error('storage unavailable'));
     try {
       const activation = activateNativeCommerceEnvironment(OTHER_ACCOUNT_ID, 'sandbox');
       expect(getNativeCommerceEnvironment()).toBe('production');
@@ -168,15 +169,15 @@ describe('Native commerce environment isolation', () => {
         status: 'inactive',
       });
     } finally {
-      if (originalGetItem) jest.mocked(Storage.getItem).mockImplementation(originalGetItem);
+      if (originalGetItem) jest.mocked(NativeStorage.getItem).mockImplementation(originalGetItem);
     }
   });
 
   it('keeps an aborted activation inactive and ignores its late Sandbox read', async () => {
     mockedDistributionEnvironment.mockReturnValue('sandbox');
     let releaseRead!: (value: string | null) => void;
-    const originalGetItem = jest.mocked(Storage.getItem).getMockImplementation();
-    jest.mocked(Storage.getItem).mockImplementationOnce(
+    const originalGetItem = jest.mocked(NativeStorage.getItem).getMockImplementation();
+    jest.mocked(NativeStorage.getItem).mockImplementationOnce(
       () => new Promise((resolve) => { releaseRead = resolve; }),
     );
     try {
@@ -198,17 +199,17 @@ describe('Native commerce environment isolation', () => {
       await expect(activation).resolves.toBe('production');
       expect(getNativeCommerceEnvironment()).toBe('production');
     } finally {
-      if (originalGetItem) jest.mocked(Storage.getItem).mockImplementation(originalGetItem);
+      if (originalGetItem) jest.mocked(NativeStorage.getItem).mockImplementation(originalGetItem);
     }
   });
 
   it('serializes a delayed confirmation so an old generation cannot overwrite a new one', async () => {
     mockedDistributionEnvironment.mockReturnValue('sandbox');
     await activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
-    const originalSetItem = jest.mocked(Storage.setItem).getMockImplementation();
+    const originalSetItem = jest.mocked(NativeStorage.setItem).getMockImplementation();
     expect(originalSetItem).toBeDefined();
     let releaseOldWrite: (() => void) | undefined;
-    const setItem = jest.mocked(Storage.setItem)
+    const setItem = jest.mocked(NativeStorage.setItem)
       .mockImplementationOnce(() => new Promise<void>((resolve) => {
         releaseOldWrite = resolve;
       }))
@@ -237,10 +238,10 @@ describe('Native commerce environment isolation', () => {
     const storageKey = `icao.commerce.environment.v1.${ACCOUNT_ID}`;
     await Storage.setItem(storageKey, 'production');
     await activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
-    const originalSetItem = jest.mocked(Storage.setItem).getMockImplementation();
+    const originalSetItem = jest.mocked(NativeStorage.setItem).getMockImplementation();
     expect(originalSetItem).toBeDefined();
     let releaseWrite!: () => void;
-    const setItem = jest.mocked(Storage.setItem)
+    const setItem = jest.mocked(NativeStorage.setItem)
       .mockImplementationOnce(() => new Promise<void>((resolve) => { releaseWrite = resolve; }))
       .mockImplementation((key, value) => originalSetItem?.(key, value) ?? Promise.resolve());
     setItem.mockClear();

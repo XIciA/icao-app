@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+import { requestContentCredentials } from '@/features/question-bank/data/content-credential-client.native';
 import { contentReleaseOf, sameContentRelease } from '@/features/question-bank/data/content-version.native';
 import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
@@ -94,8 +96,23 @@ export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[
     if (item) started.add(item.dataset.id);
     return item;
   };
+  const credentialBatches = new Map<number, Promise<unknown>>();
+  const valid = () => { try { assertCurrent(); return true; } catch { return false; } };
   const load = async (item: typeof work[number]) => {
     assertCurrent();
+    // The complete directory can contain hundreds of topics. Prepare credentials
+    // in bounded batches, using the same owner as foreground reads/downloads.
+    if (Platform.OS !== 'web') {
+      const offset = Math.floor(work.indexOf(item) / 24) * 24;
+      let credentials = credentialBatches.get(offset);
+      if (!credentials) {
+        credentials = requestContentCredentials(work.slice(offset, offset + 24).map(entry => ({
+          bankId: entry.dataset.id, categoryId: entry.category.id, topicId: entry.topic.id,
+          version: contentReleaseOf(entry.dataset)?.version,
+        })), { background: true, isCurrent: valid }).catch(() => undefined);
+        credentialBatches.set(offset, credentials);
+      }
+    }
     const topic = await questionBankRepository.getTopic(item.dataset.id, item.category.id, item.topic.id, contentReleaseOf(item.dataset));
     assertCurrent();
     if (!topic || topic.id !== item.topic.id || topic.cards.length < item.topic.access!.declaredCardCount) throw new Error('radio_topic_unavailable');

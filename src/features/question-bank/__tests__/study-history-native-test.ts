@@ -1,4 +1,5 @@
 import Storage from '@/platform/storage';
+import NativeStorage from 'expo-sqlite/kv-store';
 import data from '../data/question-bank.json';
 import { captureStudyReview, toStudyReviewPackage } from '../lib/study-review.native';
 import { clearAiResultRecords, clearLearningRecords, deleteLearningRecord, getLearningRecordPage, getLearningRecords, loadLearningAiRecord, loadLearningRecordReview, resetLearningRecordStorageForTests, updatePendingLearningAiRecord, upsertLearningRecord } from '../platform/learning-record-storage.native';
@@ -17,11 +18,11 @@ it('stores summaries separately and loads only the selected snapshot without nes
   const saved = record();
   saved.studyReview = captureStudyReview(items, { [items[0].id]: { visited: true, completed: true, recorded: true, note: 'not a note snapshot', updatedAt: saved.createdAt, recording: { uri: 'file:///secret.wav' } } } as never, { [items[0].id]: 'answer' });
   await upsertLearningRecord(saved);
-  jest.mocked(Storage.getItem).mockClear();
+  jest.mocked(NativeStorage.getItem).mockClear();
   const [summary] = await getLearningRecords();
   expect(summary.studyReviewSaved).toBe(true);
   expect(summary.studyReview).toBeUndefined();
-  expect(Storage.getItem).toHaveBeenCalledTimes(1);
+  expect(NativeStorage.getItem).toHaveBeenCalledTimes(1);
   const loaded = await loadLearningRecordReview(summary);
   expect(loaded.studyReview?.answers[items[0].id]).toBe('answer');
   expect(JSON.stringify(loaded.studyReview)).not.toContain('file:///');
@@ -58,7 +59,7 @@ it('remote deletion creates a session tombstone even before the local summary ar
 });
 it('clearing AI keeps question snapshots and final answers, and failed atomic saves can retry', async () => {
   const saved = record(); saved.studyReview!.answers[items[0].id] = 'final answer';
-  jest.mocked(Storage.multiSet).mockRejectedValueOnce(new Error('disk_full'));
+  jest.mocked(NativeStorage.multiSet).mockRejectedValueOnce(new Error('disk_full'));
   await expect(upsertLearningRecord(saved)).rejects.toThrow('disk_full');
   expect(await getLearningRecords()).toEqual([]);
   await upsertLearningRecord(saved); await upsertLearningRecord(saved);

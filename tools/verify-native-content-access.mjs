@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 
 const root = process.cwd();
 const contracts = readFileSync(resolve(root, 'packages/contracts/src/index.ts'), 'utf8');
+const credentialClient = readFileSync(resolve(root, 'src/features/question-bank/data/content-credential-client.native.ts'), 'utf8');
 const nativeRepository = readFileSync(resolve(root, 'src/features/question-bank/data/repository.native.ts'), 'utf8');
 const memberContentCache = readFileSync(resolve(root, 'src/features/question-bank/data/member-content-cache.native.ts'), 'utf8');
 const nativeStudyRoute = readFileSync(resolve(root, 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx'), 'utf8');
@@ -30,8 +31,11 @@ const countCards = (banks) => banks.reduce((bankTotal, bank) => bankTotal + bank
 assert.match(nativeRepository, /question-bank-public\.json/u);
 assert.doesNotMatch(nativeRepository, /from ['"]\.\/question-bank\.json['"]/u);
 assert.match(nativeRepository, /\/v1\/question-banks\/\$\{encodeURIComponent\(bankId\)\}\/categories\//u);
-assert.match(nativeRepository, /\/v1\/content-access\/credentials/u);
-assert.match(nativeRepository, /JSON\.stringify\(\{ validity: 'membership', scopes: \[scope\] \}\)/u);
+assert.match(nativeRepository, /requestContentCredentials\(\[scope\]/u);
+assert.match(credentialClient, /\/v1\/content-access\/credentials/u);
+assert.match(credentialClient, /validity: 'membership', scopes:/u);
+assert.match(credentialClient, /verifyContentAccessCredential/u);
+assert.match(credentialClient, /slice\(0, 24\)/u);
 assert.doesNotMatch(nativeRepository, /deviceId|getQuestionBankContentDeviceId/u);
 assert.match(nativeStudyRoute, /useQuestionBankTopic/u);
 assert.match(credentialVerifier, /verifyIcaoEd25519Jws/u);
