@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react-native';
-import { View } from 'react-native';
 import { Download } from '@/components/ui/icons';
 import { colors } from '@/theme';
 import { DownloadPackageCard } from '../DownloadPackageCard.native';
@@ -10,7 +9,7 @@ it.each([
   ['准备中', colors.accent], ['已暂停', colors.accent], ['等待网络', colors.accent], ['等待 Wi-Fi', colors.accent],
   ['稍后重试', colors.accent], ['校验失败', colors.destructive], ['保存失败', colors.destructive],
 ])('renders %s in the correct semantic color without adding a separate feedback row', async (status, color) => {
-  const screen = await render(<DownloadPackageCard title="听力" icon={<View />} open={false} toggle={jest.fn()} status={status}
+  const screen = await render(<DownloadPackageCard title="听力" icon={Download} open={false} toggle={jest.fn()} status={status}
     completed={status === '已下载'} progress={0} size="1 MB" scope="all" scopes={[{ value: 'all', label: '全部', shortLabel: '全部' }]}
     rangeLocked={false} onScope={jest.fn()} action={Download} actionLabel="下载" onAction={jest.fn()} canDelete={false} onDelete={jest.fn()} />);
   expect(screen.getAllByText(status)).toHaveLength(1);

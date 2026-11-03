@@ -12,7 +12,7 @@ import { BookOpen, Download, Pause, Play, RefreshCw } from '@/components/ui/icon
 import { colors } from '@/theme';
 import { fonts } from '@/theme/font-families';
 import { downloadPublicationDate, readDownloadReleaseMetadata, refreshDownloadReleaseMetadata } from './release-metadata';
-import { StudyBankIcon } from '@/features/profile/StudyBankIcon';
+import { studyBankIcons } from '@/features/profile/StudyBankIcon';
 import { currentVocabularyRelease } from '@/features/vocabulary/live-catalog';
 import { DownloadPackageCard } from './DownloadPackageCard.native';
 import type { QuestionBankId } from '../types';
@@ -63,7 +63,7 @@ export function DownloadManagementScreen() {
     setChecking(false);
   }
   return <Screen scroll contentStyle={{ paddingHorizontal: 16 }} header={<TopBar title="下载管理" actionSize={44} style={{ minHeight: 60, paddingHorizontal: 8, borderBottomWidth: 1 }} titleStyle={{ fontSize: 20, lineHeight: 26 }} />}>
-    <View style={styles.toolbar}><View style={{ gap: 2 }}><AppText variant="micro" style={styles.date}>题库更新时间</AppText><AppText variant="micro" style={styles.date}>{date}</AppText></View><Pressable accessibilityRole="button" accessibilityLabel={check} disabled={checking} onPress={() => { void inspect(); }} style={[styles.check, { backgroundColor: checkColors.backgroundColor }]}><RefreshCw size={16} color={checkColors.color} /><AppText variant="micro" style={[styles.small, { color: checkColors.color }]}>{check}</AppText></Pressable></View>
+    <View style={styles.toolbar}><AppText variant="micro" numberOfLines={1} style={[styles.small, { flexShrink: 1, marginRight: 8 }]}>更新于 {date}</AppText><Pressable accessibilityRole="button" accessibilityLabel={check} disabled={checking} onPress={() => { void inspect(); }} style={[styles.check, { backgroundColor: checkColors.backgroundColor }]}><RefreshCw size={16} color={checkColors.color} /><AppText variant="micro" style={[styles.small, { color: checkColors.color }]}>{check}</AppText></Pressable></View>
     {banks.map(bank => <DownloadCard key={bank.id} bank={bank} state={state} open={expanded === bank.id} toggle={() => setExpanded(expanded === bank.id ? undefined : bank.id)} />)}
   </Screen>;
 }
@@ -116,7 +116,7 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
   const label = item?.target ? status(item) : error && !completed ? compactError(error) : item?.outdated ? '有更新' : included ? '已下载' : item?.saved ? '可扩展' : '未下载';
   const Action = busy ? Pause : item?.outdated || !shown ? RefreshCw : item?.target ? Play : Download;
   const actionLabel = busy ? '暂停下载' : item?.outdated ? '更新下载' : !shown ? '重试' : item?.target ? '继续下载' : '下载';
-  return <DownloadPackageCard title={bank.title} icon={bank.id === 'vocabulary' ? <BookOpen size={23} color={colors.primary} strokeWidth={1.7} /> : <StudyBankIcon bankId={bank.id} size={23} />} open={open} toggle={toggle}
+  return <DownloadPackageCard title={bank.title} icon={bank.id === 'vocabulary' ? BookOpen : studyBankIcons[bank.id]} open={open} toggle={toggle}
     status={label} completed={completed} progress={progress} size={shown ? size(shown.sizeBytes) : '—'} scope={scope}
     scopes={scopes.map(value => ({ value, label: vocabulary ? vocabularyScopeLabel(value) : scopeLabel(value), shortLabel: vocabulary ? value === 'preview' ? '预习' : value === 'icao4' ? '必会' : '冲刺' : scopeLabel(value).replace('题库', '') }))}
     rangeLocked={rangeLocked} onScope={value => { selectionTouched.current = true; setScope(value as OfflineDownloadScope); }}
@@ -128,6 +128,5 @@ function DownloadCard({ bank, state, open, toggle }: { bank: typeof banks[number
 const styles = StyleSheet.create({
   toolbar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingBottom: 14 },
   check: { minHeight: 44, minWidth: 112, paddingHorizontal: 10, borderWidth: 1, borderColor: colors.border, borderRadius: 13, backgroundColor: colors.card, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 7 },
-  date: { fontSize: 12, lineHeight: 18, fontFamily: fonts.sansRegular, color: colors.foreground },
   small: { fontSize: 13, lineHeight: 19, fontFamily: fonts.sansRegular, color: colors.foreground },
 });
