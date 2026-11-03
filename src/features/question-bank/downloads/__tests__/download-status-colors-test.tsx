@@ -19,6 +19,7 @@ it.each([
 it('distinguishes update checks, real failures and unknown status text without making every new label red', () => {
   expect(downloadStatusTone('3 项有更新')).toBe('waiting');
   expect(downloadStatusTone('检查中')).toBe('waiting');
+  expect(downloadStatusTone('当前离线')).toBe('waiting');
   expect(downloadStatusTone('已是最新')).toBe('success');
   expect(downloadStatusTone('已下载项为最新')).toBe('success');
   expect(downloadStatusTone('有未完成下载')).toBe('waiting');
