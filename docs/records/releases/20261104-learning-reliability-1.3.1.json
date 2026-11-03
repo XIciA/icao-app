@@ -1,0 +1,130 @@
+{
+  "webApi": {
+    "commit": "98fd7236c46e3012a9f440db0c347a623eea4faf",
+    "web": {
+      "deploymentId": "dpw5fsht0wtk",
+      "projectId": "makers-4khvzoj9ywnq",
+      "origin": "https://readyoufife.com",
+      "entryScript": "/_expo/static/js/web/index-3200b3d2c5326dc066e51560855a4c62.js",
+      "sha256": "3c6be1a85941b6958377e3ff2ba035044b0ae9d6b88210e2d58caa101884d80a",
+      "publicHashVerified": true
+    },
+    "api": {
+      "releaseId": "learning-reliability-20261103-98fd7236",
+      "image": "sha256:9bc21330e3664c80152ae60415e5a9689856108aad427c23980a256945fddb2f",
+      "rollbackImage": "sha256:0a2a1ec148ab560f220ce6298b00c103ff71041913870a04d6c67833c51b227a",
+      "schema": {
+        "applied": 61,
+        "pending": 0,
+        "drift": 0,
+        "migrationsExecuted": false
+      },
+      "preservedContentVersion": 33
+    },
+    "dictionary": {
+      "entries": 7807,
+      "checksum": "542fcb493a1d2d048b21ba9924749df9a80623354f8f379f6f0dd87b02f80d9b",
+      "conditionalStatus": 304
+    }
+  },
+  "ops": {
+    "status": "deployed",
+    "releaseId": "learning-reliability-20261103-98fd7236",
+    "sourceSha": "98fd7236c46e3012a9f440db0c347a623eea4faf",
+    "archiveSha256": "cdd6fa9eaf6e77f132d29d604423c236b1619d80dc947ea2f863c73db04d7ba7",
+    "deployedAt": "2026-11-03T16:05:55Z",
+    "hostname": "api.readyoufife.com",
+    "backup": "icao-20261103T160130Z-1677810.dump",
+    "isolatedRestore": "verified",
+    "migrationLedger": "current-read-only",
+    "opsStaffReadiness": "verified-read-only",
+    "activeAdminCount": 3,
+    "productionDatabaseBytes": 2034453651,
+    "availableBeforeBuildBytes": 44483723264,
+    "requiredBeforeBuildBytes": 8363874598,
+    "availableBeforeRestoreBytes": 40373932032,
+    "requiredBeforeRestoreBytes": 3108195475,
+    "previousState": "running",
+    "opsApiImageId": "sha256:8a9190e126f72316e8176db649d0da376049ef7baffabe411ee0960d7bd27faa",
+    "opsWebImageId": "sha256:1b4d2dd03def51b4b94f19de3de49d509a7f081e0375809edda5bbc6006125f5",
+    "gatewayConfigSha256": "e05d6dc15cfcc58d836430bc52ecc18972b9ee108b98f5b6366484bb302b1d90",
+    "localHealth": "verified",
+    "publicTlsAndHealth": "verified",
+    "ordinaryApiIsolation": "verified",
+    "rollbackSnapshot": "/opt/icao/runtime/releases/ops-learning-reliability-20261103-98fd7236/attempts/20261103T160318Z-1654365"
+  },
+  "aiLive": {
+    "schemaVersion": 1,
+    "kind": "ai-live",
+    "status": "passed",
+    "apiVersion": "learning-reliability-20261103-98fd7236",
+    "apiOrigin": "https://api.readyoufife.com",
+    "verifierFingerprint": "a679c49b56b71d035de13f72064c40e991279bcf554a4c7f70dd223a7bde14a5",
+    "verifiedAt": "2026-11-03T15:54:21.438Z",
+    "checks": {
+      "transcribe": true,
+      "grammar": true,
+      "polish": true,
+      "aviationTerms": true,
+      "temporaryAudioRemoved": true
+    }
+  },
+  "syncLive": {
+    "status": "passed",
+    "deployedApi": "learning-reliability-20261103-98fd7236",
+    "threeHttpStreamsConverged": true,
+    "cumulativeProgressPreserved": true,
+    "latestVisitPreserved": true,
+    "retryDeduplicated": true,
+    "historySingleRow": true,
+    "tombstoneSurvivedReplay": true,
+    "ownerMismatchRejected": true,
+    "realDeviceAcceptance": false,
+    "cleanupComplete": true
+  },
+  "candidate": {
+    "schemaVersion": 1,
+    "commitSha": "98fd7236c46e3012a9f440db0c347a623eea4faf",
+    "createdAt": "2026-11-03T16:05:25.142Z",
+    "bundleIdentifier": "com.readyoufife.ios",
+    "marketingVersion": "1.3.1",
+    "buildNumber": "3596169",
+    "codeFingerprints": {
+      "src/features/question-bank/recording/recording-engine.ts": "ade5d0cd72c4fb49a1abe68c47310c9b056035b74ddddd0317011ad3e52dca2b",
+      "src/features/question-bank/recording/expo-recorder-adapter.ts": "553a3e5e49ce9b5a4ed4ffc94199e66fc2b9479c50bb0b6eeb54ce890a099e60",
+      "src/features/question-bank/recording/expo-recorder-adapter.web.ts": "1409410c6cfcee2abc18747d452f84d7d54b2d47727ef82ff6413dd70d659b34",
+      "src/features/question-bank/recording/recording-repository.ts": "8aedd6470290c933fd0900bc896a6c9f74a8e3c5b23a738b587000f515c49292",
+      "src/features/question-bank/recording/recording-repository.web.ts": "25773fbeb4026dcb80a852785db97c64cc54856e510b776c8cd18978ae86a54f",
+      "src/features/question-bank/recording/recording-container-validator.ts": "b6e84ed6757d68fcd07d3372a0f86856f49fa3add5858afc62e8c24e92c953de",
+      "src/features/question-bank/recording/use-speaking-recording-controller.ts": "7c499249d3061c146c1c578157e2f4643836e80ac6f911854f4ba289dbe56cff",
+      "src/features/question-bank/recording/types.ts": "8657159ca89c79c3ae36182e19d2201d5e6d71bacd99e8550534cf0412d7a2c1",
+      "src/platform/audio/audio-session-orchestrator.ts": "8399f48465b1117d87575629f165a0899af026e591148943527c5d2c3d1dc1ac"
+    },
+    "archiveInfoSha256": "4ade2c808c26c4ee21d558aadfbaf13137c66e7892385b6afc19a921328b547e",
+    "archiveAuditSha256": "3465ff4bdbbef83d8935d999683c88d77a3f47ac8585f0bbc04db11eac88faf1",
+    "ipaSha256": "136f3d18b55a84fb0af425742ad640862f1f7960ebdb2bd5d831bd6fa88d8df5"
+  },
+  "status": "delivered",
+  "realDeviceAcceptance": "pending",
+  "apple": {
+    "checkedAt": "2026-11-03T16:13:49.887Z",
+    "buildId": "a9809e74-1312-49c8-b006-50abee94028f",
+    "build": "3596169",
+    "processingState": "VALID",
+    "uploadedDate": "2026-11-03T08:11:10-08:00",
+    "expired": false,
+    "beta": {
+      "autoNotifyEnabled": true,
+      "internalBuildState": "IN_BETA_TESTING",
+      "externalBuildState": "READY_FOR_BETA_SUBMISSION"
+    },
+    "groups": [
+      {
+        "id": "dc1ad61b-d8b0-4418-b5ec-f97d2fe116ba",
+        "name": "测试",
+        "internal": true,
+        "allBuilds": true
+      }
+    ]
+  }
+}
