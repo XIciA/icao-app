@@ -6,6 +6,7 @@ import { AppText } from '@/components/ui';
 import { Check, ChevronDown, ChevronUp, Trash2, type LucideIcon } from '@/components/ui/icons';
 import { colors } from '@/theme';
 import { fonts } from '@/theme/font-families';
+import { downloadStatusColors } from './download-status-colors';
 
 type Props = {
   title: string; icon: ReactNode; open: boolean; toggle(): void;
@@ -21,13 +22,13 @@ export function DownloadPackageCard(props: Props) {
   const anchor = useRef<View>(null);
   const [menu, setMenu] = useState<{ x: number; y: number }>();
   const selected = props.scopes.find(item => item.value === props.scope)!;
-  const neutral = ['未下载', '下载中', '校验中', '等待下载', '等待中'].includes(props.status);
+  const statusColors = downloadStatusColors(props.status);
   const Action = props.action;
   const small = width < 360;
   return <View style={styles.card}>
     <Pressable accessibilityRole="button" accessibilityState={{ expanded: props.open }} onPress={props.toggle} style={[styles.heading, small && styles.smallHeading]}>
       <View style={styles.icon}>{props.icon}</View><AppText variant="cardTitle" style={styles.title}>{props.title}</AppText>
-      <View style={[styles.badge, { backgroundColor: props.status === '已下载' ? '#E0F5E9' : neutral ? colors.secondary : '#FBE7E7' }]}><AppText variant="micro" style={styles.status} accessibilityLiveRegion="polite">{props.status}</AppText></View>
+      <View style={[styles.badge, { backgroundColor: statusColors.backgroundColor }]}><AppText variant="micro" style={[styles.status, { color: statusColors.color }]} accessibilityLiveRegion="polite">{props.status}</AppText></View>
       {props.open ? <ChevronUp size={17} strokeWidth={1.7} color={colors.foreground} /> : <ChevronDown size={17} strokeWidth={1.7} color={colors.foreground} />}
     </Pressable>
     {props.open ? <View style={styles.body}>

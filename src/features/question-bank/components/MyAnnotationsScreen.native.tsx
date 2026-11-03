@@ -1,3 +1,5 @@
+import { AnnotationMarkers } from './AnnotationMarkers';
+import { HighlightSentence } from './AnnotationText';
 import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
@@ -6,17 +8,17 @@ import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-gu
 import { useFocusEffect } from 'expo-router';
 import { BookOpenText, ChevronRight, Highlighter, NotebookPen, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankId } from '../types';
-import { annotationHighlightBackgrounds, annotationToneColors } from '../annotations/colors';
+import { annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index.native';
 import { useCardReferences } from '../annotations/use-card-references.native';
 import { cardIdentityKey, type CardReference } from '../data/card-references.native';
-import { contentFingerprint, sentenceWordRangeAt, tokenizeStudyText } from '../annotations/text';
+import { sentenceWordRangeAt } from '../annotations/text';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationDefinition, QuestionAnnotationEntry } from '../annotations/types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
@@ -181,11 +183,11 @@ function TagRow({ definitions, entry, onPress, resolution }: { definitions: Map<
   const tags = entry.tagIds.flatMap((id) => definitions.get(id) ? [definitions.get(id)!] : []);
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
+      <AnnotationMarkers definitions={tags} />
       <View style={styles.rowCopy}>
         <AppText numberOfLines={2}>{reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)}</AppText>
         <AppText variant="micro">{referenceMessage(resolution)} · {tags.map((tag) => tag.label).join('、')}</AppText>
       </View>
-      <View accessibilityLabel={`已添加${tags.length}个标签：${tags.map((tag) => tag.label).join('、')}`} style={styles.dotStack}>{tags.map((tag, index) => <View key={tag.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[tag.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
     </Pressable>
   );
@@ -210,51 +212,13 @@ function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: 
   const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
-      <View accessibilityLabel={`高亮颜色：${uniqueDefinitions.map(definition => definition.label).join('、')}`} style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackLine, { backgroundColor: annotationToneColors[definition.color], zIndex: uniqueDefinitions.length - index }, index ? styles.stackLineOverlap : null]} />)}</View>
+      <AnnotationMarkers definitions={uniqueDefinitions} shape="line" />
       <View style={styles.rowCopy}>
         <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)} highlights={visible} sourceText={sourceText} target={first} />
         <AppText variant="micro">{referenceMessage(resolution)} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>
       </View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
     </Pressable>
-  );
-}
-
-function HighlightSentence({ definitions, fallback, highlights, sourceText, target }: {
-  definitions: Map<string, AnnotationDefinition>;
-  fallback: string;
-  highlights: QuestionAnnotationEntry['highlights'];
-  sourceText: string;
-  target: QuestionAnnotationEntry['highlights'][number];
-}) {
-  if (target.contentFingerprint !== contentFingerprint(sourceText)) return <AppText numberOfLines={3}>{fallback}</AppText>;
-  const range = sentenceWordRangeAt(sourceText, target.wordIndex);
-  if (!range) return <AppText numberOfLines={3}>{fallback}</AppText>;
-  const active = new Map(highlights.filter((highlight) => highlight.blockId === target.blockId).map((highlight) => [highlight.wordIndex, highlight]));
-  const words = tokenizeStudyText(sourceText).filter((token) => !token.whitespace);
-  const first = words.find((token) => token.wordIndex === range.startWordIndex);
-  const last = words.find((token) => token.wordIndex === range.endWordIndex);
-  if (!first || !last) return <AppText numberOfLines={3}>{fallback}</AppText>;
-  const tokens = tokenizeStudyText(sourceText).filter((token) => token.start >= first.start && token.end <= last.end);
-  const toneForWord = (wordIndex?: number) => {
-    if (wordIndex === undefined) return undefined;
-    const highlight = active.get(wordIndex);
-    return highlight ? definitions.get(highlight.colorId)?.color : undefined;
-  };
-  return (
-    <AppText numberOfLines={3}>
-      {tokens.map((token, index) => {
-        if (token.whitespace) {
-          const previousTone = toneForWord(tokens[index - 1]?.wordIndex);
-          const nextTone = toneForWord(tokens[index + 1]?.wordIndex);
-          const connectedTone = !token.text.includes('\n') && previousTone && previousTone === nextTone ? previousTone : undefined;
-          return <Text key={`space-${index}`} style={connectedTone ? { backgroundColor: annotationHighlightBackgrounds[connectedTone] } : undefined}>{token.text}</Text>;
-        }
-        const highlight = active.get(token.wordIndex!);
-        const tone = highlight ? definitions.get(highlight.colorId)?.color : undefined;
-        return <Text accessibilityLabel={highlight ? `高亮词：${token.text}` : undefined} key={`word-${token.wordIndex}`} style={tone ? { backgroundColor: annotationHighlightBackgrounds[tone] } : undefined}>{token.text}</Text>;
-      })}
-    </AppText>
   );
 }
 
@@ -312,15 +276,10 @@ const styles = StyleSheet.create({
   colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] },
   filterActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   filterLine: { borderRadius: radii.full, height: 6, width: 16 },
-  stackLine: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 1, height: 6, width: 16 },
-  stackLineOverlap: { marginLeft: -7 },
   filterDot: { borderRadius: radii.full, height: 14, width: 14 },
   list: { marginTop: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1, borderRadius: radii.xl, paddingHorizontal: spacing[4], overflow: 'hidden' },
   rowCard: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', gap: spacing[3], minHeight: 82, paddingVertical: spacing[4] },
   rowCopy: { flex: 1, gap: spacing[2] },
-  dotStack: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
-  stackDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
-  stackDotOverlap: { marginLeft: -5 },
   noteIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 34, justifyContent: 'center', width: 34 },
   pressed: { opacity: 0.8, transform: [{ scale: 0.98 }] },
   unavailable: { opacity: 0.58 },

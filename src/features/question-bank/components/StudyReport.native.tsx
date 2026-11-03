@@ -7,11 +7,11 @@ import { readAnnotationStore } from '../annotations/annotation-store.native';
 import { AnswerCardSheet } from './AnswerCardSheet.native';
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { SessionRecapList } from './SessionRecapList.native';
+import { SessionRecapList, type SessionRecapViewState, type SessionRecapKind } from './SessionRecapList.native';
 import { objectiveReview, selectReview } from '../lib/session-recap';
 import { CheckCircle2, ChevronRight, Flag } from '@/components/ui/icons';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
@@ -24,7 +24,8 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   const offer = guide?.offer;
   useEffect(() => { if (record.recordType !== 'mock_exam' && !externalError) offer?.('study', ['study-recap']); }, [offer, record.id, record.recordType, externalError]);
   const [review, setReview] = useState<QuestionBankStudyPackage>();
-  const [list,setList] = useState<'annotations'|'words'|'wrong'>();
+  const [list,setList] = useState<SessionRecapKind>();
+  const recapViews = useRef<Partial<Record<SessionRecapKind, SessionRecapViewState>>>({});
   const [detail,setDetail] = useState(record);
   const objective = objectiveReview(record.studyReview);
   const [markers, setMarkers] = useState<ReturnType<typeof answerCardMarkers>>([]);
@@ -41,13 +42,27 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   const exam = record.recordType === 'mock_exam';
   const complete = record.reason === 'complete';
   const listening = record.mockExam?.listeningResult;
+  async function openList(kind: SessionRecapKind) {
+    if (openingBusy.current) return;
+    if (getStudyReview(detail)) { setList(kind); return; }
+    openingBusy.current = true;
+    const request = ++openingRequest.current;
+    setOpening(true); setError('');
+    try {
+      const loaded = await loadLearningRecordReview(record);
+      if (request !== openingRequest.current) return;
+      if (!getStudyReview(loaded)) throw new Error('missing_review');
+      setDetail(loaded); setList(kind);
+    } catch { if (request === openingRequest.current) setError('记录暂时无法打开，请重试。'); }
+    finally { if (request === openingRequest.current) { openingBusy.current = false; setOpening(false); } }
+  }
   async function open(itemId?: string) {
     if (openingBusy.current) return;
     openingBusy.current = true;
     const request = ++openingRequest.current;
     setOpening(true); setError('');
     try { const loaded = await loadLearningRecordReview(record); if (request !== openingRequest.current) return; setDetail(loaded); const result = toStudyReviewPackage(itemId ? selectReview(loaded, new Set([itemId])) : loaded); if (!result) throw new Error('missing_review'); setAnswerCard(false); setReview(result); }
-    catch { if (request === openingRequest.current) setError('记录暂时无法打开，请重试。'); }
+    catch { if (request === openingRequest.current) { setError('记录暂时无法打开，请重试。'); if (itemId && list) Alert.alert('无法打开题目', '记录暂时无法打开，请重试。'); } }
     finally { if (request === openingRequest.current) { openingBusy.current = false; setOpening(false); } }
   }
   async function openAnswerCard() {
@@ -80,8 +95,8 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   }
   const back = useLocalBack(!review && (Boolean(list) || Boolean(localReturn && !onContinue)), () => { openingRequest.current++; openingBusy.current = false; setOpening(false); if (list) setList(undefined); else onReturn(); });
   const returnToReport = () => setReview(undefined);
-  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel={list === 'words' ? '返回查词与收藏' : list === 'annotations' ? '返回标注题目' : list === 'wrong' ? '返回错题回顾' : '返回结束页面'} /></Suspense></NativeScreenBoundary>;
-  if (list) return <SessionRecapList kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
+  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel={list === 'words' ? '返回查词' : list === 'annotations' ? '返回标注题目' : list === 'wrong' ? '返回错题回顾' : '返回结束页面'} /></Suspense></NativeScreenBoundary>;
+  if (list) return <SessionRecapList key={list} initialViewState={recapViews.current[list]} onViewStateChange={state => { recapViews.current[list] = state; }} kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
   return <Screen scroll contentStyle={styles.screen} header={<TopBar title="学习回顾" onBack={onContinue && onEnd ? () => { if (!busy) onEnd(); } : back} />}>
 
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
@@ -97,9 +112,9 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
     {externalError && onExitWithoutSave ? <Button disabled={busy} onPress={onExitWithoutSave} variant="ghost">仍然返回</Button> : null}
     {onContinue ? <><Button disabled={busy} onPress={onContinue}>进入下一板块</Button><Button disabled={busy} variant="secondary" onPress={onEnd}>结束考试</Button></> : <>
     <View style={styles.recap}><GuideAnchor id="sentence-recap" /><AppText variant="sectionTitle">本次回顾</AppText>
-      {Boolean(record.sessionRecap?.annotatedCardIds.length) && <ReviewRow title="标注题目" count={record.sessionRecap!.annotatedCardIds.length} onPress={() => { setList('annotations'); }} />}
-      {Boolean(record.sessionRecap?.words.length) && <ReviewRow title="查词与收藏" count={record.sessionRecap!.words.length} onPress={() => setList('words')} />}
-      {objective.wrongIds.length > 0 && <ReviewRow title="错题回顾" count={objective.wrongIds.length} onPress={() => setList('wrong')} />}
+      {Boolean(record.sessionRecap?.annotatedCardIds.length) && <ReviewRow title="标注题目" count={record.sessionRecap!.annotatedCardIds.length} onPress={() => { void openList('annotations'); }} />}
+      {Boolean(record.sessionRecap?.words.length) && <ReviewRow title="查词" count={record.sessionRecap!.words.length} onPress={() => { void openList('words'); }} />}
+      {objective.wrongIds.length > 0 && <ReviewRow title="错题回顾" count={objective.wrongIds.length} onPress={() => { void openList('wrong'); }} />}
       <ReviewRow title={opening ? '正在打开…' : '本次学习记录'} count={record.studiedCount ?? record.totalCount} onPress={() => { if (!opening) void open(); }} />
       <ReviewRow title="查看答题卡" onPress={() => { void openAnswerCard(); }} />
     </View>
