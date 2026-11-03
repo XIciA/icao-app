@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { safeAppDestination } from '@/features/auth/guest-access';
 import { StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
-import { Flame, Headphones, Library, Mic, Sparkles } from '@/components/ui/icons';
+import { membershipBenefits } from './membership-benefits';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, radii, spacing } from '@/theme';
@@ -38,13 +38,7 @@ function WebMembership() {
       <Card style={{ gap: spacing[4], padding: spacing[4] }}>
         <AppText variant="caption" color={colors.mutedForeground}>会员权益</AppText>
         <View style={styles.benefitGrid}>
-          {[
-            { Icon: Library, title: '解锁会员题库', detail: '完整会员题库内容' },
-            { Icon: Sparkles, title: '每周 AI 学习额度', detail: '转写、语法纠错与表达优化' },
-            { Icon: Headphones, title: '会员音频', detail: '随身听解锁会员音频与跟听' },
-            { Icon: Mic, title: '模拟练习', detail: '按题目练习与作答' },
-            { Icon: Flame, title: 'OPI 热点', detail: '参考答案、音频与作答练习；热点概览免费' },
-          ].map(({ Icon, title, detail }) => <View key={title} style={styles.benefit}>
+          {membershipBenefits.map(({ icon: Icon, title, detail }) => <View key={title} style={styles.benefit}>
             <View style={styles.icon}><Icon color={colors.primary} size={19} /></View>
             <View style={{ flex: 1 }}><AppText variant="button">{title}</AppText><AppText variant="micro" color={colors.mutedForeground}>{detail}</AppText></View>
           </View>)}
