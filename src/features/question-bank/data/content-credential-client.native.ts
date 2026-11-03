@@ -67,7 +67,7 @@ async function drain(state: Owner) {
           }
         }
       } catch (error) {
-        if ((error as { status?: number })?.status === 429) {
+        if ((error as { status?: number })?.status === 429 && state.retryAt <= Date.now()) {
           const seconds = (error as { retryAfterSeconds?: number }).retryAfterSeconds;
           state.retryAt = Date.now() + (Number.isFinite(seconds) && seconds! > 0 ? Math.min(seconds!, 900) : 60) * 1000;
         }
