@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-04",
+  "sourceCommit": "8874900f0aed26f6188966eec4b138eaa1787d6b",
+  "preparationPr": "https://github.com/XIciA/icao-app/pull/335",
+  "iosBaseline": {
+    "iosVersion": "1.3.1",
+    "iosBuild": "3596172",
+    "source": "2158d86a640a586863a66a3236d119b65bcf01e8",
+    "userAccepted": true
+  },
+  "android": {
+    "packageName": "com.readyoufife.app.test",
+    "version": "1.3.1",
+    "versionCode": 3596173,
+    "sha256": "f02c25864c48e2e52265a1b6abbf87d5fff88652e72e96b429f361462b9fc636",
+    "sizeBytes": 138403717,
+    "signerSha256": "25d4fe5523417289da5fe0bf970593b98fe4ea658883edeb5792906e31456629",
+    "sameSignerAsPrevious": true,
+    "previousVersionCode": 3593084,
+    "minSdk": "24",
+    "targetSdk": "36",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "productionRuntime": "API and Supabase URL checks passed by release script",
+    "wechat": "unconfigured independent test variant; no callback activity",
+    "actualInstalledUpgrade": "pending-real-device",
+    "immutableFile": "feizhu-icao-android-test-1.3.1-b3596173.apk",
+    "tag": "release/android/v1.3.1-b3596173",
+    "delivery": "published-independent-test-candidate",
+    "url": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.1-b3596173.apk",
+    "channel": "android-test",
+    "channelReadback": {
+      "channel": "android-test",
+      "version": "1.3.1",
+      "build": 3596173,
+      "url": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.1-b3596173.apk",
+      "publicSha256": "f02c25864c48e2e52265a1b6abbf87d5fff88652e72e96b429f361462b9fc636",
+      "publicSizeBytes": 138403717,
+      "otherChannelsUnchanged": true,
+      "unchangedChannels": [
+        "ios-app-store",
+        "android-apk",
+        "ios-testflight"
+      ]
+    },
+    "manifestBackup": "/opt/icao/backups/app-updates/android-test-131-b3596173/updates-before-20261104T112838046119Z.json",
+    "publishedAt": "2026-11-04T11:26:40.541659+00:00",
+    "deviceAcceptance": "pending-user-no-device-connected"
+  },
+  "web": {
+    "status": "success",
+    "projectId": "makers-4khvzoj9ywnq",
+    "deploymentId": "dpxdpmeg7yqh",
+    "consoleUrl": "https://console.cloud.tencent.com/edgeone/pages/project/makers-4khvzoj9ywnq/deployment/dpxdpmeg7yqh",
+    "origin": "https://readyoufife.com",
+    "tag": "release/web-edgeone/20261104-8874900f",
+    "verification": {
+      "origin": "https://readyoufife.com",
+      "entryScripts": [
+        "/_expo/static/js/web/index-517445cf2a2c201d3a85af7adcfdb7da.js"
+      ],
+      "scripts": [
+        {
+          "path": "/_expo/static/js/web/index-517445cf2a2c201d3a85af7adcfdb7da.js",
+          "sha256": "8c0c9bf94755dca50dcd0f97b8a84a1db891d27e5ba3da2ffc1ddb2e658a3480",
+          "sizeBytes": 9590134,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/_expo/static/js/web/sentences-pdf-110fdb38294d0ab501bad3a672a3160f.js",
+          "sha256": "47264dd3e1975f84f3fcaf24ee9914c9892ac4bcb977147b0750cb3e8dd9734e",
+          "sizeBytes": 1528434,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/_expo/static/js/web/SentenceTutorialScreen-056a452e319371e651f5413c9e5bb0ae.js",
+          "sha256": "408cd16487b289d4ddc446d688ee45d9fb0354d5f02adfda0916e6dc84d98fb5",
+          "sizeBytes": 321,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/794-5fb6eff04a716ab6.js",
+          "sha256": "941f0f21a78c296b8648934de9470f807b37cc95f7436205d8333353b55c1fee",
+          "sizeBytes": 222218,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/4bd1b696-215e5051988c3dde.js",
+          "sha256": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d",
+          "sizeBytes": 199864,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/999-dbb92bb463dd6256.js",
+          "sha256": "a203da1926b637484a585aea84f4260cfa1046d63fca40204e2d51599990001d",
+          "sizeBytes": 128995,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/webpack-1fdb114fbf78b4cb.js",
+          "sha256": "1007d9531f0cd386c890a107cd214e577345370710c72c4e7585668c6c7e1ffb",
+          "sizeBytes": 3719,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/460-a2ba968b61aa5645.js",
+          "sha256": "a2ba968b61aa56454dd274a50fdde5bf6503681859fcf0dbe0744ff53cf45c98",
+          "sizeBytes": 28989,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/main-app-1172a43c4d3d5d72.js",
+          "sha256": "1468dbd210f7275e78bad440ccffdfb8cffcf3ff3f40d17ce9d202bc700f2105",
+          "sizeBytes": 513,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/polyfills-42372ed130431b0a.js",
+          "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+          "sizeBytes": 112594,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/app/layout-6c8ab5637d981b23.js",
+          "sha256": "2ba2aed5ac0d1658f6dc642a71b94fd50d8184324493e52b0a438aca57c8a557",
+          "sizeBytes": 3681,
+          "publicHashVerified": true
+        },
+        {
+          "path": "/promo/legacy/static/chunks/app/promo/page-a9e122fdff859af2.js",
+          "sha256": "7df9b67ed43dc7eb8dd3bbb863d94f1fb6a686226c0e5890f907a242009e5dee",
+          "sizeBytes": 3679,
+          "publicHashVerified": true
+        }
+      ]
+    },
+    "browserChecks": {
+      "environment": "Codex in-app browser, guest session, narrow viewport",
+      "home": "five bank entries and navigation rendered",
+      "pdf": {
+        "status": "generated-and-downloaded",
+        "sentences": 900,
+        "pages": 58,
+        "sha256": "60c358cb09cde9b7b996e81dc9d6240f430b5130f60b52341e5c18cf6f7c11e7"
+      },
+      "radio": {
+        "playback": "playing state and progressing time observed after retry",
+        "manualNext": "track 2 then 3 selected",
+        "automaticNext": "track 4 observed after track 3 completed",
+        "counts": {
+          "listening": 1501,
+          "sentences900": 900,
+          "radiotelephony": 5750,
+          "storytelling": 382,
+          "opi": 2274
+        },
+        "bankSwitch": "sentences900 1/900 rendered",
+        "coldEntryObservation": "Two cold entries in the in-app browser displayed Retry audio; a user click restored playback. No console error captured. Browser autoplay/preload compatibility and real-browser cold entry remain unverified; no cause or full cold-start acceptance claimed.",
+        "refreshBackObservation": "After full page reload, in-page back remained on radio; regular route navigation otherwise checked. Recorded for follow-up, not claimed passed."
+      },
+      "consoleErrors": [],
+      "authenticatedFlows": "未专门执行已登录会员、支付和跨设备同步验收；Chrome 沿用既有浏览器状态。",
+      "chromeColdEntry": {
+        "environment": "Installed Google Chrome via native UI",
+        "directUrl": "https://readyoufife.com/content/radio",
+        "initialControl": "播放, no retry",
+        "firstClick": "正在播放, Chrome audio-playing indicator present",
+        "positionAfterPlayback": "0:03",
+        "stateAtEnd": "paused",
+        "limitation": "Single real Chrome cold-entry observation, not mobile-browser acceptance"
+      }
+    }
+  },
+  "checks": {
+    "baseline": {
+      "iosVersion": "1.3.1",
+      "iosBuild": "3596172",
+      "source": "2158d86a640a586863a66a3236d119b65bcf01e8",
+      "userAccepted": true
+    },
+    "androidCandidate": {
+      "version": "1.3.1",
+      "versionCode": 3596173,
+      "package": "com.readyoufife.app.test"
+    },
+    "androidFocused": {
+      "suites": 50,
+      "tests": 375,
+      "status": "passed"
+    },
+    "platformContracts": {
+      "tests": 15,
+      "status": "passed"
+    },
+    "fullCheck": {
+      "command": "CI=true QUESTION_BANK_AUDIO_ROOT=/private/tmp/icao-verification-media/audio pnpm check",
+      "frontendSuites": 283,
+      "frontendTests": 2000,
+      "apiFiles": 89,
+      "apiTests": 823,
+      "apiSkippedTests": 3,
+      "resourceSizeChecks": 12651
+    },
+    "device": "adb devices -l: no connected Android devices",
+    "wechat": "Existing android-test variant removes App ID and Universal Link. Android login availability requires configured SDK; payment availability is checked before creating an order. Official registration/server configuration unchanged. This is an unresolved test-configuration difference, not a mandatory OS difference.",
+    "web": "Browser-specific radio provider retained: current loading/prepared track prevents duplicate automatic preparation; generation+content-owner checks discard stale responses. Shared PDF changes included. No browser download/offline capability added."
+  },
+  "downloadPage": {
+    "url": "https://readyoufife.com/download",
+    "testHref": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.1-b3596173.apk",
+    "officialHref": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-1.2.1-b3578875.apk",
+    "officialDisplayVersion": "1.2.1",
+    "method": "Browser accessibility state and DOM href readback",
+    "status": "passed"
+  },
+  "unchanged": [
+    "iOS build 3596172 and accepted source product behavior",
+    "android-apk 1.2.1 / 3578875",
+    "ios-app-store and ios-testflight update manifest entries",
+    "production API and database",
+    "official WeChat configuration and payment implementation",
+    "pnpm-lock.yaml",
+    "original workspace tracked diff and status fingerprints"
+  ],
+  "rollback": {
+    "androidTest": {
+      "channel": "android-test",
+      "available": true,
+      "version": "1.3.0",
+      "build": 3593084,
+      "publishedAt": "2026-11-01T14:04:59.379134Z",
+      "notes": "修复安卓刷题返回时短暂显示结束学习页的问题；保留学习记录保存和主动结束时的报告。",
+      "url": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.0-b3593084.apk",
+      "sha256": "a1022328a5d198c8f716830e466d074cd5d3dae391f9b9b27172a946281a9810",
+      "sizeBytes": 138350237
+    },
+    "web": {
+      "deploymentId": "dph7hstgf9hz",
+      "sourceCommit": "c841dbaebfd02784db679d50ed289903417b597d",
+      "tag": "release/web-edgeone/20261104-c841dbae"
+    }
+  },
+  "evidenceDirectory": "/Users/zhouyide/.codex/artifacts/android-web-3596172-20261104",
+  "migration": "none",
+  "newIosBuild": "not-performed"
+}
