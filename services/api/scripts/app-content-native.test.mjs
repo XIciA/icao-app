@@ -123,9 +123,9 @@ function mediaFixture() {
     static async downloadFileAsync(url, file) { files.set(file.uri, downloads.get(url)); }
   }
   const crypto = { AESKeySize: { AES256: 256 }, AESEncryptionKey: { generate: async () => ({ encoded: async () => 'key' }), import: async () => ({}) },
-    AESSealedData: { fromCombined: (value) => value },
-    aesEncryptAsync: async (bytes) => ({ combined: async (encoding) => encoding === 'base64' ? Buffer.from(bytes).toString('base64') : new Uint8Array(Buffer.concat([Buffer.alloc(16), Buffer.from(bytes)])) }),
-    aesDecryptAsync: async (value) => new Uint8Array(typeof value === 'string' ? Buffer.from(value, 'base64') : Buffer.from(value).subarray(16)),
+    AESSealedData: { fromCombined: (value) => { if (!(value instanceof Uint8Array)) throw new TypeError('Android expects Uint8Array'); return value; } },
+    aesEncryptAsync: async (bytes) => ({ combined: async (encoding) => { const sealed = Buffer.concat([Buffer.alloc(16), Buffer.from(bytes)]); return encoding === 'base64' ? sealed.toString('base64') : new Uint8Array(sealed); } }),
+    aesDecryptAsync: async (value) => new Uint8Array(Buffer.from(value).subarray(16)),
     CryptoDigestAlgorithm: { SHA256: 'sha256' }, digestStringAsync: async (_, value) => createHash('sha256').update(value).digest('hex'),
     digest: async (_, bytes) => { const hash = new Uint8Array(createHash('sha256').update(bytes).digest()); return hash.buffer; } };
   const filesystem = { Directory, File, Paths: { document: 'file:/test', cache: 'file:/cache' } };
@@ -153,6 +153,7 @@ function mediaFixture() {
   }, { setTimeout, clearTimeout, setInterval, clearInterval });
   const secureStore = { getItemAsync: async (key) => secure.get(key) ?? null, setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) };
   const repository = evaluate('src/features/question-bank/data/member-content-cache.native.ts', {
+    'react-native': { Platform: { OS: 'android' } },
     '@icao/contracts': { validContentScopeId },
     './shared-resource-transfers.native': transfers,
     'expo-crypto': crypto, 'expo-file-system': filesystem, '@/platform/storage': kv,
@@ -160,7 +161,7 @@ function mediaFixture() {
     './offline-clock.native': evaluate('src/features/question-bank/data/offline-clock.native.ts', { 'expo-secure-store': secureStore }),
     '@/features/native-commercial-testflight/commerce-environment': { getNativeCommerceEnvironment: () => 'production', nativeCommerceEnvironmentSnapshot: () => 'production' },
     './content-credential-verifier.native': { verifyContentAccessCredential: () => true, inspectContentAccessCredential: () => 'valid' },
-  }, { TextEncoder, TextDecoder, Uint8Array });
+  }, { TextEncoder, TextDecoder, Uint8Array, atob });
   return { repository, downloads, files, nativeTransfers };
 }
 
