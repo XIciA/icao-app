@@ -36,7 +36,8 @@ await output('public/promo/icon.svg', `<svg xmlns="http://www.w3.org/2000/svg" v
 for (const file of ['public/promo/index.html', 'official-site/index.html', 'official-site/projects/icao/index.html']) {
   let html = await readFile(resolve(root, file), 'utf8');
   // Update both HTML links and serialized Next metadata; hydration must not restore old URLs.
-  html = html.replace(/((?:\/promo\/(?:icon-light-32x32\.png|icon-dark-32x32\.png|apple-icon\.png|icon\.svg)|\/assets\/images\/icoach-icon\.png))(?:\?v=[a-f0-9]+)?/gu, `$1?v=${digest}`);
+  html = html.replace(/\/(?:promo\/)?(icon-light-32x32\.png|icon-dark-32x32\.png|apple-icon\.png|icon\.svg)(?:\?v=[a-f0-9]+)?/gu, `/promo/$1?v=${digest}`);
+  html = html.replace(/(\/assets\/images\/icoach-icon\.png)(?:\?v=[a-f0-9]+)?/gu, `$1?v=${digest}`);
   html = html.replaceAll('v0.app', '听你五个');
   await output(file, html);
 }
