@@ -52,11 +52,14 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
     void fetch(APP_UPDATE_MANIFEST_URL, { signal: controller.signal, cache: 'no-store' })
       .then(async (response) => {
         if (!response.ok) throw new Error('download_manifest_unavailable');
-        const releases = parseAppUpdates(await response.json());
+        const manifest = await response.json();
+        const releases = parseAppUpdates(manifest);
+        // Manual same-package preview is separate from the legacy .test app update channel.
+        const preview = parseAppUpdates({ schemaVersion: 1, releases: [manifest?.manualAndroidPreview] });
         const published = newerAppUpdate(releases, 'android-apk', '0.0.0', '0');
         if (active) {
           setRelease(published);
-          setTestRelease(newerAppUpdate(releases, 'android-test', '0.0.0', '0'));
+          setTestRelease(newerAppUpdate(preview, 'android-test', '0.0.0', '0') ?? newerAppUpdate(releases, 'android-test', '0.0.0', '0'));
           setDownloadState('ready');
         }
       })
@@ -68,7 +71,7 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
   const loadingDownload = usePublishedRelease && downloadState === 'loading';
   const failedDownload = usePublishedRelease && downloadState === 'error';
   return (
-    <Screen scroll contentStyle={styles.screen} header={<TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} right={testRelease ? <Link href={testRelease.url as Href} asChild><Pressable accessibilityRole="link" accessibilityLabel="下载 Android 测试版" style={{ padding: spacing[2] }}><AppText variant="caption" color={colors.mutedForeground}>Android 测试版</AppText></Pressable></Link> : undefined} />}>
+    <Screen scroll contentStyle={styles.screen} header={<TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} right={testRelease ? <Link href={testRelease.url as Href} asChild><Pressable accessibilityRole="link" accessibilityLabel="下载 Android 提前体验版" style={{ padding: spacing[2] }}><AppText variant="caption" color={colors.mutedForeground}>Android 提前体验</AppText></Pressable></Link> : undefined} />}>
       <View style={styles.content}>
         <View style={styles.hero}>
           <View style={styles.logo}><AppBrandLogo size="lg" accessibilityLabel="听你五个 Logo" /></View>

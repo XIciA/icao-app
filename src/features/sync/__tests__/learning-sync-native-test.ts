@@ -317,9 +317,9 @@ it('archives an accepted vocabulary write and outbox together before switching a
   let release!: () => void, entered!: () => void;
   const gate = new Promise<void>(done => { release = done; });
   const started = new Promise<void>(done => { entered = done; });
-  const write = mutateVocabularyInCurrentWorkspace(context, async () => {
+  const write = mutateVocabularyInCurrentWorkspace(context, async commit => {
     entered(); await gate;
-    return writeVocabularyState({ ...createEmptyVocabularyState(), words: { pilot: { status: 'known', favorite: true, updatedAt: '2026-10-16T00:00:00.000Z' } } });
+    return writeVocabularyState({ ...createEmptyVocabularyState(), words: { pilot: { status: 'known', favorite: true, updatedAt: '2026-10-16T00:00:00.000Z' } } }, commit);
   });
   await started;
   const swap = switchLearningSyncAccount('B');
@@ -515,4 +515,89 @@ it('preserves unreadable pending sync bytes instead of replacing them with an em
   await expect(sqliteLearningStore.saveCardState(topic.id, card.id, { visited: true, completed: true, note: '', updatedAt: new Date().toISOString() }, bank.id)).rejects.toThrow();
   expect(mockValues.get('icao.learning.v3.sync.outbox')).toBe(damaged);
   expect(mockValues.get(`icao.learning.v2.topic.${topic.id}`)).toBeUndefined();
+});
+
+
+const vocabularyAt = (favorite: boolean, time = '2026-11-04T00:00:00.000Z') => ({
+  ...createEmptyVocabularyState(), updatedAt: time,
+  words: { pilot: { status: 'known' as const, favorite, updatedAt: time } },
+});
+const saveVocabulary = (state: ReturnType<typeof vocabularyAt>) =>
+  mutateVocabularyInCurrentWorkspace(captureLearningWriteContext(), commit => writeVocabularyState(state, commit));
+
+it.each(['answer', 'next'] as const)('saves vocabulary %s before a slow pull finishes, then reconciles remote words', async action => {
+  await switchLearningSyncAccount('A');
+  const started = deferred(), gate = deferred();
+  const remote = { ...vocabularyAt(false), words: { tower: { status: 'vague', favorite: false, updatedAt: '2026-11-03T00:00:00.000Z' } } };
+  let pulls = 0;
+  mockApiRequest.mockImplementation(async (path: string, init?: RequestInit) => {
+    if (path.includes('/push')) {
+      const body = JSON.parse(init!.body as string);
+      const mutation = body.mutations[0];
+      expect(mutation.payload.document.words.pilot.favorite).toBe(true);
+      expect(mutation.payload.version).toBeGreaterThan(50);
+      return { results: [{ mutationId: mutation.mutationId, status: 'accepted', authoritative: {
+        ...mutation.payload, version: 52,
+        document: { ...mutation.payload.document, words: { ...remote.words, ...mutation.payload.document.words } },
+      } }] };
+    }
+    if (++pulls === 1) {
+      started.release(); await gate.promise;
+      return { changes: [{ kind: 'document', payload: { documentKey: 'vocabulary', document: remote, version: 50 } }], cursor: 1, hasMore: false };
+    }
+    return { changes: [], cursor: 2, hasMore: false };
+  });
+  const syncing = runLearningSync('A'); await started.promise;
+  const state = { ...vocabularyAt(true), ...(action === 'next' ? { studySession: {
+    bookId: 'preview', wordIds: ['pilot', 'tower'], nextWordId: 'tower', order: 'frequency' as const,
+    startedAt: '2026-11-04T00:00:00.000Z', updatedAt: '2026-11-04T00:01:00.000Z', answers: { pilot: 'known' as const },
+  } } : {}) };
+  await saveVocabulary(state); // Must settle while HTTP is still blocked.
+  expect((await readVocabularyState()).words.pilot.favorite).toBe(true);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+  gate.release(); await syncing;
+  const saved = await readVocabularyState();
+  expect(saved.words.pilot.favorite).toBe(true);
+  expect(saved.words.tower.status).toBe('vague');
+  if (action === 'next') expect(saved.studySession?.nextWordId).toBe('tower');
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+});
+
+it('a late vocabulary push cannot acknowledge or overwrite an edit made during its HTTP request', async () => {
+  await switchLearningSyncAccount('A'); await saveVocabulary(vocabularyAt(false));
+  const started = deferred(), gate = deferred();
+  let pushes = 0;
+  mockApiRequest.mockImplementation(async (path: string, init?: RequestInit) => {
+    if (!path.includes('/push')) return { changes: [], cursor: 2, hasMore: false };
+    const mutation = JSON.parse(init!.body as string).mutations[0];
+    if (++pushes === 1) { started.release(); await gate.promise; }
+    else {
+      expect((await readVocabularyState()).words.pilot.favorite).toBe(true);
+      expect(mutation.payload.version).toBeGreaterThan(50);
+    }
+    return { results: [{ mutationId: mutation.mutationId, status: 'accepted', authoritative: { ...mutation.payload, version: 49 + pushes } }] };
+  });
+  const syncing = runLearningSync('A'); await started.promise;
+  await saveVocabulary(vocabularyAt(true, '2026-11-04T00:01:00.000Z'));
+  gate.release(); await syncing;
+  expect(pushes).toBe(2);
+  expect((await readVocabularyState()).words.pilot.favorite).toBe(true);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+});
+
+it('a cloud generation reset clears concurrent vocabulary edits without resurrecting them', async () => {
+  await switchLearningSyncAccount('A');
+  const started = deferred(), gate = deferred(); let pulls = 0;
+  mockApiRequest.mockImplementation(async (path: string) => {
+    expect(path).toContain('/pull');
+    if (++pulls === 1) { started.release(); await gate.promise; }
+    return { changes: [], cursor: 0, hasMore: false, dataGeneration: 1, aiResultGeneration: 1 };
+  });
+  const oldContext = captureLearningWriteContext();
+  const syncing = runLearningSync('A'); await started.promise;
+  await saveVocabulary(vocabularyAt(true));
+  gate.release(); await syncing;
+  expect((await readVocabularyState()).words).toEqual({});
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+  await expect(mutateVocabularyInCurrentWorkspace(oldContext, async () => vocabularyAt(true))).rejects.toThrow('learning_owner_or_generation_changed');
 });

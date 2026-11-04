@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'expo-module-gradle-plugin'
+
+group = 'com.icao.distribution'
+version = '1.0.0'
+
+android {
+  namespace "com.icao.distribution"
+  defaultConfig {
+    versionCode 1
+    versionName project.version.toString()
+    minSdkVersion 24
+    targetSdkVersion 36
+  }
+}
+
+dependencies {
+  implementation project(':expo-modules-core')
+  // Lightweight verifier API, no global provider registration or Android API 33 dependency.
+  implementation 'org.bouncycastle:bcprov-jdk18on:1.86'
+  testImplementation 'junit:junit:4.13.2'
+  testImplementation 'org.json:json:20240303'
+}

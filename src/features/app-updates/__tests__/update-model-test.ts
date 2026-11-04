@@ -20,3 +20,10 @@ it('compares semantic versions numerically and picks the newest usable release',
   const newer = { ...android, version: '1.10.0', build: 110 };
   expect(newerAppUpdate([newer, android], 'android-apk', '1.9.0', '105')).toBe(newer);
 });
+it('never offers a website-only same-package preview to installed formal or legacy test apps', () => {
+  const legacy = { ...android, channel: 'android-test' as const };
+  const manualAndroidPreview = { ...legacy, build: 200 };
+  const releases = parseAppUpdates({ schemaVersion: 1, releases: [android, legacy], manualAndroidPreview });
+  expect(newerAppUpdate(releases, 'android-apk', '1.2.0', '100')).toBeUndefined();
+  expect(newerAppUpdate(releases, 'android-test', '1.2.0', '100')).toBeUndefined();
+});

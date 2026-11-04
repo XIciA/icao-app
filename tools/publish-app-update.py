@@ -42,15 +42,29 @@ def validate(release):
             raise ValueError('APK size required')
 
 
+def updated_manifest(previous, release, manual_android_preview=False):
+    manifest = dict(previous)
+    if manual_android_preview:
+        if release['channel'] != 'android-test':
+            raise ValueError('Manual preview requires an Android test release')
+        manifest['manualAndroidPreview'] = release
+    else:
+        manifest['releases'] = [item for item in previous['releases'] if item.get('channel') != release['channel']] + [release]
+    return manifest
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--env-file', required=True)
     parser.add_argument('--release', required=True)
     parser.add_argument('--apk')
+    parser.add_argument('--manual-android-preview', action='store_true', help='Publish only the website preview; preserve all installed-app update channels')
     parser.add_argument('--backup-dir', required=True)
     args = parser.parse_args()
     release = json.loads(Path(args.release).read_text())
     validate(release)
+    if args.manual_android_preview and release['channel'] != 'android-test':
+        raise ValueError('Manual preview requires an Android test release')
     values = dict(line.split('=', 1) for line in Path(args.env_file).read_text().splitlines() if '=' in line and not line.startswith('#'))
     key = values.get('SERVICE_ROLE_KEY', '').strip().strip('"').strip("'")
     if not key:
@@ -95,7 +109,7 @@ def main():
             raise ValueError('Public APK verification failed')
     if request('GET', '/authenticated' + MANIFEST) != previous:
         raise ValueError('Manifest changed concurrently; retry against its new state')
-    manifest['releases'] = [item for item in manifest['releases'] if item.get('channel') != release['channel']] + [release]
+    manifest = updated_manifest(manifest, release, args.manual_android_preview)
     result = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode()
     request('POST', MANIFEST, result, upsert=True)
     actual = json.loads(request('GET', '/authenticated' + MANIFEST))
