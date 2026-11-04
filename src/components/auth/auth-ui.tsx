@@ -1,8 +1,9 @@
 import { useRouter } from 'expo-router';
-import { ArrowLeft, Plane, Eye, EyeOff, Check } from '@/components/ui/icons';
+import { ArrowLeft, Eye, EyeOff, Check } from '@/components/ui/icons';
 import { useState } from 'react';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
+import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, TextField, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, spacing } from '@/theme';
@@ -44,11 +45,7 @@ export function AuthHeading({ title, subtitle }: { title: string; subtitle?: str
 }
 
 export function BrandMark({ large = false }: { large?: boolean }) {
-  return (
-    <View style={[styles.brand, large && styles.brandLarge]}>
-      <Plane color={colors.primaryForeground} size={large ? 30 : 22} style={{ transform: [{ rotate: '-45deg' }] }} />
-    </View>
-  );
+  return <AppBrandLogo size={large ? 'md' : 'sm'} />;
 }
 
 export function AuthField({
@@ -157,8 +154,6 @@ const styles = StyleSheet.create({
   glow: { right: -155, top: -175 },
   back: { alignItems: 'center', height: 42, justifyContent: 'center', marginLeft: -spacing[2], marginTop: spacing[1], width: 42 },
   heading: { gap: spacing[1.5], marginTop: spacing[1] },
-  brand: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 54, justifyContent: 'center', width: 54 },
-  brandLarge: { height: 68, width: 68 },
   authField: { gap: spacing[2] },
   authInputWrapper: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 48, paddingHorizontal: spacing[3.5] },
   rawInput: { color: colors.foreground, flex: 1, fontFamily: fonts.sansRegular, fontSize: 14, paddingVertical: spacing[3] },
