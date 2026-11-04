@@ -18,7 +18,7 @@
     "web:serve": "node scripts/serve-web-export.mjs",
     "check:web:assets": "node scripts/check-web-question-bank-assets.mjs",
     "check:web:boot-shell": "node scripts/check-web-boot-shell.mjs",
-    "check:web:source": "node tools/check-lucide-import-boundary.mjs && node scripts/check-promo-assets.mjs",
+    "check:web:source": "node tools/check-lucide-import-boundary.mjs && node scripts/check-promo-assets.mjs && node scripts/sync-static-brand.mjs --check",
     "web:bundle:analyze": "EXPO_PUBLIC_ICAO_UI_ACCEPTANCE=0 EXPO_PUBLIC_ICAO_WEB_SAME_ORIGIN_ASSETS=1 EXPO_PUBLIC_ICAO_WEB_SAME_ORIGIN_CONTENT=1 expo export --platform web --source-maps external --output-dir .generated/web-bundle-analysis --clear && node scripts/analyze-web-bundle.mjs .generated/web-bundle-analysis --report .generated/web-bundle-report.json",
     "check:web:bundle": "EXPO_PUBLIC_ICAO_UI_ACCEPTANCE=0 EXPO_PUBLIC_ICAO_WEB_SAME_ORIGIN_ASSETS=1 EXPO_PUBLIC_ICAO_WEB_SAME_ORIGIN_CONTENT=1 expo export --platform web --source-maps external --output-dir .generated/web-bundle-analysis --clear && node scripts/analyze-web-bundle.mjs .generated/web-bundle-analysis --check --report .generated/web-bundle-report.json",
     "check:web:performance-report": "node scripts/check-web-performance-report.mjs",
