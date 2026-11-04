@@ -67,11 +67,12 @@ export async function hydrateRadioCatalogTopic(
 
 /** Build one complete authorized directory before exposing queue counts. Audio
  * files stay lazy; only the existing topic repository supplies protected text. */
-export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[], assertCurrent: () => void = () => undefined, onProgress?: (datasets: QuestionBankDataset[]) => void, priorityBankId?: QuestionBankDataset['id'] | (() => QuestionBankDataset['id'])) {
+export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[], assertCurrent: () => void = () => undefined, onProgress?: (datasets: QuestionBankDataset[]) => void, priorityBankId?: QuestionBankDataset['id'] | (() => QuestionBankDataset['id']), { directoryOnly = false }: { directoryOnly?: boolean } = {}) {
   const hydrated = datasets.map(dataset => ({ ...dataset, categories: dataset.categories.map(category => ({ ...category, topics: [...category.topics] })) }));
   const work = hydrated.flatMap(dataset => dataset.access?.membershipActive === true
     ? dataset.categories.flatMap(category => category.topics.flatMap((topic, index) =>
       topic.access?.level === 'member' && topic.cards.length < topic.access.declaredCardCount
+        && !(directoryOnly && Array.isArray(topic.radioEntries))
         ? [{ dataset, category, topic, index }] : [])) : []);
   // Interleave banks: hundreds of small ATC topics must not starve OPI.
   const queues = hydrated.map(bank => work.filter(item => item.dataset.id === bank.id));

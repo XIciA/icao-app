@@ -23,7 +23,10 @@ const mockPlay = jest.fn(async () => undefined);
 const mockPause = jest.fn(async () => undefined);
 const mockAcquire = jest.fn(async () => ({ token: 'lease' }));
 const mockCoordinator = new RadioOperationCoordinator();
-const mockLoadCatalogs = jest.fn(async (_selection?: unknown, _options?: { complete?: boolean; onProgress?: (datasets: never[]) => void }) => []);
+const mockLoadCatalogs = jest.fn(async (_selection?: unknown, _options?: { complete?: boolean; directoryOnly?: boolean; onProgress?: (datasets: never[]) => void }) => []);
+const mockHydrateTopic = jest.fn(async (value: unknown) => value);
+const mockReadSnapshot = jest.fn(async (): Promise<string | undefined> => undefined);
+const mockSeek = jest.fn(async (_position: number) => undefined);
 
 const mockAnnotationStore = { version: 2, legacyImported: true, tagDefinitions: [{ id: 'good', label: '好题', color: 'green' }], highlightDefinitions: [], entries: Object.fromEntries(['t0', 't2', 't4'].map(cardId => [cardId, { bankId: 'listening', categoryId: 'c', topicId: 'topic', cardId, tagIds: ['good'], highlights: [], note: '', updatedAt: '' }])) };
 jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ store: mockAnnotationStore }) }));
@@ -33,10 +36,10 @@ jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => 
 jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({ nativeCommerceEnvironmentSnapshot: () => 'production', subscribeNativeCommerceEnvironment: () => () => undefined }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolveQuestionBankAsset: () => undefined, resolveRemoteQuestionBankAsset: (path: string) => mockResolve(path) }));
-jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: (...args: Parameters<typeof mockLoadCatalogs>) => mockLoadCatalogs(...args), deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => [...mockSelectionCatalogs(selection)] }));
-jest.mock('../catalog-hydration.native', () => ({ mergeRadioCatalogProgress: (incoming: unknown) => incoming, hydrateRadioCatalogTopic: async (value: unknown) => value, nextRadioCatalogTopic: () => undefined }));
+jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: (...args: Parameters<typeof mockLoadCatalogs>) => mockLoadCatalogs(...args), deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => mockSelectionCatalogs(selection).map(catalog => ({ ...catalog, tracks: catalog.tracks.map(track => ({ ...track })) })) }));
+jest.mock('../catalog-hydration.native', () => ({ mergeRadioCatalogProgress: (incoming: unknown) => incoming, hydrateRadioCatalogTopic: (value: unknown) => mockHydrateTopic(value), nextRadioCatalogTopic: () => undefined }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: () => mockAcquire(), release: async () => undefined, register: (_owner: string, client: { deactivate: () => Promise<void> }) => { mockDeactivate = client.deactivate; return () => undefined; } } }));
-jest.mock('../radio-player-storage', () => ({ activateRadioPlayerSession: async () => true, clearRadioPlayerAccountData: async () => undefined, readRadioPlayerSnapshot: async () => undefined, registerRadioPlayerRuntimeReset: () => () => undefined, saveRadioPlayerSnapshot: async () => undefined }));
+jest.mock('../radio-player-storage', () => ({ activateRadioPlayerSession: async () => true, clearRadioPlayerAccountData: async () => undefined, readRadioPlayerSnapshot: () => mockReadSnapshot(), registerRadioPlayerRuntimeReset: () => () => undefined, saveRadioPlayerSnapshot: async () => undefined }));
 jest.mock('../track-player-runtime', () => ({
   ensureRadioTrackPlayer: async () => undefined, setRadioContentPlaybackRate: () => undefined,
   setRadioRemoteHandlers: () => undefined,
@@ -52,7 +55,7 @@ jest.mock('react-native-track-player', () => ({
     removeUpcomingTracks: async () => { mockQueue = mockQueue.slice(0, mockActive + 1); },
     getQueue: async () => [...mockQueue], getActiveTrackIndex: async () => mockActive,
     getActiveTrack: async () => mockQueue[mockActive], getProgress: async () => ({ position: 3, duration: 20 }),
-    setRate: async () => undefined, setRepeatMode: async () => undefined, seekTo: async () => undefined,
+    setRate: async () => undefined, setRepeatMode: async () => undefined, seekTo: (position: number) => mockSeek(position),
     skipToNext: async () => { mockActive += 1; mockPlaybackHandler?.({ type: 'active', track: mockQueue[mockActive] }); },
     pause: () => mockPause(), play: () => mockPlay(),
   },
@@ -68,7 +71,7 @@ async function flush() { await act(async () => { for (let i = 0; i < 80; i += 1)
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>((r) => { resolve = r; }); return { promise, resolve }; }
 
 describe('radio native queue integration', () => {
-  beforeEach(() => { mockPlayback = 'paused'; mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
+  beforeEach(() => { mockPlayback = 'paused'; mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockReadSnapshot.mockReset().mockResolvedValue(undefined); mockHydrateTopic.mockReset().mockImplementation(async value => value); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
   afterEach(() => jest.restoreAllMocks());
 
   it('applies filtering to buffered audio, next/previous and shuffle while retaining the current track', async () => {
@@ -157,11 +160,135 @@ describe('radio native queue integration', () => {
     } finally { await view.unmount(); mockCatalogs[0].tracks = mockTracks; mockCatalogs.pop(); }
   });
 
-  it('keeps startup metadata-only and expands authorized text when the radio session opens', async () => {
+  it('keeps startup metadata-only and requests only missing directory positions when the radio session opens', async () => {
     const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
     expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: false, bankId: 'listening' }));
     await act(() => mockContext.activateSession()); await flush();
-    expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: true, bankId: 'listening' }));
+    expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: true, directoryOnly: true, bankId: 'listening' }));
+    await view.unmount();
+  });
+
+  it('keeps one cold audio preparation through directory updates and plays its first result', async () => {
+    const slow = deferred<string>();
+    mockResolve.mockImplementation(path => path === '/audio/0.mp3' ? slow.promise : Promise.resolve(`file://${path}`));
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.activateSession()); await flush();
+    const progress = mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress;
+    for (let i = 0; i < 5; i++) {
+      await act(() => progress?.([])); await flush();
+      expect(mockContext.currentCatalog?.tracks).toHaveLength(6);
+      expect(mockContext.currentIndex).toBe(0);
+    }
+    await act(() => { void mockContext.play(); }); await flush();
+    expect(mockResolve).toHaveBeenCalledTimes(1);
+    await act(() => slow.resolve('file:///first.mp3')); await flush();
+    expect(mockQueue[0]).toMatchObject({ radioTrackId: 't0', url: 'file:///first.mp3' });
+    expect(mockContext.loading).toBe(false);
+    expect(mockPlay).toHaveBeenCalledTimes(1);
+    expect(mockResolve.mock.calls.filter(([path]) => path === '/audio/0.mp3')).toHaveLength(1);
+    await act(() => progress?.([])); await flush();
+    expect(mockPlay).toHaveBeenCalledTimes(1);
+    await view.unmount();
+  });
+
+  it('keeps the latest bank selection while an older bank is still preparing', async () => {
+    const slow = deferred<string>();
+    mockCatalogs.push({ bankId: 'radiotelephony', title: '陆空通话', nameEn: 'Radiotelephony', tracks: [{ ...mockTracks[5], bankId: 'radiotelephony', id: 'other', audioPath: '/other.mp3' }] });
+    mockResolve.mockImplementation(path => path === '/audio/0.mp3' ? slow.promise : Promise.resolve(`file://${path}`));
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.activateSession()); await flush();
+      await act(() => mockContext.selectBank('radiotelephony')); await flush();
+      await act(() => slow.resolve('file:///old-bank.mp3')); await flush();
+      expect(mockContext.currentCatalog?.bankId).toBe('radiotelephony');
+      expect(mockQueue[0]).toMatchObject({ radioBankId: 'radiotelephony', radioTrackId: 'other' });
+      expect(mockQueue.some(track => track.url === 'file:///old-bank.mp3')).toBe(false);
+      expect(mockContext.loading).toBe(false);
+    } finally { await view.unmount(); mockCatalogs.pop(); }
+  });
+
+  it.each([false, true])('keeps metadata hydration stable and honors a newer selection: %s', async (switchTrack) => {
+    const topic = deferred<unknown>();
+    mockHydrateTopic.mockImplementation(() => topic.promise);
+    mockCatalogs[0].tracks = [{ ...mockTracks[0], audioPath: '', contentLoaded: false } as typeof mockTracks[number], ...mockTracks.slice(1)];
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.setMode('repeatOne')); await flush();
+      await act(() => mockContext.activateSession()); await flush();
+      for (let i = 0; i < 3; i++) {
+        await act(() => mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress?.([])); await flush();
+      }
+      expect(mockHydrateTopic).toHaveBeenCalledTimes(1);
+      expect(mockResolve).not.toHaveBeenCalled();
+      if (switchTrack) { await act(() => mockContext.selectTrack('t5', true)); await flush(); }
+      else { await act(() => { void mockContext.play(); }); await flush(); }
+      mockCatalogs[0].tracks = mockTracks;
+      await act(() => mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress?.([])); await flush();
+      await act(() => topic.resolve([])); await flush();
+      expect(mockContext.currentCatalog?.tracks).toHaveLength(6);
+      expect(mockQueue[0].radioTrackId).toBe(switchTrack ? 't5' : 't0');
+      expect(mockContext.loading).toBe(false);
+      expect(mockPlay).toHaveBeenCalledTimes(1);
+      if (switchTrack) expect(mockResolve.mock.calls.some(([path]) => path === '/audio/0.mp3')).toBe(false);
+    } finally { await view.unmount(); mockCatalogs[0].tracks = mockTracks; }
+  });
+
+  it('preserves the restored position while directory refreshes and Play reuse the initial preparation', async () => {
+    mockReadSnapshot.mockResolvedValueOnce(JSON.stringify({ schemaVersion: 1, bankId: 'listening', trackId: 't0', position: 7,
+      mode: 'repeatOne', subtitleMode: 'off', rate: 1, intervalSeconds: 0, bankTrackIds: { listening: 't0' } }));
+    const slow = deferred<string>();
+    mockResolve.mockImplementation(() => slow.promise);
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.activateSession()); await flush();
+    await act(() => mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress?.([])); await flush();
+    await act(() => { void mockContext.play(); }); await flush();
+    await act(() => slow.resolve('file:///restored.mp3')); await flush();
+    expect(mockResolve).toHaveBeenCalledTimes(1);
+    expect(mockSeek).toHaveBeenCalledWith(7);
+    expect(mockPlay).toHaveBeenCalledTimes(1);
+    await view.unmount();
+  });
+
+  it('never installs an old account audio result after the owner changes', async () => {
+    const oldSession = mockSession;
+    const slow = deferred<string>();
+    mockResolve.mockImplementationOnce(() => slow.promise);
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.activateSession()); await flush();
+      mockSession = { user: { id: 'user-b' } };
+      await view.rerender(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+      await act(() => slow.resolve('file:///old-account.mp3')); await flush();
+      expect(mockQueue.some(track => track.url === 'file:///old-account.mp3')).toBe(false);
+      expect(mockContext.loading).toBe(false);
+    } finally { await view.unmount(); mockSession = oldSession; }
+  });
+
+  it('replaces an in-flight source when its audio path changes and ignores the old completion', async () => {
+    const slow = deferred<string>();
+    mockResolve.mockImplementation(path => path === '/audio/0.mp3' ? slow.promise : Promise.resolve(`file://${path}`));
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.activateSession()); await flush();
+      mockCatalogs[0].tracks = [{ ...mockTracks[0], audioPath: '/updated.mp3' }, ...mockTracks.slice(1)];
+      await act(() => mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress?.([])); await flush();
+      await act(() => slow.resolve('file:///outdated.mp3')); await flush();
+      expect(mockQueue[0].url).toBe('file:///updated.mp3');
+      expect(mockContext.loading).toBe(false);
+    } finally { await view.unmount(); mockCatalogs[0].tracks = mockTracks; }
+  });
+
+  it('clears a failed preparation so explicit retry can succeed', async () => {
+    mockResolve.mockRejectedValue(Object.assign(new Error('not_found'), { status: 404 }));
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.activateSession()); await flush();
+    expect(mockContext.loading).toBe(false);
+    expect(mockContext.error).toBeDefined();
+    mockResolve.mockImplementation(async path => `file://${path}`);
+    await act(() => mockContext.retry()); await flush();
+    expect(mockContext.error).toBeUndefined();
+    expect(mockQueue[0].radioTrackId).toBe('t0');
+    expect(mockPlay).toHaveBeenCalled();
     await view.unmount();
   });
 

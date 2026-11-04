@@ -44,3 +44,20 @@ it('does not reuse protected cards after membership is revoked', async () => {
   expect(mockGetTopic).not.toHaveBeenCalled();
   expect(result[0].categories[0].topics[0].cards).toEqual([]);
 });
+
+it('keeps a complete indexed queue without eagerly reading its protected text', async () => {
+  const indexed = { ...bank, categories: [{ ...bank.categories[0], topics: [{ ...topic, radioEntries: [{ id: card.id, title: 'Question', durationSeconds: 20 }] }] }] };
+  mockLoad.mockResolvedValue({ dataset: indexed });
+  const result = await loadRadioCatalogDatasets(undefined, { complete: true, directoryOnly: true });
+  expect(mockGetTopic).not.toHaveBeenCalled();
+  expect(deriveRadioCatalogs(result)[0]).toMatchObject({ complete: true, tracks: [{ id: card.id, contentLoaded: false }] });
+  // The browser/default caller keeps its existing eager-text contract.
+  await loadRadioCatalogDatasets(undefined, { complete: true });
+  expect(mockGetTopic).toHaveBeenCalledTimes(1);
+});
+
+it('still completes legacy directory positions when no radio index is supplied', async () => {
+  const result = await loadRadioCatalogDatasets(undefined, { complete: true, directoryOnly: true });
+  expect(mockGetTopic).toHaveBeenCalledTimes(1);
+  expect(deriveRadioCatalogs(result)[0]).toMatchObject({ complete: true, tracks: [{ id: card.id }] });
+});
