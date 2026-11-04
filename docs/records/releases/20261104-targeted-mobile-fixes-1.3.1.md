@@ -2,6 +2,8 @@
 
 记录日期：2026-11-04（北京时间）。用户已明确授权实施并上线苹果 TestFlight 与安卓测试版；安卓按本轮明确要求采用正式包身份，官网次要入口手动体验，不替换正式渠道。
 
+> 11 月 5 日补充：用户确认苹果已无问题；安卓 3596174 下载仍停在“资源未就绪”。下表保留首轮交付事实，当前安卓体验候选已更新为 3596175，详见文末。
+
 ## 已交付
 
 | 平台 | 交付与验证 |
@@ -47,3 +49,23 @@ TestFlight 前一候选为 3596172；正式 Android 主入口仍为 3578875，�
 更新清单备份位于服务器 `/opt/icao/backups/app-updates/android-preview-3596174/` 与 `/opt/icao/backups/app-updates/ios-testflight-3596174/`。网站或清单回滚不等同手机降级；已覆盖安装的新安卓包如需修复，应交付更高 build 的同签名候选，不通过卸载或清数据回退。
 
 详细构建日志、制品对照、Apple 回执及公网校验保存在本机 `/Users/zhouyide/.codex/artifacts/icao-repair-3596174-20261104/`；[本轮方案](../../workstreams/experience-optimization-2026-11/android-download-vocabulary-response-plan.md)保存讨论、独立排查及范围。
+
+
+## 2026-11-05 安卓缓存读取修复与体验包更新
+
+用户将后续范围收窄为安卓题库下载，并明确取消模拟器验收，要求上线后自行真机验证。苹果、单词和其他功能不在本次改动范围。
+
+**根因与改动：** 已保存的题库密文是 Base64 字符串。当前 Expo Crypto 55.0.17 的 Android `AESSealedData.fromCombined` 桥接仅接受 `Uint8Array`，iOS 接受原字符串；此前缓存读取失败被转为未就绪。仅在题库缓存读取处将 Android 的输入解码为字节，iOS 仍传入原字符串。磁盘格式、密钥、AAD、权限凭证、全局 HTTP、同步、下载调度、媒体和学习数据合同均未修改；不清缓存或迁移数据。另更新安卓构建号和针对平台入参的测试夹具；`services/api/scripts/app-content-native.test.mjs` 仅为测试，未改后端运行时代码，也未部署 API 或数据库。
+
+- 候选：Android **1.3.1 / 3596175**；正式包名 `com.readyoufife.app`，原签名与微信配置保持。
+- 构建源码：`ca10309ea1c74be77353cae025a29c37babc1fa0`；[PR #343](https://github.com/XIciA/icao-app/pull/343)；annotated tag `release/android/v1.3.1-b3596175`。从干净且与 origin/main 一致的 main 构建。
+- [公开 APK](https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/readyoufife-android-preview-1.3.1-b3596175.apk)：138,452,767 bytes；SHA-256 `e101016690ddd9c7cac2790993d59e21877bc6b286fa192c6d89a8be3a52eadb`。
+- 发布脚本已从公开 URL 读取 APK 全量校验摘要；包名、签名证书、微信 App ID 与登录/支付回调均与当前公网正式包 3578875 一致。
+- 官网浏览器已确认右上角“安卓体验”链接指向 3596175，正式下载主链接仍为 3578875。无需重新部署 Web；公网清单对比确认只有 `manualAndroidPreview` 改变，所有 `releases` 条目逐项保持。
+- iOS TestFlight 仍为 3596174，本次未构建或上传苹果；安卓正式渠道仍为 3578875，旧独立测试渠道仍为 3596173。
+
+**代码检查：** 聚焦 repository/download 测试 81 项通过；TypeScript 通过。全仓检查的发布测试 20 套 / 197 项、客户端 283 套 / 2007 项及其余前置检查通过，lint 0 错误 / 74 项既有警告。该次完整命令在 API 的 4 项旧 VM 夹具处失败，因为未模拟新增的 `react-native` Platform 导入；修正夹具并加入 Android 字节约束后，相关 13 项与完整 `pnpm check:api`（89 文件 / 823 项通过，3 项既有跳过及构建）通过。没有将第一次失败的完整命令记为直接通过。GitHub CI 在交付时仍排队，未作为成功证据。
+
+**验收状态：** 代码检查通过、签名 Release 包已交付。按用户最后指令未安装新包或执行模拟器下载/断网测试；原模拟器账号和安装数据保留。900 句等题库完整下载、断网冷启动读取与音频播放由用户在 3596175 真机验收，目前待验；不能把制品检查当作这些体验已通过。用户关于苹果已无问题的反馈不扩展为未单独验证的支付等场景通过。
+
+**证据与回滚：** 本机 `/Users/zhouyide/.codex/artifacts/icao-android-cache-3596175-20261105/` 保存检查日志、身份对照、发布日志、发布前后清单及待验标记。服务器备份 `/opt/icao/backups/app-updates/android-preview-3596175/updates-before-20261104T162540710026Z.json` 可恢复原手动入口 3596174；这只是入口回滚，不代表允许手机降级或卸载清数据。原工程既有未提交修改未纳入本次提交。
