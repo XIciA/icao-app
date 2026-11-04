@@ -10,6 +10,7 @@ import {
   digest,
 } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
+import { Platform } from 'react-native';
 import { Directory, File, Paths } from 'expo-file-system';
 import { acquireResourceTransfer, processResourceBytes } from './shared-resource-transfers.native';
 import Storage from '@/platform/storage';
@@ -394,7 +395,11 @@ export async function readMemberTopicCache(accountId: string, scope: ContentAcce
       || scopeIdentity(record.scope) !== scopeIdentity(scope)
     ) return undefined;
     const decrypted = await aesDecryptAsync(
-      AESSealedData.fromCombined(record.ciphertext),
+      // Expo Crypto 55's Android bridge accepts only Uint8Array here, while
+      // iOS accepts the stored Base64 string. Keep the on-disk format intact.
+      AESSealedData.fromCombined(Platform.OS === 'android'
+        ? Uint8Array.from(atob(record.ciphertext), character => character.charCodeAt(0))
+        : record.ciphertext),
       key,
       { additionalData: aad(accountId, environment, scope) },
     );

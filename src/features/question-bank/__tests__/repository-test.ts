@@ -104,7 +104,7 @@ import {
 } from '../data/member-content-cache.native';
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
-import { AESEncryptionKey, aesDecryptAsync, aesEncryptAsync } from 'expo-crypto';
+import { AESSealedData, AESEncryptionKey, aesDecryptAsync, aesEncryptAsync } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { waitFor } from '@testing-library/react-native';
@@ -397,6 +397,35 @@ describe('embeddedQuestionBankRepository', () => {
     jest.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
 
     await expect(questionBankRepository.getTopic('opi', 'opi-category-01', 'opi-topic-0004')).resolves.toEqual(cached);
+  });
+
+  it.each(['android', 'ios'] as const)('reads existing Base64 topic caches through the %s native input contract', async platform => {
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
+    const accountId = '00000000-0000-4000-8000-000000000001';
+    await activateQuestionBankContentAccount(accountId);
+    // Match the actual Android ByteArray converter, rather than the permissive
+    // cross-platform crypto mock which concealed this failure.
+    const parse = jest.spyOn(AESSealedData, 'fromCombined').mockImplementation(value => {
+      if (platform === 'android' && !(value instanceof Uint8Array)) throw new TypeError('Expected Uint8Array');
+      if (platform === 'ios' && typeof value !== 'string') throw new TypeError('iOS input changed');
+      return value as never;
+    });
+    for (const bankId of getEmbeddedQuestionBankIds()) {
+      const scope = { bankId, categoryId: '分类-01', topicId: 'topic-01' };
+      const topic = { id: scope.topicId, name: '离线题目', declaredCardCount: 0, cards: [] };
+      await writeMemberTopicCache(accountId, scope, topic, testContentCredential(accountId, scope));
+      const before = new Map(mockStorageValues);
+      // This fixture's ciphertext is Base64(JSON). Native AES remains exercised
+      // by the installed release; here test the bridge input and cache contract.
+      jest.mocked(aesDecryptAsync).mockImplementationOnce(async sealed => {
+        const value = sealed as unknown as string | Uint8Array;
+        return typeof value === 'string'
+          ? Uint8Array.from(atob(value), character => character.charCodeAt(0)) : value;
+      });
+      await expect(readMemberTopicCache(accountId, scope)).resolves.toEqual(topic);
+      expect(parse).toHaveBeenLastCalledWith(platform === 'android' ? expect.any(Uint8Array) : expect.any(String));
+      expect(mockStorageValues).toEqual(before);
+    }
   });
 
   it('reports an expired offline authorization without decrypting or returning member content', async () => {
