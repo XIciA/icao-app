@@ -29,7 +29,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
 | App Store | 正式仍为1.2.1 / 3576434；1.2.2 / 3586478已于10月27日20:39提交，WAITING_FOR_REVIEW | 本轮仅删除课程弹层末尾一行，保留原审核通过后自动发布设置；尚未批准/上架，正式清单未切换。[送审回执](../../records/releases/20261026-audio-session-recovery.md) |
 | Android 测试版 | 1.3.0 / 3593084，独立测试包与官网测试入口已更新 | 修复刷题返回时短暂显示结束页；安卓导航专项 111 项通过，签名与公开摘要通过。iOS 保持不变；真机过渡体验待验。[记录](../../records/releases/20261101-android-navigation-parity-1.3.0.md) |
-| iOS TestFlight | 1.3.1 / 3596172，源码 `2158d86a`；11 月 4 日 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 本轮仅修正随身听首次加载及重复音频准备，保留完整目录与稳定数量；155 项随身听测试及全仓检查通过，测试提示已更新。冷启动真机体验待验，未提交正式审核。[本轮记录](../../records/releases/20261104-radio-cold-start-1.3.1.json) |
+| iOS TestFlight | 1.3.1 / 3596172，源码 `2158d86a`；11 月 4 日 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 本轮仅修正随身听首次加载及重复音频准备，保留完整目录与稳定数量；155 项随身听测试及全仓检查通过，测试提示已更新。用户已明确确认 3596172 验收通过，未提交正式审核。[本轮记录](../../records/releases/20261104-radio-cold-start-1.3.1.json) |
 | EdgeOne 产品 Web | 源码 `c841dbae`，deployment `dph7hstgf9hz`，11 月 4 日已上线 | 共享学习界面与会员六项展示；公网脚本摘要、Chrome 首页与 OPI 目录启动通过。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | `offline-sync-reliability-20261104-c841dbae`，源码 `c841dbae`，11 月 4 日经授权部署 | 五题库凭据／音频、限流冷却及真实 AI 验证通过；无迁移，热点 v33、OPI v29／预览 v30 及词表保持。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
@@ -39,7 +39,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 
 ## 当前关注与下一步
 
-- **随身听冷启动候选（11 月 4 日）**：PR #333 与 TestFlight 3596172 已交付。完整目录先就绪，按当前播放需要准备内容，并复用同一音频的进行中请求；共享下载、存储、学习同步和鉴权实现未修改。重点验收彻底退出后首次播放、题库数量不跳变、末题选择、快速切换和已下载内容离线播放。已对比 1.3.0 并复现重复准备问题，尚无受影响真机的分段耗时证据，不将测试通过等同于体验验收。[记录](../../records/releases/20261104-radio-cold-start-1.3.1.json)。
+- **随身听冷启动候选（11 月 4 日）**：PR #333 与 TestFlight 3596172 已交付。完整目录先就绪，按当前播放需要准备内容，并复用同一音频的进行中请求；共享下载、存储、学习同步和鉴权实现未修改。用户已在本轮交接中明确确认 3596172 验收通过；无新增真机分段耗时测量。安卓与 Web 本轮交付单独记录，不沿用 iOS 验收结论。[记录](../../records/releases/20261104-radio-cold-start-1.3.1.json)。
 
 - **下载／离线音频与学习界面统一候选（11 月 4 日）**：三项任务已随 PR #330、API/Web 和 TestFlight 3596170 交付。重点验收保留旧下载后的断网首次播放、切题并保存、离开下载页继续下载、限流／断网恢复，以及同账号进度最终一致。四入口标注／查词、收藏撤销和字体长列表一并验收；Android 共享代码已修复但未发新 APK，未提交 App Store。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md)。
 
