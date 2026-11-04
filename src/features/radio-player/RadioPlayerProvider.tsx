@@ -25,6 +25,7 @@ import {
   subscribeNativeCommerceEnvironment,
 } from '@/features/native-commercial-testflight/commerce-environment';
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository.native';
+import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 
@@ -166,6 +167,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const upcomingTask = useRef<Promise<void> | undefined>(undefined);
   const upcomingReady = useRef<Promise<void> | undefined>(undefined);
   const preparedTrackId = useRef<string | undefined>(undefined);
+  const preparingTrack = useRef<{ key: string; audioPath: string; request: number; promise: Promise<void> } | undefined>(undefined);
   const requestedTrackId = useRef<string | undefined>(undefined);
   const queuedNextTrackId = useRef<string | undefined>(undefined);
   const pendingPlay = useRef(false);
@@ -182,6 +184,8 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const audioLease = useRef<AudioLease | undefined>(undefined);
   const activeSessionUserId = useRef<string | undefined>(undefined);
   const stateRef = useRef({ bankId, trackId, bankTrackIds, catalogs, intervalSeconds, mode, subtitleMode, rate, position: 0, shuffle });
+  const playbackOwner = useRef('');
+  playbackOwner.current = JSON.stringify([auth.session?.user.id ?? 'guest', commerceEnvironmentSnapshot, contentAccessSnapshot, selection]);
 
   const { catalog: currentCatalog, track: currentTrack } = findTrack(catalogs, bankId, trackId);
   const currentIndex = currentTrack ? currentCatalog?.tracks.findIndex((track) => track.id === currentTrack.id) ?? -1 : -1;
@@ -465,9 +469,22 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       setSourceState({ loading: false, error: '该音频需要会员，点击播放开通。' });
       return;
     }
+    const owner = playbackOwner.current;
+    const release = contentReleaseOf(catalogDatasets.current.find(bank => bank.id === track.bankId));
+    const key = JSON.stringify([owner, track.bankId, track.categoryId, track.topicId, track.id, release?.version, release?.checksum]);
+    const pending = preparingTrack.current;
+    // Immutable directory/text updates do not cancel the same in-flight audio.
+    // Explicit retries, changed sources and new owners still start a new request.
+    if (!forceRefresh && pending?.request === generation.current && pending.key === key
+      && (!pending.audioPath || !track.audioPath || pending.audioPath === track.audioPath)) {
+      if (autoPlay) pendingPlay.current = !interrupted.current;
+      return pending.promise;
+    }
     const request = ++generation.current;
     queueRevision.current += 1;
-    const valid = () => request === generation.current;
+    const valid = () => request === generation.current && owner === playbackOwner.current;
+    const preparation = { key, audioPath: track.audioPath, request, promise: Promise.resolve() };
+    preparingTrack.current = preparation;
     pendingPlay.current = autoPlay && !interrupted.current;
     pendingSeek.current = Math.max(0, position);
     preparedTrackId.current = undefined;
@@ -475,56 +492,61 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     queuedNextTrackId.current = undefined;
     setWaitingForNext(false);
     setSourceState({ loading: true });
-    try {
-      await ensureRadioTrackPlayer();
-      await mutateRadioPlayer(valid, () => TrackPlayer.pause());
-      if (!valid()) return;
-      await releaseRadioLease();
-      if (!valid()) return;
-      let nativeTrack: NativeRadioContentTrack;
-      try { nativeTrack = await resolveTrack(track, forceRefresh); }
-      catch (error) {
-        if (!radioCanRetry(error) || !valid()) throw error;
-        nativeTrack = await resolveTrack(track, true);
-      }
-      if (!valid()) return;
-      await mutateRadioPlayer(valid, async () => {
-        const current = stateRef.current;
-        await TrackPlayer.reset();
-        activeNativeContentTrack.current = nativeTrack;
-        // Publish identity before native events can arrive for the new queue.
-        preparedTrackId.current = track.id;
-        await TrackPlayer.add(nativeTrack);
-        await TrackPlayer.setRepeatMode(getRadioNativeQueueBehavior(current.mode, current.intervalSeconds).repeatsCurrentNatively ? RepeatMode.Track : RepeatMode.Off);
-        setRadioContentPlaybackRate(current.rate);
-        await TrackPlayer.setRate(current.rate);
-        const target = Math.max(0, position);
-        const seek = track.durationSeconds > 0 ? Math.min(target, Math.max(0, track.durationSeconds - 0.25)) : target;
-        if (seek > 0) await TrackPlayer.seekTo(seek);
+    preparation.promise = (async () => {
+      try {
+        await ensureRadioTrackPlayer();
+        await mutateRadioPlayer(valid, () => TrackPlayer.pause());
         if (!valid()) return;
-        pendingSeek.current = 0;
-        setSourceState({ loading: false });
-      });
-      if (!valid()) return;
-      if (pendingPlay.current) {
-        const lease = await audioSessionOrchestrator.acquire('radio', 'radio-autoplay');
-        if (!valid() || !pendingPlay.current) { await releaseRadioLease(lease); return; }
-        audioLease.current = lease;
-        await mutateRadioPlayer(() => valid() && pendingPlay.current && canPlayRadioTrack(track), () => TrackPlayer.play());
+        await releaseRadioLease();
+        if (!valid()) return;
+        let nativeTrack: NativeRadioContentTrack;
+        try { nativeTrack = await resolveTrack(track, forceRefresh); }
+        catch (error) {
+          if (!radioCanRetry(error) || !valid()) throw error;
+          nativeTrack = await resolveTrack(track, true);
+        }
+        if (!valid()) return;
+        await mutateRadioPlayer(valid, async () => {
+          const current = stateRef.current;
+          await TrackPlayer.reset();
+          activeNativeContentTrack.current = nativeTrack;
+          // Publish identity before native events can arrive for the new queue.
+          preparedTrackId.current = track.id;
+          await TrackPlayer.add(nativeTrack);
+          await TrackPlayer.setRepeatMode(getRadioNativeQueueBehavior(current.mode, current.intervalSeconds).repeatsCurrentNatively ? RepeatMode.Track : RepeatMode.Off);
+          setRadioContentPlaybackRate(current.rate);
+          await TrackPlayer.setRate(current.rate);
+          const target = Math.max(0, position);
+          const seek = track.durationSeconds > 0 ? Math.min(target, Math.max(0, track.durationSeconds - 0.25)) : target;
+          if (seek > 0) await TrackPlayer.seekTo(seek);
+          if (!valid()) return;
+          pendingSeek.current = 0;
+          setSourceState({ loading: false });
+        });
+        if (!valid()) return;
+        if (pendingPlay.current) {
+          const lease = await audioSessionOrchestrator.acquire('radio', 'radio-autoplay');
+          if (!valid() || !pendingPlay.current) { await releaseRadioLease(lease); return; }
+          audioLease.current = lease;
+          await mutateRadioPlayer(() => valid() && pendingPlay.current && canPlayRadioTrack(track), () => TrackPlayer.play());
+        }
+        if (!valid()) return;
+        // Starting the requested content never waits for the next three downloads.
+        void appendUpcoming(catalog, track, forceRefresh, nativeTrack).catch((error) => {
+          reportRadioFailure(error, request, 'prefetch');
+          // Current playback remains available; exhaustion has a bounded recovery path.
+        });
+      } catch (error) {
+        if (!valid()) return;
+        pendingPlay.current = false;
+        await releaseRadioLease();
+        reportRadioFailure(error, generation.current, 'operation');
+        setSourceState({ loading: false, error: radioErrorMessage(error) });
+      } finally {
+        if (preparingTrack.current === preparation) preparingTrack.current = undefined;
       }
-      if (!valid()) return;
-      // Starting the requested content never waits for the next three downloads.
-      void appendUpcoming(catalog, track, forceRefresh, nativeTrack).catch((error) => {
-        reportRadioFailure(error, request, 'prefetch');
-        // Current playback remains available; exhaustion has a bounded recovery path.
-      });
-    } catch (error) {
-      if (!valid()) return;
-      pendingPlay.current = false;
-      await releaseRadioLease();
-      reportRadioFailure(error, generation.current, 'operation');
-      setSourceState({ loading: false, error: radioErrorMessage(error) });
-    }
+    })();
+    return preparation.promise;
   }, [appendUpcoming, releaseRadioLease, resolveTrack, setWaitingForNext]);
 
   useEffect(() => {
@@ -548,7 +570,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
         setCatalogs(next);
       }
     };
-    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, bankId: stateRef.current.bankId, getPriorityBankId: () => stateRef.current.bankId, previousDatasets, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration, onProgress: publish }).then(publish).catch((error) => {
+    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, directoryOnly: true, bankId: stateRef.current.bankId, getPriorityBankId: () => stateRef.current.bankId, previousDatasets, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration, onProgress: publish }).then(publish).catch((error) => {
       if (active && catalogHydrationGeneration.current === requestGeneration) {
         if (offline) { stateRef.current.catalogs = []; setCatalogs([]); }
         setCatalogError(contentFailure(error)?.title ?? '播放目录加载失败，请重试');
@@ -758,20 +780,18 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     pendingPlay.current = true;
     const request = generation.current;
     try {
-      const hydrated = await withRadioTimeout(hydrateTrackTopic(track));
-      if (request !== generation.current || !pendingPlay.current) return;
       recoveryAttempts.current.delete(`${track.bankId}:${track.id}`);
       const nativeProgress = preparedTrackId.current === track.id ? await TrackPlayer.getProgress() : undefined;
       if (request !== generation.current || !pendingPlay.current) return;
       const resumePosition = waitingForNextRef.current || playback.state === State.Ended ? 0 : nativeProgress?.position ?? current.position;
-      await prepareTrack(hydrated.catalog ?? catalog, hydrated.track ?? track, { autoPlay: true, position: resumePosition });
+      await prepareTrack(catalog, track, { autoPlay: true, position: resumePosition });
     } catch (error) {
       if (request !== generation.current) return;
       pendingPlay.current = false;
       reportRadioFailure(error, generation.current, 'operation');
       setSourceState({ loading: false, error: radioErrorMessage(error) });
     }
-  }, [hydrateTrackTopic, playback.state, prepareTrack]);
+  }, [playback.state, prepareTrack]);
 
   const pause = useCallback(() => {
     pendingPlay.current = false;
@@ -787,8 +807,9 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     const { catalog, track } = findTrack(current.catalogs, current.bankId, nextTrackId);
     if (!catalog || !track) return;
     if (autoPlay && !canPlayRadioTrack(track)) { memberRedirect.current(); return; }
-    const request = ++generation.current;
-    queueRevision.current += 1;
+    // An explicit selection starts a new intent, even when reselecting the same
+    // question while its remembered seek position is still being prepared.
+    generation.current += 1;
     pendingPlay.current = autoPlay && !interrupted.current;
     recoveryAttempts.current.clear();
     stateRef.current.trackId = track.id;
@@ -802,17 +823,8 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     setShuffle(nextShuffle);
     setSourceState({ loading: true });
     if (autoPlay) setSessionVisible(true);
-    void mutateRadioPlayer(() => request === generation.current, () => TrackPlayer.pause()).catch(() => undefined);
-    void withRadioTimeout(hydrateTrackTopic(track)).then((hydrated) => {
-      if (request !== generation.current) return;
-      return prepareTrack(hydrated.catalog ?? catalog, hydrated.track ?? track, { autoPlay: pendingPlay.current });
-    }).catch((error) => {
-      if (request !== generation.current) return;
-      pendingPlay.current = false;
-      reportRadioFailure(error, generation.current, 'operation');
-      setSourceState({ loading: false, error: radioErrorMessage(error) });
-    });
-  }, [hydrateTrackTopic, prepareTrack, setWaitingForNext]);
+    void prepareTrack(catalog, track, { autoPlay: pendingPlay.current });
+  }, [prepareTrack, setWaitingForNext]);
 
   const next = useCallback(async (autoPlay = true) => {
     const current = stateRef.current;
@@ -990,12 +1002,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
 
   const activateSession = useCallback(() => {
     setSessionVisible(true);
-    const current = stateRef.current;
-    const selected = findTrack(current.catalogs, current.bankId, current.trackId).track;
-    if (selected) void hydrateTrackTopic(selected).catch((error) => {
-      setSourceState({ loading: false, error: radioErrorMessage(error) });
-    });
-  }, [hydrateTrackTopic]);
+  }, []);
 
   const value = useMemo<RadioPlayerContextValue>(() => ({
     catalogs: sourceCatalogs,

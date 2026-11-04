@@ -92,7 +92,7 @@ export function withEmbeddedRadioDirectory(dataset: QuestionBankDataset, embedde
   })) };
 }
 
-export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; bankId?: RadioCatalog['bankId']; getPriorityBankId?: () => RadioCatalog['bankId']; previousDatasets?: QuestionBankDataset[]; isCurrent?: () => boolean; onProgress?: (datasets: QuestionBankDataset[]) => void } = {}) {
+export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; directoryOnly?: boolean; bankId?: RadioCatalog['bankId']; getPriorityBankId?: () => RadioCatalog['bankId']; previousDatasets?: QuestionBankDataset[]; isCurrent?: () => boolean; onProgress?: (datasets: QuestionBankDataset[]) => void } = {}) {
   const owner = getNativeCommerceEnvironmentState();
   const assertOwner = () => {
     if (options.isCurrent && !options.isCurrent()) throw new Error('content_request_cancelled');
@@ -130,14 +130,15 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
   }
   const resumed = mergeRadioCatalogProgress(loaded, options.previousDatasets ?? []);
   const scoped = selection ? resumed.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : resumed;
-  // App startup uses metadata only. Expand authorized text when the radio session opens.
+  // Indexed native sessions already have every queue position. Only legacy
+  // directories need eager topic reads; playback hydrates its selected topic.
   if (!options.complete) return scoped;
   const publish = (datasets: QuestionBankDataset[]) => {
     assertOwner();
     options.onProgress?.(selection ? datasets.map(bank => scopeDataset(bank, selection.scope, selection.target)) : datasets);
   };
   publish(scoped);
-  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner, publish, options.getPriorityBankId ?? options.bankId);
+  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner, publish, options.getPriorityBankId ?? options.bankId, { directoryOnly: options.directoryOnly });
   return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }
 

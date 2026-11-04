@@ -4,9 +4,11 @@ import publicData from '@/features/question-bank/data/question-bank-public.json'
 import { questionBankRadioEntries } from '@icao/contracts';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 const mockGetTopic = jest.fn();
+const mockCredentials = jest.fn(async () => []);
+jest.mock('@/features/question-bank/data/content-credential-client.native', () => ({ requestContentCredentials: (...args: unknown[]) => (mockCredentials as Function)(...args) }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ questionBankRepository: { getTopic: (...args: unknown[]) => mockGetTopic(...args) } }));
 import { deriveRadioCatalogs, withEmbeddedRadioDirectory } from '../catalog.native';
-import { hydrateRadioCatalogTopic, mergeRadioCatalogProgress } from '../catalog-hydration.native';
+import { hydrateRadioCatalogDatasets, hydrateRadioCatalogTopic, mergeRadioCatalogProgress } from '../catalog-hydration.native';
 import publicRelease from '@/features/question-bank/data/question-bank-public-release.json';
 const source: QuestionBankDataset[] = sourceData as unknown as QuestionBankDataset[];
 const embedded: QuestionBankDataset[] = publicData as unknown as QuestionBankDataset[];
@@ -20,6 +22,20 @@ it.each(['all', 'selected', 'crash'] as const)('exposes every playable position 
   expect(metadata.map(bank => ({ id: bank.bankId, ids: bank.tracks.map(track => track.id) })))
     .toEqual(full.map(bank => ({ id: bank.bankId, ids: bank.tracks.map(track => track.id) })));
   expect(metadata.every(bank => bank.complete && bank.tracks.every(track => track.contentLoaded === false && !track.audioPath && !track.audioText))).toBe(true);
+});
+
+it.each(['all', 'selected', 'crash'] as const)('opens all indexed banks without full-text or credential warmup in %s scope', async scope => {
+  mockGetTopic.mockClear(); mockCredentials.mockClear();
+  const selection = { scope, target: 'icao5-first' as const };
+  const before = deriveRadioCatalogs(directory, selection);
+  const updates = jest.fn();
+  const result = await hydrateRadioCatalogDatasets(directory, () => undefined, updates, 'listening', { directoryOnly: true });
+  const after = deriveRadioCatalogs(result, selection);
+  expect(after.map(bank => [bank.bankId, bank.tracks.map(track => track.id)])).toEqual(before.map(bank => [bank.bankId, bank.tracks.map(track => track.id)]));
+  expect(after.every(bank => bank.complete)).toBe(true);
+  expect(mockGetTopic).not.toHaveBeenCalled();
+  expect(mockCredentials).not.toHaveBeenCalled();
+  expect(updates).not.toHaveBeenCalled();
 });
 
 it('loads a selected final OPI topic directly without requesting preceding topics or changing totals', async () => {
