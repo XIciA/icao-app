@@ -1,0 +1,133 @@
+{
+  "source": "2bed7706d5af767cdb71a2c8a861937dca0ecf56",
+  "pr": "https://github.com/XIciA/icao-app/pull/340",
+  "version": "1.3.1",
+  "build": 3596174,
+  "checks": {
+    "lockedLocalFullCheck": "passed",
+    "client": {
+      "suites": 283,
+      "passed": 2005
+    },
+    "releaseTests": {
+      "suites": 20,
+      "passed": 197
+    },
+    "api": {
+      "filesPassed": 89,
+      "passed": 823,
+      "skipped": 3
+    },
+    "androidNativeVerifierPassed": 3,
+    "publisherTestsPassed": 3,
+    "manifestTestsPassed": 5,
+    "githubCi": "https://github.com/XIciA/icao-app/actions/runs/41848985093",
+    "webExportFiles": 189,
+    "webExportMiB": 39.5,
+    "mainCi": "https://github.com/XIciA/icao-app/actions/runs/41850649855"
+  },
+  "buildStatus": "both-delivered",
+  "realDeviceAcceptance": "pending",
+  "productionApiModified": false,
+  "databaseModified": false,
+  "downloadManagerModified": false,
+  "iosCredentialVerifierModified": false,
+  "globalHttpModified": false,
+  "formalChannelsChanged": false,
+  "releaseEnvironmentNote": "Android first release check used umask 077, changing permissive-path negative-test fixtures; restarted under standard umask 022, full check passed without source changes.",
+  "android": {
+    "packageName": "com.readyoufife.app",
+    "versionCode": 3596174,
+    "sha256": "c3cdbd47aca45db17af8a607f36b1819554cac248bedd76615dfa96b162e7952",
+    "sizeBytes": 138452663,
+    "formalPackageMatches": true,
+    "formalCertificateMatches": true,
+    "formalWechatConfigAndCallbacksMatch": true,
+    "codeSource": "2bed7706d5af767cdb71a2c8a861937dca0ecf56",
+    "realDeviceAcceptance": "pending"
+  },
+  "ios": {
+    "verifiedAt": "2026-11-04T15:18:56.528Z",
+    "appId": "6800583111",
+    "buildId": "32e722dc-f76d-4e65-8a28-7270f0c1be91",
+    "build": "3596174",
+    "processingState": "VALID",
+    "beta": [
+      {
+        "autoNotifyEnabled": true,
+        "internalBuildState": "IN_BETA_TESTING",
+        "externalBuildState": "READY_FOR_BETA_SUBMISSION"
+      }
+    ],
+    "groups": [
+      {
+        "id": "dc1ad61b-d8b0-4418-b5ec-f97d2fe116ba",
+        "name": "测试",
+        "isInternalGroup": true
+      }
+    ],
+    "source": "2bed7706d5af767cdb71a2c8a861937dca0ecf56",
+    "ipaSha256": "6f0112be9219656fb7bda6fef3e452826bd3d216048eda44cd1b025cee5fb453"
+  },
+  "updateIsolation": {
+    "formalIosUnchanged": true,
+    "formalAndroidUnchanged": true,
+    "legacyAndroidTestUnchanged": true,
+    "manualPreviewBuild": 3596174,
+    "testflightBuild": 3596174
+  },
+  "web": {
+    "status": "success",
+    "projectId": "makers-4khvzoj9ywnq",
+    "deploymentId": "dpmbjxoo27xb",
+    "source": "df9f35d081ad274806b30091babe542aa077fae0",
+    "results": [
+      {
+        "path": "index.html",
+        "status": 200,
+        "sha256": "0fd227bc9651720d380ac73264efb7aa0a138dc565136d381220fedb80476ffb",
+        "expected": "0fd227bc9651720d380ac73264efb7aa0a138dc565136d381220fedb80476ffb",
+        "match": true
+      },
+      {
+        "path": "brand/2e9401acce52/favicon.ico",
+        "status": 200,
+        "sha256": "b27b29b6480e799e05e81ffa278dc573d392e266c9b3129ec2bc38b10993c368",
+        "expected": "b27b29b6480e799e05e81ffa278dc573d392e266c9b3129ec2bc38b10993c368",
+        "match": true
+      },
+      {
+        "path": "brand/2e9401acce52/logo-180.png",
+        "status": 200,
+        "sha256": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+        "expected": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+        "match": true
+      },
+      {
+        "path": "_expo/static/js/web/index-6ae7f53a58788eb06256fa9111ae630f.js",
+        "status": 200,
+        "sha256": "07a635ea7bef763d108fe60b29da58374d9af5ae9d960c96eb24b9fd38fde610",
+        "expected": "07a635ea7bef763d108fe60b29da58374d9af5ae9d960c96eb24b9fd38fde610",
+        "match": true
+      }
+    ],
+    "browserPreviewHref": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/readyoufife-android-preview-1.3.1-b3596174.apk",
+    "formalAndroidBuild": 3578875
+  },
+  "recordedAt": "2026-11-04T15:26:20.136786+00:00",
+  "tags": {
+    "ios": "release/ios-testflight/v1.3.1-b3596174",
+    "android": "release/android/v1.3.1-b3596174",
+    "web": "release/web-edgeone/20261104-df9f35d0"
+  },
+  "originalWorkspace": {
+    "head": "1ddd5e50a49d8aee5476b0cce05c1945fbdf4e76",
+    "statusCounts": {
+      "deleted": 643,
+      "modified": 25,
+      "untracked": 16
+    },
+    "sourceFilesUntouched": true,
+    "taskPlanOnlyUpdated": true
+  }
+}
