@@ -1,0 +1,268 @@
+{
+  "source": "c4e8b778d751010a740d766086c7183246bb7afa",
+  "deployment": "dpy5tn55ph9c",
+  "tag": "release/web-edgeone/20261104-c4e8b778",
+  "online": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "26c7141d455514ea54b2047c84bf09f0ce64296b13d17424df37abbe3fbe694d",
+      "expected": "26c7141d455514ea54b2047c84bf09f0ce64296b13d17424df37abbe3fbe694d",
+      "match": true
+    },
+    {
+      "path": "favicon.ico",
+      "status": 200,
+      "sha256": "b27b29b6480e799e05e81ffa278dc573d392e266c9b3129ec2bc38b10993c368",
+      "expected": "b27b29b6480e799e05e81ffa278dc573d392e266c9b3129ec2bc38b10993c368",
+      "match": true
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "status": 200,
+      "sha256": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+      "expected": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+      "match": true
+    },
+    {
+      "path": "promo/index.html",
+      "status": 200,
+      "sha256": "98a7b66ab8f07002d75a8114b91aea3c755ff7ab8a3fd6eb2f190fdd6782394f",
+      "expected": "98a7b66ab8f07002d75a8114b91aea3c755ff7ab8a3fd6eb2f190fdd6782394f",
+      "match": true
+    },
+    {
+      "path": "promo/icon.svg",
+      "status": 200,
+      "sha256": "11f7a0f1a75f6847c6ec3d63d4c66944443db36ed31fff62c4bf50889c052e5a",
+      "expected": "11f7a0f1a75f6847c6ec3d63d4c66944443db36ed31fff62c4bf50889c052e5a",
+      "match": true
+    },
+    {
+      "path": "promo/icon-light-32x32.png",
+      "status": 200,
+      "sha256": "ce917c1e94cc8acd61e34d36c96a188f7b91256c792ad32f606cef61cb010001",
+      "expected": "ce917c1e94cc8acd61e34d36c96a188f7b91256c792ad32f606cef61cb010001",
+      "match": true
+    },
+    {
+      "path": "promo/icon-dark-32x32.png",
+      "status": 200,
+      "sha256": "ce917c1e94cc8acd61e34d36c96a188f7b91256c792ad32f606cef61cb010001",
+      "expected": "ce917c1e94cc8acd61e34d36c96a188f7b91256c792ad32f606cef61cb010001",
+      "match": true
+    },
+    {
+      "path": "promo/apple-icon.png",
+      "status": 200,
+      "sha256": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+      "expected": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+      "match": true
+    },
+    {
+      "path": "brand/2e9401acce52/logo-512.png",
+      "status": 200,
+      "sha256": "c1b2f0227682682198e366e69b34755f753e85789b998c1bb0b26cbf2803298f",
+      "expected": "c1b2f0227682682198e366e69b34755f753e85789b998c1bb0b26cbf2803298f",
+      "match": true
+    },
+    {
+      "path": "brand/2e9401acce52/favicon.ico",
+      "status": 200,
+      "sha256": "b27b29b6480e799e05e81ffa278dc573d392e266c9b3129ec2bc38b10993c368",
+      "expected": "b27b29b6480e799e05e81ffa278dc573d392e266c9b3129ec2bc38b10993c368",
+      "match": true
+    },
+    {
+      "path": "brand/2e9401acce52/logo-48.png",
+      "status": 200,
+      "sha256": "b8bba57eea997795b6fae9ace7730702902a026948ca03f5ba761bed8c52c299",
+      "expected": "b8bba57eea997795b6fae9ace7730702902a026948ca03f5ba761bed8c52c299",
+      "match": true
+    },
+    {
+      "path": "brand/2e9401acce52/logo-180.png",
+      "status": 200,
+      "sha256": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+      "expected": "e6ae061c4c59a1ffd3c536345c598e3e3ee98bea5b77d76e53cda524b1474deb",
+      "match": true
+    },
+    {
+      "path": "brand/2e9401acce52/site.webmanifest",
+      "status": 200,
+      "sha256": "abf21fb698ebdd17ef0c4b09b3c8bae5810e6cffd89121b9c9742607635b88cd",
+      "expected": "abf21fb698ebdd17ef0c4b09b3c8bae5810e6cffd89121b9c9742607635b88cd",
+      "match": true
+    },
+    {
+      "path": "brand/2e9401acce52/logo-192.png",
+      "status": 200,
+      "sha256": "61c91d0788b9ca96d2a5347695010c000840cebbd8bfbd156c54a96e04e9ca18",
+      "expected": "61c91d0788b9ca96d2a5347695010c000840cebbd8bfbd156c54a96e04e9ca18",
+      "match": true
+    },
+    {
+      "path": "_expo/static/js/web/sentences-pdf-110fdb38294d0ab501bad3a672a3160f.js",
+      "status": 200,
+      "sha256": "47264dd3e1975f84f3fcaf24ee9914c9892ac4bcb977147b0750cb3e8dd9734e",
+      "expected": "47264dd3e1975f84f3fcaf24ee9914c9892ac4bcb977147b0750cb3e8dd9734e",
+      "match": true
+    },
+    {
+      "path": "_expo/static/js/web/SentenceTutorialScreen-056a452e319371e651f5413c9e5bb0ae.js",
+      "status": 200,
+      "sha256": "408cd16487b289d4ddc446d688ee45d9fb0354d5f02adfda0916e6dc84d98fb5",
+      "expected": "408cd16487b289d4ddc446d688ee45d9fb0354d5f02adfda0916e6dc84d98fb5",
+      "match": true
+    },
+    {
+      "path": "_expo/static/js/web/index-600ca9b46cc9b8778343a25d81a8d420.js",
+      "status": 200,
+      "sha256": "c142db8fcb8fb0e658fe116ca3375a4719ba078cdbed422cf324c67b10712c31",
+      "expected": "c142db8fcb8fb0e658fe116ca3375a4719ba078cdbed422cf324c67b10712c31",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/794-5fb6eff04a716ab6.js",
+      "status": 200,
+      "sha256": "941f0f21a78c296b8648934de9470f807b37cc95f7436205d8333353b55c1fee",
+      "expected": "941f0f21a78c296b8648934de9470f807b37cc95f7436205d8333353b55c1fee",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/4bd1b696-215e5051988c3dde.js",
+      "status": 200,
+      "sha256": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d",
+      "expected": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/999-dbb92bb463dd6256.js",
+      "status": 200,
+      "sha256": "a203da1926b637484a585aea84f4260cfa1046d63fca40204e2d51599990001d",
+      "expected": "a203da1926b637484a585aea84f4260cfa1046d63fca40204e2d51599990001d",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/webpack-1fdb114fbf78b4cb.js",
+      "status": 200,
+      "sha256": "1007d9531f0cd386c890a107cd214e577345370710c72c4e7585668c6c7e1ffb",
+      "expected": "1007d9531f0cd386c890a107cd214e577345370710c72c4e7585668c6c7e1ffb",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/460-a2ba968b61aa5645.js",
+      "status": 200,
+      "sha256": "a2ba968b61aa56454dd274a50fdde5bf6503681859fcf0dbe0744ff53cf45c98",
+      "expected": "a2ba968b61aa56454dd274a50fdde5bf6503681859fcf0dbe0744ff53cf45c98",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/main-app-1172a43c4d3d5d72.js",
+      "status": 200,
+      "sha256": "1468dbd210f7275e78bad440ccffdfb8cffcf3ff3f40d17ce9d202bc700f2105",
+      "expected": "1468dbd210f7275e78bad440ccffdfb8cffcf3ff3f40d17ce9d202bc700f2105",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/polyfills-42372ed130431b0a.js",
+      "status": 200,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "expected": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/app/layout-6c8ab5637d981b23.js",
+      "status": 200,
+      "sha256": "2ba2aed5ac0d1658f6dc642a71b94fd50d8184324493e52b0a438aca57c8a557",
+      "expected": "2ba2aed5ac0d1658f6dc642a71b94fd50d8184324493e52b0a438aca57c8a557",
+      "match": true
+    },
+    {
+      "path": "promo/legacy/static/chunks/app/promo/page-a9e122fdff859af2.js",
+      "status": 200,
+      "sha256": "7df9b67ed43dc7eb8dd3bbb863d94f1fb6a686226c0e5890f907a242009e5dee",
+      "expected": "7df9b67ed43dc7eb8dd3bbb863d94f1fb6a686226c0e5890f907a242009e5dee",
+      "match": true
+    },
+    {
+      "route": "/download",
+      "icons": [
+        "<link rel=\"icon\" href=\"/brand/2e9401acce52/favicon.ico\" sizes=\"16x16 32x32 48x48\">",
+        "<link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"/brand/2e9401acce52/logo-48.png\">",
+        "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/brand/2e9401acce52/logo-180.png\">",
+        "<link rel=\"manifest\" href=\"/brand/2e9401acce52/site.webmanifest\">"
+      ],
+      "no_v0": true
+    },
+    {
+      "route": "/auth/login",
+      "icons": [
+        "<link rel=\"icon\" href=\"/brand/2e9401acce52/favicon.ico\" sizes=\"16x16 32x32 48x48\">",
+        "<link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"/brand/2e9401acce52/logo-48.png\">",
+        "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/brand/2e9401acce52/logo-180.png\">",
+        "<link rel=\"manifest\" href=\"/brand/2e9401acce52/site.webmanifest\">"
+      ],
+      "no_v0": true
+    },
+    {
+      "route": "/auth/splash",
+      "icons": [
+        "<link rel=\"icon\" href=\"/brand/2e9401acce52/favicon.ico\" sizes=\"16x16 32x32 48x48\">",
+        "<link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"/brand/2e9401acce52/logo-48.png\">",
+        "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/brand/2e9401acce52/logo-180.png\">",
+        "<link rel=\"manifest\" href=\"/brand/2e9401acce52/site.webmanifest\">"
+      ],
+      "no_v0": true
+    },
+    {
+      "route": "/promo/",
+      "icons": [
+        "<link rel=\"icon\" href=\"/promo/icon-light-32x32.png?v=2e9401acce52\" media=\"(prefers-color-scheme: light)\"/>",
+        "<link rel=\"icon\" href=\"/promo/icon-dark-32x32.png?v=2e9401acce52\" media=\"(prefers-color-scheme: dark)\"/>",
+        "<link rel=\"icon\" href=\"/promo/icon.svg?v=2e9401acce52\" type=\"image/svg+xml\"/>",
+        "<link rel=\"apple-touch-icon\" href=\"/promo/apple-icon.png?v=2e9401acce52\"/>"
+      ],
+      "no_v0": true
+    }
+  ],
+  "hydratedIcons": [
+    {
+      "href": "/promo/icon-light-32x32.png?v=2e9401acce52",
+      "rel": "icon"
+    },
+    {
+      "href": "/promo/icon-dark-32x32.png?v=2e9401acce52",
+      "rel": "icon"
+    },
+    {
+      "href": "/promo/icon.svg?v=2e9401acce52",
+      "rel": "icon"
+    },
+    {
+      "href": "/promo/apple-icon.png?v=2e9401acce52",
+      "rel": "apple-touch-icon"
+    }
+  ],
+  "localSourceSync": {
+    "source_commit": "c4e8b778d751010a740d766086c7183246bb7afa",
+    "paths": [
+      "apps/ops/index.html",
+      "apps/ops/src/App.tsx",
+      "official-site/assets/images/icoach-icon.png",
+      "official-site/index.html",
+      "official-site/projects/icao/index.html",
+      "package.json",
+      "public/promo/apple-icon.png",
+      "public/promo/icon-dark-32x32.png",
+      "public/promo/icon-light-32x32.png",
+      "public/promo/icon.svg",
+      "public/promo/index.html",
+      "scripts/sync-static-brand.mjs",
+      "src/components/auth/auth-ui.tsx"
+    ],
+    "unrelated_tracked_diff_unchanged": true,
+    "staging_unchanged": true,
+    "original_head_unchanged": "1ddd5e50a49d8aee5476b0cce05c1945fbdf4e76"
+  }
+}
