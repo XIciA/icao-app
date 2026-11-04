@@ -1,3 +1,4 @@
+import appBrandLogo from '../../../assets/images/icon-native.png';
 import { VocabularyPage } from './VocabularyPage';
 import { ContentOrdersPage } from './ContentOrdersPage';
 import { ReportsPage } from './ReportsPage';
@@ -40,7 +41,7 @@ function Login({ onLogin }: { onLogin: (session: OpsStaffSession) => void }) {
   }
   return <main className="login-shell">
     <section className="login-card">
-      <div className="brand-mark">5</div>
+      <img className="brand-mark" src={appBrandLogo} alt="听你五个" />
       <h1>运营后台</h1>
       <p className="muted">仅限获授权的公司工作人员。所有查询与变更都会记录审计。</p>
       <form onSubmit={submit} className="form-stack">
