@@ -2,7 +2,6 @@ import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter'
 import { useState } from 'react';
 import { normalizeHotspotCenter, hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
 import { useLocalSearchParams } from 'expo-router';
-import { Sparkles } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
@@ -76,7 +75,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
               size="lg"
               style={styles.cta}
             >
-              <Sparkles size={18} /> 开始学习（共 {totalQuestions} 题）
+              开始学习（共 {totalQuestions} 题）
             </Button>
           </>
 

@@ -862,7 +862,7 @@ function StudyContent(props: Props) {
         <View style={styles.footer}>
           <TutorialTarget ids={['finish']}><Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '保存中…' : '结束'}</Button></TutorialTarget>
           {!examMode ? <Button disabled={finishing || taskInteractionActive || cardTransitionActive || session.currentIndex === navigationStartIndex} leading={<ChevronLeft color={colors.foreground} size={20} />} onPress={() => { void goToCard(session.currentIndex - 1, -1); }} size="sm" style={styles.footerPrevious} testID="study-footer-previous" variant="outline">上一题</Button> : null}
-          <Button accessibilityLabel={footerPrimaryLabel} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={handleFooterPrimary} size="sm" style={styles.footerPrimary} testID="study-footer-next">{finishing ? '生成中…' : footerPrimaryLabel} <ChevronRight color={colors.primaryForeground} size={20} /></Button>
+          <Button accessibilityLabel={footerPrimaryLabel} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={handleFooterPrimary} size="sm" style={styles.footerPrimary} testID="study-footer-next" trailing={<ChevronRight color={colors.primaryForeground} size={20} />}>{finishing ? '生成中…' : footerPrimaryLabel}</Button>
         </View>
       </View>
       </AppContentFrame>

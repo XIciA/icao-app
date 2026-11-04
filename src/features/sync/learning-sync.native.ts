@@ -36,6 +36,7 @@ import {
   replaceVocabularyStateFromSync,
   VOCABULARY_DOCUMENT_KEY,
   VOCABULARY_STORAGE_KEY,
+  writeVocabularyState,
 } from '@/features/vocabulary/persistence';
 import type { VocabularyState } from '@/features/vocabulary/types';
 
@@ -70,6 +71,13 @@ export type LearningSyncStatus = {
 
 let writeQueue = Promise.resolve();
 let accountSwitchQueue = Promise.resolve();
+// Serializes only vocabulary read/commit and cloud application; never network I/O.
+let vocabularyQueue = Promise.resolve();
+function inVocabularyTransaction<T>(action: () => Promise<T>): Promise<T> {
+  const operation = vocabularyQueue.catch(() => undefined).then(action);
+  vocabularyQueue = operation.then(() => undefined, () => undefined);
+  return operation;
+}
 let running: Promise<LearningSyncStatus> | undefined;
 let runningUserId: string | undefined;
 let syncForeground = true;
@@ -518,6 +526,10 @@ function isAccountProfileMutation(mutation: SyncMutation) {
 }
 
 async function resetLearningGeneration(meta: SyncMeta, dataGeneration: number, aiResultGeneration: number, preserveGuestClaim = false) {
+  return inVocabularyTransaction(() => resetLearningGenerationLocally(meta, dataGeneration, aiResultGeneration, preserveGuestClaim));
+}
+
+async function resetLearningGenerationLocally(meta: SyncMeta, dataGeneration: number, aiResultGeneration: number, preserveGuestClaim: boolean) {
   const claimKey = meta.boundUserId ? `${SNAPSHOT_PREFIX}guest-claim.${meta.boundUserId}` : undefined;
   const claim = claimKey && preserveGuestClaim ? await Storage.getItem(claimKey) : undefined;
   if (claimKey && !preserveGuestClaim) await Storage.removeItem(claimKey);
@@ -744,10 +756,14 @@ export async function enqueueVocabularyDocument(state: VocabularyState, context 
 }
 
 export async function mutateVocabularyInCurrentWorkspace(context: LearningWriteContext, update: (commit: (state: VocabularyState) => Promise<void>) => Promise<VocabularyState>, shouldEnqueue: () => boolean = () => true) {
-  const result = await inCurrentLearningWorkspace(context, async () => {
+  assertLearningWriteContext(context);
+  // Keep workspace swaps/resets ordered, but do not wait for an in-flight HTTP sync.
+  const operation = accountSwitchQueue.catch(() => undefined).then(() => inVocabularyTransaction(async () => {
+    assertLearningWriteContext(context);
     let committed = false;
     const commit = async (state: VocabularyState) => {
       await queuedUpdate((meta, outbox) => {
+        // Accepted operations finish before the account queue restores another workspace.
         if (shouldEnqueue()) appendVocabularyDocument(meta, outbox, state);
         return [[VOCABULARY_STORAGE_KEY, JSON.stringify(state)]];
       });
@@ -756,7 +772,9 @@ export async function mutateVocabularyInCurrentWorkspace(context: LearningWriteC
     const state = await update(commit);
     if (!committed && shouldEnqueue()) await commit(state);
     return state;
-  });
+  }));
+  accountSwitchQueue = operation.then(() => undefined, () => undefined);
+  const result = await operation;
   scheduleLearningSync();
   return result;
 }
@@ -843,8 +861,24 @@ async function applyChange(change: SyncChange, meta: SyncMeta, acknowledged: Rea
       await replaceAnnotationStoreFromSync(local?.offlineMerge === true ? mergeOfflineAnnotations(payload.document, local) : payload.document);
       meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
     } else if (payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
-      await replaceVocabularyStateFromSync(payload.document);
-      meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
+      await inVocabularyTransaction(async () => {
+        let applied: VocabularyState | undefined;
+        await queuedUpdate((latestMeta, outbox) => {
+          // A newer local document can replace the one this request acknowledged.
+          // Keep it queued; the existing server merge reconciles per-word changes.
+          if (preservePendingChanges(latestMeta, outbox, versionKey, payload.version, acknowledged)) {
+            meta.versions[versionKey] = latestMeta.versions[versionKey];
+            return;
+          }
+          if (payload.version < (latestMeta.versions[versionKey] ?? 0)) return;
+          applied = normalizeVocabularyState(payload.document);
+          latestMeta.versions[versionKey] = payload.version;
+          meta.versions[versionKey] = payload.version;
+          return [[VOCABULARY_STORAGE_KEY, JSON.stringify(applied)]];
+        });
+        // Notify only after the atomic data/version commit; no second disk write.
+        if (applied) await writeVocabularyState(applied, async () => undefined);
+      });
     }
   }
 }
@@ -1058,6 +1092,7 @@ export async function getLearningSyncStatus(): Promise<LearningSyncStatus> {
 }
 
 export function resetLearningSyncForTests() {
+  vocabularyQueue = Promise.resolve();
   writeQueue = Promise.resolve();
   accountSwitchQueue = Promise.resolve();
   syncForeground = true;

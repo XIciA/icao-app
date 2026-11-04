@@ -16,6 +16,7 @@ type Props = Omit<ComponentProps<typeof Pressable>, 'children'> & {
   size?: Size;
   loading?: boolean;
   leading?: ReactNode;
+  trailing?: ReactNode;
 };
 
 export function Button({
@@ -25,6 +26,7 @@ export function Button({
   size = 'md',
   loading = false,
   leading,
+  trailing,
   disabled,
   style,
   ...props
@@ -54,6 +56,7 @@ export function Button({
           <AppText color={foreground} style={styles.label} variant="button">
             {children}
           </AppText>
+          {trailing}
         </View>
       )}
     </Pressable>

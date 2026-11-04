@@ -8,6 +8,8 @@
 
 ## 现存材料
 
+- [安卓下载、单词响应与局部显示修复](experience-optimization-2026-11/android-download-vocabulary-response-plan.md)：用户已授权实施并交付 TestFlight 与同正式身份的安卓提前体验包；保留正式更新渠道。
+
 - [学习结束页与下载状态优化](experience-optimization-2026-11/study-recap-and-status-design.md)：四入口共用列表与条目，已纳入统一 PR #330，并随 TestFlight 3596170 与受影响 Web 交付；真机待验。
 
 - [学习保存与内容链路修复](app-self-check/implementation.md)：下载／离线音频回归及三个任务增量已由 PR #330 统一交付，API/Web 已上线，TestFlight 1.3.1 / 3596170 内部测试组可用；用户真机验收待完成。

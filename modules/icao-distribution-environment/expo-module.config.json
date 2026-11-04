@@ -1,6 +1,5 @@
 {
-  "platforms": ["apple"],
-  "apple": {
-    "modules": ["IcaoDistributionEnvironmentModule"]
-  }
+  "platforms": ["apple", "android"],
+  "apple": { "modules": ["IcaoDistributionEnvironmentModule"] },
+  "android": { "modules": ["com.icao.distribution.IcaoDistributionEnvironmentModule"] }
 }

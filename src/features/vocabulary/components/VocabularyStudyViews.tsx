@@ -181,7 +181,8 @@ const styles = StyleSheet.create({
   progressWrap: { paddingHorizontal: spacing[5], paddingTop: spacing[3] },
   studyContent: { flexGrow: 1, padding: spacing[5] },
   wordCenter: { alignItems: 'center', flex: 1, gap: spacing[4], justifyContent: 'center', minHeight: 430 },
-  studyWord: { flexShrink: 1, fontSize: 36, lineHeight: 46, textAlign: 'center' },
+  // Override the inherited title line height: Android must retain the font's full descenders.
+  studyWord: { flexShrink: 0, fontSize: 36, lineHeight: undefined, textAlign: 'center' },
   frequencyRow: { alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end', paddingHorizontal: spacing[5], paddingTop: spacing[3], minHeight: 40 },
   sound: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   reveal: { alignItems: 'center', gap: spacing[5], width: '100%' },
