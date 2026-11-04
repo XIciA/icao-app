@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-04",
+  "platform": "ios-testflight",
+  "version": "1.3.1",
+  "build": "3596172",
+  "sourceCommit": "2158d86a640a586863a66a3236d119b65bcf01e8",
+  "implementationPullRequest": "https://github.com/XIciA/icao-app/pull/333",
+  "tag": "release/ios-testflight/v1.3.1-b3596172",
+  "scope": [
+    "Native radio uses complete directory indexes without eagerly hydrating every indexed topic.",
+    "Radio reuses pending audio preparation during catalog progress updates.",
+    "A changed account, bank, track, audio source or release invalidates stale preparation.",
+    "Full queue identity and counts remain available; legacy unindexed content retains its fallback."
+  ],
+  "unchanged": [
+    "Shared storage and content repository",
+    "Authentication and membership",
+    "Download manager",
+    "Learning and sync",
+    "Other feature UI",
+    "Default browser catalog loading"
+  ],
+  "diagnosis": {
+    "baseline": "App Store 1.3.0 (3593083), source 8669c3bd",
+    "confirmed": "Full catalog hydration and repeated playback preparation already existed in 1.3.0. Recent credential prefetch adds cold-start work; controlled progress updates reproduced cancellation of the first preparation.",
+    "limitation": "Affected-device phase timings were not captured. No exact latency reduction or device acceptance is claimed."
+  },
+  "checks": {
+    "radio": {
+      "suites": 19,
+      "tests": 155,
+      "status": "passed"
+    },
+    "typecheck": "passed",
+    "focusedLint": "passed",
+    "releaseChecks": "passed",
+    "githubCi": "https://github.com/XIciA/icao-app/actions/runs/41800043896",
+    "localFullCheck": {
+      "status": "passed",
+      "command": "CI=true QUESTION_BANK_AUDIO_ROOT=/private/tmp/icao-verification-media/audio pnpm check",
+      "frontendSuites": 283,
+      "frontendTests": 2000,
+      "apiFilesPassed": 89,
+      "apiTestsPassed": 823,
+      "apiTestsSkipped": 3,
+      "resourcesSizeChecked": 12651
+    },
+    "archiveIdentitySignatureAndRuntime": "passed"
+  },
+  "delivery": {
+    "appleProcessing": "VALID",
+    "internalBuildState": "IN_BETA_TESTING",
+    "internalGroups": [
+      {
+        "name": "测试",
+        "internal": true
+      }
+    ],
+    "appleBuildId": "4c9575fd-a7ea-4dd8-be5a-6b6cb3f4c99f",
+    "verifiedAt": "2026-11-04T09:00:33.733Z",
+    "testUpdateChannel": "published-and-publicly-verified",
+    "otherUpdateChannels": "unchanged"
+  },
+  "deviceAcceptance": {
+    "status": "pending-user",
+    "checks": [
+      "Force quit, reopen and enter radio at least five times; first playback should not repeat the previous long wait under normal networking.",
+      "Bank totals and queue counts stay correct and stable while loading; last item is immediately selectable.",
+      "Rapid bank and track changes play the final selection without an old request taking over.",
+      "Valid downloaded content plays offline; existing mode, interval and saved-position behavior is preserved."
+    ]
+  },
+  "migration": "none",
+  "appStoreSubmission": "not-requested-not-performed",
+  "apiWebAndroidDeployment": "not-performed",
+  "rollbackTarget": {
+    "tag": "release/ios-testflight/v1.3.1-b3596171",
+    "sourceCommit": "40e7f78d5bb59b8f5b797bc47d58c65709780d3f",
+    "build": "3596171"
+  },
+  "evidenceDirectory": "/Users/zhouyide/.codex/artifacts/radio-cold-start-20261104",
+  "ipa": {
+    "path": "/private/tmp/icao-pdf-testflight/.generated/testflight/export-3596172-20261104T084737Z/app.ipa",
+    "sizeBytes": 41369392,
+    "sha256": "464635523ab4bcdc0632f45851162c920bfec10db4d9f7a927ce02cca8be8724"
+  },
+  "publishedAt": "2026-11-04T09:00:33Z",
+  "tagPublished": true,
+  "manifestBackup": "/opt/icao/backups/app-updates/radio-testflight-3596172/updates-before-20261104T090126137159Z.json"
+}
