@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { LayoutRectangle } from 'react-native';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 import { colors, fonts, spacing } from '@/theme';
@@ -11,6 +11,7 @@ import type { AnnotationDefinition, AnnotationHighlight, AnnotationTextBlockId, 
 import type { WordLookupInteraction } from '../lib/word-lookup-interaction';
 import { normalizeStaticLookupWord } from '../static-word-lookup/normalize';
 import { InteractiveWordTarget } from './InteractiveWordTarget';
+import { LookupFeedbackText } from './LookupFeedbackText';
 
 type DragSelection = {
   action: 'apply' | 'remove';
@@ -186,7 +187,8 @@ export function InteractiveStudyText({
           }
           return (
             <Fragment key={`${index}-${token.text}`}>
-              <Text
+              <LookupFeedbackText
+                feedbackEnabled={lookupByLongPress && !backgroundColor}
                 suppressHighlighting={highlightMode}
                 selectable={false}
                 accessibilityLabel={highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupByLongPress ? `长按查词：${token.text}` : undefined}
@@ -203,7 +205,7 @@ export function InteractiveStudyText({
                 style={[styles.word, wordSpacingStyle, backgroundColor ? { backgroundColor } : null]}
               >
                 {token.text}
-              </Text>
+              </LookupFeedbackText>
               {lineBreaks ? <View style={[styles.lineBreak, lineBreaks > 1 ? { height: (lineBreaks - 1) * 25 } : null]} /> : null}
             </Fragment>
           );
