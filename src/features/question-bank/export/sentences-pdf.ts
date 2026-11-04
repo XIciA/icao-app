@@ -62,7 +62,27 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
   const ensure=(space:number)=>{if(y-space<46)newPage();};
   const line=(pieces:Piece[],size:number,x:number,shade=ink)=>{
     ensure(size+8);let cursor=x;
-    for(const piece of pieces){const w=measureText(piece.text,font,latin,size);if(piece.highlight)page.drawRectangle({x:cursor,y:y-2,width:w,height:size+4,color:color(piece.highlight),opacity:.24});drawText(piece.text,{size,x:cursor,y,color:shade});cursor+=w;}
+    // Paint one background per same-color run; retain the original text positions.
+    let run: { x: number; width: number; color: string } | undefined;
+    const flush = () => {
+      if (run) page.drawRectangle({x:run.x,y:y-2,width:run.width,height:size+4,color:color(run.color),opacity:.24});
+      run = undefined;
+    };
+    let lastContent = pieces.length - 1;
+    while (lastContent >= 0 && !pieces[lastContent].text.trim()) lastContent -= 1;
+    pieces.forEach((piece, index) => {
+      const w = measureText(piece.text,font,latin,size);
+      const tone = index <= lastContent ? piece.highlight : undefined;
+      if (run && run.color !== tone) flush();
+      if (tone) {
+        if (run) run.width += w;
+        else run = {x:cursor,width:w,color:tone};
+      }
+      cursor += w;
+    });
+    flush();
+    cursor=x;
+    for(const piece of pieces){const w=measureText(piece.text,font,latin,size);drawText(piece.text,{size,x:cursor,y,color:shade});cursor+=w;}
     y-=size+7;
   };
   newPage();
@@ -88,6 +108,13 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
       const definition=annotations.highlightDefinitions.find(d=>d.id===highlight?.colorId);
       return {text:token.text,highlight:definition?ANNOTATION_PALETTE[definition.color]:undefined};
     });
+    // Spaces join only adjacent highlights with the same color, never newlines.
+    pieces.forEach((piece,index) => {
+      if (/^[^\S\r\n]+$/.test(piece.text)) {
+        const previous = pieces[index-1]?.highlight;
+        if (previous && previous === pieces[index+1]?.highlight) piece.highlight = previous;
+      }
+    });
     const english=wrap(pieces,font,latin,10.5,textWidth);
     const translated=options.translation&&row.card.audioTextZh?wrap([{text:row.card.audioTextZh}],font,latin,9,textWidth):[];
     const notes=options.notes&&row.annotation?.note.trim()?wrap([{text:'笔记：'+row.annotation.note}],font,latin,9,textWidth):[];
@@ -97,7 +124,7 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
     if(previousGroup!==group){line([{text:group}],13,margin,blue);y-=5;previousGroup=group;}
     const label=sentenceDisplayTitle(row.card.id,row.card.taskTitle);
     drawText(label,{size:8,x:margin,y,color:muted});
-    if(options.tags){const tags=definitions.filter(d=>row.annotation?.tagIds.includes(d.id));tags.forEach((tag,index)=>page!.drawCircle({x:margin+3+(index%4)*8,y:y-12-Math.floor(index/4)*8,size:2.5,color:color(ANNOTATION_PALETTE[tag.color])}));}
+    if(options.tags){const tags=definitions.filter(d=>row.annotation?.tagIds.includes(d.id));tags.forEach((tag,index)=>page!.drawCircle({x:margin+3+(index%4)*3.5,y:y-12-Math.floor(index/4)*8,size:2.5,borderColor:rgb(1,1,1),borderWidth:.75,color:color(ANNOTATION_PALETTE[tag.color])}));}
     english.forEach(parts=>line(parts,10.5,textX));translated.forEach(parts=>line(parts,9,textX,muted));notes.forEach(parts=>line(parts,9,textX,muted));y-=9;
   }
   const pages=doc.getPages();pages.forEach((p,index)=>p.drawText(`${index+1} / ${pages.length}`,{font:latin,size:9,x:width/2-12,y:25,color:muted}));

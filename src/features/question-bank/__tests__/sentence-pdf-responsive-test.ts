@@ -37,3 +37,37 @@ it('writes one scene heading per chapter and original Sentence IDs into the actu
   for(const scene of ['基本通话术语','紧急情况通话术语','其它情况通话术语']) expect(labels.filter(text=>text===scene)).toHaveLength(1);
  } finally { draw.mockRestore(); }
 },30000);
+
+it('joins same-color words, preserves text layout, and overlaps only row tag dots', async () => {
+ const font=readFileSync(`${process.cwd()}/assets/fonts/NotoSerifSC_600SemiBold.ttf`);
+ const { contentFingerprint, tokenizeStudyText } = jest.requireActual('../annotations/text');
+ const text='Request to terminate our approach. '.repeat(5)+'\nMaintain heading.';
+ const definitions=[{id:'yellow',label:'记忆',color:'yellow'},{id:'red',label:'不懂',color:'red'}];
+ const annotation={tagIds:['yellow','red'],note:'',highlights:tokenizeStudyText(text).filter((t: {wordIndex?:number})=>t.wordIndex!==undefined).map((t: {wordIndex:number;text:string})=>({wordIndex:t.wordIndex,quote:t.text,contentFingerprint:contentFingerprint(text),colorId:t.wordIndex===3?'red':'yellow'}))};
+ const input=[{...rows[0],card:{...rows[0].card,audioText:text},annotation}] as unknown as ExportSentence[];
+ const store={...annotations,tagDefinitions:definitions,highlightDefinitions:definitions} as unknown as QuestionBankAnnotationStore;
+ const draw=jest.spyOn(PDFPage.prototype,'drawText');
+ const rectangles=jest.spyOn(PDFPage.prototype,'drawRectangle');
+ const circles=jest.spyOn(PDFPage.prototype,'drawCircle');
+ try {
+  const baseline=await buildSentencesPdf(input,{...options,tags:true},store,font);
+  const positions=draw.mock.calls.map(([value,settings])=>[value,settings?.x,settings?.y]);
+  draw.mockClear();circles.mockClear();rectangles.mockClear();
+  const result=await buildSentencesPdf(input,{...options,tags:true,highlights:true},store,font);
+  expect(result.pageCount).toBe(baseline.pageCount);
+  expect(draw.mock.calls.map(([value,settings])=>[value,settings?.x,settings?.y])).toEqual(positions);
+  const backgrounds=rectangles.mock.calls.map(([settings])=>settings!);
+  // The first three words are one rectangle, followed by a separate red word.
+  const latin=await (await PDFDocument.create()).embedFont('Times-Roman');
+  expect(backgrounds[0].width).toBeCloseTo(latin.widthOfTextAtSize('Request to terminate',10.5));
+  expect(backgrounds[1].x).toBeCloseTo(111+latin.widthOfTextAtSize('Request to terminate ',10.5));
+  expect(backgrounds.length).toBeLessThan(annotation.highlights.length);
+  expect(new Set(backgrounds.map(r=>r.y)).size).toBeGreaterThan(1);
+  const dots=circles.mock.calls.map(([settings])=>settings!);
+  expect(dots.slice(0,2).every(dot=>!dot.borderWidth)).toBe(true); // legend unchanged
+  const rowDots=dots.slice(2);
+  expect(rowDots).toHaveLength(2);
+  expect(rowDots[1].x!-rowDots[0].x!).toBeLessThan(rowDots[0].size!*2);
+  expect(rowDots.every(dot=>dot.borderWidth===.75)).toBe(true);
+ } finally {draw.mockRestore();rectangles.mockRestore();circles.mockRestore();}
+},30000);
