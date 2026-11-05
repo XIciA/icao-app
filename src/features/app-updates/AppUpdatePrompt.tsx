@@ -5,7 +5,7 @@ import { useCommerceRuntime } from '@/features/native-commercial-testflight/Comm
 import { audioSessionOrchestrator } from '@/platform/audio';
 import { usePathname } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Platform, View } from 'react-native';
 import { AppText, BottomSheet, Button } from '@/components/ui';
 import { colors, spacing } from '@/theme';
@@ -13,7 +13,13 @@ import { checkAppUpdate, dismissAppUpdate, openAppUpdate } from './app-updates.n
 import type { AppUpdate } from './update-model';
 import { downloadAndroidUpdate, installAndroidUpdate } from './android-update.native';
 
-export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
+export function AppUpdatePrompt({ manual = false, startup = false, onStartupComplete }: { manual?: boolean; startup?: boolean; onStartupComplete?: () => void }) {
+  const startupCompleted = useRef(false);
+  const finishStartup = useCallback(() => {
+    if (startupCompleted.current) return;
+    startupCompleted.current = true;
+    onStartupComplete?.();
+  }, [onStartupComplete]);
   const pathname = usePathname();
   const router = useRouter();
   const auth = useAuth();
@@ -38,17 +44,17 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
     return () => { mounted.current = false; downloadController.current?.abort(); };
   }, []);
   // Learning, recording, editing, payment and AI routes never show an automatic prompt.
-  const safe = manual || ['/', '/home'].includes(pathname);
+  const safe = manual || startup || ['/', '/home', '/auth/login'].includes(pathname);
   const native = Platform.OS === 'ios' || Platform.OS === 'android';
   useEffect(() => {
     if (!safe) { shownThisEntry.current = false; setReminder(undefined); setUpdate(undefined); }
     const subscription = AppState.addEventListener('change', state => { if (state === 'active') { shownThisEntry.current = false; setEntry(value => value + 1); } });
     return () => subscription.remove();
   }, [safe]);
-  useEffect(() => { shownThisEntry.current = false; setReminder(undefined); setUpdate(undefined); }, [accountId, environment]);
+  useEffect(() => { shownThisEntry.current = false; setReminder(undefined); }, [accountId, environment]);
   useEffect(() => { setReminder(current => current?.expiresAt === expiry ? current : undefined); }, [expiry]);
   useEffect(() => {
-    if (manual || !safe || !accountId || shownThisEntry.current || commerce.phase === 'loading' || commerce.phase === 'reconciling') return;
+    if (manual || startup || !safe || !accountId || shownThisEntry.current || commerce.phase === 'loading' || commerce.phase === 'reconciling') return;
     let active = true;
     const run = async () => {
       if (audioSessionOrchestrator.getActiveOwner()) return;
@@ -59,13 +65,36 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
         if (!active || audioSessionOrchestrator.getActiveOwner()) return;
         if (!seen) { await Storage.setItem(key, '1'); if (active && !audioSessionOrchestrator.getActiveOwner()) { shownThisEntry.current = true; setReminder(candidate); } return; }
       }
-      if (!native) return;
-      const next = await checkAppUpdate();
-      if (active && next && !audioSessionOrchestrator.getActiveOwner()) { await dismissAppUpdate(next); if (active) { shownThisEntry.current = true; setUpdate(next); } }
     };
     void run().catch(() => undefined);
     return () => { active = false; };
-  }, [accountId, commerce.phase, entry, environment, expiry, manual, native, safe]);
+  }, [accountId, commerce.phase, entry, environment, expiry, manual, native, safe, startup]);
+  // Update availability belongs to the installation, not the account or membership.
+  useEffect(() => {
+    if (manual || !native || !safe || reminder || update || (startup && startupCompleted.current)) return;
+    let active = true;
+    const run = async () => {
+      if (installLock.current || (!startup && audioSessionOrchestrator.getActiveOwner())) return;
+      // Also bound local storage/native transport stalls, not only HTTP failures.
+      const deadline = startup ? setTimeout(() => {
+        if (active) { active = false; finishStartup(); }
+      }, 4500) : undefined;
+      try {
+        const next = await checkAppUpdate(startup ? 'startup' : false);
+        if (!active) return;
+        if (next && (startup || !audioSessionOrchestrator.getActiveOwner())) setUpdate(current => current ?? next);
+        else if (startup) finishStartup();
+      } catch {
+        if (active && startup) finishStartup();
+      } finally {
+        if (deadline !== undefined) clearTimeout(deadline);
+      }
+    };
+    void run();
+    // Retry failures and deferred audio checks while on a safe, foreground route.
+    const timer = setInterval(() => { if (AppState.currentState === 'active') void run(); }, 60_000);
+    return () => { active = false; clearInterval(timer); };
+  }, [manual, native, safe, startup, entry, reminder, update, finishStartup]);
   async function check() {
     if (busy) return;
     setBusy(true); setMessage('');
@@ -109,7 +138,7 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
       if (mounted.current) { setInstallBusy(false); setDownloadProgress(undefined); }
     }
   }
-  function later() { if (installLock.current) return; if (update) void dismissAppUpdate(update).catch(() => undefined); setUpdate(undefined); }
+  async function later() { if (installLock.current) return; if (update) await dismissAppUpdate(update).catch(() => undefined); setUpdate(undefined); if (startup) finishStartup(); }
   return <>
     <BottomSheet visible={Boolean(reminder && safe && !manual)} onClose={() => setReminder(undefined)}>{reminder ? <View style={{gap:spacing[3]}}><AppText variant="sectionTitle">{reminder.phase === 'expired' ? '会员已到期' : '会员即将到期'}</AppText><AppText>到期日期：{new Date(reminder.expiresAt).toLocaleDateString('zh-CN')}</AppText><AppText variant="caption">续费后可继续使用会员题库和服务，已有学习记录会为你保留。</AppText><Button onPress={() => { setReminder(undefined); router.push('/account/membership'); }}>去续费</Button><Button variant="outline" onPress={() => setReminder(undefined)}>暂时不用</Button></View> : null}</BottomSheet>
     {manual ? <View style={{ gap: spacing[2] }}><Button variant="outline" disabled={busy} onPress={() => { void check(); }}>{busy ? '正在检查…' : '检查更新'}</Button>{message && !update ? <AppText variant="caption">{message}</AppText> : null}</View> : null}
