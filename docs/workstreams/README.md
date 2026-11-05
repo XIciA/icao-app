@@ -8,6 +8,8 @@
 
 ## 现存材料
 
+- [下次大改上线前：修复应用更新机制](app-update-reliability/requirements.md)：2026-11-05 用户确认本次不改；下一次较大改版、需要上线新版本时，一并修复双端自动检查与漏弹问题。
+
 - [安卓下载、单词响应与局部显示修复](experience-optimization-2026-11/android-download-vocabulary-response-plan.md)：用户已授权实施并交付 TestFlight 与同正式身份的安卓提前体验包；保留正式更新渠道。
 
 - [学习结束页与下载状态优化](experience-optimization-2026-11/study-recap-and-status-design.md)：四入口共用列表与条目，已纳入统一 PR #330，并随 TestFlight 3596170 与受影响 Web 交付；真机待验。
