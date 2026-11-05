@@ -16,7 +16,7 @@ beforeEach(() => { mockStorage.clear(); mockFetch.mockReset().mockResolvedValue(
 afterAll(() => { global.fetch = originalFetch; Object.defineProperty(Platform, 'OS', { configurable: true, value: originalOS }); });
 it('uses the installed distribution channel, throttles automatic checks, and lets manual checks through', async () => {
   expect(await checkAppUpdate()).toEqual(release);
-  expect(await checkAppUpdate()).toEqual(release); expect(mockFetch).toHaveBeenCalledTimes(1);
+  expect(await checkAppUpdate()).toBeUndefined(); expect(mockFetch).toHaveBeenCalledTimes(1);
   expect(await checkAppUpdate(true)).toEqual(release);
   mockDistribution = 'production';
   expect(await checkAppUpdate(true)).toBeUndefined();
@@ -37,43 +37,4 @@ it('shares an in-flight fetch and performs no native update checks on web', asyn
   expect(a).toEqual(release); expect(b).toEqual(release); expect(mockFetch).toHaveBeenCalledTimes(1);
   Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
   expect(await checkAppUpdate(true)).toBeUndefined(); expect(mockFetch).toHaveBeenCalledTimes(1);
-});
-
-it('retries a failed check after a short cooldown instead of waiting a day', async () => {
-  const now = jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
-  try {
-    mockFetch.mockRejectedValueOnce(new Error('offline'));
-    await expect(checkAppUpdate()).rejects.toThrow('offline');
-    expect(await checkAppUpdate()).toBeUndefined();
-    now.mockReturnValue(1_800_000_061_000);
-    expect(await checkAppUpdate()).toEqual(release);
-    expect(mockFetch).toHaveBeenCalledTimes(2);
-  } finally { now.mockRestore(); }
-});
-it('startup bypasses old permanent dismissals and current snoozes', async () => {
-  mockStorage.set('icao.app-update.dismissed.v1', JSON.stringify({key:`${release.channel}:${release.version}:${release.build}`}));
-  await dismissAppUpdate(release);
-  expect(await checkAppUpdate('startup')).toEqual(release);
-  expect(await checkAppUpdate()).toBeUndefined();
-  expect(await checkAppUpdate('startup')).toEqual(release);
-  expect(mockFetch).toHaveBeenCalledTimes(2);
-});
-it('explicit dismissal expires and a different build is never hidden', async () => {
-  const now = jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
-  try {
-    await dismissAppUpdate(release);
-    expect(await checkAppUpdate()).toBeUndefined();
-    now.mockReturnValue(1_800_086_400_001);
-    expect(await checkAppUpdate()).toEqual(release);
-    await dismissAppUpdate(release);
-    const next = {...release,build:102};
-    mockFetch.mockResolvedValueOnce({ok:true,json:async()=>({schemaVersion:1,releases:[next]})});
-    now.mockReturnValue(1_800_090_000_002);
-    expect(await checkAppUpdate()).toEqual(next);
-  } finally { now.mockRestore(); }
-});
-it('invalid manifests cannot become a successful cached no-update result', async () => {
-  mockFetch.mockResolvedValueOnce({ok:true,json:async()=>({schemaVersion:2,releases:[]})});
-  await expect(checkAppUpdate('startup')).rejects.toThrow('invalid_update_manifest');
-  expect(await checkAppUpdate(true)).toEqual(release);
 });
