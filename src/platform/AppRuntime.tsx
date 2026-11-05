@@ -1,8 +1,7 @@
-import { StartupBrandScreen } from '@/components/states/StartupBrandScreen';
 import { DownloadRuntime } from '@/features/question-bank/downloads/DownloadRuntime';
 import { AppUpdatePrompt } from '@/features/app-updates/AppUpdatePrompt';
-import { useCallback, useEffect, useState, type PropsWithChildren } from 'react';
-import { AppState, Platform } from 'react-native';
+import { useEffect, type PropsWithChildren } from 'react';
+import { AppState } from 'react-native';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { NativeAiRecovery } from '@/features/ai/NativeAiRecovery.native';
 
@@ -16,8 +15,6 @@ const DIAGNOSTIC_PURGE_INTERVAL_MS = 60 * 60 * 1_000;
 
 export function AppRuntime({ children }: PropsWithChildren) {
   const auth = useAuth();
-  const [startupPending, setStartupPending] = useState(Platform.OS === 'android');
-  const finishStartup = useCallback(() => setStartupPending(false), []);
   useEffect(() => {
     recordingRepository.cleanupExpired();
     void purgeExpiredSafeDiagnostics();
@@ -33,10 +30,10 @@ export function AppRuntime({ children }: PropsWithChildren) {
 
   return (
     <CommerceRuntimeProvider>
-      {!startupPending ? <DownloadRuntime key={auth.account?.accountId} /> : null}
-      {!startupPending && auth.canAccessApp ? <NativeAiRecovery key={auth.account?.accountId} /> : null}
-      <AppUpdatePrompt startup={startupPending} onStartupComplete={finishStartup} />
-      <RadioPlayerProvider>{startupPending ? <StartupBrandScreen /> : children}{!startupPending && auth.canAccessApp ? <RadioMiniPlayer /> : null}</RadioPlayerProvider>
+      <DownloadRuntime key={auth.account?.accountId} />
+      {auth.canAccessApp ? <NativeAiRecovery key={auth.account?.accountId} /> : null}
+      {auth.canAccessApp ? <AppUpdatePrompt /> : null}
+      <RadioPlayerProvider>{children}{auth.canAccessApp ? <RadioMiniPlayer /> : null}</RadioPlayerProvider>
     </CommerceRuntimeProvider>
   );
 }
