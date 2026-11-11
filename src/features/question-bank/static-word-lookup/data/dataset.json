@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T17:00:18.505Z",
+  "generatedAt": "2026-11-11T04:28:39.686Z",
   "wordListChecksum": "365893b101f756ce640eb2e02e09dc8af3750cb28bbcfa401071ef8ffa19a510",
   "batches": [
     {
@@ -366,6 +366,10 @@
     {
       "file": "content/word-lookup/batches/0091-v12-text-corrections.json",
       "entryCount": 485
+    },
+    {
+      "file": "content/word-lookup/batches/0092-opi-20261111.json",
+      "entryCount": 20
     }
   ],
   "entries": [
@@ -7624,6 +7628,12 @@
       "generalMeaning": "n. 清洁剂"
     },
     {
+      "word": "clean-aircraft",
+      "ipa": "/kliːn ˈerkræft/",
+      "aviationMeaning": "adj. 清洁航空器的，指关键表面符合适用的污染物清除要求",
+      "generalMeaning": "adj. 干净飞机的"
+    },
+    {
       "word": "cleaned",
       "ipa": "/kliːnd/",
       "aviationMeaning": "adj. 已清洁的；已清除污染物的",
@@ -8330,6 +8340,12 @@
       "ipa": "/kəˈmjuːtər/",
       "aviationMeaning": "n. 通勤航空旅客；支线通勤航班",
       "generalMeaning": "n. 通勤者"
+    },
+    {
+      "word": "companies",
+      "ipa": "/ˈkʌmpəniz/",
+      "aviationMeaning": "n. 航空公司、运营企业（company 的复数）",
+      "generalMeaning": "n. 公司；企业"
     },
     {
       "word": "company",
@@ -9766,6 +9782,12 @@
       "generalMeaning": "adj. 腐蚀性的"
     },
     {
+      "word": "corrosives",
+      "ipa": "/kəˈroʊsɪvz/",
+      "aviationMeaning": "n. 腐蚀性物质；腐蚀品",
+      "generalMeaning": "n. 腐蚀剂；腐蚀性物质"
+    },
+    {
       "word": "corruption",
       "ipa": "/kəˈrʌpʃən/",
       "aviationMeaning": "n. 数据损坏；信息失真",
@@ -10706,6 +10728,12 @@
       "ipa": "/dɔːn/",
       "aviationMeaning": "n. 黎明；低照度飞行时段",
       "generalMeaning": "n. 黎明；v. 开始明白"
+    },
+    {
+      "word": "daxing",
+      "ipa": "/ˌdɑːˈʃɪŋ/",
+      "aviationMeaning": "n. 大兴，语境中指北京大兴国际机场；读音为近似标注",
+      "generalMeaning": "n. 大兴（地名）"
     },
     {
       "word": "day",
@@ -11770,6 +11798,12 @@
       "generalMeaning": "n. 发展；开发"
     },
     {
+      "word": "developments",
+      "ipa": "/dɪˈveləpmənts/",
+      "aviationMeaning": "n. 航空技术或行业的发展、进展",
+      "generalMeaning": "n. 发展；新进展（development 的复数）"
+    },
+    {
       "word": "develops",
       "ipa": "/dɪˈveləps/",
       "aviationMeaning": "v. 发展天气、故障或运行能力",
@@ -12704,6 +12738,12 @@
       "ipa": "/dɪˈvɪʒən/",
       "aviationMeaning": "n. 划分；管制区、部门或任务分工",
       "generalMeaning": "n. 划分；部门"
+    },
+    {
+      "word": "divisions",
+      "ipa": "/dɪˈvɪʒənz/",
+      "aviationMeaning": "n. 项别；危险品类别之下的细分",
+      "generalMeaning": "n. 分部；划分（division 的复数）"
     },
     {
       "word": "dizziness",
@@ -16498,6 +16538,12 @@
       "generalMeaning": "n. 缩写；请结合原文"
     },
     {
+      "word": "flag-carrier",
+      "ipa": "/ˌflæɡ ˈkæriər/",
+      "aviationMeaning": "n. 国家航空公司；载旗航空公司",
+      "generalMeaning": "n. 代表国家的航空或航运企业"
+    },
+    {
       "word": "flame",
       "ipa": "/fleɪm/",
       "aviationMeaning": "n. 火焰；发动机燃烧火焰",
@@ -18718,6 +18764,12 @@
       "generalMeaning": "n. 组；群体"
     },
     {
+      "word": "grouped",
+      "ipa": "/ɡruːpt/",
+      "aviationMeaning": "v. 按危险类别等标准分组或归类",
+      "generalMeaning": "v. 分组；归类（group 的过去式或过去分词）"
+    },
+    {
       "word": "groups",
       "ipa": "/ɡruːps/",
       "aviationMeaning": "n. 组；机组、旅客或航班集合（复数）",
@@ -19256,6 +19308,12 @@
       "ipa": "/hæt/",
       "aviationMeaning": "n. 帽子；制服或旅客物品描述",
       "generalMeaning": "n. 帽子"
+    },
+    {
+      "word": "haul",
+      "ipa": "/hɔːl/",
+      "aviationMeaning": "n. 航程；用于 long haul（长途航程）等表达",
+      "generalMeaning": "n. 运输距离；v. 拖运"
     },
     {
       "word": "havana",
@@ -20338,6 +20396,12 @@
       "generalMeaning": "n. 平视显示器缩写"
     },
     {
+      "word": "hudson",
+      "ipa": "/ˈhʌdsən/",
+      "aviationMeaning": "n. 哈德逊河；1549航班水上迫降所在河流",
+      "generalMeaning": "n. 哈德逊（地名或姓氏）"
+    },
+    {
       "word": "huge",
       "ipa": "/hjuːdʒ/",
       "aviationMeaning": "adj. 巨大的；极大的影响、数量或风险",
@@ -20852,6 +20916,12 @@
       "ipa": "/ɪˈluːʒənz/",
       "aviationMeaning": "n. 错觉（复数）；飞行中的视觉或空间定向错觉",
       "generalMeaning": "n. 幻觉；错觉（复数）"
+    },
+    {
+      "word": "illustrates",
+      "ipa": "/ˈɪləstreɪts/",
+      "aviationMeaning": "v. 说明；展示某一安全原则或经验",
+      "generalMeaning": "v. 说明；举例解释（illustrate 的第三人称单数）"
     },
     {
       "word": "ils",
@@ -22076,6 +22146,12 @@
       "ipa": "/ˈɪntrəstɪŋ/",
       "aviationMeaning": "adj. 有意思的；非技术性描述",
       "generalMeaning": "adj. 有趣的"
+    },
+    {
+      "word": "interests",
+      "ipa": "/ˈɪntrəsts/",
+      "aviationMeaning": "v. 使某人对某机型或技术感兴趣",
+      "generalMeaning": "v. 使感兴趣；n. 兴趣、利益"
     },
     {
       "word": "interface",
@@ -26668,6 +26744,12 @@
       "generalMeaning": "v. 流产；失败"
     },
     {
+      "word": "miscellaneous",
+      "ipa": "/ˌmɪsəˈleɪniəs/",
+      "aviationMeaning": "adj. 杂项的；用于杂项危险物质和物品的分类名称",
+      "generalMeaning": "adj. 各种各样的；杂项的"
+    },
+    {
       "word": "miscommunication",
       "ipa": "/ˌmɪskəˌmjuːnɪˈkeɪʃən/",
       "aviationMeaning": "n. 沟通错误；机组或空管信息传递不一致",
@@ -29242,6 +29324,12 @@
       "generalMeaning": "adj. 普通的；平常的"
     },
     {
+      "word": "organic",
+      "ipa": "/ɔːrˈɡænɪk/",
+      "aviationMeaning": "adj. 有机的，如有机过氧化物",
+      "generalMeaning": "adj. 有机的；有机体的"
+    },
+    {
       "word": "organisation",
       "ipa": "/ˌɔːrɡənəˈzeɪʃən/",
       "aviationMeaning": "n. 组织；英式拼写；航空机构或团队",
@@ -29738,6 +29826,12 @@
       "ipa": "/ˈoʊnɪŋ/",
       "aviationMeaning": "v. 拥有；持有航空器、设备或产权",
       "generalMeaning": "v. 拥有；持有"
+    },
+    {
+      "word": "oxidizers",
+      "ipa": "/ˈɑːksɪdaɪzərz/",
+      "aviationMeaning": "n. 氧化性物质；可促进其他物质燃烧的物质",
+      "generalMeaning": "n. 氧化剂（oxidizer 的复数）"
     },
     {
       "word": "oxygen",
@@ -30556,6 +30650,12 @@
       "generalMeaning": "adj. 被允许的"
     },
     {
+      "word": "peroxides",
+      "ipa": "/pəˈrɑːksaɪdz/",
+      "aviationMeaning": "n. 过氧化物；有机过氧化物属于危险品分类中的一类物质",
+      "generalMeaning": "n. 过氧化物（peroxide 的复数）"
+    },
+    {
       "word": "perpendicular",
       "ipa": "/ˌpɜːrpənˈdɪkjələr/",
       "aviationMeaning": "adj. 垂直的；与跑道、航向或参考线成直角的",
@@ -31304,6 +31404,12 @@
       "ipa": "/ˈpɑːpɪŋ/",
       "aviationMeaning": "adj. 爆裂的；设备、通信或结构持续发出短促声响",
       "generalMeaning": "adj. 爆裂的；突然出现的"
+    },
+    {
+      "word": "popular",
+      "ipa": "/ˈpɑːpjələr/",
+      "aviationMeaning": "adj. 受旅客或公众欢迎的；普及的",
+      "generalMeaning": "adj. 受欢迎的；流行的"
     },
     {
       "word": "populated",
@@ -34904,6 +35010,12 @@
       "ipa": "/ˈreskjuː/",
       "aviationMeaning": "n. 救援；对遇险航空器、旅客或机组的搜救行动",
       "generalMeaning": "n. 救援；v. 救援"
+    },
+    {
+      "word": "rescued",
+      "ipa": "/ˈreskjuːd/",
+      "aviationMeaning": "v. 获救；被营救（rescue 的过去式或过去分词）",
+      "generalMeaning": "v. 救出；营救"
     },
     {
       "word": "rescuers",
@@ -38728,6 +38840,12 @@
       "generalMeaning": "adj. 固态的"
     },
     {
+      "word": "solids",
+      "ipa": "/ˈsɑːlɪdz/",
+      "aviationMeaning": "n. 固体物质；如易燃固体",
+      "generalMeaning": "n. 固体（solid 的复数）"
+    },
+    {
       "word": "solo",
       "ipa": "/ˈsoʊloʊ/",
       "aviationMeaning": "adj. 单飞的；飞行员独自操作航空器的",
@@ -39404,6 +39522,12 @@
       "ipa": "/ˈsteɪbəlaɪzd/",
       "aviationMeaning": "adj. 已稳定的；航空器、进近或系统已处于稳定状态",
       "generalMeaning": "adj. 已稳定的"
+    },
+    {
+      "word": "stabilized-approach",
+      "ipa": "/ˈsteɪbəlaɪzd əˈproʊtʃ/",
+      "aviationMeaning": "adj. 稳定进近的",
+      "generalMeaning": "adj. 已稳定的接近过程的"
     },
     {
       "word": "stabilizer",

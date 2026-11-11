@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "supplementalCoverage": {
+    "bankId": "opi",
+    "sourceChecksum": "eadfe06f1fd3ee5f4bdfceb48a49fcf6140f5f95380f4b043ae14f0ea3173fda",
+    "examDates": [
+      "2026-10-20",
+      "2026-10-21",
+      "2026-10-28",
+      "2026-10-30"
+    ],
+    "cardIds": [
+      "opi-core-082",
+      "opi-core-175",
+      "opi-core-232",
+      "opi-core-240",
+      "opi-core-337",
+      "opi-core-338",
+      "opi-core-444",
+      "opi-core-468",
+      "opi-core-633",
+      "opi-core-636",
+      "opi-core-717",
+      "opi-core-782",
+      "opi-core-810",
+      "opi-core-817",
+      "opi-extra-118",
+      "opi-extra-150",
+      "opi-extra-246",
+      "opi-extra-315",
+      "opi-extra-318",
+      "opi-extra-362",
+      "opi-extra-368",
+      "opi-fzy-118170",
+      "opi-fzy-152196",
+      "opi-fzy-224540",
+      "opi-fzy-224769",
+      "opi-intake-20261019-dg-classification",
+      "opi-intake-20261019-navigation-lights",
+      "opi-intake-20261111-contaminated-takeoff",
+      "opi-intake-20261111-ditching-example",
+      "opi-intake-20261111-stabilized-achieve",
+      "opi-intake-20261111-stabilized-definition",
+      "opi-report-202610-deicing-procedure",
+      "opi-report-202610-preferred-aircraft"
+    ],
+    "note": "线上题库增量及本次候选的查词覆盖；不覆盖静态题库原文。"
+  },
+  "entries": [
+    {
+      "word": "flag-carrier",
+      "ipa": "/ˌflæɡ ˈkæriər/",
+      "aviationMeaning": "n. 国家航空公司；载旗航空公司",
+      "generalMeaning": "n. 代表国家的航空或航运企业"
+    },
+    {
+      "word": "companies",
+      "ipa": "/ˈkʌmpəniz/",
+      "aviationMeaning": "n. 航空公司、运营企业（company 的复数）",
+      "generalMeaning": "n. 公司；企业"
+    },
+    {
+      "word": "hudson",
+      "ipa": "/ˈhʌdsən/",
+      "aviationMeaning": "n. 哈德逊河；1549航班水上迫降所在河流",
+      "generalMeaning": "n. 哈德逊（地名或姓氏）"
+    },
+    {
+      "word": "rescued",
+      "ipa": "/ˈreskjuːd/",
+      "aviationMeaning": "v. 获救；被营救（rescue 的过去式或过去分词）",
+      "generalMeaning": "v. 救出；营救"
+    },
+    {
+      "word": "illustrates",
+      "ipa": "/ˈɪləstreɪts/",
+      "aviationMeaning": "v. 说明；展示某一安全原则或经验",
+      "generalMeaning": "v. 说明；举例解释（illustrate 的第三人称单数）"
+    },
+    {
+      "word": "clean-aircraft",
+      "ipa": "/kliːn ˈerkræft/",
+      "aviationMeaning": "adj. 清洁航空器的，指关键表面符合适用的污染物清除要求",
+      "generalMeaning": "adj. 干净飞机的"
+    },
+    {
+      "word": "grouped",
+      "ipa": "/ɡruːpt/",
+      "aviationMeaning": "v. 按危险类别等标准分组或归类",
+      "generalMeaning": "v. 分组；归类（group 的过去式或过去分词）"
+    },
+    {
+      "word": "solids",
+      "ipa": "/ˈsɑːlɪdz/",
+      "aviationMeaning": "n. 固体物质；如易燃固体",
+      "generalMeaning": "n. 固体（solid 的复数）"
+    },
+    {
+      "word": "oxidizers",
+      "ipa": "/ˈɑːksɪdaɪzərz/",
+      "aviationMeaning": "n. 氧化性物质；可促进其他物质燃烧的物质",
+      "generalMeaning": "n. 氧化剂（oxidizer 的复数）"
+    },
+    {
+      "word": "organic",
+      "ipa": "/ɔːrˈɡænɪk/",
+      "aviationMeaning": "adj. 有机的，如有机过氧化物",
+      "generalMeaning": "adj. 有机的；有机体的"
+    },
+    {
+      "word": "peroxides",
+      "ipa": "/pəˈrɑːksaɪdz/",
+      "aviationMeaning": "n. 过氧化物；有机过氧化物属于危险品分类中的一类物质",
+      "generalMeaning": "n. 过氧化物（peroxide 的复数）"
+    },
+    {
+      "word": "corrosives",
+      "ipa": "/kəˈroʊsɪvz/",
+      "aviationMeaning": "n. 腐蚀性物质；腐蚀品",
+      "generalMeaning": "n. 腐蚀剂；腐蚀性物质"
+    },
+    {
+      "word": "miscellaneous",
+      "ipa": "/ˌmɪsəˈleɪniəs/",
+      "aviationMeaning": "adj. 杂项的；用于杂项危险物质和物品的分类名称",
+      "generalMeaning": "adj. 各种各样的；杂项的"
+    },
+    {
+      "word": "divisions",
+      "ipa": "/dɪˈvɪʒənz/",
+      "aviationMeaning": "n. 项别；危险品类别之下的细分",
+      "generalMeaning": "n. 分部；划分（division 的复数）"
+    },
+    {
+      "word": "stabilized-approach",
+      "ipa": "/ˈsteɪbəlaɪzd əˈproʊtʃ/",
+      "aviationMeaning": "adj. 稳定进近的",
+      "generalMeaning": "adj. 已稳定的接近过程的"
+    },
+    {
+      "word": "developments",
+      "ipa": "/dɪˈveləpmənts/",
+      "aviationMeaning": "n. 航空技术或行业的发展、进展",
+      "generalMeaning": "n. 发展；新进展（development 的复数）"
+    },
+    {
+      "word": "daxing",
+      "ipa": "/ˌdɑːˈʃɪŋ/",
+      "aviationMeaning": "n. 大兴，语境中指北京大兴国际机场；读音为近似标注",
+      "generalMeaning": "n. 大兴（地名）"
+    },
+    {
+      "word": "popular",
+      "ipa": "/ˈpɑːpjələr/",
+      "aviationMeaning": "adj. 受旅客或公众欢迎的；普及的",
+      "generalMeaning": "adj. 受欢迎的；流行的"
+    },
+    {
+      "word": "interests",
+      "ipa": "/ˈɪntrəsts/",
+      "aviationMeaning": "v. 使某人对某机型或技术感兴趣",
+      "generalMeaning": "v. 使感兴趣；n. 兴趣、利益"
+    },
+    {
+      "word": "haul",
+      "ipa": "/hɔːl/",
+      "aviationMeaning": "n. 航程；用于 long haul（长途航程）等表达",
+      "generalMeaning": "n. 运输距离；v. 拖运"
+    }
+  ]
+}
