@@ -161,14 +161,36 @@ async function check() {
   console.log(`word_lookup_check_ok words=${saved.summary.wordCount} occurrences=${saved.summary.occurrenceCount} rejected=${saved.summary.rejectedTokenCount}`);
 }
 
-function validateDataset(wordList, dataset, requireComplete) {
+// Live question orders can precede the bundled bank snapshot. Keep their authored
+// definitions in the existing batch source, with explicit content provenance.
+async function supplementalEntries() {
+  const entries = new Map();
+  for (const file of await listBatchFiles(batchesPath)) {
+    const batch = JSON.parse(await readFile(file, 'utf8'));
+    const coverage = batch.supplementalCoverage;
+    if (!coverage) continue;
+    assert(batch.schemaVersion === 1 && Array.isArray(batch.entries), `invalid_supplemental_batch:${file}`);
+    assert(Object.hasOwn(scope, coverage.bankId) && /^[a-f0-9]{64}$/.test(coverage.sourceChecksum)
+      && Array.isArray(coverage.cardIds) && coverage.cardIds.length > 0
+      && coverage.cardIds.every(id => typeof id === 'string' && id.length > 0), `invalid_supplemental_provenance:${file}`);
+    for (const entry of batch.entries) {
+      assert(!entries.has(entry.word), `duplicate_supplemental_word:${entry.word}`);
+      entries.set(entry.word, entry);
+    }
+  }
+  return entries;
+}
+
+function validateDataset(wordList, dataset, requireComplete, supplemental = new Map()) {
   assert(dataset.schemaVersion === 1, 'invalid_word_lookup_dataset_schema');
   assert(dataset.wordListChecksum === sha256(stableJson(wordList.words)), 'word_lookup_dataset_word_list_mismatch');
   assert(Array.isArray(dataset.entries), 'invalid_word_lookup_entries');
   const expected = new Set(wordList.words.map((item) => item.word));
   const received = new Set();
   for (const entry of dataset.entries) {
-    assert(typeof entry.word === 'string' && expected.has(entry.word), `invalid_word_lookup_word:${entry.word}`);
+    assert(typeof entry.word === 'string' && normalizeLookupWord(entry.word) === entry.word
+      && (expected.has(entry.word) || supplemental.has(entry.word)), `invalid_word_lookup_word:${entry.word}`);
+    if (supplemental.has(entry.word)) assert(stableJson(entry) === stableJson(supplemental.get(entry.word)), `supplemental_definition_mismatch:${entry.word}`);
     assert(!received.has(entry.word), `duplicate_word_lookup_word:${entry.word}`);
     assert(typeof entry.ipa === 'string' && /^\/.+\/$/u.test(entry.ipa), `invalid_word_lookup_ipa:${entry.word}`);
     assert(typeof entry.aviationMeaning === 'string' && /^[a-z]+\.\s/u.test(entry.aviationMeaning) && /[\u4E00-\u9FFF]/u.test(entry.aviationMeaning), `invalid_word_lookup_aviation:${entry.word}`);
@@ -177,7 +199,9 @@ function validateDataset(wordList, dataset, requireComplete) {
     assert(entry.generalMeaning.length <= 120, `word_lookup_general_too_long:${entry.word}`);
     received.add(entry.word);
   }
-  if (requireComplete) assert(received.size === expected.size, `word_lookup_coverage_mismatch:${received.size}:${expected.size}`);
+  if (requireComplete) {
+    for (const word of new Set([...expected, ...supplemental.keys()])) assert(received.has(word), `word_lookup_coverage_missing:${word}`);
+  }
   return { expected: expected.size, received: received.size };
 }
 
@@ -189,13 +213,13 @@ async function checkDataset() {
   ]);
   assert(datasetBytes.equals(runtimeBytes), 'word_lookup_runtime_dataset_stale_run_word_lookup_runtime_build');
   const dataset = JSON.parse(datasetBytes.toString('utf8'));
-  const { received } = validateDataset(wordList, dataset, true);
+  const { received } = validateDataset(wordList, dataset, true, await supplementalEntries());
   console.log(`word_lookup_dataset_check_ok words=${received}`);
 }
 
 async function checkPartialDataset() {
   const [wordList, dataset] = await Promise.all([readFile(outputPath, 'utf8').then(JSON.parse), readFile(datasetPath, 'utf8').then(JSON.parse)]);
-  const { expected, received } = validateDataset(wordList, dataset, false);
+  const { expected, received } = validateDataset(wordList, dataset, false, await supplementalEntries());
   console.log(`word_lookup_dataset_partial_check_ok words=${received} remaining=${expected - received}`);
 }
 

@@ -32,3 +32,20 @@ it('refreshes definitions, persists them for offline startup, and retains the bu
   expect(findStaticWordLookup('descent')).toBeDefined();
   unsubscribe();
 });
+
+it('restores a downloaded definition after restart without network access', async () => {
+  let cached: string | null = null;
+  const entry = { word: 'offlineflightword', ipa: '/flaɪt/', aviationMeaning: 'n. 离线测试词', generalMeaning: 'n. 离线测试词' };
+  jest.mocked(storage.getItem).mockImplementation(async () => cached);
+  jest.mocked(storage.setItem).mockImplementation(async (_key, value) => { cached = typeof value === 'string' ? value : null; });
+  jest.mocked(apiFetch).mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ data: { checksum: 'b'.repeat(64), entries: [entry] } }) } as Response);
+  await refreshStaticWordLookup();
+  expect(cached).toContain('offlineflightword');
+  let restarted!: typeof import('../static-word-lookup/repository');
+  jest.isolateModules(() => { restarted = require('../static-word-lookup/repository'); });
+  expect(restarted.findStaticWordLookup('offlineflightword')).toBeUndefined();
+  jest.mocked(apiFetch).mockRejectedValueOnce(new Error('offline'));
+  await restarted.refreshStaticWordLookup();
+  expect(restarted.findStaticWordLookup('offlineflightword')).toEqual(entry);
+  expect(restarted.findStaticWordLookup('descent')).toBeDefined();
+});

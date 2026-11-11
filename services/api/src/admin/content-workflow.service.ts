@@ -165,7 +165,7 @@ export class ContentWorkflowService {
         if(!previous || !isAppContentSnapshot(previous.payload)) throw new BadRequestException('app_content_not_available');
         const briefs=draft.normalizeHotspots?normalizeDailyHotspots(previous.payload.hotspots.briefs):draft.hotspotUpdates?normalizeDailyHotspots(replaceHistoricalHotspots(previous.payload,draft.hotspotUpdates)):mergeHotspotFeedback(previous.payload.hotspots.briefs,draft.hotspot!,id);
         const opi=(await tx.select().from(questionBankReleases).where(and(eq(questionBankReleases.bankId,'opi'),eq(questionBankReleases.active,true))))[0];
-        validateHotspotReferences(briefs,validateBank(opi?.payload,opi?.payload));
+        validateHotspotReferences(briefs,validateBank(opi?.payload,opi?.payload),draft.hotspot ? previous.payload.hotspots.briefs : []);
         const payload={...previous.payload,version:previous.version+1,publishedAt:new Date().toISOString(),hotspots:{generatedAt:new Date().toISOString(),briefs}};
         if(!isAppContentSnapshot(payload)) throw new BadRequestException('invalid_hotspot_release');
         await tx.update(appContentReleases).set({active:false}).where(eq(appContentReleases.active,true));

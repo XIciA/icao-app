@@ -52,3 +52,16 @@ it('unifies aliases without losing per-center filtering, source prompts or gener
  expect(normalizeDailyHotspots([day])).toEqual([day]);
  expect(hotspotReportedPrompts(day,{id:'a',reportedPrompts:{'air-china':['Original English question?']}})).toEqual(['Original English question?']);
 });
+
+
+it('preserves unrelated published days exactly when a new day is added or extended', () => {
+ const frozen=brief('frozen','国航考点',['old'],'2026-10-16');
+ frozen.title='原始冻结标题';
+ const before=JSON.parse(JSON.stringify(frozen));
+ let result=mergeHotspotFeedback([frozen],brief('tianjin','天津考点',['new'],'2026-10-28'));
+ expect(result.find(day=>day.date==='2026-10-16')).toEqual(before);
+ result=mergeHotspotFeedback(result,brief('more','北京考点',['more'],'2026-10-28'));
+ expect(result.find(day=>day.date==='2026-10-16')).toEqual(before);
+ expect(result.find(day=>day.date==='2026-10-28')?.centers).toEqual(['天津考点','北京考点']);
+ expect(()=>mergeHotspotFeedback(result,brief('frozen','天津考点',['x'],'2026-10-30'))).toThrow('source_date_conflict');
+});

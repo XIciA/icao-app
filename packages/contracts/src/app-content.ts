@@ -144,20 +144,23 @@ export function legalConsentMatches(receipt: LegalConsentReceipt | null | undefi
 
 /** One day is one directory entry. Source IDs remain usable as aliases and prompt keys. */
 const nonCenterLabels = new Set(['多考点反馈','冬季运行专题','综合反馈','本日综合反馈','本日综合考点','全部考点']);
-export const HOTSPOT_CENTER_NAMES = ['北京考点','广汉考点','新津考点','绵阳考点','广州考点','新疆考点','西南考点','遂宁考点','深圳考点','上海考点'] as const;
+const LEGACY_HOTSPOT_CENTER_NAMES = ['北京考点','广汉考点','新津考点','绵阳考点','广州考点','新疆考点','西南考点','遂宁考点','深圳考点','上海考点'] as const;
+export const HOTSPOT_CENTER_NAMES = [...LEGACY_HOTSPOT_CENTER_NAMES, '天津考点'] as const;
 /** Stable presentation aliases; source IDs and reported questions remain unchanged. */
 export function normalizeHotspotCenter(value: string): string {
   const label = value.trim();
   if (!label || nonCenterLabels.has(label)) return '';
   if (/新京|新津/u.test(label)) return '新津考点';
   if (/绥宁|遂宁/u.test(label)) return '遂宁考点';
+  if (/中国民航大学|中国民航大|民航大/u.test(label)) return '天津考点';
   const known = HOTSPOT_CENTER_NAMES.find(center => label.includes(center.slice(0, -2)));
   if (known) return known;
   if (/飞院本部|中飞院/u.test(label)) return '广汉考点';
-  // Deterministic assignment keeps legacy unknown labels stable across refreshes/devices.
+  // Preserve frozen legacy presentation; adding a center must not change the legacy hash modulus.
+  // New feedback must supply a confirmed canonical center, never rely on this legacy fallback.
   let hash = 2166136261;
   for (const character of label) hash = Math.imul(hash ^ character.charCodeAt(0), 16777619) >>> 0;
-  return HOTSPOT_CENTER_NAMES[hash % HOTSPOT_CENTER_NAMES.length]!;
+  return LEGACY_HOTSPOT_CENTER_NAMES[hash % LEGACY_HOTSPOT_CENTER_NAMES.length]!;
 }
 export function dailyHotspotTitle(date: string) {
   const [year,month,day]=date.split('-');
@@ -209,11 +212,15 @@ export function mergeHotspotFeedback(briefs: AppContentHotspotBrief[], incoming:
   if(incoming.sources)throw new Error('feedback_cannot_replace_daily_sources');
   const source=hotspotSources(incoming)[0]!;
   if(orderId)source.orderId=orderId;
-  if(!day)return normalizeDailyHotspots([...daily,{...incoming,id:`hotspot-${incoming.date}`,sources:[source]}]);
+  if(daily.some(brief=>brief.date!==incoming.date&&hotspotSources(brief).some(item=>item.id===source.id)))throw new Error('hotspot_source_date_conflict');
+  // A content addition owns only its date. Do not rewrite already-published days
+  // as a side effect of normalization (titles, centers, and legacy sources).
+  const retainOtherDays=(updated:AppContentHotspotBrief)=>[...briefs.filter(brief=>brief.date!==incoming.date),updated].sort((a,b)=>b.date.localeCompare(a.date));
+  if(!day)return retainOtherDays(normalizeDailyHotspots([{...incoming,id:`hotspot-${incoming.date}`,sources:[source]}])[0]!);
   const previous=day.sources!.find(s=>s.id===source.id);
   const merged=previous?{...previous,...source,title:previous.title,centers:[...new Set([...previous.centers,...source.centers])],topics:unionHotspotTopics([previous,source])}:source;
   const sources=previous?day.sources!.map(s=>s.id===source.id?merged:s):[...day.sources!,merged];
-  return normalizeDailyHotspots(daily.map(b=>b.id===day.id?{...b,topics:unionHotspotTopics(sources),sources}:b));
+  return retainOtherDays(normalizeDailyHotspots([{...day,topics:unionHotspotTopics(sources),sources}])[0]!);
 }
 export function selectHotspotSource(brief: AppContentHotspotBrief, selection: string): AppContentHotspotBrief {
   if(selection==='all')return brief;

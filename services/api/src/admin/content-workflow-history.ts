@@ -23,13 +23,18 @@ export function replaceHistoricalHotspots(app: AppContentSnapshot, update: NonNu
   return normalizeDailyHotspots(updated.map(brief=>({...brief,sources:[{...sources.get(brief.id)!,centers:brief.centers,topics:brief.topics}]})));
 }
 
-export function validateHotspotReferences(briefs: AppContentHotspotBrief[], bank: Bank) {
+export function validateHotspotReferences(briefs: AppContentHotspotBrief[], bank: Bank, previousBriefs: AppContentHotspotBrief[] = []) {
+  // A frozen published day may retain an old display title after a bank rename.
+  // Only byte-equivalent content qualifies; IDs, ownership and active status are
+  // always checked. New or edited briefs still require the current topic title.
+  const previous = new Set(previousBriefs.map(hash));
+  const unchanged = new Set(briefs.filter(brief => previous.has(hash(brief))).flatMap(brief => [brief, ...hotspotSources(brief)]).map(hash));
   const cards = new Map(cardsOf(bank).map(entry => [entry.card.id, entry]));
   for (const brief of briefs.flatMap(brief=>[brief,...hotspotSources(brief)])) {
     const ids = new Set<string>();
     for (const group of brief.topics) for (const id of group.cardIds) {
       const entry = cards.get(id);
-      if (ids.has(id) || !entry || entry.card.retired || entry.topic.id !== group.topicId || entry.topic.name !== group.topicTitle) {
+      if (ids.has(id) || !entry || entry.card.retired || entry.topic.id !== group.topicId || (entry.topic.name !== group.topicTitle && !unchanged.has(hash(brief)))) {
         throw new BadRequestException('hotspot_reference_invalid');
       }
       ids.add(id);
