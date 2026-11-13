@@ -3,7 +3,7 @@ import { getIcaoDistributionEnvironment } from '@icao/distribution-environment';
 import { Linking, Platform } from 'react-native';
 import Storage from '@/platform/storage';
 import { withApiRequestTimeout } from '@/platform/api-client';
-import { APP_UPDATE_MANIFEST_URL, newerAppUpdate, parseAppUpdates, type AppUpdate } from './update-model';
+import { ANDROID_UPDATE_PAGE_URL, APP_UPDATE_MANIFEST_URL, newerAppUpdate, parseAppUpdates, type AppUpdate } from './update-model';
 
 const LAST_CHECK = 'icao.app-update.last-check.v1';
 const DISMISSED = 'icao.app-update.dismissed.v1';
@@ -35,5 +35,5 @@ export function dismissAppUpdate(update: AppUpdate) {
   return Storage.setItem(DISMISSED, JSON.stringify({ key: `${update.channel}:${update.version}:${update.build}`, time: Date.now() }));
 }
 export async function openAppUpdate(update: AppUpdate) {
-  await Linking.openURL(update.url);
+  await Linking.openURL(update.channel === 'android-apk' ? ANDROID_UPDATE_PAGE_URL : update.url);
 }

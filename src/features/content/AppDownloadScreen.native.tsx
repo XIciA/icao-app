@@ -1,8 +1,8 @@
 import { Link, useRouter, type Href } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { APP_UPDATE_MANIFEST_URL, newerAppUpdate, parseAppUpdates, type AppUpdate } from '@/features/app-updates/update-model';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
@@ -64,6 +64,17 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
     return () => { active = false; clearTimeout(timeout); controller.abort(); };
   }, [usePublishedRelease, attempt]);
   const androidUrl = usePublishedRelease ? release?.url : ANDROID_DOWNLOAD_URL;
+  const autoDownloadStarted = useRef(false);
+  const [autoDownloadRequested, setAutoDownloadRequested] = useState(false);
+  useEffect(() => {
+    if (Platform.OS !== 'web' || typeof window === 'undefined' || !usePublishedRelease
+      || !release || autoDownloadStarted.current
+      || new URLSearchParams(window.location.search).get('android') !== 'auto') return;
+    autoDownloadStarted.current = true;
+    setAutoDownloadRequested(true);
+    // Only a validated official release may be opened; query parameters never supply an APK URL.
+    try { window.location.assign(release.url); } catch { /* The visible download link remains available. */ }
+  }, [release, usePublishedRelease]);
   const loadingDownload = usePublishedRelease && downloadState === 'loading';
   const failedDownload = usePublishedRelease && downloadState === 'error';
   return (
@@ -110,7 +121,7 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
                 <AppText variant="button" color={colors.primaryForeground}>下载安卓 APK</AppText>
               </Pressable>
             </Link> : failedDownload ? <Button onPress={() => setAttempt((value) => value + 1)} variant="secondary" size="lg">重新获取下载链接</Button> : <Button disabled accessibilityState={{ disabled: true }} variant="secondary" size="lg" style={styles.comingSoon}>{loadingDownload ? '正在获取下载链接' : '敬请期待'}</Button>}
-            <AppText style={styles.hint}>{androidUrl ? '下载后打开安装包，按系统提示安装' : loadingDownload ? '正在查询已发布版本' : failedDownload ? '下载信息加载失败，请重试' : '安卓版暂未开放下载'}</AppText>
+            <AppText style={styles.hint}>{androidUrl ? autoDownloadRequested ? '已尝试开始下载。如未开始，请点击上方“下载安卓 APK”；下载后按系统提示安装。' : '下载后打开安装包，按系统提示安装' : loadingDownload ? '正在查询已发布版本' : failedDownload ? '下载信息加载失败，请重试' : '安卓版暂未开放下载'}</AppText>
           </Card>
         </View>
         <AppText style={styles.footer}>听你五个 · 航空英语学习助手</AppText>

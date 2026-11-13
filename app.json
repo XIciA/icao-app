@@ -25,7 +25,7 @@
       "icon": "./assets/images/icon-native.png",
       "predictiveBackGestureEnabled": false,
       "package": "com.readyoufife.app",
-      "versionCode": 3596176
+      "versionCode": 3596177
     },
     "web": {
       "output": "single",

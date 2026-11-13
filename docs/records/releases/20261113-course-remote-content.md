@@ -62,3 +62,13 @@
 - 本机归档：`/private/tmp/icao-course-web-release/.generated/testflight/ICAO-3596176-preagreement.xcarchive`；IPA：同目录 `export-3596176-20261113T082550Z/app.ipa`；证据：`candidate-3596176.json`、`archive-audit-3596176-20261113T082550Z.json`，以及 `../mock-recording-delivery/testflight-status.json`／`web-status.json`。
 - 回滚参考：iOS `release/ios-testflight/v1.3.2-b3596175`；Web `release/web-edgeone/20261113-2964376b`。无需数据库迁移，原有用户数据不做批量改写。
 - 用户真机验收待完成：新版完成一场含口语题的模拟练习 → 本次记录／答题卡 → 对应题目 → 右侧回放；退出重进／重启后回听，成功重录覆盖、失败保留旧录音，不同场次互不串音。旧版本已清理的音频不能恢复，本机音频不跨设备同步。
+
+## Android 1.3.2 正式发布准备
+
+- 用户于 2026-11-13 明确授权：对齐 iOS 1.3.2（3596176），打包后替换官网正式下载。
+- 对齐基准：`ce6092ecca8a0f37bf95e648d5620881c5a5052d`；其后至本轮开始的 main 没有 App 功能变化，仅文档和服务端 AI 改动，本轮不部署后端。
+- Android 版本 1.3.2，构建 3596177（上一正式 Android 构建 3596176）。正式包名与签名延续；iOS 配置保持。
+- 课程和模拟录音共用已交付 iOS 实现；仅正式 Android 更新入口改为 `https://readyoufife.com/download?android=auto`。官网从受校验的正式清单读取 APK，尝试自动下载，保留手动按钮和清单失败重试。普通访问不触发自动下载。
+- 测试包仍沿用原有独立更新安装流程，iOS 更新入口、检查频率和忽略版本规则不变。正式清单继续保存 APK 直链、大小和摘要，兼容老版本应用内下载。
+- 聚焦更新／模拟录音回顾测试 32 项、下载页 4 项通过。完整 `pnpm check` 因未纳入 Git 的历史音频 `audio/listening/main/001.mp3` 缺失停止；使用仓库支持的干净环境 `pnpm check:ci` 检查源码合同，不能将其写成媒体二进制全量验证通过。
+- 本段仅记录准备；正式制品、部署、公开下载与最终检查结果在交付后补充。未进行 Android 真机体验验收。

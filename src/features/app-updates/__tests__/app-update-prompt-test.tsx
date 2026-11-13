@@ -42,7 +42,7 @@ it('opens renewal without clearing learning data and invalidates an old reminder
  mockExpiry=new Date(Date.now()+30*86400000).toISOString();await view.rerender(<AppUpdatePrompt/>);expect(view.queryByText('会员即将到期')).toBeNull();
 });
 
-const release = { channel: 'android-apk' as const, version: '1.2.1', build: 200, available: true as const,
+const release = { channel: 'android-test' as const, version: '1.2.1', build: 200, available: true as const,
  url: 'https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/app-200.apk',
  notes: '更新', publishedAt: '2026-10-21T00:00:00Z' };
 const originalOS = Platform.OS;
@@ -84,4 +84,17 @@ it('keeps iOS updates on the App Store / TestFlight link flow', async () => {
  await fireEvent.press(view.getByText('去更新'));
  expect(openAppUpdate).toHaveBeenCalledWith(iosRelease);
  expect(downloadAndroidUpdate).not.toHaveBeenCalled();
+});
+
+it('opens the official website for Android production updates without the in-app installer', async () => {
+ Object.defineProperty(Platform, 'OS', { configurable: true, value: 'android' });
+ const official = { ...release, channel: 'android-apk' as const };
+ jest.mocked(checkAppUpdate).mockResolvedValueOnce(official);
+ const view = await render(<AppUpdatePrompt manual />);
+ await fireEvent.press(view.getByText('检查更新'));
+ await waitFor(() => expect(view.getByText('立即更新')).toBeTruthy());
+ await fireEvent.press(view.getByText('立即更新'));
+ expect(openAppUpdate).toHaveBeenCalledWith(official);
+ expect(downloadAndroidUpdate).not.toHaveBeenCalled();
+ expect(installAndroidUpdate).not.toHaveBeenCalled();
 });
