@@ -16,11 +16,11 @@ describe('learning review v2', () => {
     expect(reviewSchema.safeParse({ ...input, analysisVersion: 2, source: { bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) } }).success).toBe(false);
     expect(reviewSchema.safeParse({ ...input, module: 'opi', analysisVersion: 2, source: { bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) } }).success).toBe(false);
   });
-  it('validates evidence and returns distinct categories without a score or story rewrite', () => {
+  it('returns distinct categories without vetoing evidence or extra fields', () => {
     expect(validateLearningReview(result, input, materials).analysis).toEqual({ module: 'atc', ...result });
-    expect(() => validateLearningReview({ ...result, incorrectInformation: [{ ...result.incorrectInformation[0], answerQuote: 'turning RIGHT' }] }, input, materials)).toThrow();
-    expect(() => validateLearningReview({ ...result, missingInformation: [{ sourceQuote: 'Runway 27', reasonZh: '遗漏跑道' }] }, input, materials)).toThrow();
-    expect(() => validateLearningReview({ ...result, score: 90 }, input, materials)).toThrow();
+    expect(validateLearningReview({ ...result, incorrectInformation: [{ ...result.incorrectInformation[0], answerQuote: 'turning RIGHT' }] }, input, materials).analysis).toMatchObject({ incorrectInformation: [{ answerQuote: 'turning RIGHT' }] });
+    expect(validateLearningReview({ ...result, missingInformation: [{ sourceQuote: 'Runway 27', reasonZh: 'Missing runway' }] }, input, materials).analysis).toMatchObject({ missingInformation: [{ sourceQuote: 'Runway 27', reasonZh: 'Missing runway' }] });
+    expect(validateLearningReview({ ...result, score: 90 }, input, materials).analysis).toEqual({ module: 'atc', ...result });
   });
   it('keeps source limitations and model failures separate from a clean analysis', () => {
     for (const code of ['invalid_answer', 'insufficient_material']) {
@@ -45,8 +45,32 @@ describe('learning review v2', () => {
     expect(learningReviewMaterials(input, { cards }).contextText).toBe('Callsign CCA123.');
     expect(learningReviewMaterials(input, { cards, practiceKind: 'scoring-points' }).contextText).toBe('');
   });
-  it('rejects an OPI polish changing protected numbers', () => {
-    expect(() => validateLearningReview({ offTopic: null, grammarErrors: [], polishedText: 'We have 300 passengers.' },
-      { ...input, module: 'opi', mode: 'opi', transcript: 'We have 200 passengers.' }, materials)).toThrow();
+  it('accepts an OPI polish changing protected numbers', () => {
+    expect(validateLearningReview({ offTopic: null, grammarErrors: [], polishedText: 'We have 300 passengers.' },
+      { ...input, module: 'opi', mode: 'opi', transcript: 'We have 200 passengers.' }, materials).polishedText).toBe('We have 300 passengers.');
+  });
+});
+
+describe('learning review partial output compatibility', () => {
+  it.each(['atc', 'story', 'opi'] as const)('keeps a screenshot-style correction and partial English rows for %s', (module) => {
+    const feedback = { grammarErrors: [null, {}, { before: 'with hitting 060', after: 'with heading 060', reasonZh: 'Correct the word.' }], unexpected: true };
+    const output = validateLearningReview(feedback, { ...input, module, transcript: 'with hitting 060' }, materials);
+    expect(output.analysis?.grammarErrors).toEqual([feedback.grammarErrors[2]]);
+    expect(output.grammar.correctedText).toBe('with hitting 060');
+    if (module === 'opi') expect(output.polishedText).toBe('with hitting 060');
+    else expect(output.analysis).toMatchObject({ missingInformation: [], incorrectInformation: [], extraInformation: [] });
+  });
+  it('accepts long rows, singleton objects, numeric quotes and unchanged corrections', () => {
+    const rows = Array.from({ length: 50 }, () => ({ before: 'X'.repeat(700), after: 'X'.repeat(700), reasonZh: 'No change' }));
+    const output = validateLearningReview({ grammarErrors: rows, missingInformation: { sourceQuote: 60, reasonZh: 'x'.repeat(1400) } }, input, materials);
+    expect(output.analysis?.grammarErrors).toEqual(rows);
+    expect(output.analysis).toMatchObject({ missingInformation: [{ sourceQuote: '60', reasonZh: 'x'.repeat(1400) }] });
+  });
+  it('preserves an explicit clean result but does not mislabel broken output as clean', () => {
+    const empty = { grammarErrors: [], missingInformation: [], incorrectInformation: [], extraInformation: [] };
+    expect(validateLearningReview(empty, input, materials).analysis).toEqual({ module: 'atc', ...empty });
+    for (const value of [{}, { grammarErrors: [] }, { ...empty, grammarErrors: [null, {}] }, { missingInformation: 'bad shape' }]) {
+      expect(() => validateLearningReview(value, input, materials)).toThrow();
+    }
   });
 });

@@ -125,6 +125,30 @@ describe('DeepSeekReviewProviderService', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
+  it.each([
+    ['```json\n{"grammarErrors":[{"before":"with hitting 060","after":"with heading 060","reasonZh":"Correct word"}]}\n```', 'stop'],
+    ['{"grammarErrors":[{"before":"with hitting 060","after":"with heading 060","reasonZh":"Correct word"}]}', 'length'],
+  ])('returns readable output without repeating a paid request (%s)', async (content, finish) => {
+    const fetchMock = vi.fn(async () => response(content, finish));
+    vi.stubGlobal('fetch', fetchMock);
+    const input = { module: 'story' as const, mode: 'grammar' as const, questionId: 'q', transcript: 'with hitting 060' };
+    const materials = { questionText: 'heading 060', contextText: '', referenceText: '', hasUnseenImage: false };
+    const result = await new DeepSeekReviewProviderService(config()).generateValidated({
+      mode: input.mode, system: learningReviewPrompt(input.module), prompt: '{}', userId: 'test',
+      validate: (data) => validateLearningReview(data, input, materials),
+    });
+    expect(result.data.analysis?.grammarErrors[0]?.after).toBe('with heading 060');
+    expect(result.meta).toMatchObject({ attemptCount: 1, upstreamStatus: 'success' });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not expose truncated JSON as a successful result', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => response('{"grammarErrors":[', 'length')));
+    await expect(new DeepSeekReviewProviderService(config()).generateValidated({
+      mode: 'grammar', system: 'Return JSON.', prompt: '{}', userId: 'test', validate: (data) => data,
+    })).rejects.toMatchObject({ failureCode: 'ai_invalid_response', attemptCount: 2 });
+  });
+
   it('does not retry non-recoverable authentication errors', async () => {
     const fetchMock = vi.fn(async () => new Response('{}', { status: 401 }));
     vi.stubGlobal('fetch', fetchMock);
