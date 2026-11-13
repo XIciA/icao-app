@@ -98,6 +98,7 @@ function recoveryFixture() {
     multiRemove: async (keys) => keys.forEach((key) => values.delete(key)), getAllKeys: async () => [...values.keys()],
   };
   const records = evaluate('src/features/question-bank/platform/learning-record-storage.native.ts', {
+    'react-native': { Platform: { OS: 'ios' } },
     '@/platform/storage': storage, '../lib/study-review.native': { captureStudyReview: (value) => value, getStudyReview: () => undefined },
   });
   const lookup = vi.fn(); const enqueue = vi.fn();
