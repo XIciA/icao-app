@@ -1,4 +1,4 @@
-# 2026-11-13 体系课程展示与远程内容
+# 2026-11-13 体系课程与模拟录音回顾
 
 ## 已发布 Web 展示
 
@@ -14,7 +14,7 @@
 - 用户确认网页版效果后授权实施原生页面加远程内容，交付 iOS TestFlight；不使用 WebView。
 - 版本：1.3.2 / 3596175；源码 `2964376be310ff488b7107e7580e5ef313de1d70`，PR [#355](https://github.com/XIciA/icao-app/pull/355)。
 - 课程数据采用版本化 JSON，包含内置兜底、本地缓存、摘要／结构校验及旧版本保护。
-- 模拟练习录音修改保持暂停，本轮没有修改录音、学习记录或用户数据。
+- 3596175 未包含此前讨论的模拟练习录音修复；随后按用户要求补齐，见本页后续交付。
 - TestFlight 已交付，实际状态和验证证据见下文；用户真机体验待验收。
 
 实施与后续内容更新方法见[任务说明](../../workstreams/course-remote-content/implementation.md)。
@@ -47,9 +47,18 @@
 - 用户验收：尚未完成。请在此 TestFlight 构建中检查课程列表／详情无金额、课时清晰、分类／关闭／返回逻辑、微信号复制和断网进入；未来内容发布后联网重新进入可读取新内容。
 
 
-## 后续模拟录音补齐候选（准备中）
+## 模拟录音回顾已交付（3596176）
 
 - 用户明确要求执行并上传新的 TestFlight，版本保持 1.3.2，构建递增为 3596176。
 - 修复完成模拟练习后录音未关联学习记录、退出清理导致回顾不能播放的问题；沿用现有题卡回放与重录按钮。
 - 保留课程已交付效果；不改原生录音参数、题库内容、会员、账号业务或正式更新渠道。音频留在本机，云同步数据格式保持。
-- 当前处于代码验证和候选准备，尚未上传，不能视为真机验收通过。发布后补充提交、制品、Apple 状态与测试结果。
+- 来源：PR [#357](https://github.com/XIciA/icao-app/pull/357)，干净 main / origin/main `ce6092ecca8a0f37bf95e648d5620881c5a5052d`。
+- 2026-11-13 16:33:43（北京时间）通过 App Store Connect API 确认：1.3.2 / 3596176、`VALID`、`IN_BETA_TESTING`、未过期，内部“测试”组可用。标签：`release/ios-testflight/v1.3.2-b3596176`。
+- IPA SHA-256：`990e4f1f97006de1fbf25de7bb59677d0bab099fb3dbd60db002cee686e49a17`。
+- 本地 `pnpm check:ci` 通过：App 287 套／2036 项，API 826 项；发布入口的 206 项录音回归、类型、音频边界、TestFlight 合同、关键能力、包身份／签名／隐私／生产地址检查通过。GitHub [CI](https://github.com/XIciA/icao-app/actions/runs/43390482845) 通过；依赖使用原入库 lockfile，未升级。
+- 归档中的实际原生 bundle 包含新增的录音持久引用及原有课程远程地址。Apple 校验、上传、处理和测试组分配均已完成；未提交 App Store 审核，未发布 Android 或修改正式更新清单。
+- 发布过程中 Apple 因新版 Developer Program License Agreement 未接受返回 HTTP 403。账户持有人自行接受后，网页显示 2026-11-13 接受，发布 API 恢复；重新通过构建号与权限检查，复用同一干净主干归档完成导出上传。
+- 同源产品 Web 已发布：deployment `dp6705sjj41e`，标签 `release/web-edgeone/20261113-ce6092ec`。16:30:32 公网检查首页／课程 JSON 均为 HTTP 200，首页脚本与本次导出一致，课程数据与发布源完全相同；网页录音存储行为保持。
+- 本机归档：`/private/tmp/icao-course-web-release/.generated/testflight/ICAO-3596176-preagreement.xcarchive`；IPA：同目录 `export-3596176-20261113T082550Z/app.ipa`；证据：`candidate-3596176.json`、`archive-audit-3596176-20261113T082550Z.json`，以及 `../mock-recording-delivery/testflight-status.json`／`web-status.json`。
+- 回滚参考：iOS `release/ios-testflight/v1.3.2-b3596175`；Web `release/web-edgeone/20261113-2964376b`。无需数据库迁移，原有用户数据不做批量改写。
+- 用户真机验收待完成：新版完成一场含口语题的模拟练习 → 本次记录／答题卡 → 对应题目 → 右侧回放；退出重进／重启后回听，成功重录覆盖、失败保留旧录音，不同场次互不串音。旧版本已清理的音频不能恢复，本机音频不跨设备同步。
