@@ -19,15 +19,15 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({ back: mockRouterBack, canGoBack: () => true, push: jest.fn(), replace: jest.fn() }),
 }));
 
-function renderScreen() {
+function renderScreen(hidePrices = false) {
   return render(
     <SafeAreaProvider initialMetrics={{ frame: { height: 844, width: mockWidth, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
-      <CourseCatalogScreen />
+      <CourseCatalogScreen hidePrices={hidePrices} />
     </SafeAreaProvider>,
   );
 }
 
-describe('<CourseCatalogScreen /> in the App', () => {
+describe('<CourseCatalogScreen hidePrices={hidePrices} /> in the App', () => {
   beforeEach(() => { mockRouterBack.mockClear(); mockWidth = 390; });
 
   it.each([320, 390])('renders the current content at width %s without the removed hero shortcuts', async (width) => {
@@ -108,4 +108,22 @@ describe('<CourseCatalogScreen /> in the App', () => {
     await fireEvent.press(screen.getByLabelText('返回'));
     expect(mockRouterBack).toHaveBeenCalledTimes(1);
   });
+});
+
+
+it('hides all web course amounts and displays hours in cards and details', async () => {
+  const screen = await renderScreen(true);
+  for (const view of Object.values(webCoursePromoCatalog.pricing.views)) {
+    await fireEvent.press(screen.getByLabelText(view.id === 'icao5' ? '选择ICAO 5 课程' : `选择${view.label}`));
+    for (const plan of view.plans) {
+      const hours = plan.unit.replace(/^元\s*\/\s*/, '');
+      expect(screen.getAllByText(hours).length).toBeGreaterThan(0);
+      expect(screen.queryByText(plan.price)).toBeNull();
+      expect(screen.queryByText(plan.unit)).toBeNull();
+      await fireEvent.press(screen.getByLabelText(`查看${plan.name}详情`));
+      expect(screen.getAllByText(hours).length).toBeGreaterThan(1);
+      expect(screen.queryByText(`${plan.price} 元`)).toBeNull();
+      await fireEvent.press(screen.getByLabelText('关闭课程详情'));
+    }
+  }
 });
