@@ -26,6 +26,7 @@ import {
   type WebCourseOutlineSection,
   type WebCoursePlan,
   type WebCourseViewId,
+  type WebCoursePromoCatalog,
 } from './course-promo-catalog.web-data';
 
 type SectionId = 'advantages' | 'pricing' | 'story';
@@ -38,7 +39,7 @@ const advantageIcons: Record<string, LucideIcon> = {
   shield: ShieldCheck,
 };
 
-export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boolean } = {}) {
+export function CourseCatalogScreen({ hidePrices = false, catalog = webCoursePromoCatalog }: { hidePrices?: boolean; catalog?: WebCoursePromoCatalog } = {}) {
   const scrollRef = useRef<ScrollView>(null);
   const sectionPositions = useRef<SectionPositions>({});
   const { isDesktop, isMobile, mode } = useWebLayout();
@@ -46,7 +47,7 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
   const [activeViewId, setActiveViewId] = useState<WebCourseViewId>('icao4-initial');
   const [activePlan, setActivePlan] = useState<WebCoursePlan>();
   const [storyOpen, setStoryOpen] = useState(false);
-  const view = webCoursePromoCatalog.pricing.views[activeViewId];
+  const view = catalog.pricing.views[activeViewId];
 
   const scrollToSection = (section: SectionId) => {
     const y = sectionPositions.current[section];
@@ -70,16 +71,16 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
           <SoftGlow intensity={0.45} size={320} style={styles.heroGlow} />
           <View style={styles.heroIcon}><GraduationCap color={colors.primary} size={25} /></View>
           <AppText color={colors.primary} style={styles.eyebrow} variant="micro">
-            {webCoursePromoCatalog.hero.eyebrow}
+            {catalog.hero.eyebrow}
           </AppText>
           <AppText
             accessibilityRole="header"
             style={[styles.heroTitle, isDesktop ? styles.heroTitleDesktop : null]}
             variant="pageTitle"
           >
-            {webCoursePromoCatalog.hero.title}
+            {catalog.hero.title}
           </AppText>
-          <AppText style={styles.heroDescription}>{webCoursePromoCatalog.hero.description}</AppText>
+          <AppText style={styles.heroDescription}>{catalog.hero.description}</AppText>
         </View>
 
         <View
@@ -87,15 +88,15 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
           style={[styles.section, isDesktop ? styles.sectionDesktop : null]}
         >
           <SectionHeading
-            description={webCoursePromoCatalog.advantages.description}
-            eyebrow={webCoursePromoCatalog.advantages.eyebrow}
-            title={webCoursePromoCatalog.advantages.title}
+            description={catalog.advantages.description}
+            eyebrow={catalog.advantages.eyebrow}
+            title={catalog.advantages.title}
           />
           <View
             style={[styles.cardGrid, styles.rowGrid]}
             testID={`course-promo-advantages-grid-${mode}`}
           >
-            {webCoursePromoCatalog.advantages.items.map((advantage, index) => {
+            {catalog.advantages.items.map((advantage, index) => {
               const Icon = advantageIcons[advantage.icon];
               return (
                 <Card key={advantage.id} style={[styles.advantageCard, styles.advantageHalfCard, isMobile ? styles.advantageCardMobile : null]}>
@@ -137,14 +138,14 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
           </View>
           <SectionHeading
             description={view.description}
-            eyebrow={hidePrices ? 'COURSES' : webCoursePromoCatalog.pricing.eyebrow}
+            eyebrow={hidePrices ? 'COURSES' : catalog.pricing.eyebrow}
             title={view.title}
           />
 
           {activeViewId !== 'icao5' ? (
             <View accessibilityRole="tablist" accessibilityLabel="ICAO 4 课程分类" style={styles.categoryTabs}>
-              {webCoursePromoCatalog.pricing.tabViewIds.map((viewId) => {
-                const tab = webCoursePromoCatalog.pricing.views[viewId];
+              {catalog.pricing.tabViewIds.map((viewId) => {
+                const tab = catalog.pricing.views[viewId];
                 const selected = viewId === activeViewId;
                 return (
                   <Pressable
@@ -198,12 +199,12 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
         >
           <Card elevated style={[styles.storyCard, isDesktop ? styles.storyCardDesktop : null]}>
             <AppText color={colors.primary} style={styles.eyebrow} variant="micro">
-              {webCoursePromoCatalog.story.eyebrow}
+              {catalog.story.eyebrow}
             </AppText>
             <AppText accessibilityRole="header" style={styles.storyTitle} variant="sectionTitle">
-              {webCoursePromoCatalog.story.title}
+              {catalog.story.title}
             </AppText>
-            <AppText style={styles.center}>{webCoursePromoCatalog.story.description}</AppText>
+            <AppText style={styles.center}>{catalog.story.description}</AppText>
             <Button
               accessibilityLabel="打开我们有话说"
               leading={<MessageCircle color={colors.primaryForeground} size={16} />}
@@ -216,10 +217,10 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
             <View style={styles.contactPill}>
               <MessageCircle color={colors.primary} size={17} />
               <AppText color={colors.primary} style={styles.contactLabel} variant="button">
-                {webCoursePromoCatalog.contact.label}：
+                {catalog.contact.label}：
               </AppText>
               <View style={styles.contactList}>
-                {webCoursePromoCatalog.contact.wechatIds.map((wechatId) => (
+                {catalog.contact.wechatIds.map((wechatId) => (
                   <AppText
                     accessibilityLabel={`微信号 ${wechatId}，可长按复制`}
                     key={wechatId}
@@ -240,7 +241,7 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
         accessibilityLabel={activePlan ? `课程详情：${activePlan.name}` : '课程详情'}
         footer={activePlan ? (
           <View style={styles.sheetFooter}>
-            <AppText variant="caption">{webCoursePromoCatalog.pricing.detailFooterNote}</AppText>
+            <AppText variant="caption">{catalog.pricing.detailFooterNote}</AppText>
             <Button
               leading={<ArrowRight color={colors.primaryForeground} size={16} />}
               onPress={consult}
@@ -256,7 +257,7 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
         {activePlan ? (
           <>
             <SheetHeader title="课程详情" onClose={() => setActivePlan(undefined)} />
-            <CoursePlanDetail plan={activePlan} hidePrices={hidePrices} />
+            <CoursePlanDetail plan={activePlan} hidePrices={hidePrices} catalog={catalog} />
           </>
         ) : null}
       </BottomSheet>
@@ -268,7 +269,7 @@ export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boole
         footer={<Button onPress={() => setStoryOpen(false)}>我知道了</Button>}
       >
         <SheetHeader title="我们有话说" onClose={() => setStoryOpen(false)} />
-        <StoryDetail />
+        <StoryDetail catalog={catalog} />
       </BottomSheet>
     </Screen>
   );
@@ -344,7 +345,7 @@ function PlanCard({
   );
 }
 
-function CoursePlanDetail({ plan, hidePrices }: { plan: WebCoursePlan; hidePrices: boolean }) {
+function CoursePlanDetail({ plan, hidePrices, catalog }: { plan: WebCoursePlan; hidePrices: boolean; catalog: WebCoursePromoCatalog }) {
   const hasOutline = Boolean(plan.outline?.length);
   const hasPrivileges = Boolean(plan.privileges?.length);
 
@@ -372,7 +373,7 @@ function CoursePlanDetail({ plan, hidePrices }: { plan: WebCoursePlan; hidePrice
               <Info color={colors.primary} size={17} />
               <AppText color={colors.primary} variant="button">标准课程内容安排</AppText>
             </View>
-            <AppText variant="caption">{webCoursePromoCatalog.pricing.standardOutlineNotice}</AppText>
+            <AppText variant="caption">{catalog.pricing.standardOutlineNotice}</AppText>
           </Card>
           <View style={styles.outlineBlock}>
             <AppText variant="sectionTitle">课程大纲</AppText>
@@ -422,19 +423,19 @@ function OutlineSection({
   );
 }
 
-function StoryDetail() {
+function StoryDetail({ catalog }: { catalog: WebCoursePromoCatalog }) {
   return (
     <View style={styles.detail}>
       <View style={styles.detailHeader}>
         <Tag>OUR STORY</Tag>
-        <AppText accessibilityRole="header" variant="pageTitle">{webCoursePromoCatalog.story.dialogTitle}</AppText>
-        <AppText>{webCoursePromoCatalog.story.dialogDescription}</AppText>
+        <AppText accessibilityRole="header" variant="pageTitle">{catalog.story.dialogTitle}</AppText>
+        <AppText>{catalog.story.dialogDescription}</AppText>
       </View>
       <View style={styles.storyParagraphs}>
-        {webCoursePromoCatalog.story.paragraphs.map((paragraph) => <AppText key={paragraph}>{paragraph}</AppText>)}
+        {catalog.story.paragraphs.map((paragraph) => <AppText key={paragraph}>{paragraph}</AppText>)}
       </View>
       <Card style={styles.storyQuote}>
-        <AppText style={styles.quoteText} variant="sectionTitle">{webCoursePromoCatalog.story.quote}</AppText>
+        <AppText style={styles.quoteText} variant="sectionTitle">{catalog.story.quote}</AppText>
       </Card>
     </View>
   );

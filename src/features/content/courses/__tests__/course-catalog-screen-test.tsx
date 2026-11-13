@@ -19,15 +19,15 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({ back: mockRouterBack, canGoBack: () => true, push: jest.fn(), replace: jest.fn() }),
 }));
 
-function renderScreen(hidePrices = false) {
+function renderScreen(hidePrices = false, catalog = webCoursePromoCatalog) {
   return render(
     <SafeAreaProvider initialMetrics={{ frame: { height: 844, width: mockWidth, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
-      <CourseCatalogScreen hidePrices={hidePrices} />
+      <CourseCatalogScreen hidePrices={hidePrices} catalog={catalog} />
     </SafeAreaProvider>,
   );
 }
 
-describe('<CourseCatalogScreen hidePrices={hidePrices} /> in the App', () => {
+describe('<CourseCatalogScreen hidePrices={hidePrices} catalog={catalog} /> in the App', () => {
   beforeEach(() => { mockRouterBack.mockClear(); mockWidth = 390; });
 
   it.each([320, 390])('renders the current content at width %s without the removed hero shortcuts', async (width) => {
@@ -111,7 +111,7 @@ describe('<CourseCatalogScreen hidePrices={hidePrices} /> in the App', () => {
 });
 
 
-it('hides all web course amounts and displays hours in cards and details', async () => {
+it('hides all production course amounts and displays hours in cards and details', async () => {
   const screen = await renderScreen(true);
   for (const view of Object.values(webCoursePromoCatalog.pricing.views)) {
     await fireEvent.press(screen.getByLabelText(view.id === 'icao5' ? '选择ICAO 5 课程' : `选择${view.label}`));
@@ -126,4 +126,25 @@ it('hides all web course amounts and displays hours in cards and details', async
       await fireEvent.press(screen.getByLabelText('关闭课程详情'));
     }
   }
+});
+
+
+it('uses updated remote contact, hours, description and outline in the existing native UI', async () => {
+  const catalog = JSON.parse(JSON.stringify(webCoursePromoCatalog));
+  catalog.contact.wechatIds = ['updated-wechat'];
+  const plan = catalog.pricing.views['icao4-initial'].plans[0];
+  plan.unit = '元 / 16 节课 + 3 次模拟测试';
+  plan.description = '更新后的课程介绍';
+  plan.detailIntro = '更新后的详情介绍';
+  plan.outline[0].items = ['更新后的课程大纲'];
+  const screen = await renderScreen(true, catalog);
+  expect(screen.getByText('updated-wechat').props.selectable).toBe(true);
+  expect(screen.queryByText('15736231388')).toBeNull();
+  expect(screen.getByText('更新后的课程介绍')).toBeTruthy();
+  expect(screen.getByText('16 节课 + 3 次模拟测试')).toBeTruthy();
+  await fireEvent.press(screen.getByLabelText(`查看${plan.name}详情`));
+  expect(screen.getByText('更新后的详情介绍')).toBeTruthy();
+  expect(screen.getByText('更新后的课程大纲')).toBeTruthy();
+  expect(screen.getAllByText('16 节课 + 3 次模拟测试')).toHaveLength(2);
+  expect(screen.queryByText(plan.price)).toBeNull();
 });
