@@ -75,7 +75,7 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
   }
   async function goUpdate() {
     if (!update || installLock.current) return;
-    if (Platform.OS !== 'android') {
+    if (Platform.OS !== 'android' || update.channel === 'android-apk') {
       await openAppUpdate(update).catch(() => setMessage('无法打开更新入口，请稍后重试。'));
       return;
     }
@@ -117,7 +117,7 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
       {update ? <View style={{ gap: spacing[3] }}>
         <AppText variant="sectionTitle">发现新版本 {update.version}</AppText>
         <AppText>{update.notes}</AppText>
-        <AppText variant="micro">{update.channel === 'ios-testflight' ? '在 TestFlight 中更新测试版本。' : (update.channel === 'android-apk' || update.channel === 'android-test') ? '在应用内下载新版，完成后由系统确认覆盖安装，保留账号与学习数据。' : '前往 App Store 更新。'}</AppText>
+        <AppText variant="micro">{update.channel === 'ios-testflight' ? '在 TestFlight 中更新测试版本。' : update.channel === 'android-apk' ? '前往官网下载新版，下载后按系统提示安装，保留账号与学习数据。' : update.channel === 'android-test' ? '在应用内下载新版，完成后由系统确认覆盖安装，保留账号与学习数据。' : '前往 App Store 更新。'}</AppText>
         {downloadProgress !== undefined ? <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: 100, now: Math.floor(downloadProgress * 100) }} style={{ gap: spacing[2] }}>
           <AppText variant="caption">正在下载 {Math.floor(downloadProgress * 100)}%</AppText>
           <View style={{ height: spacing[1], backgroundColor: colors.muted, borderRadius: spacing[1], overflow: 'hidden' }}>
@@ -125,7 +125,7 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
           </View>
         </View> : null}
         {message ? <AppText variant="caption">{message}</AppText> : null}
-        <Button disabled={installBusy} onPress={() => { void goUpdate(); }}>{installBusy ? downloadProgress !== undefined ? '正在下载…' : '正在准备安装…' : Platform.OS === 'android' ? downloaded ? '继续安装' : '下载并安装' : '去更新'}</Button>
+        <Button disabled={installBusy} onPress={() => { void goUpdate(); }}>{installBusy ? downloadProgress !== undefined ? '正在下载…' : '正在准备安装…' : update.channel === 'android-apk' ? '立即更新' : Platform.OS === 'android' ? downloaded ? '继续安装' : '下载并安装' : '去更新'}</Button>
         {downloadProgress !== undefined ? <Button variant="outline" onPress={() => downloadController.current?.abort()}>取消下载</Button>
           : <Button variant="outline" disabled={installBusy} onPress={later}>稍后再说</Button>}
       </View> : null}

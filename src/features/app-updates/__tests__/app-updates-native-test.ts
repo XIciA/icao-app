@@ -1,5 +1,5 @@
-import { Platform } from 'react-native';
-import { checkAppUpdate, dismissAppUpdate } from '../app-updates.native';
+import { Linking, Platform } from 'react-native';
+import { checkAppUpdate, dismissAppUpdate, openAppUpdate } from '../app-updates.native';
 
 const mockStorage = new Map<string, string>();
 const mockFetch = jest.fn();
@@ -37,4 +37,15 @@ it('shares an in-flight fetch and performs no native update checks on web', asyn
   expect(a).toEqual(release); expect(b).toEqual(release); expect(mockFetch).toHaveBeenCalledTimes(1);
   Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
   expect(await checkAppUpdate(true)).toBeUndefined(); expect(mockFetch).toHaveBeenCalledTimes(1);
+});
+
+it('opens the auto-download page only for official Android, preserving other channel URLs', async () => {
+  const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(undefined);
+  await openAppUpdate({ ...release, channel: 'android-apk', url: 'https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/app.apk' });
+  expect(open).toHaveBeenLastCalledWith('https://readyoufife.com/download?android=auto');
+  for (const channel of ['android-test', 'ios-app-store', 'ios-testflight'] as const) {
+    await openAppUpdate({ ...release, channel });
+    expect(open).toHaveBeenLastCalledWith(release.url);
+  }
+  open.mockRestore();
 });

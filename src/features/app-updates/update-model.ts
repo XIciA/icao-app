@@ -1,5 +1,6 @@
 export type UpdateChannel = 'android-apk' | 'android-test' | 'ios-testflight' | 'ios-app-store';
 export type AppUpdate = { channel: UpdateChannel; version: string; build: number; available: true; url: string; notes: string; publishedAt: string };
+export const ANDROID_UPDATE_PAGE_URL = 'https://readyoufife.com/download?android=auto';
 export const APP_UPDATE_MANIFEST_URL = 'https://cloud.readyoufife.com/storage/v1/object/public/app-releases/updates.json';
 
 export function parseAppUpdates(value: unknown): AppUpdate[] {
