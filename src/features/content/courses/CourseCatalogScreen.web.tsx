@@ -152,7 +152,7 @@ export function CourseCatalogScreen() {
         >
           <SectionHeading
             description={view.description}
-            eyebrow={webCoursePromoCatalog.pricing.eyebrow}
+            eyebrow="COURSES"
             title={view.title}
           />
 
@@ -322,10 +322,7 @@ function PlanCard({
     >
       {plan.popular ? <Tag tone="accent">最受欢迎</Tag> : null}
       <AppText style={styles.planTitle} variant="sectionTitle">{plan.name}</AppText>
-      <View style={styles.priceRow}>
-        <AppText style={styles.price} variant="pageTitle">{plan.price}</AppText>
-        <AppText style={styles.unit} variant="caption">{plan.unit}</AppText>
-      </View>
+      <AppText style={styles.courseHours} variant="sectionTitle">{plan.unit.replace(/^元\s*\/\s*/, '')}</AppText>
       <AppText style={styles.planDescription}>{plan.description}</AppText>
       <Button
         accessibilityLabel={`查看${plan.name}详情`}
@@ -351,10 +348,7 @@ function CoursePlanDetail({ plan }: { plan: WebCoursePlan }) {
         </View>
         <AppText accessibilityRole="header" variant="pageTitle">{plan.name}</AppText>
         <AppText>{plan.detailIntro ?? plan.description}</AppText>
-        <View style={styles.priceRow}>
-          <AppText style={styles.detailPrice} variant="pageTitle">{plan.price} 元</AppText>
-          <Tag>{plan.unit.replace('元 / ', '')}</Tag>
-        </View>
+        <AppText style={styles.courseHours} variant="sectionTitle">{plan.unit.replace(/^元\s*\/\s*/, '')}</AppText>
       </View>
 
       {hasOutline ? (
@@ -502,10 +496,7 @@ const styles = StyleSheet.create({
   planCard: { gap: spacing[4], minHeight: 330, padding: spacing[6] },
   planCardPopular: { borderColor: colors.primary20 },
   planTitle: { fontSize: 20, lineHeight: 28 },
-  priceRow: { alignItems: 'baseline', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
-  price: { fontSize: 40, lineHeight: 48 },
-  detailPrice: { fontSize: 32, lineHeight: 40 },
-  unit: { flexShrink: 1 },
+  courseHours: { fontSize: 22, lineHeight: 32 },
   planDescription: { flexGrow: 1 },
   storyCard: { alignItems: 'center', gap: spacing[3], paddingHorizontal: spacing[5], paddingVertical: spacing[10] },
   storyCardDesktop: { paddingHorizontal: spacing[16], paddingVertical: spacing[16] },

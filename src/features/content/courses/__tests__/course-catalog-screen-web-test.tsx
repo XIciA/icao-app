@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StyleSheet } from 'react-native';
 
 import { CourseCatalogScreen } from '../CourseCatalogScreen.web';
+import { webCoursePromoCatalog } from '../course-promo-catalog.web-data';
 
 const mockRouterBack = jest.fn();
 type MockWebLayout = {
@@ -117,6 +118,27 @@ describe('<CourseCatalogScreen /> on web', () => {
     expect(screen.getByText('课程大纲')).toBeTruthy();
     expect(screen.getByText('包过班特殊权限')).toBeTruthy();
     expect(screen.getByText('负责到底')).toBeTruthy();
+  });
+
+  it('shows course hours without course prices in every category and detail', async () => {
+    const screen = await renderScreen();
+    for (const view of Object.values(webCoursePromoCatalog.pricing.views)) {
+      if (view.id === 'icao5') {
+        await fireEvent.press(screen.getByLabelText('ICAO 5 课程：冲刺、基础与包过班'));
+      } else {
+        await fireEvent.press(screen.getByLabelText(`选择${view.label}`));
+      }
+      for (const plan of view.plans) {
+        const hours = plan.unit.replace(/^元\s*\/\s*/, '');
+        expect(screen.getAllByText(hours).length).toBeGreaterThan(0);
+        expect(screen.queryByText(plan.price)).toBeNull();
+        expect(screen.queryByText(plan.unit)).toBeNull();
+        await fireEvent.press(screen.getByLabelText(`查看${plan.name}详情`));
+        expect(screen.getAllByText(hours).length).toBeGreaterThan(1);
+        expect(screen.queryByText(`${plan.price} 元`)).toBeNull();
+        await fireEvent.press(screen.getByLabelText('关闭弹层'));
+      }
+    }
   });
 
   it('includes the full story and keeps both consultation ids selectable', async () => {
