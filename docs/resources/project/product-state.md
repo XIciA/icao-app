@@ -1,6 +1,6 @@
 # 项目管理概览与产品状态
 
-核对日期：2026-11-05（北京时间；补充苹果 1.3.1 实际上架与正式更新清单同步）
+核对日期：2026-11-13（北京时间；本次补充课程远程内容的 Web 与 TestFlight 交付，其他渠道保留各自最近记录）
 
 本页汇总管理所需的产品状态、交付和待验事项。依据是仓库实现与已保存的发布证据，
 各渠道按各自最近证据更新；本轮核对学习保存、内容链路、API、内容后台、产品 Web 和 iOS 测试交付；其他渠道与基础监控保留各自最近记录；
@@ -29,8 +29,8 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | Android 正式版 | 1.3.1 / 3596176，源码 `7d6c456f`，11 月 5 日 APK 与正式更新清单已发布 | 安卓查词局部按压反馈修复，彩色标记优先；正式身份、签名与微信配置核对一致，代码、公开制品及官网验证通过。实际按压体验与覆盖安装待用户真机验收。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md) |
 | App Store | 正式 1.3.1 / 3596174；11 月 5 日实时确认已上架且可下载，10:08 已同步正式更新清单 | Apple READY_FOR_SALE / READY_FOR_DISTRIBUTION、downloadable=true，中国区公开查询版本一致；旧 iOS 1.2.1 真实比较函数可发现新版，其他渠道保持。旧版真机弹窗和跳转待用户验收。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md#2026-11-05-苹果正式更新清单同步) |
 | Android 提前体验 | 官网测试入口已按用户要求移除，主下载改为正式 3596176 | 历史同身份体验包 3596175 保留记录；独立 `.test` 渠道 3596173 未改，不卸载或清数据。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md) |
-| iOS TestFlight | 1.3.1 / 3596174，源码 `2bed7706`；Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 单词本地保存不再等待云同步，指定按钮及词标题排版修正；iOS 下载实现未改。代码与制品检查通过；用户反馈苹果已无问题，本次安卓补修不重建或发布 iOS，未提交正式审核。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md) |
-| EdgeOne 产品 Web | 源码 `7d6c456f`，deployment `dpjewnwhkewx`，11 月 5 日已上线 | 下载页取消右上角安卓体验入口，安卓正式卡片显示 v1.3.1 并链接 3596176。苹果链接保持；在线摘要与浏览器验证通过。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md) |
+| iOS TestFlight | 1.3.2 / 3596175，源码 `2964376b`；11 月 13 日 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 课程原生页面读取远程内容，列表和详情隐藏价格并突出课时，保持原布局、大纲和导航。模拟练习录音未改；代码及制品检查通过，用户真机待验，未提交 App Store 正式审核。[记录](../../records/releases/20261113-course-remote-content.md) |
+| EdgeOne 产品 Web | 源码 `2964376b`，deployment `dp6dgxxz3ryp`，11 月 13 日已上线 | 课程列表／详情无金额、突出课时；公开版本化课程内容与发布源摘要一致，缓存重验证响应头生效，线上浏览器检查通过。其余页面与正式下载渠道保持。[记录](../../records/releases/20261113-course-remote-content.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | `offline-sync-reliability-20261104-c841dbae`，源码 `c841dbae`，11 月 4 日经授权部署 | 五题库凭据／音频、限流冷却及真实 AI 验证通过；无迁移，热点 v33、OPI v29／预览 v30 及词表保持。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
 | 题库 | 正式 OPI、陆空通话仍 v29；OPI v30 已导入为不激活测试候选 | 237→223 话题、443 卡迁移；2365 卡内容/ID、最全/精选/冲刺及免费范围、图片题保持。无用户表改写，正式 active 仍 v29；本轮新 Web 与 iOS 候选按已有请求头使用 v30 预览，其他题库版本不变；目录及旧数据体验待用户验收。[记录](../../records/2026-11-02-opi-directory-v30.md) |
