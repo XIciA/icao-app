@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { GestureType } from 'react-native-gesture-handler';
 
-import type { RecordingAsset } from '../recording/types';
+import type { RecordingAsset, RecordingCommitHandler } from '../recording/types';
 import type { WordLookupInteraction } from '../lib/word-lookup-interaction';
 import type { QuestionBankCard, StudyBehavior } from '../types';
 import { ChoiceList } from './ChoiceList';
@@ -48,7 +48,7 @@ export function StudyTaskRenderer({
   isLookupAvailable?: (word: string) => boolean;
   lookupInteraction?: WordLookupInteraction;
   onClearRecording: () => void;
-  onRecorded: (recording: RecordingAsset) => void;
+  onRecorded: RecordingCommitHandler;
   onInteractionChange?: (active: boolean) => void;
   interactionGesture?: GestureType;
   blockedExternalGesture?: GestureType;

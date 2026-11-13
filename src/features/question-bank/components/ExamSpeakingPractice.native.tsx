@@ -4,9 +4,9 @@ import { Mic, Square } from '@/components/ui/icons';
 import { AppText, Button } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 import { SpeakingRecordingControllerHost, type SpeakingRecordingController } from '../recording/use-speaking-recording-controller';
-import type { RecordingAsset } from '../recording/types';
+import type { RecordingAsset, RecordingCommitHandler } from '../recording/types';
 
-type Props = { cardId: string; sessionId: string; recording?: RecordingAsset; onRecorded: (asset: RecordingAsset) => void; onClear: () => void; onInteractionChange?: (active: boolean) => void; onRecordingIntent?: () => void; interactionGesture?: GestureType };
+type Props = { cardId: string; sessionId: string; recording?: RecordingAsset; onRecorded: RecordingCommitHandler; onClear: () => void; onInteractionChange?: (active: boolean) => void; onRecordingIntent?: () => void; interactionGesture?: GestureType };
 export function ExamSpeakingPractice(props: Props) {
   return <SpeakingRecordingControllerHost cardId={props.cardId} sessionId={props.sessionId} recording={props.recording} onClear={props.onClear} onRecorded={props.onRecorded} onInteractionChange={props.onInteractionChange}>
     {(controller) => <ExamRecordingControl {...props} controller={controller} />}

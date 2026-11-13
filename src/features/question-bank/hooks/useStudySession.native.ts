@@ -1,11 +1,13 @@
 import { retainStudyForLogin, peekStudyLogin, finishStudyLogin } from '../recording/login-continuation.native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Platform } from 'react-native';
 
-import { captureLearningWriteContext, assertLearningWriteContext } from '@/features/sync/learning-sync.native';
+import { captureLearningWriteContext, assertLearningWriteContext, inCurrentLearningWorkspace } from '@/features/sync/learning-sync.native';
 import { scoreListeningExam, type ListeningExamResult } from '@/features/mock-exam/listening-exam';
 import { resolveListeningExamRange } from '@/features/mock-exam/listening-session.native';
 
 import { sqliteLearningStore, type LearningStore, migrateLegacyCardState } from '../platform/learning-store.native';
+import { loadLearningRecordRecordings, saveLearningRecordRecordings } from '../platform/learning-record-storage.native';
 import type {
   CardLearningState,
   LearningRecord,
@@ -124,6 +126,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     return historyRecord ? { ...packageInput.record, id: undefined, recordType: 'session', mockExam: undefined } : packageInput.record;
   }, [historyRecord, packageInput]);
   const examMode = recordDescriptor?.recordType === 'mock_exam' && !historyRecord;
+  const retainMockRecordings = Platform.OS !== 'web' && (examMode || historyRecord?.recordType === 'mock_exam' || historyRecord?.source === 'mock-exam');
   const listeningRange = useMemo(() => resolveListeningExamRange(packageInput), [packageInput]);
   const startingIndex = Math.max(0, initialCardId ? items.findIndex((item) => packageInput ? item.id === initialCardId : item.card.id === initialCardId) : 0);
   const initialItem = items[startingIndex];
@@ -224,13 +227,28 @@ export function useStudySession(options: UseStudySessionOptions) {
       hydrate({});
       return () => { active = false; };
     }
-    void hydratePersistentStates(store, items).then(hydrate).catch(() => {
+    void Promise.all([
+      hydratePersistentStates(store, items),
+      historyRecord && retainMockRecordings
+        ? inCurrentLearningWorkspace(writeContext, () => loadLearningRecordRecordings(historyRecord.id))
+        : Promise.resolve(undefined),
+    ]).then(([saved, savedRecordings]) => {
+      if (!active) return;
+      if (savedRecordings) {
+        recordingsRef.current = Object.fromEntries(items.flatMap(entry => {
+          const asset = savedRecordings[entry.id];
+          return asset?.cardId === entry.card.id ? [[entry.id, asset]] : [];
+        }));
+        setRecordings(recordingsRef.current);
+      }
+      hydrate(saved);
+    }).catch(() => {
       if (!active) return;
       setLoadError('学习进度读取失败，请重试。');
       setHydrated(true);
     });
     return () => { active = false; };
-  }, [historyRecord, historyReview, initialBehavior, initialCardId, items, loadAttempt, packageInput, progressMode, startingIndex, store, loginResume]);
+  }, [historyRecord, historyReview, initialBehavior, initialCardId, items, loadAttempt, packageInput, progressMode, startingIndex, store, loginResume, retainMockRecordings, writeContext]);
 
   const resolveItem = useCallback((itemOrCardId: string) => {
     if (item && (item.id === itemOrCardId || item.card.id === itemOrCardId)) return item;
@@ -372,8 +390,18 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (!examMode && revealAnswer) setRevealed(true);
   }, [currentIndex, examMode, item, persistCard]);
 
-  const recordAnswer = useCallback((recording: RecordingAsset) => {
+  const recordAnswer = useCallback(async (recording: RecordingAsset) => {
     if (!item) return;
+    assertLearningWriteContext(writeContext);
+    if (historyRecord && retainMockRecordings) {
+      const retained = await inCurrentLearningWorkspace(writeContext, () => saveLearningRecordRecordings(
+        historyRecord.id, { ...recordingsRef.current, [item.id]: recording },
+        () => assertLearningWriteContext(writeContext), true,
+      ));
+      recording = retained[item.id];
+      // A completed write belongs to the old workspace even if logout just began.
+      try { assertLearningWriteContext(writeContext); } catch { return recording; }
+    }
     practiceStarted.current = true;
     const previous = recordingsRef.current[item.id];
     const nextRecordings = { ...recordingsRef.current, [item.id]: recording };
@@ -385,21 +413,27 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (!examMode) setRevealed(true);
     if (!examMode && behavior.workbenchTabs.includes('mine')) setActiveTab('mine');
     if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
-  }, [behavior.workbenchTabs, examMode, item, persistCard]);
+    return recording;
+  }, [behavior.workbenchTabs, examMode, item, persistCard, historyRecord, retainMockRecordings, writeContext]);
 
-  const clearRecording = useCallback(() => {
+  const clearRecording = useCallback(async () => {
     if (!item) return;
-    practiceStarted.current = true;
     const previous = recordingsRef.current[item.id];
     const nextRecordings = { ...recordingsRef.current };
     delete nextRecordings[item.id];
+    if (historyRecord && retainMockRecordings) {
+      await inCurrentLearningWorkspace(writeContext, () => saveLearningRecordRecordings(
+        historyRecord.id, nextRecordings, () => assertLearningWriteContext(writeContext), true,
+      ));
+    }
+    practiceStarted.current = true;
     recordingsRef.current = nextRecordings;
     setRecordings(nextRecordings);
     if (previous) recordingRepository.discard(previous);
     const answered = Boolean(answersRef.current[item.id]?.trim()) || statesRef.current[item.id]?.selectedChoiceIndex !== undefined;
     persistCard(item.id, { recorded: false, completed: answered });
     if (!answered) setCompletedCardIds((current) => { const next = new Set(current); next.delete(item.id); return next; });
-  }, [item, persistCard]);
+  }, [item, persistCard, historyRecord, retainMockRecordings, writeContext]);
 
   const updateAnswer = useCallback((text: string) => {
     if (!item || text === (answersRef.current[item.id] ?? '')) return;
@@ -483,13 +517,23 @@ export function useStudySession(options: UseStudySessionOptions) {
       source: descriptor.source ?? (isExam ? 'mock-exam' : 'question-bank'),
       ...(descriptor.hotspot ? { hotspot: descriptor.hotspot } : {}),
     };
+    if (retainMockRecordings && Object.keys(recordingsRef.current).length) {
+      const retained = await inCurrentLearningWorkspace(writeContext, () => saveLearningRecordRecordings(
+        nextReport.id, recordingsRef.current, () => assertLearningWriteContext(writeContext),
+      ));
+      // Preserve references for retry if saving the report itself fails.
+      if (!historyRecord) {
+        recordingsRef.current = retained;
+        setRecordings(retained);
+      }
+    }
     await store.addRecord(nextReport, writeContext);
     if (checkpoint) return nextReport;
     committedReport.current = nextReport;
     setReport(nextReport);
     recordingRepository.cleanupSession(sessionId);
     return nextReport;
-  }, [examMode, feedbackCardIds.size, historyRecord, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, recordDescriptor, sessionId, startedAt, store, visitedIndexes, writeContext, hydrated, loadError, flushProgress]);
+  }, [examMode, feedbackCardIds.size, historyRecord, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, recordDescriptor, sessionId, startedAt, store, visitedIndexes, writeContext, hydrated, loadError, flushProgress, retainMockRecordings]);
 
   const saveCheckpoint = useCallback((): Promise<void> => {
     if (examMode || committedReport.current || savingReport.current) return Promise.reject(new Error('study_checkpoint_unavailable'));

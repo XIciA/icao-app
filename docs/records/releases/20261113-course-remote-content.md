@@ -45,3 +45,11 @@
 - 本机归档与 IPA：`/private/tmp/icao-course-web-release/.generated/testflight/ICAO-3596175-20261113T065719Z.xcarchive`、`/private/tmp/icao-course-web-release/.generated/testflight/export-3596175-20261113T065719Z/app.ipa`。该目录下 `candidate.json` 和 `archive-audit-3596175-20261113T065719Z.json` 保存制品证据；`../course-delivery/testflight-status.json` 保存 Apple 状态核验结果。
 - iOS 回滚参考：`release/ios-testflight/v1.3.1-b3596174`；正式 App Store 仍为原有版本，未提交 1.3.2 正式审核，也未修改正式更新提示。
 - 用户验收：尚未完成。请在此 TestFlight 构建中检查课程列表／详情无金额、课时清晰、分类／关闭／返回逻辑、微信号复制和断网进入；未来内容发布后联网重新进入可读取新内容。
+
+
+## 后续模拟录音补齐候选（准备中）
+
+- 用户明确要求执行并上传新的 TestFlight，版本保持 1.3.2，构建递增为 3596176。
+- 修复完成模拟练习后录音未关联学习记录、退出清理导致回顾不能播放的问题；沿用现有题卡回放与重录按钮。
+- 保留课程已交付效果；不改原生录音参数、题库内容、会员、账号业务或正式更新渠道。音频留在本机，云同步数据格式保持。
+- 当前处于代码验证和候选准备，尚未上传，不能视为真机验收通过。发布后补充提交、制品、Apple 状态与测试结果。

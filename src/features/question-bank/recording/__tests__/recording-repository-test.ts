@@ -51,7 +51,7 @@ jest.mock('expo-file-system', () => {
       this.uri = destination.uri;
     }
   }
-  return { Directory: MockDirectory, File: MockFile, Paths: { cache: new MockDirectory('file:///cache') } };
+  return { Directory: MockDirectory, File: MockFile, Paths: { cache: new MockDirectory('file:///cache'), document: new MockDirectory('file:///documents') } };
 });
 
 jest.mock('@/platform/audio/audio-diagnostics', () => ({ emitAudioDiagnostic: jest.fn() }));
@@ -134,6 +134,34 @@ describe('RecordingRepository', () => {
     });
     expect(mockFiles.has('file:///raw.wav')).toBe(false);
     expect(mockFiles.get(asset.uri)?.bytes.length).toBe(64_044);
+  });
+
+  it('keeps saved mock audio after session cleanup and expiry, and resolves the current sandbox', async () => {
+    mockFiles.set('file:///raw.wav', { bytes: wave(64_000) });
+    const repo = repository();
+    const asset = await repo.commitRaw(raw('file:///raw.wav'));
+    const saved = repo.retainForRecord(asset, 'attempt-1');
+    repo.cleanupSession(asset.sessionId);
+    repo.cleanupExpired(Date.now() + 48 * 60 * 60 * 1000);
+    expect(repo.assetExists(asset)).toBe(false);
+    expect(repo.assetExists(saved)).toBe(true);
+    expect(repo.restoreSaved({ ...saved, uri: 'file:///old-sandbox/recording.wav' } as typeof saved)).toEqual(saved);
+    const second = repo.retainForRecord(saved, 'attempt-2');
+    repo.discard(saved);
+    expect(repo.assetExists(second)).toBe(true);
+    expect(repo.restoreSaved(saved)).toBeUndefined();
+  });
+
+  it('rejects an incomplete retained copy without deleting the prior valid audio', async () => {
+    mockFiles.set('file:///raw.wav', { bytes: wave(64_000) });
+    const repo = repository();
+    const asset = await repo.commitRaw(raw('file:///raw.wav'));
+    const saved = repo.retainForRecord(asset, 'attempt-1');
+    mockCopiedSize = 32;
+    expect(() => repo.retainForRecord(asset, 'attempt-2')).toThrow();
+    expect(repo.assetExists(saved)).toBe(true);
+    expect([...mockFiles.keys()].some(key => key.includes('attempt-2/'))).toBe(false);
+    expect(repo.restoreSaved({ ...saved, persistentPath: '../asset-1.wav' })).toBeUndefined();
   });
 
   it('waits for delayed native finalization before accepting the file', async () => {
