@@ -38,7 +38,7 @@ const advantageIcons: Record<string, LucideIcon> = {
   shield: ShieldCheck,
 };
 
-export function CourseCatalogScreen() {
+export function CourseCatalogScreen({ hidePrices = false }: { hidePrices?: boolean } = {}) {
   const scrollRef = useRef<ScrollView>(null);
   const sectionPositions = useRef<SectionPositions>({});
   const { isDesktop, isMobile, mode } = useWebLayout();
@@ -137,7 +137,7 @@ export function CourseCatalogScreen() {
           </View>
           <SectionHeading
             description={view.description}
-            eyebrow={webCoursePromoCatalog.pricing.eyebrow}
+            eyebrow={hidePrices ? 'COURSES' : webCoursePromoCatalog.pricing.eyebrow}
             title={view.title}
           />
 
@@ -180,6 +180,7 @@ export function CourseCatalogScreen() {
           >
             {view.plans.map((plan) => (
               <PlanCard
+                hidePrices={hidePrices}
                 isDesktop={isDesktop}
                 isMobile={isMobile}
                 key={plan.id}
@@ -255,7 +256,7 @@ export function CourseCatalogScreen() {
         {activePlan ? (
           <>
             <SheetHeader title="课程详情" onClose={() => setActivePlan(undefined)} />
-            <CoursePlanDetail plan={activePlan} />
+            <CoursePlanDetail plan={activePlan} hidePrices={hidePrices} />
           </>
         ) : null}
       </BottomSheet>
@@ -295,12 +296,14 @@ function SectionHeading({ eyebrow, title, description }: { eyebrow: string; titl
 }
 
 function PlanCard({
+  hidePrices,
   plan,
   onPress,
   isDesktop,
   isMobile,
   planCount,
 }: {
+  hidePrices: boolean;
   plan: WebCoursePlan;
   onPress: () => void;
   isDesktop: boolean;
@@ -322,10 +325,12 @@ function PlanCard({
     >
       {plan.popular ? <View style={styles.popularBadge}><AppText color={colors.primaryForeground} variant="caption">最受欢迎</AppText></View> : null}
       <AppText style={styles.planTitle} variant="sectionTitle">{plan.name}</AppText>
-      <View style={styles.priceRow}>
-        <AppText style={styles.price} variant="pageTitle">{plan.price}</AppText>
-        <AppText style={styles.unit} variant="caption">{plan.unit}</AppText>
-      </View>
+      {hidePrices ? <AppText style={styles.courseHours} variant="sectionTitle">{plan.unit.replace(/^元\s*\/\s*/, '')}</AppText> : (
+        <View style={styles.priceRow}>
+          <AppText style={styles.price} variant="pageTitle">{plan.price}</AppText>
+          <AppText style={styles.unit} variant="caption">{plan.unit}</AppText>
+        </View>
+      )}
       <AppText style={styles.planDescription}>{plan.description}</AppText>
       <Button
         accessibilityLabel={`查看${plan.name}详情`}
@@ -339,7 +344,7 @@ function PlanCard({
   );
 }
 
-function CoursePlanDetail({ plan }: { plan: WebCoursePlan }) {
+function CoursePlanDetail({ plan, hidePrices }: { plan: WebCoursePlan; hidePrices: boolean }) {
   const hasOutline = Boolean(plan.outline?.length);
   const hasPrivileges = Boolean(plan.privileges?.length);
 
@@ -352,10 +357,12 @@ function CoursePlanDetail({ plan }: { plan: WebCoursePlan }) {
         </View>
         <AppText accessibilityRole="header" variant="pageTitle">{plan.name}</AppText>
         <AppText>{plan.detailIntro ?? plan.description}</AppText>
-        <View style={styles.priceRow}>
-          <AppText style={styles.detailPrice} variant="pageTitle">{plan.price} 元</AppText>
-          <Tag>{plan.unit.replace('元 / ', '')}</Tag>
-        </View>
+        {hidePrices ? <AppText style={styles.courseHours} variant="sectionTitle">{plan.unit.replace(/^元\s*\/\s*/, '')}</AppText> : (
+          <View style={styles.priceRow}>
+            <AppText style={styles.detailPrice} variant="pageTitle">{plan.price} 元</AppText>
+            <Tag>{plan.unit.replace('元 / ', '')}</Tag>
+          </View>
+        )}
       </View>
 
       {hasOutline ? (
@@ -508,6 +515,7 @@ const styles = StyleSheet.create({
   popularBadge: { alignSelf: 'center', backgroundColor: colors.primary, borderRadius: radii.full, marginTop: -spacing[8], paddingHorizontal: spacing[4], paddingVertical: spacing[1] },
   planButton: { borderRadius: radii.full },
   planTitle: { fontSize: 20, lineHeight: 28 },
+  courseHours: { fontSize: 22, lineHeight: 32 },
   priceRow: { alignItems: 'baseline', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   price: { fontSize: 40, lineHeight: 48 },
   detailPrice: { fontSize: 32, lineHeight: 40 },

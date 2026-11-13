@@ -8,7 +8,7 @@ import { CourseCatalogScreen } from './courses/CourseCatalogScreen';
 import { HotspotListScreen } from './hotspot/HotspotListScreen';
 
 export function ContentLibraryScreen({ slug }: { slug: string }) {
-  if (slug === 'courses') return isVercelLegacyWeb(Platform.OS) ? <CourseCatalogScreen /> : <AppCourseCatalogScreen />;
+  if (slug === 'courses') return isVercelLegacyWeb(Platform.OS) ? <CourseCatalogScreen /> : <AppCourseCatalogScreen hidePrices={Platform.OS === 'web'} />;
   if (slug === 'hotspot') return <HotspotListScreen />;
   if (slug === 'resources') return <ResourceEditorialScreen />;
   return null;
