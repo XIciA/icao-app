@@ -72,3 +72,19 @@
 - 测试包仍沿用原有独立更新安装流程，iOS 更新入口、检查频率和忽略版本规则不变。正式清单继续保存 APK 直链、大小和摘要，兼容老版本应用内下载。
 - 聚焦更新／模拟录音回顾测试 32 项、下载页 4 项通过。完整 `pnpm check` 因未纳入 Git 的历史音频 `audio/listening/main/001.mp3` 缺失停止；使用仓库支持的干净环境 `pnpm check:ci` 检查源码合同，不能将其写成媒体二进制全量验证通过。
 - 本段仅记录准备；正式制品、部署、公开下载与最终检查结果在交付后补充。未进行 Android 真机体验验收。
+
+
+## Android 1.3.2 正式下载已上线
+
+- 时间：2026-11-13 20:18（北京时间）；[PR #360](https://github.com/XIciA/icao-app/pull/360)，干净 main / origin/main `89d46fd2d81be07a309143480bab1d379976bcd5`。
+- Android：1.3.2 / 3596177，正式包名 `com.readyoufife.app`；标签 `release/android/v1.3.2-b3596177`。
+- [正式 APK](https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/readyoufife-android-1.3.2-b3596177.apk)：138474271 bytes；SHA-256 `09844a6f6ee40ae0c66b4fc75408c66675f969b21ddd7ec91107edf8d3dd72d6`。
+- 发布包 v2 签名、版本／包名、生产服务地址和微信原生合同通过；与旧正式 3596176 签名证书 SHA-256 完全一致（`25d4fe5523417289da5fe0bf970593b98fe4ea658883edeb5792906e31456629`），构建号递增。实际签名 bundle 包含课程远程 JSON 与官网下载自动触发入口。
+- 本地 `pnpm check:ci` 通过：App 288 套／2042 项、API 837 项；[GitHub CI](https://github.com/XIciA/icao-app/actions/runs/43420752549) 通过；正式 Gradle 构建成功。历史媒体全量检查缺口保留前述说明，不写成全量媒体验证通过。
+- 官网 EdgeOne Production deployment `dpq5dl5b2k7g`，标签 `release/web-edgeone/20261113-89d46fd2`；公网下载页脚本与此次生产导出一致。
+- 既有单渠道 publisher 先验证公开 APK 完整摘要，再更新 `android-apk`；公开清单回读为 1.3.2 / 3596177。其余三个渠道及 `manualAndroidPreview` 与发布前逐项一致，未修改 iOS 正式／测试清单。
+- 在用户 Chrome 验证 `https://readyoufife.com/download?android=auto`：页面显示 v1.3.2、正确正式 APK 链接和手动下载提示，浏览器实际自动下载完成。下载文件再次校验 SHA-256／大小与签名制品一致；浏览器阻止下载与网络失败重试由聚焦测试覆盖，不冒充 Android 浏览器真机实测。
+- 本机制品及签名报告：`/private/tmp/icao-course-web-release/.generated/releases/android/1.3.2/`；Chrome 下载文件：`/Users/zhouyide/Downloads/readyoufife-android-1.3.2-b3596177.apk`。
+- 服务器发布记录和旧清单备份：`/opt/icao/releases/android-1.3.2-b3596177/`，备份 `backups/updates-before-20261113T121753055400Z.json`。如需撤回下载，恢复上一正式 APK 清单即可；已经安装 3596177 的设备不能直接降级，修正需更高构建号。
+- 回滚来源：Android `release/android/v1.3.1-b3596176`；Web `release/web-edgeone/20261113-ce6092ec`。不部署 API、不执行数据库迁移、不修改学习数据或题库内容。
+- 用户真机验收仍待完成：覆盖安装保留数据、课程列表／详情无价格且课时清晰、模拟录音在本次记录／答题卡中回放和重录覆盖，以及 Android 浏览器下载／系统安装。没有连接 Android 设备，本轮不宣称真机体验已验收。
