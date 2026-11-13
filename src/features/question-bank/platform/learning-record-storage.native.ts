@@ -1,8 +1,12 @@
 import Storage from '@/platform/storage';
+import { Platform } from 'react-native';
+import type { RecordingAsset } from '../recording/types';
 import type { LearningRecord } from '../types';
 import { captureStudyReview, getStudyReview } from '../lib/study-review.native';
 
 export const LEARNING_RECORDS_KEY = 'icao.learning.v1.records';
+export const RECORDING_DETAIL_PREFIX = `${LEARNING_RECORDS_KEY}.recordings.`;
+export const recordingDetailKey = (id: string) => `${RECORDING_DETAIL_PREFIX}${id}`;
 const aiDetailKey = (id: string) => `${LEARNING_RECORDS_KEY}.ai.${id}`;
 const detailKey = (id: string) => `${LEARNING_RECORDS_KEY}.review.${id}`;
 const deletedKey = (id: string) => `${LEARNING_RECORDS_KEY}.deleted.${id}`;
@@ -123,6 +127,68 @@ export async function upsertLearningRecord(record: LearningRecord, assertCurrent
   return queued(async () => { await writeLearningRecord(record, assertCurrent, commit); });
 }
 
+async function readRecordings(recordId: string): Promise<Record<string, RecordingAsset>> {
+  if (Platform.OS === 'web') return {};
+  const raw = await Storage.getItem(recordingDetailKey(recordId));
+  if (!raw) return {};
+  const { recordingRepository } = require('../recording/recording-repository') as typeof import('../recording/recording-repository');
+  const references = JSON.parse(raw) as Record<string, Omit<RecordingAsset, 'uri'>>;
+  return Object.fromEntries(Object.entries(references).flatMap(([id, reference]) => {
+    const asset = recordingRepository.restoreSaved(reference);
+    return asset ? [[id, asset]] : [];
+  }));
+}
+
+async function discardRecordings(assets: RecordingAsset[]) {
+  if (!assets.length) return;
+  const { recordingRepository } = require('../recording/recording-repository') as typeof import('../recording/recording-repository');
+  assets.forEach(asset => recordingRepository.discard(asset));
+}
+
+/** Audio references stay in this device's workspace, outside cloud record payloads. */
+export async function loadLearningRecordRecordings(recordId: string): Promise<Record<string, RecordingAsset>> {
+  await writeQueue;
+  if (await Storage.getItem(deletedKey(recordId))) return {};
+  return readRecordings(recordId);
+}
+
+export async function saveLearningRecordRecordings(
+  recordId: string,
+  recordings: Record<string, RecordingAsset>,
+  assertCurrent: () => void,
+  requireRecord = false,
+): Promise<Record<string, RecordingAsset>> {
+  if (Platform.OS === 'web') return recordings;
+  return queued(async () => {
+    assertCurrent();
+    if (await Storage.getItem(deletedKey(recordId))) throw new Error('learning_record_deleted');
+    if (requireRecord && !(await readSummaries()).some(record => record.id === recordId)) throw new Error('learning_record_missing');
+    const previous = await readRecordings(recordId);
+    const { recordingRepository } = require('../recording/recording-repository') as typeof import('../recording/recording-repository');
+    const next: Record<string, RecordingAsset> = {};
+    const copied: RecordingAsset[] = [];
+    try {
+      for (const [id, asset] of Object.entries(recordings)) {
+        const retained = recordingRepository.retainForRecord(asset, recordId);
+        next[id] = retained;
+        if (retained.persistentPath !== asset.persistentPath) copied.push(retained);
+      }
+      assertCurrent();
+      await Storage.setItem(recordingDetailKey(recordId), JSON.stringify(Object.fromEntries(
+        Object.entries(next).map(([id, { uri: _uri, ...reference }]) => [id, reference]),
+      )));
+    } catch (error) {
+      copied.forEach(asset => recordingRepository.discard(asset));
+      throw error;
+    }
+    const retainedPaths = new Set(Object.values(next).map(asset => asset.persistentPath));
+    Object.values(previous).forEach(asset => {
+      if (!retainedPaths.has(asset.persistentPath)) recordingRepository.discard(asset);
+    });
+    return next;
+  });
+}
+
 /** Compare and update the pending operation inside the same history write queue. */
 export async function updatePendingLearningAiRecord(
   recordId: string,
@@ -148,6 +214,7 @@ export async function deleteLearningRecord(recordId: string, descriptor?: Pick<L
     const sessionId = record?.recordType !== 'ai_result' ? record?.sessionId : undefined;
     const removed = records.filter((item) => item.id === recordId || (sessionId && item.sessionId === sessionId));
     const ids = new Set([recordId, ...removed.map((item) => item.id)]);
+    const recordings = await Promise.all(Array.from(ids, readRecordings));
     const entries: [string, string][] = [
       [LEARNING_RECORDS_KEY, JSON.stringify(records.filter((item) => !ids.has(item.id)))],
       ...Array.from(ids, (id) => [deletedKey(id), '1'] as [string, string]),
@@ -155,14 +222,18 @@ export async function deleteLearningRecord(recordId: string, descriptor?: Pick<L
     ];
     if (commit) await commit(entries, removed);
     else await Storage.multiSet(entries);
-    await Storage.multiRemove(Array.from(ids).flatMap((id) => [detailKey(id), aiDetailKey(id)]));
+    await Storage.multiRemove(Array.from(ids).flatMap((id) => [detailKey(id), aiDetailKey(id), recordingDetailKey(id)]));
+    await discardRecordings(recordings.flatMap(Object.values));
   });
 }
 
-export async function clearLearningRecords() {
+export async function clearLearningRecords({ preserveRecordingFiles = false } = {}) {
   return queued(async () => {
     const keys = (await Storage.getAllKeys()).filter((key) => key === LEARNING_RECORDS_KEY || key.startsWith(`${LEARNING_RECORDS_KEY}.`));
+    const recordings = preserveRecordingFiles ? [] : await Promise.all(keys.filter(key => key.startsWith(RECORDING_DETAIL_PREFIX))
+      .map(key => readRecordings(key.slice(RECORDING_DETAIL_PREFIX.length))));
     if (keys.length) await Storage.multiRemove(keys);
+    await discardRecordings(recordings.flatMap(Object.values));
   });
 }
 

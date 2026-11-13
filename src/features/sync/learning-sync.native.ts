@@ -26,6 +26,8 @@ import {
   deleteLearningRecord,
   getLearningRecords,
   LEARNING_RECORDS_KEY,
+  RECORDING_DETAIL_PREFIX,
+  recordingDetailKey,
   upsertLearningRecord,
 } from '@/features/question-bank/platform/learning-record-storage.native';
 import type { CardLearningState, LearningRecord } from '@/features/question-bank/types';
@@ -208,7 +210,7 @@ function hasAnnotationData(value: QuestionBankAnnotationStore) {
 }
 
 async function localDataSnapshot() {
-  const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(TOPIC_PREFIX) || key.startsWith(LEGACY_TOPIC_PREFIX));
+  const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(TOPIC_PREFIX) || key.startsWith(LEGACY_TOPIC_PREFIX) || key.startsWith(RECORDING_DETAIL_PREFIX));
   const [values, records] = await Promise.all([
     Storage.multiGet([...keys, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY]),
     getLearningRecords({ includeDetails: true }),
@@ -348,7 +350,7 @@ async function activePersonalKeys({ includeAiConsent = true }: { includeAiConsen
     || [META_KEY, OUTBOX_KEY, LEARNING_RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY].includes(key));
 }
 
-async function clearActiveLearningData({ keepSnapshots }: { keepSnapshots: boolean }) {
+async function clearActiveLearningData({ keepSnapshots, preserveRecordingFiles = false }: { keepSnapshots: boolean; preserveRecordingFiles?: boolean }) {
   learningResetEpoch += 1;
   if (running) await running.catch(() => undefined);
   const keys = await activePersonalKeys();
@@ -357,17 +359,17 @@ async function clearActiveLearningData({ keepSnapshots }: { keepSnapshots: boole
   const next = writeQueue.catch(() => undefined).then(() => Storage.multiRemove(keysToRemove));
   writeQueue = next;
   await next;
-  await clearLearningRecords();
+  await clearLearningRecords({ preserveRecordingFiles });
   await replaceAnnotationStoreFromSync(createEmptyAnnotationStore());
   await replaceVocabularyStateFromSync(createEmptyVocabularyState());
 }
 
-async function clearLearningPayloadData({ includeAiConsent = true, keepSnapshots = true }: { includeAiConsent?: boolean; keepSnapshots?: boolean } = {}) {
+async function clearLearningPayloadData({ includeAiConsent = true, keepSnapshots = true, preserveRecordingFiles = false }: { includeAiConsent?: boolean; keepSnapshots?: boolean; preserveRecordingFiles?: boolean } = {}) {
   learningResetEpoch += 1;
   const keys = (await activePersonalKeys({ includeAiConsent }))
     .filter((key) => ![META_KEY, OUTBOX_KEY, LEARNING_RECORDS_KEY].includes(key) && !(keepSnapshots && key.startsWith(SNAPSHOT_PREFIX)));
   await Storage.multiRemove(keys);
-  await clearLearningRecords();
+  await clearLearningRecords({ preserveRecordingFiles });
   await replaceAnnotationStoreFromSync(createEmptyAnnotationStore());
   await replaceVocabularyStateFromSync(createEmptyVocabularyState());
 }
@@ -411,7 +413,7 @@ async function switchLearningWorkspace(userId?: string): Promise<void> {
     const values = await Storage.multiGet(keys);
     await Storage.setItem(workspaceKey(previous.boundUserId), JSON.stringify(values));
     const saved = await Storage.getItem(workspaceKey(userId));
-    await clearLearningPayloadData({ includeAiConsent: false, keepSnapshots: true });
+    await clearLearningPayloadData({ includeAiConsent: false, keepSnapshots: true, preserveRecordingFiles: true });
     await replaceQueuedSyncState({ ...defaultMeta(), boundUserId: userId }, []);
     const restored = parseJson<[string, string | null][]>(saved, []);
     const pairs = restored.filter((pair): pair is [string, string] => Array.isArray(pair) && typeof pair[0] === 'string' && typeof pair[1] === 'string');
@@ -461,6 +463,12 @@ async function mergeGuestLearningSnapshot(snapshot: Record<string, string>) {
     const previous = existingRecords.get(record.id);
     if (previous && (previous.updatedAt ?? previous.createdAt) > (record.updatedAt ?? record.createdAt)) continue;
     await upsertLearningRecord(record);
+    // Claim only device-local references, never include them in the cloud payload.
+    const audioKey = recordingDetailKey(record.id);
+    if (snapshot[audioKey] && !await Storage.getItem(audioKey)
+      && (await getLearningRecords()).some(entry => entry.id === record.id)) {
+      await Storage.setItem(audioKey, snapshot[audioKey]);
+    }
     const pending = await readOutbox();
     if (!pending.some(mutation => mutation.kind === 'learning_record' && mutation.payload.recordId === record.id)) {
       await enqueueLearningRecord(record, context);
@@ -502,7 +510,7 @@ async function mergeGuestLearningSnapshot(snapshot: Record<string, string>) {
 export async function archiveAndBindEmptyLearningSync(userId: string) {
   const snapshot = await localDataSnapshot();
   await Storage.setItem(`${SNAPSHOT_PREFIX}archive.${Date.now()}`, JSON.stringify(snapshot));
-  await clearActiveLearningData({ keepSnapshots: true });
+  await clearActiveLearningData({ keepSnapshots: true, preserveRecordingFiles: true });
   return bindLearningSync(userId, 'cloud-only');
 }
 
@@ -533,7 +541,7 @@ async function resetLearningGenerationLocally(meta: SyncMeta, dataGeneration: nu
   const claimKey = meta.boundUserId ? `${SNAPSHOT_PREFIX}guest-claim.${meta.boundUserId}` : undefined;
   const claim = claimKey && preserveGuestClaim ? await Storage.getItem(claimKey) : undefined;
   if (claimKey && !preserveGuestClaim) await Storage.removeItem(claimKey);
-  await clearLearningPayloadData({ includeAiConsent: false });
+  await clearLearningPayloadData({ includeAiConsent: false, preserveRecordingFiles: Boolean(claim) });
   // Account profile survives a learning-only reset, including edits not uploaded yet.
   await queuedUpdate((latest, outbox) => {
     const profileVersion = latest.versions[PROFILE_VERSION_KEY] ?? meta.versions[PROFILE_VERSION_KEY];

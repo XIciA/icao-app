@@ -12,7 +12,11 @@ export type RecordingAsset = {
   sessionId: string;
   storageKind: 'native-file' | 'web-blob';
   uri: string;
+  /** Device-local path under the repository's document root; never synced. */
+  persistentPath?: string;
 };
+
+export type RecordingCommitHandler = (asset: RecordingAsset) => void | RecordingAsset | Promise<void | RecordingAsset>;
 
 type RawRecordingBase = {
   meteringDetected?: boolean;

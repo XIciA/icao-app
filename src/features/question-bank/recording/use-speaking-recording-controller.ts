@@ -6,7 +6,7 @@ import { audioSessionOrchestrator } from '@/platform/audio';
 import { useExpoRecorderAdapter } from './expo-recorder-adapter';
 import { RecordingEngine, type RecordingEngineSnapshot } from './recording-engine';
 import { recordingRepository } from './recording-repository';
-import type { RecorderPort, RecordingAsset } from './types';
+import type { RecorderPort, RecordingAsset, RecordingCommitHandler } from './types';
 
 export type SpeakingRecordingController = RecordingEngineSnapshot & {
   beginReplacement: () => void;
@@ -26,7 +26,7 @@ type SpeakingRecordingControllerHostProps = {
   children: (controller: SpeakingRecordingController) => ReactNode;
   onClear: () => void;
   onInteractionChange?: (active: boolean) => void;
-  onRecorded: (recording: RecordingAsset) => void;
+  onRecorded: RecordingCommitHandler;
   recording?: RecordingAsset;
   sessionId: string;
 };

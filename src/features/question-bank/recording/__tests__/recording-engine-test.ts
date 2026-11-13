@@ -350,6 +350,45 @@ describe('RecordingEngine lifecycle contract', () => {
     expect(engine.getSnapshot().error?.code).toBe('recording_commit_failed');
   });
 
+  it('waits for durable history publication before completing the last recording', async () => {
+    const saved = deferred<RecordingAsset>();
+    const { engine, onRecorded, repository, setNow } = setup();
+    onRecorded.mockReturnValueOnce(saved.promise);
+    engine.pressIn(); await flush(); setNow(1000);
+    const stopped = engine.pressOut(); await flush();
+    expect(engine.getSnapshot().interactionActive).toBe(true);
+    expect(engine.getSnapshot().phase).toBe('finalizing');
+    const durable = { ...committedAsset, uri: 'file:///documents/attempt/audio.wav', persistentPath: 'attempt/audio.wav' };
+    saved.resolve(durable); await stopped;
+    expect(engine.getSnapshot().asset).toEqual(durable);
+    expect(engine.getSnapshot().interactionActive).toBe(false);
+    expect(repository.discard).toHaveBeenCalledWith(committedAsset);
+  });
+
+  it('does not delete accepted history audio if interrupted during publication', async () => {
+    const saved = deferred<RecordingAsset>();
+    const { engine, onRecorded, repository, setNow } = setup();
+    onRecorded.mockReturnValueOnce(saved.promise);
+    engine.pressIn(); await flush(); setNow(1000);
+    const stopped = engine.pressOut(); await flush();
+    const interrupted = engine.interrupt();
+    const durable = { ...committedAsset, uri: 'file:///documents/attempt/audio.wav', persistentPath: 'attempt/audio.wav' };
+    saved.resolve(durable); await Promise.all([stopped, interrupted]);
+    expect(repository.discard).not.toHaveBeenCalledWith(durable);
+  });
+
+  it('keeps the previous recording when asynchronous history publication fails', async () => {
+    const previous = { ...committedAsset, id: 'previous', uri: 'file:///documents/previous.wav' };
+    const { engine, onRecorded, repository, setNow } = setup(previous);
+    onRecorded.mockRejectedValueOnce(new Error('disk_full'));
+    engine.beginReplacement(); engine.pressIn(); await flush(); setNow(1000);
+    await engine.pressOut();
+    expect(engine.getSnapshot().asset).toEqual(previous);
+    expect(engine.getSnapshot().error?.code).toBe('recording_commit_failed');
+    expect(repository.discard).toHaveBeenCalledWith(committedAsset);
+    expect(repository.discard).not.toHaveBeenCalledWith(previous);
+  });
+
   it('does not cancel the recorder after stop succeeded and commit ownership transferred', async () => {
     const { engine, repository, runtime, setNow } = setup();
     repository.commitRaw.mockRejectedValueOnce(new RecordingRepositoryError('recording_commit_failed'));

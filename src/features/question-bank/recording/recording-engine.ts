@@ -11,6 +11,7 @@ import type {
   RecorderPort,
   RecorderRuntimeEvent,
   RecordingAsset,
+  RecordingCommitHandler,
   RecordingFailure,
   RecordingFailureCode,
   RecordingOperationContext,
@@ -66,8 +67,8 @@ type SchedulerPort = {
 
 type RecordingEngineConfig = {
   cardId: string;
-  onClear: () => void;
-  onRecorded: (asset: RecordingAsset) => void;
+  onClear: () => void | Promise<void>;
+  onRecorded: RecordingCommitHandler;
   recording?: RecordingAsset;
   sessionId: string;
 };
@@ -88,7 +89,7 @@ type ActiveOperation = RecordingOperationContext & {
   diagnosticId: string;
   failureAfterCleanup?: RecordingFailureCode;
   lease?: AudioLease;
-  onRecorded: (asset: RecordingAsset) => void;
+  onRecorded: RecordingCommitHandler;
   prepareAttempted: boolean;
   releaseRequested: boolean;
   runtime: RecorderPort;
@@ -360,10 +361,14 @@ export class RecordingEngine {
     });
   };
 
-  clear = () => {
+  clear = async () => {
     if (this.state.interactionActive) return;
-    this.config.onClear();
-    this.update({ asset: undefined, error: undefined, phase: 'idle', replacing: false });
+    try {
+      await this.config.onClear();
+      this.update({ asset: undefined, error: undefined, phase: 'idle', replacing: false });
+    } catch {
+      this.fail('recording_commit_failed');
+    }
   };
 
   dismissCompatibility = () => this.update({ compatibilityVisible: false });
@@ -635,7 +640,7 @@ export class RecordingEngine {
       const repositoryOwnedRaw = raw;
       raw = undefined;
       this.report('recording_commit_requested', 'commit', operation, 'info', operationDurationMs);
-      const asset = await this.repository.commitRaw({
+      let asset = await this.repository.commitRaw({
         ...repositoryOwnedRaw,
         cardId: operation.cardId,
         diagnosticId: operation.diagnosticId,
@@ -654,10 +659,17 @@ export class RecordingEngine {
         return;
       }
       try {
-        operation.onRecorded(asset);
+        const retained = await operation.onRecorded(asset);
+        if (retained && retained.uri !== asset.uri) this.repository.discard(asset);
+        asset = retained ?? asset;
       } catch {
         this.repository.discard(asset);
         throw new RecordingEngineError('recording_commit_failed');
+      }
+      if (!this.isCurrent(operation) || operation.cancelled) {
+        // The history owner has accepted this asset; cancellation must not delete it.
+        this.finishOperation(operation);
+        return;
       }
       this.compatibilityFailure = undefined;
       this.finishOperation(operation);

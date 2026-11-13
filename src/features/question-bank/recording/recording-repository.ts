@@ -58,6 +58,7 @@ export class RecordingRepository {
   retainSessionForLogin(sessionId: string) { this.loginSessions.add(sessionId); }
   releaseSessionFromLogin(sessionId: string) { this.loginSessions.delete(sessionId); }
   private readonly root = new Directory(Paths.cache, 'icao-recordings');
+  private get savedRoot() { return new Directory(Paths.document, 'icao-recordings'); }
   private readonly createId: () => string;
   private readonly mediaProbe: RecordingMediaProbe;
   private readonly now: () => number;
@@ -160,7 +161,13 @@ export class RecordingRepository {
 
   discard(asset: RecordingAsset) {
     const rootPrefix = this.root.uri.endsWith('/') ? this.root.uri : `${this.root.uri}/`;
-    if (asset.storageKind !== 'native-file' || !asset.uri.startsWith(rootPrefix)) return;
+    if (asset.storageKind !== 'native-file') return;
+    if (asset.persistentPath) {
+      const saved = this.restoreSaved(asset);
+      if (saved) bestEffortDelete(new File(saved.uri));
+      return;
+    }
+    if (!asset.uri.startsWith(rootPrefix)) return;
     bestEffortDelete(new File(asset.uri));
     emitAudioDiagnostic({ code: 'recording_discarded', level: 'info', scope: 'recording' });
   }
@@ -177,6 +184,45 @@ export class RecordingRepository {
     } catch {
       return false;
     }
+  }
+
+  /** Copy before associating with history; cache cleanup never touches this root. */
+  retainForRecord(asset: RecordingAsset, recordId: string): RecordingAsset {
+    if (asset.storageKind !== 'native-file') throw new RecordingRepositoryError('recording_commit_failed');
+    const directoryName = encodeURIComponent(recordId);
+    if (!directoryName || directoryName === '.' || directoryName === '..') throw new RecordingRepositoryError('recording_commit_failed');
+    const restored = asset.persistentPath ? this.restoreSaved(asset) : undefined;
+    if (restored?.persistentPath?.startsWith(`${directoryName}/`)) return restored;
+    const source = new File(restored?.uri ?? asset.uri);
+    if (!source.exists || source.size !== asset.byteSize || source.size <= 0) throw new RecordingRepositoryError('recording_source_missing');
+    const directory = new Directory(this.savedRoot, directoryName);
+    directory.create({ idempotent: true, intermediates: true });
+    const fileName = `${safeSegment(this.createId())}.${asset.format}`;
+    const pending = new File(directory, `${fileName}.pending`);
+    const destination = new File(directory, fileName);
+    try {
+      source.copy(pending);
+      if (!pending.exists || pending.size !== asset.byteSize) throw new RecordingRepositoryError('recording_commit_failed');
+      pending.move(destination);
+      if (!destination.exists || destination.size !== asset.byteSize) throw new RecordingRepositoryError('recording_commit_failed');
+      return { ...asset, uri: destination.uri, persistentPath: `${directoryName}/${fileName}` };
+    } catch (error) {
+      bestEffortDelete(pending);
+      bestEffortDelete(destination);
+      throw error;
+    }
+  }
+
+  /** Resolve against today's sandbox path, including after an iOS app upgrade. */
+  restoreSaved(asset: Omit<RecordingAsset, 'uri'>): RecordingAsset | undefined {
+    if (asset.storageKind !== 'native-file' || !asset.persistentPath
+      || !/^[^/]+\/[a-zA-Z0-9_-]+\.(wav|m4a)$/.test(asset.persistentPath)
+      || asset.persistentPath.split('/').some(part => part === '.' || part === '..')) return undefined;
+    try {
+      const file = new File(this.savedRoot, asset.persistentPath);
+      if (!file.exists || file.size <= 0 || file.size !== asset.byteSize) return undefined;
+      return { ...asset, uri: file.uri };
+    } catch { return undefined; }
   }
 
   cleanupSession(sessionId: string) {

@@ -781,7 +781,12 @@ function StudyContent(props: Props) {
       onClearRecording={session.clearRecording}
       onInteractionChange={setTaskInteractionActive}
       onPreviewPlaybackStart={handleRecordingPreviewStart}
-      onRecorded={(recording) => { session.recordAnswer(recording); if (guiding) tutorial?.event('record'); setNewRecording({ cardKey: item.id, token: recording.id }); }}
+      onRecorded={async (recording) => {
+        const retained = await session.recordAnswer(recording);
+        if (guiding) tutorial?.event('record');
+        setNewRecording({ cardKey: item.id, token: recording.id });
+        return retained;
+      }}
       onRecordingIntent={handleRecordingIntent}
       previewPauseRequest={recordingPreviewPauseRequest}
       recording={session.recording}

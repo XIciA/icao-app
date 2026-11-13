@@ -8,7 +8,7 @@ import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
-import type { RecordingAsset } from '../recording/types';
+import type { RecordingAsset, RecordingCommitHandler } from '../recording/types';
 import { useRecordingPlayback } from '../recording/use-recording-playback';
 import {
   SpeakingRecordingControllerHost,
@@ -117,7 +117,7 @@ type SpeakingPracticePanelProps = {
   onClear: () => void;
   onInteractionChange?: (active: boolean) => void;
   onPreviewPlaybackStart?: () => void;
-  onRecorded: (recording: RecordingAsset) => void;
+  onRecorded: RecordingCommitHandler;
   onRecordingIntent?: () => void;
   previewPauseRequest?: number;
   recording?: RecordingAsset;
