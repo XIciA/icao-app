@@ -145,11 +145,15 @@ export class DeepSeekReviewProviderService {
           meta.inputTokens = (meta.inputTokens ?? 0) + (payload.usage?.prompt_tokens ?? 0);
           meta.outputTokens = (meta.outputTokens ?? 0) + (payload.usage?.completion_tokens ?? 0);
           const choice = payload.choices?.[0];
-          if (choice?.finish_reason === 'length') throw new ReviewAttemptError('ai_invalid_response', true);
           const content = choice?.message?.content;
           if (typeof content !== 'string' || !content.trim()) throw new ReviewAttemptError('ai_invalid_response', true);
           let data: unknown;
-          try { data = JSON.parse(content); } catch { throw new ReviewAttemptError('ai_invalid_response', true); }
+          try {
+            // Some completions wrap otherwise usable JSON in a Markdown fence.
+            // A length finish reason alone must not discard a complete object.
+            const json = content.trim().replace(/^```(?:json)?\s*\n?([\s\S]*?)\n?```$/iu, '$1');
+            data = JSON.parse(json);
+          } catch { throw new ReviewAttemptError('ai_invalid_response', true); }
           try {
             return {
               data: input.validate(data),

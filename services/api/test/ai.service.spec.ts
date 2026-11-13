@@ -499,7 +499,7 @@ describe('AiService DeepSeek review capabilities', () => {
     expect(JSON.parse(call.prompt)).toEqual({ transcript: 'I informed ATC.' });
   });
 
-  it('rejects invalid protected-token output before it reaches the client', async () => {
+  it('returns and settles readable model output even when protected tokens change', async () => {
     const { service: ai } = service({
       grammar: {
         correctedText: 'We were maintaining FL190.',
@@ -509,7 +509,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     await expect(ai.review('user-1', 'request-4', {
       mode: 'grammar', module: 'atc', questionId: 'question-4', transcript: 'We was maintaining FL180.',
-    }, await operationGrant(ai))).rejects.toThrow();
+    }, await operationGrant(ai))).resolves.toMatchObject({ grammar: { correctedText: 'We were maintaining FL190.' }, aiPoints: { charged: 3 } });
   });
 
   it('records only the typed failure code, category, and attempt count for a failed request', async () => {

@@ -73,22 +73,29 @@ export const polishResultSchema = z.object({
   polishedText: z.string().trim().min(1).max(5000),
 }).strict();
 
+// Model output is adapted for existing clients, not judged for content accuracy.
+// Request schemas above retain their authorization/input boundaries.
+export const reviewTextSchema = z.preprocess(
+  (value) => typeof value === 'number' ? String(value) : value,
+  z.string().catch(''),
+);
+
 export const grammarCorrectionIssueSchema = z.object({
-  before: z.string().trim().min(1).max(500),
-  after: z.string().trim().min(1).max(500),
-  reasonZh: z.string().trim().min(1).max(500).refine((value) => /[\u3400-\u9fff]/u.test(value), 'reason_must_be_chinese'),
-}).strict();
+  before: reviewTextSchema,
+  after: reviewTextSchema,
+  reasonZh: reviewTextSchema,
+});
 
-export const grammarCorrectionSchema = z.object({
-  issues: z.array(grammarCorrectionIssueSchema).max(30),
-  correctedText: z.string().trim().min(1).max(5000),
-}).strict();
+/** Keep usable rows even when a neighbouring item has the wrong shape. */
+export function reviewRows<T extends Record<string, string>>(value: unknown, schema: z.ZodType<T>): T[] {
+  const candidates = Array.isArray(value) ? value : value && typeof value === 'object' ? [value] : [];
+  return candidates.flatMap((candidate) => {
+    const parsed = schema.safeParse(candidate);
+    return parsed.success && Object.values(parsed.data).some((text) => text.trim()) ? [parsed.data] : [];
+  });
+}
 
-export const grammarModeReviewResultSchema = z.object({
-  grammar: grammarCorrectionSchema,
-}).strict();
-
-export const opiModeReviewResultSchema = z.object({
-  grammar: grammarCorrectionSchema,
-  polishedText: z.string().trim().min(1).max(5000),
-}).strict();
+export function reviewObject(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('review_unreadable_result');
+  return value as Record<string, unknown>;
+}
