@@ -1,0 +1,54 @@
+{
+  "channel": "resource",
+  "category": "planning",
+  "badge": "考试技巧",
+  "title": "ICAO 考试中值得注意的小技巧",
+  "summary": "今天这篇文章全是ICAO 考试小技巧干货，有点噎挺。",
+  "tags": [
+    "ICAO",
+    "考试技巧"
+  ],
+  "publishedAt": "2026-10-23T12:00:00+08:00",
+  "cover": {
+    "publicPath": "/editorial-assets/75a4f226111720d129e759fe437f0e5c6d7cbc5491e2c73dcda95bf152dc68ed/cover.jpg",
+    "alt": "阳光照入空旷的候机厅",
+    "width": 800,
+    "height": 500,
+    "mimeType": "image/jpeg",
+    "sizeBytes": 74610,
+    "checksum": "75a4f226111720d129e759fe437f0e5c6d7cbc5491e2c73dcda95bf152dc68ed"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "今天这篇文章全是ICAO 考试小技巧干货，有点噎挺。"
+    },
+    {
+      "type": "paragraph",
+      "text": "1. 状态很重要，语感很重要。建议考试前一天不要给自己很大的学习压力，可以适当听一听900句和听力题保持语感，睡个好觉。"
+    },
+    {
+      "type": "paragraph",
+      "text": "2. 平时也可以练习边听题边读选项，减少对提前看选项的依赖。"
+    },
+    {
+      "type": "paragraph",
+      "text": "3. 考试中听到的 900 句音频跟平时练习材料（如飞行之翼、学习通、记乎等）的语音语调可能不太一致，整个句子的发音、节奏、重音可能也不同，不要被扰乱节奏，建议不要经验式的答题，把每个句子当做新句子听。"
+    },
+    {
+      "type": "paragraph",
+      "text": "4. 在考试中，考完听力部分和900句部分后有继续下一部分的按钮，不要着急开始下一部分，静下心来给自己一些休息时间。有很多同学在考试中都出现过高强度的答题从而造成后面的某些时候出现专注力突然不足的情况。人在长时间很专注、紧张的答题后还可能陷入到之前的答题情景中，或产生疲劳。例如在听陆空通话的时候脑子还是不受控制的在想刚刚900句没听到的句子从而分心。"
+    },
+    {
+      "type": "paragraph",
+      "text": "5. OPI部分现在问答节奏都偏快。回答内容太多时，考试员可能会打断。答案可以有细节，但尽量围绕问题展开。"
+    }
+  ],
+  "sourceLinks": [
+    {
+      "title": "原文 · 2026年8月5日 11:06",
+      "publisher": "飞猪ICAO",
+      "url": "https://mp.weixin.qq.com/s/8XUdWPiki15_n3LuMypv_A"
+    }
+  ]
+}

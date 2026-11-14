@@ -1,0 +1,194 @@
+{
+  "channel": "resource",
+  "category": "planning",
+  "badge": "备考规划",
+  "title": "飞行员 ICAO 4 级备考路线",
+  "summary": "这篇经验帖的受众群体是刚着手准备ICAO 4 级考试的学员以及我们培训班预习班的学员或仍在大一大二阶段想提前了解一下ICAO 考试基本情况的同学们。",
+  "tags": [
+    "ICAO 4",
+    "学习路线"
+  ],
+  "publishedAt": "2026-10-26T12:00:00+08:00",
+  "cover": {
+    "publicPath": "/editorial-assets/0cfcb7235d64a2e9e904dea67a0f2f4e0d35c86bc97b12257d25673e4a41e8c7/cover.jpg",
+    "alt": "机场滑行道的黄色中心线",
+    "width": 800,
+    "height": 500,
+    "mimeType": "image/jpeg",
+    "sizeBytes": 67717,
+    "checksum": "0cfcb7235d64a2e9e904dea67a0f2f4e0d35c86bc97b12257d25673e4a41e8c7"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "这篇经验帖的受众群体是刚着手准备ICAO 4 级考试的学员以及我们培训班预习班的学员或仍在大一大二阶段想提前了解一下ICAO 考试基本情况的同学们。"
+    },
+    {
+      "type": "paragraph",
+      "text": "ICAO 4 级备考核心资料与分阶段学习计划，涵盖听力强化、口语即兴训练及高分避坑技巧。"
+    },
+    {
+      "type": "paragraph",
+      "text": "ICAO 4 级核心考点:发音、结构、词汇、流利度、理解力、互动能力，不考语法难题，侧重航空场景听说，特情即兴问答是拉分关键。"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "一、备考核心资料"
+    },
+    {
+      "type": "paragraph",
+      "text": "1.PEPEC 900 句：常见陆空通话句式，常规滑行、起飞、进近、落地全部覆盖"
+    },
+    {
+      "type": "paragraph",
+      "text": "2.ICAOOPI真题题库:口试高频情景问答、飞机故障、恶劣天气、特情处置话术"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.LiveATC:真实空管录音，练口音、语速、嘈杂环境听力"
+    },
+    {
+      "type": "paragraph",
+      "text": "4.民航飞行英语听力教材:气象报文、放行资料、通告类听力素材"
+    },
+    {
+      "type": "paragraph",
+      "text": "5.行业常用缩略语:ATC、RNAV、VOR、 GS、MEL等飞行缩写词汇表"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "二、分阶段学习计划"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "阶段1:基础打底(2~3周)"
+    },
+    {
+      "type": "paragraph",
+      "text": "1.通读PEPEC900句，逐句跟读模仿空管标准发音"
+    },
+    {
+      "type": "paragraph",
+      "text": "2.整理航空专用词汇:气象、故障、机场运行、燃油、起落架、积冰、液压系统高频单词"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.分清固定用语"
+    },
+    {
+      "type": "paragraph",
+      "text": "Affirm/Negative/Roger/Wilco/Cleared这类固定用词，不随意替换"
+    },
+    {
+      "type": "paragraph",
+      "text": "4.每天30分钟:泛听LiveATC主流机场通话，熟悉通话节奏"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "阶段2:听力强化(4~6周)"
+    },
+    {
+      "type": "paragraph",
+      "text": "1.精听:把空管指令逐句听写，训练快速抓取高度、航向、跑道、速度关键信息"
+    },
+    {
+      "type": "paragraph",
+      "text": "2.重点训练:带口音空管、嘈杂座舱背景音、长连贯放行指令"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.练习气象情报(METAR/SPECI)翻译和口头复述"
+    },
+    {
+      "type": "paragraph",
+      "text": "4.错题整理:把听不懂的指令统一汇总，反复复盘"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "阶段3:口语OPI专项(重中之重，考试核心)"
+    },
+    {
+      "type": "paragraph",
+      "text": "口试分为常规场景+突发特情即兴回答"
+    },
+    {
+      "type": "paragraph",
+      "text": "1.常规场景:直接套用900句框架，做到脱口而出"
+    },
+    {
+      "type": "paragraph",
+      "text": "2.特情场景(发动机故障、鸟击、客舱失压、恶劣天气备降、燃油告警):"
+    },
+    {
+      "type": "paragraph",
+      "text": "自己搭建固定答题逻辑:报告问题说明现状申请处置听从管制指令"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.录制自己的回答音频，自查流利度、卡顿、语法错误，避免长时间停顿"
+    },
+    {
+      "type": "paragraph",
+      "text": "4.找人对练:一人扮演管制，一人扮演飞行员，模拟真实考试问答模式"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "阶段4:全真模考冲刺(考前2周)"
+    },
+    {
+      "type": "paragraph",
+      "text": "1.按所报考试的流程，完成各板块的计时模拟"
+    },
+    {
+      "type": "paragraph",
+      "text": "2.对标6大评分维度自查，弱项专项补强"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.拒绝背诵式生硬回答，考官会随机追问，必须学会灵活拓展"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "三、高分避坑技巧"
+    },
+    {
+      "type": "paragraph",
+      "text": "1.不要用大学通用英语思维备考,航空英语讲究简洁规范，不需要复杂长难句"
+    },
+    {
+      "type": "paragraph",
+      "text": "2.流利度优先级大于华丽词汇"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.没听清指令时，练习用 “Say again” 请求重复，不要猜测"
+    },
+    {
+      "type": "paragraph",
+      "text": "4.日常保持语感，每天最少1小时听说练习，中断练习会明显退步"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "四、长期实用提升(考完也能用在实际飞行)"
+    },
+    {
+      "type": "paragraph",
+      "text": "日常碎片时间刷LiveATC，积累各国空管口音，为后续国际航线运行做准备。"
+    }
+  ],
+  "sourceLinks": [
+    {
+      "title": "原文 · 2026年8月6日 12:03",
+      "publisher": "飞猪ICAO",
+      "url": "https://mp.weixin.qq.com/s/PcSdynV52RaGog_vd_7g9w"
+    }
+  ]
+}
