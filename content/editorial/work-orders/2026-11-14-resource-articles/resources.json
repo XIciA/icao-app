@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "objectKey": "editorial/cf85a6132276ae1e7791f8c2c214e9464276d7b674dce3632df9b73304cb2822/cover.jpg",
+      "sourceRelativePath": "01/cover.jpg",
+      "publicPath": "/editorial-assets/cf85a6132276ae1e7791f8c2c214e9464276d7b674dce3632df9b73304cb2822/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "cf85a6132276ae1e7791f8c2c214e9464276d7b674dce3632df9b73304cb2822",
+      "sizeBytes": 50080,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/3989827afa0bc2bbf0325c9803b1638111fa904464f250384d304fbbe541ffc4/cover.jpg",
+      "sourceRelativePath": "02/cover.jpg",
+      "publicPath": "/editorial-assets/3989827afa0bc2bbf0325c9803b1638111fa904464f250384d304fbbe541ffc4/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "3989827afa0bc2bbf0325c9803b1638111fa904464f250384d304fbbe541ffc4",
+      "sizeBytes": 73071,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/0cbd2e2da4ce9bba35488bcfe725436c85d4b0d388cd744048ffc984ae5ed662/cover.jpg",
+      "sourceRelativePath": "03/cover.jpg",
+      "publicPath": "/editorial-assets/0cbd2e2da4ce9bba35488bcfe725436c85d4b0d388cd744048ffc984ae5ed662/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "0cbd2e2da4ce9bba35488bcfe725436c85d4b0d388cd744048ffc984ae5ed662",
+      "sizeBytes": 67897,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/d7c2197091ff717636cd937b47ec9f2fdbc052322ffb20d46da166ff636dec0e/cover.jpg",
+      "sourceRelativePath": "04/cover.jpg",
+      "publicPath": "/editorial-assets/d7c2197091ff717636cd937b47ec9f2fdbc052322ffb20d46da166ff636dec0e/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "d7c2197091ff717636cd937b47ec9f2fdbc052322ffb20d46da166ff636dec0e",
+      "sizeBytes": 61375,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/925dba8719908bbd460059f0c580fbedec75e0be218d107bf26b95d28296ff20/cover.jpg",
+      "sourceRelativePath": "05/cover.jpg",
+      "publicPath": "/editorial-assets/925dba8719908bbd460059f0c580fbedec75e0be218d107bf26b95d28296ff20/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "925dba8719908bbd460059f0c580fbedec75e0be218d107bf26b95d28296ff20",
+      "sizeBytes": 76178,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/0cfcb7235d64a2e9e904dea67a0f2f4e0d35c86bc97b12257d25673e4a41e8c7/cover.jpg",
+      "sourceRelativePath": "07/cover.jpg",
+      "publicPath": "/editorial-assets/0cfcb7235d64a2e9e904dea67a0f2f4e0d35c86bc97b12257d25673e4a41e8c7/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "0cfcb7235d64a2e9e904dea67a0f2f4e0d35c86bc97b12257d25673e4a41e8c7",
+      "sizeBytes": 67717,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/75a4f226111720d129e759fe437f0e5c6d7cbc5491e2c73dcda95bf152dc68ed/cover.jpg",
+      "sourceRelativePath": "09/cover.jpg",
+      "publicPath": "/editorial-assets/75a4f226111720d129e759fe437f0e5c6d7cbc5491e2c73dcda95bf152dc68ed/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "75a4f226111720d129e759fe437f0e5c6d7cbc5491e2c73dcda95bf152dc68ed",
+      "sizeBytes": 74610,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/a5014fe89a5e9080d26af01a66175fcfeb5e31e5021c22a68b7689429d2e8fc9/cover.jpg",
+      "sourceRelativePath": "10/cover.jpg",
+      "publicPath": "/editorial-assets/a5014fe89a5e9080d26af01a66175fcfeb5e31e5021c22a68b7689429d2e8fc9/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "a5014fe89a5e9080d26af01a66175fcfeb5e31e5021c22a68b7689429d2e8fc9",
+      "sizeBytes": 61800,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    },
+    {
+      "objectKey": "editorial/5fa1173b14ddad86223070cb6e193caef2f270251f012010ce77ab95955ed6b2/cover.jpg",
+      "sourceRelativePath": "11/cover.jpg",
+      "publicPath": "/editorial-assets/5fa1173b14ddad86223070cb6e193caef2f270251f012010ce77ab95955ed6b2/cover.jpg",
+      "bankId": "editorial",
+      "checksum": "5fa1173b14ddad86223070cb6e193caef2f270251f012010ce77ab95955ed6b2",
+      "sizeBytes": 95198,
+      "mimeType": "image/jpeg",
+      "status": "ready"
+    }
+  ]
+}
