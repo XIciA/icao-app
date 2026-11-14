@@ -27,7 +27,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | 渠道 / 服务 | 最近有证据的交付 | 验收边界 / 证据 |
 | --- | --- | --- |
 | Android 正式版 | 1.3.2 / 3596177，源码 `89d46fd2`，11 月 13 日正式 APK 与更新清单已发布 | 对齐 iOS 1.3.2（3596176）的课程与模拟录音回顾；正式更新打开官网下载并尝试自动下载，保留手动入口。身份／签名、公开摘要与 Chrome 实际下载已验证，Android 真机覆盖安装及体验待验收。[记录](../../records/releases/20261113-course-remote-content.md) |
-| App Store | 正式 1.3.1 / 3596174；11 月 5 日实时确认已上架且可下载，10:08 已同步正式更新清单 | Apple READY_FOR_SALE / READY_FOR_DISTRIBUTION、downloadable=true，中国区公开查询版本一致；旧 iOS 1.2.1 真实比较函数可发现新版，其他渠道保持。旧版真机弹窗和跳转待用户验收。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md#2026-11-05-苹果正式更新清单同步) |
+| App Store | 正式 1.3.2 / 3596176；11 月 14 日公开商店可下载，13:46 已同步正式更新清单 | 苹果正式链接保持 App Store；安卓正式清单维持 1.3.2 / 3596177。公开回读核对通过，旧版真机更新提示与跳转待用户验收。[记录](../../records/releases/20261113-course-remote-content.md) |
 | Android 提前体验 | 官网测试入口已按用户要求移除，主下载改为正式 3596176 | 历史同身份体验包 3596175 保留记录；独立 `.test` 渠道 3596173 未改，不卸载或清数据。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md) |
 | iOS TestFlight | 1.3.2 / 3596176，源码 `ce6092ec`；11 月 13 日 16:33 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 补齐模拟练习录音保存及原题卡回听，重录失败保留旧录音；课程原生远程内容、隐藏价格与课时展示保持。代码及制品检查通过，用户真机待验，未提交 App Store 正式审核。[记录](../../records/releases/20261113-course-remote-content.md) |
 | EdgeOne 产品 Web | 源码 `ce6092ec`，deployment `dp6705sjj41e`，11 月 13 日已上线 | 同源共享录音回调合同更新；浏览器录音存储行为保持，课程列表／详情隐藏价格、突出课时的效果保持。公网脚本与本次导出一致，课程 JSON 与发布源完全相同。[记录](../../records/releases/20261113-course-remote-content.md) |
