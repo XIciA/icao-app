@@ -1,0 +1,103 @@
+{
+  "baseVersion": 20,
+  "baseChecksum": "f28ce5d47b7d2b20ae1a2affddeb97f598b5ca6c7688179685946cb1e9739b86",
+  "reason": "按用户要求，根据正文考试和事件时间调整资源分享文章展示日期。通用文章日期在近一个月分散安排。",
+  "edits": [
+    {
+      "id": "article-6b7a3ea6-dd09-4ac3-88dc-ff95e5c3023f",
+      "slug": "article-6b7a3ea6-dd09-4ac3-88dc-ff95e5c3023f",
+      "title": "从 ICAO 3 级到 4 级，一位学员的备考经历",
+      "before": "2026-10-19T12:00:00+08:00",
+      "after": "2026-05-03T12:00:00+08:00",
+      "reason": "正文只写 2026 年 4 月通过，排在月末后第 3 天。"
+    },
+    {
+      "id": "article-ac31c7b4-520e-46ed-8ca6-86e34598489f",
+      "slug": "article-ac31c7b4-520e-46ed-8ca6-86e34598489f",
+      "title": "从 ICAO 2 级到 4 级，王同学用了 28 天",
+      "before": "2026-10-15T12:00:00+08:00",
+      "after": "2026-07-14T12:00:00+08:00",
+      "reason": "正文写 7 月 10 日通过，排在考后第 4 天。"
+    },
+    {
+      "id": "article-65ad8e9b-98b0-46a5-b831-9987dad9d9e9",
+      "slug": "article-65ad8e9b-98b0-46a5-b831-9987dad9d9e9",
+      "title": "王同学一次通过 ICAO 5 级的练习方法",
+      "before": "2026-11-14T12:00:00+08:00",
+      "after": "2026-09-12T12:00:00+08:00",
+      "reason": "正文写 9 月 8 日参加考试并通过，排在考后第 4 天。"
+    },
+    {
+      "id": "article-9efc5729-08bc-4001-8e4b-7785dda95b6a",
+      "slug": "article-9efc5729-08bc-4001-8e4b-7785dda95b6a",
+      "title": "与 ICAO 考试员的一次详谈",
+      "before": "2026-10-30T12:00:00+08:00",
+      "after": "2026-09-16T12:00:00+08:00",
+      "reason": "正文最近一条反馈为 8 月 28 日，访谈未注明日期，按 9 月 15 日原文日期后一天安排。"
+    },
+    {
+      "id": "article-8d288500-a5ed-4a68-87b0-d83605358629",
+      "slug": "article-8d288500-a5ed-4a68-87b0-d83605358629",
+      "title": "OPI 没听懂问题怎么办？",
+      "before": "2026-11-03T12:00:00+08:00",
+      "after": "2026-09-20T12:00:00+08:00",
+      "reason": "正文的案例只写前段时间，按 9 月 17 日原文日期后 3 天安排。"
+    },
+    {
+      "id": "editorial-resource-icao5-review-rhythm",
+      "slug": "icao5-review-rhythm",
+      "title": "ICAO 5 级备考：如何安排复习节奏与能力提升方向",
+      "before": "2026-07-23T14:59:00+08:00",
+      "after": "2026-10-16T12:00:00+08:00",
+      "reason": "通用备考文章，无具体事件日期。"
+    },
+    {
+      "id": "editorial-resource-air-ground-communication-experience",
+      "slug": "air-ground-communication-experience",
+      "title": "陆空通话经验分享：用情景意识、完整确认与标准术语建立稳定表达",
+      "before": "2026-07-23T21:57:07+08:00",
+      "after": "2026-10-21T12:00:00+08:00",
+      "reason": "通用通话经验，无具体事件日期。"
+    },
+    {
+      "id": "article-b3cc9541-70b8-45db-a935-ed37fbdef8ed",
+      "slug": "article-b3cc9541-70b8-45db-a935-ed37fbdef8ed",
+      "title": "飞行员 ICAO 4 级备考路线",
+      "before": "2026-10-26T12:00:00+08:00",
+      "after": "2026-10-25T12:00:00+08:00",
+      "reason": "分阶段学习路线，无具体事件日期。"
+    },
+    {
+      "id": "editorial-resource-icao5-listening-priority",
+      "slug": "icao5-listening-priority",
+      "title": "ICAO 5 级备考：听力最重要？先建立完整的理解与表达能力",
+      "before": "2026-07-23T21:57:07+08:00",
+      "after": "2026-10-30T12:00:00+08:00",
+      "reason": "通用听力训练文章，无具体事件日期。"
+    },
+    {
+      "id": "article-da8d549a-78aa-4905-bd40-87113cc87d5a",
+      "slug": "article-da8d549a-78aa-4905-bd40-87113cc87d5a",
+      "title": "ICAO 考试中值得注意的小技巧",
+      "before": "2026-10-23T12:00:00+08:00",
+      "after": "2026-11-04T12:00:00+08:00",
+      "reason": "考试技巧，无具体事件日期。"
+    },
+    {
+      "id": "article-43e3a3e3-c864-4d8a-88d4-00a78495906b",
+      "slug": "article-43e3a3e3-c864-4d8a-88d4-00a78495906b",
+      "title": "ICAO 考试中用草稿纸也有小技巧？",
+      "before": "2026-11-10T12:00:00+08:00",
+      "after": "2026-11-09T12:00:00+08:00",
+      "reason": "草稿纸技巧，无具体事件日期。"
+    },
+    {
+      "id": "article-3e8c054d-6b21-4199-82d6-14180135e484",
+      "slug": "article-3e8c054d-6b21-4199-82d6-14180135e484",
+      "title": "OPI 冬季运行话题怎么答？",
+      "before": "2026-11-06T12:00:00+08:00",
+      "after": "2026-11-14T12:00:00+08:00",
+      "reason": "冬季运行主题，无具体事件日期，安排在较近的日期。"
+    }
+  ]
+}
