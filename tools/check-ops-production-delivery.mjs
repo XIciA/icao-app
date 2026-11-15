@@ -121,6 +121,7 @@ requireText('scripts/deploy-ops-release.sh', [
   'git archive --format=tar HEAD',
   'modules/icao-distribution-environment',
   'modules/icao-wechat-auth',
+  'assets/images/icon-native.png',
   '| gzip -n',
   'ICAO_OPS_PRODUCTION_CONFIRM',
   'ICAO_OPS_EXPECTED_PUBLIC_IP',
@@ -377,6 +378,7 @@ requireText('infra/ops/Dockerfile', [
   'caddy:2.11.4-alpine',
   'COPY modules/icao-distribution-environment modules/icao-distribution-environment',
   'COPY modules/icao-wechat-auth modules/icao-wechat-auth',
+  'COPY assets/images/icon-native.png assets/images/icon-native.png',
   'corepack prepare pnpm@11.7.0 --activate',
   '--frozen-lockfile',
 ]);
