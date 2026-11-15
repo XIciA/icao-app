@@ -1,7 +1,7 @@
 :root { color: #11161f; background: #fbfaf7; font-family: Geist, "PingFang SC", system-ui, sans-serif; font-synthesis: none; }
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; min-height: 100vh; }
-button, input, select { font: inherit; }
+button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 .login-shell { min-height: 100vh; display: grid; place-items: center; padding: 32px; background: radial-gradient(circle at 50% 10%, rgba(31,94,217,.1), transparent 36%), #fbfaf7; }
 .login-card { width: min(460px, 100%); padding: 40px; border: 1px solid rgba(17,22,31,.09); border-radius: 29px; background: #fff; box-shadow: 0 18px 50px rgba(31,94,217,.08); }
@@ -14,8 +14,8 @@ h2 { font-size: 18px; }
 .form-stack, .form-grid { display: grid; gap: 16px; margin-top: 28px; }
 .form-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
 label { display: grid; gap: 7px; color: #303642; font-size: 13px; font-weight: 600; }
-input, select { width: 100%; min-height: 44px; padding: 10px 13px; border: 1px solid rgba(17,22,31,.12); border-radius: 13px; color: #11161f; background: #fff; outline: none; }
-input:focus, select:focus { border-color: #1f5ed9; box-shadow: 0 0 0 3px rgba(31,94,217,.1); }
+input, select, textarea { width: 100%; min-height: 44px; padding: 10px 13px; border: 1px solid rgba(17,22,31,.12); border-radius: 13px; color: #11161f; background: #fff; outline: none; }
+input:focus, select:focus, textarea:focus { border-color: #1f5ed9; box-shadow: 0 0 0 3px rgba(31,94,217,.1); }
 .primary, .danger { min-height: 44px; padding: 10px 18px; border: 0; border-radius: 13px; color: #fff; background: #1f5ed9; font-weight: 700; transition: transform 140ms, opacity 140ms; }
 .danger { background: #db2b33; }
 .primary:active, .danger:active { transform: scale(.98); }
@@ -71,6 +71,18 @@ section { padding-top: 48px; }
 .rules-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .rules-heading p { margin-bottom: 0; }
 .rules-fields { padding: 0; margin: 28px 0; border: 0; display: grid; gap: 20px; }
+.entitlement-reason { display: grid; gap: 8px; }
+.entitlement-reason textarea { resize: vertical; }
+.entitlement-reason p { margin: 0; font-size: 13px; }
+.entitlement-reason-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; }
+.entitlement-reason-shortcuts button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid rgba(17,22,31,.12);
+  border-radius: 13px;
+  color: #303642;
+  background: #fff;
+}
 .rules-group { padding: 28px; border: 1px solid rgba(17,22,31,.09); border-radius: 29px; background: #fff; }
 .rules-group h2 { margin: 0 0 14px; }.rules-group p { font-size: 13px; }.rules-group .form-grid { margin-top: 20px; }
 .rules-cost-row { display: grid; grid-template-columns: minmax(180px, 1fr) 1fr; align-items: center; gap: 28px; padding: 16px 0; border-bottom: 1px solid rgba(17,22,31,.08); }.rules-cost-row:last-child { border-bottom: 0; }.rules-cost-row input { max-width: 240px; }
