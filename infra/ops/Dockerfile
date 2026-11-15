@@ -14,6 +14,7 @@ COPY packages/contracts/package.json packages/contracts/package.json
 RUN pnpm install --registry "$ICAO_NPM_REGISTRY" --frozen-lockfile --filter @icao/ops... --filter @icao/contracts...
 COPY apps/ops apps/ops
 COPY packages/contracts packages/contracts
+COPY assets/images/icon-native.png assets/images/icon-native.png
 RUN pnpm --filter @icao/ops build
 
 FROM caddy:2.11.4-alpine
