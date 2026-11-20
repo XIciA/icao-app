@@ -14,5 +14,5 @@ export async function createAudioUploadForm(uri: string, model: TencentAsrModel)
   const form = new FormData();
   form.append('model', model);
   form.append('audio', blob, `recording.${extension}`);
-  return { fetch, form };
+  return { fetch: fetch.bind(globalThis), form };
 }
