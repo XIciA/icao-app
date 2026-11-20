@@ -2,6 +2,13 @@ import { AiOperationFailure, aiFailureDisplayMessage, toAiOperationFailure } fro
 import { ApiClientError } from '@/platform/api-client';
 
 describe('Native AI operation failure classification', () => {
+  it('identifies a rejected ASR configuration without suggesting network retries', () => {
+    expect(toAiOperationFailure(new ApiClientError('invalid_asr_model', 400, 'request-asr'), 'transcribe')).toMatchObject({
+      code: 'invalid_asr_model', status: 400, requestId: 'request-asr',
+      stage: 'api', retryable: false, userAction: 'contact_support',
+      userMessage: '语音识别配置异常，暂时无法处理录音，请提交诊断。',
+    });
+  });
   it('preserves server code, status, and request ID while generating a safe local diagnostic ID', () => {
     const failure = toAiOperationFailure(
       new ApiClientError('ai_upstream_limited', 503, 'request-safe-1'),
