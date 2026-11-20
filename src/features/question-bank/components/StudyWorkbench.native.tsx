@@ -619,8 +619,16 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       pathname: '/info/[slug]',
       params: {
         slug: 'feedback',
-        source: 'study',
+        source: reviewSource ? 'study' : 'profile',
         sourceRoute: pathname,
+        ...(reviewSource ? {
+          bankId: reviewSource.bankId,
+          categoryId: reviewSource.categoryId,
+          topicId: reviewSource.topicId,
+          cardId: sourceCardId,
+          bankVersion: String(reviewSource.version),
+          bankChecksum: reviewSource.checksum,
+        } : {}),
         feature: 'ai',
         correlationId: failureDiagnosticId,
       },

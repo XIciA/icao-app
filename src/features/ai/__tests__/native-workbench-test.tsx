@@ -49,7 +49,8 @@ jest.mock('@/components/ui', () => {
   return { ...actual, BottomSheet: ({ children, visible }: { children: React.ReactNode; visible: boolean }) => visible ? <View>{children}</View> : null };
 });
 const review = { grammar: { correctedText: 'We are ready.', issues: [] }, polishedText: 'We are ready to depart.', promptVersion: 'deepseek-review:v1' as const };
-function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn(), onNoteCompleted, onBeforeLogin }: {
+function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn(), onNoteCompleted, onBeforeLogin, withReviewSource = true }: {
+  withReviewSource?: boolean;
   onBeforeLogin?: () => Promise<string>;
   onNoteCompleted?: () => void;
   notes?: string; onNoteChange?: (text: string) => void;
@@ -63,7 +64,7 @@ function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.
   const answer = answers[answerKey] ?? initialAnswer;
   const [editingTab, setEditingTab] = useState<'mine' | 'notes'>();
   return <StudyWorkbench activeTab={notes === undefined ? 'mine' : 'notes'} answerText={answer} bankId={kind === 'exact-match' ? 'sentences900' : 'opi'} bankTitle="OPI" cardKey={card}
-    sourceCardId="original-q" newRecordingToken={token} reviewSource={{ bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) }} categoryTitle="运行" topicTitle="飞行" questionText="Question" noteText={notes ?? ''} referenceContent={null} referenceLabel="参考答案"
+    sourceCardId="original-q" newRecordingToken={token} reviewSource={withReviewSource ? { bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) } : undefined} categoryTitle="运行" topicTitle="飞行" questionText="Question" noteText={notes ?? ''} referenceContent={null} referenceLabel="参考答案"
     reviewKind={kind} recordingUri={recording} sessionId={sessionId} sessionStartedAt={new Date().toISOString()} tabs={['mine']}
     initialFeedback={initialFeedback} feedbackCacheRef={feedbackCacheRef} ref={workbenchRef} editingTab={editingTab}
     swipeGesture={Gesture.Pan().enabled(false)} learningStore={{ addRecord: mockSave }}
@@ -202,6 +203,27 @@ it('quota failure keeps existing answer and has no misleading retry action', asy
   const screen = await render(<Harness />); await score(screen);
   await waitFor(() => expect(screen.getByText('额度不足')).toBeTruthy());
   expect(screen.queryByTestId('study-workbench-ai-retry')).toBeNull(); expect(mockAnswer).not.toHaveBeenCalled();
+});
+it.each([true, false])('opens valid AI diagnostic feedback with question context available: %s', async (withReviewSource) => {
+  if (withReviewSource) mockReview.mockRejectedValueOnce(new ApiClientError('invalid_asr_model', 400, 'request-asr'));
+  const screen = await render(<Harness withReviewSource={withReviewSource} />);
+  await score(screen);
+  await waitFor(() => expect(screen.getByLabelText('提交 AI 诊断')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('提交 AI 诊断'));
+  expect(mockPush).toHaveBeenCalledWith({
+    pathname: '/info/[slug]',
+    params: {
+      slug: 'feedback', source: withReviewSource ? 'study' : 'profile',
+      sourceRoute: '/question-bank/opi/categories/a/topics/b/study',
+      feature: 'ai', correlationId: expect.stringMatching(/^A-/),
+      ...(withReviewSource ? {
+        bankId: 'opi', categoryId: 'c', topicId: 't', cardId: 'original-q',
+        bankVersion: '1', bankChecksum: 'a'.repeat(64),
+      } : {}),
+    },
+  });
+  expect(screen.queryByTestId('study-workbench-ai-retry')).toBeNull();
+  expect(mockAnswer).not.toHaveBeenCalled();
 });
 it('renders structured categories and hides all empty issue sections', async () => {
   mockReview.mockResolvedValueOnce({ ...review, analysis: { module: 'opi', offTopic: null, grammarErrors: [], polishedText: 'Clear response.' } });

@@ -47,6 +47,10 @@ function rawCode(error: unknown) {
 }
 
 function failurePolicy(code: string, fallbackStage: AiFailureStage) {
+  if (code === 'invalid_asr_model') {
+    return { stage: 'api' as const, retryable: false, userAction: 'contact_support' as const,
+      userMessage: '语音识别配置异常，暂时无法处理录音，请提交诊断。' };
+  }
   if (['missing_bearer_token', 'invalid_access_token', 'invalid_session', 'session_revoked', 'invite_account_required', 'auth_session_expired'].includes(code)) {
     return {
       stage: 'authentication' as const,
