@@ -36,7 +36,25 @@ describe('Web audio upload', () => {
     expect(append).toHaveBeenNthCalledWith(1, 'model', model);
     expect(append).toHaveBeenNthCalledWith(2, 'audio', blob, `recording.${extension}`);
     expect(append).toHaveBeenCalledTimes(2);
-    expect(upload.fetch).toBe(globalThis.fetch);
+    expect(upload.fetch).toEqual(expect.any(Function));
+  });
+
+  it.each(['transcribe', 'transcribe-review'])('preserves the browser receiver and request for %s', async (operation) => {
+    const blob = new Blob([new Uint8Array(600)], { type: 'audio/mp4' });
+    const response = { ok: true, status: 201 };
+    const fetchMock = jest.fn(function (this: unknown, input: RequestInfo | URL, _init?: RequestInit) {
+      if (this !== undefined && this !== globalThis) throw new TypeError('Illegal invocation');
+      return Promise.resolve(input === 'blob:recording' ? { ok: true, blob: async () => blob } : response);
+    });
+    Object.defineProperty(globalThis, 'fetch', { configurable: true, value: fetchMock });
+    const upload = await createAudioUploadForm('blob:recording', '16k_en');
+    const url = `https://api.example.test/v1/ai/${operation}`;
+    const init = { method: 'POST', headers: { authorization: 'Bearer test' }, body: upload.form,
+      signal: new AbortController().signal };
+
+    expect(await upload.fetch(url, init)).toBe(response);
+    expect(fetchMock).toHaveBeenLastCalledWith(url, init);
+    expect(fetchMock.mock.contexts[1]).toBe(globalThis);
   });
 
   it('does not upload an unavailable recording', async () => {
