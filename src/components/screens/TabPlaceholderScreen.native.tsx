@@ -1,3 +1,4 @@
+import { WebsiteFiling } from '../ui/WebsiteFiling';
 import { StudyBankIconBadge } from '@/features/profile/StudyBankIcon';
 import { InitialStudySetup } from '@/features/profile/InitialStudySetup.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
@@ -133,6 +134,7 @@ function QuestionBankHome({ title, eyebrow, headerLeading, headerTrailing, entri
           );
         })}
       </View>
+      <WebsiteFiling />
     </Screen>
   );
 }
