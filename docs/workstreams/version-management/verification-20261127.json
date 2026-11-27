@@ -1,0 +1,60 @@
+{
+  "environment": "testing",
+  "implementationPr": "https://github.com/XIciA/icao-app/pull/375",
+  "validatedCi": "https://github.com/XIciA/icao-app/actions/runs/45992015150",
+  "productionMain": "7207bb90775f9e91d7c0943c6af39af5770cbc6e",
+  "productionDeployed": false,
+  "testingDeployment": {
+    "environment": "testing",
+    "commit": "3e7a64e6f86b7b82100eb6b4595908851cf654fe",
+    "image": "sha256:2fb0fa75422b92287acc2893f17168fb4ff2aa00fb7a8bfcb2ccf84df4fd99cb",
+    "archiveSha256": "6ad202ed07e59fa0869fa22db6909986c5e942da00a4af5e448f80d335959f4e",
+    "verifiedAt": "2026-11-27T11:47:54Z"
+  },
+  "testingVerification": {
+    "environment": "testing",
+    "verifiedAt": "2026-11-27T11:48:08.012Z",
+    "checks": {
+      "login": true,
+      "accountIdentity": true,
+      "entitlementRead": true,
+      "restoredMemberIdentityAndEntitlement": true,
+      "syncPushPull": true,
+      "learningRecordAndCardState": true,
+      "publicStorage": true,
+      "privateStorageWriteSignedReadCleanup": true,
+      "productionRejectsTestToken": true,
+      "productionProbeRowsAbsent": true,
+      "externalEgressBlocked": true,
+      "hostGatewayConnectionsBlocked": true,
+      "productionContainersUnchanged": true
+    },
+    "externalCapabilities": "disabled: paid AI, payments, external SMS and social login",
+    "snapshot": {
+      "authUsers": 647,
+      "learningRecords": 18053,
+      "cardStates": 118379,
+      "migrations": 61,
+      "database": "icao_testing"
+    }
+  },
+  "migrationPlan": {
+    "applied": 61,
+    "pending": 0,
+    "drift": 0
+  },
+  "localPromotion": {
+    "root": "/Users/zhouyide/Desktop/icao-app",
+    "archive": "/Users/zhouyide/Desktop/icao-app-pre-migration-20261127",
+    "protectedFileCount": 64,
+    "protectedFilesVerified": true,
+    "removedOldDependencyDirectories": 2
+  },
+  "cleanup": {
+    "obsoleteProductionApiImagesRemoved": 7,
+    "temporaryTestingBuildImageRemoved": 1,
+    "productionVolumesRemoved": false
+  },
+  "testFlightUploaded": false,
+  "deviceAcceptance": false
+}
