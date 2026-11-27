@@ -44,6 +44,7 @@ GRANT anon, authenticated, service_role, ops_vocabulary_storage TO authenticator
 TRUNCATE auth.sessions CASCADE;
 TRUNCATE auth.refresh_tokens;
 SQL
+python3 "$(dirname "$0")/rekey-identities.py"
 # Preserve a distinct file copy, never mount or hard-link the production tree.
 install -d -m 700 "$root/storage"
 cp -a /opt/icao/runtime/supabase/volumes/storage/. "$root/storage/"

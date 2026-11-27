@@ -12,9 +12,12 @@ API `.10:3101` 和 Kong `.11:8000`；不开放数据库或映射测试容器公�
 配置/凭据由 root 的 0700 目录保护，不进入 Git，也不打印到终端。
 
 1. 先用现有备份工具生成并校验正式快照。
-2. `docker compose -f /opt/icao/testing/compose.json up -d db`。
+2. 将 `host-isolation.sh` 放到测试目录、安装并 enable/start `icao-testing-host-isolation.service`，
+   精确阻止测试内网向宿主机主动建立连接，保留主机发起请求的响应；Docker 内部网络自身不隔离宿主网关。
+   然后 `docker compose -f /opt/icao/testing/compose.json up -d db`。
 3. 在 systemd 一次性任务中运行 `restore.sh <快照绝对路径>`，避免 SSH 中断影响恢复。
    它只读正式角色名称，向测试实例补齐无登录归属角色；实际恢复及会话清除只连接测试容器。
+   恢复后 `rekey-identities.py` 用测试摘要密钥重建已恢复的账号映射与终身权益防重复摘要，保留账号 ID。
    Storage 复制为独立文件，不能挂载正式目录、硬链接或以测试文件回写正式目录。
 4. 核实 `restore-complete.json` 后启动其余服务，检查健康、登录、RLS、会员、学习与文件。
 5. 验证原网关配置保持不变后，追加 `gateway.caddy` 中的两个虚拟主机并平滑 reload。

@@ -2,6 +2,7 @@
 """Live checks of isolated testing services. Never prints tokens or user content."""
 import datetime
 import json
+import secrets
 from pathlib import Path
 import subprocess
 import urllib.error
@@ -33,7 +34,7 @@ def request(origin, path, *, headers=None, body=None, method=None, expected=200)
         return raw
 
 def sql(container, database, statement):
-    return subprocess.check_output(['docker','exec',container,'psql','-U','supabase_admin','-d',database,'-Atc',statement],text=True).strip()
+    return subprocess.check_output(['docker','exec','-i',container,'psql','-U','supabase_admin','-d',database,'-v','ON_ERROR_STOP=1','-At'],input=statement,text=True).strip()
 
 def main():
     compose = json.loads((ROOT / 'compose.json').read_text())
@@ -58,6 +59,33 @@ def main():
     me = request(API,'/v1/me',headers=auth)['data']
     assert account['accountId'] == me['id'] and account['phoneBound']
     entitlements = request(API,'/v1/commerce/entitlements/current',headers=auth)['data']
+    # Test an existing member from the restored snapshot, without changing the
+    # production user or retaining a changed password in the testing copy.
+    member_raw = sql('icao-testing-db','icao_testing',"""SELECT row_to_json(t) FROM (
+      SELECT u.id,u.phone,u.encrypted_password,a.account_id
+      FROM auth.users u JOIN public.account_identities a ON a.auth_user_id=u.id AND a.provider='phone'
+      JOIN public.accounts account ON account.id=a.account_id AND account.status='active'
+      WHERE EXISTS (SELECT 1 FROM public.membership_entitlement_segments m
+        WHERE m.account_id=a.account_id AND m.environment='production' AND m.status='active'
+          AND m.starts_at<=now() AND m.ends_at>now())
+        AND NOT EXISTS (SELECT 1 FROM public.account_login_method_removals r WHERE r.auth_user_id=u.id)
+      LIMIT 1) t;""")
+    assert member_raw, 'restored_active_phone_member_missing'
+    member=json.loads(member_raw)
+    password=secrets.token_urlsafe(32)
+    admin={'apikey':credentials['serviceKey'],'Authorization':'Bearer '+credentials['serviceKey']}
+    try:
+        request(CLOUD,'/auth/v1/admin/users/'+member['id'],headers=admin,method='PUT',body={'password':password})
+        restored_session=request(CLOUD,'/auth/v1/token?grant_type=password',headers=anon,
+                                 body={'phone':member['phone'],'password':password})
+    finally:
+        saved="'"+member['encrypted_password'].replace("'","''")+"'" if member['encrypted_password'] is not None else 'NULL'
+        sql('icao-testing-db','icao_testing',"UPDATE auth.users SET encrypted_password="+saved+" WHERE id='"+str(uuid.UUID(member['id']))+"';")
+    restored_auth={'Authorization':'Bearer '+restored_session['access_token']}
+    restored_account=request(API,'/v1/account',headers=restored_auth)['data']
+    assert restored_account['accountId']==member['account_id']
+    restored_entitlement=request(API,'/v1/commerce/entitlements/current',headers=restored_auth)['data']
+    assert restored_entitlement['production']['membership']['active'] is True
     request(API,'/v1/account',expected=401)
     # A testing session must be unusable on the live production API (read only).
     request('http://127.0.0.1:3101','/v1/account',headers=auth,expected=401)
@@ -87,15 +115,18 @@ def main():
     result = subprocess.run(['docker','exec','icao-testing-api','node','-e',
         "fetch('https://api.readyoufife.com/health/ready',{signal:AbortSignal.timeout(3000)}).then(()=>process.exit(1)).catch(()=>process.exit(0))"])
     assert result.returncode == 0
+    result = subprocess.run(['docker','exec','icao-testing-api','node','-e',
+        "fetch('http://172.30.244.1:80',{redirect:'manual',signal:AbortSignal.timeout(3000)}).then(()=>process.exit(1)).catch(()=>process.exit(0))"])
+    assert result.returncode == 0, 'testing_can_connect_to_host_gateway'
     baseline = json.loads((ROOT / 'baseline.json').read_text())
     for key,name in [('api','icao-api'),('db','supabase-db'),('auth','supabase-auth'),('storage','supabase-storage')]:
         live=json.loads(subprocess.check_output(['docker','inspect',name]))[0]
         assert live['Id'] == baseline[key]['containerId'] and live['State']['StartedAt'] == baseline[key]['startedAt']
         assert live['State']['Running']
     evidence = {'environment':'testing','verifiedAt':now,'checks':{
-        'login':True,'accountIdentity':True,'entitlementRead':bool(entitlements),'syncPushPull':True,'learningRecordAndCardState':True,
+        'login':True,'accountIdentity':True,'entitlementRead':bool(entitlements),'restoredMemberIdentityAndEntitlement':True,'syncPushPull':True,'learningRecordAndCardState':True,
         'publicStorage':True,'productionRejectsTestToken':True,'productionProbeRowsAbsent':True,
-        'externalEgressBlocked':True,'productionContainersUnchanged':True},
+        'externalEgressBlocked':True,'hostGatewayConnectionsBlocked':True,'productionContainersUnchanged':True},
         'externalCapabilities':'disabled: paid AI, payments, external SMS and social login',
         'snapshot':json.loads((ROOT/'restore-complete.json').read_text())}
     (ROOT / 'verification.json').write_text(json.dumps(evidence,indent=2))
