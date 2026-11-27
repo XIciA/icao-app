@@ -34,7 +34,6 @@ export class AccountLoginMethodsService implements OnModuleInit, OnModuleDestroy
   ) {}
 
   onModuleInit() {
-    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     this.retryTimer = setInterval(() => { void this.retryRemovals(); }, 30_000);
     this.retryTimer.unref?.();
   }

@@ -70,7 +70,6 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
   ) {}
 
   onModuleInit() {
-    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     this.retryTimer = setInterval(() => {
       void observeBackground('account_deletion_retry', () => this.retryDueJobs(), this.logger).catch(() => this.logger.error('account_deletion_retry_worker_failed'));
     }, RETRY_INTERVAL_MS);

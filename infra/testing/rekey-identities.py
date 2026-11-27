@@ -27,8 +27,9 @@ def main():
     ) t;"""))
     def literal(value):
         return "'" + str(value).replace("'","''") + "'"
-    def digest(value):
-        return hmac.new(secret,value.encode(),hashlib.sha256).hexdigest()
+    benefit_secret=env.get('IDENTITY_BENEFIT_DIGEST_SECRET', env['ACCOUNT_IDENTITY_HASH_SECRET']).encode()
+    def digest(value, key=secret):
+        return hmac.new(key,value.encode(),hashlib.sha256).hexdigest()
     statements=['BEGIN;']
     changed=0
     for row in rows:
@@ -36,8 +37,8 @@ def main():
             continue
         domain=row['provider']+'\0'+row['subject']
         identity=digest('account-identity-v1\0'+domain)
-        claim=digest('lifetime-benefit-v1\0'+domain)
-        context=digest('lifetime-benefit-account-context-v1\0'+row['account_id'])
+        claim=digest('lifetime-benefit-v1\0'+domain, benefit_secret)
+        context=digest('lifetime-benefit-account-context-v1\0'+row['account_id'], benefit_secret)
         statements.append('UPDATE public.account_identities SET subject_hash='+literal(identity)+' WHERE id='+literal(row['id'])+';')
         # Restored resolved identities already consumed their lifetime eligibility.
         # Preserve that fact under the new digest key rather than granting again.

@@ -44,7 +44,6 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
   ) {}
 
   onModuleInit() {
-    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     this.retryTimer = setInterval(() => {
       void this.retryDueIntakes().catch(() => this.logger.error('apple_credential_intake_retry_failed'));
     }, INTAKE_RETRY_INTERVAL_MS);
