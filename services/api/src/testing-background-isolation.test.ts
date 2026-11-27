@@ -8,17 +8,25 @@ import { AppleNotificationReconciliationService } from './commerce/apple-notific
 import { ContentAccessRetentionService } from './content-access/content-access-retention.service';
 import { FeedbackCleanupService } from './feedback/feedback-cleanup.service';
 
-afterEach(() => vi.unstubAllEnvs());
+afterEach(() => { vi.unstubAllEnvs(); vi.useRealTimers(); });
 
-describe('isolated testing snapshot background jobs', () => {
+describe('full testing runtime background jobs', () => {
   it.each([
     AccountDeletionService, AccountLoginMethodsService, AsrAudioStorageService,
     AppleAuthService, PhoneSecurityRetentionService, AppleNotificationReconciliationService,
     ContentAccessRetentionService, FeedbackCleanupService,
-  ])('does not start %s or touch restored account state', (Service) => {
+  ])('starts and stops %s in the testing data environment', (Service) => {
     vi.stubEnv('ICAO_DATA_ENVIRONMENT', 'testing');
-    // Any dependency access means a copied job could run. No DB/queue is supplied.
-    const service = new Proxy({}, { get() { throw new Error('testing_background_dependency_access'); } });
-    expect(() => Service.prototype.onModuleInit.call(service as never)).not.toThrow();
+    vi.useFakeTimers();
+    const service = {
+      nodeEnv: 'production', config: { nodeEnv: 'production' },
+      retryDueJobs: vi.fn().mockResolvedValue(undefined),
+      runScheduled: vi.fn().mockResolvedValue(undefined),
+      runScheduledCleanup: vi.fn().mockResolvedValue(undefined),
+    };
+    Service.prototype.onModuleInit.call(service as never);
+    expect(vi.getTimerCount()).toBe(Service === AccountDeletionService ? 2 : 1);
+    Service.prototype.onModuleDestroy.call(service as never);
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

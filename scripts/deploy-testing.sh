@@ -15,7 +15,8 @@ mkdir -p "$archive_dir"
 git archive --format=tar "$source_sha" package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
   modules/icao-distribution-environment modules/icao-wechat-auth packages/contracts services/api \
   content/vocabulary content/word-lookup/dataset.json content/app-content/text.json \
-  content/question-banks/opi-hotspots.json infra/api infra/testing | gzip -n > "$archive_dir/source.tar.gz"
+  content/question-banks/opi-hotspots.json infra/api infra/testing \
+  tools/release-environment.mjs config/release/environments.json | gzip -n > "$archive_dir/source.tar.gz"
 archive_sha=$(shasum -a 256 "$archive_dir/source.tar.gz" | awk '{print $1}')
 ssh_key=${ICAO_ECS_SSH_KEY:-${HOME:?}/.ssh/icao_app_codex}
 # Fixed project target; the remote deployer can mutate only the testing project.

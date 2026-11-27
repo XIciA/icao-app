@@ -40,19 +40,32 @@ def main():
     compose = json.loads((ROOT / 'compose.json').read_text())
     assert compose['name'] == 'icao-testing'
     assert compose['networks']['isolated']['internal'] is True
-    assert set(compose['services']['api']['networks']) == {'isolated'}
+    full = (ROOT / 'full-runtime.json').exists()
+    assert set(compose['services']['api']['networks']) == ({'isolated', 'egress'} if full else {'isolated'})
     env = compose['services']['api']['environment']
-    assert env['NODE_ENV'] == 'test' and env['SMS_PROVIDER'] == 'disabled'
-    assert not any(key in env for key in ['APPLE_PRIVATE_KEY','APPLE_IAP_SERVER_PRIVATE_KEY','WECHAT_APP_SECRET','DEEPSEEK_API_KEY','TENCENT_CLOUD_SECRET_KEY','ALIYUN_SMS_ACCESS_KEY_SECRET'])
+    assert env['NODE_ENV'] == ('production' if full else 'test')
+    assert env['SMS_PROVIDER'] == ('aliyun' if full else 'disabled')
     assert env['DATABASE_URL'].endswith('@db:5432/icao_testing')
     credentials = json.loads((ROOT / 'credentials.json').read_text())
     anon = {'apikey': credentials['anonKey']}
     request(API, '/health/ready')
     request(CLOUD, '/auth/v1/health', headers=anon)
     assert sql('supabase-db','postgres',"SELECT count(*) FROM auth.users WHERE phone='8619900000001'") == '0'
-    request(CLOUD, '/auth/v1/otp', headers=anon, body={'phone': credentials['testPhone'], 'create_user': True})
-    session = request(CLOUD, '/auth/v1/verify', headers=anon,
-                      body={'type':'sms','phone':credentials['testPhone'],'token':credentials['testOtp']})
+    if full:
+        # Independent synthetic fixture; this verifies Auth without sending SMS.
+        admin = {'apikey':credentials['serviceKey'],'Authorization':'Bearer '+credentials['serviceKey']}
+        fixture_id = sql('icao-testing-db','icao_testing', "SELECT id FROM auth.users WHERE phone='8619900000001'")
+        password = 'Icao-' + secrets.token_urlsafe(32) + '7!'
+        if fixture_id:
+            request(CLOUD,'/auth/v1/admin/users/'+str(uuid.UUID(fixture_id)),headers=admin,method='PUT',body={'password':password})
+        else:
+            request(CLOUD,'/auth/v1/admin/users',headers=admin,method='POST',body={'phone':credentials['testPhone'],'password':password,'phone_confirm':True})
+        session = request(CLOUD,'/auth/v1/token?grant_type=password',headers=anon,
+                          body={'phone':credentials['testPhone'],'password':password})
+    else:
+        request(CLOUD, '/auth/v1/otp', headers=anon, body={'phone': credentials['testPhone'], 'create_user': True})
+        session = request(CLOUD, '/auth/v1/verify', headers=anon,
+                          body={'type':'sms','phone':credentials['testPhone'],'token':credentials['testOtp']})
     token = session['access_token']
     auth = {'Authorization':'Bearer ' + token}
     account = request(API,'/v1/account',headers=auth)['data']
@@ -72,7 +85,7 @@ def main():
       LIMIT 1) t;""")
     assert member_raw, 'restored_active_phone_member_missing'
     member=json.loads(member_raw)
-    password=secrets.token_urlsafe(32)
+    password='Icao-' + secrets.token_urlsafe(32) + '7!'
     admin={'apikey':credentials['serviceKey'],'Authorization':'Bearer '+credentials['serviceKey']}
     try:
         request(CLOUD,'/auth/v1/admin/users/'+member['id'],headers=admin,method='PUT',body={'password':password})
@@ -136,8 +149,8 @@ def main():
     evidence = {'environment':'testing','verifiedAt':now,'checks':{
         'login':True,'accountIdentity':True,'entitlementRead':bool(entitlements),'restoredMemberIdentityAndEntitlement':True,'syncPushPull':True,'learningRecordAndCardState':True,
         'publicStorage':True,'privateStorageWriteSignedReadCleanup':True,'productionRejectsTestToken':True,'productionProbeRowsAbsent':True,
-        'externalEgressBlocked':True,'hostGatewayConnectionsBlocked':True,'productionContainersUnchanged':True},
-        'externalCapabilities':'disabled: paid AI, payments, external SMS and social login',
+        'productionIngressBlocked':True,'hostGatewayConnectionsBlocked':True,'productionContainersUnchanged':True},
+        'externalCapabilities':'configured; live provider evidence recorded separately' if full else 'disabled',
         'snapshot':json.loads((ROOT/'restore-complete.json').read_text())}
     (ROOT / 'verification.json').write_text(json.dumps(evidence,indent=2))
     print(json.dumps(evidence))

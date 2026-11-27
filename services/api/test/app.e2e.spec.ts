@@ -1023,3 +1023,22 @@ describe('API foundation', () => {
     await app.close();
   });
 });
+
+
+describe('testing deployment uses the full production runtime with isolated signing', () => {
+  const testing = () => productionConfig({
+    ICAO_DATA_ENVIRONMENT: 'testing',
+    DATABASE_URL: 'postgresql://postgres:test@db:5432/icao_testing',
+    TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY: testContentCredentialPublicKey,
+  });
+  it('accepts the matching testing signing key without a test override', () => {
+    expect(loadConfig(testing()).nodeEnv).toBe('production');
+  });
+  it('rejects missing testing signing key and a production database', () => {
+    expect(() => loadConfig({ ...testing(), TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY: undefined })).toThrow('TESTING_RUNTIME_ISOLATION');
+    expect(() => loadConfig({ ...testing(), DATABASE_URL: productionConfig().DATABASE_URL })).toThrow('TESTING_RUNTIME_ISOLATION');
+  });
+  it('does not allow a testing key override in the production data environment', () => {
+    expect(() => loadConfig({ ...testing(), ICAO_DATA_ENVIRONMENT: 'production' })).toThrow('TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY');
+  });
+});

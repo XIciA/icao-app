@@ -1,3 +1,4 @@
+import { resolveReleaseEnvironment } from '../../../tools/release-environment.mjs';
 import { createHmac, randomBytes } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
@@ -14,11 +15,12 @@ const secretKey = process.env.SUPABASE_SECRET_KEY;
 const databaseUrl = process.env.DATABASE_URL;
 const identitySecret = process.env.ACCOUNT_IDENTITY_HASH_SECRET;
 const identityBenefitSecret = process.env.IDENTITY_BENEFIT_DIGEST_SECRET;
-const REQUIRED_API_ORIGIN = 'https://api.readyoufife.com';
-const REQUIRED_SUPABASE_ORIGIN = 'https://cloud.readyoufife.com';
+const runtime = resolveReleaseEnvironment(process.env.ICAO_RELEASE_ENVIRONMENT ?? 'production');
+const REQUIRED_API_ORIGIN = runtime.apiUrl;
+const REQUIRED_SUPABASE_ORIGIN = runtime.supabaseUrl;
 const FETCH_TIMEOUT_MILLISECONDS = 45_000;
 
-function requireExactProductionOrigin(value, expectedOrigin, errorCode) {
+function requireExactSelectedOrigin(value, expectedOrigin, errorCode) {
   let parsed;
   try {
     parsed = new URL(value);
@@ -35,11 +37,11 @@ function requireExactProductionOrigin(value, expectedOrigin, errorCode) {
   ) throw new Error(errorCode);
 }
 
-requireExactProductionOrigin(`${apiBase}/`, REQUIRED_API_ORIGIN, 'review_live_requires_production_api_origin');
-requireExactProductionOrigin(
+requireExactSelectedOrigin(`${apiBase}/`, REQUIRED_API_ORIGIN, 'review_live_requires_selected_api_origin');
+requireExactSelectedOrigin(
   supabaseUrl ? `${supabaseUrl.replace(/\/+$/u, '')}/` : '',
   REQUIRED_SUPABASE_ORIGIN,
-  'review_live_requires_production_supabase_origin',
+  'review_live_requires_selected_supabase_origin',
 );
 
 if (

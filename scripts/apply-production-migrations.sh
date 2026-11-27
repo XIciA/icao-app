@@ -197,7 +197,7 @@ LOCAL_STAGE=prepare_source
   git archive --format=tar "$PAYLOAD_SOURCE_SHA" \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
     modules/icao-distribution-environment modules/icao-wechat-auth \
-    packages/contracts services/api \
+    packages/contracts services/api tools/release-environment.mjs config/release/environments.json \
     content/vocabulary content/word-lookup/dataset.json content/app-content/text.json content/question-banks/opi-hotspots.json infra/api \
     | gzip -n > "$ARCHIVE"
 )

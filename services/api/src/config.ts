@@ -10,6 +10,8 @@ import { z } from 'zod';
 const schema = z.object({
   DATABASE_URL: z.string().url().startsWith('postgresql://'),
   HOST: z.string().default('127.0.0.1'),
+  ICAO_DATA_ENVIRONMENT: z.enum(['production', 'testing']).default('production'),
+  TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY: z.string().regex(/^[A-Za-z0-9+/]{43}=$/u).optional(),
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   API_RELEASE_ID: z.string().regex(/^[A-Za-z0-9._-]+$/u).default('development'),
   PORT: z.coerce.number().int().min(1).max(65_535).default(3101),
@@ -485,9 +487,19 @@ export function loadConfig(
   }
   if (parsed.data.NODE_ENV === 'production') {
     validateAppleRuntime(parsed.data);
+    const testing = parsed.data.ICAO_DATA_ENVIRONMENT === 'testing';
+    if (testing && (
+      new URL(parsed.data.DATABASE_URL).pathname !== '/icao_testing'
+      || !parsed.data.TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY
+      || parsed.data.TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY === CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64
+    )) invalidConfiguration('TESTING_RUNTIME_ISOLATION');
+    if (!testing && parsed.data.TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY) {
+      invalidConfiguration('TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY');
+    }
     validateContentCredentialSigningKey(
       parsed.data.CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY!.replaceAll('\\n', '\n'),
-      options.expectedContentCredentialPublicKeyBase64 ?? CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
+      testing ? parsed.data.TESTING_CONTENT_CREDENTIAL_PUBLIC_KEY!
+        : options.expectedContentCredentialPublicKeyBase64 ?? CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
     );
   }
 

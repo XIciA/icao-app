@@ -65,7 +65,6 @@ export class AsrAudioStorageService implements OnModuleInit, OnModuleDestroy {
   }
 
   onModuleInit() {
-    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     if (this.nodeEnv === 'test') return;
     this.cleanupTimer = setInterval(() => { void this.runScheduledCleanup(); }, STALE_CLEANUP_INTERVAL_MILLISECONDS);
     this.cleanupTimer.unref();

@@ -1,3 +1,4 @@
+import { resolveReleaseEnvironment } from './release-environment.mjs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
@@ -17,7 +18,10 @@ const fieldsPath = path.join(
   root,
   'docs/workstreams/app-store-1.0.0/materials/app-store-connect-final-fields.md',
 );
-const notificationUrl = 'https://api.readyoufife.com/v1/commerce/apple/notifications/v2';
+const notificationRuntime = resolveReleaseEnvironment(process.env.ICAO_RELEASE_ENVIRONMENT ?? 'production');
+const notificationUrl = `${notificationRuntime.apiUrl}/v1/commerce/apple/notifications/v2`;
+const notificationUrlField = notificationRuntime.environment === 'testing' ? 'subscriptionStatusUrlForSandbox' : 'subscriptionStatusUrl';
+const notificationVersionField = notificationRuntime.environment === 'testing' ? 'subscriptionStatusUrlVersionForSandbox' : 'subscriptionStatusUrlVersion';
 
 async function paged(credentials, pathname) {
   const data = [];
@@ -450,10 +454,8 @@ function notificationSummary(attributes) {
 }
 
 function notificationsMatch(attributes) {
-  return attributes.subscriptionStatusUrl === notificationUrl
-    && attributes.subscriptionStatusUrlVersion === 'V2'
-    && attributes.subscriptionStatusUrlForSandbox === notificationUrl
-    && attributes.subscriptionStatusUrlVersionForSandbox === 'V2';
+  return attributes[notificationUrlField] === notificationUrl
+    && attributes[notificationVersionField] === 'V2';
 }
 
 async function notificationStatus(credentials, appId) {
@@ -474,11 +476,12 @@ async function syncNotifications(credentials, appId) {
       data: {
         type: 'apps',
         id: appId,
-        attributes: {
-          subscriptionStatusUrl: notificationUrl,
-          subscriptionStatusUrlVersion: 'V2',
+        attributes: notificationRuntime.environment === 'testing' ? {
           subscriptionStatusUrlForSandbox: notificationUrl,
           subscriptionStatusUrlVersionForSandbox: 'V2',
+        } : {
+          subscriptionStatusUrl: notificationUrl,
+          subscriptionStatusUrlVersion: 'V2',
         },
       },
     }),
@@ -490,7 +493,7 @@ async function syncNotifications(credentials, appId) {
     await new Promise((resolve) => setTimeout(resolve, 1_000));
   }
   if (!notificationsMatch(attributes ?? {})) {
-    throw new Error('App Store Server Notifications V2 did not persist the frozen production settings.');
+    throw new Error('App Store Server Notifications V2 did not persist the selected environment settings.');
   }
   console.log(JSON.stringify(notificationSummary(attributes)));
 }

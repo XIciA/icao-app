@@ -16,7 +16,6 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
   constructor(private readonly database: DatabaseService) {}
 
   onModuleInit() {
-    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     this.cleanupTimer = setInterval(() => {
       void observeBackground('phone_retention', () => this.cleanup(), this.logger).catch(() => this.logger.error('phone_security_retention_cleanup_failed'));
     }, CLEANUP_INTERVAL_MS);
