@@ -1,3 +1,4 @@
+import { dataStorageName } from '@/config/data-environment';
 import { Directory, File, Paths } from 'expo-file-system';
 import { createDownloadResumable } from 'expo-file-system/legacy';
 import { DOWNLOAD_RESOURCE_CONCURRENCY } from '../downloads/resource-work-queue';
@@ -40,7 +41,7 @@ export async function acquireResourceTransfer(key: string, url: string, size: nu
   // An already-aborted native task cannot be revived by a new consumer.
   if (transfer?.abandoned) transfer = undefined;
   if (!transfer) {
-    const directory = new Directory(Paths.cache, 'icao-content-transfers');
+    const directory = new Directory(Paths.cache, dataStorageName('icao-content-transfers'));
     const staging = new File(directory, `${Date.now()}-${++sequence}.part`);
     const entry: Transfer = { consumers: new Set(), progress: 0, settled: false, abandoned: false,
       staging, size, promise: Promise.resolve(undefined) };

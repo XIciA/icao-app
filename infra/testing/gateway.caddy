@@ -1,0 +1,13 @@
+# Append these hosts to the existing gateway after validating the isolated stack.
+# Existing production virtual hosts are preserved byte-for-byte.
+test-api.readyoufife.com {
+    header X-ICAO-Data-Environment testing
+    header X-Robots-Tag "noindex, nofollow"
+    reverse_proxy 172.30.244.10:3101
+}
+
+test-cloud.readyoufife.com {
+    header X-ICAO-Data-Environment testing
+    header X-Robots-Tag "noindex, nofollow"
+    reverse_proxy 172.30.244.11:8000
+}

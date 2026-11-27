@@ -1,10 +1,10 @@
-name: Mainline CI
+name: Main and develop CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
   push:
-    branches: [main]
+    branches: [main, develop]
   workflow_dispatch:
 
 permissions:
@@ -35,8 +35,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+      - name: Verify release environment isolation
+        run: node --test tools/release-environment.test.mjs tools/app-store-environment.test.mjs
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Verify testing migration boundaries
+        run: node --test tools/testing-migration.test.mjs
       - name: Install PostgreSQL constraint-test runtime
         run: |
           sudo apt-get update

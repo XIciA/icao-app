@@ -1,3 +1,4 @@
+import { dataStorageName } from '@/config/data-environment';
 import * as SecureStore from 'expo-secure-store';
 
 // A persisted high-water mark detects clock rollback across cold starts. It is
@@ -6,7 +7,7 @@ const clocks = new Map<string, Promise<number>>();
 const persisted = new Map<string, number>();
 export async function clearOfflineClock(accountId: string) {
   for (const environment of ['production', 'sandbox']) {
-    const key = `icao.offline-clock.v1.${accountId}.${environment}`;
+    const key = dataStorageName(`icao.offline-clock.v1.${accountId}.${environment}`);
     await clocks.get(key)?.catch(() => undefined);
     await SecureStore.deleteItemAsync(key);
     clocks.delete(key);
@@ -15,7 +16,7 @@ export async function clearOfflineClock(accountId: string) {
 }
 export async function offlineClockIsValid(accountId: string, environment: string, now = Date.now()) {
   if (!Number.isFinite(now) || now <= 0) return false;
-  const key = `icao.offline-clock.v1.${accountId}.${environment}`;
+  const key = dataStorageName(`icao.offline-clock.v1.${accountId}.${environment}`);
   let pending = clocks.get(key);
   if (!pending) {
     pending = SecureStore.getItemAsync(key).then(raw => {
@@ -48,7 +49,7 @@ export async function offlineClockIsValid(accountId: string, environment: string
 export async function acceptOnlineCredentialClock(accountId: string, environment: string, issuedAt: number) {
   const now = Date.now();
   if (!Number.isFinite(issuedAt) || Math.abs(now - issuedAt) > 5 * 60_000) return;
-  const key = 'icao.offline-clock.v1.' + accountId + '.' + environment;
+  const key = dataStorageName('icao.offline-clock.v1.' + accountId + '.' + environment);
   const operation = (clocks.get(key) ?? Promise.resolve(0)).catch(() => 0).then(async () => {
     await SecureStore.setItemAsync(key, String(now)); persisted.set(key, now); return now;
   });

@@ -16,6 +16,7 @@ export class ContentAccessRetentionService implements OnModuleInit, OnModuleDest
   constructor(private readonly database: DatabaseService) {}
 
   onModuleInit() {
+    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     this.cleanupTimer = setInterval(() => {
       void observeBackground('content_retention', () => this.cleanup(), this.logger).catch(() => this.logger.error('content_access_retention_cleanup_failed'));
     }, CLEANUP_INTERVAL_MS);

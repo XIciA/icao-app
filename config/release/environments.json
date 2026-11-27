@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "production": {
+    "branch": "main",
+    "apiUrl": "https://api.readyoufife.com",
+    "supabaseUrl": "https://cloud.readyoufife.com"
+  },
+  "testing": {
+    "branch": "develop",
+    "ready": true,
+    "apiUrl": "https://test-api.readyoufife.com",
+    "supabaseUrl": "https://test-cloud.readyoufife.com",
+    "pending": []
+  }
+}

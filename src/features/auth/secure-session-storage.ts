@@ -1,9 +1,10 @@
 import * as SecureStore from 'expo-secure-store';
+import { dataStorageName } from '@/config/data-environment';
 
 const CHUNK_SIZE = 1800;
 const OPTIONS: SecureStore.SecureStoreOptions = {
   keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-  keychainService: 'icao.auth.session',
+  keychainService: dataStorageName('icao.auth.session'),
 };
 const operationTails = new Map<string, Promise<unknown>>();
 

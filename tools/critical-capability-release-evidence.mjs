@@ -1,3 +1,4 @@
+import { resolveReleaseEnvironment } from './release-environment.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
@@ -9,7 +10,9 @@ const DEVICE_CHECK_CONFIRMATION = '我已在真实设备完成并观察此项结
 const DEVICE_FINAL_CONFIRMATION = '我确认逐项真机结果真实有效';
 const HOUR_MS = 60 * 60 * 1000;
 const ROOT = process.cwd();
-const EVIDENCE_ROOT = path.join(ROOT, '.generated', 'critical-capabilities');
+const selectedEnvironment = process.env.ICAO_RELEASE_ENVIRONMENT || 'production';
+const selectedRuntime = () => resolveReleaseEnvironment(selectedEnvironment);
+const EVIDENCE_ROOT = path.join(ROOT, '.generated', 'critical-capabilities', selectedEnvironment);
 const AUDIO_RUNBOOK = 'docs/records/incidents/audio-recording/README.md';
 const AI_RUNBOOK = 'docs/records/incidents/ai-learning-runtime/README.md';
 const AI_LIVE_VERIFIER_FILES = [
@@ -325,7 +328,8 @@ function validateAiLive(input, { fresh = true, verifierFingerprint } = {}) {
   } catch {
     fail('ai_live_api_origin');
   }
-  assert(apiOrigin === 'https://api.readyoufife.com', 'ai_live_requires_production_api');
+  assert(apiOrigin === selectedRuntime().apiUrl, 'ai_live_requires_selected_api');
+  assert(input.environment === selectedEnvironment, 'ai_live_environment_mismatch');
   if (verifierFingerprint) {
     assert(input.verifierFingerprint === verifierFingerprint, 'ai_live_verifier_changed');
   }
@@ -340,6 +344,7 @@ function validateAiLive(input, { fresh = true, verifierFingerprint } = {}) {
     status: 'passed',
     apiVersion,
     apiOrigin,
+    environment: selectedEnvironment,
     ...(input.verifierFingerprint ? { verifierFingerprint: input.verifierFingerprint } : {}),
     verifiedAt: input.verifiedAt,
     checks: {
@@ -352,15 +357,15 @@ function validateAiLive(input, { fresh = true, verifierFingerprint } = {}) {
   };
 }
 
-async function productionApiVersion() {
-  const response = await fetch('https://api.readyoufife.com/health/ready', {
+async function selectedApiVersion() {
+  const response = await fetch(`${selectedRuntime().apiUrl}/health/ready`, {
     headers: { accept: 'application/json' },
     signal: AbortSignal.timeout(15_000),
-  }).catch(() => fail('production_api_readiness_unreachable'));
-  assert(response.ok, `production_api_readiness_http:${response.status}`);
+  }).catch(() => fail('selected_api_readiness_unreachable'));
+  assert(response.ok, `selected_api_readiness_http:${response.status}`);
   const version = response.headers.get('x-icao-api-version')?.trim();
-  assert(version, 'production_api_version_missing');
-  assert(!['development', 'test', 'unversioned'].includes(version.toLowerCase()), 'production_api_version_invalid');
+  assert(version, 'selected_api_version_missing');
+  assert(!['development', 'test', 'unversioned'].includes(version.toLowerCase()), 'selected_api_version_invalid');
   return version;
 }
 
@@ -538,8 +543,8 @@ async function verify(channel, platform) {
 
   const verifierFingerprint = await hashFiles(AI_LIVE_VERIFIER_FILES);
   const aiLive = validateAiLive(await readEvidence('ai-live.json'), { verifierFingerprint });
-  const activeApiVersion = await productionApiVersion();
-  assert(activeApiVersion === aiLive.apiVersion, 'production_api_version_changed_after_ai_live');
+  const activeApiVersion = await selectedApiVersion();
+  assert(activeApiVersion === aiLive.apiVersion, 'selected_api_version_changed_after_ai_live');
   let testflight;
   if (channel === 'app-store') {
     testflight = await readEvidence('testflight-device-ios.json');
@@ -590,7 +595,8 @@ function selfTest() {
     kind: 'ai-live',
     status: 'passed',
     apiVersion: 'test-api',
-    apiOrigin: 'https://api.readyoufife.com',
+    apiOrigin: selectedRuntime().apiUrl,
+    environment: selectedEnvironment,
     verifierFingerprint: 'self-test-verifier',
     verifiedAt: now,
     checks: { transcribe: true, grammar: true, polish: true, aviationTerms: true, temporaryAudioRemoved: true },

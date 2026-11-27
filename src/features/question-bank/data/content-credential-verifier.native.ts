@@ -1,6 +1,6 @@
+import { contentCredentialPublicKey } from '@/config/data-environment';
 import {
   CONTENT_ACCESS_POLICY_VERSION,
-  CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
   type CommerceEnvironment,
   type ContentAccessCredential,
   type ContentAccessScope,
@@ -122,7 +122,7 @@ export function inspectContentAccessCredential({
 }): ContentAccessCredentialInspection {
   const payload = verifyIcaoEd25519Jws(
     credential.token,
-    CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
+    contentCredentialPublicKey(),
   );
   if (!payload) return { status: 'invalid' };
   const claims = parseClaims(payload);

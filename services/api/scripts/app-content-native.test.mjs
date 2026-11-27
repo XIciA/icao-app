@@ -1,4 +1,4 @@
-import { validContentScopeId } from '@icao/contracts';
+import { CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64, validContentScopeId } from '@icao/contracts';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import vm from 'node:vm';
@@ -11,7 +11,7 @@ const json = (name) => JSON.parse(readFileSync(new URL(name, root), 'utf8'));
 function evaluate(path, modules, extras = {}) {
   const exports = {};
   const source = ts.transpileModule(readFileSync(new URL(path, root), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText;
-  vm.runInNewContext(source, { exports, require: (name) => { if (!(name in modules)) throw new Error(`unexpected_import:${name}`); return modules[name]; }, Map, Set, Date, ...extras });
+  vm.runInNewContext(source, { exports, require: (name) => { if (name === '@/config/data-environment' && !(name in modules)) return evaluate('src/config/data-environment.ts', { '@icao/contracts': { CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 } }, { process: { env: {} } }); if (!(name in modules)) throw new Error(`unexpected_import:${name}`); return modules[name]; }, Map, Set, Date, ...extras });
   return exports;
 }
 function fixture() {

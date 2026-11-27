@@ -2,6 +2,10 @@ import { questionBankRepository } from '@/features/question-bank/data/repository
 import { buildMockExamSession as buildNative } from '../build-session.native';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session';
 
+// Exercise the committed catalogs; CI must not depend on a live production API.
+beforeAll(() => { jest.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('catalog_fixture_offline')); });
+afterAll(() => { jest.mocked(globalThis.fetch).mockRestore(); });
+
 describe('buildMockExamSession', () => {
   it('builds the ICAO 4 complete paper with rule-based section counts and unique item ids', async () => {
     const session = await buildMockExamSession({ examType: 'icao4-first', modules: ['listening', 'sentences900', 'radiotelephony', 'opi'] }, 73);

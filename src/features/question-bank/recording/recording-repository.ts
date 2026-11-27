@@ -1,3 +1,4 @@
+import { dataStorageName } from '@/config/data-environment';
 import { Directory, File, Paths } from 'expo-file-system';
 
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
@@ -57,8 +58,8 @@ export class RecordingRepository {
   private readonly loginSessions = new Set<string>();
   retainSessionForLogin(sessionId: string) { this.loginSessions.add(sessionId); }
   releaseSessionFromLogin(sessionId: string) { this.loginSessions.delete(sessionId); }
-  private readonly root = new Directory(Paths.cache, 'icao-recordings');
-  private get savedRoot() { return new Directory(Paths.document, 'icao-recordings'); }
+  private readonly root = new Directory(Paths.cache, dataStorageName('icao-recordings'));
+  private get savedRoot() { return new Directory(Paths.document, dataStorageName('icao-recordings')); }
   private readonly createId: () => string;
   private readonly mediaProbe: RecordingMediaProbe;
   private readonly now: () => number;

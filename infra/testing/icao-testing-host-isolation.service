@@ -1,0 +1,13 @@
+[Unit]
+Description=Block new testing network connections to host services
+After=network-pre.target
+Before=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh /opt/icao/testing/host-isolation.sh ensure
+ExecStop=/bin/sh /opt/icao/testing/host-isolation.sh remove
+
+[Install]
+WantedBy=multi-user.target
