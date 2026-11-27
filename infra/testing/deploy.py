@@ -64,7 +64,7 @@ def main():
     run(['docker', 'compose', '-f', str(compose_path), 'up', '-d', '--no-deps', 'api'])
     for _ in range(30):
         try:
-            with urllib.request.urlopen('http://127.0.0.1:13101/health/ready', timeout=5) as response:
+            with urllib.request.urlopen('http://172.30.244.10:3101/health/ready', timeout=5) as response:
                 if response.status == 200 and response.headers.get('x-icao-api-version') == 'testing-' + sha[:12]:
                     evidence = {'environment': 'testing', 'commit': sha, 'image': image_id,
                                 'archiveSha256': digest, 'verifiedAt': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}

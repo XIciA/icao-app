@@ -43,6 +43,7 @@ export class AppleNotificationReconciliationService implements OnModuleInit, OnM
   ) {}
 
   onModuleInit() {
+    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     if (this.config.nodeEnv === 'test') return;
     this.timer = setInterval(() => { void observeBackground('apple_notification_retry', () => this.runScheduled(), this.logger); }, RETRY_INTERVAL_MS);
     this.timer.unref();

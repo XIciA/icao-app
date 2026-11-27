@@ -21,12 +21,26 @@ for role in sorted(source - target):
     sql = 'CREATE ROLE "' + role.replace('"', '""') + '" NOLOGIN;'
     subprocess.run(['docker','exec','-i','icao-testing-db','psql','-U','supabase_admin','-d','postgres','-v','ON_ERROR_STOP=1'], input=sql, text=True, check=True)
 PYROLES
+# The base image does not initialize a password for every service role.
+# Set fresh testing passwords without exporting production credentials.
+python3 - <<'PYPASSWORD'
+import json
+import subprocess
+from pathlib import Path
+password = json.loads(Path('/opt/icao/testing/credentials.json').read_text())['postgresPassword']
+assert len(password) == 64 and all(c in '0123456789abcdef' for c in password)
+sql = '\n'.join("ALTER ROLE " + role + " LOGIN PASSWORD '" + password + "';" for role in
+    ['postgres', 'authenticator', 'supabase_auth_admin', 'supabase_storage_admin'])
+subprocess.run(['docker','exec','-i','icao-testing-db','psql','-U','supabase_admin','-d','postgres','-v','ON_ERROR_STOP=1'], input=sql, text=True, check=True, stdout=subprocess.DEVNULL)
+PYPASSWORD
 # No production DB connection is used for restore. Refuse replacement of an existing target.
 docker exec icao-testing-db createdb -U supabase_admin -T template0 icao_testing
 docker exec -i icao-testing-db pg_restore -U supabase_admin -d icao_testing --exit-on-error < "$backup"
 # Restored sessions and pending external dispatches must not be replayed.
 # Only TESTING data is modified; production users keep their active sessions.
 docker exec -i icao-testing-db psql -v ON_ERROR_STOP=1 -U supabase_admin -d icao_testing <<'SQL'
+GRANT authenticator TO supabase_storage_admin WITH INHERIT FALSE, SET TRUE;
+GRANT anon, authenticated, service_role, ops_vocabulary_storage TO authenticator WITH INHERIT FALSE, SET TRUE;
 TRUNCATE auth.sessions CASCADE;
 TRUNCATE auth.refresh_tokens;
 SQL

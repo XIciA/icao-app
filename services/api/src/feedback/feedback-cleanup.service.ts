@@ -45,6 +45,7 @@ export class FeedbackCleanupService implements OnModuleInit, OnModuleDestroy {
   ) {}
 
   onModuleInit() {
+    if (process.env.ICAO_DATA_ENVIRONMENT === 'testing') return;
     if (this.config.nodeEnv === 'test') return;
     this.timer = setInterval(() => { void observeBackground('feedback_cleanup', () => this.runScheduled(), this.logger); }, DAY_MILLISECONDS);
     this.timer.unref();

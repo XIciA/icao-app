@@ -7,6 +7,7 @@ import base64
 import hashlib
 import hmac
 import json
+import ipaddress
 import os
 from pathlib import Path
 import secrets
@@ -42,6 +43,13 @@ def main():
              'imgproxy': 'supabase-imgproxy', 'mailpit': 'supabase-mailpit', 'api': 'icao-api'}
     live = {key: inspect(name) for key, name in names.items()}
     assert all(d['State']['Running'] for d in live.values())
+    testing_subnet = ipaddress.ip_network('172.30.244.0/24')
+    for network_id in subprocess.check_output(['docker', 'network', 'ls', '-q'], text=True).split():
+        network = json.loads(subprocess.check_output(['docker', 'network', 'inspect', network_id]))[0]
+        for item in network.get('IPAM', {}).get('Config') or []:
+            subnet = item.get('Subnet')
+            if subnet and ipaddress.ip_network(subnet).version == 4:
+                assert not testing_subnet.overlaps(ipaddress.ip_network(subnet)), 'testing_subnet_conflict'
     ROOT.mkdir(mode=0o700)
     password, jwt = secrets.token_hex(32), secrets.token_hex(48)
     def token(role):
@@ -112,9 +120,9 @@ def main():
                             'KONG_DNS_ORDER': 'LAST,A,CNAME', 'KONG_PLUGINS': 'cors,key-auth,acl',
                             'KONG_NGINX_WORKER_PROCESSES': '1', 'KONG_PROXY_ACCESS_LOG': '/dev/null'},
                     volumes=[f'{ROOT}/kong.json:/home/kong/testing.json:ro'],
-                    ports=['127.0.0.1:18000:8000'], mem_limit='512m'),
+                    mem_limit='512m'),
         'api': svc('api', {'NODE_ENV': 'test', 'HOST': '0.0.0.0', 'PORT': '3101',
-                          'API_RELEASE_ID': 'testing-baseline-bd9b8988', 'DATABASE_URL': dburl('postgres'),
+                          'ICAO_DATA_ENVIRONMENT': 'testing', 'API_RELEASE_ID': 'testing-baseline-bd9b8988', 'DATABASE_URL': dburl('postgres'),
                           'SUPABASE_URL': 'http://kong:8000', 'SUPABASE_PUBLIC_URL': CLOUD,
                           'SUPABASE_PUBLISHABLE_KEY': anon, 'SUPABASE_SECRET_KEY': service,
                           'INVITE_AUTH_SECRET': secrets.token_hex(32),
@@ -122,8 +130,10 @@ def main():
                           'CONTENT_CREDENTIAL_SIGNING_SECRET': secrets.token_hex(32),
                           'CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY': private_key.decode(),
                           'SMS_PROVIDER': 'disabled', 'CORS_ORIGINS': API},
-                   ports=['127.0.0.1:13101:3101'], mem_limit='768m'),
+                   mem_limit='768m'),
     }
+    services['api']['networks'] = {'isolated': {'ipv4_address': '172.30.244.10'}}
+    services['kong']['networks'] = {'isolated': {'ipv4_address': '172.30.244.11'}}
     kong = {'_format_version': '3.0', 'consumers': [
         {'username': 'anon', 'keyauth_credentials': [{'key': anon}], 'acls': [{'group': 'anon'}]},
         {'username': 'service_role', 'keyauth_credentials': [{'key': service}], 'acls': [{'group': 'admin'}]},
@@ -139,7 +149,7 @@ def main():
     # Kong runs as its own uid; the private parent directory still protects this file on host.
     (ROOT / 'kong.json').chmod(0o644)
     compose = {'name': PROJECT, 'services': services,
-               'networks': {'isolated': {'name': PROJECT, 'internal': True}}}
+               'networks': {'isolated': {'name': PROJECT, 'internal': True, 'ipam': {'config': [{'subnet': str(testing_subnet)}]}}}}
     write('compose.json', json.dumps(compose, indent=2))
     write('baseline.json', json.dumps({k: {'image': v['Image'], 'containerId': v['Id'], 'startedAt': v['State']['StartedAt']} for k, v in live.items()}, indent=2))
     write('client.env', f'ICAO_RELEASE_ENVIRONMENT=testing\nEXPO_PUBLIC_ICAO_DATA_ENVIRONMENT=testing\nEXPO_PUBLIC_ICAO_API_URL={API}\nEXPO_PUBLIC_SUPABASE_URL={CLOUD}\nEXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY={anon}\nEXPO_PUBLIC_ICAO_CONTENT_PUBLIC_KEY={public_key}\n')
