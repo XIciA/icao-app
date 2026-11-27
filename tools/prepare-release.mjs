@@ -40,7 +40,7 @@ if (materializeOnly) {
     cwd: root,
     encoding: 'utf8',
   }).trim();
-  if (!branch || branch === 'main') throw new Error('release_prepare_requires_task_branch');
+  if (!branch.startsWith('feature/')) throw new Error('release_prepare_requires_task_branch');
   if (dirty) throw new Error('release_prepare_requires_clean_worktree');
   const epochMinutes = Math.floor((now.getTime() - Date.UTC(2020, 0, 1)) / 60_000);
   const currentCode = Number(app.expo.android?.versionCode ?? 0);

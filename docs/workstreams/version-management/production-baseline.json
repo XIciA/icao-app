@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "recordedOn": "2026-11-27",
+  "sourceBaseline": "7207bb90775f9e91d7c0943c6af39af5770cbc6e",
+  "sourceVerification": "Original GitHub commit and tree hashes matched in clean local copy",
+  "serverVerification": "blocked: SSH Operation not permitted; component values below come from release records",
+  "components": {
+    "ios": {
+      "version": "1.3.2", "build": "3596176",
+      "commit": "ce6092ecca8a0f37bf95e648d5620881c5a5052d",
+      "record": "docs/records/releases/20261113-course-remote-content.md"
+    },
+    "android": {
+      "version": "1.3.2", "build": "3596177",
+      "commit": "89d46fd2d81be07a309143480bab1d379976bcd5",
+      "record": "docs/records/releases/20261113-course-remote-content.md"
+    },
+    "web": {
+      "commit": "1b139ae68e57ec1a18b8c7e06c9c00b7ac45b898",
+      "deployment": "dpshq1pa1y7y",
+      "record": "docs/records/releases/20261121-web-icp-footer.md"
+    },
+    "api": {
+      "releaseId": "ai-output-20261113-bd9b8988",
+      "commit": "bd9b89883b208089a3b0cc1ab3cc2f9339c0425e",
+      "record": "docs/records/releases/20261113-course-remote-content.md"
+    },
+    "ops": {
+      "releaseId": "voucher-reasons-20261115-f4d58bae",
+      "commit": "f4d58bae87d336c22304f119808699ed9ff53176",
+      "record": "docs/records/releases/20261115-ops-voucher-reasons.md"
+    }
+  },
+  "database": {
+    "authority": "existing production PostgreSQL; retain and migrate in place",
+    "liveMigrationVersion": null,
+    "lastVerifiedBackup": null,
+    "testingIsIndependent": true,
+    "testingProvisioned": false
+  }
+}

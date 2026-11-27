@@ -39,6 +39,16 @@ require_public_https_url() {
 }
 
 load_release_runtime() {
+  release_environment=${ICAO_RELEASE_ENVIRONMENT:-production}
+  node "$PROJECT_ROOT/tools/release-environment.mjs" "$release_environment" >/dev/null
+  if [ "$release_environment" = testing ]; then
+    # Testing credentials come from its own protected environment file. Never SSH
+    # into production to fill missing testing credentials.
+    : "${EXPO_PUBLIC_ICAO_API_URL:?Testing API URL is required}"
+    : "${EXPO_PUBLIC_SUPABASE_URL:?Testing Supabase URL is required}"
+    : "${EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY:?Testing publishable key is required}"
+    node "$PROJECT_ROOT/tools/release-environment.mjs" testing --validate-values >/dev/null
+  fi
   API_URL=${EXPO_PUBLIC_ICAO_API_URL:-https://api.readyoufife.com}
   SUPABASE_URL=${EXPO_PUBLIC_SUPABASE_URL:-https://cloud.readyoufife.com}
   PUBLISHABLE_KEY=${EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY:-}
@@ -71,6 +81,7 @@ load_release_runtime() {
   export EXPO_PUBLIC_ICAO_API_URL=$API_URL
   export EXPO_PUBLIC_SUPABASE_URL=$SUPABASE_URL
   export EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$PUBLISHABLE_KEY
+  node "$PROJECT_ROOT/tools/release-environment.mjs" "$release_environment" --validate-values >/dev/null
 }
 
 check_release_runtime() {

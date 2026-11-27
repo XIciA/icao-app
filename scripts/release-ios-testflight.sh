@@ -18,7 +18,13 @@ cd "$PROJECT_ROOT"
 export pnpm_config_verify_deps_before_run=error
 export pnpm_config_frozen_lockfile=true
 
-node tools/check-mainline-release.mjs
+# TestFlight development builds must never fall back to the production database.
+export ICAO_RELEASE_ENVIRONMENT=${ICAO_RELEASE_ENVIRONMENT:-testing}
+if [ "$ICAO_RELEASE_ENVIRONMENT" = production ]; then
+  node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
+else
+  node "$PROJECT_ROOT/tools/check-release-source.mjs" "$ICAO_RELEASE_ENVIRONMENT" --root "$PROJECT_ROOT"
+fi
 
 if [ -n "$(git status --porcelain --untracked-files=all)" ]; then
   echo 'TestFlight release requires a clean, reviewed Git worktree.' >&2

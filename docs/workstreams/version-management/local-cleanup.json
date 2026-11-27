@@ -1,0 +1,126 @@
+{
+  "executedAt": "2026-11-27T10:26:40.981043+00:00",
+  "scope": "Obsolete generated APK, IPA and Xcode archives only",
+  "entries": [
+    {
+      "path": ".generated/offline-delivery-20261031/android-test/feizhu-icao-android-test-1.4.0.apk",
+      "kind": "old-test-apk",
+      "bytes": 138302437,
+      "sha256": "0248b327a09c126b0fcf92ccf40ba62490a84fa2c7064acc65c9335e0adc54c0",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/offline-delivery-20261031/testflight/ICAO-3586479-20261030T171144Z.xcarchive",
+      "kind": "archive",
+      "build": 3586479,
+      "bytes": 252712669,
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/offline-delivery-20261031/testflight/export-3586479-20261030T171144Z/app.ipa",
+      "kind": "ipa",
+      "build": 3586479,
+      "bytes": 41298028,
+      "sha256": "e0d612f2267688516f85e6ad78992c8da3c325a27135ae277125b6068fe27452",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/experience-optimization-delivery-20261102/testflight/ICAO-3596166-20261102T083626Z.xcarchive",
+      "kind": "archive",
+      "build": 3596166,
+      "bytes": 252598613,
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/experience-optimization-delivery-20261102/testflight/export-3596166-20261102T083626Z/app.ipa",
+      "kind": "ipa",
+      "build": 3596166,
+      "bytes": 41333784,
+      "sha256": "370d492e74907b89656de87bc4f3bf18a0fec24e294a36eed96c4c3f8f662b76",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/performance-pricing-delivery-20261101/testflight/ICAO-3593082-20261101T100857Z.xcarchive",
+      "kind": "archive",
+      "build": 3593082,
+      "bytes": 252553354,
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/performance-pricing-delivery-20261101/testflight/export-3593082-20261101T100857Z/app.ipa",
+      "kind": "ipa",
+      "build": 3593082,
+      "bytes": 41324500,
+      "sha256": "b4c819762b99314c9a4d4ca2f8bc73a040906c5efd88ac030b7f19ca71701beb",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/intermediate-delivery-20261102/testflight/ICAO-3596167-20261102T120525Z.xcarchive",
+      "kind": "archive",
+      "build": 3596167,
+      "bytes": 252564596,
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/intermediate-delivery-20261102/testflight/export-3596167-20261102T120525Z/app.ipa",
+      "kind": "ipa",
+      "build": 3596167,
+      "bytes": 41328638,
+      "sha256": "b92cf50e0e0b4e1efa7858b6ca7594887bc84d4298f31fe62f347fab3b505924",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/offline-root-delivery-20261031/1.4.2/ios-1.4.2-b3593081.ipa",
+      "kind": "ipa",
+      "build": 3593081,
+      "bytes": 41322509,
+      "sha256": "dbc144d307d1e3842a3d584720e7e6c7099ce20d2b74937e328f0e94c388a5db",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/offline-root-delivery-20261031/feizhu-icao-android-test-1.4.1.apk",
+      "kind": "old-test-apk",
+      "bytes": 138341993,
+      "sha256": "0c877e82abf09bb6f3c288b22c81a06c0e9b6a0495ebff8229edfa0a9751efa6",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/offline-root-delivery-20261031/ios-1.4.1-b3593080.ipa",
+      "kind": "ipa",
+      "build": 3593080,
+      "bytes": 41321942,
+      "sha256": "96a1d729e58ff88b74a4dbdc3c68b00067d5dcf5e30be65c3620b2f20edca11f",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/testflight-130/ICAO-3593083-20261101T113306Z.xcarchive",
+      "kind": "archive",
+      "build": 3593083,
+      "bytes": 252975833,
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/testflight-130/export-3593083-20261101T113306Z/app.ipa",
+      "kind": "ipa",
+      "build": 3593083,
+      "bytes": 41330079,
+      "sha256": "7a8c68bab9442dc4ee04be92ff9f8e0141a5beb33310a8ab92ec6fc4e792f122",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/android-navigation-parity-delivery/feizhu-icao-android-test-1.3.0.apk",
+      "kind": "old-test-apk",
+      "bytes": 138350237,
+      "sha256": "a1022328a5d198c8f716830e466d074cd5d3dae391f9b9b27172a946281a9810",
+      "status": "deleted"
+    },
+    {
+      "path": ".generated/android-test-130-delivery/feizhu-icao-android-test-1.3.0.apk",
+      "kind": "old-test-apk",
+      "bytes": 138350093,
+      "sha256": "cd31dcc36a9092b53fc8649dc26801d92aee2d05696aca26434b90ff1c54be85",
+      "status": "deleted"
+    }
+  ],
+  "removedBytes": 2106009305
+}

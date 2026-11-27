@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "production": {
+    "branch": "main",
+    "apiUrl": "https://api.readyoufife.com",
+    "supabaseUrl": "https://cloud.readyoufife.com"
+  },
+  "testing": {
+    "branch": "develop",
+    "ready": false,
+    "apiUrl": null,
+    "supabaseUrl": null,
+    "pending": [
+      "Provision and verify an independent API, Supabase, database and storage",
+      "Verify that copied data cannot trigger production SMS, payments or background jobs",
+      "Partition client caches and pending learning writes before switching environments",
+      "Bind live verification evidence to the selected testing runtime"
+    ]
+  }
+}

@@ -37,6 +37,8 @@ if [ "$ARCHIVE_BUNDLE_ID" != "$EXPECTED_BUNDLE_ID" ] || [ "$ARCHIVE_BUILD" != "$
   exit 1
 fi
 
+node tools/check-app-store-environment.mjs "$ARCHIVE_PATH"
+
 echo 'App Store critical-capability submission gate passed.'
 echo "Use the already uploaded TestFlight build $EXPECTED_BUILD in App Store Connect."
 echo 'No build was created and no upload or store submission was performed.'

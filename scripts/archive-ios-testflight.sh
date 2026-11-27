@@ -12,7 +12,13 @@ PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
 
-node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
+# TestFlight development builds must never fall back to the production database.
+export ICAO_RELEASE_ENVIRONMENT=${ICAO_RELEASE_ENVIRONMENT:-testing}
+if [ "$ICAO_RELEASE_ENVIRONMENT" = production ]; then
+  node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
+else
+  node "$PROJECT_ROOT/tools/check-release-source.mjs" "$ICAO_RELEASE_ENVIRONMENT" --root "$PROJECT_ROOT"
+fi
 
 IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}
 IOS_BUNDLE_ID=${ICAO_IOS_BUNDLE_ID:-com.readyoufife.ios}

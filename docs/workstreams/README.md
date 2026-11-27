@@ -50,3 +50,5 @@
 - [2026-10-26功能优化](next-round-2026-10/requirements.md)：已确认方案，正在实施；含反馈复用、900句场景、重听及听力高亮。
 
 - [离线学习与启动恢复](offline-learning-2026-10/final-plan.md)：1.4.0 测试候选已交付、真机待验；[实施记录](offline-learning-2026-10/implementation.md)、[真机验收清单](offline-learning-2026-10/device-acceptance.md)。
+
+- [版本管理迁移](version-management/README.md)：已确认三层分支与独立测试数据需求，实施进度及阻塞记录。

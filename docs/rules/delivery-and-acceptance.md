@@ -51,7 +51,7 @@
 1. 先完成本次功能所需的相关静态检查、类型检查和聚焦测试。
 2. 不以模拟器、Development Build 或 Dev 真机作为上传前置条件。
 3. 直接生成使用正式 Bundle ID、Release 配置和递增 build number 的候选包。
-4. 校验签名、权限、生产运行时地址和包身份后直接上传 App Store Connect。
+4. 校验签名、权限、所选环境地址和包身份后上传 App Store Connect；develop 测试包连接独立测试环境，main 正式候选连接正式环境。
 5. Apple 处理完成后，由用户在 TestFlight 真机验收。
 6. TestFlight 通过后再记录该候选包的真机结果；不得要求尚未生成的候选包预先提供真机证据。
 

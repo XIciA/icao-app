@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
+import { resolveReleaseEnvironment, validateRuntimeValues } from './release-environment.mjs';
 
 const root = process.cwd();
 const archivePath = process.argv[2];
@@ -37,8 +38,11 @@ const codeFingerprints = Object.fromEntries(await Promise.all(
   criticalFiles.map(async (file) => [file, await checksum(path.join(root, file))]),
 ));
 const archiveInfo = path.join(archivePath, 'Info.plist');
+const runtime = resolveReleaseEnvironment(process.env.ICAO_RELEASE_ENVIRONMENT);
+validateRuntimeValues(runtime, process.env);
 const candidate = {
-  schemaVersion: 1,
+  schemaVersion: 2,
+  runtime,
   commitSha: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
   createdAt: new Date().toISOString(),
   bundleIdentifier: app.expo.ios.bundleIdentifier,
