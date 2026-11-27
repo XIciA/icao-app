@@ -133,6 +133,8 @@ def main():
             'routes': [{'name': name, 'strip_path': True, 'paths': [prefix]}],
             'plugins': [{'name': 'cors'}, {'name': 'key-auth', 'config': {'key_names': ['apikey'], 'hide_credentials': False}},
                         {'name': 'acl', 'config': {'allow': ['anon', 'admin'], 'hide_groups_header': True}}]})
+    # Storage validates JWT/signed URLs itself; public media requests carry no apikey.
+    next(service for service in kong['services'] if service['name'] == 'storage')['plugins'] = [{'name': 'cors'}]
     write('kong.json', json.dumps(kong))
     # Kong runs as its own uid; the private parent directory still protects this file on host.
     (ROOT / 'kong.json').chmod(0o644)
