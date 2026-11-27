@@ -7,6 +7,7 @@ if (!databaseUrl) throw new Error('missing_DATABASE_URL');
 const migrationModes = process.argv.slice(2);
 const supportedModes = new Set([
   '--development-apply',
+  '--testing-apply',
   '--isolated-rehearsal',
   '--production-apply',
 ]);
@@ -16,6 +17,7 @@ if (migrationModes.length !== 1 || !supportedModes.has(migrationModes[0])) {
 
 const migrationMode = migrationModes[0];
 const productionApply = migrationMode === '--production-apply';
+const testingApply = migrationMode === '--testing-apply';
 const isolatedRehearsal = migrationMode === '--isolated-rehearsal';
 const developmentApply = migrationMode === '--development-apply';
 const productionSourceSha = process.env.ICAO_PRODUCTION_MIGRATION_SOURCE_SHA ?? '';
@@ -80,6 +82,13 @@ if (productionApply) {
   ) {
     throw new Error('migration_rehearsal_database_target_invalid');
   }
+} else if (testingApply) {
+  if (process.env.NODE_ENV !== 'test' || process.env.ICAO_DATA_ENVIRONMENT !== 'testing'
+    || !['postgres:', 'postgresql:'].includes(parsedDatabaseUrl.protocol)
+    || parsedDatabaseUrl.hostname !== 'db' || parsedDatabaseUrl.pathname !== '/icao_testing'
+    || parsedDatabaseUrl.search || parsedDatabaseUrl.hash) {
+    throw new Error('testing_migration_target_invalid');
+  }
 } else if (developmentApply) {
   if (process.env.NODE_ENV === 'production') {
     throw new Error('development_migration_forbidden_in_production');
@@ -103,7 +112,7 @@ const client = postgres(databaseUrl, {
       ? 'icao_production_migration_apply'
       : isolatedRehearsal
         ? 'icao_isolated_migration_rehearsal'
-        : 'icao_development_database_migration',
+        : testingApply ? 'icao_testing_database_migration' : 'icao_development_database_migration',
     lock_timeout: '15s',
     statement_timeout: '10min',
   },

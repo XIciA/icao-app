@@ -1,4 +1,8 @@
-import SQLiteStorage from 'expo-sqlite/kv-store';
+import ProductionStorage, { SQLiteStorage as SQLiteStorageDatabase } from 'expo-sqlite/kv-store';
+import { DATA_ENVIRONMENT, dataStorageName } from '@/config/data-environment';
+
+const SQLiteStorage = DATA_ENVIRONMENT === 'production'
+  ? ProductionStorage : new SQLiteStorageDatabase(dataStorageName('ExpoSQLiteStorage'));
 
 // Expo's multiSet/multiRemove open a separate transaction connection. Writers
 // must exclude every other operation until the complete SDK operation settles.

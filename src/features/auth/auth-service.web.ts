@@ -1,3 +1,4 @@
+import { dataStorageName } from '@/config/data-environment';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 
 export type AppSession = {
@@ -137,7 +138,7 @@ class SupabasePhoneAuthService implements AuthService {
 
   private readStoredSession() {
     try {
-      const raw = globalThis.localStorage?.getItem('icao.auth.web.supabase.v1');
+      const raw = globalThis.localStorage?.getItem(dataStorageName('icao.auth.web.supabase.v1'));
       if (!raw) return undefined;
       const value = JSON.parse(raw) as AppSession;
       return value?.accessToken && value.refreshToken && value.user?.id ? value : undefined;
@@ -148,8 +149,8 @@ class SupabasePhoneAuthService implements AuthService {
 
   private storeSession(session: AppSession | undefined) {
     try {
-      if (session) globalThis.localStorage?.setItem('icao.auth.web.supabase.v1', JSON.stringify(session));
-      else globalThis.localStorage?.removeItem('icao.auth.web.supabase.v1');
+      if (session) globalThis.localStorage?.setItem(dataStorageName('icao.auth.web.supabase.v1'), JSON.stringify(session));
+      else globalThis.localStorage?.removeItem(dataStorageName('icao.auth.web.supabase.v1'));
     } catch {
       throw new Error('auth_session_storage_unavailable');
     }

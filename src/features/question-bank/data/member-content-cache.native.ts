@@ -1,3 +1,4 @@
+import { dataStorageName } from '@/config/data-environment';
 import { offlineClockIsValid, acceptOnlineCredentialClock, clearOfflineClock } from './offline-clock.native';
 import {
   AESKeySize,
@@ -26,13 +27,13 @@ import {
   verifyContentAccessCredential,
 } from './content-credential-verifier.native';
 
-const LEGACY_DEVICE_ID_KEY = 'icao.content.device.v1';
+const LEGACY_DEVICE_ID_KEY = dataStorageName('icao.content.device.v1');
 const LEGACY_CREDENTIAL_KEY_PREFIX = 'icao.content.credential.v1.';
 const LEGACY_CREDENTIAL_INDEX_PREFIX = 'icao.content.credential-index.v1.';
 const LEGACY_TOPIC_CACHE_PREFIX = 'icao.content.member-topic.v1.';
 const LEGACY_RESOURCE_INDEX_PREFIX = 'icao.content.member-resource.v1.';
-const ACCOUNT_KEY_PREFIX = 'icao.content.key.v1.';
-const CREDENTIAL_KEY_PREFIX = 'icao.content.credential.v2.';
+const ACCOUNT_KEY_PREFIX = dataStorageName('icao.content.key.v1.');
+const CREDENTIAL_KEY_PREFIX = dataStorageName('icao.content.credential.v2.');
 const CREDENTIAL_INDEX_PREFIX = 'icao.content.credential-index.v2.';
 const TOPIC_CACHE_PREFIX = 'icao.content.member-topic.v2.';
 const RESOURCE_INDEX_PREFIX = 'icao.content.member-resource.v2.';
@@ -121,7 +122,7 @@ function credentialKey(accountId: string, environment: ContentAccessCredential['
   if (validSecureStoreKey(legacy)) return legacy;
   const identity = JSON.stringify([accountId, environment, scope.bankId, scope.categoryId, scope.topicId]);
   const encoded = Array.from(new TextEncoder().encode(identity), byte => byte.toString(16).padStart(2, '0')).join('');
-  return `icao.content.credential.v3.${encoded}`;
+  return dataStorageName(`icao.content.credential.v3.${encoded}`);
 }
 
 function credentialIndexKey(accountId: string) {
@@ -133,11 +134,11 @@ function resourceIndexKey(accountId: string, environment: ContentAccessCredentia
 }
 
 function memberResourceAccountDirectory(accountId: string) {
-  return new Directory(Paths.document, 'icao-member-content', accountId);
+  return new Directory(Paths.document, dataStorageName('icao-member-content'), accountId);
 }
 
 function temporaryResourceAccountDirectory(accountId: string) {
-  return new Directory(Paths.cache, 'icao-authorized-content', accountId);
+  return new Directory(Paths.cache, dataStorageName('icao-authorized-content'), accountId);
 }
 
 function touchTemporaryResource(file: File) {
@@ -227,7 +228,7 @@ function isStoredContentScope(value: unknown): value is ContentAccessScope {
 
 async function removeLegacyDeviceBoundMemberContent() {
   // Transfers are process-local and never valid offline resources after restart.
-  const abandonedTransfers = new Directory(Paths.cache, 'icao-content-transfers');
+  const abandonedTransfers = new Directory(Paths.cache, dataStorageName('icao-content-transfers'));
   if (abandonedTransfers.exists) abandonedTransfers.delete();
   await SecureStore.deleteItemAsync(LEGACY_DEVICE_ID_KEY);
   const storageKeys = await Storage.getAllKeys();

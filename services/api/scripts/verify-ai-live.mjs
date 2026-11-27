@@ -1,3 +1,4 @@
+import { resolveReleaseEnvironment } from '../../../tools/release-environment.mjs';
 import { spawn } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
@@ -5,10 +6,11 @@ import { dirname } from 'node:path';
 const apiBase = (process.env.API_BASE ?? 'http://127.0.0.1:3101').replace(/\/$/u, '');
 const supabaseUrl = process.env.SUPABASE_URL;
 const evidenceFile = process.env.AI_VERIFY_EVIDENCE_FILE;
-const REQUIRED_API_ORIGIN = 'https://api.readyoufife.com';
-const REQUIRED_SUPABASE_ORIGIN = 'https://cloud.readyoufife.com';
+const runtime = resolveReleaseEnvironment(process.env.ICAO_RELEASE_ENVIRONMENT || 'production');
+const REQUIRED_API_ORIGIN = runtime.apiUrl;
+const REQUIRED_SUPABASE_ORIGIN = runtime.supabaseUrl;
 
-function requireExactProductionOrigin(value, expectedOrigin, errorCode) {
+function requireExactSelectedOrigin(value, expectedOrigin, errorCode) {
   let parsed;
   try {
     parsed = new URL(value);
@@ -26,8 +28,8 @@ function requireExactProductionOrigin(value, expectedOrigin, errorCode) {
 }
 
 // This guard must run before readiness checks, child processes, test-account creation, or paid AI calls.
-requireExactProductionOrigin(`${apiBase}/`, REQUIRED_API_ORIGIN, 'ai_live_requires_production_api_origin');
-requireExactProductionOrigin(supabaseUrl ?? '', REQUIRED_SUPABASE_ORIGIN, 'ai_live_requires_production_supabase_origin');
+requireExactSelectedOrigin(`${apiBase}/`, REQUIRED_API_ORIGIN, 'ai_live_requires_selected_api_origin');
+requireExactSelectedOrigin(supabaseUrl ?? '', REQUIRED_SUPABASE_ORIGIN, 'ai_live_requires_selected_supabase_origin');
 
 function run(script) {
   return new Promise((resolve, reject) => {
@@ -73,6 +75,7 @@ const [asr, review] = await Promise.all([
 const evidence = {
   schemaVersion: 1,
   kind: 'ai-live',
+  environment: runtime.environment,
   status: 'passed',
   apiOrigin: new URL(apiBase).origin,
   apiVersion: String(version),

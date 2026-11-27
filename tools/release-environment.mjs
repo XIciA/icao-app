@@ -25,9 +25,15 @@ export function resolveReleaseEnvironment(environment, config = JSON.parse(readF
 }
 
 export function validateRuntimeValues(target, values) {
+  if (values.EXPO_PUBLIC_ICAO_DATA_ENVIRONMENT !== target.environment) {
+    throw new Error('release_data_namespace_does_not_match_environment');
+  }
   if (values.EXPO_PUBLIC_ICAO_API_URL !== target.apiUrl
     || values.EXPO_PUBLIC_SUPABASE_URL !== target.supabaseUrl) {
     throw new Error('release_runtime_does_not_match_selected_environment');
+  }
+  if (target.environment === 'testing' && !/^[A-Za-z0-9+/]{43}=$/u.test(values.EXPO_PUBLIC_ICAO_CONTENT_PUBLIC_KEY || '')) {
+    throw new Error('testing_content_public_key_required');
   }
   if (!values.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.trim()) throw new Error('release_publishable_key_missing');
 }

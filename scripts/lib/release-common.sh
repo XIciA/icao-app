@@ -40,6 +40,7 @@ require_public_https_url() {
 
 load_release_runtime() {
   release_environment=${ICAO_RELEASE_ENVIRONMENT:-production}
+  export EXPO_PUBLIC_ICAO_DATA_ENVIRONMENT=$release_environment
   node "$PROJECT_ROOT/tools/release-environment.mjs" "$release_environment" >/dev/null
   if [ "$release_environment" = testing ]; then
     # Testing credentials come from its own protected environment file. Never SSH

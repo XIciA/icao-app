@@ -1,6 +1,8 @@
+import { dataStorageName } from '@/config/data-environment';
+
 type StorageEntry = readonly [string, string];
 type StorageResult = readonly [string, string | null];
-const DATABASE_NAME = 'feizhu-icao-web';
+const DATABASE_NAME = dataStorageName('feizhu-icao-web');
 const STORE_NAME = 'key-value';
 let databasePromise: Promise<IDBDatabase | null> | undefined;
 

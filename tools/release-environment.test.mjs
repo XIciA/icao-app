@@ -26,7 +26,7 @@ test('production and testing select exactly one branch and endpoint pair', () =>
     assert.throws(() => validateReleaseSource({ ...state, dirty: true }, target), /release_source_dirty/);
     assert.throws(() => validateReleaseSource({ ...state, remoteHead: '' }, target), /missing/);
     assert.throws(() => validateReleaseSource({ ...state, remoteHead: 'other' }, target), /not_origin/);
-    validateRuntimeValues(target, { EXPO_PUBLIC_ICAO_API_URL: target.apiUrl, EXPO_PUBLIC_SUPABASE_URL: target.supabaseUrl, EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: 'fixture-public-key' });
+    validateRuntimeValues(target, { EXPO_PUBLIC_ICAO_CONTENT_PUBLIC_KEY: Buffer.alloc(32, 1).toString('base64'), EXPO_PUBLIC_ICAO_DATA_ENVIRONMENT: environment, EXPO_PUBLIC_ICAO_API_URL: target.apiUrl, EXPO_PUBLIC_SUPABASE_URL: target.supabaseUrl, EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: 'fixture-public-key' });
   }
 });
 test('testing cannot use either production service, including swapped endpoints', () => {
@@ -36,7 +36,7 @@ test('testing cannot use either production service, including swapped endpoints'
     }
   }
   assert.throws(() => validateRuntimeValues(resolveReleaseEnvironment('testing', config), {
-    EXPO_PUBLIC_ICAO_API_URL: production.apiUrl, EXPO_PUBLIC_SUPABASE_URL: production.supabaseUrl,
+    EXPO_PUBLIC_ICAO_DATA_ENVIRONMENT: 'testing', EXPO_PUBLIC_ICAO_API_URL: production.apiUrl, EXPO_PUBLIC_SUPABASE_URL: production.supabaseUrl,
     EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: 'fixture-public-key',
   }), /does_not_match/);
 });
