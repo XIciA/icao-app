@@ -111,6 +111,16 @@ def main():
     assert sql('supabase-db','postgres',"SELECT count(*) FROM public.user_documents WHERE document_key='" + marker + "'") == '0'
     assert sql('supabase-db','postgres',"SELECT count(*) FROM auth.users WHERE phone='8619900000001'") == '0'
     request(CLOUD,'/storage/v1/object/public/app-releases/updates.json')
+    bucket='testing-probe-'+uuid.uuid4().hex
+    request(CLOUD,'/storage/v1/bucket',headers=admin,body={'id':bucket,'name':bucket,'public':False})
+    try:
+        request(CLOUD,'/storage/v1/object/'+bucket+'/probe.json',headers=admin,body={'environment':'testing'})
+        signed=request(CLOUD,'/storage/v1/object/sign/'+bucket+'/probe.json',headers=admin,body={'expiresIn':60})
+        assert request(CLOUD,'/storage/v1'+signed['signedURL'])=={'environment':'testing'}
+        assert sql('supabase-db','postgres',"SELECT count(*) FROM storage.buckets WHERE id='"+bucket+"'")=='0'
+    finally:
+        request(CLOUD,'/storage/v1/object/'+bucket,headers=admin,method='DELETE',body={'prefixes':['probe.json']})
+        request(CLOUD,'/storage/v1/bucket/'+bucket,headers=admin,method='DELETE')
     # No route from the testing API to outside services or production public ingress.
     result = subprocess.run(['docker','exec','icao-testing-api','node','-e',
         "fetch('https://api.readyoufife.com/health/ready',{signal:AbortSignal.timeout(3000)}).then(()=>process.exit(1)).catch(()=>process.exit(0))"])
@@ -125,7 +135,7 @@ def main():
         assert live['State']['Running']
     evidence = {'environment':'testing','verifiedAt':now,'checks':{
         'login':True,'accountIdentity':True,'entitlementRead':bool(entitlements),'restoredMemberIdentityAndEntitlement':True,'syncPushPull':True,'learningRecordAndCardState':True,
-        'publicStorage':True,'productionRejectsTestToken':True,'productionProbeRowsAbsent':True,
+        'publicStorage':True,'privateStorageWriteSignedReadCleanup':True,'productionRejectsTestToken':True,'productionProbeRowsAbsent':True,
         'externalEgressBlocked':True,'hostGatewayConnectionsBlocked':True,'productionContainersUnchanged':True},
         'externalCapabilities':'disabled: paid AI, payments, external SMS and social login',
         'snapshot':json.loads((ROOT/'restore-complete.json').read_text())}
