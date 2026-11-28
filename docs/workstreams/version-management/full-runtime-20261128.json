@@ -1,0 +1,32 @@
+{
+  "environment": "testing",
+  "verifiedAt": "2026-11-28T02:49:44Z",
+  "apiVersion": "testing-4f186e3036e5",
+  "checks": {
+    "fullRuntimeConfiguration": true,
+    "reusedProviderConfigurationMatches": true,
+    "independentDatabaseAndSessions": true,
+    "testingCallbackConfigured": true,
+    "servicesRunning": true,
+    "publicHealth": true,
+    "productionContainersUnchanged": true,
+    "networkIsolationConfigured": true
+  },
+  "notPerformed": [
+    "real SMS delivery",
+    "paid AI requests",
+    "real payment",
+    "device OAuth",
+    "TestFlight build/upload"
+  ],
+  "commit": "4f186e3036e583791a6d39c36dbd8fa4d4fb6d0a",
+  "image": "sha256:53587d03b20d89c235191f4b0b6b0b9dc60855b0e3d066dc9c7238d31235c4f4",
+  "archiveSha256": "f73463dfe93fe49b2a0928eff3b96dc56c5e855df6285012b470c21c886e1725",
+  "appleNotifications": {
+    "productionUrl": "https://api.readyoufife.com/v1/commerce/apple/notifications/v2",
+    "productionVersion": "V2",
+    "sandboxUrl": "https://test-api.readyoufife.com/v1/commerce/apple/notifications/v2",
+    "sandboxVersion": "V2"
+  },
+  "scope": "Existing full code and provider configuration migration; no real business or device tests requested."
+}
