@@ -49,7 +49,8 @@ describe('<CourseCatalogScreen hidePrices={hidePrices} catalog={catalog} /> in t
     const screen = await renderScreen();
     await fireEvent.press(screen.getByLabelText('选择复考课程'));
     expect(screen.getByText('ICAO 4 复考基础班')).toBeTruthy();
-    expect(screen.getByText('5999')).toBeTruthy();
+    expect(screen.getByText('ICAO 4 复考包过班')).toBeTruthy();
+    expect(screen.getByText('6999')).toBeTruthy();
     expect(screen.getByLabelText('选择复考课程').props.accessibilityState).toEqual({ selected: true });
     await fireEvent.press(screen.getByLabelText('选择预习课程'));
     expect(screen.getAllByText('ICAO 4 预习课程')).toHaveLength(2);
