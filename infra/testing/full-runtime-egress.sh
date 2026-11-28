@@ -3,6 +3,8 @@
 set -eu
 subnet=172.30.245.0/24
 chain=ICAO-TEST-EGRESS
+# The host-isolation unit runs before Docker on boot; create its user chain if absent.
+iptables -w -N DOCKER-USER 2>/dev/null || true
 iptables -w -N "$chain" 2>/dev/null || true
 # New isolated chain; never flush shared Docker or production firewall chains.
 iptables -w -F "$chain"
