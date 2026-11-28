@@ -12,8 +12,8 @@
 | [项目长期边界](rules/project-boundaries.md) | 技术栈、职责唯一来源、权限、维护范围与版本更新 |
 | [工程维护要求](rules/engineering-maintenance.md) | 根因修复、完整流程、兼容性与长任务接续 |
 | [UI 风格规范](rules/ui-style-guide.md) | 品牌视觉、组件气质与核心交互 |
-| [仓库管理规则](rules/repository-and-github-management.md) | main / develop / feature 三层、发布来源与清理 |
-| [产品更新与发布流程](rules/product-update-workflow.md) | 测试交付、正式发布指令与平台范围 |
+| [仓库管理规则](rules/repository-and-github-management.md) | 三层分支、本地测试与正式环境结构、配置隔离及发布来源 |
+| [产品更新与发布流程](rules/product-update-workflow.md) | 开发顺序、按平台测试交付、正式发布指令与平台范围 |
 | [交付与验收规则](rules/delivery-and-acceptance.md) | 最终环境、必要检查与验收状态 |
 | [内容处理规则](rules/content-processing.md) | OPI 完整英文问题、资源文章保真、统一审核与归档 |
 | [词库书写与缩写维护规范](rules/vocabulary-content.md) | 全局中英文格式、缩写与全称合并及统一展示 |
