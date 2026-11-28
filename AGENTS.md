@@ -11,5 +11,6 @@
 - `docs/records/` 保存历史记录。旧“已确认”决定、方案和执行结论不具长期规则效力，也不授权新任务。
 
 Git、提交、PR、发布或清理操作开始前，读取 [仓库管理规则](docs/rules/repository-and-github-management.md)。
+涉及代码修改的聊天，开始实施前按其中的[代码任务开工状态](docs/rules/repository-and-github-management.md#代码任务开工状态)核实并展示工作目录、实际分支和代码版本；纯需求讨论及文档修改不要求此输出。
 产品更新、需求实施、Bug 修复及发布任务读取 [产品更新与发布流程](docs/rules/product-update-workflow.md)。
 UI 任务读取 [UI 风格规范](docs/rules/ui-style-guide.md)；验证与交付读取 [交付与验收规则](docs/rules/delivery-and-acceptance.md)。
