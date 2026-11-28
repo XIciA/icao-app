@@ -31,7 +31,7 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | Android 提前体验 | 官网测试入口已按用户要求移除，主下载改为正式 3596176 | 历史同身份体验包 3596175 保留记录；独立 `.test` 渠道 3596173 未改，不卸载或清数据。[记录](../../records/releases/20261104-targeted-mobile-fixes-1.3.1.md) |
 | iOS TestFlight | 1.3.2 / 3596176，源码 `ce6092ec`；11 月 13 日 16:33 Apple VALID / IN_BETA_TESTING，内部“测试”组可用 | 补齐模拟练习录音保存及原题卡回听，重录失败保留旧录音；课程原生远程内容、隐藏价格与课时展示保持。代码及制品检查通过，用户真机待验，未提交 App Store 正式审核。[记录](../../records/releases/20261113-course-remote-content.md) |
 | EdgeOne 产品 Web | 源码 `1b139ae6`，deployment `dpshq1pa1y7y`，11 月 21 日已上线 | 仅在首页底部新增 ICP 备案号与工信部链接；桌面/手机布局、正式脚本和完整检查通过。未改 ECS、API、数据库或移动端。上轮录音评分真实体验仍待用户验收。[页脚记录](../../records/releases/20261121-web-icp-footer.md)／[上轮修复](../../records/releases/20261120-web-ai-upload-hotfix.md) |
-| 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
+| 宣传站 | 11 月 28 日上线 ICAO 4 复考基础班更新，源码 `2bb8ac86` | 4500 元／15 节课＋2 次模拟测试。两个入口的跳转、卡片及详情均已在桌面和手机尺寸下核验。[本轮发布记录](../../records/releases/20261128-promo-icao4-retake-foundation.md)／[香港迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
 | ECS API | `offline-sync-reliability-20261104-c841dbae`，源码 `c841dbae`，11 月 4 日经授权部署 | 五题库凭据／音频、限流冷却及真实 AI 验证通过；无迁移，热点 v33、OPI v29／预览 v30 及词表保持。[本轮记录](../../records/releases/20261104-offline-sync-reliability-1.3.1.md) |
 | 题库 | 正式 OPI、陆空通话仍 v29；OPI v30 已导入为不激活测试候选 | 237→223 话题、443 卡迁移；2365 卡内容/ID、最全/精选/冲刺及免费范围、图片题保持。无用户表改写，正式 active 仍 v29；本轮新 Web 与 iOS 候选按已有请求头使用 v30 预览，其他题库版本不变；目录及旧数据体验待用户验收。[记录](../../records/2026-11-02-opi-directory-v30.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
