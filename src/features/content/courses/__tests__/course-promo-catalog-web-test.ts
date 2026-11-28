@@ -15,7 +15,8 @@ describe('webCoursePromoCatalog', () => {
     expect(plans.map((plan) => `${plan.name}:${plan.price}:${plan.unit}`)).toEqual(expect.arrayContaining([
       'ICAO 4 初考基础班:4500:元 / 15 节课 + 2 次模拟测试',
       'ICAO 4 初考包过班:6999:元 / 无限课时',
-      'ICAO 4 复考包过班:5999:元 / 无限课时',
+      'ICAO 4 复考包过班:6999:元 / 无限课时',
+      'ICAO 4 复考冲刺班:3600:元 / 12 节课 + 1 次模拟测试',
       'ICAO 4 预习课程:3000:元 / 12 节课',
       'ICAO 5 包过班:8999:元 / 无限课时',
     ]));
